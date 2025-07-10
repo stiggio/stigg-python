@@ -1,14 +1,28 @@
 # V1
 
+## Customers
+
 Types:
 
 ```python
-from stigg.types import V1RetrieveCustomerResponse
+from stigg.types.v1 import CustomerGetCustomerResponse
 ```
 
 Methods:
 
-- <code title="get /api/v1/customers/{refId}">client.v1.<a href="./src/stigg/resources/v1/v1.py">retrieve_customer</a>(ref_id) -> <a href="./src/stigg/types/v1_retrieve_customer_response.py">V1RetrieveCustomerResponse</a></code>
+- <code title="get /api/v1/customers/{refId}">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">get_customer</a>(ref_id) -> <a href="./src/stigg/types/v1/customer_get_customer_response.py">CustomerGetCustomerResponse</a></code>
+
+### SubCustomer
+
+Types:
+
+```python
+from stigg.types.v1.customers import SubCustomerGetSubCustomerResponse
+```
+
+Methods:
+
+- <code title="get /api/v1/customers/{refId}">client.v1.customers.sub_customer.<a href="./src/stigg/resources/v1/customers/sub_customer.py">get_sub_customer</a>(ref_id) -> <a href="./src/stigg/types/v1/customers/sub_customer_get_sub_customer_response.py">SubCustomerGetSubCustomerResponse</a></code>
 
 ## Permissions
 

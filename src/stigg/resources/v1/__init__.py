@@ -8,6 +8,14 @@ from .v1 import (
     V1ResourceWithStreamingResponse,
     AsyncV1ResourceWithStreamingResponse,
 )
+from .customers import (
+    CustomersResource,
+    AsyncCustomersResource,
+    CustomersResourceWithRawResponse,
+    AsyncCustomersResourceWithRawResponse,
+    CustomersResourceWithStreamingResponse,
+    AsyncCustomersResourceWithStreamingResponse,
+)
 from .permissions import (
     PermissionsResource,
     AsyncPermissionsResource,
@@ -18,6 +26,12 @@ from .permissions import (
 )
 
 __all__ = [
+    "CustomersResource",
+    "AsyncCustomersResource",
+    "CustomersResourceWithRawResponse",
+    "AsyncCustomersResourceWithRawResponse",
+    "CustomersResourceWithStreamingResponse",
+    "AsyncCustomersResourceWithStreamingResponse",
     "PermissionsResource",
     "AsyncPermissionsResource",
     "PermissionsResourceWithRawResponse",
