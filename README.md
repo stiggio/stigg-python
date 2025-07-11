@@ -1,6 +1,7 @@
 # Stigg Python API library
 
-[![PyPI version](<https://img.shields.io/pypi/v/stigg.svg?label=pypi%20(stable)>)](https://pypi.org/project/stigg/)
+<!-- prettier-ignore -->
+[![PyPI version](https://img.shields.io/pypi/v/stigg.svg?label=pypi%20(stable))](https://pypi.org/project/stigg/)
 
 The Stigg Python library provides convenient access to the Stigg REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
