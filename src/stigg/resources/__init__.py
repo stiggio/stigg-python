@@ -8,6 +8,14 @@ from .v1 import (
     V1ResourceWithStreamingResponse,
     AsyncV1ResourceWithStreamingResponse,
 )
+from .v2 import (
+    V2Resource,
+    AsyncV2Resource,
+    V2ResourceWithRawResponse,
+    AsyncV2ResourceWithRawResponse,
+    V2ResourceWithStreamingResponse,
+    AsyncV2ResourceWithStreamingResponse,
+)
 
 __all__ = [
     "V1Resource",
@@ -16,4 +24,10 @@ __all__ = [
     "AsyncV1ResourceWithRawResponse",
     "V1ResourceWithStreamingResponse",
     "AsyncV1ResourceWithStreamingResponse",
+    "V2Resource",
+    "AsyncV2Resource",
+    "V2ResourceWithRawResponse",
+    "AsyncV2ResourceWithRawResponse",
+    "V2ResourceWithStreamingResponse",
+    "AsyncV2ResourceWithStreamingResponse",
 ]

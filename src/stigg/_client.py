@@ -30,12 +30,14 @@ from ._base_client import (
     AsyncAPIClient,
 )
 from .resources.v1 import v1
+from .resources.v2 import v2
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Stigg", "AsyncStigg", "Client", "AsyncClient"]
 
 
 class Stigg(SyncAPIClient):
     v1: v1.V1Resource
+    v2: v2.V2Resource
     with_raw_response: StiggWithRawResponse
     with_streaming_response: StiggWithStreamedResponse
 
@@ -90,6 +92,7 @@ class Stigg(SyncAPIClient):
         )
 
         self.v1 = v1.V1Resource(self)
+        self.v2 = v2.V2Resource(self)
         self.with_raw_response = StiggWithRawResponse(self)
         self.with_streaming_response = StiggWithStreamedResponse(self)
 
@@ -213,6 +216,7 @@ class Stigg(SyncAPIClient):
 
 class AsyncStigg(AsyncAPIClient):
     v1: v1.AsyncV1Resource
+    v2: v2.AsyncV2Resource
     with_raw_response: AsyncStiggWithRawResponse
     with_streaming_response: AsyncStiggWithStreamedResponse
 
@@ -267,6 +271,7 @@ class AsyncStigg(AsyncAPIClient):
         )
 
         self.v1 = v1.AsyncV1Resource(self)
+        self.v2 = v2.AsyncV2Resource(self)
         self.with_raw_response = AsyncStiggWithRawResponse(self)
         self.with_streaming_response = AsyncStiggWithStreamedResponse(self)
 
@@ -391,21 +396,25 @@ class AsyncStigg(AsyncAPIClient):
 class StiggWithRawResponse:
     def __init__(self, client: Stigg) -> None:
         self.v1 = v1.V1ResourceWithRawResponse(client.v1)
+        self.v2 = v2.V2ResourceWithRawResponse(client.v2)
 
 
 class AsyncStiggWithRawResponse:
     def __init__(self, client: AsyncStigg) -> None:
         self.v1 = v1.AsyncV1ResourceWithRawResponse(client.v1)
+        self.v2 = v2.AsyncV2ResourceWithRawResponse(client.v2)
 
 
 class StiggWithStreamedResponse:
     def __init__(self, client: Stigg) -> None:
         self.v1 = v1.V1ResourceWithStreamingResponse(client.v1)
+        self.v2 = v2.V2ResourceWithStreamingResponse(client.v2)
 
 
 class AsyncStiggWithStreamedResponse:
     def __init__(self, client: AsyncStigg) -> None:
         self.v1 = v1.AsyncV1ResourceWithStreamingResponse(client.v1)
+        self.v2 = v2.AsyncV2ResourceWithStreamingResponse(client.v2)
 
 
 Client = Stigg
