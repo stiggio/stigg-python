@@ -4,4 +4,4 @@ from __future__ import annotations
 
 from .permission_check_params import PermissionCheckParams as PermissionCheckParams
 from .permission_check_response import PermissionCheckResponse as PermissionCheckResponse
-from .customer_get_customer_response import CustomerGetCustomerResponse as CustomerGetCustomerResponse
+from .customer_retrieve_response import CustomerRetrieveResponse as CustomerRetrieveResponse

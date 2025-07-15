@@ -9,7 +9,7 @@ import pytest
 
 from stigg import Stigg, AsyncStigg
 from tests.utils import assert_matches_type
-from stigg.types.v2 import CustomerGetCustomerResponse
+from stigg.types.v2 import CustomerRetrieveResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,18 +19,18 @@ class TestCustomers:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_customer(self, client: Stigg) -> None:
-        customer = client.v2.customers.get_customer(
+    def test_method_retrieve(self, client: Stigg) -> None:
+        customer = client.v2.customers.retrieve(
             ref_id="refId",
             x_api_key="X-API-KEY",
             x_environment_id="X-ENVIRONMENT-ID",
         )
-        assert_matches_type(CustomerGetCustomerResponse, customer, path=["response"])
+        assert_matches_type(CustomerRetrieveResponse, customer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_get_customer(self, client: Stigg) -> None:
-        response = client.v2.customers.with_raw_response.get_customer(
+    def test_raw_response_retrieve(self, client: Stigg) -> None:
+        response = client.v2.customers.with_raw_response.retrieve(
             ref_id="refId",
             x_api_key="X-API-KEY",
             x_environment_id="X-ENVIRONMENT-ID",
@@ -39,12 +39,12 @@ class TestCustomers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         customer = response.parse()
-        assert_matches_type(CustomerGetCustomerResponse, customer, path=["response"])
+        assert_matches_type(CustomerRetrieveResponse, customer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_get_customer(self, client: Stigg) -> None:
-        with client.v2.customers.with_streaming_response.get_customer(
+    def test_streaming_response_retrieve(self, client: Stigg) -> None:
+        with client.v2.customers.with_streaming_response.retrieve(
             ref_id="refId",
             x_api_key="X-API-KEY",
             x_environment_id="X-ENVIRONMENT-ID",
@@ -53,15 +53,15 @@ class TestCustomers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             customer = response.parse()
-            assert_matches_type(CustomerGetCustomerResponse, customer, path=["response"])
+            assert_matches_type(CustomerRetrieveResponse, customer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_get_customer(self, client: Stigg) -> None:
+    def test_path_params_retrieve(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ref_id` but received ''"):
-            client.v2.customers.with_raw_response.get_customer(
+            client.v2.customers.with_raw_response.retrieve(
                 ref_id="",
                 x_api_key="X-API-KEY",
                 x_environment_id="X-ENVIRONMENT-ID",
@@ -75,18 +75,18 @@ class TestAsyncCustomers:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_customer(self, async_client: AsyncStigg) -> None:
-        customer = await async_client.v2.customers.get_customer(
+    async def test_method_retrieve(self, async_client: AsyncStigg) -> None:
+        customer = await async_client.v2.customers.retrieve(
             ref_id="refId",
             x_api_key="X-API-KEY",
             x_environment_id="X-ENVIRONMENT-ID",
         )
-        assert_matches_type(CustomerGetCustomerResponse, customer, path=["response"])
+        assert_matches_type(CustomerRetrieveResponse, customer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_get_customer(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v2.customers.with_raw_response.get_customer(
+    async def test_raw_response_retrieve(self, async_client: AsyncStigg) -> None:
+        response = await async_client.v2.customers.with_raw_response.retrieve(
             ref_id="refId",
             x_api_key="X-API-KEY",
             x_environment_id="X-ENVIRONMENT-ID",
@@ -95,12 +95,12 @@ class TestAsyncCustomers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         customer = await response.parse()
-        assert_matches_type(CustomerGetCustomerResponse, customer, path=["response"])
+        assert_matches_type(CustomerRetrieveResponse, customer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_get_customer(self, async_client: AsyncStigg) -> None:
-        async with async_client.v2.customers.with_streaming_response.get_customer(
+    async def test_streaming_response_retrieve(self, async_client: AsyncStigg) -> None:
+        async with async_client.v2.customers.with_streaming_response.retrieve(
             ref_id="refId",
             x_api_key="X-API-KEY",
             x_environment_id="X-ENVIRONMENT-ID",
@@ -109,15 +109,15 @@ class TestAsyncCustomers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             customer = await response.parse()
-            assert_matches_type(CustomerGetCustomerResponse, customer, path=["response"])
+            assert_matches_type(CustomerRetrieveResponse, customer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_get_customer(self, async_client: AsyncStigg) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ref_id` but received ''"):
-            await async_client.v2.customers.with_raw_response.get_customer(
+            await async_client.v2.customers.with_raw_response.retrieve(
                 ref_id="",
                 x_api_key="X-API-KEY",
                 x_environment_id="X-ENVIRONMENT-ID",

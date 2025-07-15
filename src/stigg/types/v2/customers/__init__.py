@@ -2,6 +2,4 @@
 
 from __future__ import annotations
 
-from .sub_customer_get_sub_customer_response import (
-    SubCustomerGetSubCustomerResponse as SubCustomerGetSubCustomerResponse,
-)
+from .sub_customer_retrieve_response import SubCustomerRetrieveResponse as SubCustomerRetrieveResponse

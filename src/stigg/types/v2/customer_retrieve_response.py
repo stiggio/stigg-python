@@ -2,12 +2,12 @@
 
 from typing import Optional
 
-from ...._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = ["SubCustomerGetSubCustomerResponse"]
+__all__ = ["CustomerRetrieveResponse"]
 
 
-class SubCustomerGetSubCustomerResponse(BaseModel):
+class CustomerRetrieveResponse(BaseModel):
     id: str
     """Unique identifier for the entity"""
 
