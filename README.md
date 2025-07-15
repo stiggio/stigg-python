@@ -98,7 +98,6 @@ pip install 'stigg[aiohttp] @ git+ssh://git@github.com/stainless-sdks/stigg-pyth
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
-import os
 import asyncio
 from stigg import DefaultAioHttpClient
 from stigg import AsyncStigg
@@ -106,7 +105,7 @@ from stigg import AsyncStigg
 
 async def main() -> None:
     async with AsyncStigg(
-        api_key=os.environ.get("STIGG_API_KEY"),  # This is the default and can be omitted
+        api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
         response = await client.v1.permissions.check(
