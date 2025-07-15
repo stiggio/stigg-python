@@ -14,7 +14,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.v2.customers.sub_customer_get_sub_customer_response import SubCustomerGetSubCustomerResponse
+from ....types.v2.customers.sub_customer_retrieve_response import SubCustomerRetrieveResponse
 
 __all__ = ["SubCustomerResource", "AsyncSubCustomerResource"]
 
@@ -39,7 +39,7 @@ class SubCustomerResource(SyncAPIResource):
         """
         return SubCustomerResourceWithStreamingResponse(self)
 
-    def get_sub_customer(
+    def retrieve(
         self,
         ref_id: str,
         *,
@@ -51,7 +51,7 @@ class SubCustomerResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubCustomerGetSubCustomerResponse:
+    ) -> SubCustomerRetrieveResponse:
         """
         Get a single customer by id
 
@@ -72,7 +72,7 @@ class SubCustomerResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SubCustomerGetSubCustomerResponse,
+            cast_to=SubCustomerRetrieveResponse,
         )
 
 
@@ -96,7 +96,7 @@ class AsyncSubCustomerResource(AsyncAPIResource):
         """
         return AsyncSubCustomerResourceWithStreamingResponse(self)
 
-    async def get_sub_customer(
+    async def retrieve(
         self,
         ref_id: str,
         *,
@@ -108,7 +108,7 @@ class AsyncSubCustomerResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubCustomerGetSubCustomerResponse:
+    ) -> SubCustomerRetrieveResponse:
         """
         Get a single customer by id
 
@@ -129,7 +129,7 @@ class AsyncSubCustomerResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SubCustomerGetSubCustomerResponse,
+            cast_to=SubCustomerRetrieveResponse,
         )
 
 
@@ -137,8 +137,8 @@ class SubCustomerResourceWithRawResponse:
     def __init__(self, sub_customer: SubCustomerResource) -> None:
         self._sub_customer = sub_customer
 
-        self.get_sub_customer = to_raw_response_wrapper(
-            sub_customer.get_sub_customer,
+        self.retrieve = to_raw_response_wrapper(
+            sub_customer.retrieve,
         )
 
 
@@ -146,8 +146,8 @@ class AsyncSubCustomerResourceWithRawResponse:
     def __init__(self, sub_customer: AsyncSubCustomerResource) -> None:
         self._sub_customer = sub_customer
 
-        self.get_sub_customer = async_to_raw_response_wrapper(
-            sub_customer.get_sub_customer,
+        self.retrieve = async_to_raw_response_wrapper(
+            sub_customer.retrieve,
         )
 
 
@@ -155,8 +155,8 @@ class SubCustomerResourceWithStreamingResponse:
     def __init__(self, sub_customer: SubCustomerResource) -> None:
         self._sub_customer = sub_customer
 
-        self.get_sub_customer = to_streamed_response_wrapper(
-            sub_customer.get_sub_customer,
+        self.retrieve = to_streamed_response_wrapper(
+            sub_customer.retrieve,
         )
 
 
@@ -164,6 +164,6 @@ class AsyncSubCustomerResourceWithStreamingResponse:
     def __init__(self, sub_customer: AsyncSubCustomerResource) -> None:
         self._sub_customer = sub_customer
 
-        self.get_sub_customer = async_to_streamed_response_wrapper(
-            sub_customer.get_sub_customer,
+        self.retrieve = async_to_streamed_response_wrapper(
+            sub_customer.retrieve,
         )

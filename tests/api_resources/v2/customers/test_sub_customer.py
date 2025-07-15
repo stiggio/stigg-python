@@ -9,7 +9,7 @@ import pytest
 
 from stigg import Stigg, AsyncStigg
 from tests.utils import assert_matches_type
-from stigg.types.v2.customers import SubCustomerGetSubCustomerResponse
+from stigg.types.v2.customers import SubCustomerRetrieveResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,18 +19,18 @@ class TestSubCustomer:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_sub_customer(self, client: Stigg) -> None:
-        sub_customer = client.v2.customers.sub_customer.get_sub_customer(
+    def test_method_retrieve(self, client: Stigg) -> None:
+        sub_customer = client.v2.customers.sub_customer.retrieve(
             ref_id="refId",
             x_api_key="X-API-KEY",
             x_environment_id="X-ENVIRONMENT-ID",
         )
-        assert_matches_type(SubCustomerGetSubCustomerResponse, sub_customer, path=["response"])
+        assert_matches_type(SubCustomerRetrieveResponse, sub_customer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_get_sub_customer(self, client: Stigg) -> None:
-        response = client.v2.customers.sub_customer.with_raw_response.get_sub_customer(
+    def test_raw_response_retrieve(self, client: Stigg) -> None:
+        response = client.v2.customers.sub_customer.with_raw_response.retrieve(
             ref_id="refId",
             x_api_key="X-API-KEY",
             x_environment_id="X-ENVIRONMENT-ID",
@@ -39,12 +39,12 @@ class TestSubCustomer:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sub_customer = response.parse()
-        assert_matches_type(SubCustomerGetSubCustomerResponse, sub_customer, path=["response"])
+        assert_matches_type(SubCustomerRetrieveResponse, sub_customer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_get_sub_customer(self, client: Stigg) -> None:
-        with client.v2.customers.sub_customer.with_streaming_response.get_sub_customer(
+    def test_streaming_response_retrieve(self, client: Stigg) -> None:
+        with client.v2.customers.sub_customer.with_streaming_response.retrieve(
             ref_id="refId",
             x_api_key="X-API-KEY",
             x_environment_id="X-ENVIRONMENT-ID",
@@ -53,15 +53,15 @@ class TestSubCustomer:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sub_customer = response.parse()
-            assert_matches_type(SubCustomerGetSubCustomerResponse, sub_customer, path=["response"])
+            assert_matches_type(SubCustomerRetrieveResponse, sub_customer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_get_sub_customer(self, client: Stigg) -> None:
+    def test_path_params_retrieve(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ref_id` but received ''"):
-            client.v2.customers.sub_customer.with_raw_response.get_sub_customer(
+            client.v2.customers.sub_customer.with_raw_response.retrieve(
                 ref_id="",
                 x_api_key="X-API-KEY",
                 x_environment_id="X-ENVIRONMENT-ID",
@@ -75,18 +75,18 @@ class TestAsyncSubCustomer:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_sub_customer(self, async_client: AsyncStigg) -> None:
-        sub_customer = await async_client.v2.customers.sub_customer.get_sub_customer(
+    async def test_method_retrieve(self, async_client: AsyncStigg) -> None:
+        sub_customer = await async_client.v2.customers.sub_customer.retrieve(
             ref_id="refId",
             x_api_key="X-API-KEY",
             x_environment_id="X-ENVIRONMENT-ID",
         )
-        assert_matches_type(SubCustomerGetSubCustomerResponse, sub_customer, path=["response"])
+        assert_matches_type(SubCustomerRetrieveResponse, sub_customer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_get_sub_customer(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v2.customers.sub_customer.with_raw_response.get_sub_customer(
+    async def test_raw_response_retrieve(self, async_client: AsyncStigg) -> None:
+        response = await async_client.v2.customers.sub_customer.with_raw_response.retrieve(
             ref_id="refId",
             x_api_key="X-API-KEY",
             x_environment_id="X-ENVIRONMENT-ID",
@@ -95,12 +95,12 @@ class TestAsyncSubCustomer:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sub_customer = await response.parse()
-        assert_matches_type(SubCustomerGetSubCustomerResponse, sub_customer, path=["response"])
+        assert_matches_type(SubCustomerRetrieveResponse, sub_customer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_get_sub_customer(self, async_client: AsyncStigg) -> None:
-        async with async_client.v2.customers.sub_customer.with_streaming_response.get_sub_customer(
+    async def test_streaming_response_retrieve(self, async_client: AsyncStigg) -> None:
+        async with async_client.v2.customers.sub_customer.with_streaming_response.retrieve(
             ref_id="refId",
             x_api_key="X-API-KEY",
             x_environment_id="X-ENVIRONMENT-ID",
@@ -109,15 +109,15 @@ class TestAsyncSubCustomer:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sub_customer = await response.parse()
-            assert_matches_type(SubCustomerGetSubCustomerResponse, sub_customer, path=["response"])
+            assert_matches_type(SubCustomerRetrieveResponse, sub_customer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_get_sub_customer(self, async_client: AsyncStigg) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ref_id` but received ''"):
-            await async_client.v2.customers.sub_customer.with_raw_response.get_sub_customer(
+            await async_client.v2.customers.sub_customer.with_raw_response.retrieve(
                 ref_id="",
                 x_api_key="X-API-KEY",
                 x_environment_id="X-ENVIRONMENT-ID",
