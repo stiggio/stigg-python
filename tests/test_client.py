@@ -22,7 +22,7 @@ from stigg import Stigg, AsyncStigg, APIResponseValidationError
 from stigg._types import Omit
 from stigg._utils import asyncify
 from stigg._models import BaseModel, FinalRequestOptions
-from stigg._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
+from stigg._exceptions import StiggError, APIStatusError, APITimeoutError, APIResponseValidationError
 from stigg._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
@@ -347,21 +347,12 @@ class TestStigg:
     def test_validate_headers(self) -> None:
         client = Stigg(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("Authorization") == f"Bearer {api_key}"
+        assert request.headers.get("X-API-KEY") == api_key
 
-        with update_env(**{"STIGG_API_KEY": Omit()}):
-            client2 = Stigg(base_url=base_url, api_key=None, _strict_response_validation=True)
-
-        with pytest.raises(
-            TypeError,
-            match="Could not resolve authentication method. Expected the api_key to be set. Or for the `Authorization` headers to be explicitly omitted",
-        ):
-            client2._build_request(FinalRequestOptions(method="get", url="/foo"))
-
-        request2 = client2._build_request(
-            FinalRequestOptions(method="get", url="/foo", headers={"Authorization": Omit()})
-        )
-        assert request2.headers.get("Authorization") is None
+        with pytest.raises(StiggError):
+            with update_env(**{"STIGG_API_KEY": Omit()}):
+                client2 = Stigg(base_url=base_url, api_key=None, _strict_response_validation=True)
+            _ = client2
 
     def test_default_query_option(self) -> None:
         client = Stigg(
@@ -741,36 +732,20 @@ class TestStigg:
     @mock.patch("stigg._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: Stigg) -> None:
-        respx_mock.post("/api/v1/permissions/check").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.get("/api/v1/customers/x").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            client.v1.permissions.with_streaming_response.check(
-                user_id="userId",
-                resources_and_actions=[
-                    {
-                        "action": "read",
-                        "resource": "product",
-                    }
-                ],
-            ).__enter__()
+            client.v1.customers.with_streaming_response.retrieve("x").__enter__()
 
         assert _get_open_connections(client) == 0
 
     @mock.patch("stigg._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: Stigg) -> None:
-        respx_mock.post("/api/v1/permissions/check").mock(return_value=httpx.Response(500))
+        respx_mock.get("/api/v1/customers/x").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            client.v1.permissions.with_streaming_response.check(
-                user_id="userId",
-                resources_and_actions=[
-                    {
-                        "action": "read",
-                        "resource": "product",
-                    }
-                ],
-            ).__enter__()
+            client.v1.customers.with_streaming_response.retrieve("x").__enter__()
         assert _get_open_connections(client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -797,17 +772,9 @@ class TestStigg:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/api/v1/permissions/check").mock(side_effect=retry_handler)
+        respx_mock.get("/api/v1/customers/x").mock(side_effect=retry_handler)
 
-        response = client.v1.permissions.with_raw_response.check(
-            user_id="userId",
-            resources_and_actions=[
-                {
-                    "action": "read",
-                    "resource": "product",
-                }
-            ],
-        )
+        response = client.v1.customers.with_raw_response.retrieve("x")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -827,17 +794,10 @@ class TestStigg:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/api/v1/permissions/check").mock(side_effect=retry_handler)
+        respx_mock.get("/api/v1/customers/x").mock(side_effect=retry_handler)
 
-        response = client.v1.permissions.with_raw_response.check(
-            user_id="userId",
-            resources_and_actions=[
-                {
-                    "action": "read",
-                    "resource": "product",
-                }
-            ],
-            extra_headers={"x-stainless-retry-count": Omit()},
+        response = client.v1.customers.with_raw_response.retrieve(
+            "x", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -859,18 +819,9 @@ class TestStigg:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/api/v1/permissions/check").mock(side_effect=retry_handler)
+        respx_mock.get("/api/v1/customers/x").mock(side_effect=retry_handler)
 
-        response = client.v1.permissions.with_raw_response.check(
-            user_id="userId",
-            resources_and_actions=[
-                {
-                    "action": "read",
-                    "resource": "product",
-                }
-            ],
-            extra_headers={"x-stainless-retry-count": "42"},
-        )
+        response = client.v1.customers.with_raw_response.retrieve("x", extra_headers={"x-stainless-retry-count": "42"})
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
@@ -1215,21 +1166,12 @@ class TestAsyncStigg:
     def test_validate_headers(self) -> None:
         client = AsyncStigg(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("Authorization") == f"Bearer {api_key}"
+        assert request.headers.get("X-API-KEY") == api_key
 
-        with update_env(**{"STIGG_API_KEY": Omit()}):
-            client2 = AsyncStigg(base_url=base_url, api_key=None, _strict_response_validation=True)
-
-        with pytest.raises(
-            TypeError,
-            match="Could not resolve authentication method. Expected the api_key to be set. Or for the `Authorization` headers to be explicitly omitted",
-        ):
-            client2._build_request(FinalRequestOptions(method="get", url="/foo"))
-
-        request2 = client2._build_request(
-            FinalRequestOptions(method="get", url="/foo", headers={"Authorization": Omit()})
-        )
-        assert request2.headers.get("Authorization") is None
+        with pytest.raises(StiggError):
+            with update_env(**{"STIGG_API_KEY": Omit()}):
+                client2 = AsyncStigg(base_url=base_url, api_key=None, _strict_response_validation=True)
+            _ = client2
 
     async def test_default_query_option(self) -> None:
         client = AsyncStigg(
@@ -1620,36 +1562,20 @@ class TestAsyncStigg:
     @mock.patch("stigg._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, async_client: AsyncStigg) -> None:
-        respx_mock.post("/api/v1/permissions/check").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.get("/api/v1/customers/x").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await async_client.v1.permissions.with_streaming_response.check(
-                user_id="userId",
-                resources_and_actions=[
-                    {
-                        "action": "read",
-                        "resource": "product",
-                    }
-                ],
-            ).__aenter__()
+            await async_client.v1.customers.with_streaming_response.retrieve("x").__aenter__()
 
         assert _get_open_connections(async_client) == 0
 
     @mock.patch("stigg._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, async_client: AsyncStigg) -> None:
-        respx_mock.post("/api/v1/permissions/check").mock(return_value=httpx.Response(500))
+        respx_mock.get("/api/v1/customers/x").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await async_client.v1.permissions.with_streaming_response.check(
-                user_id="userId",
-                resources_and_actions=[
-                    {
-                        "action": "read",
-                        "resource": "product",
-                    }
-                ],
-            ).__aenter__()
+            await async_client.v1.customers.with_streaming_response.retrieve("x").__aenter__()
         assert _get_open_connections(async_client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -1676,17 +1602,9 @@ class TestAsyncStigg:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/api/v1/permissions/check").mock(side_effect=retry_handler)
+        respx_mock.get("/api/v1/customers/x").mock(side_effect=retry_handler)
 
-        response = await client.v1.permissions.with_raw_response.check(
-            user_id="userId",
-            resources_and_actions=[
-                {
-                    "action": "read",
-                    "resource": "product",
-                }
-            ],
-        )
+        response = await client.v1.customers.with_raw_response.retrieve("x")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1708,17 +1626,10 @@ class TestAsyncStigg:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/api/v1/permissions/check").mock(side_effect=retry_handler)
+        respx_mock.get("/api/v1/customers/x").mock(side_effect=retry_handler)
 
-        response = await client.v1.permissions.with_raw_response.check(
-            user_id="userId",
-            resources_and_actions=[
-                {
-                    "action": "read",
-                    "resource": "product",
-                }
-            ],
-            extra_headers={"x-stainless-retry-count": Omit()},
+        response = await client.v1.customers.with_raw_response.retrieve(
+            "x", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -1740,17 +1651,10 @@ class TestAsyncStigg:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/api/v1/permissions/check").mock(side_effect=retry_handler)
+        respx_mock.get("/api/v1/customers/x").mock(side_effect=retry_handler)
 
-        response = await client.v1.permissions.with_raw_response.check(
-            user_id="userId",
-            resources_and_actions=[
-                {
-                    "action": "read",
-                    "resource": "product",
-                }
-            ],
-            extra_headers={"x-stainless-retry-count": "42"},
+        response = await client.v1.customers.with_raw_response.retrieve(
+            "x", extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"

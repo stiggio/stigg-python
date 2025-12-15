@@ -35,16 +35,10 @@ client = Stigg(
     api_key=os.environ.get("STIGG_API_KEY"),  # This is the default and can be omitted
 )
 
-response = client.v1.permissions.check(
-    user_id="REPLACE_ME",
-    resources_and_actions=[
-        {
-            "action": "read",
-            "resource": "product",
-        }
-    ],
+customer_response = client.v1.customers.retrieve(
+    "REPLACE_ME",
 )
-print(response.permitted_list)
+print(customer_response.data)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -67,16 +61,10 @@ client = AsyncStigg(
 
 
 async def main() -> None:
-    response = await client.v1.permissions.check(
-        user_id="REPLACE_ME",
-        resources_and_actions=[
-            {
-                "action": "read",
-                "resource": "product",
-            }
-        ],
+    customer_response = await client.v1.customers.retrieve(
+        "REPLACE_ME",
     )
-    print(response.permitted_list)
+    print(customer_response.data)
 
 
 asyncio.run(main())
@@ -98,6 +86,7 @@ pip install 'stigg[aiohttp] @ git+ssh://git@github.com/stainless-sdks/stigg-pyth
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
+import os
 import asyncio
 from stigg import DefaultAioHttpClient
 from stigg import AsyncStigg
@@ -105,19 +94,13 @@ from stigg import AsyncStigg
 
 async def main() -> None:
     async with AsyncStigg(
-        api_key="My API Key",
+        api_key=os.environ.get("STIGG_API_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
-        response = await client.v1.permissions.check(
-            user_id="REPLACE_ME",
-            resources_and_actions=[
-                {
-                    "action": "read",
-                    "resource": "product",
-                }
-            ],
+        customer_response = await client.v1.customers.retrieve(
+            "REPLACE_ME",
         )
-        print(response.permitted_list)
+        print(customer_response.data)
 
 
 asyncio.run(main())
@@ -131,6 +114,101 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 - Converting to a dictionary, `model.to_dict()`
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
+
+## Pagination
+
+List methods in the Stigg API are paginated.
+
+This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
+
+```python
+from stigg import Stigg
+
+client = Stigg()
+
+all_customers = []
+# Automatically fetches more pages as needed.
+for customer in client.v1.customers.list(
+    limit=30,
+):
+    # Do something with customer here
+    all_customers.append(customer)
+print(all_customers)
+```
+
+Or, asynchronously:
+
+```python
+import asyncio
+from stigg import AsyncStigg
+
+client = AsyncStigg()
+
+
+async def main() -> None:
+    all_customers = []
+    # Iterate through items across all pages, issuing requests as needed.
+    async for customer in client.v1.customers.list(
+        limit=30,
+    ):
+        all_customers.append(customer)
+    print(all_customers)
+
+
+asyncio.run(main())
+```
+
+Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
+
+```python
+first_page = await client.v1.customers.list(
+    limit=30,
+)
+if first_page.has_next_page():
+    print(f"will fetch next page using these details: {first_page.next_page_info()}")
+    next_page = await first_page.get_next_page()
+    print(f"number of items we just fetched: {len(next_page.data)}")
+
+# Remove `await` for non-async usage.
+```
+
+Or just work directly with the returned data:
+
+```python
+first_page = await client.v1.customers.list(
+    limit=30,
+)
+
+print(f"next page cursor: {first_page.starting_after}")  # => "next page cursor: ..."
+for customer in first_page.data:
+    print(customer.cursor_id)
+
+# Remove `await` for non-async usage.
+```
+
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```python
+from stigg import Stigg
+
+client = Stigg()
+
+customer_response = client.v1.customers.create(
+    email="dev@stainless.com",
+    external_id="externalId",
+    name="name",
+    default_payment_method={
+        "billing_id": "billingId",
+        "card_expiry_month": 0,
+        "card_expiry_year": 0,
+        "card_last4_digits": "cardLast4Digits",
+        "type": "CARD",
+    },
+)
+print(customer_response.default_payment_method)
+```
 
 ## Handling errors
 
@@ -148,14 +226,8 @@ from stigg import Stigg
 client = Stigg()
 
 try:
-    client.v1.permissions.check(
-        user_id="REPLACE_ME",
-        resources_and_actions=[
-            {
-                "action": "read",
-                "resource": "product",
-            }
-        ],
+    client.v1.customers.retrieve(
+        "REPLACE_ME",
     )
 except stigg.APIConnectionError as e:
     print("The server could not be reached")
@@ -199,14 +271,8 @@ client = Stigg(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).v1.permissions.check(
-    user_id="REPLACE_ME",
-    resources_and_actions=[
-        {
-            "action": "read",
-            "resource": "product",
-        }
-    ],
+client.with_options(max_retries=5).v1.customers.retrieve(
+    "REPLACE_ME",
 )
 ```
 
@@ -230,14 +296,8 @@ client = Stigg(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).v1.permissions.check(
-    user_id="REPLACE_ME",
-    resources_and_actions=[
-        {
-            "action": "read",
-            "resource": "product",
-        }
-    ],
+client.with_options(timeout=5.0).v1.customers.retrieve(
+    "REPLACE_ME",
 )
 ```
 
@@ -279,17 +339,13 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from stigg import Stigg
 
 client = Stigg()
-response = client.v1.permissions.with_raw_response.check(
-    user_id="REPLACE_ME",
-    resources_and_actions=[{
-        "action": "read",
-        "resource": "product",
-    }],
+response = client.v1.customers.with_raw_response.retrieve(
+    "REPLACE_ME",
 )
 print(response.headers.get('X-My-Header'))
 
-permission = response.parse()  # get the object that `v1.permissions.check()` would have returned
-print(permission.permitted_list)
+customer = response.parse()  # get the object that `v1.customers.retrieve()` would have returned
+print(customer.data)
 ```
 
 These methods return an [`APIResponse`](https://github.com/stainless-sdks/stigg-python/tree/main/src/stigg/_response.py) object.
@@ -303,14 +359,8 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.v1.permissions.with_streaming_response.check(
-    user_id="REPLACE_ME",
-    resources_and_actions=[
-        {
-            "action": "read",
-            "resource": "product",
-        }
-    ],
+with client.v1.customers.with_streaming_response.retrieve(
+    "REPLACE_ME",
 ) as response:
     print(response.headers.get("X-My-Header"))
 

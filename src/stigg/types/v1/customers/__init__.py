@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .sub_customer_retrieve_response import SubCustomerRetrieveResponse as SubCustomerRetrieveResponse
+from .payment_method_attach_params import PaymentMethodAttachParams as PaymentMethodAttachParams

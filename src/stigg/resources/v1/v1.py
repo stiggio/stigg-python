@@ -4,14 +4,6 @@ from __future__ import annotations
 
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .permissions import (
-    PermissionsResource,
-    AsyncPermissionsResource,
-    PermissionsResourceWithRawResponse,
-    AsyncPermissionsResourceWithRawResponse,
-    PermissionsResourceWithStreamingResponse,
-    AsyncPermissionsResourceWithStreamingResponse,
-)
 from .customers.customers import (
     CustomersResource,
     AsyncCustomersResource,
@@ -28,10 +20,6 @@ class V1Resource(SyncAPIResource):
     @cached_property
     def customers(self) -> CustomersResource:
         return CustomersResource(self._client)
-
-    @cached_property
-    def permissions(self) -> PermissionsResource:
-        return PermissionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> V1ResourceWithRawResponse:
@@ -57,10 +45,6 @@ class AsyncV1Resource(AsyncAPIResource):
     @cached_property
     def customers(self) -> AsyncCustomersResource:
         return AsyncCustomersResource(self._client)
-
-    @cached_property
-    def permissions(self) -> AsyncPermissionsResource:
-        return AsyncPermissionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncV1ResourceWithRawResponse:
@@ -90,10 +74,6 @@ class V1ResourceWithRawResponse:
     def customers(self) -> CustomersResourceWithRawResponse:
         return CustomersResourceWithRawResponse(self._v1.customers)
 
-    @cached_property
-    def permissions(self) -> PermissionsResourceWithRawResponse:
-        return PermissionsResourceWithRawResponse(self._v1.permissions)
-
 
 class AsyncV1ResourceWithRawResponse:
     def __init__(self, v1: AsyncV1Resource) -> None:
@@ -102,10 +82,6 @@ class AsyncV1ResourceWithRawResponse:
     @cached_property
     def customers(self) -> AsyncCustomersResourceWithRawResponse:
         return AsyncCustomersResourceWithRawResponse(self._v1.customers)
-
-    @cached_property
-    def permissions(self) -> AsyncPermissionsResourceWithRawResponse:
-        return AsyncPermissionsResourceWithRawResponse(self._v1.permissions)
 
 
 class V1ResourceWithStreamingResponse:
@@ -116,10 +92,6 @@ class V1ResourceWithStreamingResponse:
     def customers(self) -> CustomersResourceWithStreamingResponse:
         return CustomersResourceWithStreamingResponse(self._v1.customers)
 
-    @cached_property
-    def permissions(self) -> PermissionsResourceWithStreamingResponse:
-        return PermissionsResourceWithStreamingResponse(self._v1.permissions)
-
 
 class AsyncV1ResourceWithStreamingResponse:
     def __init__(self, v1: AsyncV1Resource) -> None:
@@ -128,7 +100,3 @@ class AsyncV1ResourceWithStreamingResponse:
     @cached_property
     def customers(self) -> AsyncCustomersResourceWithStreamingResponse:
         return AsyncCustomersResourceWithStreamingResponse(self._v1.customers)
-
-    @cached_property
-    def permissions(self) -> AsyncPermissionsResourceWithStreamingResponse:
-        return AsyncPermissionsResourceWithStreamingResponse(self._v1.permissions)
