@@ -1,0 +1,161 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Optional
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from ...._utils import PropertyInfo
+
+__all__ = ["PaymentMethodAttachParams"]
+
+
+class PaymentMethodAttachParams(TypedDict, total=False):
+    integration_id: Required[Annotated[str, PropertyInfo(alias="integrationId")]]
+    """Integration details"""
+
+    payment_method_id: Required[Annotated[str, PropertyInfo(alias="paymentMethodId")]]
+    """Billing provider payment method id"""
+
+    vendor_identifier: Required[
+        Annotated[
+            Literal[
+                "AUTH0",
+                "ZUORA",
+                "STRIPE",
+                "HUBSPOT",
+                "AWS_MARKETPLACE",
+                "SNOWFLAKE",
+                "SALESFORCE",
+                "BIG_QUERY",
+                "OPEN_FGA",
+                "APP_STORE",
+            ],
+            PropertyInfo(alias="vendorIdentifier"),
+        ]
+    ]
+    """The vendor identifier of integration"""
+
+    billing_currency: Annotated[
+        Optional[
+            Literal[
+                "usd",
+                "aed",
+                "all",
+                "amd",
+                "ang",
+                "aud",
+                "awg",
+                "azn",
+                "bam",
+                "bbd",
+                "bdt",
+                "bgn",
+                "bif",
+                "bmd",
+                "bnd",
+                "bsd",
+                "bwp",
+                "byn",
+                "bzd",
+                "brl",
+                "cad",
+                "cdf",
+                "chf",
+                "cny",
+                "czk",
+                "dkk",
+                "dop",
+                "dzd",
+                "egp",
+                "etb",
+                "eur",
+                "fjd",
+                "gbp",
+                "gel",
+                "gip",
+                "gmd",
+                "gyd",
+                "hkd",
+                "hrk",
+                "htg",
+                "idr",
+                "ils",
+                "inr",
+                "isk",
+                "jmd",
+                "jpy",
+                "kes",
+                "kgs",
+                "khr",
+                "kmf",
+                "krw",
+                "kyd",
+                "kzt",
+                "lbp",
+                "lkr",
+                "lrd",
+                "lsl",
+                "mad",
+                "mdl",
+                "mga",
+                "mkd",
+                "mmk",
+                "mnt",
+                "mop",
+                "mro",
+                "mvr",
+                "mwk",
+                "mxn",
+                "myr",
+                "mzn",
+                "nad",
+                "ngn",
+                "nok",
+                "npr",
+                "nzd",
+                "pgk",
+                "php",
+                "pkr",
+                "pln",
+                "qar",
+                "ron",
+                "rsd",
+                "rub",
+                "rwf",
+                "sar",
+                "sbd",
+                "scr",
+                "sek",
+                "sgd",
+                "sle",
+                "sll",
+                "sos",
+                "szl",
+                "thb",
+                "tjs",
+                "top",
+                "try",
+                "ttd",
+                "tzs",
+                "uah",
+                "uzs",
+                "vnd",
+                "vuv",
+                "wst",
+                "xaf",
+                "xcd",
+                "yer",
+                "zar",
+                "zmw",
+                "clp",
+                "djf",
+                "gnf",
+                "ugx",
+                "pyg",
+                "xof",
+                "xpf",
+            ]
+        ],
+        PropertyInfo(alias="billingCurrency"),
+    ]

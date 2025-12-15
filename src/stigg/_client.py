@@ -12,7 +12,6 @@ from . import _exceptions
 from ._qs import Querystring
 from ._types import (
     Omit,
-    Headers,
     Timeout,
     NotGiven,
     Transport,
@@ -23,26 +22,24 @@ from ._types import (
 from ._utils import is_given, get_async_library
 from ._version import __version__
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
-from ._exceptions import APIStatusError
+from ._exceptions import StiggError, APIStatusError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
     AsyncAPIClient,
 )
 from .resources.v1 import v1
-from .resources.v2 import v2
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Stigg", "AsyncStigg", "Client", "AsyncClient"]
 
 
 class Stigg(SyncAPIClient):
     v1: v1.V1Resource
-    v2: v2.V2Resource
     with_raw_response: StiggWithRawResponse
     with_streaming_response: StiggWithStreamedResponse
 
     # client options
-    api_key: str | None
+    api_key: str
 
     def __init__(
         self,
@@ -73,6 +70,10 @@ class Stigg(SyncAPIClient):
         """
         if api_key is None:
             api_key = os.environ.get("STIGG_API_KEY")
+        if api_key is None:
+            raise StiggError(
+                "The api_key client option must be set either by passing api_key to the client or by setting the STIGG_API_KEY environment variable"
+            )
         self.api_key = api_key
 
         if base_url is None:
@@ -92,7 +93,6 @@ class Stigg(SyncAPIClient):
         )
 
         self.v1 = v1.V1Resource(self)
-        self.v2 = v2.V2Resource(self)
         self.with_raw_response = StiggWithRawResponse(self)
         self.with_streaming_response = StiggWithStreamedResponse(self)
 
@@ -105,9 +105,7 @@ class Stigg(SyncAPIClient):
     @override
     def auth_headers(self) -> dict[str, str]:
         api_key = self.api_key
-        if api_key is None:
-            return {}
-        return {"Authorization": f"Bearer {api_key}"}
+        return {"X-API-KEY": api_key}
 
     @property
     @override
@@ -117,17 +115,6 @@ class Stigg(SyncAPIClient):
             "X-Stainless-Async": "false",
             **self._custom_headers,
         }
-
-    @override
-    def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if self.api_key and headers.get("Authorization"):
-            return
-        if isinstance(custom_headers.get("Authorization"), Omit):
-            return
-
-        raise TypeError(
-            '"Could not resolve authentication method. Expected the api_key to be set. Or for the `Authorization` headers to be explicitly omitted"'
-        )
 
     def copy(
         self,
@@ -216,12 +203,11 @@ class Stigg(SyncAPIClient):
 
 class AsyncStigg(AsyncAPIClient):
     v1: v1.AsyncV1Resource
-    v2: v2.AsyncV2Resource
     with_raw_response: AsyncStiggWithRawResponse
     with_streaming_response: AsyncStiggWithStreamedResponse
 
     # client options
-    api_key: str | None
+    api_key: str
 
     def __init__(
         self,
@@ -252,6 +238,10 @@ class AsyncStigg(AsyncAPIClient):
         """
         if api_key is None:
             api_key = os.environ.get("STIGG_API_KEY")
+        if api_key is None:
+            raise StiggError(
+                "The api_key client option must be set either by passing api_key to the client or by setting the STIGG_API_KEY environment variable"
+            )
         self.api_key = api_key
 
         if base_url is None:
@@ -271,7 +261,6 @@ class AsyncStigg(AsyncAPIClient):
         )
 
         self.v1 = v1.AsyncV1Resource(self)
-        self.v2 = v2.AsyncV2Resource(self)
         self.with_raw_response = AsyncStiggWithRawResponse(self)
         self.with_streaming_response = AsyncStiggWithStreamedResponse(self)
 
@@ -284,9 +273,7 @@ class AsyncStigg(AsyncAPIClient):
     @override
     def auth_headers(self) -> dict[str, str]:
         api_key = self.api_key
-        if api_key is None:
-            return {}
-        return {"Authorization": f"Bearer {api_key}"}
+        return {"X-API-KEY": api_key}
 
     @property
     @override
@@ -296,17 +283,6 @@ class AsyncStigg(AsyncAPIClient):
             "X-Stainless-Async": f"async:{get_async_library()}",
             **self._custom_headers,
         }
-
-    @override
-    def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if self.api_key and headers.get("Authorization"):
-            return
-        if isinstance(custom_headers.get("Authorization"), Omit):
-            return
-
-        raise TypeError(
-            '"Could not resolve authentication method. Expected the api_key to be set. Or for the `Authorization` headers to be explicitly omitted"'
-        )
 
     def copy(
         self,
@@ -396,25 +372,21 @@ class AsyncStigg(AsyncAPIClient):
 class StiggWithRawResponse:
     def __init__(self, client: Stigg) -> None:
         self.v1 = v1.V1ResourceWithRawResponse(client.v1)
-        self.v2 = v2.V2ResourceWithRawResponse(client.v2)
 
 
 class AsyncStiggWithRawResponse:
     def __init__(self, client: AsyncStigg) -> None:
         self.v1 = v1.AsyncV1ResourceWithRawResponse(client.v1)
-        self.v2 = v2.AsyncV2ResourceWithRawResponse(client.v2)
 
 
 class StiggWithStreamedResponse:
     def __init__(self, client: Stigg) -> None:
         self.v1 = v1.V1ResourceWithStreamingResponse(client.v1)
-        self.v2 = v2.V2ResourceWithStreamingResponse(client.v2)
 
 
 class AsyncStiggWithStreamedResponse:
     def __init__(self, client: AsyncStigg) -> None:
         self.v1 = v1.AsyncV1ResourceWithStreamingResponse(client.v1)
-        self.v2 = v2.AsyncV2ResourceWithStreamingResponse(client.v2)
 
 
 Client = Stigg

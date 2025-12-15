@@ -8,22 +8,22 @@ from .customers import (
     CustomersResourceWithStreamingResponse,
     AsyncCustomersResourceWithStreamingResponse,
 )
-from .sub_customer import (
-    SubCustomerResource,
-    AsyncSubCustomerResource,
-    SubCustomerResourceWithRawResponse,
-    AsyncSubCustomerResourceWithRawResponse,
-    SubCustomerResourceWithStreamingResponse,
-    AsyncSubCustomerResourceWithStreamingResponse,
+from .payment_method import (
+    PaymentMethodResource,
+    AsyncPaymentMethodResource,
+    PaymentMethodResourceWithRawResponse,
+    AsyncPaymentMethodResourceWithRawResponse,
+    PaymentMethodResourceWithStreamingResponse,
+    AsyncPaymentMethodResourceWithStreamingResponse,
 )
 
 __all__ = [
-    "SubCustomerResource",
-    "AsyncSubCustomerResource",
-    "SubCustomerResourceWithRawResponse",
-    "AsyncSubCustomerResourceWithRawResponse",
-    "SubCustomerResourceWithStreamingResponse",
-    "AsyncSubCustomerResourceWithStreamingResponse",
+    "PaymentMethodResource",
+    "AsyncPaymentMethodResource",
+    "PaymentMethodResourceWithRawResponse",
+    "AsyncPaymentMethodResourceWithRawResponse",
+    "PaymentMethodResourceWithStreamingResponse",
+    "AsyncPaymentMethodResourceWithStreamingResponse",
     "CustomersResource",
     "AsyncCustomersResource",
     "CustomersResourceWithRawResponse",
