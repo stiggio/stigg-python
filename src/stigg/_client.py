@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -20,6 +20,7 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import StiggError, APIStatusError
@@ -28,16 +29,15 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.v1 import v1
+
+if TYPE_CHECKING:
+    from .resources import v1
+    from .resources.v1.v1 import V1Resource, AsyncV1Resource
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Stigg", "AsyncStigg", "Client", "AsyncClient"]
 
 
 class Stigg(SyncAPIClient):
-    v1: v1.V1Resource
-    with_raw_response: StiggWithRawResponse
-    with_streaming_response: StiggWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -92,9 +92,19 @@ class Stigg(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.v1 = v1.V1Resource(self)
-        self.with_raw_response = StiggWithRawResponse(self)
-        self.with_streaming_response = StiggWithStreamedResponse(self)
+    @cached_property
+    def v1(self) -> V1Resource:
+        from .resources.v1 import V1Resource
+
+        return V1Resource(self)
+
+    @cached_property
+    def with_raw_response(self) -> StiggWithRawResponse:
+        return StiggWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> StiggWithStreamedResponse:
+        return StiggWithStreamedResponse(self)
 
     @property
     @override
@@ -202,10 +212,6 @@ class Stigg(SyncAPIClient):
 
 
 class AsyncStigg(AsyncAPIClient):
-    v1: v1.AsyncV1Resource
-    with_raw_response: AsyncStiggWithRawResponse
-    with_streaming_response: AsyncStiggWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -260,9 +266,19 @@ class AsyncStigg(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.v1 = v1.AsyncV1Resource(self)
-        self.with_raw_response = AsyncStiggWithRawResponse(self)
-        self.with_streaming_response = AsyncStiggWithStreamedResponse(self)
+    @cached_property
+    def v1(self) -> AsyncV1Resource:
+        from .resources.v1 import AsyncV1Resource
+
+        return AsyncV1Resource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncStiggWithRawResponse:
+        return AsyncStiggWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncStiggWithStreamedResponse:
+        return AsyncStiggWithStreamedResponse(self)
 
     @property
     @override
@@ -370,23 +386,55 @@ class AsyncStigg(AsyncAPIClient):
 
 
 class StiggWithRawResponse:
+    _client: Stigg
+
     def __init__(self, client: Stigg) -> None:
-        self.v1 = v1.V1ResourceWithRawResponse(client.v1)
+        self._client = client
+
+    @cached_property
+    def v1(self) -> v1.V1ResourceWithRawResponse:
+        from .resources.v1 import V1ResourceWithRawResponse
+
+        return V1ResourceWithRawResponse(self._client.v1)
 
 
 class AsyncStiggWithRawResponse:
+    _client: AsyncStigg
+
     def __init__(self, client: AsyncStigg) -> None:
-        self.v1 = v1.AsyncV1ResourceWithRawResponse(client.v1)
+        self._client = client
+
+    @cached_property
+    def v1(self) -> v1.AsyncV1ResourceWithRawResponse:
+        from .resources.v1 import AsyncV1ResourceWithRawResponse
+
+        return AsyncV1ResourceWithRawResponse(self._client.v1)
 
 
 class StiggWithStreamedResponse:
+    _client: Stigg
+
     def __init__(self, client: Stigg) -> None:
-        self.v1 = v1.V1ResourceWithStreamingResponse(client.v1)
+        self._client = client
+
+    @cached_property
+    def v1(self) -> v1.V1ResourceWithStreamingResponse:
+        from .resources.v1 import V1ResourceWithStreamingResponse
+
+        return V1ResourceWithStreamingResponse(self._client.v1)
 
 
 class AsyncStiggWithStreamedResponse:
+    _client: AsyncStigg
+
     def __init__(self, client: AsyncStigg) -> None:
-        self.v1 = v1.AsyncV1ResourceWithStreamingResponse(client.v1)
+        self._client = client
+
+    @cached_property
+    def v1(self) -> v1.AsyncV1ResourceWithStreamingResponse:
+        from .resources.v1 import AsyncV1ResourceWithStreamingResponse
+
+        return AsyncV1ResourceWithStreamingResponse(self._client.v1)
 
 
 Client = Stigg
