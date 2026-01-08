@@ -115,6 +115,77 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
 
+## Pagination
+
+List methods in the Stigg API are paginated.
+
+This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
+
+```python
+from stigg import Stigg
+
+client = Stigg()
+
+all_customers = []
+# Automatically fetches more pages as needed.
+for customer in client.v1.customers.list(
+    limit=30,
+):
+    # Do something with customer here
+    all_customers.append(customer)
+print(all_customers)
+```
+
+Or, asynchronously:
+
+```python
+import asyncio
+from stigg import AsyncStigg
+
+client = AsyncStigg()
+
+
+async def main() -> None:
+    all_customers = []
+    # Iterate through items across all pages, issuing requests as needed.
+    async for customer in client.v1.customers.list(
+        limit=30,
+    ):
+        all_customers.append(customer)
+    print(all_customers)
+
+
+asyncio.run(main())
+```
+
+Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
+
+```python
+first_page = await client.v1.customers.list(
+    limit=30,
+)
+if first_page.has_next_page():
+    print(f"will fetch next page using these details: {first_page.next_page_info()}")
+    next_page = await first_page.get_next_page()
+    print(f"number of items we just fetched: {len(next_page.data)}")
+
+# Remove `await` for non-async usage.
+```
+
+Or just work directly with the returned data:
+
+```python
+first_page = await client.v1.customers.list(
+    limit=30,
+)
+
+print(f"next page cursor: {first_page.starting_after}")  # => "next page cursor: ..."
+for customer in first_page.data:
+    print(customer.cursor_id)
+
+# Remove `await` for non-async usage.
+```
+
 ## Nested params
 
 Nested parameters are dictionaries, typed using `TypedDict`, for example:
