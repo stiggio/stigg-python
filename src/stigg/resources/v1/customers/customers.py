@@ -6,10 +6,26 @@ from typing import Dict, Iterable, Optional
 
 import httpx
 
+from .usage import (
+    UsageResource,
+    AsyncUsageResource,
+    UsageResourceWithRawResponse,
+    AsyncUsageResourceWithRawResponse,
+    UsageResourceWithStreamingResponse,
+    AsyncUsageResourceWithStreamingResponse,
+)
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ....types.v1 import customer_list_params, customer_create_params, customer_update_params
+from .promotional import (
+    PromotionalResource,
+    AsyncPromotionalResource,
+    PromotionalResourceWithRawResponse,
+    AsyncPromotionalResourceWithRawResponse,
+    PromotionalResourceWithStreamingResponse,
+    AsyncPromotionalResourceWithStreamingResponse,
+)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -36,6 +52,14 @@ class CustomersResource(SyncAPIResource):
     @cached_property
     def payment_method(self) -> PaymentMethodResource:
         return PaymentMethodResource(self._client)
+
+    @cached_property
+    def usage(self) -> UsageResource:
+        return UsageResource(self._client)
+
+    @cached_property
+    def promotional(self) -> PromotionalResource:
+        return PromotionalResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CustomersResourceWithRawResponse:
@@ -323,6 +347,14 @@ class AsyncCustomersResource(AsyncAPIResource):
     @cached_property
     def payment_method(self) -> AsyncPaymentMethodResource:
         return AsyncPaymentMethodResource(self._client)
+
+    @cached_property
+    def usage(self) -> AsyncUsageResource:
+        return AsyncUsageResource(self._client)
+
+    @cached_property
+    def promotional(self) -> AsyncPromotionalResource:
+        return AsyncPromotionalResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCustomersResourceWithRawResponse:
@@ -633,6 +665,14 @@ class CustomersResourceWithRawResponse:
     def payment_method(self) -> PaymentMethodResourceWithRawResponse:
         return PaymentMethodResourceWithRawResponse(self._customers.payment_method)
 
+    @cached_property
+    def usage(self) -> UsageResourceWithRawResponse:
+        return UsageResourceWithRawResponse(self._customers.usage)
+
+    @cached_property
+    def promotional(self) -> PromotionalResourceWithRawResponse:
+        return PromotionalResourceWithRawResponse(self._customers.promotional)
+
 
 class AsyncCustomersResourceWithRawResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -660,6 +700,14 @@ class AsyncCustomersResourceWithRawResponse:
     @cached_property
     def payment_method(self) -> AsyncPaymentMethodResourceWithRawResponse:
         return AsyncPaymentMethodResourceWithRawResponse(self._customers.payment_method)
+
+    @cached_property
+    def usage(self) -> AsyncUsageResourceWithRawResponse:
+        return AsyncUsageResourceWithRawResponse(self._customers.usage)
+
+    @cached_property
+    def promotional(self) -> AsyncPromotionalResourceWithRawResponse:
+        return AsyncPromotionalResourceWithRawResponse(self._customers.promotional)
 
 
 class CustomersResourceWithStreamingResponse:
@@ -689,6 +737,14 @@ class CustomersResourceWithStreamingResponse:
     def payment_method(self) -> PaymentMethodResourceWithStreamingResponse:
         return PaymentMethodResourceWithStreamingResponse(self._customers.payment_method)
 
+    @cached_property
+    def usage(self) -> UsageResourceWithStreamingResponse:
+        return UsageResourceWithStreamingResponse(self._customers.usage)
+
+    @cached_property
+    def promotional(self) -> PromotionalResourceWithStreamingResponse:
+        return PromotionalResourceWithStreamingResponse(self._customers.promotional)
+
 
 class AsyncCustomersResourceWithStreamingResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -716,3 +772,11 @@ class AsyncCustomersResourceWithStreamingResponse:
     @cached_property
     def payment_method(self) -> AsyncPaymentMethodResourceWithStreamingResponse:
         return AsyncPaymentMethodResourceWithStreamingResponse(self._customers.payment_method)
+
+    @cached_property
+    def usage(self) -> AsyncUsageResourceWithStreamingResponse:
+        return AsyncUsageResourceWithStreamingResponse(self._customers.usage)
+
+    @cached_property
+    def promotional(self) -> AsyncPromotionalResourceWithStreamingResponse:
+        return AsyncPromotionalResourceWithStreamingResponse(self._customers.promotional)

@@ -8,6 +8,14 @@ from .v1 import (
     V1ResourceWithStreamingResponse,
     AsyncV1ResourceWithStreamingResponse,
 )
+from .coupons import (
+    CouponsResource,
+    AsyncCouponsResource,
+    CouponsResourceWithRawResponse,
+    AsyncCouponsResourceWithRawResponse,
+    CouponsResourceWithStreamingResponse,
+    AsyncCouponsResourceWithStreamingResponse,
+)
 from .customers import (
     CustomersResource,
     AsyncCustomersResource,
@@ -15,6 +23,14 @@ from .customers import (
     AsyncCustomersResourceWithRawResponse,
     CustomersResourceWithStreamingResponse,
     AsyncCustomersResourceWithStreamingResponse,
+)
+from .subscriptions import (
+    SubscriptionsResource,
+    AsyncSubscriptionsResource,
+    SubscriptionsResourceWithRawResponse,
+    AsyncSubscriptionsResourceWithRawResponse,
+    SubscriptionsResourceWithStreamingResponse,
+    AsyncSubscriptionsResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -24,6 +40,18 @@ __all__ = [
     "AsyncCustomersResourceWithRawResponse",
     "CustomersResourceWithStreamingResponse",
     "AsyncCustomersResourceWithStreamingResponse",
+    "SubscriptionsResource",
+    "AsyncSubscriptionsResource",
+    "SubscriptionsResourceWithRawResponse",
+    "AsyncSubscriptionsResourceWithRawResponse",
+    "SubscriptionsResourceWithStreamingResponse",
+    "AsyncSubscriptionsResourceWithStreamingResponse",
+    "CouponsResource",
+    "AsyncCouponsResource",
+    "CouponsResourceWithRawResponse",
+    "AsyncCouponsResourceWithRawResponse",
+    "CouponsResourceWithStreamingResponse",
+    "AsyncCouponsResourceWithStreamingResponse",
     "V1Resource",
     "AsyncV1Resource",
     "V1ResourceWithRawResponse",
