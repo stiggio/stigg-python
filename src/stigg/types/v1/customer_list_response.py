@@ -8,10 +8,10 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["CustomerListResponse", "DefaultPaymentMethod", "Integration"]
+__all__ = ["CustomerListResponse", "Data", "DataDefaultPaymentMethod", "DataIntegration"]
 
 
-class DefaultPaymentMethod(BaseModel):
+class DataDefaultPaymentMethod(BaseModel):
     """The default payment method details"""
 
     billing_id: Optional[str] = FieldInfo(alias="billingId", default=None)
@@ -30,7 +30,7 @@ class DefaultPaymentMethod(BaseModel):
     """The default payment method type"""
 
 
-class Integration(BaseModel):
+class DataIntegration(BaseModel):
     id: str
     """Integration details"""
 
@@ -52,14 +52,14 @@ class Integration(BaseModel):
     """The vendor identifier of integration"""
 
 
-class CustomerListResponse(BaseModel):
+class Data(BaseModel):
     archived_at: Optional[datetime] = FieldInfo(alias="archivedAt", default=None)
     """Timestamp of when the record was deleted"""
 
     created_at: datetime = FieldInfo(alias="createdAt")
     """Timestamp of when the record was created"""
 
-    cursor_id: str
+    cursor_id: str = FieldInfo(alias="cursorId")
     """Cursor ID for query pagination"""
 
     email: Optional[str] = None
@@ -74,11 +74,15 @@ class CustomerListResponse(BaseModel):
     updated_at: datetime = FieldInfo(alias="updatedAt")
     """Timestamp of when the record was last updated"""
 
-    default_payment_method: Optional[DefaultPaymentMethod] = FieldInfo(alias="defaultPaymentMethod", default=None)
+    default_payment_method: Optional[DataDefaultPaymentMethod] = FieldInfo(alias="defaultPaymentMethod", default=None)
     """The default payment method details"""
 
-    integrations: Optional[List[Integration]] = None
+    integrations: Optional[List[DataIntegration]] = None
     """List of integrations"""
 
     metadata: Optional[Dict[str, str]] = None
     """Additional metadata"""
+
+
+class CustomerListResponse(BaseModel):
+    data: List[Data]
