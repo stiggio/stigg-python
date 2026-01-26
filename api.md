@@ -47,19 +47,6 @@ Methods:
 
 - <code title="get /api/v1/customers/{customerId}/usage/features/{featureId}">client.v1.customers.usage.<a href="./src/stigg/resources/v1/customers/usage.py">retrieve</a>(feature_id, \*, customer_id, \*\*<a href="src/stigg/types/v1/customers/usage_retrieve_params.py">params</a>) -> <a href="./src/stigg/types/v1/customers/usage_retrieve_response.py">UsageRetrieveResponse</a></code>
 
-### Promotional
-
-Types:
-
-```python
-from stigg.types.v1.customers import PromotionalCreateResponse, PromotionalRevokeResponse
-```
-
-Methods:
-
-- <code title="post /api/v1/customers/{customerId}/promotional">client.v1.customers.promotional.<a href="./src/stigg/resources/v1/customers/promotional.py">create</a>(customer_id, \*\*<a href="src/stigg/types/v1/customers/promotional_create_params.py">params</a>) -> <a href="./src/stigg/types/v1/customers/promotional_create_response.py">PromotionalCreateResponse</a></code>
-- <code title="delete /api/v1/customers/{customerId}/promotional/featureId/{featureId}">client.v1.customers.promotional.<a href="./src/stigg/resources/v1/customers/promotional.py">revoke</a>(feature_id, \*, customer_id) -> <a href="./src/stigg/types/v1/customers/promotional_revoke_response.py">PromotionalRevokeResponse</a></code>
-
 ## Subscriptions
 
 Types:

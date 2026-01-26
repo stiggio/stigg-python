@@ -4,7 +4,4 @@ from __future__ import annotations
 
 from .usage_retrieve_params import UsageRetrieveParams as UsageRetrieveParams
 from .usage_retrieve_response import UsageRetrieveResponse as UsageRetrieveResponse
-from .promotional_create_params import PromotionalCreateParams as PromotionalCreateParams
-from .promotional_create_response import PromotionalCreateResponse as PromotionalCreateResponse
-from .promotional_revoke_response import PromotionalRevokeResponse as PromotionalRevokeResponse
 from .payment_method_attach_params import PaymentMethodAttachParams as PaymentMethodAttachParams

@@ -16,14 +16,6 @@ from .customers import (
     CustomersResourceWithStreamingResponse,
     AsyncCustomersResourceWithStreamingResponse,
 )
-from .promotional import (
-    PromotionalResource,
-    AsyncPromotionalResource,
-    PromotionalResourceWithRawResponse,
-    AsyncPromotionalResourceWithRawResponse,
-    PromotionalResourceWithStreamingResponse,
-    AsyncPromotionalResourceWithStreamingResponse,
-)
 from .payment_method import (
     PaymentMethodResource,
     AsyncPaymentMethodResource,
@@ -46,12 +38,6 @@ __all__ = [
     "AsyncUsageResourceWithRawResponse",
     "UsageResourceWithStreamingResponse",
     "AsyncUsageResourceWithStreamingResponse",
-    "PromotionalResource",
-    "AsyncPromotionalResource",
-    "PromotionalResourceWithRawResponse",
-    "AsyncPromotionalResourceWithRawResponse",
-    "PromotionalResourceWithStreamingResponse",
-    "AsyncPromotionalResourceWithStreamingResponse",
     "CustomersResource",
     "AsyncCustomersResource",
     "CustomersResourceWithRawResponse",
