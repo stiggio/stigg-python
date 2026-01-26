@@ -11,6 +11,9 @@ __all__ = ["CustomerUpdateParams", "Integration"]
 
 
 class CustomerUpdateParams(TypedDict, total=False):
+    coupon_id: Annotated[Optional[str], PropertyInfo(alias="couponId")]
+    """Customer level coupon"""
+
     email: Optional[str]
     """The email of the customer"""
 
