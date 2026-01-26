@@ -83,12 +83,12 @@ class CustomersResource(SyncAPIResource):
     def create(
         self,
         *,
-        email: Optional[str],
-        external_id: str,
-        name: Optional[str],
+        id: str,
         default_payment_method: Optional[customer_create_params.DefaultPaymentMethod] | Omit = omit,
+        email: Optional[str] | Omit = omit,
         integrations: Iterable[customer_create_params.Integration] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -100,17 +100,17 @@ class CustomersResource(SyncAPIResource):
         Create a new Customer
 
         Args:
-          email: The email of the customer
-
-          external_id: Customer slug
-
-          name: The name of the customer
+          id: Customer slug
 
           default_payment_method: The default payment method details
+
+          email: The email of the customer
 
           integrations: List of integrations
 
           metadata: Additional metadata
+
+          name: The name of the customer
 
           extra_headers: Send extra headers
 
@@ -124,12 +124,12 @@ class CustomersResource(SyncAPIResource):
             "/api/v1/customers",
             body=maybe_transform(
                 {
-                    "email": email,
-                    "external_id": external_id,
-                    "name": name,
+                    "id": id,
                     "default_payment_method": default_payment_method,
+                    "email": email,
                     "integrations": integrations,
                     "metadata": metadata,
+                    "name": name,
                 },
                 customer_create_params.CustomerCreateParams,
             ),
@@ -378,12 +378,12 @@ class AsyncCustomersResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        email: Optional[str],
-        external_id: str,
-        name: Optional[str],
+        id: str,
         default_payment_method: Optional[customer_create_params.DefaultPaymentMethod] | Omit = omit,
+        email: Optional[str] | Omit = omit,
         integrations: Iterable[customer_create_params.Integration] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -395,17 +395,17 @@ class AsyncCustomersResource(AsyncAPIResource):
         Create a new Customer
 
         Args:
-          email: The email of the customer
-
-          external_id: Customer slug
-
-          name: The name of the customer
+          id: Customer slug
 
           default_payment_method: The default payment method details
+
+          email: The email of the customer
 
           integrations: List of integrations
 
           metadata: Additional metadata
+
+          name: The name of the customer
 
           extra_headers: Send extra headers
 
@@ -419,12 +419,12 @@ class AsyncCustomersResource(AsyncAPIResource):
             "/api/v1/customers",
             body=await async_maybe_transform(
                 {
-                    "email": email,
-                    "external_id": external_id,
-                    "name": name,
+                    "id": id,
                     "default_payment_method": default_payment_method,
+                    "email": email,
                     "integrations": integrations,
                     "metadata": metadata,
+                    "name": name,
                 },
                 customer_create_params.CustomerCreateParams,
             ),
