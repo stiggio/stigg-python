@@ -31,7 +31,7 @@ class PromotionalResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/stigg-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stiggio/stigg-python#accessing-raw-response-data-eg-headers
         """
         return PromotionalResourceWithRawResponse(self)
 
@@ -40,7 +40,7 @@ class PromotionalResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/stigg-python#with_streaming_response
+        For more information, see https://www.github.com/stiggio/stigg-python#with_streaming_response
         """
         return PromotionalResourceWithStreamingResponse(self)
 
@@ -128,7 +128,7 @@ class AsyncPromotionalResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/stigg-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stiggio/stigg-python#accessing-raw-response-data-eg-headers
         """
         return AsyncPromotionalResourceWithRawResponse(self)
 
@@ -137,7 +137,7 @@ class AsyncPromotionalResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/stigg-python#with_streaming_response
+        For more information, see https://www.github.com/stiggio/stigg-python#with_streaming_response
         """
         return AsyncPromotionalResourceWithStreamingResponse(self)
 
