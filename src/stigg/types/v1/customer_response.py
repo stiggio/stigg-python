@@ -65,6 +65,9 @@ class Data(BaseModel):
     updated_at: datetime = FieldInfo(alias="updatedAt")
     """Timestamp of when the record was last updated"""
 
+    coupon_id: Optional[str] = FieldInfo(alias="couponId", default=None)
+    """Customer level coupon"""
+
     default_payment_method: Optional[DataDefaultPaymentMethod] = FieldInfo(alias="defaultPaymentMethod", default=None)
     """The default payment method details"""
 

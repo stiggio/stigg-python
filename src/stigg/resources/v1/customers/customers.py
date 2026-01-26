@@ -84,6 +84,7 @@ class CustomersResource(SyncAPIResource):
         self,
         *,
         id: str,
+        coupon_id: Optional[str] | Omit = omit,
         default_payment_method: Optional[customer_create_params.DefaultPaymentMethod] | Omit = omit,
         email: Optional[str] | Omit = omit,
         integrations: Iterable[customer_create_params.Integration] | Omit = omit,
@@ -101,6 +102,8 @@ class CustomersResource(SyncAPIResource):
 
         Args:
           id: Customer slug
+
+          coupon_id: Customer level coupon
 
           default_payment_method: The default payment method details
 
@@ -125,6 +128,7 @@ class CustomersResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "id": id,
+                    "coupon_id": coupon_id,
                     "default_payment_method": default_payment_method,
                     "email": email,
                     "integrations": integrations,
@@ -176,6 +180,7 @@ class CustomersResource(SyncAPIResource):
         self,
         id: str,
         *,
+        coupon_id: Optional[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
         integrations: Iterable[customer_update_params.Integration] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
@@ -191,6 +196,8 @@ class CustomersResource(SyncAPIResource):
         Update an existing Customer
 
         Args:
+          coupon_id: Customer level coupon
+
           email: The email of the customer
 
           integrations: List of integrations
@@ -213,6 +220,7 @@ class CustomersResource(SyncAPIResource):
             f"/api/v1/customers/{id}",
             body=maybe_transform(
                 {
+                    "coupon_id": coupon_id,
                     "email": email,
                     "integrations": integrations,
                     "metadata": metadata,
@@ -379,6 +387,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         self,
         *,
         id: str,
+        coupon_id: Optional[str] | Omit = omit,
         default_payment_method: Optional[customer_create_params.DefaultPaymentMethod] | Omit = omit,
         email: Optional[str] | Omit = omit,
         integrations: Iterable[customer_create_params.Integration] | Omit = omit,
@@ -396,6 +405,8 @@ class AsyncCustomersResource(AsyncAPIResource):
 
         Args:
           id: Customer slug
+
+          coupon_id: Customer level coupon
 
           default_payment_method: The default payment method details
 
@@ -420,6 +431,7 @@ class AsyncCustomersResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "id": id,
+                    "coupon_id": coupon_id,
                     "default_payment_method": default_payment_method,
                     "email": email,
                     "integrations": integrations,
@@ -471,6 +483,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        coupon_id: Optional[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
         integrations: Iterable[customer_update_params.Integration] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
@@ -486,6 +499,8 @@ class AsyncCustomersResource(AsyncAPIResource):
         Update an existing Customer
 
         Args:
+          coupon_id: Customer level coupon
+
           email: The email of the customer
 
           integrations: List of integrations
@@ -508,6 +523,7 @@ class AsyncCustomersResource(AsyncAPIResource):
             f"/api/v1/customers/{id}",
             body=await async_maybe_transform(
                 {
+                    "coupon_id": coupon_id,
                     "email": email,
                     "integrations": integrations,
                     "metadata": metadata,

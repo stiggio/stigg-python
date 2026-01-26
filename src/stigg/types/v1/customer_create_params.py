@@ -14,6 +14,9 @@ class CustomerCreateParams(TypedDict, total=False):
     id: Required[str]
     """Customer slug"""
 
+    coupon_id: Annotated[Optional[str], PropertyInfo(alias="couponId")]
+    """Customer level coupon"""
+
     default_payment_method: Annotated[Optional[DefaultPaymentMethod], PropertyInfo(alias="defaultPaymentMethod")]
     """The default payment method details"""
 

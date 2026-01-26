@@ -33,6 +33,7 @@ class TestCustomers:
     def test_method_create_with_all_params(self, client: Stigg) -> None:
         customer = client.v1.customers.create(
             id="id",
+            coupon_id="couponId",
             default_payment_method={
                 "billing_id": "billingId",
                 "card_expiry_month": 0,
@@ -134,6 +135,7 @@ class TestCustomers:
     def test_method_update_with_all_params(self, client: Stigg) -> None:
         customer = client.v1.customers.update(
             id="x",
+            coupon_id="couponId",
             email="dev@stainless.com",
             integrations=[
                 {
@@ -322,6 +324,7 @@ class TestAsyncCustomers:
     async def test_method_create_with_all_params(self, async_client: AsyncStigg) -> None:
         customer = await async_client.v1.customers.create(
             id="id",
+            coupon_id="couponId",
             default_payment_method={
                 "billing_id": "billingId",
                 "card_expiry_month": 0,
@@ -423,6 +426,7 @@ class TestAsyncCustomers:
     async def test_method_update_with_all_params(self, async_client: AsyncStigg) -> None:
         customer = await async_client.v1.customers.update(
             id="x",
+            coupon_id="couponId",
             email="dev@stainless.com",
             integrations=[
                 {
