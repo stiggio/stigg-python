@@ -53,20 +53,14 @@ class DataIntegration(BaseModel):
 
 
 class Data(BaseModel):
+    id: str
+    """Customer slug"""
+
     archived_at: Optional[datetime] = FieldInfo(alias="archivedAt", default=None)
     """Timestamp of when the record was deleted"""
 
     created_at: datetime = FieldInfo(alias="createdAt")
     """Timestamp of when the record was created"""
-
-    email: Optional[str] = None
-    """The email of the customer"""
-
-    external_id: str = FieldInfo(alias="externalId")
-    """Customer slug"""
-
-    name: Optional[str] = None
-    """The name of the customer"""
 
     updated_at: datetime = FieldInfo(alias="updatedAt")
     """Timestamp of when the record was last updated"""
@@ -74,11 +68,17 @@ class Data(BaseModel):
     default_payment_method: Optional[DataDefaultPaymentMethod] = FieldInfo(alias="defaultPaymentMethod", default=None)
     """The default payment method details"""
 
+    email: Optional[str] = None
+    """The email of the customer"""
+
     integrations: Optional[List[DataIntegration]] = None
     """List of integrations"""
 
     metadata: Optional[Dict[str, str]] = None
     """Additional metadata"""
+
+    name: Optional[str] = None
+    """The name of the customer"""
 
 
 class CustomerResponse(BaseModel):

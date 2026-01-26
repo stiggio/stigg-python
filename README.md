@@ -125,9 +125,7 @@ from stigg import Stigg
 client = Stigg()
 
 customer_response = client.v1.customers.create(
-    email="dev@stainless.com",
-    external_id="externalId",
-    name="name",
+    id="id",
     default_payment_method={
         "billing_id": "billingId",
         "card_expiry_month": 0,
