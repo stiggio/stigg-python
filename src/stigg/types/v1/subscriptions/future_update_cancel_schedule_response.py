@@ -7,7 +7,7 @@ __all__ = ["FutureUpdateCancelScheduleResponse", "Data"]
 
 class Data(BaseModel):
     id: str
-    """external id of the canceled future update subscription"""
+    """Subscription ID"""
 
 
 class FutureUpdateCancelScheduleResponse(BaseModel):

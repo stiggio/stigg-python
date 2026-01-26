@@ -11,23 +11,23 @@ __all__ = ["CustomerCreateParams", "DefaultPaymentMethod", "Integration"]
 
 
 class CustomerCreateParams(TypedDict, total=False):
-    email: Required[Optional[str]]
-    """The email of the customer"""
-
-    external_id: Required[Annotated[str, PropertyInfo(alias="externalId")]]
+    id: Required[str]
     """Customer slug"""
-
-    name: Required[Optional[str]]
-    """The name of the customer"""
 
     default_payment_method: Annotated[Optional[DefaultPaymentMethod], PropertyInfo(alias="defaultPaymentMethod")]
     """The default payment method details"""
+
+    email: Optional[str]
+    """The email of the customer"""
 
     integrations: Iterable[Integration]
     """List of integrations"""
 
     metadata: Dict[str, str]
     """Additional metadata"""
+
+    name: Optional[str]
+    """The name of the customer"""
 
 
 class DefaultPaymentMethod(TypedDict, total=False):

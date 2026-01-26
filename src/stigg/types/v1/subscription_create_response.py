@@ -13,6 +13,7 @@ __all__ = ["SubscriptionCreateResponse", "Data", "DataSubscription"]
 
 class DataSubscription(BaseModel):
     id: str
+    """Subscription ID"""
 
     billing_id: Optional[str] = FieldInfo(alias="billingId", default=None)
     """Billing ID"""

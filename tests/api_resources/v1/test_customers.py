@@ -24,9 +24,7 @@ class TestCustomers:
     @parametrize
     def test_method_create(self, client: Stigg) -> None:
         customer = client.v1.customers.create(
-            email="dev@stainless.com",
-            external_id="externalId",
-            name="name",
+            id="id",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 
@@ -34,9 +32,7 @@ class TestCustomers:
     @parametrize
     def test_method_create_with_all_params(self, client: Stigg) -> None:
         customer = client.v1.customers.create(
-            email="dev@stainless.com",
-            external_id="externalId",
-            name="name",
+            id="id",
             default_payment_method={
                 "billing_id": "billingId",
                 "card_expiry_month": 0,
@@ -44,6 +40,7 @@ class TestCustomers:
                 "card_last4_digits": "cardLast4Digits",
                 "type": "CARD",
             },
+            email="dev@stainless.com",
             integrations=[
                 {
                     "id": "id",
@@ -52,6 +49,7 @@ class TestCustomers:
                 }
             ],
             metadata={"foo": "string"},
+            name="name",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 
@@ -59,9 +57,7 @@ class TestCustomers:
     @parametrize
     def test_raw_response_create(self, client: Stigg) -> None:
         response = client.v1.customers.with_raw_response.create(
-            email="dev@stainless.com",
-            external_id="externalId",
-            name="name",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -73,9 +69,7 @@ class TestCustomers:
     @parametrize
     def test_streaming_response_create(self, client: Stigg) -> None:
         with client.v1.customers.with_streaming_response.create(
-            email="dev@stainless.com",
-            external_id="externalId",
-            name="name",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -319,9 +313,7 @@ class TestAsyncCustomers:
     @parametrize
     async def test_method_create(self, async_client: AsyncStigg) -> None:
         customer = await async_client.v1.customers.create(
-            email="dev@stainless.com",
-            external_id="externalId",
-            name="name",
+            id="id",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 
@@ -329,9 +321,7 @@ class TestAsyncCustomers:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncStigg) -> None:
         customer = await async_client.v1.customers.create(
-            email="dev@stainless.com",
-            external_id="externalId",
-            name="name",
+            id="id",
             default_payment_method={
                 "billing_id": "billingId",
                 "card_expiry_month": 0,
@@ -339,6 +329,7 @@ class TestAsyncCustomers:
                 "card_last4_digits": "cardLast4Digits",
                 "type": "CARD",
             },
+            email="dev@stainless.com",
             integrations=[
                 {
                     "id": "id",
@@ -347,6 +338,7 @@ class TestAsyncCustomers:
                 }
             ],
             metadata={"foo": "string"},
+            name="name",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 
@@ -354,9 +346,7 @@ class TestAsyncCustomers:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.customers.with_raw_response.create(
-            email="dev@stainless.com",
-            external_id="externalId",
-            name="name",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -368,9 +358,7 @@ class TestAsyncCustomers:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.customers.with_streaming_response.create(
-            email="dev@stainless.com",
-            external_id="externalId",
-            name="name",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
