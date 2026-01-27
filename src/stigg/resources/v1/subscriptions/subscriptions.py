@@ -26,6 +26,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ....pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 from .future_update import (
     FutureUpdateResource,
     AsyncFutureUpdateResource,
@@ -34,7 +35,7 @@ from .future_update import (
     FutureUpdateResourceWithStreamingResponse,
     AsyncFutureUpdateResourceWithStreamingResponse,
 )
-from ...._base_client import make_request_options
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.v1.subscription_list_response import SubscriptionListResponse
 from ....types.v1.subscription_create_response import SubscriptionCreateResponse
 from ....types.v1.subscription_migrate_response import SubscriptionMigrateResponse
@@ -186,7 +187,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SubscriptionListResponse:
+    ) -> SyncMyCursorIDPage[SubscriptionListResponse]:
         """
         Get a list of Subscriptions
 
@@ -210,8 +211,9 @@ class SubscriptionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/api/v1/subscriptions",
+            page=SyncMyCursorIDPage[SubscriptionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -228,7 +230,7 @@ class SubscriptionsResource(SyncAPIResource):
                     subscription_list_params.SubscriptionListParams,
                 ),
             ),
-            cast_to=SubscriptionListResponse,
+            model=SubscriptionListResponse,
         )
 
     def delegate(
@@ -549,7 +551,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             cast_to=SubscriptionRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         after: str | Omit = omit,
@@ -563,7 +565,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SubscriptionListResponse:
+    ) -> AsyncPaginator[SubscriptionListResponse, AsyncMyCursorIDPage[SubscriptionListResponse]]:
         """
         Get a list of Subscriptions
 
@@ -587,14 +589,15 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/api/v1/subscriptions",
+            page=AsyncMyCursorIDPage[SubscriptionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "before": before,
@@ -605,7 +608,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     subscription_list_params.SubscriptionListParams,
                 ),
             ),
-            cast_to=SubscriptionListResponse,
+            model=SubscriptionListResponse,
         )
 
     async def delegate(

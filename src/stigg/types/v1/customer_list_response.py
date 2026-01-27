@@ -8,10 +8,10 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["CustomerListResponse", "Data", "DataDefaultPaymentMethod", "DataIntegration", "Pagination"]
+__all__ = ["CustomerListResponse", "DefaultPaymentMethod", "Integration"]
 
 
-class DataDefaultPaymentMethod(BaseModel):
+class DefaultPaymentMethod(BaseModel):
     """The default payment method details"""
 
     billing_id: Optional[str] = FieldInfo(alias="billingId", default=None)
@@ -30,7 +30,7 @@ class DataDefaultPaymentMethod(BaseModel):
     """The default payment method type"""
 
 
-class DataIntegration(BaseModel):
+class Integration(BaseModel):
     id: str
     """Integration details"""
 
@@ -52,7 +52,7 @@ class DataIntegration(BaseModel):
     """The vendor identifier of integration"""
 
 
-class Data(BaseModel):
+class CustomerListResponse(BaseModel):
     id: str
     """Customer slug"""
 
@@ -68,13 +68,13 @@ class Data(BaseModel):
     coupon_id: Optional[str] = FieldInfo(alias="couponId", default=None)
     """Customer level coupon"""
 
-    default_payment_method: Optional[DataDefaultPaymentMethod] = FieldInfo(alias="defaultPaymentMethod", default=None)
+    default_payment_method: Optional[DefaultPaymentMethod] = FieldInfo(alias="defaultPaymentMethod", default=None)
     """The default payment method details"""
 
     email: Optional[str] = None
     """The email of the customer"""
 
-    integrations: Optional[List[DataIntegration]] = None
+    integrations: Optional[List[Integration]] = None
     """List of integrations"""
 
     metadata: Optional[Dict[str, str]] = None
@@ -82,23 +82,3 @@ class Data(BaseModel):
 
     name: Optional[str] = None
     """The name of the customer"""
-
-
-class Pagination(BaseModel):
-    """Pagination information including cursors for navigation"""
-
-    next: Optional[str] = None
-    """Cursor to fetch the next page (use with after parameter), null if no more pages"""
-
-    prev: Optional[str] = None
-    """
-    Cursor to fetch the previous page (use with before parameter), null if no
-    previous pages
-    """
-
-
-class CustomerListResponse(BaseModel):
-    data: List[Data]
-
-    pagination: Pagination
-    """Pagination information including cursors for navigation"""
