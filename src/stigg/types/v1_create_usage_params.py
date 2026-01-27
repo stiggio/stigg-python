@@ -29,7 +29,7 @@ class Usage(TypedDict, total=False):
     created_at: Annotated[Union[str, datetime], PropertyInfo(alias="createdAt", format="iso8601")]
     """Timestamp of when the record was created"""
 
-    dimensions: Dict[str, str]
+    dimensions: Dict[str, Union[str, float, bool]]
     """Additional dimensions for the usage report"""
 
     resource_id: Annotated[Optional[str], PropertyInfo(alias="resourceId")]
