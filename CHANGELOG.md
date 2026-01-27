@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2026-01-27)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Features
+
+* **api:** api update ([cb4996d](https://github.com/stiggio/stigg-python/commit/cb4996da81403af3f049d0c70d12ca7ce7cc3520))
+* **api:** api update ([7706756](https://github.com/stiggio/stigg-python/commit/7706756ba1926cfddcdd54223197d9c49b2ea458))
+* **api:** api update ([e8a240b](https://github.com/stiggio/stigg-python/commit/e8a240b5194b9a8c98ed72e3adaa5fddc814b8e4))
+* **api:** comment out promotional endpoints ([60e1e7c](https://github.com/stiggio/stigg-python/commit/60e1e7c9cf3010ea1e239f51ff17c100c5c332db))
+* **api:** improved cursor pagination ([cb953cc](https://github.com/stiggio/stigg-python/commit/cb953cc0a7530b5383bab867c4ad6936894901bd))
+
 ## 0.1.0-alpha.1 (2026-01-26)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/stiggio/stigg-python/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
