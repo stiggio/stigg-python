@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["CustomerListResponse", "Data", "DataDefaultPaymentMethod", "DataIntegration"]
+__all__ = ["CustomerListResponse", "Data", "DataDefaultPaymentMethod", "DataIntegration", "Pagination"]
 
 
 class DataDefaultPaymentMethod(BaseModel):
@@ -62,9 +62,6 @@ class Data(BaseModel):
     created_at: datetime = FieldInfo(alias="createdAt")
     """Timestamp of when the record was created"""
 
-    cursor_id: str = FieldInfo(alias="cursorId")
-    """Cursor ID for query pagination"""
-
     updated_at: datetime = FieldInfo(alias="updatedAt")
     """Timestamp of when the record was last updated"""
 
@@ -87,5 +84,21 @@ class Data(BaseModel):
     """The name of the customer"""
 
 
+class Pagination(BaseModel):
+    """Pagination information including cursors for navigation"""
+
+    next: Optional[str] = None
+    """Cursor to fetch the next page (use with after parameter), null if no more pages"""
+
+    prev: Optional[str] = None
+    """
+    Cursor to fetch the previous page (use with before parameter), null if no
+    previous pages
+    """
+
+
 class CustomerListResponse(BaseModel):
     data: List[Data]
+
+    pagination: Pagination
+    """Pagination information including cursors for navigation"""
