@@ -10,17 +10,17 @@ __all__ = ["SubscriptionListParams"]
 
 
 class SubscriptionListParams(TypedDict, total=False):
+    after: str
+    """Starting after this UUID for pagination"""
+
+    before: str
+    """Ending before this UUID for pagination"""
+
     customer_id: Annotated[str, PropertyInfo(alias="customerId")]
     """Filter by customer ID"""
 
-    ending_before: Annotated[str, PropertyInfo(alias="endingBefore")]
-    """Ending before this UUID for pagination"""
-
     limit: int
     """Items per page"""
-
-    starting_after: Annotated[str, PropertyInfo(alias="startingAfter")]
-    """Starting after this UUID for pagination"""
 
     status: str
     """

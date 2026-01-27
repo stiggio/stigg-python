@@ -225,9 +225,9 @@ class CustomersResource(SyncAPIResource):
     def list(
         self,
         *,
-        ending_before: str | Omit = omit,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
         limit: int | Omit = omit,
-        starting_after: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -239,11 +239,11 @@ class CustomersResource(SyncAPIResource):
         Get a list of Customers
 
         Args:
-          ending_before: Ending before this UUID for pagination
+          after: Starting after this UUID for pagination
+
+          before: Ending before this UUID for pagination
 
           limit: Items per page
-
-          starting_after: Starting after this UUID for pagination
 
           extra_headers: Send extra headers
 
@@ -262,9 +262,9 @@ class CustomersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "ending_before": ending_before,
+                        "after": after,
+                        "before": before,
                         "limit": limit,
-                        "starting_after": starting_after,
                     },
                     customer_list_params.CustomerListParams,
                 ),
@@ -524,9 +524,9 @@ class AsyncCustomersResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        ending_before: str | Omit = omit,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
         limit: int | Omit = omit,
-        starting_after: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -538,11 +538,11 @@ class AsyncCustomersResource(AsyncAPIResource):
         Get a list of Customers
 
         Args:
-          ending_before: Ending before this UUID for pagination
+          after: Starting after this UUID for pagination
+
+          before: Ending before this UUID for pagination
 
           limit: Items per page
-
-          starting_after: Starting after this UUID for pagination
 
           extra_headers: Send extra headers
 
@@ -561,9 +561,9 @@ class AsyncCustomersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "ending_before": ending_before,
+                        "after": after,
+                        "before": before,
                         "limit": limit,
-                        "starting_after": starting_after,
                     },
                     customer_list_params.CustomerListParams,
                 ),

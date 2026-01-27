@@ -144,10 +144,10 @@ class TestSubscriptions:
     @parametrize
     def test_method_list_with_all_params(self, client: Stigg) -> None:
         subscription = client.v1.subscriptions.list(
+            after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             customer_id="customerId",
-            ending_before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
-            starting_after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             status="status",
         )
         assert_matches_type(SubscriptionListResponse, subscription, path=["response"])
@@ -561,10 +561,10 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStigg) -> None:
         subscription = await async_client.v1.subscriptions.list(
+            after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             customer_id="customerId",
-            ending_before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
-            starting_after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             status="status",
         )
         assert_matches_type(SubscriptionListResponse, subscription, path=["response"])
