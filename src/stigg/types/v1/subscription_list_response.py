@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -8,10 +8,10 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["SubscriptionListResponse", "Data", "Pagination"]
+__all__ = ["SubscriptionListResponse"]
 
 
-class Data(BaseModel):
+class SubscriptionListResponse(BaseModel):
     id: str
     """Subscription ID"""
 
@@ -89,23 +89,3 @@ class Data(BaseModel):
 
     trial_end_date: Optional[datetime] = FieldInfo(alias="trialEndDate", default=None)
     """Subscription trial end date"""
-
-
-class Pagination(BaseModel):
-    """Pagination information including cursors for navigation"""
-
-    next: Optional[str] = None
-    """Cursor to fetch the next page (use with after parameter), null if no more pages"""
-
-    prev: Optional[str] = None
-    """
-    Cursor to fetch the previous page (use with before parameter), null if no
-    previous pages
-    """
-
-
-class SubscriptionListResponse(BaseModel):
-    data: List[Data]
-
-    pagination: Pagination
-    """Pagination information including cursors for navigation"""

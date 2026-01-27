@@ -25,6 +25,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ....pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 from .payment_method import (
     PaymentMethodResource,
     AsyncPaymentMethodResource,
@@ -33,7 +34,7 @@ from .payment_method import (
     PaymentMethodResourceWithStreamingResponse,
     AsyncPaymentMethodResourceWithStreamingResponse,
 )
-from ...._base_client import make_request_options
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.v1.customer_response import CustomerResponse
 from ....types.v1.customer_list_response import CustomerListResponse
 
@@ -234,7 +235,7 @@ class CustomersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomerListResponse:
+    ) -> SyncMyCursorIDPage[CustomerListResponse]:
         """
         Get a list of Customers
 
@@ -253,8 +254,9 @@ class CustomersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/api/v1/customers",
+            page=SyncMyCursorIDPage[CustomerListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -269,7 +271,7 @@ class CustomersResource(SyncAPIResource):
                     customer_list_params.CustomerListParams,
                 ),
             ),
-            cast_to=CustomerListResponse,
+            model=CustomerListResponse,
         )
 
     def archive(
@@ -521,7 +523,7 @@ class AsyncCustomersResource(AsyncAPIResource):
             cast_to=CustomerResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         after: str | Omit = omit,
@@ -533,7 +535,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomerListResponse:
+    ) -> AsyncPaginator[CustomerListResponse, AsyncMyCursorIDPage[CustomerListResponse]]:
         """
         Get a list of Customers
 
@@ -552,14 +554,15 @@ class AsyncCustomersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/api/v1/customers",
+            page=AsyncMyCursorIDPage[CustomerListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "before": before,
@@ -568,7 +571,7 @@ class AsyncCustomersResource(AsyncAPIResource):
                     customer_list_params.CustomerListParams,
                 ),
             ),
-            cast_to=CustomerListResponse,
+            model=CustomerListResponse,
         )
 
     async def archive(
