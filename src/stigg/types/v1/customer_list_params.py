@@ -2,19 +2,17 @@
 
 from __future__ import annotations
 
-from typing_extensions import Annotated, TypedDict
-
-from ..._utils import PropertyInfo
+from typing_extensions import TypedDict
 
 __all__ = ["CustomerListParams"]
 
 
 class CustomerListParams(TypedDict, total=False):
-    ending_before: Annotated[str, PropertyInfo(alias="endingBefore")]
+    after: str
+    """Starting after this UUID for pagination"""
+
+    before: str
     """Ending before this UUID for pagination"""
 
     limit: int
     """Items per page"""
-
-    starting_after: Annotated[str, PropertyInfo(alias="startingAfter")]
-    """Starting after this UUID for pagination"""

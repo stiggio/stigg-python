@@ -156,9 +156,9 @@ class TestCoupons:
     @parametrize
     def test_method_list_with_all_params(self, client: Stigg) -> None:
         coupon = client.v1.coupons.list(
-            ending_before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
-            starting_after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(CouponListResponse, coupon, path=["response"])
 
@@ -325,9 +325,9 @@ class TestAsyncCoupons:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStigg) -> None:
         coupon = await async_client.v1.coupons.list(
-            ending_before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
-            starting_after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(CouponListResponse, coupon, path=["response"])
 
