@@ -19,6 +19,7 @@ from stigg.types.v1 import (
     SubscriptionRetrieveResponse,
     SubscriptionTransferResponse,
 )
+from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -138,7 +139,7 @@ class TestSubscriptions:
     @parametrize
     def test_method_list(self, client: Stigg) -> None:
         subscription = client.v1.subscriptions.list()
-        assert_matches_type(SubscriptionListResponse, subscription, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[SubscriptionListResponse], subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -150,7 +151,7 @@ class TestSubscriptions:
             limit=1,
             status="status",
         )
-        assert_matches_type(SubscriptionListResponse, subscription, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[SubscriptionListResponse], subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -160,7 +161,7 @@ class TestSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = response.parse()
-        assert_matches_type(SubscriptionListResponse, subscription, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[SubscriptionListResponse], subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -170,7 +171,7 @@ class TestSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = response.parse()
-            assert_matches_type(SubscriptionListResponse, subscription, path=["response"])
+            assert_matches_type(SyncMyCursorIDPage[SubscriptionListResponse], subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -555,7 +556,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_list(self, async_client: AsyncStigg) -> None:
         subscription = await async_client.v1.subscriptions.list()
-        assert_matches_type(SubscriptionListResponse, subscription, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[SubscriptionListResponse], subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -567,7 +568,7 @@ class TestAsyncSubscriptions:
             limit=1,
             status="status",
         )
-        assert_matches_type(SubscriptionListResponse, subscription, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[SubscriptionListResponse], subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -577,7 +578,7 @@ class TestAsyncSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = await response.parse()
-        assert_matches_type(SubscriptionListResponse, subscription, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[SubscriptionListResponse], subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -587,7 +588,7 @@ class TestAsyncSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = await response.parse()
-            assert_matches_type(SubscriptionListResponse, subscription, path=["response"])
+            assert_matches_type(AsyncMyCursorIDPage[SubscriptionListResponse], subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
