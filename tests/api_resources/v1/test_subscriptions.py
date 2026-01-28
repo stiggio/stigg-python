@@ -43,8 +43,70 @@ class TestSubscriptions:
             customer_id="customerId",
             plan_id="planId",
             id="id",
+            addons=[
+                {
+                    "addon_id": "addonId",
+                    "quantity": 1,
+                }
+            ],
+            applied_coupon={
+                "billing_coupon_id": "billingCouponId",
+                "configuration": {"start_date": parse_datetime("2019-12-27T18:11:19.117Z")},
+                "coupon_id": "couponId",
+                "discount": {
+                    "amounts_off": [
+                        {
+                            "amount": 0,
+                            "currency": "usd",
+                        }
+                    ],
+                    "description": "description",
+                    "duration_in_months": 1,
+                    "name": "name",
+                    "percent_off": 1,
+                },
+                "promotion_code": "promotionCode",
+            },
             await_payment_confirmation=True,
+            billing_country_code="billingCountryCode",
+            billing_id="billingId",
+            billing_information={
+                "billing_address": {
+                    "city": "city",
+                    "country": "country",
+                    "line1": "line1",
+                    "line2": "line2",
+                    "postal_code": "postalCode",
+                    "state": "state",
+                },
+                "charge_on_behalf_of_account": "chargeOnBehalfOfAccount",
+                "integration_id": "integrationId",
+                "invoice_days_until_due": 0,
+                "is_backdated": True,
+                "is_invoice_paid": True,
+                "metadata": {"foo": "string"},
+                "proration_behavior": "INVOICE_IMMEDIATELY",
+                "tax_ids": [
+                    {
+                        "type": "type",
+                        "value": "value",
+                    }
+                ],
+                "tax_percentage": 0,
+                "tax_rate_ids": ["string"],
+            },
             billing_period="MONTHLY",
+            budget={
+                "has_soft_limit": True,
+                "limit": 0,
+            },
+            charges=[
+                {
+                    "id": "id",
+                    "quantity": 1,
+                    "type": "FEATURE",
+                }
+            ],
             checkout_options={
                 "cancel_url": "https://example.com",
                 "success_url": "https://example.com",
@@ -55,13 +117,66 @@ class TestSubscriptions:
                 "reference_id": "referenceId",
             },
             metadata={"foo": "string"},
+            minimum_spend={
+                "minimum": {
+                    "amount": 0,
+                    "billing_country_code": "billingCountryCode",
+                    "currency": "usd",
+                }
+            },
             paying_customer_id="payingCustomerId",
+            payment_collection_method="CHARGE",
+            price_overrides=[
+                {
+                    "addon_id": "addonId",
+                    "base_charge": True,
+                    "block_size": 0,
+                    "credit_grant_cadence": "BEGINNING_OF_BILLING_PERIOD",
+                    "credit_rate": {
+                        "amount": 1,
+                        "currency_id": "currencyId",
+                        "cost_formula": "costFormula",
+                    },
+                    "feature_id": "featureId",
+                    "price": {
+                        "amount": 0,
+                        "billing_country_code": "billingCountryCode",
+                        "currency": "usd",
+                    },
+                    "tiers": [
+                        {
+                            "flat_price": {
+                                "amount": 0,
+                                "billing_country_code": "billingCountryCode",
+                                "currency": "usd",
+                            },
+                            "unit_price": {
+                                "amount": 0,
+                                "billing_country_code": "billingCountryCode",
+                                "currency": "usd",
+                            },
+                            "up_to": 0,
+                        }
+                    ],
+                }
+            ],
             resource_id="resourceId",
+            salesforce_id="salesforceId",
+            schedule_strategy="END_OF_BILLING_PERIOD",
+            start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            subscription_entitlements=[
+                {
+                    "feature_id": "featureId",
+                    "usage_limit": 0,
+                    "is_granted": True,
+                }
+            ],
             trial_override_configuration={
                 "is_trial": True,
                 "trial_end_behavior": "CONVERT_TO_PAID",
                 "trial_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
+            unit_quantity=1,
         )
         assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
 
@@ -460,8 +575,70 @@ class TestAsyncSubscriptions:
             customer_id="customerId",
             plan_id="planId",
             id="id",
+            addons=[
+                {
+                    "addon_id": "addonId",
+                    "quantity": 1,
+                }
+            ],
+            applied_coupon={
+                "billing_coupon_id": "billingCouponId",
+                "configuration": {"start_date": parse_datetime("2019-12-27T18:11:19.117Z")},
+                "coupon_id": "couponId",
+                "discount": {
+                    "amounts_off": [
+                        {
+                            "amount": 0,
+                            "currency": "usd",
+                        }
+                    ],
+                    "description": "description",
+                    "duration_in_months": 1,
+                    "name": "name",
+                    "percent_off": 1,
+                },
+                "promotion_code": "promotionCode",
+            },
             await_payment_confirmation=True,
+            billing_country_code="billingCountryCode",
+            billing_id="billingId",
+            billing_information={
+                "billing_address": {
+                    "city": "city",
+                    "country": "country",
+                    "line1": "line1",
+                    "line2": "line2",
+                    "postal_code": "postalCode",
+                    "state": "state",
+                },
+                "charge_on_behalf_of_account": "chargeOnBehalfOfAccount",
+                "integration_id": "integrationId",
+                "invoice_days_until_due": 0,
+                "is_backdated": True,
+                "is_invoice_paid": True,
+                "metadata": {"foo": "string"},
+                "proration_behavior": "INVOICE_IMMEDIATELY",
+                "tax_ids": [
+                    {
+                        "type": "type",
+                        "value": "value",
+                    }
+                ],
+                "tax_percentage": 0,
+                "tax_rate_ids": ["string"],
+            },
             billing_period="MONTHLY",
+            budget={
+                "has_soft_limit": True,
+                "limit": 0,
+            },
+            charges=[
+                {
+                    "id": "id",
+                    "quantity": 1,
+                    "type": "FEATURE",
+                }
+            ],
             checkout_options={
                 "cancel_url": "https://example.com",
                 "success_url": "https://example.com",
@@ -472,13 +649,66 @@ class TestAsyncSubscriptions:
                 "reference_id": "referenceId",
             },
             metadata={"foo": "string"},
+            minimum_spend={
+                "minimum": {
+                    "amount": 0,
+                    "billing_country_code": "billingCountryCode",
+                    "currency": "usd",
+                }
+            },
             paying_customer_id="payingCustomerId",
+            payment_collection_method="CHARGE",
+            price_overrides=[
+                {
+                    "addon_id": "addonId",
+                    "base_charge": True,
+                    "block_size": 0,
+                    "credit_grant_cadence": "BEGINNING_OF_BILLING_PERIOD",
+                    "credit_rate": {
+                        "amount": 1,
+                        "currency_id": "currencyId",
+                        "cost_formula": "costFormula",
+                    },
+                    "feature_id": "featureId",
+                    "price": {
+                        "amount": 0,
+                        "billing_country_code": "billingCountryCode",
+                        "currency": "usd",
+                    },
+                    "tiers": [
+                        {
+                            "flat_price": {
+                                "amount": 0,
+                                "billing_country_code": "billingCountryCode",
+                                "currency": "usd",
+                            },
+                            "unit_price": {
+                                "amount": 0,
+                                "billing_country_code": "billingCountryCode",
+                                "currency": "usd",
+                            },
+                            "up_to": 0,
+                        }
+                    ],
+                }
+            ],
             resource_id="resourceId",
+            salesforce_id="salesforceId",
+            schedule_strategy="END_OF_BILLING_PERIOD",
+            start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            subscription_entitlements=[
+                {
+                    "feature_id": "featureId",
+                    "usage_limit": 0,
+                    "is_granted": True,
+                }
+            ],
             trial_override_configuration={
                 "is_trial": True,
                 "trial_end_behavior": "CONVERT_TO_PAID",
                 "trial_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
+            unit_quantity=1,
         )
         assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
 
