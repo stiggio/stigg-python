@@ -12,6 +12,8 @@ __all__ = ["CouponListResponse", "AmountsOff"]
 
 
 class AmountsOff(BaseModel):
+    """Monetary amount with currency"""
+
     amount: float
     """The price amount"""
 
@@ -137,6 +139,8 @@ class AmountsOff(BaseModel):
 
 
 class CouponListResponse(BaseModel):
+    """Discount instrument with percentage or fixed amount"""
+
     id: str
     """The unique identifier for the entity"""
 

@@ -191,7 +191,7 @@ class PaymentMethodResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Perform payment-method attachment on a Customer
+        Attach payment method
 
         Args:
           integration_id: Integration details
@@ -199,6 +199,8 @@ class PaymentMethodResource(SyncAPIResource):
           payment_method_id: Billing provider payment method id
 
           vendor_identifier: The vendor identifier of integration
+
+          billing_currency: Customers selected currency
 
           extra_headers: Send extra headers
 
@@ -239,7 +241,7 @@ class PaymentMethodResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Perform payment-method detachment on a Customer
+        Detach payment method
 
         Args:
           extra_headers: Send extra headers
@@ -428,7 +430,7 @@ class AsyncPaymentMethodResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Perform payment-method attachment on a Customer
+        Attach payment method
 
         Args:
           integration_id: Integration details
@@ -436,6 +438,8 @@ class AsyncPaymentMethodResource(AsyncAPIResource):
           payment_method_id: Billing provider payment method id
 
           vendor_identifier: The vendor identifier of integration
+
+          billing_currency: Customers selected currency
 
           extra_headers: Send extra headers
 
@@ -476,7 +480,7 @@ class AsyncPaymentMethodResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Perform payment-method detachment on a Customer
+        Detach payment method
 
         Args:
           extra_headers: Send extra headers

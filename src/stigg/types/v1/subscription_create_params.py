@@ -42,12 +42,13 @@ class SubscriptionCreateParams(TypedDict, total=False):
     plan_id: Required[Annotated[str, PropertyInfo(alias="planId")]]
     """Plan ID to provision"""
 
-    id: Optional[str]
+    id: str
     """Unique identifier for the subscription"""
 
     addons: Iterable[Addon]
 
     applied_coupon: Annotated[AppliedCoupon, PropertyInfo(alias="appliedCoupon")]
+    """Coupon configuration"""
 
     await_payment_confirmation: Annotated[bool, PropertyInfo(alias="awaitPaymentConfirmation")]
     """Whether to wait for payment confirmation before returning the subscription"""
@@ -61,12 +62,14 @@ class SubscriptionCreateParams(TypedDict, total=False):
     billing_information: Annotated[BillingInformation, PropertyInfo(alias="billingInformation")]
 
     billing_period: Annotated[Literal["MONTHLY", "ANNUALLY"], PropertyInfo(alias="billingPeriod")]
+    """Billing period (MONTHLY or ANNUALLY)"""
 
     budget: Optional[Budget]
 
     charges: Iterable[Charge]
 
     checkout_options: Annotated[CheckoutOptions, PropertyInfo(alias="checkoutOptions")]
+    """Checkout page configuration for payment collection"""
 
     metadata: Dict[str, str]
     """Additional metadata for the subscription"""
@@ -104,6 +107,7 @@ class SubscriptionCreateParams(TypedDict, total=False):
     trial_override_configuration: Annotated[
         TrialOverrideConfiguration, PropertyInfo(alias="trialOverrideConfiguration")
     ]
+    """Trial period override settings"""
 
     unit_quantity: Annotated[float, PropertyInfo(alias="unitQuantity")]
 
@@ -117,155 +121,175 @@ class Addon(TypedDict, total=False):
 
 
 class AppliedCouponConfiguration(TypedDict, total=False):
+    """Coupon timing configuration"""
+
     start_date: Annotated[Union[str, datetime], PropertyInfo(alias="startDate", format="iso8601")]
     """Coupon start date"""
 
 
 class AppliedCouponDiscountAmountsOff(TypedDict, total=False):
     amount: Required[float]
+    """The price amount"""
 
-    currency: Literal[
-        "usd",
-        "aed",
-        "all",
-        "amd",
-        "ang",
-        "aud",
-        "awg",
-        "azn",
-        "bam",
-        "bbd",
-        "bdt",
-        "bgn",
-        "bif",
-        "bmd",
-        "bnd",
-        "bsd",
-        "bwp",
-        "byn",
-        "bzd",
-        "brl",
-        "cad",
-        "cdf",
-        "chf",
-        "cny",
-        "czk",
-        "dkk",
-        "dop",
-        "dzd",
-        "egp",
-        "etb",
-        "eur",
-        "fjd",
-        "gbp",
-        "gel",
-        "gip",
-        "gmd",
-        "gyd",
-        "hkd",
-        "hrk",
-        "htg",
-        "idr",
-        "ils",
-        "inr",
-        "isk",
-        "jmd",
-        "jpy",
-        "kes",
-        "kgs",
-        "khr",
-        "kmf",
-        "krw",
-        "kyd",
-        "kzt",
-        "lbp",
-        "lkr",
-        "lrd",
-        "lsl",
-        "mad",
-        "mdl",
-        "mga",
-        "mkd",
-        "mmk",
-        "mnt",
-        "mop",
-        "mro",
-        "mvr",
-        "mwk",
-        "mxn",
-        "myr",
-        "mzn",
-        "nad",
-        "ngn",
-        "nok",
-        "npr",
-        "nzd",
-        "pgk",
-        "php",
-        "pkr",
-        "pln",
-        "qar",
-        "ron",
-        "rsd",
-        "rub",
-        "rwf",
-        "sar",
-        "sbd",
-        "scr",
-        "sek",
-        "sgd",
-        "sle",
-        "sll",
-        "sos",
-        "szl",
-        "thb",
-        "tjs",
-        "top",
-        "try",
-        "ttd",
-        "tzs",
-        "uah",
-        "uzs",
-        "vnd",
-        "vuv",
-        "wst",
-        "xaf",
-        "xcd",
-        "yer",
-        "zar",
-        "zmw",
-        "clp",
-        "djf",
-        "gnf",
-        "ugx",
-        "pyg",
-        "xof",
-        "xpf",
+    currency: Required[
+        Literal[
+            "usd",
+            "aed",
+            "all",
+            "amd",
+            "ang",
+            "aud",
+            "awg",
+            "azn",
+            "bam",
+            "bbd",
+            "bdt",
+            "bgn",
+            "bif",
+            "bmd",
+            "bnd",
+            "bsd",
+            "bwp",
+            "byn",
+            "bzd",
+            "brl",
+            "cad",
+            "cdf",
+            "chf",
+            "cny",
+            "czk",
+            "dkk",
+            "dop",
+            "dzd",
+            "egp",
+            "etb",
+            "eur",
+            "fjd",
+            "gbp",
+            "gel",
+            "gip",
+            "gmd",
+            "gyd",
+            "hkd",
+            "hrk",
+            "htg",
+            "idr",
+            "ils",
+            "inr",
+            "isk",
+            "jmd",
+            "jpy",
+            "kes",
+            "kgs",
+            "khr",
+            "kmf",
+            "krw",
+            "kyd",
+            "kzt",
+            "lbp",
+            "lkr",
+            "lrd",
+            "lsl",
+            "mad",
+            "mdl",
+            "mga",
+            "mkd",
+            "mmk",
+            "mnt",
+            "mop",
+            "mro",
+            "mvr",
+            "mwk",
+            "mxn",
+            "myr",
+            "mzn",
+            "nad",
+            "ngn",
+            "nok",
+            "npr",
+            "nzd",
+            "pgk",
+            "php",
+            "pkr",
+            "pln",
+            "qar",
+            "ron",
+            "rsd",
+            "rub",
+            "rwf",
+            "sar",
+            "sbd",
+            "scr",
+            "sek",
+            "sgd",
+            "sle",
+            "sll",
+            "sos",
+            "szl",
+            "thb",
+            "tjs",
+            "top",
+            "try",
+            "ttd",
+            "tzs",
+            "uah",
+            "uzs",
+            "vnd",
+            "vuv",
+            "wst",
+            "xaf",
+            "xcd",
+            "yer",
+            "zar",
+            "zmw",
+            "clp",
+            "djf",
+            "gnf",
+            "ugx",
+            "pyg",
+            "xof",
+            "xpf",
+        ]
     ]
+    """The price currency"""
 
 
 class AppliedCouponDiscount(TypedDict, total=False):
+    """Ad-hoc discount configuration"""
+
     amounts_off: Annotated[Optional[Iterable[AppliedCouponDiscountAmountsOff]], PropertyInfo(alias="amountsOff")]
+    """Fixed amounts off by currency"""
 
     description: str
+    """Ad-hoc discount"""
 
     duration_in_months: Annotated[float, PropertyInfo(alias="durationInMonths")]
+    """Duration in months"""
 
     name: str
+    """Discount name"""
 
     percent_off: Annotated[float, PropertyInfo(alias="percentOff")]
+    """Percentage discount"""
 
 
 class AppliedCoupon(TypedDict, total=False):
+    """Coupon configuration"""
+
     billing_coupon_id: Annotated[str, PropertyInfo(alias="billingCouponId")]
+    """Billing provider coupon ID"""
 
     configuration: AppliedCouponConfiguration
+    """Coupon timing configuration"""
 
     coupon_id: Annotated[str, PropertyInfo(alias="couponId")]
+    """Stigg coupon ID"""
 
     discount: AppliedCouponDiscount
+    """Ad-hoc discount configuration"""
 
     promotion_code: Annotated[str, PropertyInfo(alias="promotionCode")]
+    """Promotion code to apply"""
 
 
 class BillingInformationBillingAddress(TypedDict, total=False):
@@ -338,6 +362,8 @@ class Budget(TypedDict, total=False):
 
 
 class Charge(TypedDict, total=False):
+    """Charge item"""
+
     id: Required[str]
     """Charge ID"""
 
@@ -349,6 +375,8 @@ class Charge(TypedDict, total=False):
 
 
 class CheckoutOptions(TypedDict, total=False):
+    """Checkout page configuration for payment collection"""
+
     cancel_url: Required[Annotated[str, PropertyInfo(alias="cancelUrl")]]
     """URL to redirect to if checkout is canceled"""
 
@@ -946,6 +974,7 @@ class PriceOverride(TypedDict, total=False):
 
 class SubscriptionEntitlement(TypedDict, total=False):
     feature_id: Required[Annotated[str, PropertyInfo(alias="featureId")]]
+    """Feature ID"""
 
     usage_limit: Required[Annotated[float, PropertyInfo(alias="usageLimit")]]
 
@@ -953,6 +982,8 @@ class SubscriptionEntitlement(TypedDict, total=False):
 
 
 class TrialOverrideConfiguration(TypedDict, total=False):
+    """Trial period override settings"""
+
     is_trial: Required[Annotated[bool, PropertyInfo(alias="isTrial")]]
     """Whether the subscription should start with a trial period"""
 

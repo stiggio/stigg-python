@@ -11,19 +11,16 @@ __all__ = ["SubscriptionListParams"]
 
 class SubscriptionListParams(TypedDict, total=False):
     after: str
-    """Starting after this UUID for pagination"""
+    """Return items that come after this cursor"""
 
     before: str
-    """Ending before this UUID for pagination"""
+    """Return items that come before this cursor"""
 
     customer_id: Annotated[str, PropertyInfo(alias="customerId")]
     """Filter by customer ID"""
 
     limit: int
-    """Items per page"""
+    """Maximum number of items to return"""
 
     status: str
-    """
-    Filter by subscription status (comma-separated for multiple statuses, e.g.,
-    ACTIVE,IN_TRIAL)
-    """
+    """Filter by status (comma-separated)"""

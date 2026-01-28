@@ -17,6 +17,8 @@ class V1CreateEventParams(TypedDict, total=False):
 
 
 class Event(TypedDict, total=False):
+    """Raw usage event"""
+
     customer_id: Required[Annotated[str, PropertyInfo(alias="customerId")]]
     """Customer id"""
 

@@ -6,4 +6,10 @@ __all__ = ["V1CreateEventResponse"]
 
 
 class V1CreateEventResponse(BaseModel):
+    """Response object"""
+
     data: object
+    """
+    Empty success response confirming that events were successfully ingested and
+    queued for processing by Stigg's metering system.
+    """

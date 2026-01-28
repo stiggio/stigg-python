@@ -35,6 +35,8 @@ class Price(BaseModel):
 
 
 class SubscriptionListResponse(BaseModel):
+    """Customer subscription to a plan"""
+
     id: str
     """Subscription ID"""
 
@@ -114,5 +116,3 @@ class SubscriptionListResponse(BaseModel):
 
     trial_end_date: Optional[datetime] = FieldInfo(alias="trialEndDate", default=None)
     """Subscription trial end date"""
-
-    unit_quantity: Optional[float] = FieldInfo(alias="unitQuantity", default=None)

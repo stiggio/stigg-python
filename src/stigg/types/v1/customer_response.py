@@ -31,6 +31,8 @@ class DataDefaultPaymentMethod(BaseModel):
 
 
 class DataIntegration(BaseModel):
+    """External billing or CRM integration link"""
+
     id: str
     """Integration details"""
 
@@ -53,6 +55,8 @@ class DataIntegration(BaseModel):
 
 
 class Data(BaseModel):
+    """A customer can be either an organization or an individual"""
+
     id: str
     """Customer slug"""
 
@@ -85,4 +89,7 @@ class Data(BaseModel):
 
 
 class CustomerResponse(BaseModel):
+    """Response object"""
+
     data: Data
+    """A customer can be either an organization or an individual"""

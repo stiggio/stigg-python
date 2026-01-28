@@ -54,7 +54,7 @@ class FutureUpdateResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FutureUpdateCancelPendingPaymentResponse:
         """
-        Perform cancel future update on a Subscription
+        Cancel pending payment update
 
         Args:
           extra_headers: Send extra headers
@@ -87,7 +87,7 @@ class FutureUpdateResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FutureUpdateCancelScheduleResponse:
         """
-        Perform cancel future update on a Subscription
+        Cancel scheduled update
 
         Args:
           extra_headers: Send extra headers
@@ -141,7 +141,7 @@ class AsyncFutureUpdateResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FutureUpdateCancelPendingPaymentResponse:
         """
-        Perform cancel future update on a Subscription
+        Cancel pending payment update
 
         Args:
           extra_headers: Send extra headers
@@ -174,7 +174,7 @@ class AsyncFutureUpdateResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FutureUpdateCancelScheduleResponse:
         """
-        Perform cancel future update on a Subscription
+        Cancel scheduled update
 
         Args:
           extra_headers: Send extra headers

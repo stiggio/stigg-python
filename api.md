@@ -35,18 +35,6 @@ Methods:
 - <code title="post /api/v1/customers/{id}/payment-method">client.v1.customers.payment_method.<a href="./src/stigg/resources/v1/customers/payment_method.py">attach</a>(id, \*\*<a href="src/stigg/types/v1/customers/payment_method_attach_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_response.py">CustomerResponse</a></code>
 - <code title="delete /api/v1/customers/{id}/payment-method">client.v1.customers.payment_method.<a href="./src/stigg/resources/v1/customers/payment_method.py">detach</a>(id) -> <a href="./src/stigg/types/v1/customer_response.py">CustomerResponse</a></code>
 
-### Usage
-
-Types:
-
-```python
-from stigg.types.v1.customers import UsageRetrieveResponse
-```
-
-Methods:
-
-- <code title="get /api/v1/customers/{customerId}/usage/features/{featureId}">client.v1.customers.usage.<a href="./src/stigg/resources/v1/customers/usage.py">retrieve</a>(feature_id, \*, customer_id, \*\*<a href="src/stigg/types/v1/customers/usage_retrieve_params.py">params</a>) -> <a href="./src/stigg/types/v1/customers/usage_retrieve_response.py">UsageRetrieveResponse</a></code>
-
 ## Subscriptions
 
 Types:

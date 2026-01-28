@@ -11,6 +11,8 @@ __all__ = ["V1CreateUsageResponse", "Data"]
 
 
 class Data(BaseModel):
+    """Recorded usage with period info"""
+
     id: str
     """Unique identifier for the entity"""
 
@@ -52,4 +54,9 @@ class Data(BaseModel):
 
 
 class V1CreateUsageResponse(BaseModel):
+    """
+    Response containing reported usage measurements with current usage values, period information, and reset dates for each measurement.
+    """
+
     data: List[Data]
+    """Array of usage measurements with current values and period info"""

@@ -12,6 +12,8 @@ __all__ = ["CouponRetrieveResponse", "Data", "DataAmountsOff"]
 
 
 class DataAmountsOff(BaseModel):
+    """Monetary amount with currency"""
+
     amount: float
     """The price amount"""
 
@@ -137,6 +139,8 @@ class DataAmountsOff(BaseModel):
 
 
 class Data(BaseModel):
+    """Discount instrument with percentage or fixed amount"""
+
     id: str
     """The unique identifier for the entity"""
 
@@ -178,4 +182,7 @@ class Data(BaseModel):
 
 
 class CouponRetrieveResponse(BaseModel):
+    """Response object"""
+
     data: Data
+    """Discount instrument with percentage or fixed amount"""

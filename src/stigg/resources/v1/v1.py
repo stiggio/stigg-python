@@ -92,7 +92,7 @@ class V1Resource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> V1CreateEventResponse:
         """
-        Create events
+        Report usage events
 
         Args:
           events: A list of usage events to report
@@ -126,7 +126,7 @@ class V1Resource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> V1CreateUsageResponse:
         """
-        Create a new Usage
+        Report usage measurements
 
         Args:
           usages: A list of usage reports to be submitted in bulk
@@ -193,7 +193,7 @@ class AsyncV1Resource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> V1CreateEventResponse:
         """
-        Create events
+        Report usage events
 
         Args:
           events: A list of usage events to report
@@ -227,7 +227,7 @@ class AsyncV1Resource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> V1CreateUsageResponse:
         """
-        Create a new Usage
+        Report usage measurements
 
         Args:
           usages: A list of usage reports to be submitted in bulk
