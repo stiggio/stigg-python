@@ -77,13 +77,28 @@ class SubscriptionsResource(SyncAPIResource):
         customer_id: str,
         plan_id: str,
         id: Optional[str] | Omit = omit,
+        addons: Iterable[subscription_create_params.Addon] | Omit = omit,
+        applied_coupon: subscription_create_params.AppliedCoupon | Omit = omit,
         await_payment_confirmation: bool | Omit = omit,
+        billing_country_code: Optional[str] | Omit = omit,
+        billing_id: Optional[str] | Omit = omit,
+        billing_information: subscription_create_params.BillingInformation | Omit = omit,
         billing_period: Literal["MONTHLY", "ANNUALLY"] | Omit = omit,
+        budget: Optional[subscription_create_params.Budget] | Omit = omit,
+        charges: Iterable[subscription_create_params.Charge] | Omit = omit,
         checkout_options: subscription_create_params.CheckoutOptions | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
+        minimum_spend: Optional[subscription_create_params.MinimumSpend] | Omit = omit,
         paying_customer_id: Optional[str] | Omit = omit,
+        payment_collection_method: Literal["CHARGE", "INVOICE", "NONE"] | Omit = omit,
+        price_overrides: Iterable[subscription_create_params.PriceOverride] | Omit = omit,
         resource_id: Optional[str] | Omit = omit,
+        salesforce_id: Optional[str] | Omit = omit,
+        schedule_strategy: Literal["END_OF_BILLING_PERIOD", "END_OF_BILLING_MONTH", "IMMEDIATE"] | Omit = omit,
+        start_date: Union[str, datetime] | Omit = omit,
+        subscription_entitlements: Iterable[subscription_create_params.SubscriptionEntitlement] | Omit = omit,
         trial_override_configuration: subscription_create_params.TrialOverrideConfiguration | Omit = omit,
+        unit_quantity: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -103,11 +118,23 @@ class SubscriptionsResource(SyncAPIResource):
 
           await_payment_confirmation: Whether to wait for payment confirmation before returning the subscription
 
+          billing_country_code: The ISO 3166-1 alpha-2 country code for billing
+
+          billing_id: External billing system identifier
+
           metadata: Additional metadata for the subscription
 
           paying_customer_id: Optional paying customer ID for split billing scenarios
 
+          payment_collection_method: How payments should be collected for this subscription
+
           resource_id: Optional resource ID for multi-instance subscriptions
+
+          salesforce_id: Salesforce ID
+
+          schedule_strategy: Strategy for scheduling subscription changes
+
+          start_date: Subscription start date
 
           extra_headers: Send extra headers
 
@@ -124,13 +151,28 @@ class SubscriptionsResource(SyncAPIResource):
                     "customer_id": customer_id,
                     "plan_id": plan_id,
                     "id": id,
+                    "addons": addons,
+                    "applied_coupon": applied_coupon,
                     "await_payment_confirmation": await_payment_confirmation,
+                    "billing_country_code": billing_country_code,
+                    "billing_id": billing_id,
+                    "billing_information": billing_information,
                     "billing_period": billing_period,
+                    "budget": budget,
+                    "charges": charges,
                     "checkout_options": checkout_options,
                     "metadata": metadata,
+                    "minimum_spend": minimum_spend,
                     "paying_customer_id": paying_customer_id,
+                    "payment_collection_method": payment_collection_method,
+                    "price_overrides": price_overrides,
                     "resource_id": resource_id,
+                    "salesforce_id": salesforce_id,
+                    "schedule_strategy": schedule_strategy,
+                    "start_date": start_date,
+                    "subscription_entitlements": subscription_entitlements,
                     "trial_override_configuration": trial_override_configuration,
+                    "unit_quantity": unit_quantity,
                 },
                 subscription_create_params.SubscriptionCreateParams,
             ),
@@ -455,13 +497,28 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         customer_id: str,
         plan_id: str,
         id: Optional[str] | Omit = omit,
+        addons: Iterable[subscription_create_params.Addon] | Omit = omit,
+        applied_coupon: subscription_create_params.AppliedCoupon | Omit = omit,
         await_payment_confirmation: bool | Omit = omit,
+        billing_country_code: Optional[str] | Omit = omit,
+        billing_id: Optional[str] | Omit = omit,
+        billing_information: subscription_create_params.BillingInformation | Omit = omit,
         billing_period: Literal["MONTHLY", "ANNUALLY"] | Omit = omit,
+        budget: Optional[subscription_create_params.Budget] | Omit = omit,
+        charges: Iterable[subscription_create_params.Charge] | Omit = omit,
         checkout_options: subscription_create_params.CheckoutOptions | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
+        minimum_spend: Optional[subscription_create_params.MinimumSpend] | Omit = omit,
         paying_customer_id: Optional[str] | Omit = omit,
+        payment_collection_method: Literal["CHARGE", "INVOICE", "NONE"] | Omit = omit,
+        price_overrides: Iterable[subscription_create_params.PriceOverride] | Omit = omit,
         resource_id: Optional[str] | Omit = omit,
+        salesforce_id: Optional[str] | Omit = omit,
+        schedule_strategy: Literal["END_OF_BILLING_PERIOD", "END_OF_BILLING_MONTH", "IMMEDIATE"] | Omit = omit,
+        start_date: Union[str, datetime] | Omit = omit,
+        subscription_entitlements: Iterable[subscription_create_params.SubscriptionEntitlement] | Omit = omit,
         trial_override_configuration: subscription_create_params.TrialOverrideConfiguration | Omit = omit,
+        unit_quantity: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -481,11 +538,23 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           await_payment_confirmation: Whether to wait for payment confirmation before returning the subscription
 
+          billing_country_code: The ISO 3166-1 alpha-2 country code for billing
+
+          billing_id: External billing system identifier
+
           metadata: Additional metadata for the subscription
 
           paying_customer_id: Optional paying customer ID for split billing scenarios
 
+          payment_collection_method: How payments should be collected for this subscription
+
           resource_id: Optional resource ID for multi-instance subscriptions
+
+          salesforce_id: Salesforce ID
+
+          schedule_strategy: Strategy for scheduling subscription changes
+
+          start_date: Subscription start date
 
           extra_headers: Send extra headers
 
@@ -502,13 +571,28 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "customer_id": customer_id,
                     "plan_id": plan_id,
                     "id": id,
+                    "addons": addons,
+                    "applied_coupon": applied_coupon,
                     "await_payment_confirmation": await_payment_confirmation,
+                    "billing_country_code": billing_country_code,
+                    "billing_id": billing_id,
+                    "billing_information": billing_information,
                     "billing_period": billing_period,
+                    "budget": budget,
+                    "charges": charges,
                     "checkout_options": checkout_options,
                     "metadata": metadata,
+                    "minimum_spend": minimum_spend,
                     "paying_customer_id": paying_customer_id,
+                    "payment_collection_method": payment_collection_method,
+                    "price_overrides": price_overrides,
                     "resource_id": resource_id,
+                    "salesforce_id": salesforce_id,
+                    "schedule_strategy": schedule_strategy,
+                    "start_date": start_date,
+                    "subscription_entitlements": subscription_entitlements,
                     "trial_override_configuration": trial_override_configuration,
+                    "unit_quantity": unit_quantity,
                 },
                 subscription_create_params.SubscriptionCreateParams,
             ),
