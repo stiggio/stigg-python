@@ -13,4 +13,4 @@ class SubscriptionMigrateParams(TypedDict, total=False):
     subscription_migration_time: Annotated[
         Literal["END_OF_BILLING_PERIOD", "IMMEDIATE"], PropertyInfo(alias="subscriptionMigrationTime")
     ]
-    """When to migrate the subscription: IMMEDIATE or END_OF_BILLING_PERIOD"""
+    """When to migrate (immediate or period end)"""

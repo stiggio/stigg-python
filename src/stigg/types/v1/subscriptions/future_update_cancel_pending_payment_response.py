@@ -11,4 +11,6 @@ class Data(BaseModel):
 
 
 class FutureUpdateCancelPendingPaymentResponse(BaseModel):
+    """Response object"""
+
     data: Data

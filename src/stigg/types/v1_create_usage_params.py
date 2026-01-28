@@ -17,6 +17,8 @@ class V1CreateUsageParams(TypedDict, total=False):
 
 
 class Usage(TypedDict, total=False):
+    """Single usage measurement"""
+
     customer_id: Required[Annotated[str, PropertyInfo(alias="customerId")]]
     """Customer id"""
 

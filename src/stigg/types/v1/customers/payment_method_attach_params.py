@@ -159,3 +159,4 @@ class PaymentMethodAttachParams(TypedDict, total=False):
         ],
         PropertyInfo(alias="billingCurrency"),
     ]
+    """Customers selected currency"""

@@ -9,10 +9,10 @@ __all__ = ["CustomerListParams"]
 
 class CustomerListParams(TypedDict, total=False):
     after: str
-    """Starting after this UUID for pagination"""
+    """Return items that come after this cursor"""
 
     before: str
-    """Ending before this UUID for pagination"""
+    """Return items that come before this cursor"""
 
     limit: int
-    """Items per page"""
+    """Maximum number of items to return"""

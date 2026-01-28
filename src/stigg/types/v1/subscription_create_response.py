@@ -24,6 +24,7 @@ __all__ = [
 
 class DataEntitlementFeature(BaseModel):
     ref_id: str = FieldInfo(alias="refId")
+    """Feature ID"""
 
 
 class DataEntitlement(BaseModel):
@@ -484,6 +485,8 @@ class DataSubscriptionPrice(BaseModel):
 
 
 class DataSubscription(BaseModel):
+    """Created subscription (when status is SUCCESS)"""
+
     id: str
     """Subscription ID"""
 
@@ -564,10 +567,10 @@ class DataSubscription(BaseModel):
     trial_end_date: Optional[datetime] = FieldInfo(alias="trialEndDate", default=None)
     """Subscription trial end date"""
 
-    unit_quantity: Optional[float] = FieldInfo(alias="unitQuantity", default=None)
-
 
 class Data(BaseModel):
+    """Provisioning result with status and subscription or checkout URL."""
+
     id: str
     """Unique identifier for the provisioned subscription"""
 
@@ -586,7 +589,11 @@ class Data(BaseModel):
     """Whether the subscription is scheduled for future activation"""
 
     subscription: Optional[DataSubscription] = None
+    """Created subscription (when status is SUCCESS)"""
 
 
 class SubscriptionCreateResponse(BaseModel):
+    """Response object"""
+
     data: Data
+    """Provisioning result with status and subscription or checkout URL."""

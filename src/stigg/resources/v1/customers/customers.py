@@ -6,14 +6,6 @@ from typing import Dict, Iterable, Optional
 
 import httpx
 
-from .usage import (
-    UsageResource,
-    AsyncUsageResource,
-    UsageResourceWithRawResponse,
-    AsyncUsageResourceWithRawResponse,
-    UsageResourceWithStreamingResponse,
-    AsyncUsageResourceWithStreamingResponse,
-)
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
@@ -45,10 +37,6 @@ class CustomersResource(SyncAPIResource):
     @cached_property
     def payment_method(self) -> PaymentMethodResource:
         return PaymentMethodResource(self._client)
-
-    @cached_property
-    def usage(self) -> UsageResource:
-        return UsageResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CustomersResourceWithRawResponse:
@@ -87,7 +75,7 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Create a new Customer
+        Provision customer
 
         Args:
           id: Customer slug
@@ -144,7 +132,7 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Get a single Customer by id
+        Get a single customer by ID
 
         Args:
           extra_headers: Send extra headers
@@ -182,7 +170,7 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Update an existing Customer
+        Update a customer
 
         Args:
           coupon_id: Customer level coupon
@@ -237,14 +225,14 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncMyCursorIDPage[CustomerListResponse]:
         """
-        Get a list of Customers
+        Get a list of customers
 
         Args:
-          after: Starting after this UUID for pagination
+          after: Return items that come after this cursor
 
-          before: Ending before this UUID for pagination
+          before: Return items that come before this cursor
 
-          limit: Items per page
+          limit: Maximum number of items to return
 
           extra_headers: Send extra headers
 
@@ -286,7 +274,7 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Perform archive on a Customer
+        Archive customer
 
         Args:
           extra_headers: Send extra headers
@@ -319,7 +307,7 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Perform unarchive on a Customer
+        Unarchive customer
 
         Args:
           extra_headers: Send extra headers
@@ -345,10 +333,6 @@ class AsyncCustomersResource(AsyncAPIResource):
     @cached_property
     def payment_method(self) -> AsyncPaymentMethodResource:
         return AsyncPaymentMethodResource(self._client)
-
-    @cached_property
-    def usage(self) -> AsyncUsageResource:
-        return AsyncUsageResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCustomersResourceWithRawResponse:
@@ -387,7 +371,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Create a new Customer
+        Provision customer
 
         Args:
           id: Customer slug
@@ -444,7 +428,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Get a single Customer by id
+        Get a single customer by ID
 
         Args:
           extra_headers: Send extra headers
@@ -482,7 +466,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Update an existing Customer
+        Update a customer
 
         Args:
           coupon_id: Customer level coupon
@@ -537,14 +521,14 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CustomerListResponse, AsyncMyCursorIDPage[CustomerListResponse]]:
         """
-        Get a list of Customers
+        Get a list of customers
 
         Args:
-          after: Starting after this UUID for pagination
+          after: Return items that come after this cursor
 
-          before: Ending before this UUID for pagination
+          before: Return items that come before this cursor
 
-          limit: Items per page
+          limit: Maximum number of items to return
 
           extra_headers: Send extra headers
 
@@ -586,7 +570,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Perform archive on a Customer
+        Archive customer
 
         Args:
           extra_headers: Send extra headers
@@ -619,7 +603,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Perform unarchive on a Customer
+        Unarchive customer
 
         Args:
           extra_headers: Send extra headers
@@ -668,10 +652,6 @@ class CustomersResourceWithRawResponse:
     def payment_method(self) -> PaymentMethodResourceWithRawResponse:
         return PaymentMethodResourceWithRawResponse(self._customers.payment_method)
 
-    @cached_property
-    def usage(self) -> UsageResourceWithRawResponse:
-        return UsageResourceWithRawResponse(self._customers.usage)
-
 
 class AsyncCustomersResourceWithRawResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -699,10 +679,6 @@ class AsyncCustomersResourceWithRawResponse:
     @cached_property
     def payment_method(self) -> AsyncPaymentMethodResourceWithRawResponse:
         return AsyncPaymentMethodResourceWithRawResponse(self._customers.payment_method)
-
-    @cached_property
-    def usage(self) -> AsyncUsageResourceWithRawResponse:
-        return AsyncUsageResourceWithRawResponse(self._customers.usage)
 
 
 class CustomersResourceWithStreamingResponse:
@@ -732,10 +708,6 @@ class CustomersResourceWithStreamingResponse:
     def payment_method(self) -> PaymentMethodResourceWithStreamingResponse:
         return PaymentMethodResourceWithStreamingResponse(self._customers.payment_method)
 
-    @cached_property
-    def usage(self) -> UsageResourceWithStreamingResponse:
-        return UsageResourceWithStreamingResponse(self._customers.usage)
-
 
 class AsyncCustomersResourceWithStreamingResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -763,7 +735,3 @@ class AsyncCustomersResourceWithStreamingResponse:
     @cached_property
     def payment_method(self) -> AsyncPaymentMethodResourceWithStreamingResponse:
         return AsyncPaymentMethodResourceWithStreamingResponse(self._customers.payment_method)
-
-    @cached_property
-    def usage(self) -> AsyncUsageResourceWithStreamingResponse:
-        return AsyncUsageResourceWithStreamingResponse(self._customers.usage)

@@ -11,4 +11,6 @@ class Data(BaseModel):
 
 
 class FutureUpdateCancelScheduleResponse(BaseModel):
+    """Response object"""
+
     data: Data
