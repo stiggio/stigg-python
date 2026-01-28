@@ -28,6 +28,8 @@ class CustomerUpdateParams(TypedDict, total=False):
 
 
 class Integration(TypedDict, total=False):
+    """External billing or CRM integration link"""
+
     id: Required[str]
     """Integration details"""
 

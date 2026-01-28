@@ -76,7 +76,7 @@ class SubscriptionsResource(SyncAPIResource):
         *,
         customer_id: str,
         plan_id: str,
-        id: Optional[str] | Omit = omit,
+        id: str | Omit = omit,
         addons: Iterable[subscription_create_params.Addon] | Omit = omit,
         applied_coupon: subscription_create_params.AppliedCoupon | Omit = omit,
         await_payment_confirmation: bool | Omit = omit,
@@ -107,7 +107,7 @@ class SubscriptionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionCreateResponse:
         """
-        Create a new Subscription
+        Provision subscription
 
         Args:
           customer_id: Customer ID to provision the subscription for
@@ -116,11 +116,17 @@ class SubscriptionsResource(SyncAPIResource):
 
           id: Unique identifier for the subscription
 
+          applied_coupon: Coupon configuration
+
           await_payment_confirmation: Whether to wait for payment confirmation before returning the subscription
 
           billing_country_code: The ISO 3166-1 alpha-2 country code for billing
 
           billing_id: External billing system identifier
+
+          billing_period: Billing period (MONTHLY or ANNUALLY)
+
+          checkout_options: Checkout page configuration for payment collection
 
           metadata: Additional metadata for the subscription
 
@@ -135,6 +141,8 @@ class SubscriptionsResource(SyncAPIResource):
           schedule_strategy: Strategy for scheduling subscription changes
 
           start_date: Subscription start date
+
+          trial_override_configuration: Trial period override settings
 
           extra_headers: Send extra headers
 
@@ -194,7 +202,7 @@ class SubscriptionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionRetrieveResponse:
         """
-        Get a single Subscription by id
+        Get a single subscription by ID
 
         Args:
           extra_headers: Send extra headers
@@ -231,19 +239,18 @@ class SubscriptionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncMyCursorIDPage[SubscriptionListResponse]:
         """
-        Get a list of Subscriptions
+        Get a list of subscriptions
 
         Args:
-          after: Starting after this UUID for pagination
+          after: Return items that come after this cursor
 
-          before: Ending before this UUID for pagination
+          before: Return items that come before this cursor
 
           customer_id: Filter by customer ID
 
-          limit: Items per page
+          limit: Maximum number of items to return
 
-          status: Filter by subscription status (comma-separated for multiple statuses, e.g.,
-              ACTIVE,IN_TRIAL)
+          status: Filter by status (comma-separated)
 
           extra_headers: Send extra headers
 
@@ -288,10 +295,12 @@ class SubscriptionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionDelegateResponse:
         """
-        Perform delegate on a Subscription
+        Delegate subscription payment to customer
 
         Args:
-          target_customer_id: The customer ID to delegate the subscription to
+          target_customer_id: The unique identifier of the customer who will assume payment responsibility for
+              this subscription. This customer must already exist in your Stigg account and
+              have a valid payment method if the subscription requires payment.
 
           extra_headers: Send extra headers
 
@@ -327,10 +336,10 @@ class SubscriptionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionMigrateResponse:
         """
-        Perform migrate to latest plan version on a Subscription
+        Migrate subscription to latest plan version
 
         Args:
-          subscription_migration_time: When to migrate the subscription: IMMEDIATE or END_OF_BILLING_PERIOD
+          subscription_migration_time: When to migrate (immediate or period end)
 
           extra_headers: Send extra headers
 
@@ -380,14 +389,38 @@ class SubscriptionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionPreviewResponse:
         """
-        Create a new Subscription Preview
+        Preview subscription
 
         Args:
           customer_id: Customer ID
 
           plan_id: Plan ID
 
+          addons: Addons to include
+
+          applied_coupon: Coupon or discount to apply
+
+          billable_features: Billable features with quantities
+
+          billing_country_code: ISO 3166-1 country code for localization
+
+          billing_information: Billing and tax configuration
+
+          billing_period: Billing period (MONTHLY or ANNUALLY)
+
+          charges: One-time or recurring charges
+
+          paying_customer_id: Paying customer ID for delegated billing
+
+          resource_id: Resource ID for multi-instance subscriptions
+
+          schedule_strategy: When to apply subscription changes
+
           start_date: Subscription start date
+
+          trial_override_configuration: Trial period override settings
+
+          unit_quantity: Unit quantity for per-unit pricing
 
           extra_headers: Send extra headers
 
@@ -438,11 +471,10 @@ class SubscriptionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionTransferResponse:
         """
-        Perform transfer to resource on a Subscription
+        Transfer subscription to resource
 
         Args:
-          destination_resource_id: The resource ID to transfer the subscription to. The destination resource must
-              belong to the same customer.
+          destination_resource_id: Resource ID to transfer the subscription to
 
           extra_headers: Send extra headers
 
@@ -496,7 +528,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         *,
         customer_id: str,
         plan_id: str,
-        id: Optional[str] | Omit = omit,
+        id: str | Omit = omit,
         addons: Iterable[subscription_create_params.Addon] | Omit = omit,
         applied_coupon: subscription_create_params.AppliedCoupon | Omit = omit,
         await_payment_confirmation: bool | Omit = omit,
@@ -527,7 +559,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionCreateResponse:
         """
-        Create a new Subscription
+        Provision subscription
 
         Args:
           customer_id: Customer ID to provision the subscription for
@@ -536,11 +568,17 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           id: Unique identifier for the subscription
 
+          applied_coupon: Coupon configuration
+
           await_payment_confirmation: Whether to wait for payment confirmation before returning the subscription
 
           billing_country_code: The ISO 3166-1 alpha-2 country code for billing
 
           billing_id: External billing system identifier
+
+          billing_period: Billing period (MONTHLY or ANNUALLY)
+
+          checkout_options: Checkout page configuration for payment collection
 
           metadata: Additional metadata for the subscription
 
@@ -555,6 +593,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           schedule_strategy: Strategy for scheduling subscription changes
 
           start_date: Subscription start date
+
+          trial_override_configuration: Trial period override settings
 
           extra_headers: Send extra headers
 
@@ -614,7 +654,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionRetrieveResponse:
         """
-        Get a single Subscription by id
+        Get a single subscription by ID
 
         Args:
           extra_headers: Send extra headers
@@ -651,19 +691,18 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[SubscriptionListResponse, AsyncMyCursorIDPage[SubscriptionListResponse]]:
         """
-        Get a list of Subscriptions
+        Get a list of subscriptions
 
         Args:
-          after: Starting after this UUID for pagination
+          after: Return items that come after this cursor
 
-          before: Ending before this UUID for pagination
+          before: Return items that come before this cursor
 
           customer_id: Filter by customer ID
 
-          limit: Items per page
+          limit: Maximum number of items to return
 
-          status: Filter by subscription status (comma-separated for multiple statuses, e.g.,
-              ACTIVE,IN_TRIAL)
+          status: Filter by status (comma-separated)
 
           extra_headers: Send extra headers
 
@@ -708,10 +747,12 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionDelegateResponse:
         """
-        Perform delegate on a Subscription
+        Delegate subscription payment to customer
 
         Args:
-          target_customer_id: The customer ID to delegate the subscription to
+          target_customer_id: The unique identifier of the customer who will assume payment responsibility for
+              this subscription. This customer must already exist in your Stigg account and
+              have a valid payment method if the subscription requires payment.
 
           extra_headers: Send extra headers
 
@@ -747,10 +788,10 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionMigrateResponse:
         """
-        Perform migrate to latest plan version on a Subscription
+        Migrate subscription to latest plan version
 
         Args:
-          subscription_migration_time: When to migrate the subscription: IMMEDIATE or END_OF_BILLING_PERIOD
+          subscription_migration_time: When to migrate (immediate or period end)
 
           extra_headers: Send extra headers
 
@@ -800,14 +841,38 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionPreviewResponse:
         """
-        Create a new Subscription Preview
+        Preview subscription
 
         Args:
           customer_id: Customer ID
 
           plan_id: Plan ID
 
+          addons: Addons to include
+
+          applied_coupon: Coupon or discount to apply
+
+          billable_features: Billable features with quantities
+
+          billing_country_code: ISO 3166-1 country code for localization
+
+          billing_information: Billing and tax configuration
+
+          billing_period: Billing period (MONTHLY or ANNUALLY)
+
+          charges: One-time or recurring charges
+
+          paying_customer_id: Paying customer ID for delegated billing
+
+          resource_id: Resource ID for multi-instance subscriptions
+
+          schedule_strategy: When to apply subscription changes
+
           start_date: Subscription start date
+
+          trial_override_configuration: Trial period override settings
+
+          unit_quantity: Unit quantity for per-unit pricing
 
           extra_headers: Send extra headers
 
@@ -858,11 +923,10 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionTransferResponse:
         """
-        Perform transfer to resource on a Subscription
+        Transfer subscription to resource
 
         Args:
-          destination_resource_id: The resource ID to transfer the subscription to. The destination resource must
-              belong to the same customer.
+          destination_resource_id: Resource ID to transfer the subscription to
 
           extra_headers: Send extra headers
 

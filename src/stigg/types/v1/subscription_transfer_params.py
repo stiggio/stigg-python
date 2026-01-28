@@ -11,7 +11,4 @@ __all__ = ["SubscriptionTransferParams"]
 
 class SubscriptionTransferParams(TypedDict, total=False):
     destination_resource_id: Required[Annotated[str, PropertyInfo(alias="destinationResourceId")]]
-    """The resource ID to transfer the subscription to.
-
-    The destination resource must belong to the same customer.
-    """
+    """Resource ID to transfer the subscription to"""

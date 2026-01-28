@@ -35,6 +35,8 @@ class DataPrice(BaseModel):
 
 
 class Data(BaseModel):
+    """Customer subscription to a plan"""
+
     id: str
     """Subscription ID"""
 
@@ -115,8 +117,9 @@ class Data(BaseModel):
     trial_end_date: Optional[datetime] = FieldInfo(alias="trialEndDate", default=None)
     """Subscription trial end date"""
 
-    unit_quantity: Optional[float] = FieldInfo(alias="unitQuantity", default=None)
-
 
 class SubscriptionRetrieveResponse(BaseModel):
+    """Response object"""
+
     data: Data
+    """Customer subscription to a plan"""

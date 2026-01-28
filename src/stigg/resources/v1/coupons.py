@@ -64,7 +64,7 @@ class CouponsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CouponCreateResponse:
         """
-        Create a new Coupon
+        Create coupon
 
         Args:
           id: The unique identifier for the entity
@@ -121,7 +121,7 @@ class CouponsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CouponRetrieveResponse:
         """
-        Get a single Coupon by id
+        Get a single coupon by ID
 
         Args:
           extra_headers: Send extra headers
@@ -156,14 +156,14 @@ class CouponsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncMyCursorIDPage[CouponListResponse]:
         """
-        Get a list of Coupons
+        Get a list of coupons
 
         Args:
-          after: Starting after this UUID for pagination
+          after: Return items that come after this cursor
 
-          before: Ending before this UUID for pagination
+          before: Return items that come before this cursor
 
-          limit: Items per page
+          limit: Maximum number of items to return
 
           extra_headers: Send extra headers
 
@@ -232,7 +232,7 @@ class AsyncCouponsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CouponCreateResponse:
         """
-        Create a new Coupon
+        Create coupon
 
         Args:
           id: The unique identifier for the entity
@@ -289,7 +289,7 @@ class AsyncCouponsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CouponRetrieveResponse:
         """
-        Get a single Coupon by id
+        Get a single coupon by ID
 
         Args:
           extra_headers: Send extra headers
@@ -324,14 +324,14 @@ class AsyncCouponsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CouponListResponse, AsyncMyCursorIDPage[CouponListResponse]]:
         """
-        Get a list of Coupons
+        Get a list of coupons
 
         Args:
-          after: Starting after this UUID for pagination
+          after: Return items that come after this cursor
 
-          before: Ending before this UUID for pagination
+          before: Return items that come before this cursor
 
-          limit: Items per page
+          limit: Maximum number of items to return
 
           extra_headers: Send extra headers
 

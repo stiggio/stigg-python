@@ -34,6 +34,8 @@ class CouponCreateParams(TypedDict, total=False):
 
 
 class AmountsOff(TypedDict, total=False):
+    """Monetary amount with currency"""
+
     amount: Required[float]
     """The price amount"""
 
