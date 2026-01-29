@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from stigg.types.v1 import (
     CustomerResponse,
     CustomerListResponse,
+    CustomerImportResponse,
 )
 from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 
@@ -20,66 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 class TestCustomers:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_method_create(self, client: Stigg) -> None:
-        customer = client.v1.customers.create(
-            id="id",
-        )
-        assert_matches_type(CustomerResponse, customer, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_method_create_with_all_params(self, client: Stigg) -> None:
-        customer = client.v1.customers.create(
-            id="id",
-            coupon_id="couponId",
-            default_payment_method={
-                "billing_id": "billingId",
-                "card_expiry_month": 0,
-                "card_expiry_year": 0,
-                "card_last4_digits": "cardLast4Digits",
-                "type": "CARD",
-            },
-            email="dev@stainless.com",
-            integrations=[
-                {
-                    "id": "id",
-                    "synced_entity_id": "syncedEntityId",
-                    "vendor_identifier": "AUTH0",
-                }
-            ],
-            metadata={"foo": "string"},
-            name="name",
-        )
-        assert_matches_type(CustomerResponse, customer, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_raw_response_create(self, client: Stigg) -> None:
-        response = client.v1.customers.with_raw_response.create(
-            id="id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        customer = response.parse()
-        assert_matches_type(CustomerResponse, customer, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_streaming_response_create(self, client: Stigg) -> None:
-        with client.v1.customers.with_streaming_response.create(
-            id="id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            customer = response.parse()
-            assert_matches_type(CustomerResponse, customer, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -266,6 +207,118 @@ class TestCustomers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    def test_method_import(self, client: Stigg) -> None:
+        customer = client.v1.customers.import_(
+            customers=[
+                {
+                    "id": "id",
+                    "email": "dev@stainless.com",
+                    "name": "name",
+                }
+            ],
+        )
+        assert_matches_type(CustomerImportResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_import(self, client: Stigg) -> None:
+        response = client.v1.customers.with_raw_response.import_(
+            customers=[
+                {
+                    "id": "id",
+                    "email": "dev@stainless.com",
+                    "name": "name",
+                }
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = response.parse()
+        assert_matches_type(CustomerImportResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_import(self, client: Stigg) -> None:
+        with client.v1.customers.with_streaming_response.import_(
+            customers=[
+                {
+                    "id": "id",
+                    "email": "dev@stainless.com",
+                    "name": "name",
+                }
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = response.parse()
+            assert_matches_type(CustomerImportResponse, customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_provision(self, client: Stigg) -> None:
+        customer = client.v1.customers.provision(
+            id="id",
+        )
+        assert_matches_type(CustomerResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_provision_with_all_params(self, client: Stigg) -> None:
+        customer = client.v1.customers.provision(
+            id="id",
+            coupon_id="couponId",
+            default_payment_method={
+                "billing_id": "billingId",
+                "card_expiry_month": 0,
+                "card_expiry_year": 0,
+                "card_last4_digits": "cardLast4Digits",
+                "type": "CARD",
+            },
+            email="dev@stainless.com",
+            integrations=[
+                {
+                    "id": "id",
+                    "synced_entity_id": "syncedEntityId",
+                    "vendor_identifier": "AUTH0",
+                }
+            ],
+            metadata={"foo": "string"},
+            name="name",
+        )
+        assert_matches_type(CustomerResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_provision(self, client: Stigg) -> None:
+        response = client.v1.customers.with_raw_response.provision(
+            id="id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = response.parse()
+        assert_matches_type(CustomerResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_provision(self, client: Stigg) -> None:
+        with client.v1.customers.with_streaming_response.provision(
+            id="id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = response.parse()
+            assert_matches_type(CustomerResponse, customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     def test_method_unarchive(self, client: Stigg) -> None:
         customer = client.v1.customers.unarchive(
             "x",
@@ -311,66 +364,6 @@ class TestAsyncCustomers:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_method_create(self, async_client: AsyncStigg) -> None:
-        customer = await async_client.v1.customers.create(
-            id="id",
-        )
-        assert_matches_type(CustomerResponse, customer, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncStigg) -> None:
-        customer = await async_client.v1.customers.create(
-            id="id",
-            coupon_id="couponId",
-            default_payment_method={
-                "billing_id": "billingId",
-                "card_expiry_month": 0,
-                "card_expiry_year": 0,
-                "card_last4_digits": "cardLast4Digits",
-                "type": "CARD",
-            },
-            email="dev@stainless.com",
-            integrations=[
-                {
-                    "id": "id",
-                    "synced_entity_id": "syncedEntityId",
-                    "vendor_identifier": "AUTH0",
-                }
-            ],
-            metadata={"foo": "string"},
-            name="name",
-        )
-        assert_matches_type(CustomerResponse, customer, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_raw_response_create(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v1.customers.with_raw_response.create(
-            id="id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        customer = await response.parse()
-        assert_matches_type(CustomerResponse, customer, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncStigg) -> None:
-        async with async_client.v1.customers.with_streaming_response.create(
-            id="id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            customer = await response.parse()
-            assert_matches_type(CustomerResponse, customer, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -554,6 +547,118 @@ class TestAsyncCustomers:
             await async_client.v1.customers.with_raw_response.archive(
                 "",
             )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_import(self, async_client: AsyncStigg) -> None:
+        customer = await async_client.v1.customers.import_(
+            customers=[
+                {
+                    "id": "id",
+                    "email": "dev@stainless.com",
+                    "name": "name",
+                }
+            ],
+        )
+        assert_matches_type(CustomerImportResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_import(self, async_client: AsyncStigg) -> None:
+        response = await async_client.v1.customers.with_raw_response.import_(
+            customers=[
+                {
+                    "id": "id",
+                    "email": "dev@stainless.com",
+                    "name": "name",
+                }
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = await response.parse()
+        assert_matches_type(CustomerImportResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_import(self, async_client: AsyncStigg) -> None:
+        async with async_client.v1.customers.with_streaming_response.import_(
+            customers=[
+                {
+                    "id": "id",
+                    "email": "dev@stainless.com",
+                    "name": "name",
+                }
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = await response.parse()
+            assert_matches_type(CustomerImportResponse, customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_provision(self, async_client: AsyncStigg) -> None:
+        customer = await async_client.v1.customers.provision(
+            id="id",
+        )
+        assert_matches_type(CustomerResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_provision_with_all_params(self, async_client: AsyncStigg) -> None:
+        customer = await async_client.v1.customers.provision(
+            id="id",
+            coupon_id="couponId",
+            default_payment_method={
+                "billing_id": "billingId",
+                "card_expiry_month": 0,
+                "card_expiry_year": 0,
+                "card_last4_digits": "cardLast4Digits",
+                "type": "CARD",
+            },
+            email="dev@stainless.com",
+            integrations=[
+                {
+                    "id": "id",
+                    "synced_entity_id": "syncedEntityId",
+                    "vendor_identifier": "AUTH0",
+                }
+            ],
+            metadata={"foo": "string"},
+            name="name",
+        )
+        assert_matches_type(CustomerResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_provision(self, async_client: AsyncStigg) -> None:
+        response = await async_client.v1.customers.with_raw_response.provision(
+            id="id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = await response.parse()
+        assert_matches_type(CustomerResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_provision(self, async_client: AsyncStigg) -> None:
+        async with async_client.v1.customers.with_streaming_response.provision(
+            id="id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = await response.parse()
+            assert_matches_type(CustomerResponse, customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize

@@ -9,7 +9,7 @@ from pydantic import Field as FieldInfo
 from ..._models import BaseModel
 
 __all__ = [
-    "SubscriptionCreateResponse",
+    "SubscriptionProvisionResponse",
     "Data",
     "DataEntitlement",
     "DataEntitlementFeature",
@@ -592,7 +592,7 @@ class Data(BaseModel):
     """Created subscription (when status is SUCCESS)"""
 
 
-class SubscriptionCreateResponse(BaseModel):
+class SubscriptionProvisionResponse(BaseModel):
     """Response object"""
 
     data: Data

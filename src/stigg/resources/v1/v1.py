@@ -2,11 +2,22 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-
-import httpx
-
-from ...types import v1_create_event_params, v1_create_usage_params
+from .usage import (
+    UsageResource,
+    AsyncUsageResource,
+    UsageResourceWithRawResponse,
+    AsyncUsageResourceWithRawResponse,
+    UsageResourceWithStreamingResponse,
+    AsyncUsageResourceWithStreamingResponse,
+)
+from .events import (
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
+)
 from .coupons import (
     CouponsResource,
     AsyncCouponsResource,
@@ -15,17 +26,8 @@ from .coupons import (
     CouponsResourceWithStreamingResponse,
     AsyncCouponsResourceWithStreamingResponse,
 )
-from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._base_client import make_request_options
 from .customers.customers import (
     CustomersResource,
     AsyncCustomersResource,
@@ -42,8 +44,6 @@ from .subscriptions.subscriptions import (
     SubscriptionsResourceWithStreamingResponse,
     AsyncSubscriptionsResourceWithStreamingResponse,
 )
-from ...types.v1_create_event_response import V1CreateEventResponse
-from ...types.v1_create_usage_response import V1CreateUsageResponse
 
 __all__ = ["V1Resource", "AsyncV1Resource"]
 
@@ -60,6 +60,14 @@ class V1Resource(SyncAPIResource):
     @cached_property
     def coupons(self) -> CouponsResource:
         return CouponsResource(self._client)
+
+    @cached_property
+    def events(self) -> EventsResource:
+        return EventsResource(self._client)
+
+    @cached_property
+    def usage(self) -> UsageResource:
+        return UsageResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> V1ResourceWithRawResponse:
@@ -80,74 +88,6 @@ class V1Resource(SyncAPIResource):
         """
         return V1ResourceWithStreamingResponse(self)
 
-    def create_event(
-        self,
-        *,
-        events: Iterable[v1_create_event_params.Event],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> V1CreateEventResponse:
-        """
-        Report usage events
-
-        Args:
-          events: A list of usage events to report
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/api/v1/events",
-            body=maybe_transform({"events": events}, v1_create_event_params.V1CreateEventParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=V1CreateEventResponse,
-        )
-
-    def create_usage(
-        self,
-        *,
-        usages: Iterable[v1_create_usage_params.Usage],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> V1CreateUsageResponse:
-        """
-        Report usage measurements
-
-        Args:
-          usages: A list of usage reports to be submitted in bulk
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/api/v1/usage",
-            body=maybe_transform({"usages": usages}, v1_create_usage_params.V1CreateUsageParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=V1CreateUsageResponse,
-        )
-
 
 class AsyncV1Resource(AsyncAPIResource):
     @cached_property
@@ -161,6 +101,14 @@ class AsyncV1Resource(AsyncAPIResource):
     @cached_property
     def coupons(self) -> AsyncCouponsResource:
         return AsyncCouponsResource(self._client)
+
+    @cached_property
+    def events(self) -> AsyncEventsResource:
+        return AsyncEventsResource(self._client)
+
+    @cached_property
+    def usage(self) -> AsyncUsageResource:
+        return AsyncUsageResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncV1ResourceWithRawResponse:
@@ -181,85 +129,10 @@ class AsyncV1Resource(AsyncAPIResource):
         """
         return AsyncV1ResourceWithStreamingResponse(self)
 
-    async def create_event(
-        self,
-        *,
-        events: Iterable[v1_create_event_params.Event],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> V1CreateEventResponse:
-        """
-        Report usage events
-
-        Args:
-          events: A list of usage events to report
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/api/v1/events",
-            body=await async_maybe_transform({"events": events}, v1_create_event_params.V1CreateEventParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=V1CreateEventResponse,
-        )
-
-    async def create_usage(
-        self,
-        *,
-        usages: Iterable[v1_create_usage_params.Usage],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> V1CreateUsageResponse:
-        """
-        Report usage measurements
-
-        Args:
-          usages: A list of usage reports to be submitted in bulk
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/api/v1/usage",
-            body=await async_maybe_transform({"usages": usages}, v1_create_usage_params.V1CreateUsageParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=V1CreateUsageResponse,
-        )
-
 
 class V1ResourceWithRawResponse:
     def __init__(self, v1: V1Resource) -> None:
         self._v1 = v1
-
-        self.create_event = to_raw_response_wrapper(
-            v1.create_event,
-        )
-        self.create_usage = to_raw_response_wrapper(
-            v1.create_usage,
-        )
 
     @cached_property
     def customers(self) -> CustomersResourceWithRawResponse:
@@ -273,17 +146,18 @@ class V1ResourceWithRawResponse:
     def coupons(self) -> CouponsResourceWithRawResponse:
         return CouponsResourceWithRawResponse(self._v1.coupons)
 
+    @cached_property
+    def events(self) -> EventsResourceWithRawResponse:
+        return EventsResourceWithRawResponse(self._v1.events)
+
+    @cached_property
+    def usage(self) -> UsageResourceWithRawResponse:
+        return UsageResourceWithRawResponse(self._v1.usage)
+
 
 class AsyncV1ResourceWithRawResponse:
     def __init__(self, v1: AsyncV1Resource) -> None:
         self._v1 = v1
-
-        self.create_event = async_to_raw_response_wrapper(
-            v1.create_event,
-        )
-        self.create_usage = async_to_raw_response_wrapper(
-            v1.create_usage,
-        )
 
     @cached_property
     def customers(self) -> AsyncCustomersResourceWithRawResponse:
@@ -297,17 +171,18 @@ class AsyncV1ResourceWithRawResponse:
     def coupons(self) -> AsyncCouponsResourceWithRawResponse:
         return AsyncCouponsResourceWithRawResponse(self._v1.coupons)
 
+    @cached_property
+    def events(self) -> AsyncEventsResourceWithRawResponse:
+        return AsyncEventsResourceWithRawResponse(self._v1.events)
+
+    @cached_property
+    def usage(self) -> AsyncUsageResourceWithRawResponse:
+        return AsyncUsageResourceWithRawResponse(self._v1.usage)
+
 
 class V1ResourceWithStreamingResponse:
     def __init__(self, v1: V1Resource) -> None:
         self._v1 = v1
-
-        self.create_event = to_streamed_response_wrapper(
-            v1.create_event,
-        )
-        self.create_usage = to_streamed_response_wrapper(
-            v1.create_usage,
-        )
 
     @cached_property
     def customers(self) -> CustomersResourceWithStreamingResponse:
@@ -321,17 +196,18 @@ class V1ResourceWithStreamingResponse:
     def coupons(self) -> CouponsResourceWithStreamingResponse:
         return CouponsResourceWithStreamingResponse(self._v1.coupons)
 
+    @cached_property
+    def events(self) -> EventsResourceWithStreamingResponse:
+        return EventsResourceWithStreamingResponse(self._v1.events)
+
+    @cached_property
+    def usage(self) -> UsageResourceWithStreamingResponse:
+        return UsageResourceWithStreamingResponse(self._v1.usage)
+
 
 class AsyncV1ResourceWithStreamingResponse:
     def __init__(self, v1: AsyncV1Resource) -> None:
         self._v1 = v1
-
-        self.create_event = async_to_streamed_response_wrapper(
-            v1.create_event,
-        )
-        self.create_usage = async_to_streamed_response_wrapper(
-            v1.create_usage,
-        )
 
     @cached_property
     def customers(self) -> AsyncCustomersResourceWithStreamingResponse:
@@ -344,3 +220,11 @@ class AsyncV1ResourceWithStreamingResponse:
     @cached_property
     def coupons(self) -> AsyncCouponsResourceWithStreamingResponse:
         return AsyncCouponsResourceWithStreamingResponse(self._v1.coupons)
+
+    @cached_property
+    def events(self) -> AsyncEventsResourceWithStreamingResponse:
+        return AsyncEventsResourceWithStreamingResponse(self._v1.events)
+
+    @cached_property
+    def usage(self) -> AsyncUsageResourceWithStreamingResponse:
+        return AsyncUsageResourceWithStreamingResponse(self._v1.usage)

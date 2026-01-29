@@ -2,7 +2,7 @@
 
 from ...._models import BaseModel
 
-__all__ = ["FutureUpdateCancelScheduleResponse", "Data"]
+__all__ = ["CancelSubscription", "Data"]
 
 
 class Data(BaseModel):
@@ -10,7 +10,7 @@ class Data(BaseModel):
     """Subscription ID"""
 
 
-class FutureUpdateCancelScheduleResponse(BaseModel):
+class CancelSubscription(BaseModel):
     """Response object"""
 
     data: Data

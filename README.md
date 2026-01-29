@@ -192,7 +192,7 @@ from stigg import Stigg
 
 client = Stigg()
 
-customer_response = client.v1.customers.create(
+customer_response = client.v1.customers.provision(
     id="id",
     default_payment_method={
         "billing_id": "billingId",

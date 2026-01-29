@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["SubscriptionMigrateResponse", "Data", "DataPrice"]
+__all__ = ["Subscription", "Data", "DataPrice"]
 
 
 class DataPrice(BaseModel):
@@ -118,7 +118,7 @@ class Data(BaseModel):
     """Subscription trial end date"""
 
 
-class SubscriptionMigrateResponse(BaseModel):
+class Subscription(BaseModel):
     """Response object"""
 
     data: Data

@@ -2,9 +2,4 @@
 
 from __future__ import annotations
 
-from .future_update_cancel_schedule_response import (
-    FutureUpdateCancelScheduleResponse as FutureUpdateCancelScheduleResponse,
-)
-from .future_update_cancel_pending_payment_response import (
-    FutureUpdateCancelPendingPaymentResponse as FutureUpdateCancelPendingPaymentResponse,
-)
+from .cancel_subscription import CancelSubscription as CancelSubscription

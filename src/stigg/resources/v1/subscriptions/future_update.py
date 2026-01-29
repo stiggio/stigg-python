@@ -14,10 +14,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.v1.subscriptions.future_update_cancel_schedule_response import FutureUpdateCancelScheduleResponse
-from ....types.v1.subscriptions.future_update_cancel_pending_payment_response import (
-    FutureUpdateCancelPendingPaymentResponse,
-)
+from ....types.v1.subscriptions.cancel_subscription import CancelSubscription
 
 __all__ = ["FutureUpdateResource", "AsyncFutureUpdateResource"]
 
@@ -52,7 +49,7 @@ class FutureUpdateResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FutureUpdateCancelPendingPaymentResponse:
+    ) -> CancelSubscription:
         """
         Cancel pending payment update
 
@@ -72,7 +69,7 @@ class FutureUpdateResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FutureUpdateCancelPendingPaymentResponse,
+            cast_to=CancelSubscription,
         )
 
     def cancel_schedule(
@@ -85,7 +82,7 @@ class FutureUpdateResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FutureUpdateCancelScheduleResponse:
+    ) -> CancelSubscription:
         """
         Cancel scheduled update
 
@@ -105,7 +102,7 @@ class FutureUpdateResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FutureUpdateCancelScheduleResponse,
+            cast_to=CancelSubscription,
         )
 
 
@@ -139,7 +136,7 @@ class AsyncFutureUpdateResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FutureUpdateCancelPendingPaymentResponse:
+    ) -> CancelSubscription:
         """
         Cancel pending payment update
 
@@ -159,7 +156,7 @@ class AsyncFutureUpdateResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FutureUpdateCancelPendingPaymentResponse,
+            cast_to=CancelSubscription,
         )
 
     async def cancel_schedule(
@@ -172,7 +169,7 @@ class AsyncFutureUpdateResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FutureUpdateCancelScheduleResponse:
+    ) -> CancelSubscription:
         """
         Cancel scheduled update
 
@@ -192,7 +189,7 @@ class AsyncFutureUpdateResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FutureUpdateCancelScheduleResponse,
+            cast_to=CancelSubscription,
         )
 
 

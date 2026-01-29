@@ -5,9 +5,9 @@ from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
-from .._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = ["V1CreateUsageResponse", "Data"]
+__all__ = ["UsageReportResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -53,7 +53,7 @@ class Data(BaseModel):
     """
 
 
-class V1CreateUsageResponse(BaseModel):
+class UsageReportResponse(BaseModel):
     """
     Response containing reported usage measurements with current usage values, period information, and reset dates for each measurement.
     """
