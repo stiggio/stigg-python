@@ -7,10 +7,10 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["CustomerCreateParams", "DefaultPaymentMethod", "Integration"]
+__all__ = ["CustomerProvisionParams", "DefaultPaymentMethod", "Integration"]
 
 
-class CustomerCreateParams(TypedDict, total=False):
+class CustomerProvisionParams(TypedDict, total=False):
     id: Required[str]
     """Customer slug"""
 

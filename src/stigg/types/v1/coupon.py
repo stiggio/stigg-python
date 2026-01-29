@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["CouponRetrieveResponse", "Data", "DataAmountsOff"]
+__all__ = ["Coupon", "Data", "DataAmountsOff"]
 
 
 class DataAmountsOff(BaseModel):
@@ -181,7 +181,7 @@ class Data(BaseModel):
     """Timestamp of when the record was last updated"""
 
 
-class CouponRetrieveResponse(BaseModel):
+class Coupon(BaseModel):
     """Response object"""
 
     data: Data

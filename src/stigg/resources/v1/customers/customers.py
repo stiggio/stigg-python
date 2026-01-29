@@ -9,7 +9,7 @@ import httpx
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
-from ....types.v1 import customer_list_params, customer_create_params, customer_update_params
+from ....types.v1 import customer_list_params, customer_import_params, customer_update_params, customer_provision_params
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -27,8 +27,17 @@ from .payment_method import (
     AsyncPaymentMethodResourceWithStreamingResponse,
 )
 from ...._base_client import AsyncPaginator, make_request_options
+from .promotional_entitlements import (
+    PromotionalEntitlementsResource,
+    AsyncPromotionalEntitlementsResource,
+    PromotionalEntitlementsResourceWithRawResponse,
+    AsyncPromotionalEntitlementsResourceWithRawResponse,
+    PromotionalEntitlementsResourceWithStreamingResponse,
+    AsyncPromotionalEntitlementsResourceWithStreamingResponse,
+)
 from ....types.v1.customer_response import CustomerResponse
 from ....types.v1.customer_list_response import CustomerListResponse
+from ....types.v1.customer_import_response import CustomerImportResponse
 
 __all__ = ["CustomersResource", "AsyncCustomersResource"]
 
@@ -37,6 +46,10 @@ class CustomersResource(SyncAPIResource):
     @cached_property
     def payment_method(self) -> PaymentMethodResource:
         return PaymentMethodResource(self._client)
+
+    @cached_property
+    def promotional_entitlements(self) -> PromotionalEntitlementsResource:
+        return PromotionalEntitlementsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CustomersResourceWithRawResponse:
@@ -56,69 +69,6 @@ class CustomersResource(SyncAPIResource):
         For more information, see https://www.github.com/stiggio/stigg-python#with_streaming_response
         """
         return CustomersResourceWithStreamingResponse(self)
-
-    def create(
-        self,
-        *,
-        id: str,
-        coupon_id: Optional[str] | Omit = omit,
-        default_payment_method: Optional[customer_create_params.DefaultPaymentMethod] | Omit = omit,
-        email: Optional[str] | Omit = omit,
-        integrations: Iterable[customer_create_params.Integration] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomerResponse:
-        """
-        Provision customer
-
-        Args:
-          id: Customer slug
-
-          coupon_id: Customer level coupon
-
-          default_payment_method: The default payment method details
-
-          email: The email of the customer
-
-          integrations: List of integrations
-
-          metadata: Additional metadata
-
-          name: The name of the customer
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/api/v1/customers",
-            body=maybe_transform(
-                {
-                    "id": id,
-                    "coupon_id": coupon_id,
-                    "default_payment_method": default_payment_method,
-                    "email": email,
-                    "integrations": integrations,
-                    "metadata": metadata,
-                    "name": name,
-                },
-                customer_create_params.CustomerCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CustomerResponse,
-        )
 
     def retrieve(
         self,
@@ -295,6 +245,103 @@ class CustomersResource(SyncAPIResource):
             cast_to=CustomerResponse,
         )
 
+    def import_(
+        self,
+        *,
+        customers: Iterable[customer_import_params.Customer],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CustomerImportResponse:
+        """
+        Bulk import customers
+
+        Args:
+          customers: List of customer objects to import
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/api/v1/customers/import",
+            body=maybe_transform({"customers": customers}, customer_import_params.CustomerImportParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CustomerImportResponse,
+        )
+
+    def provision(
+        self,
+        *,
+        id: str,
+        coupon_id: Optional[str] | Omit = omit,
+        default_payment_method: Optional[customer_provision_params.DefaultPaymentMethod] | Omit = omit,
+        email: Optional[str] | Omit = omit,
+        integrations: Iterable[customer_provision_params.Integration] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CustomerResponse:
+        """
+        Provision customer
+
+        Args:
+          id: Customer slug
+
+          coupon_id: Customer level coupon
+
+          default_payment_method: The default payment method details
+
+          email: The email of the customer
+
+          integrations: List of integrations
+
+          metadata: Additional metadata
+
+          name: The name of the customer
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/api/v1/customers",
+            body=maybe_transform(
+                {
+                    "id": id,
+                    "coupon_id": coupon_id,
+                    "default_payment_method": default_payment_method,
+                    "email": email,
+                    "integrations": integrations,
+                    "metadata": metadata,
+                    "name": name,
+                },
+                customer_provision_params.CustomerProvisionParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CustomerResponse,
+        )
+
     def unarchive(
         self,
         id: str,
@@ -335,6 +382,10 @@ class AsyncCustomersResource(AsyncAPIResource):
         return AsyncPaymentMethodResource(self._client)
 
     @cached_property
+    def promotional_entitlements(self) -> AsyncPromotionalEntitlementsResource:
+        return AsyncPromotionalEntitlementsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncCustomersResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -352,69 +403,6 @@ class AsyncCustomersResource(AsyncAPIResource):
         For more information, see https://www.github.com/stiggio/stigg-python#with_streaming_response
         """
         return AsyncCustomersResourceWithStreamingResponse(self)
-
-    async def create(
-        self,
-        *,
-        id: str,
-        coupon_id: Optional[str] | Omit = omit,
-        default_payment_method: Optional[customer_create_params.DefaultPaymentMethod] | Omit = omit,
-        email: Optional[str] | Omit = omit,
-        integrations: Iterable[customer_create_params.Integration] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomerResponse:
-        """
-        Provision customer
-
-        Args:
-          id: Customer slug
-
-          coupon_id: Customer level coupon
-
-          default_payment_method: The default payment method details
-
-          email: The email of the customer
-
-          integrations: List of integrations
-
-          metadata: Additional metadata
-
-          name: The name of the customer
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/api/v1/customers",
-            body=await async_maybe_transform(
-                {
-                    "id": id,
-                    "coupon_id": coupon_id,
-                    "default_payment_method": default_payment_method,
-                    "email": email,
-                    "integrations": integrations,
-                    "metadata": metadata,
-                    "name": name,
-                },
-                customer_create_params.CustomerCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CustomerResponse,
-        )
 
     async def retrieve(
         self,
@@ -591,6 +579,103 @@ class AsyncCustomersResource(AsyncAPIResource):
             cast_to=CustomerResponse,
         )
 
+    async def import_(
+        self,
+        *,
+        customers: Iterable[customer_import_params.Customer],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CustomerImportResponse:
+        """
+        Bulk import customers
+
+        Args:
+          customers: List of customer objects to import
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/api/v1/customers/import",
+            body=await async_maybe_transform({"customers": customers}, customer_import_params.CustomerImportParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CustomerImportResponse,
+        )
+
+    async def provision(
+        self,
+        *,
+        id: str,
+        coupon_id: Optional[str] | Omit = omit,
+        default_payment_method: Optional[customer_provision_params.DefaultPaymentMethod] | Omit = omit,
+        email: Optional[str] | Omit = omit,
+        integrations: Iterable[customer_provision_params.Integration] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CustomerResponse:
+        """
+        Provision customer
+
+        Args:
+          id: Customer slug
+
+          coupon_id: Customer level coupon
+
+          default_payment_method: The default payment method details
+
+          email: The email of the customer
+
+          integrations: List of integrations
+
+          metadata: Additional metadata
+
+          name: The name of the customer
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/api/v1/customers",
+            body=await async_maybe_transform(
+                {
+                    "id": id,
+                    "coupon_id": coupon_id,
+                    "default_payment_method": default_payment_method,
+                    "email": email,
+                    "integrations": integrations,
+                    "metadata": metadata,
+                    "name": name,
+                },
+                customer_provision_params.CustomerProvisionParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CustomerResponse,
+        )
+
     async def unarchive(
         self,
         id: str,
@@ -629,9 +714,6 @@ class CustomersResourceWithRawResponse:
     def __init__(self, customers: CustomersResource) -> None:
         self._customers = customers
 
-        self.create = to_raw_response_wrapper(
-            customers.create,
-        )
         self.retrieve = to_raw_response_wrapper(
             customers.retrieve,
         )
@@ -644,6 +726,12 @@ class CustomersResourceWithRawResponse:
         self.archive = to_raw_response_wrapper(
             customers.archive,
         )
+        self.import_ = to_raw_response_wrapper(
+            customers.import_,
+        )
+        self.provision = to_raw_response_wrapper(
+            customers.provision,
+        )
         self.unarchive = to_raw_response_wrapper(
             customers.unarchive,
         )
@@ -652,14 +740,15 @@ class CustomersResourceWithRawResponse:
     def payment_method(self) -> PaymentMethodResourceWithRawResponse:
         return PaymentMethodResourceWithRawResponse(self._customers.payment_method)
 
+    @cached_property
+    def promotional_entitlements(self) -> PromotionalEntitlementsResourceWithRawResponse:
+        return PromotionalEntitlementsResourceWithRawResponse(self._customers.promotional_entitlements)
+
 
 class AsyncCustomersResourceWithRawResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
         self._customers = customers
 
-        self.create = async_to_raw_response_wrapper(
-            customers.create,
-        )
         self.retrieve = async_to_raw_response_wrapper(
             customers.retrieve,
         )
@@ -672,6 +761,12 @@ class AsyncCustomersResourceWithRawResponse:
         self.archive = async_to_raw_response_wrapper(
             customers.archive,
         )
+        self.import_ = async_to_raw_response_wrapper(
+            customers.import_,
+        )
+        self.provision = async_to_raw_response_wrapper(
+            customers.provision,
+        )
         self.unarchive = async_to_raw_response_wrapper(
             customers.unarchive,
         )
@@ -680,14 +775,15 @@ class AsyncCustomersResourceWithRawResponse:
     def payment_method(self) -> AsyncPaymentMethodResourceWithRawResponse:
         return AsyncPaymentMethodResourceWithRawResponse(self._customers.payment_method)
 
+    @cached_property
+    def promotional_entitlements(self) -> AsyncPromotionalEntitlementsResourceWithRawResponse:
+        return AsyncPromotionalEntitlementsResourceWithRawResponse(self._customers.promotional_entitlements)
+
 
 class CustomersResourceWithStreamingResponse:
     def __init__(self, customers: CustomersResource) -> None:
         self._customers = customers
 
-        self.create = to_streamed_response_wrapper(
-            customers.create,
-        )
         self.retrieve = to_streamed_response_wrapper(
             customers.retrieve,
         )
@@ -700,6 +796,12 @@ class CustomersResourceWithStreamingResponse:
         self.archive = to_streamed_response_wrapper(
             customers.archive,
         )
+        self.import_ = to_streamed_response_wrapper(
+            customers.import_,
+        )
+        self.provision = to_streamed_response_wrapper(
+            customers.provision,
+        )
         self.unarchive = to_streamed_response_wrapper(
             customers.unarchive,
         )
@@ -708,14 +810,15 @@ class CustomersResourceWithStreamingResponse:
     def payment_method(self) -> PaymentMethodResourceWithStreamingResponse:
         return PaymentMethodResourceWithStreamingResponse(self._customers.payment_method)
 
+    @cached_property
+    def promotional_entitlements(self) -> PromotionalEntitlementsResourceWithStreamingResponse:
+        return PromotionalEntitlementsResourceWithStreamingResponse(self._customers.promotional_entitlements)
+
 
 class AsyncCustomersResourceWithStreamingResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
         self._customers = customers
 
-        self.create = async_to_streamed_response_wrapper(
-            customers.create,
-        )
         self.retrieve = async_to_streamed_response_wrapper(
             customers.retrieve,
         )
@@ -728,6 +831,12 @@ class AsyncCustomersResourceWithStreamingResponse:
         self.archive = async_to_streamed_response_wrapper(
             customers.archive,
         )
+        self.import_ = async_to_streamed_response_wrapper(
+            customers.import_,
+        )
+        self.provision = async_to_streamed_response_wrapper(
+            customers.provision,
+        )
         self.unarchive = async_to_streamed_response_wrapper(
             customers.unarchive,
         )
@@ -735,3 +844,7 @@ class AsyncCustomersResourceWithStreamingResponse:
     @cached_property
     def payment_method(self) -> AsyncPaymentMethodResourceWithStreamingResponse:
         return AsyncPaymentMethodResourceWithStreamingResponse(self._customers.payment_method)
+
+    @cached_property
+    def promotional_entitlements(self) -> AsyncPromotionalEntitlementsResourceWithStreamingResponse:
+        return AsyncPromotionalEntitlementsResourceWithStreamingResponse(self._customers.promotional_entitlements)

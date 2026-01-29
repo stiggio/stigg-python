@@ -9,11 +9,7 @@ import pytest
 
 from stigg import Stigg, AsyncStigg
 from tests.utils import assert_matches_type
-from stigg.types.v1 import (
-    CouponListResponse,
-    CouponCreateResponse,
-    CouponRetrieveResponse,
-)
+from stigg.types.v1 import Coupon, CouponListResponse
 from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -38,7 +34,7 @@ class TestCoupons:
             name="name",
             percent_off=1,
         )
-        assert_matches_type(CouponCreateResponse, coupon, path=["response"])
+        assert_matches_type(Coupon, coupon, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -57,7 +53,7 @@ class TestCoupons:
             percent_off=1,
             additional_meta_data={},
         )
-        assert_matches_type(CouponCreateResponse, coupon, path=["response"])
+        assert_matches_type(Coupon, coupon, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -79,7 +75,7 @@ class TestCoupons:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         coupon = response.parse()
-        assert_matches_type(CouponCreateResponse, coupon, path=["response"])
+        assert_matches_type(Coupon, coupon, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -101,7 +97,7 @@ class TestCoupons:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             coupon = response.parse()
-            assert_matches_type(CouponCreateResponse, coupon, path=["response"])
+            assert_matches_type(Coupon, coupon, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -111,7 +107,7 @@ class TestCoupons:
         coupon = client.v1.coupons.retrieve(
             "x",
         )
-        assert_matches_type(CouponRetrieveResponse, coupon, path=["response"])
+        assert_matches_type(Coupon, coupon, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -123,7 +119,7 @@ class TestCoupons:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         coupon = response.parse()
-        assert_matches_type(CouponRetrieveResponse, coupon, path=["response"])
+        assert_matches_type(Coupon, coupon, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -135,7 +131,7 @@ class TestCoupons:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             coupon = response.parse()
-            assert_matches_type(CouponRetrieveResponse, coupon, path=["response"])
+            assert_matches_type(Coupon, coupon, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -207,7 +203,7 @@ class TestAsyncCoupons:
             name="name",
             percent_off=1,
         )
-        assert_matches_type(CouponCreateResponse, coupon, path=["response"])
+        assert_matches_type(Coupon, coupon, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -226,7 +222,7 @@ class TestAsyncCoupons:
             percent_off=1,
             additional_meta_data={},
         )
-        assert_matches_type(CouponCreateResponse, coupon, path=["response"])
+        assert_matches_type(Coupon, coupon, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -248,7 +244,7 @@ class TestAsyncCoupons:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         coupon = await response.parse()
-        assert_matches_type(CouponCreateResponse, coupon, path=["response"])
+        assert_matches_type(Coupon, coupon, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -270,7 +266,7 @@ class TestAsyncCoupons:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             coupon = await response.parse()
-            assert_matches_type(CouponCreateResponse, coupon, path=["response"])
+            assert_matches_type(Coupon, coupon, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -280,7 +276,7 @@ class TestAsyncCoupons:
         coupon = await async_client.v1.coupons.retrieve(
             "x",
         )
-        assert_matches_type(CouponRetrieveResponse, coupon, path=["response"])
+        assert_matches_type(Coupon, coupon, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -292,7 +288,7 @@ class TestAsyncCoupons:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         coupon = await response.parse()
-        assert_matches_type(CouponRetrieveResponse, coupon, path=["response"])
+        assert_matches_type(Coupon, coupon, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -304,7 +300,7 @@ class TestAsyncCoupons:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             coupon = await response.parse()
-            assert_matches_type(CouponRetrieveResponse, coupon, path=["response"])
+            assert_matches_type(Coupon, coupon, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

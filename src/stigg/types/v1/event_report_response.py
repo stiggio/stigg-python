@@ -1,11 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = ["V1CreateEventResponse"]
+__all__ = ["EventReportResponse"]
 
 
-class V1CreateEventResponse(BaseModel):
+class EventReportResponse(BaseModel):
     """Response object"""
 
     data: object
