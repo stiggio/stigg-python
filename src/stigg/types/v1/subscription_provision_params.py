@@ -10,7 +10,7 @@ from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = [
-    "SubscriptionCreateParams",
+    "SubscriptionProvisionParams",
     "Addon",
     "AppliedCoupon",
     "AppliedCouponConfiguration",
@@ -35,7 +35,7 @@ __all__ = [
 ]
 
 
-class SubscriptionCreateParams(TypedDict, total=False):
+class SubscriptionProvisionParams(TypedDict, total=False):
     customer_id: Required[Annotated[str, PropertyInfo(alias="customerId")]]
     """Customer ID to provision the subscription for"""
 

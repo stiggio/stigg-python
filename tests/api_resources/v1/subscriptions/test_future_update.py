@@ -9,7 +9,7 @@ import pytest
 
 from stigg import Stigg, AsyncStigg
 from tests.utils import assert_matches_type
-from stigg.types.v1.subscriptions import FutureUpdateCancelScheduleResponse, FutureUpdateCancelPendingPaymentResponse
+from stigg.types.v1.subscriptions import CancelSubscription
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestFutureUpdate:
         future_update = client.v1.subscriptions.future_update.cancel_pending_payment(
             "x",
         )
-        assert_matches_type(FutureUpdateCancelPendingPaymentResponse, future_update, path=["response"])
+        assert_matches_type(CancelSubscription, future_update, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -35,7 +35,7 @@ class TestFutureUpdate:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         future_update = response.parse()
-        assert_matches_type(FutureUpdateCancelPendingPaymentResponse, future_update, path=["response"])
+        assert_matches_type(CancelSubscription, future_update, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -47,7 +47,7 @@ class TestFutureUpdate:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             future_update = response.parse()
-            assert_matches_type(FutureUpdateCancelPendingPaymentResponse, future_update, path=["response"])
+            assert_matches_type(CancelSubscription, future_update, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -65,7 +65,7 @@ class TestFutureUpdate:
         future_update = client.v1.subscriptions.future_update.cancel_schedule(
             "x",
         )
-        assert_matches_type(FutureUpdateCancelScheduleResponse, future_update, path=["response"])
+        assert_matches_type(CancelSubscription, future_update, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -77,7 +77,7 @@ class TestFutureUpdate:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         future_update = response.parse()
-        assert_matches_type(FutureUpdateCancelScheduleResponse, future_update, path=["response"])
+        assert_matches_type(CancelSubscription, future_update, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -89,7 +89,7 @@ class TestFutureUpdate:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             future_update = response.parse()
-            assert_matches_type(FutureUpdateCancelScheduleResponse, future_update, path=["response"])
+            assert_matches_type(CancelSubscription, future_update, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -113,7 +113,7 @@ class TestAsyncFutureUpdate:
         future_update = await async_client.v1.subscriptions.future_update.cancel_pending_payment(
             "x",
         )
-        assert_matches_type(FutureUpdateCancelPendingPaymentResponse, future_update, path=["response"])
+        assert_matches_type(CancelSubscription, future_update, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -125,7 +125,7 @@ class TestAsyncFutureUpdate:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         future_update = await response.parse()
-        assert_matches_type(FutureUpdateCancelPendingPaymentResponse, future_update, path=["response"])
+        assert_matches_type(CancelSubscription, future_update, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -137,7 +137,7 @@ class TestAsyncFutureUpdate:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             future_update = await response.parse()
-            assert_matches_type(FutureUpdateCancelPendingPaymentResponse, future_update, path=["response"])
+            assert_matches_type(CancelSubscription, future_update, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -155,7 +155,7 @@ class TestAsyncFutureUpdate:
         future_update = await async_client.v1.subscriptions.future_update.cancel_schedule(
             "x",
         )
-        assert_matches_type(FutureUpdateCancelScheduleResponse, future_update, path=["response"])
+        assert_matches_type(CancelSubscription, future_update, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -167,7 +167,7 @@ class TestAsyncFutureUpdate:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         future_update = await response.parse()
-        assert_matches_type(FutureUpdateCancelScheduleResponse, future_update, path=["response"])
+        assert_matches_type(CancelSubscription, future_update, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -179,7 +179,7 @@ class TestAsyncFutureUpdate:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             future_update = await response.parse()
-            assert_matches_type(FutureUpdateCancelScheduleResponse, future_update, path=["response"])
+            assert_matches_type(CancelSubscription, future_update, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

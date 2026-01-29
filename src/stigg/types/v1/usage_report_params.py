@@ -6,12 +6,12 @@ from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from .._utils import PropertyInfo
+from ..._utils import PropertyInfo
 
-__all__ = ["V1CreateUsageParams", "Usage"]
+__all__ = ["UsageReportParams", "Usage"]
 
 
-class V1CreateUsageParams(TypedDict, total=False):
+class UsageReportParams(TypedDict, total=False):
     usages: Required[Iterable[Usage]]
     """A list of usage reports to be submitted in bulk"""
 

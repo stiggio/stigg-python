@@ -13,11 +13,14 @@ from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ....types.v1 import (
     subscription_list_params,
-    subscription_create_params,
+    subscription_cancel_params,
+    subscription_import_params,
+    subscription_update_params,
     subscription_migrate_params,
     subscription_preview_params,
     subscription_delegate_params,
     subscription_transfer_params,
+    subscription_provision_params,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -36,13 +39,11 @@ from .future_update import (
     AsyncFutureUpdateResourceWithStreamingResponse,
 )
 from ...._base_client import AsyncPaginator, make_request_options
+from ....types.v1.subscription import Subscription
 from ....types.v1.subscription_list_response import SubscriptionListResponse
-from ....types.v1.subscription_create_response import SubscriptionCreateResponse
-from ....types.v1.subscription_migrate_response import SubscriptionMigrateResponse
+from ....types.v1.subscription_import_response import SubscriptionImportResponse
 from ....types.v1.subscription_preview_response import SubscriptionPreviewResponse
-from ....types.v1.subscription_delegate_response import SubscriptionDelegateResponse
-from ....types.v1.subscription_retrieve_response import SubscriptionRetrieveResponse
-from ....types.v1.subscription_transfer_response import SubscriptionTransferResponse
+from ....types.v1.subscription_provision_response import SubscriptionProvisionResponse
 
 __all__ = ["SubscriptionsResource", "AsyncSubscriptionsResource"]
 
@@ -71,125 +72,6 @@ class SubscriptionsResource(SyncAPIResource):
         """
         return SubscriptionsResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        customer_id: str,
-        plan_id: str,
-        id: str | Omit = omit,
-        addons: Iterable[subscription_create_params.Addon] | Omit = omit,
-        applied_coupon: subscription_create_params.AppliedCoupon | Omit = omit,
-        await_payment_confirmation: bool | Omit = omit,
-        billing_country_code: Optional[str] | Omit = omit,
-        billing_id: Optional[str] | Omit = omit,
-        billing_information: subscription_create_params.BillingInformation | Omit = omit,
-        billing_period: Literal["MONTHLY", "ANNUALLY"] | Omit = omit,
-        budget: Optional[subscription_create_params.Budget] | Omit = omit,
-        charges: Iterable[subscription_create_params.Charge] | Omit = omit,
-        checkout_options: subscription_create_params.CheckoutOptions | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        minimum_spend: Optional[subscription_create_params.MinimumSpend] | Omit = omit,
-        paying_customer_id: Optional[str] | Omit = omit,
-        payment_collection_method: Literal["CHARGE", "INVOICE", "NONE"] | Omit = omit,
-        price_overrides: Iterable[subscription_create_params.PriceOverride] | Omit = omit,
-        resource_id: Optional[str] | Omit = omit,
-        salesforce_id: Optional[str] | Omit = omit,
-        schedule_strategy: Literal["END_OF_BILLING_PERIOD", "END_OF_BILLING_MONTH", "IMMEDIATE"] | Omit = omit,
-        start_date: Union[str, datetime] | Omit = omit,
-        subscription_entitlements: Iterable[subscription_create_params.SubscriptionEntitlement] | Omit = omit,
-        trial_override_configuration: subscription_create_params.TrialOverrideConfiguration | Omit = omit,
-        unit_quantity: float | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SubscriptionCreateResponse:
-        """
-        Provision subscription
-
-        Args:
-          customer_id: Customer ID to provision the subscription for
-
-          plan_id: Plan ID to provision
-
-          id: Unique identifier for the subscription
-
-          applied_coupon: Coupon configuration
-
-          await_payment_confirmation: Whether to wait for payment confirmation before returning the subscription
-
-          billing_country_code: The ISO 3166-1 alpha-2 country code for billing
-
-          billing_id: External billing system identifier
-
-          billing_period: Billing period (MONTHLY or ANNUALLY)
-
-          checkout_options: Checkout page configuration for payment collection
-
-          metadata: Additional metadata for the subscription
-
-          paying_customer_id: Optional paying customer ID for split billing scenarios
-
-          payment_collection_method: How payments should be collected for this subscription
-
-          resource_id: Optional resource ID for multi-instance subscriptions
-
-          salesforce_id: Salesforce ID
-
-          schedule_strategy: Strategy for scheduling subscription changes
-
-          start_date: Subscription start date
-
-          trial_override_configuration: Trial period override settings
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/api/v1/subscriptions",
-            body=maybe_transform(
-                {
-                    "customer_id": customer_id,
-                    "plan_id": plan_id,
-                    "id": id,
-                    "addons": addons,
-                    "applied_coupon": applied_coupon,
-                    "await_payment_confirmation": await_payment_confirmation,
-                    "billing_country_code": billing_country_code,
-                    "billing_id": billing_id,
-                    "billing_information": billing_information,
-                    "billing_period": billing_period,
-                    "budget": budget,
-                    "charges": charges,
-                    "checkout_options": checkout_options,
-                    "metadata": metadata,
-                    "minimum_spend": minimum_spend,
-                    "paying_customer_id": paying_customer_id,
-                    "payment_collection_method": payment_collection_method,
-                    "price_overrides": price_overrides,
-                    "resource_id": resource_id,
-                    "salesforce_id": salesforce_id,
-                    "schedule_strategy": schedule_strategy,
-                    "start_date": start_date,
-                    "subscription_entitlements": subscription_entitlements,
-                    "trial_override_configuration": trial_override_configuration,
-                    "unit_quantity": unit_quantity,
-                },
-                subscription_create_params.SubscriptionCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=SubscriptionCreateResponse,
-        )
-
     def retrieve(
         self,
         id: str,
@@ -200,7 +82,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SubscriptionRetrieveResponse:
+    ) -> Subscription:
         """
         Get a single subscription by ID
 
@@ -220,7 +102,77 @@ class SubscriptionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SubscriptionRetrieveResponse,
+            cast_to=Subscription,
+        )
+
+    def update(
+        self,
+        id: str,
+        *,
+        addons: Iterable[subscription_update_params.Addon] | Omit = omit,
+        applied_coupon: subscription_update_params.AppliedCoupon | Omit = omit,
+        await_payment_confirmation: bool | Omit = omit,
+        billing_information: subscription_update_params.BillingInformation | Omit = omit,
+        billing_period: Literal["MONTHLY", "ANNUALLY"] | Omit = omit,
+        budget: Optional[subscription_update_params.Budget] | Omit = omit,
+        charges: Iterable[subscription_update_params.Charge] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        minimum_spend: Optional[subscription_update_params.MinimumSpend] | Omit = omit,
+        price_overrides: Iterable[subscription_update_params.PriceOverride] | Omit = omit,
+        promotion_code: str | Omit = omit,
+        schedule_strategy: Literal["END_OF_BILLING_PERIOD", "END_OF_BILLING_MONTH", "IMMEDIATE"] | Omit = omit,
+        subscription_entitlements: Iterable[subscription_update_params.SubscriptionEntitlement] | Omit = omit,
+        trial_end_date: Union[str, datetime] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Subscription:
+        """
+        Update a subscription
+
+        Args:
+          metadata: Additional metadata for the subscription
+
+          trial_end_date: Subscription trial end date
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._patch(
+            f"/api/v1/subscriptions/{id}",
+            body=maybe_transform(
+                {
+                    "addons": addons,
+                    "applied_coupon": applied_coupon,
+                    "await_payment_confirmation": await_payment_confirmation,
+                    "billing_information": billing_information,
+                    "billing_period": billing_period,
+                    "budget": budget,
+                    "charges": charges,
+                    "metadata": metadata,
+                    "minimum_spend": minimum_spend,
+                    "price_overrides": price_overrides,
+                    "promotion_code": promotion_code,
+                    "schedule_strategy": schedule_strategy,
+                    "subscription_entitlements": subscription_entitlements,
+                    "trial_end_date": trial_end_date,
+                },
+                subscription_update_params.SubscriptionUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Subscription,
         )
 
     def list(
@@ -282,6 +234,60 @@ class SubscriptionsResource(SyncAPIResource):
             model=SubscriptionListResponse,
         )
 
+    def cancel(
+        self,
+        id: str,
+        *,
+        cancellation_action: Literal["DEFAULT", "REVOKE_ENTITLEMENTS"] | Omit = omit,
+        cancellation_time: Literal["END_OF_BILLING_PERIOD", "IMMEDIATE", "SPECIFIC_DATE"] | Omit = omit,
+        end_date: Union[str, datetime] | Omit = omit,
+        prorate: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Subscription:
+        """
+        Cancel subscription
+
+        Args:
+          cancellation_action: Action on cancellation (downgrade or revoke)
+
+          cancellation_time: When to cancel (immediate, period end, or date)
+
+          end_date: Subscription end date
+
+          prorate: If set, enables or disables prorating of credits on subscription cancellation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            f"/api/v1/subscriptions/{id}/cancel",
+            body=maybe_transform(
+                {
+                    "cancellation_action": cancellation_action,
+                    "cancellation_time": cancellation_time,
+                    "end_date": end_date,
+                    "prorate": prorate,
+                },
+                subscription_cancel_params.SubscriptionCancelParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Subscription,
+        )
+
     def delegate(
         self,
         id: str,
@@ -293,7 +299,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SubscriptionDelegateResponse:
+    ) -> Subscription:
         """
         Delegate subscription payment to customer
 
@@ -320,7 +326,41 @@ class SubscriptionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SubscriptionDelegateResponse,
+            cast_to=Subscription,
+        )
+
+    def import_(
+        self,
+        *,
+        subscriptions: Iterable[subscription_import_params.Subscription],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SubscriptionImportResponse:
+        """
+        Bulk import subscriptions
+
+        Args:
+          subscriptions: List of subscription objects to import
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/api/v1/subscriptions/import",
+            body=maybe_transform({"subscriptions": subscriptions}, subscription_import_params.SubscriptionImportParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SubscriptionImportResponse,
         )
 
     def migrate(
@@ -334,7 +374,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SubscriptionMigrateResponse:
+    ) -> Subscription:
         """
         Migrate subscription to latest plan version
 
@@ -360,7 +400,7 @@ class SubscriptionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SubscriptionMigrateResponse,
+            cast_to=Subscription,
         )
 
     def preview(
@@ -458,98 +498,33 @@ class SubscriptionsResource(SyncAPIResource):
             cast_to=SubscriptionPreviewResponse,
         )
 
-    def transfer(
-        self,
-        id: str,
-        *,
-        destination_resource_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SubscriptionTransferResponse:
-        """
-        Transfer subscription to resource
-
-        Args:
-          destination_resource_id: Resource ID to transfer the subscription to
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._post(
-            f"/api/v1/subscriptions/{id}/transfer",
-            body=maybe_transform(
-                {"destination_resource_id": destination_resource_id},
-                subscription_transfer_params.SubscriptionTransferParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=SubscriptionTransferResponse,
-        )
-
-
-class AsyncSubscriptionsResource(AsyncAPIResource):
-    @cached_property
-    def future_update(self) -> AsyncFutureUpdateResource:
-        return AsyncFutureUpdateResource(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> AsyncSubscriptionsResourceWithRawResponse:
-        """
-        This property can be used as a prefix for any HTTP method call to return
-        the raw response object instead of the parsed content.
-
-        For more information, see https://www.github.com/stiggio/stigg-python#accessing-raw-response-data-eg-headers
-        """
-        return AsyncSubscriptionsResourceWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncSubscriptionsResourceWithStreamingResponse:
-        """
-        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
-
-        For more information, see https://www.github.com/stiggio/stigg-python#with_streaming_response
-        """
-        return AsyncSubscriptionsResourceWithStreamingResponse(self)
-
-    async def create(
+    def provision(
         self,
         *,
         customer_id: str,
         plan_id: str,
         id: str | Omit = omit,
-        addons: Iterable[subscription_create_params.Addon] | Omit = omit,
-        applied_coupon: subscription_create_params.AppliedCoupon | Omit = omit,
+        addons: Iterable[subscription_provision_params.Addon] | Omit = omit,
+        applied_coupon: subscription_provision_params.AppliedCoupon | Omit = omit,
         await_payment_confirmation: bool | Omit = omit,
         billing_country_code: Optional[str] | Omit = omit,
         billing_id: Optional[str] | Omit = omit,
-        billing_information: subscription_create_params.BillingInformation | Omit = omit,
+        billing_information: subscription_provision_params.BillingInformation | Omit = omit,
         billing_period: Literal["MONTHLY", "ANNUALLY"] | Omit = omit,
-        budget: Optional[subscription_create_params.Budget] | Omit = omit,
-        charges: Iterable[subscription_create_params.Charge] | Omit = omit,
-        checkout_options: subscription_create_params.CheckoutOptions | Omit = omit,
+        budget: Optional[subscription_provision_params.Budget] | Omit = omit,
+        charges: Iterable[subscription_provision_params.Charge] | Omit = omit,
+        checkout_options: subscription_provision_params.CheckoutOptions | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
-        minimum_spend: Optional[subscription_create_params.MinimumSpend] | Omit = omit,
+        minimum_spend: Optional[subscription_provision_params.MinimumSpend] | Omit = omit,
         paying_customer_id: Optional[str] | Omit = omit,
         payment_collection_method: Literal["CHARGE", "INVOICE", "NONE"] | Omit = omit,
-        price_overrides: Iterable[subscription_create_params.PriceOverride] | Omit = omit,
+        price_overrides: Iterable[subscription_provision_params.PriceOverride] | Omit = omit,
         resource_id: Optional[str] | Omit = omit,
         salesforce_id: Optional[str] | Omit = omit,
         schedule_strategy: Literal["END_OF_BILLING_PERIOD", "END_OF_BILLING_MONTH", "IMMEDIATE"] | Omit = omit,
         start_date: Union[str, datetime] | Omit = omit,
-        subscription_entitlements: Iterable[subscription_create_params.SubscriptionEntitlement] | Omit = omit,
-        trial_override_configuration: subscription_create_params.TrialOverrideConfiguration | Omit = omit,
+        subscription_entitlements: Iterable[subscription_provision_params.SubscriptionEntitlement] | Omit = omit,
+        trial_override_configuration: subscription_provision_params.TrialOverrideConfiguration | Omit = omit,
         unit_quantity: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -557,7 +532,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SubscriptionCreateResponse:
+    ) -> SubscriptionProvisionResponse:
         """
         Provision subscription
 
@@ -604,9 +579,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._post(
+        return self._post(
             "/api/v1/subscriptions",
-            body=await async_maybe_transform(
+            body=maybe_transform(
                 {
                     "customer_id": customer_id,
                     "plan_id": plan_id,
@@ -634,13 +609,78 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "trial_override_configuration": trial_override_configuration,
                     "unit_quantity": unit_quantity,
                 },
-                subscription_create_params.SubscriptionCreateParams,
+                subscription_provision_params.SubscriptionProvisionParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SubscriptionCreateResponse,
+            cast_to=SubscriptionProvisionResponse,
         )
+
+    def transfer(
+        self,
+        id: str,
+        *,
+        destination_resource_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Subscription:
+        """
+        Transfer subscription to resource
+
+        Args:
+          destination_resource_id: Resource ID to transfer the subscription to
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            f"/api/v1/subscriptions/{id}/transfer",
+            body=maybe_transform(
+                {"destination_resource_id": destination_resource_id},
+                subscription_transfer_params.SubscriptionTransferParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Subscription,
+        )
+
+
+class AsyncSubscriptionsResource(AsyncAPIResource):
+    @cached_property
+    def future_update(self) -> AsyncFutureUpdateResource:
+        return AsyncFutureUpdateResource(self._client)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncSubscriptionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stiggio/stigg-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncSubscriptionsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncSubscriptionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stiggio/stigg-python#with_streaming_response
+        """
+        return AsyncSubscriptionsResourceWithStreamingResponse(self)
 
     async def retrieve(
         self,
@@ -652,7 +692,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SubscriptionRetrieveResponse:
+    ) -> Subscription:
         """
         Get a single subscription by ID
 
@@ -672,7 +712,77 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SubscriptionRetrieveResponse,
+            cast_to=Subscription,
+        )
+
+    async def update(
+        self,
+        id: str,
+        *,
+        addons: Iterable[subscription_update_params.Addon] | Omit = omit,
+        applied_coupon: subscription_update_params.AppliedCoupon | Omit = omit,
+        await_payment_confirmation: bool | Omit = omit,
+        billing_information: subscription_update_params.BillingInformation | Omit = omit,
+        billing_period: Literal["MONTHLY", "ANNUALLY"] | Omit = omit,
+        budget: Optional[subscription_update_params.Budget] | Omit = omit,
+        charges: Iterable[subscription_update_params.Charge] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        minimum_spend: Optional[subscription_update_params.MinimumSpend] | Omit = omit,
+        price_overrides: Iterable[subscription_update_params.PriceOverride] | Omit = omit,
+        promotion_code: str | Omit = omit,
+        schedule_strategy: Literal["END_OF_BILLING_PERIOD", "END_OF_BILLING_MONTH", "IMMEDIATE"] | Omit = omit,
+        subscription_entitlements: Iterable[subscription_update_params.SubscriptionEntitlement] | Omit = omit,
+        trial_end_date: Union[str, datetime] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Subscription:
+        """
+        Update a subscription
+
+        Args:
+          metadata: Additional metadata for the subscription
+
+          trial_end_date: Subscription trial end date
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._patch(
+            f"/api/v1/subscriptions/{id}",
+            body=await async_maybe_transform(
+                {
+                    "addons": addons,
+                    "applied_coupon": applied_coupon,
+                    "await_payment_confirmation": await_payment_confirmation,
+                    "billing_information": billing_information,
+                    "billing_period": billing_period,
+                    "budget": budget,
+                    "charges": charges,
+                    "metadata": metadata,
+                    "minimum_spend": minimum_spend,
+                    "price_overrides": price_overrides,
+                    "promotion_code": promotion_code,
+                    "schedule_strategy": schedule_strategy,
+                    "subscription_entitlements": subscription_entitlements,
+                    "trial_end_date": trial_end_date,
+                },
+                subscription_update_params.SubscriptionUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Subscription,
         )
 
     def list(
@@ -734,6 +844,60 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             model=SubscriptionListResponse,
         )
 
+    async def cancel(
+        self,
+        id: str,
+        *,
+        cancellation_action: Literal["DEFAULT", "REVOKE_ENTITLEMENTS"] | Omit = omit,
+        cancellation_time: Literal["END_OF_BILLING_PERIOD", "IMMEDIATE", "SPECIFIC_DATE"] | Omit = omit,
+        end_date: Union[str, datetime] | Omit = omit,
+        prorate: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Subscription:
+        """
+        Cancel subscription
+
+        Args:
+          cancellation_action: Action on cancellation (downgrade or revoke)
+
+          cancellation_time: When to cancel (immediate, period end, or date)
+
+          end_date: Subscription end date
+
+          prorate: If set, enables or disables prorating of credits on subscription cancellation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            f"/api/v1/subscriptions/{id}/cancel",
+            body=await async_maybe_transform(
+                {
+                    "cancellation_action": cancellation_action,
+                    "cancellation_time": cancellation_time,
+                    "end_date": end_date,
+                    "prorate": prorate,
+                },
+                subscription_cancel_params.SubscriptionCancelParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Subscription,
+        )
+
     async def delegate(
         self,
         id: str,
@@ -745,7 +909,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SubscriptionDelegateResponse:
+    ) -> Subscription:
         """
         Delegate subscription payment to customer
 
@@ -772,7 +936,43 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SubscriptionDelegateResponse,
+            cast_to=Subscription,
+        )
+
+    async def import_(
+        self,
+        *,
+        subscriptions: Iterable[subscription_import_params.Subscription],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SubscriptionImportResponse:
+        """
+        Bulk import subscriptions
+
+        Args:
+          subscriptions: List of subscription objects to import
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/api/v1/subscriptions/import",
+            body=await async_maybe_transform(
+                {"subscriptions": subscriptions}, subscription_import_params.SubscriptionImportParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SubscriptionImportResponse,
         )
 
     async def migrate(
@@ -786,7 +986,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SubscriptionMigrateResponse:
+    ) -> Subscription:
         """
         Migrate subscription to latest plan version
 
@@ -812,7 +1012,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SubscriptionMigrateResponse,
+            cast_to=Subscription,
         )
 
     async def preview(
@@ -910,6 +1110,125 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             cast_to=SubscriptionPreviewResponse,
         )
 
+    async def provision(
+        self,
+        *,
+        customer_id: str,
+        plan_id: str,
+        id: str | Omit = omit,
+        addons: Iterable[subscription_provision_params.Addon] | Omit = omit,
+        applied_coupon: subscription_provision_params.AppliedCoupon | Omit = omit,
+        await_payment_confirmation: bool | Omit = omit,
+        billing_country_code: Optional[str] | Omit = omit,
+        billing_id: Optional[str] | Omit = omit,
+        billing_information: subscription_provision_params.BillingInformation | Omit = omit,
+        billing_period: Literal["MONTHLY", "ANNUALLY"] | Omit = omit,
+        budget: Optional[subscription_provision_params.Budget] | Omit = omit,
+        charges: Iterable[subscription_provision_params.Charge] | Omit = omit,
+        checkout_options: subscription_provision_params.CheckoutOptions | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        minimum_spend: Optional[subscription_provision_params.MinimumSpend] | Omit = omit,
+        paying_customer_id: Optional[str] | Omit = omit,
+        payment_collection_method: Literal["CHARGE", "INVOICE", "NONE"] | Omit = omit,
+        price_overrides: Iterable[subscription_provision_params.PriceOverride] | Omit = omit,
+        resource_id: Optional[str] | Omit = omit,
+        salesforce_id: Optional[str] | Omit = omit,
+        schedule_strategy: Literal["END_OF_BILLING_PERIOD", "END_OF_BILLING_MONTH", "IMMEDIATE"] | Omit = omit,
+        start_date: Union[str, datetime] | Omit = omit,
+        subscription_entitlements: Iterable[subscription_provision_params.SubscriptionEntitlement] | Omit = omit,
+        trial_override_configuration: subscription_provision_params.TrialOverrideConfiguration | Omit = omit,
+        unit_quantity: float | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SubscriptionProvisionResponse:
+        """
+        Provision subscription
+
+        Args:
+          customer_id: Customer ID to provision the subscription for
+
+          plan_id: Plan ID to provision
+
+          id: Unique identifier for the subscription
+
+          applied_coupon: Coupon configuration
+
+          await_payment_confirmation: Whether to wait for payment confirmation before returning the subscription
+
+          billing_country_code: The ISO 3166-1 alpha-2 country code for billing
+
+          billing_id: External billing system identifier
+
+          billing_period: Billing period (MONTHLY or ANNUALLY)
+
+          checkout_options: Checkout page configuration for payment collection
+
+          metadata: Additional metadata for the subscription
+
+          paying_customer_id: Optional paying customer ID for split billing scenarios
+
+          payment_collection_method: How payments should be collected for this subscription
+
+          resource_id: Optional resource ID for multi-instance subscriptions
+
+          salesforce_id: Salesforce ID
+
+          schedule_strategy: Strategy for scheduling subscription changes
+
+          start_date: Subscription start date
+
+          trial_override_configuration: Trial period override settings
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/api/v1/subscriptions",
+            body=await async_maybe_transform(
+                {
+                    "customer_id": customer_id,
+                    "plan_id": plan_id,
+                    "id": id,
+                    "addons": addons,
+                    "applied_coupon": applied_coupon,
+                    "await_payment_confirmation": await_payment_confirmation,
+                    "billing_country_code": billing_country_code,
+                    "billing_id": billing_id,
+                    "billing_information": billing_information,
+                    "billing_period": billing_period,
+                    "budget": budget,
+                    "charges": charges,
+                    "checkout_options": checkout_options,
+                    "metadata": metadata,
+                    "minimum_spend": minimum_spend,
+                    "paying_customer_id": paying_customer_id,
+                    "payment_collection_method": payment_collection_method,
+                    "price_overrides": price_overrides,
+                    "resource_id": resource_id,
+                    "salesforce_id": salesforce_id,
+                    "schedule_strategy": schedule_strategy,
+                    "start_date": start_date,
+                    "subscription_entitlements": subscription_entitlements,
+                    "trial_override_configuration": trial_override_configuration,
+                    "unit_quantity": unit_quantity,
+                },
+                subscription_provision_params.SubscriptionProvisionParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SubscriptionProvisionResponse,
+        )
+
     async def transfer(
         self,
         id: str,
@@ -921,7 +1240,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SubscriptionTransferResponse:
+    ) -> Subscription:
         """
         Transfer subscription to resource
 
@@ -947,7 +1266,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SubscriptionTransferResponse,
+            cast_to=Subscription,
         )
 
 
@@ -955,23 +1274,32 @@ class SubscriptionsResourceWithRawResponse:
     def __init__(self, subscriptions: SubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
-        self.create = to_raw_response_wrapper(
-            subscriptions.create,
-        )
         self.retrieve = to_raw_response_wrapper(
             subscriptions.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            subscriptions.update,
         )
         self.list = to_raw_response_wrapper(
             subscriptions.list,
         )
+        self.cancel = to_raw_response_wrapper(
+            subscriptions.cancel,
+        )
         self.delegate = to_raw_response_wrapper(
             subscriptions.delegate,
+        )
+        self.import_ = to_raw_response_wrapper(
+            subscriptions.import_,
         )
         self.migrate = to_raw_response_wrapper(
             subscriptions.migrate,
         )
         self.preview = to_raw_response_wrapper(
             subscriptions.preview,
+        )
+        self.provision = to_raw_response_wrapper(
+            subscriptions.provision,
         )
         self.transfer = to_raw_response_wrapper(
             subscriptions.transfer,
@@ -986,23 +1314,32 @@ class AsyncSubscriptionsResourceWithRawResponse:
     def __init__(self, subscriptions: AsyncSubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
-        self.create = async_to_raw_response_wrapper(
-            subscriptions.create,
-        )
         self.retrieve = async_to_raw_response_wrapper(
             subscriptions.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            subscriptions.update,
         )
         self.list = async_to_raw_response_wrapper(
             subscriptions.list,
         )
+        self.cancel = async_to_raw_response_wrapper(
+            subscriptions.cancel,
+        )
         self.delegate = async_to_raw_response_wrapper(
             subscriptions.delegate,
+        )
+        self.import_ = async_to_raw_response_wrapper(
+            subscriptions.import_,
         )
         self.migrate = async_to_raw_response_wrapper(
             subscriptions.migrate,
         )
         self.preview = async_to_raw_response_wrapper(
             subscriptions.preview,
+        )
+        self.provision = async_to_raw_response_wrapper(
+            subscriptions.provision,
         )
         self.transfer = async_to_raw_response_wrapper(
             subscriptions.transfer,
@@ -1017,23 +1354,32 @@ class SubscriptionsResourceWithStreamingResponse:
     def __init__(self, subscriptions: SubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
-        self.create = to_streamed_response_wrapper(
-            subscriptions.create,
-        )
         self.retrieve = to_streamed_response_wrapper(
             subscriptions.retrieve,
+        )
+        self.update = to_streamed_response_wrapper(
+            subscriptions.update,
         )
         self.list = to_streamed_response_wrapper(
             subscriptions.list,
         )
+        self.cancel = to_streamed_response_wrapper(
+            subscriptions.cancel,
+        )
         self.delegate = to_streamed_response_wrapper(
             subscriptions.delegate,
+        )
+        self.import_ = to_streamed_response_wrapper(
+            subscriptions.import_,
         )
         self.migrate = to_streamed_response_wrapper(
             subscriptions.migrate,
         )
         self.preview = to_streamed_response_wrapper(
             subscriptions.preview,
+        )
+        self.provision = to_streamed_response_wrapper(
+            subscriptions.provision,
         )
         self.transfer = to_streamed_response_wrapper(
             subscriptions.transfer,
@@ -1048,23 +1394,32 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
     def __init__(self, subscriptions: AsyncSubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
-        self.create = async_to_streamed_response_wrapper(
-            subscriptions.create,
-        )
         self.retrieve = async_to_streamed_response_wrapper(
             subscriptions.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            subscriptions.update,
         )
         self.list = async_to_streamed_response_wrapper(
             subscriptions.list,
         )
+        self.cancel = async_to_streamed_response_wrapper(
+            subscriptions.cancel,
+        )
         self.delegate = async_to_streamed_response_wrapper(
             subscriptions.delegate,
+        )
+        self.import_ = async_to_streamed_response_wrapper(
+            subscriptions.import_,
         )
         self.migrate = async_to_streamed_response_wrapper(
             subscriptions.migrate,
         )
         self.preview = async_to_streamed_response_wrapper(
             subscriptions.preview,
+        )
+        self.provision = async_to_streamed_response_wrapper(
+            subscriptions.provision,
         )
         self.transfer = async_to_streamed_response_wrapper(
             subscriptions.transfer,

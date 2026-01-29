@@ -6,12 +6,12 @@ from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
-from .._utils import PropertyInfo
+from ..._utils import PropertyInfo
 
-__all__ = ["V1CreateEventParams", "Event"]
+__all__ = ["EventReportParams", "Event"]
 
 
-class V1CreateEventParams(TypedDict, total=False):
+class EventReportParams(TypedDict, total=False):
     events: Required[Iterable[Event]]
     """A list of usage events to report"""
 

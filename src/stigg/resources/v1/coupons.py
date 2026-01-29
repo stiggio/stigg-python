@@ -19,9 +19,8 @@ from ..._response import (
 )
 from ...pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.v1.coupon import Coupon
 from ...types.v1.coupon_list_response import CouponListResponse
-from ...types.v1.coupon_create_response import CouponCreateResponse
-from ...types.v1.coupon_retrieve_response import CouponRetrieveResponse
 
 __all__ = ["CouponsResource", "AsyncCouponsResource"]
 
@@ -62,7 +61,7 @@ class CouponsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CouponCreateResponse:
+    ) -> Coupon:
         """
         Create coupon
 
@@ -106,7 +105,7 @@ class CouponsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CouponCreateResponse,
+            cast_to=Coupon,
         )
 
     def retrieve(
@@ -119,7 +118,7 @@ class CouponsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CouponRetrieveResponse:
+    ) -> Coupon:
         """
         Get a single coupon by ID
 
@@ -139,7 +138,7 @@ class CouponsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CouponRetrieveResponse,
+            cast_to=Coupon,
         )
 
     def list(
@@ -230,7 +229,7 @@ class AsyncCouponsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CouponCreateResponse:
+    ) -> Coupon:
         """
         Create coupon
 
@@ -274,7 +273,7 @@ class AsyncCouponsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CouponCreateResponse,
+            cast_to=Coupon,
         )
 
     async def retrieve(
@@ -287,7 +286,7 @@ class AsyncCouponsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CouponRetrieveResponse:
+    ) -> Coupon:
         """
         Get a single coupon by ID
 
@@ -307,7 +306,7 @@ class AsyncCouponsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CouponRetrieveResponse,
+            cast_to=Coupon,
         )
 
     def list(
