@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.5 (2026-02-01)
+
+Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
+
+### Features
+
+* **client:** add custom JSON encoder for extended type support ([86703a9](https://github.com/stiggio/stigg-python/commit/86703a948003ab76bd6832a61255d7161f7f26da))
+
 ## 0.1.0-alpha.4 (2026-01-29)
 
 Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
