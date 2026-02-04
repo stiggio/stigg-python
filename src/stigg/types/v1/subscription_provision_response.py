@@ -1,8 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from pydantic import Field as FieldInfo
 
@@ -12,7 +12,10 @@ __all__ = [
     "SubscriptionProvisionResponse",
     "Data",
     "DataEntitlement",
-    "DataEntitlementFeature",
+    "DataEntitlementUnionMember0",
+    "DataEntitlementUnionMember0Feature",
+    "DataEntitlementUnionMember1",
+    "DataEntitlementUnionMember1Currency",
     "DataSubscription",
     "DataSubscriptionPrice",
     "DataSubscriptionPricePrice",
@@ -22,24 +25,52 @@ __all__ = [
 ]
 
 
-class DataEntitlementFeature(BaseModel):
+class DataEntitlementUnionMember0Feature(BaseModel):
+    display_name: str = FieldInfo(alias="displayName")
+    """The human-readable name of the entitlement, shown in UI elements."""
+
+    feature_status: Literal["NEW", "SUSPENDED", "ACTIVE"] = FieldInfo(alias="featureStatus")
+    """The current status of the feature."""
+
+    feature_type: Literal["BOOLEAN", "NUMBER", "ENUM"] = FieldInfo(alias="featureType")
+    """The type of feature associated with the entitlement."""
+
     ref_id: str = FieldInfo(alias="refId")
-    """Feature ID"""
+    """The unique reference ID of the entitlement."""
 
 
-class DataEntitlement(BaseModel):
-    access_denied_reason: Optional[str] = FieldInfo(alias="accessDeniedReason", default=None)
+class DataEntitlementUnionMember0(BaseModel):
+    access_denied_reason: Optional[
+        Literal[
+            "FeatureNotFound",
+            "CustomerNotFound",
+            "CustomerIsArchived",
+            "CustomerResourceNotFound",
+            "NoActiveSubscription",
+            "NoFeatureEntitlementInSubscription",
+            "RequestedUsageExceedingLimit",
+            "RequestedValuesMismatch",
+            "BudgetExceeded",
+            "Unknown",
+            "FeatureTypeMismatch",
+            "Revoked",
+            "InsufficientCredits",
+            "EntitlementNotFound",
+        ]
+    ] = FieldInfo(alias="accessDeniedReason", default=None)
+
+    is_granted: bool = FieldInfo(alias="isGranted")
+
+    type: Literal["FEATURE"]
 
     current_usage: Optional[float] = FieldInfo(alias="currentUsage", default=None)
 
     entitlement_updated_at: Optional[datetime] = FieldInfo(alias="entitlementUpdatedAt", default=None)
-    """entitlement updated at"""
+    """Timestamp of the last update to the entitlement grant or configuration."""
 
-    feature: Optional[DataEntitlementFeature] = None
+    feature: Optional[DataEntitlementUnionMember0Feature] = None
 
     has_unlimited_usage: Optional[bool] = FieldInfo(alias="hasUnlimitedUsage", default=None)
-
-    is_granted: Optional[bool] = FieldInfo(alias="isGranted", default=None)
 
     reset_period: Optional[Literal["YEAR", "MONTH", "WEEK", "DAY", "HOUR"]] = FieldInfo(
         alias="resetPeriod", default=None
@@ -48,13 +79,76 @@ class DataEntitlement(BaseModel):
     usage_limit: Optional[float] = FieldInfo(alias="usageLimit", default=None)
 
     usage_period_anchor: Optional[datetime] = FieldInfo(alias="usagePeriodAnchor", default=None)
-    """usage period anchor"""
+    """
+    The anchor for calculating the usage period for metered entitlements with a
+    reset period configured
+    """
 
     usage_period_end: Optional[datetime] = FieldInfo(alias="usagePeriodEnd", default=None)
-    """usage period end"""
+    """
+    The end date of the usage period for metered entitlements with a reset period
+    configured
+    """
 
     usage_period_start: Optional[datetime] = FieldInfo(alias="usagePeriodStart", default=None)
-    """usage period start"""
+    """
+    The start date of the usage period for metered entitlements with a reset period
+    configured
+    """
+
+    valid_until: Optional[datetime] = FieldInfo(alias="validUntil", default=None)
+    """The next time the entitlement should be recalculated"""
+
+
+class DataEntitlementUnionMember1Currency(BaseModel):
+    """The currency associated with a credit entitlement."""
+
+    currency_id: str = FieldInfo(alias="currencyId")
+    """The unique identifier of the custom currency."""
+
+
+class DataEntitlementUnionMember1(BaseModel):
+    access_denied_reason: Optional[
+        Literal[
+            "FeatureNotFound",
+            "CustomerNotFound",
+            "CustomerIsArchived",
+            "CustomerResourceNotFound",
+            "NoActiveSubscription",
+            "NoFeatureEntitlementInSubscription",
+            "RequestedUsageExceedingLimit",
+            "RequestedValuesMismatch",
+            "BudgetExceeded",
+            "Unknown",
+            "FeatureTypeMismatch",
+            "Revoked",
+            "InsufficientCredits",
+            "EntitlementNotFound",
+        ]
+    ] = FieldInfo(alias="accessDeniedReason", default=None)
+
+    currency: DataEntitlementUnionMember1Currency
+    """The currency associated with a credit entitlement."""
+
+    current_usage: float = FieldInfo(alias="currentUsage")
+
+    is_granted: bool = FieldInfo(alias="isGranted")
+
+    type: Literal["CREDIT"]
+
+    usage_limit: float = FieldInfo(alias="usageLimit")
+
+    usage_updated_at: datetime = FieldInfo(alias="usageUpdatedAt")
+    """Timestamp of the last update to the credit usage."""
+
+    entitlement_updated_at: Optional[datetime] = FieldInfo(alias="entitlementUpdatedAt", default=None)
+    """Timestamp of the last update to the entitlement grant or configuration."""
+
+    valid_until: Optional[datetime] = FieldInfo(alias="validUntil", default=None)
+    """The next time the entitlement should be recalculated"""
+
+
+DataEntitlement: TypeAlias = Union[DataEntitlementUnionMember0, DataEntitlementUnionMember1]
 
 
 class DataSubscriptionPricePrice(BaseModel):
@@ -574,10 +668,13 @@ class Data(BaseModel):
     id: str
     """Unique identifier for the provisioned subscription"""
 
-    entitlements: List[DataEntitlement]
+    entitlements: Optional[List[DataEntitlement]] = None
 
     status: Literal["SUCCESS", "PAYMENT_REQUIRED"]
     """Provision status: SUCCESS or PAYMENT_REQUIRED"""
+
+    subscription: Optional[DataSubscription] = None
+    """Created subscription (when status is SUCCESS)"""
 
     checkout_billing_id: Optional[str] = FieldInfo(alias="checkoutBillingId", default=None)
     """Checkout billing ID when payment is required"""
@@ -587,9 +684,6 @@ class Data(BaseModel):
 
     is_scheduled: Optional[bool] = FieldInfo(alias="isScheduled", default=None)
     """Whether the subscription is scheduled for future activation"""
-
-    subscription: Optional[DataSubscription] = None
-    """Created subscription (when status is SUCCESS)"""
 
 
 class SubscriptionProvisionResponse(BaseModel):
