@@ -333,6 +333,7 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         *,
         subscriptions: Iterable[subscription_import_params.Subscription],
+        integration_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -346,6 +347,8 @@ class SubscriptionsResource(SyncAPIResource):
         Args:
           subscriptions: List of subscription objects to import
 
+          integration_id: Integration ID to use for importing subscriptions
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -356,7 +359,13 @@ class SubscriptionsResource(SyncAPIResource):
         """
         return self._post(
             "/api/v1/subscriptions/import",
-            body=maybe_transform({"subscriptions": subscriptions}, subscription_import_params.SubscriptionImportParams),
+            body=maybe_transform(
+                {
+                    "subscriptions": subscriptions,
+                    "integration_id": integration_id,
+                },
+                subscription_import_params.SubscriptionImportParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -943,6 +952,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         *,
         subscriptions: Iterable[subscription_import_params.Subscription],
+        integration_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -956,6 +966,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         Args:
           subscriptions: List of subscription objects to import
 
+          integration_id: Integration ID to use for importing subscriptions
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -967,7 +979,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         return await self._post(
             "/api/v1/subscriptions/import",
             body=await async_maybe_transform(
-                {"subscriptions": subscriptions}, subscription_import_params.SubscriptionImportParams
+                {
+                    "subscriptions": subscriptions,
+                    "integration_id": integration_id,
+                },
+                subscription_import_params.SubscriptionImportParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
