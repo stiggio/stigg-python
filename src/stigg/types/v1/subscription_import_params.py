@@ -15,6 +15,9 @@ class SubscriptionImportParams(TypedDict, total=False):
     subscriptions: Required[Iterable[Subscription]]
     """List of subscription objects to import"""
 
+    integration_id: Annotated[Optional[str], PropertyInfo(alias="integrationId")]
+    """Integration ID to use for importing subscriptions"""
+
 
 class Subscription(TypedDict, total=False):
     id: Required[str]
