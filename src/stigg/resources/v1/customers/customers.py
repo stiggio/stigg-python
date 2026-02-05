@@ -82,7 +82,8 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Get a single customer by ID
+        Retrieves a customer by their unique identifier, including billing information
+        and subscription status.
 
         Args:
           extra_headers: Send extra headers
@@ -120,7 +121,8 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Update a customer
+        Updates an existing customer's properties such as name, email, and billing
+        information.
 
         Args:
           coupon_id: Customer level coupon
@@ -175,7 +177,7 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncMyCursorIDPage[CustomerListResponse]:
         """
-        Get a list of customers
+        Retrieves a paginated list of customers in the environment.
 
         Args:
           after: Return items that come after this cursor
@@ -223,8 +225,10 @@ class CustomersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
-        """
-        Archive customer
+        """Archives a customer, preventing new subscriptions.
+
+        Optionally cancels existing
+        subscriptions.
 
         Args:
           extra_headers: Send extra headers
@@ -256,8 +260,10 @@ class CustomersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerImportResponse:
-        """
-        Bulk import customers
+        """Imports multiple customers in bulk.
+
+        Used for migrating customer data from
+        external systems.
 
         Args:
           customers: List of customer objects to import
@@ -297,7 +303,8 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Provision customer
+        Creates a new customer and optionally provisions an initial subscription in a
+        single operation.
 
         Args:
           id: Customer slug
@@ -354,7 +361,7 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Unarchive customer
+        Restores an archived customer, allowing them to create new subscriptions again.
 
         Args:
           extra_headers: Send extra headers
@@ -416,7 +423,8 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Get a single customer by ID
+        Retrieves a customer by their unique identifier, including billing information
+        and subscription status.
 
         Args:
           extra_headers: Send extra headers
@@ -454,7 +462,8 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Update a customer
+        Updates an existing customer's properties such as name, email, and billing
+        information.
 
         Args:
           coupon_id: Customer level coupon
@@ -509,7 +518,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CustomerListResponse, AsyncMyCursorIDPage[CustomerListResponse]]:
         """
-        Get a list of customers
+        Retrieves a paginated list of customers in the environment.
 
         Args:
           after: Return items that come after this cursor
@@ -557,8 +566,10 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
-        """
-        Archive customer
+        """Archives a customer, preventing new subscriptions.
+
+        Optionally cancels existing
+        subscriptions.
 
         Args:
           extra_headers: Send extra headers
@@ -590,8 +601,10 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerImportResponse:
-        """
-        Bulk import customers
+        """Imports multiple customers in bulk.
+
+        Used for migrating customer data from
+        external systems.
 
         Args:
           customers: List of customer objects to import
@@ -631,7 +644,8 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Provision customer
+        Creates a new customer and optionally provisions an initial subscription in a
+        single operation.
 
         Args:
           id: Customer slug
@@ -688,7 +702,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Unarchive customer
+        Restores an archived customer, allowing them to create new subscriptions again.
 
         Args:
           extra_headers: Send extra headers

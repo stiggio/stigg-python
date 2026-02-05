@@ -57,7 +57,8 @@ class PromotionalEntitlementsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PromotionalEntitlementGrantResponse:
         """
-        Create a promotional entitlements
+        Grants promotional entitlements to a customer, providing feature access outside
+        their subscription. Entitlements can be time-limited or permanent.
 
         Args:
           promotional_entitlements: Promotional entitlements to grant
@@ -97,7 +98,8 @@ class PromotionalEntitlementsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PromotionalEntitlementRevokeResponse:
         """
-        Revoke promotional entitlement
+        Revokes a previously granted promotional entitlement from a customer for a
+        specific feature.
 
         Args:
           extra_headers: Send extra headers
@@ -154,7 +156,8 @@ class AsyncPromotionalEntitlementsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PromotionalEntitlementGrantResponse:
         """
-        Create a promotional entitlements
+        Grants promotional entitlements to a customer, providing feature access outside
+        their subscription. Entitlements can be time-limited or permanent.
 
         Args:
           promotional_entitlements: Promotional entitlements to grant
@@ -194,7 +197,8 @@ class AsyncPromotionalEntitlementsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PromotionalEntitlementRevokeResponse:
         """
-        Revoke promotional entitlement
+        Revokes a previously granted promotional entitlement from a customer for a
+        specific feature.
 
         Args:
           extra_headers: Send extra headers

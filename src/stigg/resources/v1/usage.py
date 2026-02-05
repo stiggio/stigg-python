@@ -62,7 +62,7 @@ class UsageResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageHistoryResponse:
         """
-        Get usage history
+        Retrieves historical usage data for a customer's metered feature over time.
 
         Args:
           start_date: The start date of the range
@@ -114,8 +114,10 @@ class UsageResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageReportResponse:
-        """
-        Report usage measurements
+        """Reports usage measurements for metered features.
+
+        The reported usage is used to
+        track, limit, and bill customer consumption.
 
         Args:
           usages: A list of usage reports to be submitted in bulk
@@ -175,7 +177,7 @@ class AsyncUsageResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageHistoryResponse:
         """
-        Get usage history
+        Retrieves historical usage data for a customer's metered feature over time.
 
         Args:
           start_date: The start date of the range
@@ -227,8 +229,10 @@ class AsyncUsageResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageReportResponse:
-        """
-        Report usage measurements
+        """Reports usage measurements for metered features.
+
+        The reported usage is used to
+        track, limit, and bill customer consumption.
 
         Args:
           usages: A list of usage reports to be submitted in bulk

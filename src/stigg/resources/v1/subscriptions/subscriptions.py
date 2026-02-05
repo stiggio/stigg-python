@@ -84,7 +84,8 @@ class SubscriptionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
-        Get a single subscription by ID
+        Retrieves a subscription by its unique identifier, including plan details,
+        billing period, status, and add-ons.
 
         Args:
           extra_headers: Send extra headers
@@ -131,7 +132,8 @@ class SubscriptionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
-        Update a subscription
+        Updates an active subscription's properties including billing period, add-ons,
+        unit quantities, and discounts.
 
         Args:
           metadata: Additional metadata for the subscription
@@ -191,7 +193,8 @@ class SubscriptionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncMyCursorIDPage[SubscriptionListResponse]:
         """
-        Get a list of subscriptions
+        Retrieves a paginated list of subscriptions, with optional filters for customer,
+        status, and plan.
 
         Args:
           after: Return items that come after this cursor
@@ -250,7 +253,8 @@ class SubscriptionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
-        Cancel subscription
+        Cancels an active subscription, either immediately or at a specified time such
+        as end of billing period.
 
         Args:
           cancellation_action: Action on cancellation (downgrade or revoke)
@@ -301,7 +305,8 @@ class SubscriptionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
-        Delegate subscription payment to customer
+        Delegates the payment responsibility of a subscription to a different customer.
+        The delegated customer will be billed for this subscription.
 
         Args:
           target_customer_id: The unique identifier of the customer who will assume payment responsibility for
@@ -341,8 +346,10 @@ class SubscriptionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionImportResponse:
-        """
-        Bulk import subscriptions
+        """Imports multiple subscriptions in bulk.
+
+        Used for migrating subscription data
+        from external systems.
 
         Args:
           subscriptions: List of subscription objects to import
@@ -385,7 +392,8 @@ class SubscriptionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
-        Migrate subscription to latest plan version
+        Migrates a subscription to the latest published version of its plan or add-ons.
+        Handles prorated charges or credits automatically.
 
         Args:
           subscription_migration_time: When to migrate (immediate or period end)
@@ -438,7 +446,8 @@ class SubscriptionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionPreviewResponse:
         """
-        Preview subscription
+        Previews the pricing impact of creating or updating a subscription without
+        making changes. Returns estimated costs, taxes, and proration details.
 
         Args:
           customer_id: Customer ID
@@ -542,8 +551,10 @@ class SubscriptionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionProvisionResponse:
-        """
-        Provision subscription
+        """Creates a new subscription for an existing customer.
+
+        When payment is required
+        and no payment method exists, returns a checkout URL.
 
         Args:
           customer_id: Customer ID to provision the subscription for
@@ -638,8 +649,10 @@ class SubscriptionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
-        """
-        Transfer subscription to resource
+        """Transfers a subscription to a different resource ID.
+
+        Used for multi-resource
+        products where subscriptions apply to specific entities like websites or apps.
 
         Args:
           destination_resource_id: Resource ID to transfer the subscription to
@@ -703,7 +716,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
-        Get a single subscription by ID
+        Retrieves a subscription by its unique identifier, including plan details,
+        billing period, status, and add-ons.
 
         Args:
           extra_headers: Send extra headers
@@ -750,7 +764,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
-        Update a subscription
+        Updates an active subscription's properties including billing period, add-ons,
+        unit quantities, and discounts.
 
         Args:
           metadata: Additional metadata for the subscription
@@ -810,7 +825,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[SubscriptionListResponse, AsyncMyCursorIDPage[SubscriptionListResponse]]:
         """
-        Get a list of subscriptions
+        Retrieves a paginated list of subscriptions, with optional filters for customer,
+        status, and plan.
 
         Args:
           after: Return items that come after this cursor
@@ -869,7 +885,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
-        Cancel subscription
+        Cancels an active subscription, either immediately or at a specified time such
+        as end of billing period.
 
         Args:
           cancellation_action: Action on cancellation (downgrade or revoke)
@@ -920,7 +937,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
-        Delegate subscription payment to customer
+        Delegates the payment responsibility of a subscription to a different customer.
+        The delegated customer will be billed for this subscription.
 
         Args:
           target_customer_id: The unique identifier of the customer who will assume payment responsibility for
@@ -960,8 +978,10 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionImportResponse:
-        """
-        Bulk import subscriptions
+        """Imports multiple subscriptions in bulk.
+
+        Used for migrating subscription data
+        from external systems.
 
         Args:
           subscriptions: List of subscription objects to import
@@ -1004,7 +1024,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
-        Migrate subscription to latest plan version
+        Migrates a subscription to the latest published version of its plan or add-ons.
+        Handles prorated charges or credits automatically.
 
         Args:
           subscription_migration_time: When to migrate (immediate or period end)
@@ -1057,7 +1078,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionPreviewResponse:
         """
-        Preview subscription
+        Previews the pricing impact of creating or updating a subscription without
+        making changes. Returns estimated costs, taxes, and proration details.
 
         Args:
           customer_id: Customer ID
@@ -1161,8 +1183,10 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionProvisionResponse:
-        """
-        Provision subscription
+        """Creates a new subscription for an existing customer.
+
+        When payment is required
+        and no payment method exists, returns a checkout URL.
 
         Args:
           customer_id: Customer ID to provision the subscription for
@@ -1257,8 +1281,10 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
-        """
-        Transfer subscription to resource
+        """Transfers a subscription to a different resource ID.
+
+        Used for multi-resource
+        products where subscriptions apply to specific entities like websites or apps.
 
         Args:
           destination_resource_id: Resource ID to transfer the subscription to
