@@ -368,6 +368,26 @@ class TestSubscriptions:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    def test_method_import_with_all_params(self, client: Stigg) -> None:
+        subscription = client.v1.subscriptions.import_(
+            subscriptions=[
+                {
+                    "id": "id",
+                    "customer_id": "customerId",
+                    "plan_id": "planId",
+                    "billing_id": "billingId",
+                    "end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "metadata": {"foo": "string"},
+                    "resource_id": "resourceId",
+                    "start_date": parse_datetime("2019-12-27T18:11:19.117Z"),
+                }
+            ],
+            integration_id="integrationId",
+        )
+        assert_matches_type(SubscriptionImportResponse, subscription, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     def test_raw_response_import(self, client: Stigg) -> None:
         response = client.v1.subscriptions.with_raw_response.import_(
             subscriptions=[
@@ -1146,6 +1166,26 @@ class TestAsyncSubscriptions:
                     "plan_id": "planId",
                 }
             ],
+        )
+        assert_matches_type(SubscriptionImportResponse, subscription, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_import_with_all_params(self, async_client: AsyncStigg) -> None:
+        subscription = await async_client.v1.subscriptions.import_(
+            subscriptions=[
+                {
+                    "id": "id",
+                    "customer_id": "customerId",
+                    "plan_id": "planId",
+                    "billing_id": "billingId",
+                    "end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "metadata": {"foo": "string"},
+                    "resource_id": "resourceId",
+                    "start_date": parse_datetime("2019-12-27T18:11:19.117Z"),
+                }
+            ],
+            integration_id="integrationId",
         )
         assert_matches_type(SubscriptionImportResponse, subscription, path=["response"])
 

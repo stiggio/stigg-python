@@ -190,8 +190,10 @@ class PaymentMethodResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
-        """
-        Attach payment method
+        """Attaches a payment method to a customer for billing.
+
+        Required for paid
+        subscriptions when integrated with a billing provider.
 
         Args:
           integration_id: Integration details
@@ -240,8 +242,10 @@ class PaymentMethodResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
-        """
-        Detach payment method
+        """Removes the payment method from a customer.
+
+        Ensure active paid subscriptions
+        have an alternative payment method.
 
         Args:
           extra_headers: Send extra headers
@@ -429,8 +433,10 @@ class AsyncPaymentMethodResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
-        """
-        Attach payment method
+        """Attaches a payment method to a customer for billing.
+
+        Required for paid
+        subscriptions when integrated with a billing provider.
 
         Args:
           integration_id: Integration details
@@ -479,8 +485,10 @@ class AsyncPaymentMethodResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
-        """
-        Detach payment method
+        """Removes the payment method from a customer.
+
+        Ensure active paid subscriptions
+        have an alternative payment method.
 
         Args:
           extra_headers: Send extra headers

@@ -63,7 +63,8 @@ class CouponsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Coupon:
         """
-        Create coupon
+        Creates a new discount coupon with percentage or fixed amount off, applicable to
+        customer subscriptions.
 
         Args:
           id: The unique identifier for the entity
@@ -120,7 +121,7 @@ class CouponsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Coupon:
         """
-        Get a single coupon by ID
+        Retrieves a coupon by its unique identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -155,7 +156,7 @@ class CouponsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncMyCursorIDPage[CouponListResponse]:
         """
-        Get a list of coupons
+        Retrieves a paginated list of coupons in the environment.
 
         Args:
           after: Return items that come after this cursor
@@ -231,7 +232,8 @@ class AsyncCouponsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Coupon:
         """
-        Create coupon
+        Creates a new discount coupon with percentage or fixed amount off, applicable to
+        customer subscriptions.
 
         Args:
           id: The unique identifier for the entity
@@ -288,7 +290,7 @@ class AsyncCouponsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Coupon:
         """
-        Get a single coupon by ID
+        Retrieves a coupon by its unique identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -323,7 +325,7 @@ class AsyncCouponsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CouponListResponse, AsyncMyCursorIDPage[CouponListResponse]]:
         """
-        Get a list of coupons
+        Retrieves a paginated list of coupons in the environment.
 
         Args:
           after: Return items that come after this cursor
