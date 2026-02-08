@@ -12,10 +12,10 @@ __all__ = [
     "SubscriptionProvisionResponse",
     "Data",
     "DataEntitlement",
-    "DataEntitlementUnionMember0",
-    "DataEntitlementUnionMember0Feature",
-    "DataEntitlementUnionMember1",
-    "DataEntitlementUnionMember1Currency",
+    "DataEntitlementSubscriptionFeatureEntitlement",
+    "DataEntitlementSubscriptionFeatureEntitlementFeature",
+    "DataEntitlementSubscriptionCreditEntitlement",
+    "DataEntitlementSubscriptionCreditEntitlementCurrency",
     "DataSubscription",
     "DataSubscriptionPrice",
     "DataSubscriptionPricePrice",
@@ -25,7 +25,7 @@ __all__ = [
 ]
 
 
-class DataEntitlementUnionMember0Feature(BaseModel):
+class DataEntitlementSubscriptionFeatureEntitlementFeature(BaseModel):
     display_name: str = FieldInfo(alias="displayName")
     """The human-readable name of the entitlement, shown in UI elements."""
 
@@ -39,7 +39,7 @@ class DataEntitlementUnionMember0Feature(BaseModel):
     """The unique reference ID of the entitlement."""
 
 
-class DataEntitlementUnionMember0(BaseModel):
+class DataEntitlementSubscriptionFeatureEntitlement(BaseModel):
     access_denied_reason: Optional[
         Literal[
             "FeatureNotFound",
@@ -68,7 +68,7 @@ class DataEntitlementUnionMember0(BaseModel):
     entitlement_updated_at: Optional[datetime] = FieldInfo(alias="entitlementUpdatedAt", default=None)
     """Timestamp of the last update to the entitlement grant or configuration."""
 
-    feature: Optional[DataEntitlementUnionMember0Feature] = None
+    feature: Optional[DataEntitlementSubscriptionFeatureEntitlementFeature] = None
 
     has_unlimited_usage: Optional[bool] = FieldInfo(alias="hasUnlimitedUsage", default=None)
 
@@ -100,14 +100,14 @@ class DataEntitlementUnionMember0(BaseModel):
     """The next time the entitlement should be recalculated"""
 
 
-class DataEntitlementUnionMember1Currency(BaseModel):
+class DataEntitlementSubscriptionCreditEntitlementCurrency(BaseModel):
     """The currency associated with a credit entitlement."""
 
     currency_id: str = FieldInfo(alias="currencyId")
     """The unique identifier of the custom currency."""
 
 
-class DataEntitlementUnionMember1(BaseModel):
+class DataEntitlementSubscriptionCreditEntitlement(BaseModel):
     access_denied_reason: Optional[
         Literal[
             "FeatureNotFound",
@@ -127,7 +127,7 @@ class DataEntitlementUnionMember1(BaseModel):
         ]
     ] = FieldInfo(alias="accessDeniedReason", default=None)
 
-    currency: DataEntitlementUnionMember1Currency
+    currency: DataEntitlementSubscriptionCreditEntitlementCurrency
     """The currency associated with a credit entitlement."""
 
     current_usage: float = FieldInfo(alias="currentUsage")
@@ -148,7 +148,9 @@ class DataEntitlementUnionMember1(BaseModel):
     """The next time the entitlement should be recalculated"""
 
 
-DataEntitlement: TypeAlias = Union[DataEntitlementUnionMember0, DataEntitlementUnionMember1]
+DataEntitlement: TypeAlias = Union[
+    DataEntitlementSubscriptionFeatureEntitlement, DataEntitlementSubscriptionCreditEntitlement
+]
 
 
 class DataSubscriptionPricePrice(BaseModel):
