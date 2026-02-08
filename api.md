@@ -5,7 +5,12 @@
 Types:
 
 ```python
-from stigg.types.v1 import CustomerResponse, CustomerListResponse, CustomerImportResponse
+from stigg.types.v1 import (
+    CustomerResponse,
+    CustomerListResponse,
+    CustomerImportResponse,
+    CustomerListResourcesResponse,
+)
 ```
 
 Methods:
@@ -15,6 +20,7 @@ Methods:
 - <code title="get /api/v1/customers">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">list</a>(\*\*<a href="src/stigg/types/v1/customer_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_list_response.py">SyncMyCursorIDPage[CustomerListResponse]</a></code>
 - <code title="post /api/v1/customers/{id}/archive">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">archive</a>(id) -> <a href="./src/stigg/types/v1/customer_response.py">CustomerResponse</a></code>
 - <code title="post /api/v1/customers/import">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">import\_</a>(\*\*<a href="src/stigg/types/v1/customer_import_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_import_response.py">CustomerImportResponse</a></code>
+- <code title="get /api/v1/customers/{id}/resources">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">list_resources</a>(id, \*\*<a href="src/stigg/types/v1/customer_list_resources_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_list_resources_response.py">SyncMyCursorIDPage[CustomerListResourcesResponse]</a></code>
 - <code title="post /api/v1/customers">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">provision</a>(\*\*<a href="src/stigg/types/v1/customer_provision_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_response.py">CustomerResponse</a></code>
 - <code title="post /api/v1/customers/{id}/unarchive">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">unarchive</a>(id) -> <a href="./src/stigg/types/v1/customer_response.py">CustomerResponse</a></code>
 
@@ -119,3 +125,15 @@ Methods:
 
 - <code title="get /api/v1/usage/{customerId}/history/{featureId}">client.v1.usage.<a href="./src/stigg/resources/v1/usage.py">history</a>(feature_id, \*, customer_id, \*\*<a href="src/stigg/types/v1/usage_history_params.py">params</a>) -> <a href="./src/stigg/types/v1/usage_history_response.py">UsageHistoryResponse</a></code>
 - <code title="post /api/v1/usage">client.v1.usage.<a href="./src/stigg/resources/v1/usage.py">report</a>(\*\*<a href="src/stigg/types/v1/usage_report_params.py">params</a>) -> <a href="./src/stigg/types/v1/usage_report_response.py">UsageReportResponse</a></code>
+
+## Products
+
+Types:
+
+```python
+from stigg.types.v1 import ProductListProductsResponse
+```
+
+Methods:
+
+- <code title="get /api/v1/products">client.v1.products.<a href="./src/stigg/resources/v1/products.py">list_products</a>(\*\*<a href="src/stigg/types/v1/product_list_products_params.py">params</a>) -> <a href="./src/stigg/types/v1/product_list_products_response.py">SyncMyCursorIDPage[ProductListProductsResponse]</a></code>
