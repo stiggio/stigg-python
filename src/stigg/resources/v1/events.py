@@ -54,8 +54,10 @@ class EventsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventReportResponse:
-        """
-        Report usage events
+        """Reports raw usage events for event-based metering.
+
+        Events are ingested
+        asynchronously and aggregated into usage totals.
 
         Args:
           events: A list of usage events to report
@@ -109,8 +111,10 @@ class AsyncEventsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventReportResponse:
-        """
-        Report usage events
+        """Reports raw usage events for event-based metering.
+
+        Events are ingested
+        asynchronously and aggregated into usage totals.
 
         Args:
           events: A list of usage events to report

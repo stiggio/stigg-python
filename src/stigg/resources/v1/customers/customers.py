@@ -9,7 +9,13 @@ import httpx
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
-from ....types.v1 import customer_list_params, customer_import_params, customer_update_params, customer_provision_params
+from ....types.v1 import (
+    customer_list_params,
+    customer_import_params,
+    customer_update_params,
+    customer_provision_params,
+    customer_list_resources_params,
+)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -38,6 +44,7 @@ from .promotional_entitlements import (
 from ....types.v1.customer_response import CustomerResponse
 from ....types.v1.customer_list_response import CustomerListResponse
 from ....types.v1.customer_import_response import CustomerImportResponse
+from ....types.v1.customer_list_resources_response import CustomerListResourcesResponse
 
 __all__ = ["CustomersResource", "AsyncCustomersResource"]
 
@@ -82,7 +89,8 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Get a single customer by ID
+        Retrieves a customer by their unique identifier, including billing information
+        and subscription status.
 
         Args:
           extra_headers: Send extra headers
@@ -120,7 +128,8 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Update a customer
+        Updates an existing customer's properties such as name, email, and billing
+        information.
 
         Args:
           coupon_id: Customer level coupon
@@ -175,7 +184,7 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncMyCursorIDPage[CustomerListResponse]:
         """
-        Get a list of customers
+        Retrieves a paginated list of customers in the environment.
 
         Args:
           after: Return items that come after this cursor
@@ -223,8 +232,10 @@ class CustomersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
-        """
-        Archive customer
+        """Archives a customer, preventing new subscriptions.
+
+        Optionally cancels existing
+        subscriptions.
 
         Args:
           extra_headers: Send extra headers
@@ -256,8 +267,10 @@ class CustomersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerImportResponse:
-        """
-        Bulk import customers
+        """Imports multiple customers in bulk.
+
+        Used for migrating customer data from
+        external systems.
 
         Args:
           customers: List of customer objects to import
@@ -279,6 +292,60 @@ class CustomersResource(SyncAPIResource):
             cast_to=CustomerImportResponse,
         )
 
+    def list_resources(
+        self,
+        id: str,
+        *,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncMyCursorIDPage[CustomerListResourcesResponse]:
+        """
+        Get a list of customerresources
+
+        Args:
+          after: Return items that come after this cursor
+
+          before: Return items that come before this cursor
+
+          limit: Maximum number of items to return
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get_api_list(
+            f"/api/v1/customers/{id}/resources",
+            page=SyncMyCursorIDPage[CustomerListResourcesResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "limit": limit,
+                    },
+                    customer_list_resources_params.CustomerListResourcesParams,
+                ),
+            ),
+            model=CustomerListResourcesResponse,
+        )
+
     def provision(
         self,
         *,
@@ -297,7 +364,8 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Provision customer
+        Creates a new customer and optionally provisions an initial subscription in a
+        single operation.
 
         Args:
           id: Customer slug
@@ -354,7 +422,7 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Unarchive customer
+        Restores an archived customer, allowing them to create new subscriptions again.
 
         Args:
           extra_headers: Send extra headers
@@ -416,7 +484,8 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Get a single customer by ID
+        Retrieves a customer by their unique identifier, including billing information
+        and subscription status.
 
         Args:
           extra_headers: Send extra headers
@@ -454,7 +523,8 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Update a customer
+        Updates an existing customer's properties such as name, email, and billing
+        information.
 
         Args:
           coupon_id: Customer level coupon
@@ -509,7 +579,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CustomerListResponse, AsyncMyCursorIDPage[CustomerListResponse]]:
         """
-        Get a list of customers
+        Retrieves a paginated list of customers in the environment.
 
         Args:
           after: Return items that come after this cursor
@@ -557,8 +627,10 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
-        """
-        Archive customer
+        """Archives a customer, preventing new subscriptions.
+
+        Optionally cancels existing
+        subscriptions.
 
         Args:
           extra_headers: Send extra headers
@@ -590,8 +662,10 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerImportResponse:
-        """
-        Bulk import customers
+        """Imports multiple customers in bulk.
+
+        Used for migrating customer data from
+        external systems.
 
         Args:
           customers: List of customer objects to import
@@ -613,6 +687,60 @@ class AsyncCustomersResource(AsyncAPIResource):
             cast_to=CustomerImportResponse,
         )
 
+    def list_resources(
+        self,
+        id: str,
+        *,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[CustomerListResourcesResponse, AsyncMyCursorIDPage[CustomerListResourcesResponse]]:
+        """
+        Get a list of customerresources
+
+        Args:
+          after: Return items that come after this cursor
+
+          before: Return items that come before this cursor
+
+          limit: Maximum number of items to return
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get_api_list(
+            f"/api/v1/customers/{id}/resources",
+            page=AsyncMyCursorIDPage[CustomerListResourcesResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "limit": limit,
+                    },
+                    customer_list_resources_params.CustomerListResourcesParams,
+                ),
+            ),
+            model=CustomerListResourcesResponse,
+        )
+
     async def provision(
         self,
         *,
@@ -631,7 +759,8 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Provision customer
+        Creates a new customer and optionally provisions an initial subscription in a
+        single operation.
 
         Args:
           id: Customer slug
@@ -688,7 +817,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Unarchive customer
+        Restores an archived customer, allowing them to create new subscriptions again.
 
         Args:
           extra_headers: Send extra headers
@@ -729,6 +858,9 @@ class CustomersResourceWithRawResponse:
         self.import_ = to_raw_response_wrapper(
             customers.import_,
         )
+        self.list_resources = to_raw_response_wrapper(
+            customers.list_resources,
+        )
         self.provision = to_raw_response_wrapper(
             customers.provision,
         )
@@ -763,6 +895,9 @@ class AsyncCustomersResourceWithRawResponse:
         )
         self.import_ = async_to_raw_response_wrapper(
             customers.import_,
+        )
+        self.list_resources = async_to_raw_response_wrapper(
+            customers.list_resources,
         )
         self.provision = async_to_raw_response_wrapper(
             customers.provision,
@@ -799,6 +934,9 @@ class CustomersResourceWithStreamingResponse:
         self.import_ = to_streamed_response_wrapper(
             customers.import_,
         )
+        self.list_resources = to_streamed_response_wrapper(
+            customers.list_resources,
+        )
         self.provision = to_streamed_response_wrapper(
             customers.provision,
         )
@@ -833,6 +971,9 @@ class AsyncCustomersResourceWithStreamingResponse:
         )
         self.import_ = async_to_streamed_response_wrapper(
             customers.import_,
+        )
+        self.list_resources = async_to_streamed_response_wrapper(
+            customers.list_resources,
         )
         self.provision = async_to_streamed_response_wrapper(
             customers.provision,

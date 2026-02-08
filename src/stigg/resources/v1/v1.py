@@ -26,6 +26,14 @@ from .coupons import (
     CouponsResourceWithStreamingResponse,
     AsyncCouponsResourceWithStreamingResponse,
 )
+from .products import (
+    ProductsResource,
+    AsyncProductsResource,
+    ProductsResourceWithRawResponse,
+    AsyncProductsResourceWithRawResponse,
+    ProductsResourceWithStreamingResponse,
+    AsyncProductsResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .customers.customers import (
@@ -70,6 +78,10 @@ class V1Resource(SyncAPIResource):
         return UsageResource(self._client)
 
     @cached_property
+    def products(self) -> ProductsResource:
+        return ProductsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> V1ResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -109,6 +121,10 @@ class AsyncV1Resource(AsyncAPIResource):
     @cached_property
     def usage(self) -> AsyncUsageResource:
         return AsyncUsageResource(self._client)
+
+    @cached_property
+    def products(self) -> AsyncProductsResource:
+        return AsyncProductsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncV1ResourceWithRawResponse:
@@ -154,6 +170,10 @@ class V1ResourceWithRawResponse:
     def usage(self) -> UsageResourceWithRawResponse:
         return UsageResourceWithRawResponse(self._v1.usage)
 
+    @cached_property
+    def products(self) -> ProductsResourceWithRawResponse:
+        return ProductsResourceWithRawResponse(self._v1.products)
+
 
 class AsyncV1ResourceWithRawResponse:
     def __init__(self, v1: AsyncV1Resource) -> None:
@@ -178,6 +198,10 @@ class AsyncV1ResourceWithRawResponse:
     @cached_property
     def usage(self) -> AsyncUsageResourceWithRawResponse:
         return AsyncUsageResourceWithRawResponse(self._v1.usage)
+
+    @cached_property
+    def products(self) -> AsyncProductsResourceWithRawResponse:
+        return AsyncProductsResourceWithRawResponse(self._v1.products)
 
 
 class V1ResourceWithStreamingResponse:
@@ -204,6 +228,10 @@ class V1ResourceWithStreamingResponse:
     def usage(self) -> UsageResourceWithStreamingResponse:
         return UsageResourceWithStreamingResponse(self._v1.usage)
 
+    @cached_property
+    def products(self) -> ProductsResourceWithStreamingResponse:
+        return ProductsResourceWithStreamingResponse(self._v1.products)
+
 
 class AsyncV1ResourceWithStreamingResponse:
     def __init__(self, v1: AsyncV1Resource) -> None:
@@ -228,3 +256,7 @@ class AsyncV1ResourceWithStreamingResponse:
     @cached_property
     def usage(self) -> AsyncUsageResourceWithStreamingResponse:
         return AsyncUsageResourceWithStreamingResponse(self._v1.usage)
+
+    @cached_property
+    def products(self) -> AsyncProductsResourceWithStreamingResponse:
+        return AsyncProductsResourceWithStreamingResponse(self._v1.products)
