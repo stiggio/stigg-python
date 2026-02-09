@@ -152,6 +152,9 @@ class TestSubscriptions:
             },
             price_overrides=[
                 {
+                    "addon_id": "addonId",
+                    "base_charge": True,
+                    "currency_id": "currencyId",
                     "feature_id": "featureId",
                     "price": {
                         "amount": 0,
@@ -955,6 +958,9 @@ class TestAsyncSubscriptions:
             },
             price_overrides=[
                 {
+                    "addon_id": "addonId",
+                    "base_charge": True,
+                    "currency_id": "currencyId",
                     "feature_id": "featureId",
                     "price": {
                         "amount": 0,

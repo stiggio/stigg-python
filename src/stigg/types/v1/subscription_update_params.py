@@ -551,7 +551,16 @@ class PriceOverridePrice(TypedDict, total=False):
 
 
 class PriceOverride(TypedDict, total=False):
-    feature_id: Required[Annotated[str, PropertyInfo(alias="featureId")]]
+    addon_id: Annotated[str, PropertyInfo(alias="addonId")]
+    """Addon ID"""
+
+    base_charge: Annotated[bool, PropertyInfo(alias="baseCharge")]
+    """Whether this is a base charge override"""
+
+    currency_id: Annotated[str, PropertyInfo(alias="currencyId")]
+    """The corresponding custom currency id of the recurring credits price"""
+
+    feature_id: Annotated[str, PropertyInfo(alias="featureId")]
     """Feature ID"""
 
     price: PriceOverridePrice
