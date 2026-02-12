@@ -45,9 +45,12 @@ class ProductsResource(SyncAPIResource):
     def list_products(
         self,
         *,
+        id: str | Omit = omit,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        created_at: product_list_products_params.CreatedAt | Omit = omit,
         limit: int | Omit = omit,
+        status: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -59,11 +62,17 @@ class ProductsResource(SyncAPIResource):
         Retrieves a paginated list of products in the environment.
 
         Args:
+          id: Filter by entity ID
+
           after: Return items that come after this cursor
 
           before: Return items that come before this cursor
 
+          created_at: Filter by creation date using range operators: gt, gte, lt, lte
+
           limit: Maximum number of items to return
+
+          status: Filter by product status. Supports comma-separated values for multiple statuses
 
           extra_headers: Send extra headers
 
@@ -83,9 +92,12 @@ class ProductsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after": after,
                         "before": before,
+                        "created_at": created_at,
                         "limit": limit,
+                        "status": status,
                     },
                     product_list_products_params.ProductListProductsParams,
                 ),
@@ -117,9 +129,12 @@ class AsyncProductsResource(AsyncAPIResource):
     def list_products(
         self,
         *,
+        id: str | Omit = omit,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        created_at: product_list_products_params.CreatedAt | Omit = omit,
         limit: int | Omit = omit,
+        status: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -131,11 +146,17 @@ class AsyncProductsResource(AsyncAPIResource):
         Retrieves a paginated list of products in the environment.
 
         Args:
+          id: Filter by entity ID
+
           after: Return items that come after this cursor
 
           before: Return items that come before this cursor
 
+          created_at: Filter by creation date using range operators: gt, gte, lt, lte
+
           limit: Maximum number of items to return
+
+          status: Filter by product status. Supports comma-separated values for multiple statuses
 
           extra_headers: Send extra headers
 
@@ -155,9 +176,12 @@ class AsyncProductsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after": after,
                         "before": before,
+                        "created_at": created_at,
                         "limit": limit,
+                        "status": status,
                     },
                     product_list_products_params.ProductListProductsParams,
                 ),

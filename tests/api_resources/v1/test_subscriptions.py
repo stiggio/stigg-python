@@ -227,8 +227,17 @@ class TestSubscriptions:
         subscription = client.v1.subscriptions.list(
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            created_at={
+                "gt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "gte": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
+            },
             customer_id="customerId",
             limit=1,
+            plan_id="planId",
+            pricing_type="pricingType",
+            resource_id="resourceId",
             status="status",
         )
         assert_matches_type(SyncMyCursorIDPage[SubscriptionListResponse], subscription, path=["response"])
@@ -1033,8 +1042,17 @@ class TestAsyncSubscriptions:
         subscription = await async_client.v1.subscriptions.list(
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            created_at={
+                "gt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "gte": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
+            },
             customer_id="customerId",
             limit=1,
+            plan_id="planId",
+            pricing_type="pricingType",
+            resource_id="resourceId",
             status="status",
         )
         assert_matches_type(AsyncMyCursorIDPage[SubscriptionListResponse], subscription, path=["response"])

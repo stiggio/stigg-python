@@ -9,6 +9,7 @@ import pytest
 
 from stigg import Stigg, AsyncStigg
 from tests.utils import assert_matches_type
+from stigg._utils import parse_datetime
 from stigg.types.v1 import Coupon, CouponListResponse
 from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 
@@ -153,9 +154,18 @@ class TestCoupons:
     @parametrize
     def test_method_list_with_all_params(self, client: Stigg) -> None:
         coupon = client.v1.coupons.list(
+            id="id",
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            created_at={
+                "gt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "gte": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
+            },
             limit=1,
+            status="status",
+            type="FIXED",
         )
         assert_matches_type(SyncMyCursorIDPage[CouponListResponse], coupon, path=["response"])
 
@@ -322,9 +332,18 @@ class TestAsyncCoupons:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStigg) -> None:
         coupon = await async_client.v1.coupons.list(
+            id="id",
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            created_at={
+                "gt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "gte": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
+            },
             limit=1,
+            status="status",
+            type="FIXED",
         )
         assert_matches_type(AsyncMyCursorIDPage[CouponListResponse], coupon, path=["response"])
 

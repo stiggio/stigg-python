@@ -2,9 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing import Union
+from datetime import datetime
+from typing_extensions import Annotated, TypedDict
 
-__all__ = ["CustomerListParams"]
+from ..._utils import PropertyInfo
+
+__all__ = ["CustomerListParams", "CreatedAt"]
 
 
 class CustomerListParams(TypedDict, total=False):
@@ -14,5 +18,30 @@ class CustomerListParams(TypedDict, total=False):
     before: str
     """Return items that come before this cursor"""
 
+    created_at: Annotated[CreatedAt, PropertyInfo(alias="createdAt")]
+    """Filter by creation date using range operators: gt, gte, lt, lte"""
+
+    email: str
+    """Filter by exact customer email address"""
+
     limit: int
     """Maximum number of items to return"""
+
+    name: str
+    """Filter by exact customer name"""
+
+
+class CreatedAt(TypedDict, total=False):
+    """Filter by creation date using range operators: gt, gte, lt, lte"""
+
+    gt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Greater than the specified createdAt value"""
+
+    gte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Greater than or equal to the specified createdAt value"""
+
+    lt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Less than the specified createdAt value"""
+
+    lte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Less than or equal to the specified createdAt value"""
