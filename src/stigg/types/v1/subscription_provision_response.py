@@ -144,6 +144,9 @@ class DataEntitlementUnionMember1(BaseModel):
     entitlement_updated_at: Optional[datetime] = FieldInfo(alias="entitlementUpdatedAt", default=None)
     """Timestamp of the last update to the entitlement grant or configuration."""
 
+    usage_period_end: Optional[datetime] = FieldInfo(alias="usagePeriodEnd", default=None)
+    """The end date of the current billing period for recurring credit grants."""
+
     valid_until: Optional[datetime] = FieldInfo(alias="validUntil", default=None)
     """The next time the entitlement should be recalculated"""
 
