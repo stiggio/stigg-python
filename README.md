@@ -192,17 +192,10 @@ from stigg import Stigg
 
 client = Stigg()
 
-customer_response = client.v1.customers.provision(
-    id="id",
-    default_payment_method={
-        "billing_id": "billingId",
-        "card_expiry_month": 0,
-        "card_expiry_year": 0,
-        "card_last4_digits": "cardLast4Digits",
-        "type": "CARD",
-    },
+page = client.v1.customers.list(
+    created_at={},
 )
-print(customer_response.default_payment_method)
+print(page.data)
 ```
 
 ## Handling errors

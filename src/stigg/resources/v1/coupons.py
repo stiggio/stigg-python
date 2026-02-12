@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable, Optional
+from typing_extensions import Literal
 
 import httpx
 
@@ -145,9 +146,13 @@ class CouponsResource(SyncAPIResource):
     def list(
         self,
         *,
+        id: str | Omit = omit,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        created_at: coupon_list_params.CreatedAt | Omit = omit,
         limit: int | Omit = omit,
+        status: str | Omit = omit,
+        type: Literal["FIXED", "PERCENTAGE"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -159,11 +164,19 @@ class CouponsResource(SyncAPIResource):
         Retrieves a paginated list of coupons in the environment.
 
         Args:
+          id: Filter by entity ID
+
           after: Return items that come after this cursor
 
           before: Return items that come before this cursor
 
+          created_at: Filter by creation date using range operators: gt, gte, lt, lte
+
           limit: Maximum number of items to return
+
+          status: Filter by coupon status. Supports comma-separated values for multiple statuses
+
+          type: Filter by coupon type (FIXED or PERCENTAGE)
 
           extra_headers: Send extra headers
 
@@ -183,9 +196,13 @@ class CouponsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after": after,
                         "before": before,
+                        "created_at": created_at,
                         "limit": limit,
+                        "status": status,
+                        "type": type,
                     },
                     coupon_list_params.CouponListParams,
                 ),
@@ -314,9 +331,13 @@ class AsyncCouponsResource(AsyncAPIResource):
     def list(
         self,
         *,
+        id: str | Omit = omit,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        created_at: coupon_list_params.CreatedAt | Omit = omit,
         limit: int | Omit = omit,
+        status: str | Omit = omit,
+        type: Literal["FIXED", "PERCENTAGE"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -328,11 +349,19 @@ class AsyncCouponsResource(AsyncAPIResource):
         Retrieves a paginated list of coupons in the environment.
 
         Args:
+          id: Filter by entity ID
+
           after: Return items that come after this cursor
 
           before: Return items that come before this cursor
 
+          created_at: Filter by creation date using range operators: gt, gte, lt, lte
+
           limit: Maximum number of items to return
+
+          status: Filter by coupon status. Supports comma-separated values for multiple statuses
+
+          type: Filter by coupon type (FIXED or PERCENTAGE)
 
           extra_headers: Send extra headers
 
@@ -352,9 +381,13 @@ class AsyncCouponsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after": after,
                         "before": before,
+                        "created_at": created_at,
                         "limit": limit,
+                        "status": status,
+                        "type": type,
                     },
                     coupon_list_params.CouponListParams,
                 ),

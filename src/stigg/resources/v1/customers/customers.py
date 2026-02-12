@@ -175,7 +175,10 @@ class CustomersResource(SyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        created_at: customer_list_params.CreatedAt | Omit = omit,
+        email: str | Omit = omit,
         limit: int | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -191,7 +194,13 @@ class CustomersResource(SyncAPIResource):
 
           before: Return items that come before this cursor
 
+          created_at: Filter by creation date using range operators: gt, gte, lt, lte
+
+          email: Filter by exact customer email address
+
           limit: Maximum number of items to return
+
+          name: Filter by exact customer name
 
           extra_headers: Send extra headers
 
@@ -213,7 +222,10 @@ class CustomersResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "created_at": created_at,
+                        "email": email,
                         "limit": limit,
+                        "name": name,
                     },
                     customer_list_params.CustomerListParams,
                 ),
@@ -570,7 +582,10 @@ class AsyncCustomersResource(AsyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        created_at: customer_list_params.CreatedAt | Omit = omit,
+        email: str | Omit = omit,
         limit: int | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -586,7 +601,13 @@ class AsyncCustomersResource(AsyncAPIResource):
 
           before: Return items that come before this cursor
 
+          created_at: Filter by creation date using range operators: gt, gte, lt, lte
+
+          email: Filter by exact customer email address
+
           limit: Maximum number of items to return
+
+          name: Filter by exact customer name
 
           extra_headers: Send extra headers
 
@@ -608,7 +629,10 @@ class AsyncCustomersResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "created_at": created_at,
+                        "email": email,
                         "limit": limit,
+                        "name": name,
                     },
                     customer_list_params.CustomerListParams,
                 ),
