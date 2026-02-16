@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
@@ -23,14 +23,14 @@ class CouponCreateParams(TypedDict, total=False):
     duration_in_months: Required[Annotated[Optional[int], PropertyInfo(alias="durationInMonths")]]
     """Duration of the coupon validity in months"""
 
+    metadata: Required[Optional[Dict[str, str]]]
+    """Metadata associated with the entity"""
+
     name: Required[str]
     """Name of the coupon"""
 
     percent_off: Required[Annotated[Optional[float], PropertyInfo(alias="percentOff")]]
     """Percentage discount off the original price"""
-
-    additional_meta_data: Annotated[object, PropertyInfo(alias="additionalMetaData")]
-    """Metadata associated with the entity"""
 
 
 class AmountsOff(TypedDict, total=False):
