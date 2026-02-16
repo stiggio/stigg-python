@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -53,9 +53,9 @@ class CouponsResource(SyncAPIResource):
         amounts_off: Optional[Iterable[coupon_create_params.AmountsOff]],
         description: Optional[str],
         duration_in_months: Optional[int],
+        metadata: Optional[Dict[str, str]],
         name: str,
         percent_off: Optional[float],
-        additional_meta_data: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -76,11 +76,11 @@ class CouponsResource(SyncAPIResource):
 
           duration_in_months: Duration of the coupon validity in months
 
+          metadata: Metadata associated with the entity
+
           name: Name of the coupon
 
           percent_off: Percentage discount off the original price
-
-          additional_meta_data: Metadata associated with the entity
 
           extra_headers: Send extra headers
 
@@ -98,9 +98,9 @@ class CouponsResource(SyncAPIResource):
                     "amounts_off": amounts_off,
                     "description": description,
                     "duration_in_months": duration_in_months,
+                    "metadata": metadata,
                     "name": name,
                     "percent_off": percent_off,
-                    "additional_meta_data": additional_meta_data,
                 },
                 coupon_create_params.CouponCreateParams,
             ),
@@ -238,9 +238,9 @@ class AsyncCouponsResource(AsyncAPIResource):
         amounts_off: Optional[Iterable[coupon_create_params.AmountsOff]],
         description: Optional[str],
         duration_in_months: Optional[int],
+        metadata: Optional[Dict[str, str]],
         name: str,
         percent_off: Optional[float],
-        additional_meta_data: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -261,11 +261,11 @@ class AsyncCouponsResource(AsyncAPIResource):
 
           duration_in_months: Duration of the coupon validity in months
 
+          metadata: Metadata associated with the entity
+
           name: Name of the coupon
 
           percent_off: Percentage discount off the original price
-
-          additional_meta_data: Metadata associated with the entity
 
           extra_headers: Send extra headers
 
@@ -283,9 +283,9 @@ class AsyncCouponsResource(AsyncAPIResource):
                     "amounts_off": amounts_off,
                     "description": description,
                     "duration_in_months": duration_in_months,
+                    "metadata": metadata,
                     "name": name,
                     "percent_off": percent_off,
-                    "additional_meta_data": additional_meta_data,
                 },
                 coupon_create_params.CouponCreateParams,
             ),

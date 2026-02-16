@@ -32,27 +32,9 @@ class TestCoupons:
             ],
             description="description",
             duration_in_months=1,
+            metadata={"foo": "string"},
             name="name",
             percent_off=1,
-        )
-        assert_matches_type(Coupon, coupon, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_method_create_with_all_params(self, client: Stigg) -> None:
-        coupon = client.v1.coupons.create(
-            id="id",
-            amounts_off=[
-                {
-                    "amount": 0,
-                    "currency": "usd",
-                }
-            ],
-            description="description",
-            duration_in_months=1,
-            name="name",
-            percent_off=1,
-            additional_meta_data={},
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 
@@ -69,6 +51,7 @@ class TestCoupons:
             ],
             description="description",
             duration_in_months=1,
+            metadata={"foo": "string"},
             name="name",
             percent_off=1,
         )
@@ -91,6 +74,7 @@ class TestCoupons:
             ],
             description="description",
             duration_in_months=1,
+            metadata={"foo": "string"},
             name="name",
             percent_off=1,
         ) as response:
@@ -210,27 +194,9 @@ class TestAsyncCoupons:
             ],
             description="description",
             duration_in_months=1,
+            metadata={"foo": "string"},
             name="name",
             percent_off=1,
-        )
-        assert_matches_type(Coupon, coupon, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncStigg) -> None:
-        coupon = await async_client.v1.coupons.create(
-            id="id",
-            amounts_off=[
-                {
-                    "amount": 0,
-                    "currency": "usd",
-                }
-            ],
-            description="description",
-            duration_in_months=1,
-            name="name",
-            percent_off=1,
-            additional_meta_data={},
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 
@@ -247,6 +213,7 @@ class TestAsyncCoupons:
             ],
             description="description",
             duration_in_months=1,
+            metadata={"foo": "string"},
             name="name",
             percent_off=1,
         )
@@ -269,6 +236,7 @@ class TestAsyncCoupons:
             ],
             description="description",
             duration_in_months=1,
+            metadata={"foo": "string"},
             name="name",
             percent_off=1,
         ) as response:
