@@ -79,7 +79,7 @@ class Stigg(SyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("STIGG_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.example.com"
+            base_url = f"https://api.stigg.io"
 
         super().__init__(
             version=__version__,
@@ -253,7 +253,7 @@ class AsyncStigg(AsyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("STIGG_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.example.com"
+            base_url = f"https://api.stigg.io"
 
         super().__init__(
             version=__version__,
