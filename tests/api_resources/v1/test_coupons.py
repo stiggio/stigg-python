@@ -10,7 +10,10 @@ import pytest
 from stigg import Stigg, AsyncStigg
 from tests.utils import assert_matches_type
 from stigg._utils import parse_datetime
-from stigg.types.v1 import Coupon, CouponListResponse
+from stigg.types.v1 import (
+    Coupon,
+    CouponListResponse,
+)
 from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -175,6 +178,101 @@ class TestCoupons:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_archive_coupon(self, client: Stigg) -> None:
+        coupon = client.v1.coupons.archive_coupon(
+            "x",
+        )
+        assert_matches_type(Coupon, coupon, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_archive_coupon(self, client: Stigg) -> None:
+        response = client.v1.coupons.with_raw_response.archive_coupon(
+            "x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        coupon = response.parse()
+        assert_matches_type(Coupon, coupon, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_archive_coupon(self, client: Stigg) -> None:
+        with client.v1.coupons.with_streaming_response.archive_coupon(
+            "x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            coupon = response.parse()
+            assert_matches_type(Coupon, coupon, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_archive_coupon(self, client: Stigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.v1.coupons.with_raw_response.archive_coupon(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_update_coupon(self, client: Stigg) -> None:
+        coupon = client.v1.coupons.update_coupon(
+            id="x",
+        )
+        assert_matches_type(Coupon, coupon, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_update_coupon_with_all_params(self, client: Stigg) -> None:
+        coupon = client.v1.coupons.update_coupon(
+            id="x",
+            description="description",
+            metadata={"foo": "string"},
+            name="name",
+        )
+        assert_matches_type(Coupon, coupon, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_update_coupon(self, client: Stigg) -> None:
+        response = client.v1.coupons.with_raw_response.update_coupon(
+            id="x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        coupon = response.parse()
+        assert_matches_type(Coupon, coupon, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_update_coupon(self, client: Stigg) -> None:
+        with client.v1.coupons.with_streaming_response.update_coupon(
+            id="x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            coupon = response.parse()
+            assert_matches_type(Coupon, coupon, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_update_coupon(self, client: Stigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.v1.coupons.with_raw_response.update_coupon(
+                id="",
+            )
+
 
 class TestAsyncCoupons:
     parametrize = pytest.mark.parametrize(
@@ -336,3 +434,98 @@ class TestAsyncCoupons:
             assert_matches_type(AsyncMyCursorIDPage[CouponListResponse], coupon, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_archive_coupon(self, async_client: AsyncStigg) -> None:
+        coupon = await async_client.v1.coupons.archive_coupon(
+            "x",
+        )
+        assert_matches_type(Coupon, coupon, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_archive_coupon(self, async_client: AsyncStigg) -> None:
+        response = await async_client.v1.coupons.with_raw_response.archive_coupon(
+            "x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        coupon = await response.parse()
+        assert_matches_type(Coupon, coupon, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_archive_coupon(self, async_client: AsyncStigg) -> None:
+        async with async_client.v1.coupons.with_streaming_response.archive_coupon(
+            "x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            coupon = await response.parse()
+            assert_matches_type(Coupon, coupon, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_archive_coupon(self, async_client: AsyncStigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.v1.coupons.with_raw_response.archive_coupon(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_update_coupon(self, async_client: AsyncStigg) -> None:
+        coupon = await async_client.v1.coupons.update_coupon(
+            id="x",
+        )
+        assert_matches_type(Coupon, coupon, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_update_coupon_with_all_params(self, async_client: AsyncStigg) -> None:
+        coupon = await async_client.v1.coupons.update_coupon(
+            id="x",
+            description="description",
+            metadata={"foo": "string"},
+            name="name",
+        )
+        assert_matches_type(Coupon, coupon, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_update_coupon(self, async_client: AsyncStigg) -> None:
+        response = await async_client.v1.coupons.with_raw_response.update_coupon(
+            id="x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        coupon = await response.parse()
+        assert_matches_type(Coupon, coupon, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_update_coupon(self, async_client: AsyncStigg) -> None:
+        async with async_client.v1.coupons.with_streaming_response.update_coupon(
+            id="x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            coupon = await response.parse()
+            assert_matches_type(Coupon, coupon, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_update_coupon(self, async_client: AsyncStigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.v1.coupons.with_raw_response.update_coupon(
+                id="",
+            )
