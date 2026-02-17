@@ -33,6 +33,14 @@ from .payment_method import (
     AsyncPaymentMethodResourceWithStreamingResponse,
 )
 from ...._base_client import AsyncPaginator, make_request_options
+from .promotional_entitlements import (
+    PromotionalEntitlementsResource,
+    AsyncPromotionalEntitlementsResource,
+    PromotionalEntitlementsResourceWithRawResponse,
+    AsyncPromotionalEntitlementsResourceWithRawResponse,
+    PromotionalEntitlementsResourceWithStreamingResponse,
+    AsyncPromotionalEntitlementsResourceWithStreamingResponse,
+)
 from ....types.v1.customer_response import CustomerResponse
 from ....types.v1.customer_list_response import CustomerListResponse
 from ....types.v1.customer_import_response import CustomerImportResponse
@@ -45,6 +53,10 @@ class CustomersResource(SyncAPIResource):
     @cached_property
     def payment_method(self) -> PaymentMethodResource:
         return PaymentMethodResource(self._client)
+
+    @cached_property
+    def promotional_entitlements(self) -> PromotionalEntitlementsResource:
+        return PromotionalEntitlementsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CustomersResourceWithRawResponse:
@@ -448,6 +460,10 @@ class AsyncCustomersResource(AsyncAPIResource):
     @cached_property
     def payment_method(self) -> AsyncPaymentMethodResource:
         return AsyncPaymentMethodResource(self._client)
+
+    @cached_property
+    def promotional_entitlements(self) -> AsyncPromotionalEntitlementsResource:
+        return AsyncPromotionalEntitlementsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCustomersResourceWithRawResponse:
@@ -880,6 +896,10 @@ class CustomersResourceWithRawResponse:
     def payment_method(self) -> PaymentMethodResourceWithRawResponse:
         return PaymentMethodResourceWithRawResponse(self._customers.payment_method)
 
+    @cached_property
+    def promotional_entitlements(self) -> PromotionalEntitlementsResourceWithRawResponse:
+        return PromotionalEntitlementsResourceWithRawResponse(self._customers.promotional_entitlements)
+
 
 class AsyncCustomersResourceWithRawResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -913,6 +933,10 @@ class AsyncCustomersResourceWithRawResponse:
     @cached_property
     def payment_method(self) -> AsyncPaymentMethodResourceWithRawResponse:
         return AsyncPaymentMethodResourceWithRawResponse(self._customers.payment_method)
+
+    @cached_property
+    def promotional_entitlements(self) -> AsyncPromotionalEntitlementsResourceWithRawResponse:
+        return AsyncPromotionalEntitlementsResourceWithRawResponse(self._customers.promotional_entitlements)
 
 
 class CustomersResourceWithStreamingResponse:
@@ -948,6 +972,10 @@ class CustomersResourceWithStreamingResponse:
     def payment_method(self) -> PaymentMethodResourceWithStreamingResponse:
         return PaymentMethodResourceWithStreamingResponse(self._customers.payment_method)
 
+    @cached_property
+    def promotional_entitlements(self) -> PromotionalEntitlementsResourceWithStreamingResponse:
+        return PromotionalEntitlementsResourceWithStreamingResponse(self._customers.promotional_entitlements)
+
 
 class AsyncCustomersResourceWithStreamingResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -981,3 +1009,7 @@ class AsyncCustomersResourceWithStreamingResponse:
     @cached_property
     def payment_method(self) -> AsyncPaymentMethodResourceWithStreamingResponse:
         return AsyncPaymentMethodResourceWithStreamingResponse(self._customers.payment_method)
+
+    @cached_property
+    def promotional_entitlements(self) -> AsyncPromotionalEntitlementsResourceWithStreamingResponse:
+        return AsyncPromotionalEntitlementsResourceWithStreamingResponse(self._customers.promotional_entitlements)
