@@ -31,22 +31,6 @@ Methods:
 - <code title="post /api/v1/customers/{id}/payment-method">client.v1.customers.payment_method.<a href="./src/stigg/resources/v1/customers/payment_method.py">attach</a>(id, \*\*<a href="src/stigg/types/v1/customers/payment_method_attach_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_response.py">CustomerResponse</a></code>
 - <code title="delete /api/v1/customers/{id}/payment-method">client.v1.customers.payment_method.<a href="./src/stigg/resources/v1/customers/payment_method.py">detach</a>(id) -> <a href="./src/stigg/types/v1/customer_response.py">CustomerResponse</a></code>
 
-### PromotionalEntitlements
-
-Types:
-
-```python
-from stigg.types.v1.customers import (
-    PromotionalEntitlementGrantResponse,
-    PromotionalEntitlementRevokeResponse,
-)
-```
-
-Methods:
-
-- <code title="post /api/v1/customers/{customerId}/promotional">client.v1.customers.promotional_entitlements.<a href="./src/stigg/resources/v1/customers/promotional_entitlements.py">grant</a>(customer_id, \*\*<a href="src/stigg/types/v1/customers/promotional_entitlement_grant_params.py">params</a>) -> <a href="./src/stigg/types/v1/customers/promotional_entitlement_grant_response.py">PromotionalEntitlementGrantResponse</a></code>
-- <code title="delete /api/v1/customers/{customerId}/promotional/{featureId}">client.v1.customers.promotional_entitlements.<a href="./src/stigg/resources/v1/customers/promotional_entitlements.py">revoke</a>(feature_id, \*, customer_id) -> <a href="./src/stigg/types/v1/customers/promotional_entitlement_revoke_response.py">PromotionalEntitlementRevokeResponse</a></code>
-
 ## Subscriptions
 
 Types:
