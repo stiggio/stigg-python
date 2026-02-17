@@ -10,14 +10,6 @@ from .usage import (
     UsageResourceWithStreamingResponse,
     AsyncUsageResourceWithStreamingResponse,
 )
-from .events import (
-    EventsResource,
-    AsyncEventsResource,
-    EventsResourceWithRawResponse,
-    AsyncEventsResourceWithRawResponse,
-    EventsResourceWithStreamingResponse,
-    AsyncEventsResourceWithStreamingResponse,
-)
 from .coupons import (
     CouponsResource,
     AsyncCouponsResource,
@@ -36,6 +28,14 @@ from .products import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .events.events import (
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
+)
 from .customers.customers import (
     CustomersResource,
     AsyncCustomersResource,
