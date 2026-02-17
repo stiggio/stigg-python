@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Union
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
@@ -27,7 +27,7 @@ class AddonListAddonsParams(TypedDict, total=False):
     product_id: Annotated[str, PropertyInfo(alias="productId")]
     """Filter by product ID"""
 
-    status: Literal["DRAFT", "PUBLISHED", "ARCHIVED"]
+    status: str
     """Filter by addon status. Supports comma-separated values for multiple statuses"""
 
 
