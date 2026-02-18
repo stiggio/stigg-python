@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.7 (2026-02-18)
+
+Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
+
+### Features
+
+* **api:** Add missing endpoints ([1d4b37d](https://github.com/stiggio/stigg-python/commit/1d4b37d85f31cb27c5a19ad3fc596aa4cda433a1))
+* **api:** api update ([086f11a](https://github.com/stiggio/stigg-python/commit/086f11abb846c47c50a29355b88a15836ea23ee7))
+* **api:** manual updates ([fffd1aa](https://github.com/stiggio/stigg-python/commit/fffd1aafc92a46d5ed300b3164336f51944925de))
+* **api:** manual updates ([fffd1aa](https://github.com/stiggio/stigg-python/commit/fffd1aafc92a46d5ed300b3164336f51944925de))
+* **api:** trigger release ([43833a2](https://github.com/stiggio/stigg-python/commit/43833a2a3f4f3aea2f9e611f56094e24ec002650))
+* **api:** trigger release ([43833a2](https://github.com/stiggio/stigg-python/commit/43833a2a3f4f3aea2f9e611f56094e24ec002650))
+
 ## 0.1.0-alpha.6 (2026-02-18)
 
 Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
