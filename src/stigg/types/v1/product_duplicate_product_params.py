@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -11,6 +11,9 @@ __all__ = ["ProductDuplicateProductParams"]
 
 
 class ProductDuplicateProductParams(TypedDict, total=False):
+    body_id: Required[Annotated[str, PropertyInfo(alias="id")]]
+    """The unique identifier for the entity"""
+
     description: Optional[str]
     """Description of the product"""
 
