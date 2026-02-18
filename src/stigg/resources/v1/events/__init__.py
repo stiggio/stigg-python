@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .plans import (
+    PlansResource,
+    AsyncPlansResource,
+    PlansResourceWithRawResponse,
+    AsyncPlansResourceWithRawResponse,
+    PlansResourceWithStreamingResponse,
+    AsyncPlansResourceWithStreamingResponse,
+)
 from .addons import (
     AddonsResource,
     AsyncAddonsResource,
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncAddonsResourceWithRawResponse",
     "AddonsResourceWithStreamingResponse",
     "AsyncAddonsResourceWithStreamingResponse",
+    "PlansResource",
+    "AsyncPlansResource",
+    "PlansResourceWithRawResponse",
+    "AsyncPlansResourceWithRawResponse",
+    "PlansResourceWithStreamingResponse",
+    "AsyncPlansResourceWithStreamingResponse",
     "EventsResource",
     "AsyncEventsResource",
     "EventsResourceWithRawResponse",
