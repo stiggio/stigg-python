@@ -206,6 +206,20 @@ Methods:
 - <code title="post /api/v1/addons/{id}/draft">client.v1.events.addons.draft.<a href="./src/stigg/resources/v1/events/addons/draft.py">create_addon_draft</a>(id) -> <a href="./src/stigg/types/v1/events/addons/draft_create_addon_draft_response.py">DraftCreateAddonDraftResponse</a></code>
 - <code title="delete /api/v1/addons/{id}/draft">client.v1.events.addons.draft.<a href="./src/stigg/resources/v1/events/addons/draft.py">remove_addon_draft</a>(id) -> <a href="./src/stigg/types/v1/events/addons/draft_remove_addon_draft_response.py">DraftRemoveAddonDraftResponse</a></code>
 
+### Plans
+
+Types:
+
+```python
+from stigg.types.v1.events import PlanCreateResponse, PlanRetrieveResponse, PlanListResponse
+```
+
+Methods:
+
+- <code title="post /api/v1/plans">client.v1.events.plans.<a href="./src/stigg/resources/v1/events/plans.py">create</a>(\*\*<a href="src/stigg/types/v1/events/plan_create_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/plan_create_response.py">PlanCreateResponse</a></code>
+- <code title="get /api/v1/plans/{id}">client.v1.events.plans.<a href="./src/stigg/resources/v1/events/plans.py">retrieve</a>(id) -> <a href="./src/stigg/types/v1/events/plan_retrieve_response.py">PlanRetrieveResponse</a></code>
+- <code title="get /api/v1/plans">client.v1.events.plans.<a href="./src/stigg/resources/v1/events/plans.py">list</a>(\*\*<a href="src/stigg/types/v1/events/plan_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/plan_list_response.py">SyncMyCursorIDPage[PlanListResponse]</a></code>
+
 ## Usage
 
 Types:
