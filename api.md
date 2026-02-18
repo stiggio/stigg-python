@@ -94,12 +94,13 @@ Methods:
 Types:
 
 ```python
-from stigg.types.v1.subscriptions import UsageChargeUsageResponse
+from stigg.types.v1.subscriptions import UsageChargeUsageResponse, UsageSyncResponse
 ```
 
 Methods:
 
 - <code title="post /api/v1/subscriptions/{id}/usage/charge">client.v1.subscriptions.usage.<a href="./src/stigg/resources/v1/subscriptions/usage.py">charge_usage</a>(id, \*\*<a href="src/stigg/types/v1/subscriptions/usage_charge_usage_params.py">params</a>) -> <a href="./src/stigg/types/v1/subscriptions/usage_charge_usage_response.py">UsageChargeUsageResponse</a></code>
+- <code title="post /api/v1/subscriptions/{id}/usage/sync">client.v1.subscriptions.usage.<a href="./src/stigg/resources/v1/subscriptions/usage.py">sync</a>(id) -> <a href="./src/stigg/types/v1/subscriptions/usage_sync_response.py">UsageSyncResponse</a></code>
 
 ### Invoice
 
