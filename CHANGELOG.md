@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.1.0-alpha.6 (2026-02-18)
+
+Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
+
+### Features
+
+* **api:** api update ([6eee00b](https://github.com/stiggio/stigg-python/commit/6eee00ba043342ebceb6a84b8e5dd69aadbd1228))
+* **api:** api update ([381c9c8](https://github.com/stiggio/stigg-python/commit/381c9c8635ba4910fdf09fe858420cb91f845575))
+* **api:** api update ([ce21825](https://github.com/stiggio/stigg-python/commit/ce218252b95333ba4e410601eae49ef73874a916))
+* **api:** api update ([66820e7](https://github.com/stiggio/stigg-python/commit/66820e7a140dd5ee23e32b546eab96446fd15e36))
+* **api:** api update ([8dcf9a0](https://github.com/stiggio/stigg-python/commit/8dcf9a029436559d9224288f2186440a74863beb))
+* **api:** api update ([bcc391d](https://github.com/stiggio/stigg-python/commit/bcc391d302738e26a2b463aa7ae7d9b1ccd6e553))
+* **api:** api update ([f32546a](https://github.com/stiggio/stigg-python/commit/f32546a6307f6063119875fdc2ceefb264b661d8))
+* **api:** api update ([b61d4b1](https://github.com/stiggio/stigg-python/commit/b61d4b1b23319025742d6aa84123f0a3244119ad))
+* **api:** manual updates ([fcd3ece](https://github.com/stiggio/stigg-python/commit/fcd3ecea8478bcf146ba875187ec55a36353e834))
+* **api:** manual updates ([e3edede](https://github.com/stiggio/stigg-python/commit/e3ededee2c4dc5f645f7b94e051309cb1764e40c))
+* **api:** updated the production environment ([aa99616](https://github.com/stiggio/stigg-python/commit/aa99616261911ad05ea2cbd5a89d0f9b9314f6fe))
+
+
+### Chores
+
+* configure new SDK language ([76b0cb3](https://github.com/stiggio/stigg-python/commit/76b0cb348b917355e7133225a71c97f16ddc36c6))
+* format all `api.md` files ([4350676](https://github.com/stiggio/stigg-python/commit/4350676cf5b6a33014f530c8c72208e73d9d053b))
+* **internal:** bump dependencies ([da0290c](https://github.com/stiggio/stigg-python/commit/da0290c5bf5804804e02db0a785e9856d2fb9171))
+* **internal:** fix lint error on Python 3.14 ([7403f4e](https://github.com/stiggio/stigg-python/commit/7403f4e8461fff3949bb6966f1fbc9f6933b370b))
+
 ## 0.1.0-alpha.5 (2026-02-08)
 
 Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
