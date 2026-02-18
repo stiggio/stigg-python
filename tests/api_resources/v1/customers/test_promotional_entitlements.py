@@ -10,8 +10,10 @@ import pytest
 from stigg import Stigg, AsyncStigg
 from tests.utils import assert_matches_type
 from stigg._utils import parse_datetime
+from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 from stigg.types.v1.customers import (
-    PromotionalEntitlementGrantResponse,
+    PromotionalEntitlementListResponse,
+    PromotionalEntitlementCreateResponse,
     PromotionalEntitlementRevokeResponse,
 )
 
@@ -23,9 +25,9 @@ class TestPromotionalEntitlements:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_grant(self, client: Stigg) -> None:
-        promotional_entitlement = client.v1.customers.promotional_entitlements.grant(
-            customer_id="customerId",
+    def test_method_create(self, client: Stigg) -> None:
+        promotional_entitlement = client.v1.customers.promotional_entitlements.create(
+            id="x",
             promotional_entitlements=[
                 {
                     "custom_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -43,13 +45,13 @@ class TestPromotionalEntitlements:
                 }
             ],
         )
-        assert_matches_type(PromotionalEntitlementGrantResponse, promotional_entitlement, path=["response"])
+        assert_matches_type(PromotionalEntitlementCreateResponse, promotional_entitlement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_grant(self, client: Stigg) -> None:
-        response = client.v1.customers.promotional_entitlements.with_raw_response.grant(
-            customer_id="customerId",
+    def test_raw_response_create(self, client: Stigg) -> None:
+        response = client.v1.customers.promotional_entitlements.with_raw_response.create(
+            id="x",
             promotional_entitlements=[
                 {
                     "custom_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -71,13 +73,13 @@ class TestPromotionalEntitlements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         promotional_entitlement = response.parse()
-        assert_matches_type(PromotionalEntitlementGrantResponse, promotional_entitlement, path=["response"])
+        assert_matches_type(PromotionalEntitlementCreateResponse, promotional_entitlement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_grant(self, client: Stigg) -> None:
-        with client.v1.customers.promotional_entitlements.with_streaming_response.grant(
-            customer_id="customerId",
+    def test_streaming_response_create(self, client: Stigg) -> None:
+        with client.v1.customers.promotional_entitlements.with_streaming_response.create(
+            id="x",
             promotional_entitlements=[
                 {
                     "custom_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -99,16 +101,16 @@ class TestPromotionalEntitlements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             promotional_entitlement = response.parse()
-            assert_matches_type(PromotionalEntitlementGrantResponse, promotional_entitlement, path=["response"])
+            assert_matches_type(PromotionalEntitlementCreateResponse, promotional_entitlement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_path_params_grant(self, client: Stigg) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `customer_id` but received ''"):
-            client.v1.customers.promotional_entitlements.with_raw_response.grant(
-                customer_id="",
+    def test_path_params_create(self, client: Stigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.v1.customers.promotional_entitlements.with_raw_response.create(
+                id="",
                 promotional_entitlements=[
                     {
                         "custom_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -129,10 +131,78 @@ class TestPromotionalEntitlements:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    def test_method_list(self, client: Stigg) -> None:
+        promotional_entitlement = client.v1.customers.promotional_entitlements.list(
+            id="x",
+        )
+        assert_matches_type(
+            SyncMyCursorIDPage[PromotionalEntitlementListResponse], promotional_entitlement, path=["response"]
+        )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_list_with_all_params(self, client: Stigg) -> None:
+        promotional_entitlement = client.v1.customers.promotional_entitlements.list(
+            id="x",
+            after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            created_at={
+                "gt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "gte": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
+            },
+            limit=1,
+            status="status",
+        )
+        assert_matches_type(
+            SyncMyCursorIDPage[PromotionalEntitlementListResponse], promotional_entitlement, path=["response"]
+        )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_list(self, client: Stigg) -> None:
+        response = client.v1.customers.promotional_entitlements.with_raw_response.list(
+            id="x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        promotional_entitlement = response.parse()
+        assert_matches_type(
+            SyncMyCursorIDPage[PromotionalEntitlementListResponse], promotional_entitlement, path=["response"]
+        )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_list(self, client: Stigg) -> None:
+        with client.v1.customers.promotional_entitlements.with_streaming_response.list(
+            id="x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            promotional_entitlement = response.parse()
+            assert_matches_type(
+                SyncMyCursorIDPage[PromotionalEntitlementListResponse], promotional_entitlement, path=["response"]
+            )
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_list(self, client: Stigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.v1.customers.promotional_entitlements.with_raw_response.list(
+                id="",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     def test_method_revoke(self, client: Stigg) -> None:
         promotional_entitlement = client.v1.customers.promotional_entitlements.revoke(
             feature_id="featureId",
-            customer_id="customerId",
+            id="id",
         )
         assert_matches_type(PromotionalEntitlementRevokeResponse, promotional_entitlement, path=["response"])
 
@@ -141,7 +211,7 @@ class TestPromotionalEntitlements:
     def test_raw_response_revoke(self, client: Stigg) -> None:
         response = client.v1.customers.promotional_entitlements.with_raw_response.revoke(
             feature_id="featureId",
-            customer_id="customerId",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -154,7 +224,7 @@ class TestPromotionalEntitlements:
     def test_streaming_response_revoke(self, client: Stigg) -> None:
         with client.v1.customers.promotional_entitlements.with_streaming_response.revoke(
             feature_id="featureId",
-            customer_id="customerId",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -167,16 +237,16 @@ class TestPromotionalEntitlements:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_revoke(self, client: Stigg) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `customer_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.customers.promotional_entitlements.with_raw_response.revoke(
                 feature_id="featureId",
-                customer_id="",
+                id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `feature_id` but received ''"):
             client.v1.customers.promotional_entitlements.with_raw_response.revoke(
                 feature_id="",
-                customer_id="customerId",
+                id="id",
             )
 
 
@@ -187,9 +257,9 @@ class TestAsyncPromotionalEntitlements:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_grant(self, async_client: AsyncStigg) -> None:
-        promotional_entitlement = await async_client.v1.customers.promotional_entitlements.grant(
-            customer_id="customerId",
+    async def test_method_create(self, async_client: AsyncStigg) -> None:
+        promotional_entitlement = await async_client.v1.customers.promotional_entitlements.create(
+            id="x",
             promotional_entitlements=[
                 {
                     "custom_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -207,13 +277,13 @@ class TestAsyncPromotionalEntitlements:
                 }
             ],
         )
-        assert_matches_type(PromotionalEntitlementGrantResponse, promotional_entitlement, path=["response"])
+        assert_matches_type(PromotionalEntitlementCreateResponse, promotional_entitlement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_grant(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v1.customers.promotional_entitlements.with_raw_response.grant(
-            customer_id="customerId",
+    async def test_raw_response_create(self, async_client: AsyncStigg) -> None:
+        response = await async_client.v1.customers.promotional_entitlements.with_raw_response.create(
+            id="x",
             promotional_entitlements=[
                 {
                     "custom_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -235,13 +305,13 @@ class TestAsyncPromotionalEntitlements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         promotional_entitlement = await response.parse()
-        assert_matches_type(PromotionalEntitlementGrantResponse, promotional_entitlement, path=["response"])
+        assert_matches_type(PromotionalEntitlementCreateResponse, promotional_entitlement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_grant(self, async_client: AsyncStigg) -> None:
-        async with async_client.v1.customers.promotional_entitlements.with_streaming_response.grant(
-            customer_id="customerId",
+    async def test_streaming_response_create(self, async_client: AsyncStigg) -> None:
+        async with async_client.v1.customers.promotional_entitlements.with_streaming_response.create(
+            id="x",
             promotional_entitlements=[
                 {
                     "custom_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -263,16 +333,16 @@ class TestAsyncPromotionalEntitlements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             promotional_entitlement = await response.parse()
-            assert_matches_type(PromotionalEntitlementGrantResponse, promotional_entitlement, path=["response"])
+            assert_matches_type(PromotionalEntitlementCreateResponse, promotional_entitlement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_path_params_grant(self, async_client: AsyncStigg) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `customer_id` but received ''"):
-            await async_client.v1.customers.promotional_entitlements.with_raw_response.grant(
-                customer_id="",
+    async def test_path_params_create(self, async_client: AsyncStigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.v1.customers.promotional_entitlements.with_raw_response.create(
+                id="",
                 promotional_entitlements=[
                     {
                         "custom_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -293,10 +363,78 @@ class TestAsyncPromotionalEntitlements:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    async def test_method_list(self, async_client: AsyncStigg) -> None:
+        promotional_entitlement = await async_client.v1.customers.promotional_entitlements.list(
+            id="x",
+        )
+        assert_matches_type(
+            AsyncMyCursorIDPage[PromotionalEntitlementListResponse], promotional_entitlement, path=["response"]
+        )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncStigg) -> None:
+        promotional_entitlement = await async_client.v1.customers.promotional_entitlements.list(
+            id="x",
+            after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            created_at={
+                "gt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "gte": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
+            },
+            limit=1,
+            status="status",
+        )
+        assert_matches_type(
+            AsyncMyCursorIDPage[PromotionalEntitlementListResponse], promotional_entitlement, path=["response"]
+        )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncStigg) -> None:
+        response = await async_client.v1.customers.promotional_entitlements.with_raw_response.list(
+            id="x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        promotional_entitlement = await response.parse()
+        assert_matches_type(
+            AsyncMyCursorIDPage[PromotionalEntitlementListResponse], promotional_entitlement, path=["response"]
+        )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncStigg) -> None:
+        async with async_client.v1.customers.promotional_entitlements.with_streaming_response.list(
+            id="x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            promotional_entitlement = await response.parse()
+            assert_matches_type(
+                AsyncMyCursorIDPage[PromotionalEntitlementListResponse], promotional_entitlement, path=["response"]
+            )
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncStigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.v1.customers.promotional_entitlements.with_raw_response.list(
+                id="",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     async def test_method_revoke(self, async_client: AsyncStigg) -> None:
         promotional_entitlement = await async_client.v1.customers.promotional_entitlements.revoke(
             feature_id="featureId",
-            customer_id="customerId",
+            id="id",
         )
         assert_matches_type(PromotionalEntitlementRevokeResponse, promotional_entitlement, path=["response"])
 
@@ -305,7 +443,7 @@ class TestAsyncPromotionalEntitlements:
     async def test_raw_response_revoke(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.customers.promotional_entitlements.with_raw_response.revoke(
             feature_id="featureId",
-            customer_id="customerId",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -318,7 +456,7 @@ class TestAsyncPromotionalEntitlements:
     async def test_streaming_response_revoke(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.customers.promotional_entitlements.with_streaming_response.revoke(
             feature_id="featureId",
-            customer_id="customerId",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -331,14 +469,14 @@ class TestAsyncPromotionalEntitlements:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_revoke(self, async_client: AsyncStigg) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `customer_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.customers.promotional_entitlements.with_raw_response.revoke(
                 feature_id="featureId",
-                customer_id="",
+                id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `feature_id` but received ''"):
             await async_client.v1.customers.promotional_entitlements.with_raw_response.revoke(
                 feature_id="",
-                customer_id="customerId",
+                id="id",
             )

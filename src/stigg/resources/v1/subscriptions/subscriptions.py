@@ -8,6 +8,22 @@ from typing_extensions import Literal
 
 import httpx
 
+from .usage import (
+    UsageResource,
+    AsyncUsageResource,
+    UsageResourceWithRawResponse,
+    AsyncUsageResourceWithRawResponse,
+    UsageResourceWithStreamingResponse,
+    AsyncUsageResourceWithStreamingResponse,
+)
+from .invoice import (
+    InvoiceResource,
+    AsyncInvoiceResource,
+    InvoiceResourceWithRawResponse,
+    AsyncInvoiceResourceWithRawResponse,
+    InvoiceResourceWithStreamingResponse,
+    AsyncInvoiceResourceWithStreamingResponse,
+)
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
@@ -52,6 +68,14 @@ class SubscriptionsResource(SyncAPIResource):
     @cached_property
     def future_update(self) -> FutureUpdateResource:
         return FutureUpdateResource(self._client)
+
+    @cached_property
+    def usage(self) -> UsageResource:
+        return UsageResource(self._client)
+
+    @cached_property
+    def invoice(self) -> InvoiceResource:
+        return InvoiceResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> SubscriptionsResourceWithRawResponse:
@@ -182,8 +206,12 @@ class SubscriptionsResource(SyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        created_at: subscription_list_params.CreatedAt | Omit = omit,
         customer_id: str | Omit = omit,
         limit: int | Omit = omit,
+        plan_id: str | Omit = omit,
+        pricing_type: str | Omit = omit,
+        resource_id: str | Omit = omit,
         status: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -201,11 +229,20 @@ class SubscriptionsResource(SyncAPIResource):
 
           before: Return items that come before this cursor
 
+          created_at: Filter by creation date using range operators: gt, gte, lt, lte
+
           customer_id: Filter by customer ID
 
           limit: Maximum number of items to return
 
-          status: Filter by status (comma-separated)
+          plan_id: Filter by plan ID
+
+          pricing_type: Filter by pricing type. Supports comma-separated values for multiple types
+
+          resource_id: Filter by resource ID
+
+          status: Filter by subscription status. Supports comma-separated values for multiple
+              statuses
 
           extra_headers: Send extra headers
 
@@ -227,8 +264,12 @@ class SubscriptionsResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "created_at": created_at,
                         "customer_id": customer_id,
                         "limit": limit,
+                        "plan_id": plan_id,
+                        "pricing_type": pricing_type,
+                        "resource_id": resource_id,
                         "status": status,
                     },
                     subscription_list_params.SubscriptionListParams,
@@ -686,6 +727,14 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         return AsyncFutureUpdateResource(self._client)
 
     @cached_property
+    def usage(self) -> AsyncUsageResource:
+        return AsyncUsageResource(self._client)
+
+    @cached_property
+    def invoice(self) -> AsyncInvoiceResource:
+        return AsyncInvoiceResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncSubscriptionsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -814,8 +863,12 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        created_at: subscription_list_params.CreatedAt | Omit = omit,
         customer_id: str | Omit = omit,
         limit: int | Omit = omit,
+        plan_id: str | Omit = omit,
+        pricing_type: str | Omit = omit,
+        resource_id: str | Omit = omit,
         status: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -833,11 +886,20 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           before: Return items that come before this cursor
 
+          created_at: Filter by creation date using range operators: gt, gte, lt, lte
+
           customer_id: Filter by customer ID
 
           limit: Maximum number of items to return
 
-          status: Filter by status (comma-separated)
+          plan_id: Filter by plan ID
+
+          pricing_type: Filter by pricing type. Supports comma-separated values for multiple types
+
+          resource_id: Filter by resource ID
+
+          status: Filter by subscription status. Supports comma-separated values for multiple
+              statuses
 
           extra_headers: Send extra headers
 
@@ -859,8 +921,12 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "created_at": created_at,
                         "customer_id": customer_id,
                         "limit": limit,
+                        "plan_id": plan_id,
+                        "pricing_type": pricing_type,
+                        "resource_id": resource_id,
                         "status": status,
                     },
                     subscription_list_params.SubscriptionListParams,
@@ -1351,6 +1417,14 @@ class SubscriptionsResourceWithRawResponse:
     def future_update(self) -> FutureUpdateResourceWithRawResponse:
         return FutureUpdateResourceWithRawResponse(self._subscriptions.future_update)
 
+    @cached_property
+    def usage(self) -> UsageResourceWithRawResponse:
+        return UsageResourceWithRawResponse(self._subscriptions.usage)
+
+    @cached_property
+    def invoice(self) -> InvoiceResourceWithRawResponse:
+        return InvoiceResourceWithRawResponse(self._subscriptions.invoice)
+
 
 class AsyncSubscriptionsResourceWithRawResponse:
     def __init__(self, subscriptions: AsyncSubscriptionsResource) -> None:
@@ -1390,6 +1464,14 @@ class AsyncSubscriptionsResourceWithRawResponse:
     @cached_property
     def future_update(self) -> AsyncFutureUpdateResourceWithRawResponse:
         return AsyncFutureUpdateResourceWithRawResponse(self._subscriptions.future_update)
+
+    @cached_property
+    def usage(self) -> AsyncUsageResourceWithRawResponse:
+        return AsyncUsageResourceWithRawResponse(self._subscriptions.usage)
+
+    @cached_property
+    def invoice(self) -> AsyncInvoiceResourceWithRawResponse:
+        return AsyncInvoiceResourceWithRawResponse(self._subscriptions.invoice)
 
 
 class SubscriptionsResourceWithStreamingResponse:
@@ -1431,6 +1513,14 @@ class SubscriptionsResourceWithStreamingResponse:
     def future_update(self) -> FutureUpdateResourceWithStreamingResponse:
         return FutureUpdateResourceWithStreamingResponse(self._subscriptions.future_update)
 
+    @cached_property
+    def usage(self) -> UsageResourceWithStreamingResponse:
+        return UsageResourceWithStreamingResponse(self._subscriptions.usage)
+
+    @cached_property
+    def invoice(self) -> InvoiceResourceWithStreamingResponse:
+        return InvoiceResourceWithStreamingResponse(self._subscriptions.invoice)
+
 
 class AsyncSubscriptionsResourceWithStreamingResponse:
     def __init__(self, subscriptions: AsyncSubscriptionsResource) -> None:
@@ -1470,3 +1560,11 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
     @cached_property
     def future_update(self) -> AsyncFutureUpdateResourceWithStreamingResponse:
         return AsyncFutureUpdateResourceWithStreamingResponse(self._subscriptions.future_update)
+
+    @cached_property
+    def usage(self) -> AsyncUsageResourceWithStreamingResponse:
+        return AsyncUsageResourceWithStreamingResponse(self._subscriptions.usage)
+
+    @cached_property
+    def invoice(self) -> AsyncInvoiceResourceWithStreamingResponse:
+        return AsyncInvoiceResourceWithStreamingResponse(self._subscriptions.invoice)

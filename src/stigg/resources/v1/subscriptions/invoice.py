@@ -2,66 +2,60 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ...types.v1 import event_report_params
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.v1.event_report_response import EventReportResponse
+from ...._base_client import make_request_options
+from ....types.v1.subscriptions.invoice_mark_as_paid_response import InvoiceMarkAsPaidResponse
 
-__all__ = ["EventsResource", "AsyncEventsResource"]
+__all__ = ["InvoiceResource", "AsyncInvoiceResource"]
 
 
-class EventsResource(SyncAPIResource):
+class InvoiceResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> EventsResourceWithRawResponse:
+    def with_raw_response(self) -> InvoiceResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stiggio/stigg-python#accessing-raw-response-data-eg-headers
         """
-        return EventsResourceWithRawResponse(self)
+        return InvoiceResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> EventsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> InvoiceResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stiggio/stigg-python#with_streaming_response
         """
-        return EventsResourceWithStreamingResponse(self)
+        return InvoiceResourceWithStreamingResponse(self)
 
-    def report(
+    def mark_as_paid(
         self,
+        id: str,
         *,
-        events: Iterable[event_report_params.Event],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventReportResponse:
-        """Reports raw usage events for event-based metering.
+    ) -> InvoiceMarkAsPaidResponse:
+        """Marks the latest invoice of a subscription as paid in the billing provider.
 
-        Events are ingested
-        asynchronously and aggregated into usage totals.
+        The
+        invoice must exist and have an OPEN status.
 
         Args:
-          events: A list of usage events to report
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -70,55 +64,54 @@ class EventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            "/api/v1/events",
-            body=maybe_transform({"events": events}, event_report_params.EventReportParams),
+            f"/api/v1/subscriptions/{id}/invoice/paid",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EventReportResponse,
+            cast_to=InvoiceMarkAsPaidResponse,
         )
 
 
-class AsyncEventsResource(AsyncAPIResource):
+class AsyncInvoiceResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncEventsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncInvoiceResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stiggio/stigg-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncEventsResourceWithRawResponse(self)
+        return AsyncInvoiceResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncEventsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncInvoiceResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stiggio/stigg-python#with_streaming_response
         """
-        return AsyncEventsResourceWithStreamingResponse(self)
+        return AsyncInvoiceResourceWithStreamingResponse(self)
 
-    async def report(
+    async def mark_as_paid(
         self,
+        id: str,
         *,
-        events: Iterable[event_report_params.Event],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventReportResponse:
-        """Reports raw usage events for event-based metering.
+    ) -> InvoiceMarkAsPaidResponse:
+        """Marks the latest invoice of a subscription as paid in the billing provider.
 
-        Events are ingested
-        asynchronously and aggregated into usage totals.
+        The
+        invoice must exist and have an OPEN status.
 
         Args:
-          events: A list of usage events to report
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -127,47 +120,48 @@ class AsyncEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            "/api/v1/events",
-            body=await async_maybe_transform({"events": events}, event_report_params.EventReportParams),
+            f"/api/v1/subscriptions/{id}/invoice/paid",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EventReportResponse,
+            cast_to=InvoiceMarkAsPaidResponse,
         )
 
 
-class EventsResourceWithRawResponse:
-    def __init__(self, events: EventsResource) -> None:
-        self._events = events
+class InvoiceResourceWithRawResponse:
+    def __init__(self, invoice: InvoiceResource) -> None:
+        self._invoice = invoice
 
-        self.report = to_raw_response_wrapper(
-            events.report,
+        self.mark_as_paid = to_raw_response_wrapper(
+            invoice.mark_as_paid,
         )
 
 
-class AsyncEventsResourceWithRawResponse:
-    def __init__(self, events: AsyncEventsResource) -> None:
-        self._events = events
+class AsyncInvoiceResourceWithRawResponse:
+    def __init__(self, invoice: AsyncInvoiceResource) -> None:
+        self._invoice = invoice
 
-        self.report = async_to_raw_response_wrapper(
-            events.report,
+        self.mark_as_paid = async_to_raw_response_wrapper(
+            invoice.mark_as_paid,
         )
 
 
-class EventsResourceWithStreamingResponse:
-    def __init__(self, events: EventsResource) -> None:
-        self._events = events
+class InvoiceResourceWithStreamingResponse:
+    def __init__(self, invoice: InvoiceResource) -> None:
+        self._invoice = invoice
 
-        self.report = to_streamed_response_wrapper(
-            events.report,
+        self.mark_as_paid = to_streamed_response_wrapper(
+            invoice.mark_as_paid,
         )
 
 
-class AsyncEventsResourceWithStreamingResponse:
-    def __init__(self, events: AsyncEventsResource) -> None:
-        self._events = events
+class AsyncInvoiceResourceWithStreamingResponse:
+    def __init__(self, invoice: AsyncInvoiceResource) -> None:
+        self._invoice = invoice
 
-        self.report = async_to_streamed_response_wrapper(
-            events.report,
+        self.mark_as_paid = async_to_streamed_response_wrapper(
+            invoice.mark_as_paid,
         )

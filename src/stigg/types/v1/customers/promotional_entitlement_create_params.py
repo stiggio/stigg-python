@@ -10,7 +10,7 @@ from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
 __all__ = [
-    "PromotionalEntitlementGrantParams",
+    "PromotionalEntitlementCreateParams",
     "PromotionalEntitlement",
     "PromotionalEntitlementMonthlyResetPeriodConfiguration",
     "PromotionalEntitlementWeeklyResetPeriodConfiguration",
@@ -18,7 +18,7 @@ __all__ = [
 ]
 
 
-class PromotionalEntitlementGrantParams(TypedDict, total=False):
+class PromotionalEntitlementCreateParams(TypedDict, total=False):
     promotional_entitlements: Required[
         Annotated[Iterable[PromotionalEntitlement], PropertyInfo(alias="promotionalEntitlements")]
     ]

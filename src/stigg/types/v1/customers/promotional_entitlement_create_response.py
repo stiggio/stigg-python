@@ -9,7 +9,7 @@ from pydantic import Field as FieldInfo
 from ...._models import BaseModel
 
 __all__ = [
-    "PromotionalEntitlementGrantResponse",
+    "PromotionalEntitlementCreateResponse",
     "Data",
     "DataResetPeriodConfiguration",
     "DataResetPeriodConfigurationYearlyResetPeriodConfig",
@@ -118,7 +118,7 @@ class Data(BaseModel):
     """The usage limit of the entitlement"""
 
 
-class PromotionalEntitlementGrantResponse(BaseModel):
+class PromotionalEntitlementCreateResponse(BaseModel):
     """Response object"""
 
     data: List[Data]
