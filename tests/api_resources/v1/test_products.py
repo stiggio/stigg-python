@@ -118,8 +118,7 @@ class TestProducts:
     @parametrize
     def test_method_duplicate_product(self, client: Stigg) -> None:
         product = client.v1.products.duplicate_product(
-            path_id="x",
-            body_id="id",
+            id="x",
         )
         assert_matches_type(ProductDuplicateProductResponse, product, path=["response"])
 
@@ -127,8 +126,7 @@ class TestProducts:
     @parametrize
     def test_method_duplicate_product_with_all_params(self, client: Stigg) -> None:
         product = client.v1.products.duplicate_product(
-            path_id="x",
-            body_id="id",
+            id="x",
             description="description",
             display_name="displayName",
         )
@@ -138,8 +136,7 @@ class TestProducts:
     @parametrize
     def test_raw_response_duplicate_product(self, client: Stigg) -> None:
         response = client.v1.products.with_raw_response.duplicate_product(
-            path_id="x",
-            body_id="id",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -151,8 +148,7 @@ class TestProducts:
     @parametrize
     def test_streaming_response_duplicate_product(self, client: Stigg) -> None:
         with client.v1.products.with_streaming_response.duplicate_product(
-            path_id="x",
-            body_id="id",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -165,10 +161,9 @@ class TestProducts:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_duplicate_product(self, client: Stigg) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.products.with_raw_response.duplicate_product(
-                path_id="",
-                body_id="id",
+                id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -420,8 +415,7 @@ class TestAsyncProducts:
     @parametrize
     async def test_method_duplicate_product(self, async_client: AsyncStigg) -> None:
         product = await async_client.v1.products.duplicate_product(
-            path_id="x",
-            body_id="id",
+            id="x",
         )
         assert_matches_type(ProductDuplicateProductResponse, product, path=["response"])
 
@@ -429,8 +423,7 @@ class TestAsyncProducts:
     @parametrize
     async def test_method_duplicate_product_with_all_params(self, async_client: AsyncStigg) -> None:
         product = await async_client.v1.products.duplicate_product(
-            path_id="x",
-            body_id="id",
+            id="x",
             description="description",
             display_name="displayName",
         )
@@ -440,8 +433,7 @@ class TestAsyncProducts:
     @parametrize
     async def test_raw_response_duplicate_product(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.products.with_raw_response.duplicate_product(
-            path_id="x",
-            body_id="id",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -453,8 +445,7 @@ class TestAsyncProducts:
     @parametrize
     async def test_streaming_response_duplicate_product(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.products.with_streaming_response.duplicate_product(
-            path_id="x",
-            body_id="id",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -467,10 +458,9 @@ class TestAsyncProducts:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_duplicate_product(self, async_client: AsyncStigg) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.products.with_raw_response.duplicate_product(
-                path_id="",
-                body_id="id",
+                id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
