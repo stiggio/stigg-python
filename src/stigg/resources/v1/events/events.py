@@ -6,6 +6,14 @@ from typing import Iterable
 
 import httpx
 
+from .plans import (
+    PlansResource,
+    AsyncPlansResource,
+    PlansResourceWithRawResponse,
+    AsyncPlansResourceWithRawResponse,
+    PlansResourceWithStreamingResponse,
+    AsyncPlansResourceWithStreamingResponse,
+)
 from .features import (
     FeaturesResource,
     AsyncFeaturesResource,
@@ -47,6 +55,10 @@ class EventsResource(SyncAPIResource):
     @cached_property
     def addons(self) -> AddonsResource:
         return AddonsResource(self._client)
+
+    @cached_property
+    def plans(self) -> PlansResource:
+        return PlansResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> EventsResourceWithRawResponse:
@@ -112,6 +124,10 @@ class AsyncEventsResource(AsyncAPIResource):
     @cached_property
     def addons(self) -> AsyncAddonsResource:
         return AsyncAddonsResource(self._client)
+
+    @cached_property
+    def plans(self) -> AsyncPlansResource:
+        return AsyncPlansResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncEventsResourceWithRawResponse:
@@ -185,6 +201,10 @@ class EventsResourceWithRawResponse:
     def addons(self) -> AddonsResourceWithRawResponse:
         return AddonsResourceWithRawResponse(self._events.addons)
 
+    @cached_property
+    def plans(self) -> PlansResourceWithRawResponse:
+        return PlansResourceWithRawResponse(self._events.plans)
+
 
 class AsyncEventsResourceWithRawResponse:
     def __init__(self, events: AsyncEventsResource) -> None:
@@ -201,6 +221,10 @@ class AsyncEventsResourceWithRawResponse:
     @cached_property
     def addons(self) -> AsyncAddonsResourceWithRawResponse:
         return AsyncAddonsResourceWithRawResponse(self._events.addons)
+
+    @cached_property
+    def plans(self) -> AsyncPlansResourceWithRawResponse:
+        return AsyncPlansResourceWithRawResponse(self._events.plans)
 
 
 class EventsResourceWithStreamingResponse:
@@ -219,6 +243,10 @@ class EventsResourceWithStreamingResponse:
     def addons(self) -> AddonsResourceWithStreamingResponse:
         return AddonsResourceWithStreamingResponse(self._events.addons)
 
+    @cached_property
+    def plans(self) -> PlansResourceWithStreamingResponse:
+        return PlansResourceWithStreamingResponse(self._events.plans)
+
 
 class AsyncEventsResourceWithStreamingResponse:
     def __init__(self, events: AsyncEventsResource) -> None:
@@ -235,3 +263,7 @@ class AsyncEventsResourceWithStreamingResponse:
     @cached_property
     def addons(self) -> AsyncAddonsResourceWithStreamingResponse:
         return AsyncAddonsResourceWithStreamingResponse(self._events.addons)
+
+    @cached_property
+    def plans(self) -> AsyncPlansResourceWithStreamingResponse:
+        return AsyncPlansResourceWithStreamingResponse(self._events.plans)
