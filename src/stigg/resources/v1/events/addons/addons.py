@@ -106,11 +106,11 @@ class AddonsResource(SyncAPIResource):
         id: str,
         display_name: str,
         product_id: str,
-        billing_id: str | Omit = omit,
-        description: str | Omit = omit,
-        max_quantity: int | Omit = omit,
+        billing_id: Optional[str] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        max_quantity: Optional[int] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
-        pricing_type: Literal["FREE", "PAID", "CUSTOM"] | Omit = omit,
+        pricing_type: Optional[Literal["FREE", "PAID", "CUSTOM"]] | Omit = omit,
         status: Literal["DRAFT", "PUBLISHED", "ARCHIVED"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -127,7 +127,7 @@ class AddonsResource(SyncAPIResource):
 
           display_name: The display name of the package
 
-          product_id: The product ID to associate the addon with
+          product_id: The product id of the package
 
           billing_id: The unique identifier for the entity in the billing provider
 
@@ -201,7 +201,7 @@ class AddonsResource(SyncAPIResource):
 
           product_id: Filter by product ID
 
-          status: Filter by addon status. Supports comma-separated values for multiple statuses
+          status: Filter by status. Supports comma-separated values for multiple statuses
 
           extra_headers: Send extra headers
 
@@ -434,11 +434,11 @@ class AsyncAddonsResource(AsyncAPIResource):
         id: str,
         display_name: str,
         product_id: str,
-        billing_id: str | Omit = omit,
-        description: str | Omit = omit,
-        max_quantity: int | Omit = omit,
+        billing_id: Optional[str] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        max_quantity: Optional[int] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
-        pricing_type: Literal["FREE", "PAID", "CUSTOM"] | Omit = omit,
+        pricing_type: Optional[Literal["FREE", "PAID", "CUSTOM"]] | Omit = omit,
         status: Literal["DRAFT", "PUBLISHED", "ARCHIVED"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -455,7 +455,7 @@ class AsyncAddonsResource(AsyncAPIResource):
 
           display_name: The display name of the package
 
-          product_id: The product ID to associate the addon with
+          product_id: The product id of the package
 
           billing_id: The unique identifier for the entity in the billing provider
 
@@ -529,7 +529,7 @@ class AsyncAddonsResource(AsyncAPIResource):
 
           product_id: Filter by product ID
 
-          status: Filter by addon status. Supports comma-separated values for multiple statuses
+          status: Filter by status. Supports comma-separated values for multiple statuses
 
           extra_headers: Send extra headers
 

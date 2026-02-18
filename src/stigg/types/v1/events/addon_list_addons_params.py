@@ -28,7 +28,7 @@ class AddonListAddonsParams(TypedDict, total=False):
     """Filter by product ID"""
 
     status: str
-    """Filter by addon status. Supports comma-separated values for multiple statuses"""
+    """Filter by status. Supports comma-separated values for multiple statuses"""
 
 
 class CreatedAt(TypedDict, total=False):

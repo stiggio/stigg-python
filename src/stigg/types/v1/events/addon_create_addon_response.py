@@ -42,7 +42,7 @@ class Data(BaseModel):
     """The display name of the package"""
 
     entitlements: List[DataEntitlement]
-    """List of entitlements for the addon"""
+    """List of entitlements of the package"""
 
     is_latest: Optional[bool] = FieldInfo(alias="isLatest", default=None)
     """Indicates if the package is the latest version"""
@@ -55,6 +55,9 @@ class Data(BaseModel):
 
     pricing_type: Optional[Literal["FREE", "PAID", "CUSTOM"]] = FieldInfo(alias="pricingType", default=None)
     """The pricing type of the package"""
+
+    product_id: str = FieldInfo(alias="productId")
+    """The product id of the package"""
 
     status: Literal["DRAFT", "PUBLISHED", "ARCHIVED"]
     """The status of the package"""

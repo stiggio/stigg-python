@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Optional
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
@@ -18,21 +18,21 @@ class AddonCreateAddonParams(TypedDict, total=False):
     """The display name of the package"""
 
     product_id: Required[Annotated[str, PropertyInfo(alias="productId")]]
-    """The product ID to associate the addon with"""
+    """The product id of the package"""
 
-    billing_id: Annotated[str, PropertyInfo(alias="billingId")]
+    billing_id: Annotated[Optional[str], PropertyInfo(alias="billingId")]
     """The unique identifier for the entity in the billing provider"""
 
-    description: str
+    description: Optional[str]
     """The description of the package"""
 
-    max_quantity: Annotated[int, PropertyInfo(alias="maxQuantity")]
+    max_quantity: Annotated[Optional[int], PropertyInfo(alias="maxQuantity")]
     """The maximum quantity of this addon that can be added to a subscription"""
 
     metadata: Dict[str, str]
     """Metadata associated with the entity"""
 
-    pricing_type: Annotated[Literal["FREE", "PAID", "CUSTOM"], PropertyInfo(alias="pricingType")]
+    pricing_type: Annotated[Optional[Literal["FREE", "PAID", "CUSTOM"]], PropertyInfo(alias="pricingType")]
     """The pricing type of the package"""
 
     status: Literal["DRAFT", "PUBLISHED", "ARCHIVED"]
