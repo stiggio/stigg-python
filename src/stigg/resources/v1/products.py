@@ -146,9 +146,8 @@ class ProductsResource(SyncAPIResource):
 
     def duplicate_product(
         self,
-        path_id: str,
+        id: str,
         *,
-        body_id: str,
         description: Optional[str] | Omit = omit,
         display_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -162,8 +161,6 @@ class ProductsResource(SyncAPIResource):
         Duplicates an existing product, including its plans, addons, and configuration.
 
         Args:
-          body_id: The unique identifier for the entity
-
           description: Description of the product
 
           display_name: Display name of the product
@@ -176,13 +173,12 @@ class ProductsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_id:
-            raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/api/v1/products/{path_id}/duplicate",
+            f"/api/v1/products/{id}/duplicate",
             body=maybe_transform(
                 {
-                    "body_id": body_id,
                     "description": description,
                     "display_name": display_name,
                 },
@@ -464,9 +460,8 @@ class AsyncProductsResource(AsyncAPIResource):
 
     async def duplicate_product(
         self,
-        path_id: str,
+        id: str,
         *,
-        body_id: str,
         description: Optional[str] | Omit = omit,
         display_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -480,8 +475,6 @@ class AsyncProductsResource(AsyncAPIResource):
         Duplicates an existing product, including its plans, addons, and configuration.
 
         Args:
-          body_id: The unique identifier for the entity
-
           description: Description of the product
 
           display_name: Display name of the product
@@ -494,13 +487,12 @@ class AsyncProductsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_id:
-            raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/api/v1/products/{path_id}/duplicate",
+            f"/api/v1/products/{id}/duplicate",
             body=await async_maybe_transform(
                 {
-                    "body_id": body_id,
                     "description": description,
                     "display_name": display_name,
                 },
