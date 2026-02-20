@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.1.0-alpha.8 (2026-02-20)
+
+Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
+
+### Features
+
+* **api:** api update ([09657b8](https://github.com/stiggio/stigg-python/commit/09657b8d0ea1456baa81904cb73e72ffa7abd818))
+* **api:** api update ([45e9a07](https://github.com/stiggio/stigg-python/commit/45e9a07891c7ee4a30d536662ead9dbed3ea32e4))
+
+
+### Bug Fixes
+
+* **api:** correct duplicate_product parameters in products ([756ef0f](https://github.com/stiggio/stigg-python/commit/756ef0fd11a2fa278302affaa6493303809f6c68))
+* **api:** rename path_id to id, remove body_id in products.duplicate_product ([364914b](https://github.com/stiggio/stigg-python/commit/364914b827a84126d7a9b6272a2904e390158856))
+
+
+### Chores
+
+* **internal:** remove mock server code ([b0699c2](https://github.com/stiggio/stigg-python/commit/b0699c25a25226134fc71204e0a8456c4716ff2c))
+* update mock server docs ([15a3a47](https://github.com/stiggio/stigg-python/commit/15a3a476f02ad0279e1085d90dc4e74e79588468))
+
 ## 0.1.0-alpha.7 (2026-02-18)
 
 Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
