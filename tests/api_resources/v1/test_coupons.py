@@ -22,7 +22,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCoupons:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Stigg) -> None:
         coupon = client.v1.coupons.create(
@@ -41,7 +41,7 @@ class TestCoupons:
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Stigg) -> None:
         response = client.v1.coupons.with_raw_response.create(
@@ -64,7 +64,7 @@ class TestCoupons:
         coupon = response.parse()
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Stigg) -> None:
         with client.v1.coupons.with_streaming_response.create(
@@ -89,7 +89,7 @@ class TestCoupons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Stigg) -> None:
         coupon = client.v1.coupons.retrieve(
@@ -97,7 +97,7 @@ class TestCoupons:
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Stigg) -> None:
         response = client.v1.coupons.with_raw_response.retrieve(
@@ -109,7 +109,7 @@ class TestCoupons:
         coupon = response.parse()
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Stigg) -> None:
         with client.v1.coupons.with_streaming_response.retrieve(
@@ -123,7 +123,7 @@ class TestCoupons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -131,13 +131,13 @@ class TestCoupons:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Stigg) -> None:
         coupon = client.v1.coupons.list()
         assert_matches_type(SyncMyCursorIDPage[CouponListResponse], coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Stigg) -> None:
         coupon = client.v1.coupons.list(
@@ -156,7 +156,7 @@ class TestCoupons:
         )
         assert_matches_type(SyncMyCursorIDPage[CouponListResponse], coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Stigg) -> None:
         response = client.v1.coupons.with_raw_response.list()
@@ -166,7 +166,7 @@ class TestCoupons:
         coupon = response.parse()
         assert_matches_type(SyncMyCursorIDPage[CouponListResponse], coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Stigg) -> None:
         with client.v1.coupons.with_streaming_response.list() as response:
@@ -178,7 +178,7 @@ class TestCoupons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_archive_coupon(self, client: Stigg) -> None:
         coupon = client.v1.coupons.archive_coupon(
@@ -186,7 +186,7 @@ class TestCoupons:
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_archive_coupon(self, client: Stigg) -> None:
         response = client.v1.coupons.with_raw_response.archive_coupon(
@@ -198,7 +198,7 @@ class TestCoupons:
         coupon = response.parse()
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_archive_coupon(self, client: Stigg) -> None:
         with client.v1.coupons.with_streaming_response.archive_coupon(
@@ -212,7 +212,7 @@ class TestCoupons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_archive_coupon(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -220,7 +220,7 @@ class TestCoupons:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_coupon(self, client: Stigg) -> None:
         coupon = client.v1.coupons.update_coupon(
@@ -228,7 +228,7 @@ class TestCoupons:
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_coupon_with_all_params(self, client: Stigg) -> None:
         coupon = client.v1.coupons.update_coupon(
@@ -239,7 +239,7 @@ class TestCoupons:
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update_coupon(self, client: Stigg) -> None:
         response = client.v1.coupons.with_raw_response.update_coupon(
@@ -251,7 +251,7 @@ class TestCoupons:
         coupon = response.parse()
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update_coupon(self, client: Stigg) -> None:
         with client.v1.coupons.with_streaming_response.update_coupon(
@@ -265,7 +265,7 @@ class TestCoupons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update_coupon(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -279,7 +279,7 @@ class TestAsyncCoupons:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncStigg) -> None:
         coupon = await async_client.v1.coupons.create(
@@ -298,7 +298,7 @@ class TestAsyncCoupons:
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.coupons.with_raw_response.create(
@@ -321,7 +321,7 @@ class TestAsyncCoupons:
         coupon = await response.parse()
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.coupons.with_streaming_response.create(
@@ -346,7 +346,7 @@ class TestAsyncCoupons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncStigg) -> None:
         coupon = await async_client.v1.coupons.retrieve(
@@ -354,7 +354,7 @@ class TestAsyncCoupons:
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.coupons.with_raw_response.retrieve(
@@ -366,7 +366,7 @@ class TestAsyncCoupons:
         coupon = await response.parse()
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.coupons.with_streaming_response.retrieve(
@@ -380,7 +380,7 @@ class TestAsyncCoupons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -388,13 +388,13 @@ class TestAsyncCoupons:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncStigg) -> None:
         coupon = await async_client.v1.coupons.list()
         assert_matches_type(AsyncMyCursorIDPage[CouponListResponse], coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStigg) -> None:
         coupon = await async_client.v1.coupons.list(
@@ -413,7 +413,7 @@ class TestAsyncCoupons:
         )
         assert_matches_type(AsyncMyCursorIDPage[CouponListResponse], coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.coupons.with_raw_response.list()
@@ -423,7 +423,7 @@ class TestAsyncCoupons:
         coupon = await response.parse()
         assert_matches_type(AsyncMyCursorIDPage[CouponListResponse], coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.coupons.with_streaming_response.list() as response:
@@ -435,7 +435,7 @@ class TestAsyncCoupons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_archive_coupon(self, async_client: AsyncStigg) -> None:
         coupon = await async_client.v1.coupons.archive_coupon(
@@ -443,7 +443,7 @@ class TestAsyncCoupons:
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_archive_coupon(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.coupons.with_raw_response.archive_coupon(
@@ -455,7 +455,7 @@ class TestAsyncCoupons:
         coupon = await response.parse()
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_archive_coupon(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.coupons.with_streaming_response.archive_coupon(
@@ -469,7 +469,7 @@ class TestAsyncCoupons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_archive_coupon(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -477,7 +477,7 @@ class TestAsyncCoupons:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_coupon(self, async_client: AsyncStigg) -> None:
         coupon = await async_client.v1.coupons.update_coupon(
@@ -485,7 +485,7 @@ class TestAsyncCoupons:
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_coupon_with_all_params(self, async_client: AsyncStigg) -> None:
         coupon = await async_client.v1.coupons.update_coupon(
@@ -496,7 +496,7 @@ class TestAsyncCoupons:
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update_coupon(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.coupons.with_raw_response.update_coupon(
@@ -508,7 +508,7 @@ class TestAsyncCoupons:
         coupon = await response.parse()
         assert_matches_type(Coupon, coupon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update_coupon(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.coupons.with_streaming_response.update_coupon(
@@ -522,7 +522,7 @@ class TestAsyncCoupons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update_coupon(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

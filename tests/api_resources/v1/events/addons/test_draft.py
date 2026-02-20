@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestDraft:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_addon_draft(self, client: Stigg) -> None:
         draft = client.v1.events.addons.draft.create_addon_draft(
@@ -25,7 +25,7 @@ class TestDraft:
         )
         assert_matches_type(DraftCreateAddonDraftResponse, draft, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create_addon_draft(self, client: Stigg) -> None:
         response = client.v1.events.addons.draft.with_raw_response.create_addon_draft(
@@ -37,7 +37,7 @@ class TestDraft:
         draft = response.parse()
         assert_matches_type(DraftCreateAddonDraftResponse, draft, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create_addon_draft(self, client: Stigg) -> None:
         with client.v1.events.addons.draft.with_streaming_response.create_addon_draft(
@@ -51,7 +51,7 @@ class TestDraft:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_create_addon_draft(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -59,7 +59,7 @@ class TestDraft:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_remove_addon_draft(self, client: Stigg) -> None:
         draft = client.v1.events.addons.draft.remove_addon_draft(
@@ -67,7 +67,7 @@ class TestDraft:
         )
         assert_matches_type(DraftRemoveAddonDraftResponse, draft, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_remove_addon_draft(self, client: Stigg) -> None:
         response = client.v1.events.addons.draft.with_raw_response.remove_addon_draft(
@@ -79,7 +79,7 @@ class TestDraft:
         draft = response.parse()
         assert_matches_type(DraftRemoveAddonDraftResponse, draft, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_remove_addon_draft(self, client: Stigg) -> None:
         with client.v1.events.addons.draft.with_streaming_response.remove_addon_draft(
@@ -93,7 +93,7 @@ class TestDraft:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_remove_addon_draft(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -107,7 +107,7 @@ class TestAsyncDraft:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_addon_draft(self, async_client: AsyncStigg) -> None:
         draft = await async_client.v1.events.addons.draft.create_addon_draft(
@@ -115,7 +115,7 @@ class TestAsyncDraft:
         )
         assert_matches_type(DraftCreateAddonDraftResponse, draft, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create_addon_draft(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.events.addons.draft.with_raw_response.create_addon_draft(
@@ -127,7 +127,7 @@ class TestAsyncDraft:
         draft = await response.parse()
         assert_matches_type(DraftCreateAddonDraftResponse, draft, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create_addon_draft(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.events.addons.draft.with_streaming_response.create_addon_draft(
@@ -141,7 +141,7 @@ class TestAsyncDraft:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_create_addon_draft(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -149,7 +149,7 @@ class TestAsyncDraft:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_remove_addon_draft(self, async_client: AsyncStigg) -> None:
         draft = await async_client.v1.events.addons.draft.remove_addon_draft(
@@ -157,7 +157,7 @@ class TestAsyncDraft:
         )
         assert_matches_type(DraftRemoveAddonDraftResponse, draft, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_remove_addon_draft(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.events.addons.draft.with_raw_response.remove_addon_draft(
@@ -169,7 +169,7 @@ class TestAsyncDraft:
         draft = await response.parse()
         assert_matches_type(DraftRemoveAddonDraftResponse, draft, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_remove_addon_draft(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.events.addons.draft.with_streaming_response.remove_addon_draft(
@@ -183,7 +183,7 @@ class TestAsyncDraft:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_remove_addon_draft(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

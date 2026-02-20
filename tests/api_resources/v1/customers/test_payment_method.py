@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPaymentMethod:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_attach(self, client: Stigg) -> None:
         payment_method = client.v1.customers.payment_method.attach(
@@ -28,7 +28,7 @@ class TestPaymentMethod:
         )
         assert_matches_type(CustomerResponse, payment_method, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_attach_with_all_params(self, client: Stigg) -> None:
         payment_method = client.v1.customers.payment_method.attach(
@@ -40,7 +40,7 @@ class TestPaymentMethod:
         )
         assert_matches_type(CustomerResponse, payment_method, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_attach(self, client: Stigg) -> None:
         response = client.v1.customers.payment_method.with_raw_response.attach(
@@ -55,7 +55,7 @@ class TestPaymentMethod:
         payment_method = response.parse()
         assert_matches_type(CustomerResponse, payment_method, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_attach(self, client: Stigg) -> None:
         with client.v1.customers.payment_method.with_streaming_response.attach(
@@ -72,7 +72,7 @@ class TestPaymentMethod:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_attach(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -83,7 +83,7 @@ class TestPaymentMethod:
                 vendor_identifier="AUTH0",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_detach(self, client: Stigg) -> None:
         payment_method = client.v1.customers.payment_method.detach(
@@ -91,7 +91,7 @@ class TestPaymentMethod:
         )
         assert_matches_type(CustomerResponse, payment_method, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_detach(self, client: Stigg) -> None:
         response = client.v1.customers.payment_method.with_raw_response.detach(
@@ -103,7 +103,7 @@ class TestPaymentMethod:
         payment_method = response.parse()
         assert_matches_type(CustomerResponse, payment_method, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_detach(self, client: Stigg) -> None:
         with client.v1.customers.payment_method.with_streaming_response.detach(
@@ -117,7 +117,7 @@ class TestPaymentMethod:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_detach(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -131,7 +131,7 @@ class TestAsyncPaymentMethod:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_attach(self, async_client: AsyncStigg) -> None:
         payment_method = await async_client.v1.customers.payment_method.attach(
@@ -142,7 +142,7 @@ class TestAsyncPaymentMethod:
         )
         assert_matches_type(CustomerResponse, payment_method, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_attach_with_all_params(self, async_client: AsyncStigg) -> None:
         payment_method = await async_client.v1.customers.payment_method.attach(
@@ -154,7 +154,7 @@ class TestAsyncPaymentMethod:
         )
         assert_matches_type(CustomerResponse, payment_method, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_attach(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.customers.payment_method.with_raw_response.attach(
@@ -169,7 +169,7 @@ class TestAsyncPaymentMethod:
         payment_method = await response.parse()
         assert_matches_type(CustomerResponse, payment_method, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_attach(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.customers.payment_method.with_streaming_response.attach(
@@ -186,7 +186,7 @@ class TestAsyncPaymentMethod:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_attach(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -197,7 +197,7 @@ class TestAsyncPaymentMethod:
                 vendor_identifier="AUTH0",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_detach(self, async_client: AsyncStigg) -> None:
         payment_method = await async_client.v1.customers.payment_method.detach(
@@ -205,7 +205,7 @@ class TestAsyncPaymentMethod:
         )
         assert_matches_type(CustomerResponse, payment_method, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_detach(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.customers.payment_method.with_raw_response.detach(
@@ -217,7 +217,7 @@ class TestAsyncPaymentMethod:
         payment_method = await response.parse()
         assert_matches_type(CustomerResponse, payment_method, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_detach(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.customers.payment_method.with_streaming_response.detach(
@@ -231,7 +231,7 @@ class TestAsyncPaymentMethod:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_detach(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
