@@ -18,7 +18,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestUsage:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_charge_usage(self, client: Stigg) -> None:
         usage = client.v1.subscriptions.usage.charge_usage(
@@ -26,7 +26,7 @@ class TestUsage:
         )
         assert_matches_type(UsageChargeUsageResponse, usage, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_charge_usage_with_all_params(self, client: Stigg) -> None:
         usage = client.v1.subscriptions.usage.charge_usage(
@@ -35,7 +35,7 @@ class TestUsage:
         )
         assert_matches_type(UsageChargeUsageResponse, usage, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_charge_usage(self, client: Stigg) -> None:
         response = client.v1.subscriptions.usage.with_raw_response.charge_usage(
@@ -47,7 +47,7 @@ class TestUsage:
         usage = response.parse()
         assert_matches_type(UsageChargeUsageResponse, usage, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_charge_usage(self, client: Stigg) -> None:
         with client.v1.subscriptions.usage.with_streaming_response.charge_usage(
@@ -61,7 +61,7 @@ class TestUsage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_charge_usage(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -69,7 +69,7 @@ class TestUsage:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_sync(self, client: Stigg) -> None:
         usage = client.v1.subscriptions.usage.sync(
@@ -77,7 +77,7 @@ class TestUsage:
         )
         assert_matches_type(UsageSyncResponse, usage, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_sync(self, client: Stigg) -> None:
         response = client.v1.subscriptions.usage.with_raw_response.sync(
@@ -89,7 +89,7 @@ class TestUsage:
         usage = response.parse()
         assert_matches_type(UsageSyncResponse, usage, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_sync(self, client: Stigg) -> None:
         with client.v1.subscriptions.usage.with_streaming_response.sync(
@@ -103,7 +103,7 @@ class TestUsage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_sync(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -117,7 +117,7 @@ class TestAsyncUsage:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_charge_usage(self, async_client: AsyncStigg) -> None:
         usage = await async_client.v1.subscriptions.usage.charge_usage(
@@ -125,7 +125,7 @@ class TestAsyncUsage:
         )
         assert_matches_type(UsageChargeUsageResponse, usage, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_charge_usage_with_all_params(self, async_client: AsyncStigg) -> None:
         usage = await async_client.v1.subscriptions.usage.charge_usage(
@@ -134,7 +134,7 @@ class TestAsyncUsage:
         )
         assert_matches_type(UsageChargeUsageResponse, usage, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_charge_usage(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.subscriptions.usage.with_raw_response.charge_usage(
@@ -146,7 +146,7 @@ class TestAsyncUsage:
         usage = await response.parse()
         assert_matches_type(UsageChargeUsageResponse, usage, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_charge_usage(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.subscriptions.usage.with_streaming_response.charge_usage(
@@ -160,7 +160,7 @@ class TestAsyncUsage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_charge_usage(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -168,7 +168,7 @@ class TestAsyncUsage:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_sync(self, async_client: AsyncStigg) -> None:
         usage = await async_client.v1.subscriptions.usage.sync(
@@ -176,7 +176,7 @@ class TestAsyncUsage:
         )
         assert_matches_type(UsageSyncResponse, usage, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_sync(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.subscriptions.usage.with_raw_response.sync(
@@ -188,7 +188,7 @@ class TestAsyncUsage:
         usage = await response.parse()
         assert_matches_type(UsageSyncResponse, usage, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_sync(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.subscriptions.usage.with_streaming_response.sync(
@@ -202,7 +202,7 @@ class TestAsyncUsage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_sync(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

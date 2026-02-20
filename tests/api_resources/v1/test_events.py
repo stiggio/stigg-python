@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestEvents:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_report(self, client: Stigg) -> None:
         event = client.v1.events.report(
@@ -31,7 +31,7 @@ class TestEvents:
         )
         assert_matches_type(EventReportResponse, event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_report(self, client: Stigg) -> None:
         response = client.v1.events.with_raw_response.report(
@@ -49,7 +49,7 @@ class TestEvents:
         event = response.parse()
         assert_matches_type(EventReportResponse, event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_report(self, client: Stigg) -> None:
         with client.v1.events.with_streaming_response.report(
@@ -75,7 +75,7 @@ class TestAsyncEvents:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_report(self, async_client: AsyncStigg) -> None:
         event = await async_client.v1.events.report(
@@ -89,7 +89,7 @@ class TestAsyncEvents:
         )
         assert_matches_type(EventReportResponse, event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_report(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.events.with_raw_response.report(
@@ -107,7 +107,7 @@ class TestAsyncEvents:
         event = await response.parse()
         assert_matches_type(EventReportResponse, event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_report(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.events.with_streaming_response.report(
