@@ -26,7 +26,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestFeatures:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_archive_feature(self, client: Stigg) -> None:
         feature = client.v1.events.features.archive_feature(
@@ -34,7 +34,7 @@ class TestFeatures:
         )
         assert_matches_type(FeatureArchiveFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_archive_feature(self, client: Stigg) -> None:
         response = client.v1.events.features.with_raw_response.archive_feature(
@@ -46,7 +46,7 @@ class TestFeatures:
         feature = response.parse()
         assert_matches_type(FeatureArchiveFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_archive_feature(self, client: Stigg) -> None:
         with client.v1.events.features.with_streaming_response.archive_feature(
@@ -60,7 +60,7 @@ class TestFeatures:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_archive_feature(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -68,7 +68,7 @@ class TestFeatures:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_feature(self, client: Stigg) -> None:
         feature = client.v1.events.features.create_feature(
@@ -78,7 +78,7 @@ class TestFeatures:
         )
         assert_matches_type(FeatureCreateFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_feature_with_all_params(self, client: Stigg) -> None:
         feature = client.v1.events.features.create_feature(
@@ -106,7 +106,7 @@ class TestFeatures:
         )
         assert_matches_type(FeatureCreateFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create_feature(self, client: Stigg) -> None:
         response = client.v1.events.features.with_raw_response.create_feature(
@@ -120,7 +120,7 @@ class TestFeatures:
         feature = response.parse()
         assert_matches_type(FeatureCreateFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create_feature(self, client: Stigg) -> None:
         with client.v1.events.features.with_streaming_response.create_feature(
@@ -136,13 +136,13 @@ class TestFeatures:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_features(self, client: Stigg) -> None:
         feature = client.v1.events.features.list_features()
         assert_matches_type(SyncMyCursorIDPage[FeatureListFeaturesResponse], feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_features_with_all_params(self, client: Stigg) -> None:
         feature = client.v1.events.features.list_features(
@@ -162,7 +162,7 @@ class TestFeatures:
         )
         assert_matches_type(SyncMyCursorIDPage[FeatureListFeaturesResponse], feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list_features(self, client: Stigg) -> None:
         response = client.v1.events.features.with_raw_response.list_features()
@@ -172,7 +172,7 @@ class TestFeatures:
         feature = response.parse()
         assert_matches_type(SyncMyCursorIDPage[FeatureListFeaturesResponse], feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list_features(self, client: Stigg) -> None:
         with client.v1.events.features.with_streaming_response.list_features() as response:
@@ -184,7 +184,7 @@ class TestFeatures:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve_feature(self, client: Stigg) -> None:
         feature = client.v1.events.features.retrieve_feature(
@@ -192,7 +192,7 @@ class TestFeatures:
         )
         assert_matches_type(FeatureRetrieveFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve_feature(self, client: Stigg) -> None:
         response = client.v1.events.features.with_raw_response.retrieve_feature(
@@ -204,7 +204,7 @@ class TestFeatures:
         feature = response.parse()
         assert_matches_type(FeatureRetrieveFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_feature(self, client: Stigg) -> None:
         with client.v1.events.features.with_streaming_response.retrieve_feature(
@@ -218,7 +218,7 @@ class TestFeatures:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve_feature(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -226,7 +226,7 @@ class TestFeatures:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_unarchive_feature(self, client: Stigg) -> None:
         feature = client.v1.events.features.unarchive_feature(
@@ -234,7 +234,7 @@ class TestFeatures:
         )
         assert_matches_type(FeatureUnarchiveFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_unarchive_feature(self, client: Stigg) -> None:
         response = client.v1.events.features.with_raw_response.unarchive_feature(
@@ -246,7 +246,7 @@ class TestFeatures:
         feature = response.parse()
         assert_matches_type(FeatureUnarchiveFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_unarchive_feature(self, client: Stigg) -> None:
         with client.v1.events.features.with_streaming_response.unarchive_feature(
@@ -260,7 +260,7 @@ class TestFeatures:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_unarchive_feature(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -268,7 +268,7 @@ class TestFeatures:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_feature(self, client: Stigg) -> None:
         feature = client.v1.events.features.update_feature(
@@ -276,7 +276,7 @@ class TestFeatures:
         )
         assert_matches_type(FeatureUpdateFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_feature_with_all_params(self, client: Stigg) -> None:
         feature = client.v1.events.features.update_feature(
@@ -319,7 +319,7 @@ class TestFeatures:
         )
         assert_matches_type(FeatureUpdateFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update_feature(self, client: Stigg) -> None:
         response = client.v1.events.features.with_raw_response.update_feature(
@@ -331,7 +331,7 @@ class TestFeatures:
         feature = response.parse()
         assert_matches_type(FeatureUpdateFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update_feature(self, client: Stigg) -> None:
         with client.v1.events.features.with_streaming_response.update_feature(
@@ -345,7 +345,7 @@ class TestFeatures:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update_feature(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -359,7 +359,7 @@ class TestAsyncFeatures:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_archive_feature(self, async_client: AsyncStigg) -> None:
         feature = await async_client.v1.events.features.archive_feature(
@@ -367,7 +367,7 @@ class TestAsyncFeatures:
         )
         assert_matches_type(FeatureArchiveFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_archive_feature(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.events.features.with_raw_response.archive_feature(
@@ -379,7 +379,7 @@ class TestAsyncFeatures:
         feature = await response.parse()
         assert_matches_type(FeatureArchiveFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_archive_feature(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.events.features.with_streaming_response.archive_feature(
@@ -393,7 +393,7 @@ class TestAsyncFeatures:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_archive_feature(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -401,7 +401,7 @@ class TestAsyncFeatures:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_feature(self, async_client: AsyncStigg) -> None:
         feature = await async_client.v1.events.features.create_feature(
@@ -411,7 +411,7 @@ class TestAsyncFeatures:
         )
         assert_matches_type(FeatureCreateFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_feature_with_all_params(self, async_client: AsyncStigg) -> None:
         feature = await async_client.v1.events.features.create_feature(
@@ -439,7 +439,7 @@ class TestAsyncFeatures:
         )
         assert_matches_type(FeatureCreateFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create_feature(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.events.features.with_raw_response.create_feature(
@@ -453,7 +453,7 @@ class TestAsyncFeatures:
         feature = await response.parse()
         assert_matches_type(FeatureCreateFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create_feature(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.events.features.with_streaming_response.create_feature(
@@ -469,13 +469,13 @@ class TestAsyncFeatures:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_features(self, async_client: AsyncStigg) -> None:
         feature = await async_client.v1.events.features.list_features()
         assert_matches_type(AsyncMyCursorIDPage[FeatureListFeaturesResponse], feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_features_with_all_params(self, async_client: AsyncStigg) -> None:
         feature = await async_client.v1.events.features.list_features(
@@ -495,7 +495,7 @@ class TestAsyncFeatures:
         )
         assert_matches_type(AsyncMyCursorIDPage[FeatureListFeaturesResponse], feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list_features(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.events.features.with_raw_response.list_features()
@@ -505,7 +505,7 @@ class TestAsyncFeatures:
         feature = await response.parse()
         assert_matches_type(AsyncMyCursorIDPage[FeatureListFeaturesResponse], feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list_features(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.events.features.with_streaming_response.list_features() as response:
@@ -517,7 +517,7 @@ class TestAsyncFeatures:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve_feature(self, async_client: AsyncStigg) -> None:
         feature = await async_client.v1.events.features.retrieve_feature(
@@ -525,7 +525,7 @@ class TestAsyncFeatures:
         )
         assert_matches_type(FeatureRetrieveFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_feature(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.events.features.with_raw_response.retrieve_feature(
@@ -537,7 +537,7 @@ class TestAsyncFeatures:
         feature = await response.parse()
         assert_matches_type(FeatureRetrieveFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_feature(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.events.features.with_streaming_response.retrieve_feature(
@@ -551,7 +551,7 @@ class TestAsyncFeatures:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve_feature(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -559,7 +559,7 @@ class TestAsyncFeatures:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_unarchive_feature(self, async_client: AsyncStigg) -> None:
         feature = await async_client.v1.events.features.unarchive_feature(
@@ -567,7 +567,7 @@ class TestAsyncFeatures:
         )
         assert_matches_type(FeatureUnarchiveFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_unarchive_feature(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.events.features.with_raw_response.unarchive_feature(
@@ -579,7 +579,7 @@ class TestAsyncFeatures:
         feature = await response.parse()
         assert_matches_type(FeatureUnarchiveFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_unarchive_feature(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.events.features.with_streaming_response.unarchive_feature(
@@ -593,7 +593,7 @@ class TestAsyncFeatures:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_unarchive_feature(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -601,7 +601,7 @@ class TestAsyncFeatures:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_feature(self, async_client: AsyncStigg) -> None:
         feature = await async_client.v1.events.features.update_feature(
@@ -609,7 +609,7 @@ class TestAsyncFeatures:
         )
         assert_matches_type(FeatureUpdateFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_feature_with_all_params(self, async_client: AsyncStigg) -> None:
         feature = await async_client.v1.events.features.update_feature(
@@ -652,7 +652,7 @@ class TestAsyncFeatures:
         )
         assert_matches_type(FeatureUpdateFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update_feature(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.events.features.with_raw_response.update_feature(
@@ -664,7 +664,7 @@ class TestAsyncFeatures:
         feature = await response.parse()
         assert_matches_type(FeatureUpdateFeatureResponse, feature, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update_feature(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.events.features.with_streaming_response.update_feature(
@@ -678,7 +678,7 @@ class TestAsyncFeatures:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update_feature(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

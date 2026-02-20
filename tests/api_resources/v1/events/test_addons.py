@@ -26,7 +26,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAddons:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_archive_addon(self, client: Stigg) -> None:
         addon = client.v1.events.addons.archive_addon(
@@ -34,7 +34,7 @@ class TestAddons:
         )
         assert_matches_type(AddonArchiveAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_archive_addon(self, client: Stigg) -> None:
         response = client.v1.events.addons.with_raw_response.archive_addon(
@@ -46,7 +46,7 @@ class TestAddons:
         addon = response.parse()
         assert_matches_type(AddonArchiveAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_archive_addon(self, client: Stigg) -> None:
         with client.v1.events.addons.with_streaming_response.archive_addon(
@@ -60,7 +60,7 @@ class TestAddons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_archive_addon(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -68,7 +68,7 @@ class TestAddons:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_addon(self, client: Stigg) -> None:
         addon = client.v1.events.addons.create_addon(
@@ -78,7 +78,7 @@ class TestAddons:
         )
         assert_matches_type(AddonCreateAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_addon_with_all_params(self, client: Stigg) -> None:
         addon = client.v1.events.addons.create_addon(
@@ -94,7 +94,7 @@ class TestAddons:
         )
         assert_matches_type(AddonCreateAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create_addon(self, client: Stigg) -> None:
         response = client.v1.events.addons.with_raw_response.create_addon(
@@ -108,7 +108,7 @@ class TestAddons:
         addon = response.parse()
         assert_matches_type(AddonCreateAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create_addon(self, client: Stigg) -> None:
         with client.v1.events.addons.with_streaming_response.create_addon(
@@ -124,13 +124,13 @@ class TestAddons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_addons(self, client: Stigg) -> None:
         addon = client.v1.events.addons.list_addons()
         assert_matches_type(SyncMyCursorIDPage[AddonListAddonsResponse], addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_addons_with_all_params(self, client: Stigg) -> None:
         addon = client.v1.events.addons.list_addons(
@@ -148,7 +148,7 @@ class TestAddons:
         )
         assert_matches_type(SyncMyCursorIDPage[AddonListAddonsResponse], addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list_addons(self, client: Stigg) -> None:
         response = client.v1.events.addons.with_raw_response.list_addons()
@@ -158,7 +158,7 @@ class TestAddons:
         addon = response.parse()
         assert_matches_type(SyncMyCursorIDPage[AddonListAddonsResponse], addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list_addons(self, client: Stigg) -> None:
         with client.v1.events.addons.with_streaming_response.list_addons() as response:
@@ -170,7 +170,7 @@ class TestAddons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_publish_addon(self, client: Stigg) -> None:
         addon = client.v1.events.addons.publish_addon(
@@ -179,7 +179,7 @@ class TestAddons:
         )
         assert_matches_type(AddonPublishAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_publish_addon(self, client: Stigg) -> None:
         response = client.v1.events.addons.with_raw_response.publish_addon(
@@ -192,7 +192,7 @@ class TestAddons:
         addon = response.parse()
         assert_matches_type(AddonPublishAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_publish_addon(self, client: Stigg) -> None:
         with client.v1.events.addons.with_streaming_response.publish_addon(
@@ -207,7 +207,7 @@ class TestAddons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_publish_addon(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -216,7 +216,7 @@ class TestAddons:
                 migration_type="NEW_CUSTOMERS",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve_addon(self, client: Stigg) -> None:
         addon = client.v1.events.addons.retrieve_addon(
@@ -224,7 +224,7 @@ class TestAddons:
         )
         assert_matches_type(AddonRetrieveAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve_addon(self, client: Stigg) -> None:
         response = client.v1.events.addons.with_raw_response.retrieve_addon(
@@ -236,7 +236,7 @@ class TestAddons:
         addon = response.parse()
         assert_matches_type(AddonRetrieveAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_addon(self, client: Stigg) -> None:
         with client.v1.events.addons.with_streaming_response.retrieve_addon(
@@ -250,7 +250,7 @@ class TestAddons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve_addon(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -258,7 +258,7 @@ class TestAddons:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_addon(self, client: Stigg) -> None:
         addon = client.v1.events.addons.update_addon(
@@ -266,7 +266,7 @@ class TestAddons:
         )
         assert_matches_type(AddonUpdateAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_addon_with_all_params(self, client: Stigg) -> None:
         addon = client.v1.events.addons.update_addon(
@@ -280,7 +280,7 @@ class TestAddons:
         )
         assert_matches_type(AddonUpdateAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update_addon(self, client: Stigg) -> None:
         response = client.v1.events.addons.with_raw_response.update_addon(
@@ -292,7 +292,7 @@ class TestAddons:
         addon = response.parse()
         assert_matches_type(AddonUpdateAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update_addon(self, client: Stigg) -> None:
         with client.v1.events.addons.with_streaming_response.update_addon(
@@ -306,7 +306,7 @@ class TestAddons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update_addon(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -320,7 +320,7 @@ class TestAsyncAddons:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_archive_addon(self, async_client: AsyncStigg) -> None:
         addon = await async_client.v1.events.addons.archive_addon(
@@ -328,7 +328,7 @@ class TestAsyncAddons:
         )
         assert_matches_type(AddonArchiveAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_archive_addon(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.events.addons.with_raw_response.archive_addon(
@@ -340,7 +340,7 @@ class TestAsyncAddons:
         addon = await response.parse()
         assert_matches_type(AddonArchiveAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_archive_addon(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.events.addons.with_streaming_response.archive_addon(
@@ -354,7 +354,7 @@ class TestAsyncAddons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_archive_addon(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -362,7 +362,7 @@ class TestAsyncAddons:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_addon(self, async_client: AsyncStigg) -> None:
         addon = await async_client.v1.events.addons.create_addon(
@@ -372,7 +372,7 @@ class TestAsyncAddons:
         )
         assert_matches_type(AddonCreateAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_addon_with_all_params(self, async_client: AsyncStigg) -> None:
         addon = await async_client.v1.events.addons.create_addon(
@@ -388,7 +388,7 @@ class TestAsyncAddons:
         )
         assert_matches_type(AddonCreateAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create_addon(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.events.addons.with_raw_response.create_addon(
@@ -402,7 +402,7 @@ class TestAsyncAddons:
         addon = await response.parse()
         assert_matches_type(AddonCreateAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create_addon(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.events.addons.with_streaming_response.create_addon(
@@ -418,13 +418,13 @@ class TestAsyncAddons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_addons(self, async_client: AsyncStigg) -> None:
         addon = await async_client.v1.events.addons.list_addons()
         assert_matches_type(AsyncMyCursorIDPage[AddonListAddonsResponse], addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_addons_with_all_params(self, async_client: AsyncStigg) -> None:
         addon = await async_client.v1.events.addons.list_addons(
@@ -442,7 +442,7 @@ class TestAsyncAddons:
         )
         assert_matches_type(AsyncMyCursorIDPage[AddonListAddonsResponse], addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list_addons(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.events.addons.with_raw_response.list_addons()
@@ -452,7 +452,7 @@ class TestAsyncAddons:
         addon = await response.parse()
         assert_matches_type(AsyncMyCursorIDPage[AddonListAddonsResponse], addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list_addons(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.events.addons.with_streaming_response.list_addons() as response:
@@ -464,7 +464,7 @@ class TestAsyncAddons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_publish_addon(self, async_client: AsyncStigg) -> None:
         addon = await async_client.v1.events.addons.publish_addon(
@@ -473,7 +473,7 @@ class TestAsyncAddons:
         )
         assert_matches_type(AddonPublishAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_publish_addon(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.events.addons.with_raw_response.publish_addon(
@@ -486,7 +486,7 @@ class TestAsyncAddons:
         addon = await response.parse()
         assert_matches_type(AddonPublishAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_publish_addon(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.events.addons.with_streaming_response.publish_addon(
@@ -501,7 +501,7 @@ class TestAsyncAddons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_publish_addon(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -510,7 +510,7 @@ class TestAsyncAddons:
                 migration_type="NEW_CUSTOMERS",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve_addon(self, async_client: AsyncStigg) -> None:
         addon = await async_client.v1.events.addons.retrieve_addon(
@@ -518,7 +518,7 @@ class TestAsyncAddons:
         )
         assert_matches_type(AddonRetrieveAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_addon(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.events.addons.with_raw_response.retrieve_addon(
@@ -530,7 +530,7 @@ class TestAsyncAddons:
         addon = await response.parse()
         assert_matches_type(AddonRetrieveAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_addon(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.events.addons.with_streaming_response.retrieve_addon(
@@ -544,7 +544,7 @@ class TestAsyncAddons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve_addon(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -552,7 +552,7 @@ class TestAsyncAddons:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_addon(self, async_client: AsyncStigg) -> None:
         addon = await async_client.v1.events.addons.update_addon(
@@ -560,7 +560,7 @@ class TestAsyncAddons:
         )
         assert_matches_type(AddonUpdateAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_addon_with_all_params(self, async_client: AsyncStigg) -> None:
         addon = await async_client.v1.events.addons.update_addon(
@@ -574,7 +574,7 @@ class TestAsyncAddons:
         )
         assert_matches_type(AddonUpdateAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update_addon(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.events.addons.with_raw_response.update_addon(
@@ -586,7 +586,7 @@ class TestAsyncAddons:
         addon = await response.parse()
         assert_matches_type(AddonUpdateAddonResponse, addon, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update_addon(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.events.addons.with_streaming_response.update_addon(
@@ -600,7 +600,7 @@ class TestAsyncAddons:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update_addon(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

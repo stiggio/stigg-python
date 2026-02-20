@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestFutureUpdate:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_cancel_pending_payment(self, client: Stigg) -> None:
         future_update = client.v1.subscriptions.future_update.cancel_pending_payment(
@@ -25,7 +25,7 @@ class TestFutureUpdate:
         )
         assert_matches_type(CancelSubscription, future_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_cancel_pending_payment(self, client: Stigg) -> None:
         response = client.v1.subscriptions.future_update.with_raw_response.cancel_pending_payment(
@@ -37,7 +37,7 @@ class TestFutureUpdate:
         future_update = response.parse()
         assert_matches_type(CancelSubscription, future_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_cancel_pending_payment(self, client: Stigg) -> None:
         with client.v1.subscriptions.future_update.with_streaming_response.cancel_pending_payment(
@@ -51,7 +51,7 @@ class TestFutureUpdate:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_cancel_pending_payment(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -59,7 +59,7 @@ class TestFutureUpdate:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_cancel_schedule(self, client: Stigg) -> None:
         future_update = client.v1.subscriptions.future_update.cancel_schedule(
@@ -67,7 +67,7 @@ class TestFutureUpdate:
         )
         assert_matches_type(CancelSubscription, future_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_cancel_schedule(self, client: Stigg) -> None:
         response = client.v1.subscriptions.future_update.with_raw_response.cancel_schedule(
@@ -79,7 +79,7 @@ class TestFutureUpdate:
         future_update = response.parse()
         assert_matches_type(CancelSubscription, future_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_cancel_schedule(self, client: Stigg) -> None:
         with client.v1.subscriptions.future_update.with_streaming_response.cancel_schedule(
@@ -93,7 +93,7 @@ class TestFutureUpdate:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_cancel_schedule(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -107,7 +107,7 @@ class TestAsyncFutureUpdate:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_cancel_pending_payment(self, async_client: AsyncStigg) -> None:
         future_update = await async_client.v1.subscriptions.future_update.cancel_pending_payment(
@@ -115,7 +115,7 @@ class TestAsyncFutureUpdate:
         )
         assert_matches_type(CancelSubscription, future_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_cancel_pending_payment(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.subscriptions.future_update.with_raw_response.cancel_pending_payment(
@@ -127,7 +127,7 @@ class TestAsyncFutureUpdate:
         future_update = await response.parse()
         assert_matches_type(CancelSubscription, future_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_cancel_pending_payment(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.subscriptions.future_update.with_streaming_response.cancel_pending_payment(
@@ -141,7 +141,7 @@ class TestAsyncFutureUpdate:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_cancel_pending_payment(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -149,7 +149,7 @@ class TestAsyncFutureUpdate:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_cancel_schedule(self, async_client: AsyncStigg) -> None:
         future_update = await async_client.v1.subscriptions.future_update.cancel_schedule(
@@ -157,7 +157,7 @@ class TestAsyncFutureUpdate:
         )
         assert_matches_type(CancelSubscription, future_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_cancel_schedule(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.subscriptions.future_update.with_raw_response.cancel_schedule(
@@ -169,7 +169,7 @@ class TestAsyncFutureUpdate:
         future_update = await response.parse()
         assert_matches_type(CancelSubscription, future_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_cancel_schedule(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.subscriptions.future_update.with_streaming_response.cancel_schedule(
@@ -183,7 +183,7 @@ class TestAsyncFutureUpdate:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_cancel_schedule(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
