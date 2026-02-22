@@ -319,7 +319,7 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncMyCursorIDPage[CustomerListResourcesResponse]:
         """
-        Get a list of customerresources
+        Retrieves a paginated list of resources within the same customer.
 
         Args:
           after: Return items that come after this cursor
@@ -726,7 +726,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CustomerListResourcesResponse, AsyncMyCursorIDPage[CustomerListResourcesResponse]]:
         """
-        Get a list of customerresources
+        Retrieves a paginated list of resources within the same customer.
 
         Args:
           after: Return items that come after this cursor
