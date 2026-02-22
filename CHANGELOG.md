@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.9 (2026-02-22)
+
+Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
+
+### Features
+
+* **api:** api update ([e8824f3](https://github.com/stiggio/stigg-python/commit/e8824f3503ac74e499a192a7388c47094f4f9ae2))
+
 ## 0.1.0-alpha.8 (2026-02-20)
 
 Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
