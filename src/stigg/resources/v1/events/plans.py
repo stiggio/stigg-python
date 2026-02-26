@@ -54,6 +54,7 @@ class PlansResource(SyncAPIResource):
         display_name: str,
         product_id: str,
         billing_id: Optional[str] | Omit = omit,
+        default_trial_config: Optional[plan_create_params.DefaultTrialConfig] | Omit = omit,
         description: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         parent_plan_id: Optional[str] | Omit = omit,
@@ -77,6 +78,8 @@ class PlansResource(SyncAPIResource):
           product_id: The product ID to associate the plan with
 
           billing_id: The unique identifier for the entity in the billing provider
+
+          default_trial_config: Default trial configuration for the plan
 
           description: The description of the package
 
@@ -104,6 +107,7 @@ class PlansResource(SyncAPIResource):
                     "display_name": display_name,
                     "product_id": product_id,
                     "billing_id": billing_id,
+                    "default_trial_config": default_trial_config,
                     "description": description,
                     "metadata": metadata,
                     "parent_plan_id": parent_plan_id,
@@ -243,6 +247,7 @@ class AsyncPlansResource(AsyncAPIResource):
         display_name: str,
         product_id: str,
         billing_id: Optional[str] | Omit = omit,
+        default_trial_config: Optional[plan_create_params.DefaultTrialConfig] | Omit = omit,
         description: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         parent_plan_id: Optional[str] | Omit = omit,
@@ -266,6 +271,8 @@ class AsyncPlansResource(AsyncAPIResource):
           product_id: The product ID to associate the plan with
 
           billing_id: The unique identifier for the entity in the billing provider
+
+          default_trial_config: Default trial configuration for the plan
 
           description: The description of the package
 
@@ -293,6 +300,7 @@ class AsyncPlansResource(AsyncAPIResource):
                     "display_name": display_name,
                     "product_id": product_id,
                     "billing_id": billing_id,
+                    "default_trial_config": default_trial_config,
                     "description": description,
                     "metadata": metadata,
                     "parent_plan_id": parent_plan_id,

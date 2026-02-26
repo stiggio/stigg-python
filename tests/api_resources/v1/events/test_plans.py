@@ -41,6 +41,15 @@ class TestPlans:
             display_name="displayName",
             product_id="productId",
             billing_id="billingId",
+            default_trial_config={
+                "duration": 0,
+                "units": "DAY",
+                "budget": {
+                    "has_soft_limit": True,
+                    "limit": 0,
+                },
+                "trial_end_behavior": "CONVERT_TO_PAID",
+            },
             description="description",
             metadata={"foo": "string"},
             parent_plan_id="parentPlanId",
@@ -191,6 +200,15 @@ class TestAsyncPlans:
             display_name="displayName",
             product_id="productId",
             billing_id="billingId",
+            default_trial_config={
+                "duration": 0,
+                "units": "DAY",
+                "budget": {
+                    "has_soft_limit": True,
+                    "limit": 0,
+                },
+                "trial_end_behavior": "CONVERT_TO_PAID",
+            },
             description="description",
             metadata={"foo": "string"},
             parent_plan_id="parentPlanId",
