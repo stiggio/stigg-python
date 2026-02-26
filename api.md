@@ -140,68 +140,58 @@ from stigg.types.v1 import EventReportResponse
 
 Methods:
 
-- <code title="post /api/v1/events">client.v1.events.<a href="./src/stigg/resources/v1/events/events.py">report</a>(\*\*<a href="src/stigg/types/v1/event_report_params.py">params</a>) -> <a href="./src/stigg/types/v1/event_report_response.py">EventReportResponse</a></code>
+- <code title="post /api/v1/events">client.v1.events.<a href="./src/stigg/resources/v1/events.py">report</a>(\*\*<a href="src/stigg/types/v1/event_report_params.py">params</a>) -> <a href="./src/stigg/types/v1/event_report_response.py">EventReportResponse</a></code>
 
-### Features
+## Features
 
 Types:
 
 ```python
-from stigg.types.v1.events import Feature, FeatureListFeaturesResponse
+from stigg.types.v1 import Feature, FeatureListFeaturesResponse
 ```
 
 Methods:
 
-- <code title="post /api/v1/features/{id}/archive">client.v1.events.features.<a href="./src/stigg/resources/v1/events/features.py">archive_feature</a>(id) -> <a href="./src/stigg/types/v1/events/feature.py">Feature</a></code>
-- <code title="post /api/v1/features">client.v1.events.features.<a href="./src/stigg/resources/v1/events/features.py">create_feature</a>(\*\*<a href="src/stigg/types/v1/events/feature_create_feature_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/feature.py">Feature</a></code>
-- <code title="get /api/v1/features">client.v1.events.features.<a href="./src/stigg/resources/v1/events/features.py">list_features</a>(\*\*<a href="src/stigg/types/v1/events/feature_list_features_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/feature_list_features_response.py">SyncMyCursorIDPage[FeatureListFeaturesResponse]</a></code>
-- <code title="get /api/v1/features/{id}">client.v1.events.features.<a href="./src/stigg/resources/v1/events/features.py">retrieve_feature</a>(id) -> <a href="./src/stigg/types/v1/events/feature.py">Feature</a></code>
-- <code title="post /api/v1/features/{id}/unarchive">client.v1.events.features.<a href="./src/stigg/resources/v1/events/features.py">unarchive_feature</a>(id) -> <a href="./src/stigg/types/v1/events/feature.py">Feature</a></code>
-- <code title="patch /api/v1/features/{id}">client.v1.events.features.<a href="./src/stigg/resources/v1/events/features.py">update_feature</a>(id, \*\*<a href="src/stigg/types/v1/events/feature_update_feature_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/feature.py">Feature</a></code>
+- <code title="post /api/v1/features/{id}/archive">client.v1.features.<a href="./src/stigg/resources/v1/features.py">archive_feature</a>(id) -> <a href="./src/stigg/types/v1/feature.py">Feature</a></code>
+- <code title="post /api/v1/features">client.v1.features.<a href="./src/stigg/resources/v1/features.py">create_feature</a>(\*\*<a href="src/stigg/types/v1/feature_create_feature_params.py">params</a>) -> <a href="./src/stigg/types/v1/feature.py">Feature</a></code>
+- <code title="get /api/v1/features">client.v1.features.<a href="./src/stigg/resources/v1/features.py">list_features</a>(\*\*<a href="src/stigg/types/v1/feature_list_features_params.py">params</a>) -> <a href="./src/stigg/types/v1/feature_list_features_response.py">SyncMyCursorIDPage[FeatureListFeaturesResponse]</a></code>
+- <code title="get /api/v1/features/{id}">client.v1.features.<a href="./src/stigg/resources/v1/features.py">retrieve_feature</a>(id) -> <a href="./src/stigg/types/v1/feature.py">Feature</a></code>
+- <code title="post /api/v1/features/{id}/unarchive">client.v1.features.<a href="./src/stigg/resources/v1/features.py">unarchive_feature</a>(id) -> <a href="./src/stigg/types/v1/feature.py">Feature</a></code>
+- <code title="patch /api/v1/features/{id}">client.v1.features.<a href="./src/stigg/resources/v1/features.py">update_feature</a>(id, \*\*<a href="src/stigg/types/v1/feature_update_feature_params.py">params</a>) -> <a href="./src/stigg/types/v1/feature.py">Feature</a></code>
 
-### Addons
+## Addons
 
 Types:
 
 ```python
-from stigg.types.v1.events import (
+from stigg.types.v1 import (
     Addon,
     SetPackagePricing,
     SetPackagePricingResponse,
-    AddonListAddonsResponse,
-    AddonPublishAddonResponse,
+    AddonListResponse,
+    AddonPublishResponse,
+    AddonRemoveDraftResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /api/v1/addons/{id}/archive">client.v1.events.addons.<a href="./src/stigg/resources/v1/events/addons/addons.py">archive_addon</a>(id) -> <a href="./src/stigg/types/v1/events/addon.py">Addon</a></code>
-- <code title="post /api/v1/addons">client.v1.events.addons.<a href="./src/stigg/resources/v1/events/addons/addons.py">create_addon</a>(\*\*<a href="src/stigg/types/v1/events/addon_create_addon_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/addon.py">Addon</a></code>
-- <code title="get /api/v1/addons">client.v1.events.addons.<a href="./src/stigg/resources/v1/events/addons/addons.py">list_addons</a>(\*\*<a href="src/stigg/types/v1/events/addon_list_addons_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/addon_list_addons_response.py">SyncMyCursorIDPage[AddonListAddonsResponse]</a></code>
-- <code title="post /api/v1/addons/{id}/publish">client.v1.events.addons.<a href="./src/stigg/resources/v1/events/addons/addons.py">publish_addon</a>(id, \*\*<a href="src/stigg/types/v1/events/addon_publish_addon_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/addon_publish_addon_response.py">AddonPublishAddonResponse</a></code>
-- <code title="get /api/v1/addons/{id}">client.v1.events.addons.<a href="./src/stigg/resources/v1/events/addons/addons.py">retrieve_addon</a>(id) -> <a href="./src/stigg/types/v1/events/addon.py">Addon</a></code>
-- <code title="put /api/v1/addons/{id}/charges">client.v1.events.addons.<a href="./src/stigg/resources/v1/events/addons/addons.py">set_pricing</a>(id, \*\*<a href="src/stigg/types/v1/events/addon_set_pricing_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/set_package_pricing_response.py">SetPackagePricingResponse</a></code>
-- <code title="patch /api/v1/addons/{id}">client.v1.events.addons.<a href="./src/stigg/resources/v1/events/addons/addons.py">update_addon</a>(id, \*\*<a href="src/stigg/types/v1/events/addon_update_addon_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/addon.py">Addon</a></code>
+- <code title="post /api/v1/addons">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">create</a>(\*\*<a href="src/stigg/types/v1/addon_create_params.py">params</a>) -> <a href="./src/stigg/types/v1/addon.py">Addon</a></code>
+- <code title="get /api/v1/addons/{id}">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">retrieve</a>(id) -> <a href="./src/stigg/types/v1/addon.py">Addon</a></code>
+- <code title="patch /api/v1/addons/{id}">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">update</a>(id, \*\*<a href="src/stigg/types/v1/addon_update_params.py">params</a>) -> <a href="./src/stigg/types/v1/addon.py">Addon</a></code>
+- <code title="get /api/v1/addons">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">list</a>(\*\*<a href="src/stigg/types/v1/addon_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/addon_list_response.py">SyncMyCursorIDPage[AddonListResponse]</a></code>
+- <code title="post /api/v1/addons/{id}/archive">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">archive</a>(id) -> <a href="./src/stigg/types/v1/addon.py">Addon</a></code>
+- <code title="post /api/v1/addons/{id}/draft">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">create_draft</a>(id) -> <a href="./src/stigg/types/v1/addon.py">Addon</a></code>
+- <code title="post /api/v1/addons/{id}/publish">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">publish</a>(id, \*\*<a href="src/stigg/types/v1/addon_publish_params.py">params</a>) -> <a href="./src/stigg/types/v1/addon_publish_response.py">AddonPublishResponse</a></code>
+- <code title="delete /api/v1/addons/{id}/draft">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">remove_draft</a>(id) -> <a href="./src/stigg/types/v1/addon_remove_draft_response.py">AddonRemoveDraftResponse</a></code>
+- <code title="put /api/v1/addons/{id}/charges">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">set_pricing</a>(id, \*\*<a href="src/stigg/types/v1/addon_set_pricing_params.py">params</a>) -> <a href="./src/stigg/types/v1/set_package_pricing_response.py">SetPackagePricingResponse</a></code>
 
-#### Draft
-
-Types:
-
-```python
-from stigg.types.v1.events.addons import DraftRemoveAddonDraftResponse
-```
-
-Methods:
-
-- <code title="post /api/v1/addons/{id}/draft">client.v1.events.addons.draft.<a href="./src/stigg/resources/v1/events/addons/draft.py">create_addon_draft</a>(id) -> <a href="./src/stigg/types/v1/events/addon.py">Addon</a></code>
-- <code title="delete /api/v1/addons/{id}/draft">client.v1.events.addons.draft.<a href="./src/stigg/resources/v1/events/addons/draft.py">remove_addon_draft</a>(id) -> <a href="./src/stigg/types/v1/events/addons/draft_remove_addon_draft_response.py">DraftRemoveAddonDraftResponse</a></code>
-
-#### Entitlements
+### Entitlements
 
 Types:
 
 ```python
-from stigg.types.v1.events.addons import (
+from stigg.types.v1.addons import (
     AddonPackageEntitlement,
     EntitlementCreateResponse,
     EntitlementListResponse,
@@ -210,60 +200,45 @@ from stigg.types.v1.events.addons import (
 
 Methods:
 
-- <code title="post /api/v1/addons/{addonId}/entitlements">client.v1.events.addons.entitlements.<a href="./src/stigg/resources/v1/events/addons/entitlements.py">create</a>(addon_id, \*\*<a href="src/stigg/types/v1/events/addons/entitlement_create_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/addons/entitlement_create_response.py">EntitlementCreateResponse</a></code>
-- <code title="patch /api/v1/addons/{addonId}/entitlements/{id}">client.v1.events.addons.entitlements.<a href="./src/stigg/resources/v1/events/addons/entitlements.py">update</a>(id, \*, addon_id, \*\*<a href="src/stigg/types/v1/events/addons/entitlement_update_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/addons/addon_package_entitlement.py">AddonPackageEntitlement</a></code>
-- <code title="get /api/v1/addons/{addonId}/entitlements">client.v1.events.addons.entitlements.<a href="./src/stigg/resources/v1/events/addons/entitlements.py">list</a>(addon_id) -> <a href="./src/stigg/types/v1/events/addons/entitlement_list_response.py">EntitlementListResponse</a></code>
-- <code title="delete /api/v1/addons/{addonId}/entitlements/{id}">client.v1.events.addons.entitlements.<a href="./src/stigg/resources/v1/events/addons/entitlements.py">delete</a>(id, \*, addon_id) -> <a href="./src/stigg/types/v1/events/addons/addon_package_entitlement.py">AddonPackageEntitlement</a></code>
+- <code title="post /api/v1/addons/{addonId}/entitlements">client.v1.addons.entitlements.<a href="./src/stigg/resources/v1/addons/entitlements.py">create</a>(addon_id, \*\*<a href="src/stigg/types/v1/addons/entitlement_create_params.py">params</a>) -> <a href="./src/stigg/types/v1/addons/entitlement_create_response.py">EntitlementCreateResponse</a></code>
+- <code title="patch /api/v1/addons/{addonId}/entitlements/{id}">client.v1.addons.entitlements.<a href="./src/stigg/resources/v1/addons/entitlements.py">update</a>(id, \*, addon_id, \*\*<a href="src/stigg/types/v1/addons/entitlement_update_params.py">params</a>) -> <a href="./src/stigg/types/v1/addons/addon_package_entitlement.py">AddonPackageEntitlement</a></code>
+- <code title="get /api/v1/addons/{addonId}/entitlements">client.v1.addons.entitlements.<a href="./src/stigg/resources/v1/addons/entitlements.py">list</a>(addon_id) -> <a href="./src/stigg/types/v1/addons/entitlement_list_response.py">EntitlementListResponse</a></code>
+- <code title="delete /api/v1/addons/{addonId}/entitlements/{id}">client.v1.addons.entitlements.<a href="./src/stigg/resources/v1/addons/entitlements.py">delete</a>(id, \*, addon_id) -> <a href="./src/stigg/types/v1/addons/addon_package_entitlement.py">AddonPackageEntitlement</a></code>
 
-### Plans
-
-Types:
-
-```python
-from stigg.types.v1.events import Plan, PlanListResponse, PlanPublishResponse
-```
-
-Methods:
-
-- <code title="post /api/v1/plans">client.v1.events.plans.<a href="./src/stigg/resources/v1/events/plans/plans.py">create</a>(\*\*<a href="src/stigg/types/v1/events/plan_create_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/plan.py">Plan</a></code>
-- <code title="get /api/v1/plans/{id}">client.v1.events.plans.<a href="./src/stigg/resources/v1/events/plans/plans.py">retrieve</a>(id) -> <a href="./src/stigg/types/v1/events/plan.py">Plan</a></code>
-- <code title="patch /api/v1/plans/{id}">client.v1.events.plans.<a href="./src/stigg/resources/v1/events/plans/plans.py">update</a>(id, \*\*<a href="src/stigg/types/v1/events/plan_update_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/plan.py">Plan</a></code>
-- <code title="get /api/v1/plans">client.v1.events.plans.<a href="./src/stigg/resources/v1/events/plans/plans.py">list</a>(\*\*<a href="src/stigg/types/v1/events/plan_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/plan_list_response.py">SyncMyCursorIDPage[PlanListResponse]</a></code>
-- <code title="post /api/v1/plans/{id}/archive">client.v1.events.plans.<a href="./src/stigg/resources/v1/events/plans/plans.py">archive</a>(id) -> <a href="./src/stigg/types/v1/events/plan.py">Plan</a></code>
-- <code title="post /api/v1/plans/{id}/publish">client.v1.events.plans.<a href="./src/stigg/resources/v1/events/plans/plans.py">publish</a>(id, \*\*<a href="src/stigg/types/v1/events/plan_publish_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/plan_publish_response.py">PlanPublishResponse</a></code>
-- <code title="put /api/v1/plans/{id}/charges">client.v1.events.plans.<a href="./src/stigg/resources/v1/events/plans/plans.py">set_pricing</a>(id, \*\*<a href="src/stigg/types/v1/events/plan_set_pricing_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/set_package_pricing_response.py">SetPackagePricingResponse</a></code>
-
-#### Draft
+## Plans
 
 Types:
 
 ```python
-from stigg.types.v1.events.plans import DraftRemoveResponse
+from stigg.types.v1 import Plan, PlanListResponse, PlanPublishResponse, PlanRemoveDraftResponse
 ```
 
 Methods:
 
-- <code title="post /api/v1/plans/{id}/draft">client.v1.events.plans.draft.<a href="./src/stigg/resources/v1/events/plans/draft.py">create</a>(id) -> <a href="./src/stigg/types/v1/events/plan.py">Plan</a></code>
-- <code title="delete /api/v1/plans/{id}/draft">client.v1.events.plans.draft.<a href="./src/stigg/resources/v1/events/plans/draft.py">remove</a>(id) -> <a href="./src/stigg/types/v1/events/plans/draft_remove_response.py">DraftRemoveResponse</a></code>
+- <code title="post /api/v1/plans">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">create</a>(\*\*<a href="src/stigg/types/v1/plan_create_params.py">params</a>) -> <a href="./src/stigg/types/v1/plan.py">Plan</a></code>
+- <code title="get /api/v1/plans/{id}">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">retrieve</a>(id) -> <a href="./src/stigg/types/v1/plan.py">Plan</a></code>
+- <code title="patch /api/v1/plans/{id}">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">update</a>(id, \*\*<a href="src/stigg/types/v1/plan_update_params.py">params</a>) -> <a href="./src/stigg/types/v1/plan.py">Plan</a></code>
+- <code title="get /api/v1/plans">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">list</a>(\*\*<a href="src/stigg/types/v1/plan_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/plan_list_response.py">SyncMyCursorIDPage[PlanListResponse]</a></code>
+- <code title="post /api/v1/plans/{id}/archive">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">archive</a>(id) -> <a href="./src/stigg/types/v1/plan.py">Plan</a></code>
+- <code title="post /api/v1/plans/{id}/draft">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">create_draft</a>(id) -> <a href="./src/stigg/types/v1/plan.py">Plan</a></code>
+- <code title="post /api/v1/plans/{id}/publish">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">publish</a>(id, \*\*<a href="src/stigg/types/v1/plan_publish_params.py">params</a>) -> <a href="./src/stigg/types/v1/plan_publish_response.py">PlanPublishResponse</a></code>
+- <code title="delete /api/v1/plans/{id}/draft">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">remove_draft</a>(id) -> <a href="./src/stigg/types/v1/plan_remove_draft_response.py">PlanRemoveDraftResponse</a></code>
+- <code title="put /api/v1/plans/{id}/charges">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">set_pricing</a>(id, \*\*<a href="src/stigg/types/v1/plan_set_pricing_params.py">params</a>) -> <a href="./src/stigg/types/v1/set_package_pricing_response.py">SetPackagePricingResponse</a></code>
 
-#### Entitlements
+### Entitlements
 
 Types:
 
 ```python
-from stigg.types.v1.events.plans import (
-    PlanEntitlement,
-    EntitlementCreateResponse,
-    EntitlementListResponse,
-)
+from stigg.types.v1.plans import PlanEntitlement, EntitlementCreateResponse, EntitlementListResponse
 ```
 
 Methods:
 
-- <code title="post /api/v1/plans/{planId}/entitlements">client.v1.events.plans.entitlements.<a href="./src/stigg/resources/v1/events/plans/entitlements.py">create</a>(plan_id, \*\*<a href="src/stigg/types/v1/events/plans/entitlement_create_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/plans/entitlement_create_response.py">EntitlementCreateResponse</a></code>
-- <code title="patch /api/v1/plans/{planId}/entitlements/{id}">client.v1.events.plans.entitlements.<a href="./src/stigg/resources/v1/events/plans/entitlements.py">update</a>(id, \*, plan_id, \*\*<a href="src/stigg/types/v1/events/plans/entitlement_update_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/plans/plan_entitlement.py">PlanEntitlement</a></code>
-- <code title="get /api/v1/plans/{planId}/entitlements">client.v1.events.plans.entitlements.<a href="./src/stigg/resources/v1/events/plans/entitlements.py">list</a>(plan_id) -> <a href="./src/stigg/types/v1/events/plans/entitlement_list_response.py">EntitlementListResponse</a></code>
-- <code title="delete /api/v1/plans/{planId}/entitlements/{id}">client.v1.events.plans.entitlements.<a href="./src/stigg/resources/v1/events/plans/entitlements.py">delete</a>(id, \*, plan_id) -> <a href="./src/stigg/types/v1/events/plans/plan_entitlement.py">PlanEntitlement</a></code>
+- <code title="post /api/v1/plans/{planId}/entitlements">client.v1.plans.entitlements.<a href="./src/stigg/resources/v1/plans/entitlements.py">create</a>(plan_id, \*\*<a href="src/stigg/types/v1/plans/entitlement_create_params.py">params</a>) -> <a href="./src/stigg/types/v1/plans/entitlement_create_response.py">EntitlementCreateResponse</a></code>
+- <code title="patch /api/v1/plans/{planId}/entitlements/{id}">client.v1.plans.entitlements.<a href="./src/stigg/resources/v1/plans/entitlements.py">update</a>(id, \*, plan_id, \*\*<a href="src/stigg/types/v1/plans/entitlement_update_params.py">params</a>) -> <a href="./src/stigg/types/v1/plans/plan_entitlement.py">PlanEntitlement</a></code>
+- <code title="get /api/v1/plans/{planId}/entitlements">client.v1.plans.entitlements.<a href="./src/stigg/resources/v1/plans/entitlements.py">list</a>(plan_id) -> <a href="./src/stigg/types/v1/plans/entitlement_list_response.py">EntitlementListResponse</a></code>
+- <code title="delete /api/v1/plans/{planId}/entitlements/{id}">client.v1.plans.entitlements.<a href="./src/stigg/resources/v1/plans/entitlements.py">delete</a>(id, \*, plan_id) -> <a href="./src/stigg/types/v1/plans/plan_entitlement.py">PlanEntitlement</a></code>
 
 ## Usage
 

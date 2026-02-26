@@ -10,6 +10,14 @@ from .usage import (
     UsageResourceWithStreamingResponse,
     AsyncUsageResourceWithStreamingResponse,
 )
+from .events import (
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
+)
 from .coupons import (
     CouponsResource,
     AsyncCouponsResource,
@@ -17,6 +25,14 @@ from .coupons import (
     AsyncCouponsResourceWithRawResponse,
     CouponsResourceWithStreamingResponse,
     AsyncCouponsResourceWithStreamingResponse,
+)
+from .features import (
+    FeaturesResource,
+    AsyncFeaturesResource,
+    FeaturesResourceWithRawResponse,
+    AsyncFeaturesResourceWithRawResponse,
+    FeaturesResourceWithStreamingResponse,
+    AsyncFeaturesResourceWithStreamingResponse,
 )
 from .products import (
     ProductsResource,
@@ -28,13 +44,21 @@ from .products import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .events.events import (
-    EventsResource,
-    AsyncEventsResource,
-    EventsResourceWithRawResponse,
-    AsyncEventsResourceWithRawResponse,
-    EventsResourceWithStreamingResponse,
-    AsyncEventsResourceWithStreamingResponse,
+from .plans.plans import (
+    PlansResource,
+    AsyncPlansResource,
+    PlansResourceWithRawResponse,
+    AsyncPlansResourceWithRawResponse,
+    PlansResourceWithStreamingResponse,
+    AsyncPlansResourceWithStreamingResponse,
+)
+from .addons.addons import (
+    AddonsResource,
+    AsyncAddonsResource,
+    AddonsResourceWithRawResponse,
+    AsyncAddonsResourceWithRawResponse,
+    AddonsResourceWithStreamingResponse,
+    AsyncAddonsResourceWithStreamingResponse,
 )
 from .customers.customers import (
     CustomersResource,
@@ -72,6 +96,18 @@ class V1Resource(SyncAPIResource):
     @cached_property
     def events(self) -> EventsResource:
         return EventsResource(self._client)
+
+    @cached_property
+    def features(self) -> FeaturesResource:
+        return FeaturesResource(self._client)
+
+    @cached_property
+    def addons(self) -> AddonsResource:
+        return AddonsResource(self._client)
+
+    @cached_property
+    def plans(self) -> PlansResource:
+        return PlansResource(self._client)
 
     @cached_property
     def usage(self) -> UsageResource:
@@ -117,6 +153,18 @@ class AsyncV1Resource(AsyncAPIResource):
     @cached_property
     def events(self) -> AsyncEventsResource:
         return AsyncEventsResource(self._client)
+
+    @cached_property
+    def features(self) -> AsyncFeaturesResource:
+        return AsyncFeaturesResource(self._client)
+
+    @cached_property
+    def addons(self) -> AsyncAddonsResource:
+        return AsyncAddonsResource(self._client)
+
+    @cached_property
+    def plans(self) -> AsyncPlansResource:
+        return AsyncPlansResource(self._client)
 
     @cached_property
     def usage(self) -> AsyncUsageResource:
@@ -167,6 +215,18 @@ class V1ResourceWithRawResponse:
         return EventsResourceWithRawResponse(self._v1.events)
 
     @cached_property
+    def features(self) -> FeaturesResourceWithRawResponse:
+        return FeaturesResourceWithRawResponse(self._v1.features)
+
+    @cached_property
+    def addons(self) -> AddonsResourceWithRawResponse:
+        return AddonsResourceWithRawResponse(self._v1.addons)
+
+    @cached_property
+    def plans(self) -> PlansResourceWithRawResponse:
+        return PlansResourceWithRawResponse(self._v1.plans)
+
+    @cached_property
     def usage(self) -> UsageResourceWithRawResponse:
         return UsageResourceWithRawResponse(self._v1.usage)
 
@@ -194,6 +254,18 @@ class AsyncV1ResourceWithRawResponse:
     @cached_property
     def events(self) -> AsyncEventsResourceWithRawResponse:
         return AsyncEventsResourceWithRawResponse(self._v1.events)
+
+    @cached_property
+    def features(self) -> AsyncFeaturesResourceWithRawResponse:
+        return AsyncFeaturesResourceWithRawResponse(self._v1.features)
+
+    @cached_property
+    def addons(self) -> AsyncAddonsResourceWithRawResponse:
+        return AsyncAddonsResourceWithRawResponse(self._v1.addons)
+
+    @cached_property
+    def plans(self) -> AsyncPlansResourceWithRawResponse:
+        return AsyncPlansResourceWithRawResponse(self._v1.plans)
 
     @cached_property
     def usage(self) -> AsyncUsageResourceWithRawResponse:
@@ -225,6 +297,18 @@ class V1ResourceWithStreamingResponse:
         return EventsResourceWithStreamingResponse(self._v1.events)
 
     @cached_property
+    def features(self) -> FeaturesResourceWithStreamingResponse:
+        return FeaturesResourceWithStreamingResponse(self._v1.features)
+
+    @cached_property
+    def addons(self) -> AddonsResourceWithStreamingResponse:
+        return AddonsResourceWithStreamingResponse(self._v1.addons)
+
+    @cached_property
+    def plans(self) -> PlansResourceWithStreamingResponse:
+        return PlansResourceWithStreamingResponse(self._v1.plans)
+
+    @cached_property
     def usage(self) -> UsageResourceWithStreamingResponse:
         return UsageResourceWithStreamingResponse(self._v1.usage)
 
@@ -252,6 +336,18 @@ class AsyncV1ResourceWithStreamingResponse:
     @cached_property
     def events(self) -> AsyncEventsResourceWithStreamingResponse:
         return AsyncEventsResourceWithStreamingResponse(self._v1.events)
+
+    @cached_property
+    def features(self) -> AsyncFeaturesResourceWithStreamingResponse:
+        return AsyncFeaturesResourceWithStreamingResponse(self._v1.features)
+
+    @cached_property
+    def addons(self) -> AsyncAddonsResourceWithStreamingResponse:
+        return AsyncAddonsResourceWithStreamingResponse(self._v1.addons)
+
+    @cached_property
+    def plans(self) -> AsyncPlansResourceWithStreamingResponse:
+        return AsyncPlansResourceWithStreamingResponse(self._v1.plans)
 
     @cached_property
     def usage(self) -> AsyncUsageResourceWithStreamingResponse:

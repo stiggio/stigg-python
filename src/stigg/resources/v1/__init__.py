@@ -8,6 +8,14 @@ from .v1 import (
     V1ResourceWithStreamingResponse,
     AsyncV1ResourceWithStreamingResponse,
 )
+from .plans import (
+    PlansResource,
+    AsyncPlansResource,
+    PlansResourceWithRawResponse,
+    AsyncPlansResourceWithRawResponse,
+    PlansResourceWithStreamingResponse,
+    AsyncPlansResourceWithStreamingResponse,
+)
 from .usage import (
     UsageResource,
     AsyncUsageResource,
@@ -15,6 +23,14 @@ from .usage import (
     AsyncUsageResourceWithRawResponse,
     UsageResourceWithStreamingResponse,
     AsyncUsageResourceWithStreamingResponse,
+)
+from .addons import (
+    AddonsResource,
+    AsyncAddonsResource,
+    AddonsResourceWithRawResponse,
+    AsyncAddonsResourceWithRawResponse,
+    AddonsResourceWithStreamingResponse,
+    AsyncAddonsResourceWithStreamingResponse,
 )
 from .events import (
     EventsResource,
@@ -31,6 +47,14 @@ from .coupons import (
     AsyncCouponsResourceWithRawResponse,
     CouponsResourceWithStreamingResponse,
     AsyncCouponsResourceWithStreamingResponse,
+)
+from .features import (
+    FeaturesResource,
+    AsyncFeaturesResource,
+    FeaturesResourceWithRawResponse,
+    AsyncFeaturesResourceWithRawResponse,
+    FeaturesResourceWithStreamingResponse,
+    AsyncFeaturesResourceWithStreamingResponse,
 )
 from .products import (
     ProductsResource,
@@ -82,6 +106,24 @@ __all__ = [
     "AsyncEventsResourceWithRawResponse",
     "EventsResourceWithStreamingResponse",
     "AsyncEventsResourceWithStreamingResponse",
+    "FeaturesResource",
+    "AsyncFeaturesResource",
+    "FeaturesResourceWithRawResponse",
+    "AsyncFeaturesResourceWithRawResponse",
+    "FeaturesResourceWithStreamingResponse",
+    "AsyncFeaturesResourceWithStreamingResponse",
+    "AddonsResource",
+    "AsyncAddonsResource",
+    "AddonsResourceWithRawResponse",
+    "AsyncAddonsResourceWithRawResponse",
+    "AddonsResourceWithStreamingResponse",
+    "AsyncAddonsResourceWithStreamingResponse",
+    "PlansResource",
+    "AsyncPlansResource",
+    "PlansResourceWithRawResponse",
+    "AsyncPlansResourceWithRawResponse",
+    "PlansResourceWithStreamingResponse",
+    "AsyncPlansResourceWithStreamingResponse",
     "UsageResource",
     "AsyncUsageResource",
     "UsageResourceWithRawResponse",
