@@ -8,13 +8,13 @@ from .draft import (
     DraftResourceWithStreamingResponse,
     AsyncDraftResourceWithStreamingResponse,
 )
-from .addons import (
-    AddonsResource,
-    AsyncAddonsResource,
-    AddonsResourceWithRawResponse,
-    AsyncAddonsResourceWithRawResponse,
-    AddonsResourceWithStreamingResponse,
-    AsyncAddonsResourceWithStreamingResponse,
+from .plans import (
+    PlansResource,
+    AsyncPlansResource,
+    PlansResourceWithRawResponse,
+    AsyncPlansResourceWithRawResponse,
+    PlansResourceWithStreamingResponse,
+    AsyncPlansResourceWithStreamingResponse,
 )
 from .entitlements import (
     EntitlementsResource,
@@ -38,10 +38,10 @@ __all__ = [
     "AsyncEntitlementsResourceWithRawResponse",
     "EntitlementsResourceWithStreamingResponse",
     "AsyncEntitlementsResourceWithStreamingResponse",
-    "AddonsResource",
-    "AsyncAddonsResource",
-    "AddonsResourceWithRawResponse",
-    "AsyncAddonsResourceWithRawResponse",
-    "AddonsResourceWithStreamingResponse",
-    "AsyncAddonsResourceWithStreamingResponse",
+    "PlansResource",
+    "AsyncPlansResource",
+    "PlansResourceWithRawResponse",
+    "AsyncPlansResourceWithRawResponse",
+    "PlansResourceWithStreamingResponse",
+    "AsyncPlansResourceWithStreamingResponse",
 ]

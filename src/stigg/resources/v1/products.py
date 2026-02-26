@@ -24,12 +24,8 @@ from ..._response import (
 )
 from ...pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.v1.product import Product
 from ...types.v1.product_list_products_response import ProductListProductsResponse
-from ...types.v1.product_create_product_response import ProductCreateProductResponse
-from ...types.v1.product_update_product_response import ProductUpdateProductResponse
-from ...types.v1.product_archive_product_response import ProductArchiveProductResponse
-from ...types.v1.product_duplicate_product_response import ProductDuplicateProductResponse
-from ...types.v1.product_unarchive_product_response import ProductUnarchiveProductResponse
 
 __all__ = ["ProductsResource", "AsyncProductsResource"]
 
@@ -64,7 +60,7 @@ class ProductsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProductArchiveProductResponse:
+    ) -> Product:
         """Archives a product, preventing new subscriptions.
 
         All plans and addons are
@@ -86,7 +82,7 @@ class ProductsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ProductArchiveProductResponse,
+            cast_to=Product,
         )
 
     def create_product(
@@ -103,7 +99,7 @@ class ProductsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProductCreateProductResponse:
+    ) -> Product:
         """
         Creates a new product.
 
@@ -141,7 +137,7 @@ class ProductsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ProductCreateProductResponse,
+            cast_to=Product,
         )
 
     def duplicate_product(
@@ -157,7 +153,7 @@ class ProductsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProductDuplicateProductResponse:
+    ) -> Product:
         """
         Duplicates an existing product, including its plans, addons, and configuration.
 
@@ -191,7 +187,7 @@ class ProductsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ProductDuplicateProductResponse,
+            cast_to=Product,
         )
 
     def list_products(
@@ -267,7 +263,7 @@ class ProductsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProductUnarchiveProductResponse:
+    ) -> Product:
         """
         Restores an archived product, allowing new subscriptions to be created.
 
@@ -287,7 +283,7 @@ class ProductsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ProductUnarchiveProductResponse,
+            cast_to=Product,
         )
 
     def update_product(
@@ -306,7 +302,7 @@ class ProductsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProductUpdateProductResponse:
+    ) -> Product:
         """
         Updates an existing product's properties such as display name, description, and
         metadata.
@@ -348,7 +344,7 @@ class ProductsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ProductUpdateProductResponse,
+            cast_to=Product,
         )
 
 
@@ -382,7 +378,7 @@ class AsyncProductsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProductArchiveProductResponse:
+    ) -> Product:
         """Archives a product, preventing new subscriptions.
 
         All plans and addons are
@@ -404,7 +400,7 @@ class AsyncProductsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ProductArchiveProductResponse,
+            cast_to=Product,
         )
 
     async def create_product(
@@ -421,7 +417,7 @@ class AsyncProductsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProductCreateProductResponse:
+    ) -> Product:
         """
         Creates a new product.
 
@@ -459,7 +455,7 @@ class AsyncProductsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ProductCreateProductResponse,
+            cast_to=Product,
         )
 
     async def duplicate_product(
@@ -475,7 +471,7 @@ class AsyncProductsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProductDuplicateProductResponse:
+    ) -> Product:
         """
         Duplicates an existing product, including its plans, addons, and configuration.
 
@@ -509,7 +505,7 @@ class AsyncProductsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ProductDuplicateProductResponse,
+            cast_to=Product,
         )
 
     def list_products(
@@ -585,7 +581,7 @@ class AsyncProductsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProductUnarchiveProductResponse:
+    ) -> Product:
         """
         Restores an archived product, allowing new subscriptions to be created.
 
@@ -605,7 +601,7 @@ class AsyncProductsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ProductUnarchiveProductResponse,
+            cast_to=Product,
         )
 
     async def update_product(
@@ -624,7 +620,7 @@ class AsyncProductsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProductUpdateProductResponse:
+    ) -> Product:
         """
         Updates an existing product's properties such as display name, description, and
         metadata.
@@ -666,7 +662,7 @@ class AsyncProductsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ProductUpdateProductResponse,
+            cast_to=Product,
         )
 
 
