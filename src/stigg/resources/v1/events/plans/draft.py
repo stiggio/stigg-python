@@ -14,8 +14,8 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.v1.events.addon import Addon
-from .....types.v1.events.addons.draft_remove_addon_draft_response import DraftRemoveAddonDraftResponse
+from .....types.v1.events.plan import Plan
+from .....types.v1.events.plans.draft_remove_response import DraftRemoveResponse
 
 __all__ = ["DraftResource", "AsyncDraftResource"]
 
@@ -40,7 +40,7 @@ class DraftResource(SyncAPIResource):
         """
         return DraftResourceWithStreamingResponse(self)
 
-    def create_addon_draft(
+    def create(
         self,
         id: str,
         *,
@@ -50,9 +50,9 @@ class DraftResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Addon:
+    ) -> Plan:
         """
-        Creates a draft version of an existing addon for modification before publishing.
+        Creates a draft version of an existing plan for modification before publishing.
 
         Args:
           extra_headers: Send extra headers
@@ -66,14 +66,14 @@ class DraftResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/api/v1/addons/{id}/draft",
+            f"/api/v1/plans/{id}/draft",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Addon,
+            cast_to=Plan,
         )
 
-    def remove_addon_draft(
+    def remove(
         self,
         id: str,
         *,
@@ -83,9 +83,9 @@ class DraftResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DraftRemoveAddonDraftResponse:
+    ) -> DraftRemoveResponse:
         """
-        Removes a draft version of an addon.
+        Removes a draft version of a plan.
 
         Args:
           extra_headers: Send extra headers
@@ -99,11 +99,11 @@ class DraftResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/api/v1/addons/{id}/draft",
+            f"/api/v1/plans/{id}/draft",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DraftRemoveAddonDraftResponse,
+            cast_to=DraftRemoveResponse,
         )
 
 
@@ -127,7 +127,7 @@ class AsyncDraftResource(AsyncAPIResource):
         """
         return AsyncDraftResourceWithStreamingResponse(self)
 
-    async def create_addon_draft(
+    async def create(
         self,
         id: str,
         *,
@@ -137,9 +137,9 @@ class AsyncDraftResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Addon:
+    ) -> Plan:
         """
-        Creates a draft version of an existing addon for modification before publishing.
+        Creates a draft version of an existing plan for modification before publishing.
 
         Args:
           extra_headers: Send extra headers
@@ -153,14 +153,14 @@ class AsyncDraftResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/api/v1/addons/{id}/draft",
+            f"/api/v1/plans/{id}/draft",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Addon,
+            cast_to=Plan,
         )
 
-    async def remove_addon_draft(
+    async def remove(
         self,
         id: str,
         *,
@@ -170,9 +170,9 @@ class AsyncDraftResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DraftRemoveAddonDraftResponse:
+    ) -> DraftRemoveResponse:
         """
-        Removes a draft version of an addon.
+        Removes a draft version of a plan.
 
         Args:
           extra_headers: Send extra headers
@@ -186,11 +186,11 @@ class AsyncDraftResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/api/v1/addons/{id}/draft",
+            f"/api/v1/plans/{id}/draft",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DraftRemoveAddonDraftResponse,
+            cast_to=DraftRemoveResponse,
         )
 
 
@@ -198,11 +198,11 @@ class DraftResourceWithRawResponse:
     def __init__(self, draft: DraftResource) -> None:
         self._draft = draft
 
-        self.create_addon_draft = to_raw_response_wrapper(
-            draft.create_addon_draft,
+        self.create = to_raw_response_wrapper(
+            draft.create,
         )
-        self.remove_addon_draft = to_raw_response_wrapper(
-            draft.remove_addon_draft,
+        self.remove = to_raw_response_wrapper(
+            draft.remove,
         )
 
 
@@ -210,11 +210,11 @@ class AsyncDraftResourceWithRawResponse:
     def __init__(self, draft: AsyncDraftResource) -> None:
         self._draft = draft
 
-        self.create_addon_draft = async_to_raw_response_wrapper(
-            draft.create_addon_draft,
+        self.create = async_to_raw_response_wrapper(
+            draft.create,
         )
-        self.remove_addon_draft = async_to_raw_response_wrapper(
-            draft.remove_addon_draft,
+        self.remove = async_to_raw_response_wrapper(
+            draft.remove,
         )
 
 
@@ -222,11 +222,11 @@ class DraftResourceWithStreamingResponse:
     def __init__(self, draft: DraftResource) -> None:
         self._draft = draft
 
-        self.create_addon_draft = to_streamed_response_wrapper(
-            draft.create_addon_draft,
+        self.create = to_streamed_response_wrapper(
+            draft.create,
         )
-        self.remove_addon_draft = to_streamed_response_wrapper(
-            draft.remove_addon_draft,
+        self.remove = to_streamed_response_wrapper(
+            draft.remove,
         )
 
 
@@ -234,9 +234,9 @@ class AsyncDraftResourceWithStreamingResponse:
     def __init__(self, draft: AsyncDraftResource) -> None:
         self._draft = draft
 
-        self.create_addon_draft = async_to_streamed_response_wrapper(
-            draft.create_addon_draft,
+        self.create = async_to_streamed_response_wrapper(
+            draft.create,
         )
-        self.remove_addon_draft = async_to_streamed_response_wrapper(
-            draft.remove_addon_draft,
+        self.remove = async_to_streamed_response_wrapper(
+            draft.remove,
         )

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .coupon import Coupon as Coupon
+from .product import Product as Product
 from .subscription import Subscription as Subscription
 from .customer_response import CustomerResponse as CustomerResponse
 from .coupon_list_params import CouponListParams as CouponListParams
@@ -38,11 +39,6 @@ from .subscription_preview_response import SubscriptionPreviewResponse as Subscr
 from .subscription_provision_params import SubscriptionProvisionParams as SubscriptionProvisionParams
 from .customer_list_resources_params import CustomerListResourcesParams as CustomerListResourcesParams
 from .product_list_products_response import ProductListProductsResponse as ProductListProductsResponse
-from .product_create_product_response import ProductCreateProductResponse as ProductCreateProductResponse
-from .product_update_product_response import ProductUpdateProductResponse as ProductUpdateProductResponse
 from .subscription_provision_response import SubscriptionProvisionResponse as SubscriptionProvisionResponse
 from .customer_list_resources_response import CustomerListResourcesResponse as CustomerListResourcesResponse
-from .product_archive_product_response import ProductArchiveProductResponse as ProductArchiveProductResponse
 from .product_duplicate_product_params import ProductDuplicateProductParams as ProductDuplicateProductParams
-from .product_duplicate_product_response import ProductDuplicateProductResponse as ProductDuplicateProductResponse
-from .product_unarchive_product_response import ProductUnarchiveProductResponse as ProductUnarchiveProductResponse

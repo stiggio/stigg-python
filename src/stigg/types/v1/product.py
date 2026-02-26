@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["ProductDuplicateProductResponse", "Data", "DataProductSettings"]
+__all__ = ["Product", "Data", "DataProductSettings"]
 
 
 class DataProductSettings(BaseModel):
@@ -73,7 +73,7 @@ class Data(BaseModel):
     """Product behavior settings for subscription lifecycle management."""
 
 
-class ProductDuplicateProductResponse(BaseModel):
+class Product(BaseModel):
     """Response object"""
 
     data: Data

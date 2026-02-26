@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["FeatureUnarchiveFeatureResponse", "Data", "DataEnumConfiguration", "DataUnitTransformation"]
+__all__ = ["Feature", "Data", "DataEnumConfiguration", "DataUnitTransformation"]
 
 
 class DataEnumConfiguration(BaseModel):
@@ -78,7 +78,7 @@ class Data(BaseModel):
     """Timestamp of when the record was last updated"""
 
 
-class FeatureUnarchiveFeatureResponse(BaseModel):
+class Feature(BaseModel):
     """Response object"""
 
     data: Data

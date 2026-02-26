@@ -36,21 +36,21 @@ from ....._response import (
 from .....pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.v1.events import (
-    addon_list_addons_params,
-    addon_set_pricing_params,
-    addon_create_addon_params,
-    addon_update_addon_params,
-    addon_publish_addon_params,
+    plan_list_params,
+    plan_create_params,
+    plan_update_params,
+    plan_publish_params,
+    plan_set_pricing_params,
 )
-from .....types.v1.events.addon import Addon
-from .....types.v1.events.addon_list_addons_response import AddonListAddonsResponse
-from .....types.v1.events.addon_publish_addon_response import AddonPublishAddonResponse
+from .....types.v1.events.plan import Plan
+from .....types.v1.events.plan_list_response import PlanListResponse
+from .....types.v1.events.plan_publish_response import PlanPublishResponse
 from .....types.v1.events.set_package_pricing_response import SetPackagePricingResponse
 
-__all__ = ["AddonsResource", "AsyncAddonsResource"]
+__all__ = ["PlansResource", "AsyncPlansResource"]
 
 
-class AddonsResource(SyncAPIResource):
+class PlansResource(SyncAPIResource):
     @cached_property
     def draft(self) -> DraftResource:
         return DraftResource(self._client)
@@ -60,67 +60,35 @@ class AddonsResource(SyncAPIResource):
         return EntitlementsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AddonsResourceWithRawResponse:
+    def with_raw_response(self) -> PlansResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stiggio/stigg-python#accessing-raw-response-data-eg-headers
         """
-        return AddonsResourceWithRawResponse(self)
+        return PlansResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AddonsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> PlansResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stiggio/stigg-python#with_streaming_response
         """
-        return AddonsResourceWithStreamingResponse(self)
+        return PlansResourceWithStreamingResponse(self)
 
-    def archive_addon(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Addon:
-        """
-        Archives an addon, preventing it from being used in new subscriptions.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._post(
-            f"/api/v1/addons/{id}/archive",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Addon,
-        )
-
-    def create_addon(
+    def create(
         self,
         *,
         id: str,
         display_name: str,
         product_id: str,
         billing_id: Optional[str] | Omit = omit,
+        default_trial_config: Optional[plan_create_params.DefaultTrialConfig] | Omit = omit,
         description: Optional[str] | Omit = omit,
-        max_quantity: Optional[int] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
+        parent_plan_id: Optional[str] | Omit = omit,
         pricing_type: Optional[Literal["FREE", "PAID", "CUSTOM"]] | Omit = omit,
         status: Literal["DRAFT", "PUBLISHED", "ARCHIVED"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -129,24 +97,26 @@ class AddonsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Addon:
+    ) -> Plan:
         """
-        Creates a new addon in draft status, associated with a specific product.
+        Creates a new plan in draft status.
 
         Args:
           id: The unique identifier for the entity
 
           display_name: The display name of the package
 
-          product_id: The product id of the package
+          product_id: The product ID to associate the plan with
 
           billing_id: The unique identifier for the entity in the billing provider
 
+          default_trial_config: Default trial configuration for the plan
+
           description: The description of the package
 
-          max_quantity: The maximum quantity of this addon that can be added to a subscription
-
           metadata: Metadata associated with the entity
+
+          parent_plan_id: The ID of the parent plan, if applicable
 
           pricing_type: The pricing type of the package
 
@@ -161,33 +131,133 @@ class AddonsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/api/v1/addons",
+            "/api/v1/plans",
             body=maybe_transform(
                 {
                     "id": id,
                     "display_name": display_name,
                     "product_id": product_id,
                     "billing_id": billing_id,
+                    "default_trial_config": default_trial_config,
                     "description": description,
-                    "max_quantity": max_quantity,
                     "metadata": metadata,
+                    "parent_plan_id": parent_plan_id,
                     "pricing_type": pricing_type,
                     "status": status,
                 },
-                addon_create_addon_params.AddonCreateAddonParams,
+                plan_create_params.PlanCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Addon,
+            cast_to=Plan,
         )
 
-    def list_addons(
+    def retrieve(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Plan:
+        """
+        Retrieves a plan by its unique identifier, including entitlements and pricing
+        details.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/api/v1/plans/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Plan,
+        )
+
+    def update(
+        self,
+        id: str,
+        *,
+        billing_id: Optional[str] | Omit = omit,
+        compatible_addon_ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        default_trial_config: Optional[plan_update_params.DefaultTrialConfig] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        display_name: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        parent_plan_id: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Plan:
+        """
+        Updates an existing plan's properties such as display name, description, and
+        metadata.
+
+        Args:
+          billing_id: The unique identifier for the entity in the billing provider
+
+          default_trial_config: Default trial configuration for the plan
+
+          description: The description of the package
+
+          display_name: The display name of the package
+
+          metadata: Metadata associated with the entity
+
+          parent_plan_id: The ID of the parent plan, if applicable
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._patch(
+            f"/api/v1/plans/{id}",
+            body=maybe_transform(
+                {
+                    "billing_id": billing_id,
+                    "compatible_addon_ids": compatible_addon_ids,
+                    "default_trial_config": default_trial_config,
+                    "description": description,
+                    "display_name": display_name,
+                    "metadata": metadata,
+                    "parent_plan_id": parent_plan_id,
+                },
+                plan_update_params.PlanUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Plan,
+        )
+
+    def list(
         self,
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
-        created_at: addon_list_addons_params.CreatedAt | Omit = omit,
+        created_at: plan_list_params.CreatedAt | Omit = omit,
         limit: int | Omit = omit,
         product_id: str | Omit = omit,
         status: str | Omit = omit,
@@ -197,9 +267,9 @@ class AddonsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncMyCursorIDPage[AddonListAddonsResponse]:
+    ) -> SyncMyCursorIDPage[PlanListResponse]:
         """
-        Retrieves a paginated list of addons in the environment.
+        Retrieves a paginated list of plans in the environment.
 
         Args:
           after: Return items that come after this cursor
@@ -223,8 +293,8 @@ class AddonsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/api/v1/addons",
-            page=SyncMyCursorIDPage[AddonListAddonsResponse],
+            "/api/v1/plans",
+            page=SyncMyCursorIDPage[PlanListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -239,13 +309,46 @@ class AddonsResource(SyncAPIResource):
                         "product_id": product_id,
                         "status": status,
                     },
-                    addon_list_addons_params.AddonListAddonsParams,
+                    plan_list_params.PlanListParams,
                 ),
             ),
-            model=AddonListAddonsResponse,
+            model=PlanListResponse,
         )
 
-    def publish_addon(
+    def archive(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Plan:
+        """
+        Archives a plan, preventing it from being used in new subscriptions.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            f"/api/v1/plans/{id}/archive",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Plan,
+        )
+
+    def publish(
         self,
         id: str,
         *,
@@ -256,9 +359,9 @@ class AddonsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AddonPublishAddonResponse:
+    ) -> PlanPublishResponse:
         """
-        Publishes a draft addon, making it available for use in subscriptions.
+        Publishes a draft plan, making it available for use in subscriptions.
 
         Args:
           migration_type: The migration type of the package
@@ -274,48 +377,12 @@ class AddonsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/api/v1/addons/{id}/publish",
-            body=maybe_transform(
-                {"migration_type": migration_type}, addon_publish_addon_params.AddonPublishAddonParams
-            ),
+            f"/api/v1/plans/{id}/publish",
+            body=maybe_transform({"migration_type": migration_type}, plan_publish_params.PlanPublishParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AddonPublishAddonResponse,
-        )
-
-    def retrieve_addon(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Addon:
-        """
-        Retrieves an addon by its unique identifier, including entitlements and pricing
-        details.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get(
-            f"/api/v1/addons/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Addon,
+            cast_to=PlanPublishResponse,
         )
 
     def set_pricing(
@@ -324,10 +391,10 @@ class AddonsResource(SyncAPIResource):
         *,
         pricing_type: Literal["FREE", "PAID", "CUSTOM"],
         billing_id: str | Omit = omit,
-        minimum_spend: Optional[Iterable[addon_set_pricing_params.MinimumSpend]] | Omit = omit,
+        minimum_spend: Optional[Iterable[plan_set_pricing_params.MinimumSpend]] | Omit = omit,
         overage_billing_period: Literal["ON_SUBSCRIPTION_RENEWAL", "MONTHLY"] | Omit = omit,
-        overage_pricing_models: Iterable[addon_set_pricing_params.OveragePricingModel] | Omit = omit,
-        pricing_models: Iterable[addon_set_pricing_params.PricingModel] | Omit = omit,
+        overage_pricing_models: Iterable[plan_set_pricing_params.OveragePricingModel] | Omit = omit,
+        pricing_models: Iterable[plan_set_pricing_params.PricingModel] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -336,7 +403,8 @@ class AddonsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SetPackagePricingResponse:
         """
-        Sets the pricing configuration for an addon.
+        Sets the pricing configuration for a plan, including pricing models, overage
+        pricing, and minimum spend.
 
         Args:
           pricing_type: The pricing type (FREE, PAID, or CUSTOM)
@@ -362,7 +430,7 @@ class AddonsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
-            f"/api/v1/addons/{id}/charges",
+            f"/api/v1/plans/{id}/charges",
             body=maybe_transform(
                 {
                     "pricing_type": pricing_type,
@@ -372,7 +440,7 @@ class AddonsResource(SyncAPIResource):
                     "overage_pricing_models": overage_pricing_models,
                     "pricing_models": pricing_models,
                 },
-                addon_set_pricing_params.AddonSetPricingParams,
+                plan_set_pricing_params.PlanSetPricingParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -380,71 +448,8 @@ class AddonsResource(SyncAPIResource):
             cast_to=SetPackagePricingResponse,
         )
 
-    def update_addon(
-        self,
-        id: str,
-        *,
-        billing_id: Optional[str] | Omit = omit,
-        dependencies: Optional[SequenceNotStr[str]] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        display_name: str | Omit = omit,
-        max_quantity: Optional[int] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Addon:
-        """
-        Updates an existing addon's properties such as display name, description, and
-        metadata.
 
-        Args:
-          billing_id: The unique identifier for the entity in the billing provider
-
-          dependencies: List of addons the addon is dependant on
-
-          description: The description of the package
-
-          display_name: The display name of the package
-
-          max_quantity: The maximum quantity of this addon that can be added to a subscription
-
-          metadata: Metadata associated with the entity
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._patch(
-            f"/api/v1/addons/{id}",
-            body=maybe_transform(
-                {
-                    "billing_id": billing_id,
-                    "dependencies": dependencies,
-                    "description": description,
-                    "display_name": display_name,
-                    "max_quantity": max_quantity,
-                    "metadata": metadata,
-                },
-                addon_update_addon_params.AddonUpdateAddonParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Addon,
-        )
-
-
-class AsyncAddonsResource(AsyncAPIResource):
+class AsyncPlansResource(AsyncAPIResource):
     @cached_property
     def draft(self) -> AsyncDraftResource:
         return AsyncDraftResource(self._client)
@@ -454,67 +459,35 @@ class AsyncAddonsResource(AsyncAPIResource):
         return AsyncEntitlementsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncAddonsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncPlansResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stiggio/stigg-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncAddonsResourceWithRawResponse(self)
+        return AsyncPlansResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAddonsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncPlansResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stiggio/stigg-python#with_streaming_response
         """
-        return AsyncAddonsResourceWithStreamingResponse(self)
+        return AsyncPlansResourceWithStreamingResponse(self)
 
-    async def archive_addon(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Addon:
-        """
-        Archives an addon, preventing it from being used in new subscriptions.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._post(
-            f"/api/v1/addons/{id}/archive",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Addon,
-        )
-
-    async def create_addon(
+    async def create(
         self,
         *,
         id: str,
         display_name: str,
         product_id: str,
         billing_id: Optional[str] | Omit = omit,
+        default_trial_config: Optional[plan_create_params.DefaultTrialConfig] | Omit = omit,
         description: Optional[str] | Omit = omit,
-        max_quantity: Optional[int] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
+        parent_plan_id: Optional[str] | Omit = omit,
         pricing_type: Optional[Literal["FREE", "PAID", "CUSTOM"]] | Omit = omit,
         status: Literal["DRAFT", "PUBLISHED", "ARCHIVED"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -523,24 +496,26 @@ class AsyncAddonsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Addon:
+    ) -> Plan:
         """
-        Creates a new addon in draft status, associated with a specific product.
+        Creates a new plan in draft status.
 
         Args:
           id: The unique identifier for the entity
 
           display_name: The display name of the package
 
-          product_id: The product id of the package
+          product_id: The product ID to associate the plan with
 
           billing_id: The unique identifier for the entity in the billing provider
 
+          default_trial_config: Default trial configuration for the plan
+
           description: The description of the package
 
-          max_quantity: The maximum quantity of this addon that can be added to a subscription
-
           metadata: Metadata associated with the entity
+
+          parent_plan_id: The ID of the parent plan, if applicable
 
           pricing_type: The pricing type of the package
 
@@ -555,33 +530,133 @@ class AsyncAddonsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/api/v1/addons",
+            "/api/v1/plans",
             body=await async_maybe_transform(
                 {
                     "id": id,
                     "display_name": display_name,
                     "product_id": product_id,
                     "billing_id": billing_id,
+                    "default_trial_config": default_trial_config,
                     "description": description,
-                    "max_quantity": max_quantity,
                     "metadata": metadata,
+                    "parent_plan_id": parent_plan_id,
                     "pricing_type": pricing_type,
                     "status": status,
                 },
-                addon_create_addon_params.AddonCreateAddonParams,
+                plan_create_params.PlanCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Addon,
+            cast_to=Plan,
         )
 
-    def list_addons(
+    async def retrieve(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Plan:
+        """
+        Retrieves a plan by its unique identifier, including entitlements and pricing
+        details.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/api/v1/plans/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Plan,
+        )
+
+    async def update(
+        self,
+        id: str,
+        *,
+        billing_id: Optional[str] | Omit = omit,
+        compatible_addon_ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        default_trial_config: Optional[plan_update_params.DefaultTrialConfig] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        display_name: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        parent_plan_id: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Plan:
+        """
+        Updates an existing plan's properties such as display name, description, and
+        metadata.
+
+        Args:
+          billing_id: The unique identifier for the entity in the billing provider
+
+          default_trial_config: Default trial configuration for the plan
+
+          description: The description of the package
+
+          display_name: The display name of the package
+
+          metadata: Metadata associated with the entity
+
+          parent_plan_id: The ID of the parent plan, if applicable
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._patch(
+            f"/api/v1/plans/{id}",
+            body=await async_maybe_transform(
+                {
+                    "billing_id": billing_id,
+                    "compatible_addon_ids": compatible_addon_ids,
+                    "default_trial_config": default_trial_config,
+                    "description": description,
+                    "display_name": display_name,
+                    "metadata": metadata,
+                    "parent_plan_id": parent_plan_id,
+                },
+                plan_update_params.PlanUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Plan,
+        )
+
+    def list(
         self,
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
-        created_at: addon_list_addons_params.CreatedAt | Omit = omit,
+        created_at: plan_list_params.CreatedAt | Omit = omit,
         limit: int | Omit = omit,
         product_id: str | Omit = omit,
         status: str | Omit = omit,
@@ -591,9 +666,9 @@ class AsyncAddonsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[AddonListAddonsResponse, AsyncMyCursorIDPage[AddonListAddonsResponse]]:
+    ) -> AsyncPaginator[PlanListResponse, AsyncMyCursorIDPage[PlanListResponse]]:
         """
-        Retrieves a paginated list of addons in the environment.
+        Retrieves a paginated list of plans in the environment.
 
         Args:
           after: Return items that come after this cursor
@@ -617,8 +692,8 @@ class AsyncAddonsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/api/v1/addons",
-            page=AsyncMyCursorIDPage[AddonListAddonsResponse],
+            "/api/v1/plans",
+            page=AsyncMyCursorIDPage[PlanListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -633,13 +708,46 @@ class AsyncAddonsResource(AsyncAPIResource):
                         "product_id": product_id,
                         "status": status,
                     },
-                    addon_list_addons_params.AddonListAddonsParams,
+                    plan_list_params.PlanListParams,
                 ),
             ),
-            model=AddonListAddonsResponse,
+            model=PlanListResponse,
         )
 
-    async def publish_addon(
+    async def archive(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Plan:
+        """
+        Archives a plan, preventing it from being used in new subscriptions.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            f"/api/v1/plans/{id}/archive",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Plan,
+        )
+
+    async def publish(
         self,
         id: str,
         *,
@@ -650,9 +758,9 @@ class AsyncAddonsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AddonPublishAddonResponse:
+    ) -> PlanPublishResponse:
         """
-        Publishes a draft addon, making it available for use in subscriptions.
+        Publishes a draft plan, making it available for use in subscriptions.
 
         Args:
           migration_type: The migration type of the package
@@ -668,48 +776,12 @@ class AsyncAddonsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/api/v1/addons/{id}/publish",
-            body=await async_maybe_transform(
-                {"migration_type": migration_type}, addon_publish_addon_params.AddonPublishAddonParams
-            ),
+            f"/api/v1/plans/{id}/publish",
+            body=await async_maybe_transform({"migration_type": migration_type}, plan_publish_params.PlanPublishParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AddonPublishAddonResponse,
-        )
-
-    async def retrieve_addon(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Addon:
-        """
-        Retrieves an addon by its unique identifier, including entitlements and pricing
-        details.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._get(
-            f"/api/v1/addons/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Addon,
+            cast_to=PlanPublishResponse,
         )
 
     async def set_pricing(
@@ -718,10 +790,10 @@ class AsyncAddonsResource(AsyncAPIResource):
         *,
         pricing_type: Literal["FREE", "PAID", "CUSTOM"],
         billing_id: str | Omit = omit,
-        minimum_spend: Optional[Iterable[addon_set_pricing_params.MinimumSpend]] | Omit = omit,
+        minimum_spend: Optional[Iterable[plan_set_pricing_params.MinimumSpend]] | Omit = omit,
         overage_billing_period: Literal["ON_SUBSCRIPTION_RENEWAL", "MONTHLY"] | Omit = omit,
-        overage_pricing_models: Iterable[addon_set_pricing_params.OveragePricingModel] | Omit = omit,
-        pricing_models: Iterable[addon_set_pricing_params.PricingModel] | Omit = omit,
+        overage_pricing_models: Iterable[plan_set_pricing_params.OveragePricingModel] | Omit = omit,
+        pricing_models: Iterable[plan_set_pricing_params.PricingModel] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -730,7 +802,8 @@ class AsyncAddonsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SetPackagePricingResponse:
         """
-        Sets the pricing configuration for an addon.
+        Sets the pricing configuration for a plan, including pricing models, overage
+        pricing, and minimum spend.
 
         Args:
           pricing_type: The pricing type (FREE, PAID, or CUSTOM)
@@ -756,7 +829,7 @@ class AsyncAddonsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
-            f"/api/v1/addons/{id}/charges",
+            f"/api/v1/plans/{id}/charges",
             body=await async_maybe_transform(
                 {
                     "pricing_type": pricing_type,
@@ -766,7 +839,7 @@ class AsyncAddonsResource(AsyncAPIResource):
                     "overage_pricing_models": overage_pricing_models,
                     "pricing_models": pricing_models,
                 },
-                addon_set_pricing_params.AddonSetPricingParams,
+                plan_set_pricing_params.PlanSetPricingParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -774,205 +847,142 @@ class AsyncAddonsResource(AsyncAPIResource):
             cast_to=SetPackagePricingResponse,
         )
 
-    async def update_addon(
-        self,
-        id: str,
-        *,
-        billing_id: Optional[str] | Omit = omit,
-        dependencies: Optional[SequenceNotStr[str]] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        display_name: str | Omit = omit,
-        max_quantity: Optional[int] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Addon:
-        """
-        Updates an existing addon's properties such as display name, description, and
-        metadata.
 
-        Args:
-          billing_id: The unique identifier for the entity in the billing provider
+class PlansResourceWithRawResponse:
+    def __init__(self, plans: PlansResource) -> None:
+        self._plans = plans
 
-          dependencies: List of addons the addon is dependant on
-
-          description: The description of the package
-
-          display_name: The display name of the package
-
-          max_quantity: The maximum quantity of this addon that can be added to a subscription
-
-          metadata: Metadata associated with the entity
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._patch(
-            f"/api/v1/addons/{id}",
-            body=await async_maybe_transform(
-                {
-                    "billing_id": billing_id,
-                    "dependencies": dependencies,
-                    "description": description,
-                    "display_name": display_name,
-                    "max_quantity": max_quantity,
-                    "metadata": metadata,
-                },
-                addon_update_addon_params.AddonUpdateAddonParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Addon,
+        self.create = to_raw_response_wrapper(
+            plans.create,
         )
-
-
-class AddonsResourceWithRawResponse:
-    def __init__(self, addons: AddonsResource) -> None:
-        self._addons = addons
-
-        self.archive_addon = to_raw_response_wrapper(
-            addons.archive_addon,
+        self.retrieve = to_raw_response_wrapper(
+            plans.retrieve,
         )
-        self.create_addon = to_raw_response_wrapper(
-            addons.create_addon,
+        self.update = to_raw_response_wrapper(
+            plans.update,
         )
-        self.list_addons = to_raw_response_wrapper(
-            addons.list_addons,
+        self.list = to_raw_response_wrapper(
+            plans.list,
         )
-        self.publish_addon = to_raw_response_wrapper(
-            addons.publish_addon,
+        self.archive = to_raw_response_wrapper(
+            plans.archive,
         )
-        self.retrieve_addon = to_raw_response_wrapper(
-            addons.retrieve_addon,
+        self.publish = to_raw_response_wrapper(
+            plans.publish,
         )
         self.set_pricing = to_raw_response_wrapper(
-            addons.set_pricing,
-        )
-        self.update_addon = to_raw_response_wrapper(
-            addons.update_addon,
+            plans.set_pricing,
         )
 
     @cached_property
     def draft(self) -> DraftResourceWithRawResponse:
-        return DraftResourceWithRawResponse(self._addons.draft)
+        return DraftResourceWithRawResponse(self._plans.draft)
 
     @cached_property
     def entitlements(self) -> EntitlementsResourceWithRawResponse:
-        return EntitlementsResourceWithRawResponse(self._addons.entitlements)
+        return EntitlementsResourceWithRawResponse(self._plans.entitlements)
 
 
-class AsyncAddonsResourceWithRawResponse:
-    def __init__(self, addons: AsyncAddonsResource) -> None:
-        self._addons = addons
+class AsyncPlansResourceWithRawResponse:
+    def __init__(self, plans: AsyncPlansResource) -> None:
+        self._plans = plans
 
-        self.archive_addon = async_to_raw_response_wrapper(
-            addons.archive_addon,
+        self.create = async_to_raw_response_wrapper(
+            plans.create,
         )
-        self.create_addon = async_to_raw_response_wrapper(
-            addons.create_addon,
+        self.retrieve = async_to_raw_response_wrapper(
+            plans.retrieve,
         )
-        self.list_addons = async_to_raw_response_wrapper(
-            addons.list_addons,
+        self.update = async_to_raw_response_wrapper(
+            plans.update,
         )
-        self.publish_addon = async_to_raw_response_wrapper(
-            addons.publish_addon,
+        self.list = async_to_raw_response_wrapper(
+            plans.list,
         )
-        self.retrieve_addon = async_to_raw_response_wrapper(
-            addons.retrieve_addon,
+        self.archive = async_to_raw_response_wrapper(
+            plans.archive,
+        )
+        self.publish = async_to_raw_response_wrapper(
+            plans.publish,
         )
         self.set_pricing = async_to_raw_response_wrapper(
-            addons.set_pricing,
-        )
-        self.update_addon = async_to_raw_response_wrapper(
-            addons.update_addon,
+            plans.set_pricing,
         )
 
     @cached_property
     def draft(self) -> AsyncDraftResourceWithRawResponse:
-        return AsyncDraftResourceWithRawResponse(self._addons.draft)
+        return AsyncDraftResourceWithRawResponse(self._plans.draft)
 
     @cached_property
     def entitlements(self) -> AsyncEntitlementsResourceWithRawResponse:
-        return AsyncEntitlementsResourceWithRawResponse(self._addons.entitlements)
+        return AsyncEntitlementsResourceWithRawResponse(self._plans.entitlements)
 
 
-class AddonsResourceWithStreamingResponse:
-    def __init__(self, addons: AddonsResource) -> None:
-        self._addons = addons
+class PlansResourceWithStreamingResponse:
+    def __init__(self, plans: PlansResource) -> None:
+        self._plans = plans
 
-        self.archive_addon = to_streamed_response_wrapper(
-            addons.archive_addon,
+        self.create = to_streamed_response_wrapper(
+            plans.create,
         )
-        self.create_addon = to_streamed_response_wrapper(
-            addons.create_addon,
+        self.retrieve = to_streamed_response_wrapper(
+            plans.retrieve,
         )
-        self.list_addons = to_streamed_response_wrapper(
-            addons.list_addons,
+        self.update = to_streamed_response_wrapper(
+            plans.update,
         )
-        self.publish_addon = to_streamed_response_wrapper(
-            addons.publish_addon,
+        self.list = to_streamed_response_wrapper(
+            plans.list,
         )
-        self.retrieve_addon = to_streamed_response_wrapper(
-            addons.retrieve_addon,
+        self.archive = to_streamed_response_wrapper(
+            plans.archive,
+        )
+        self.publish = to_streamed_response_wrapper(
+            plans.publish,
         )
         self.set_pricing = to_streamed_response_wrapper(
-            addons.set_pricing,
-        )
-        self.update_addon = to_streamed_response_wrapper(
-            addons.update_addon,
+            plans.set_pricing,
         )
 
     @cached_property
     def draft(self) -> DraftResourceWithStreamingResponse:
-        return DraftResourceWithStreamingResponse(self._addons.draft)
+        return DraftResourceWithStreamingResponse(self._plans.draft)
 
     @cached_property
     def entitlements(self) -> EntitlementsResourceWithStreamingResponse:
-        return EntitlementsResourceWithStreamingResponse(self._addons.entitlements)
+        return EntitlementsResourceWithStreamingResponse(self._plans.entitlements)
 
 
-class AsyncAddonsResourceWithStreamingResponse:
-    def __init__(self, addons: AsyncAddonsResource) -> None:
-        self._addons = addons
+class AsyncPlansResourceWithStreamingResponse:
+    def __init__(self, plans: AsyncPlansResource) -> None:
+        self._plans = plans
 
-        self.archive_addon = async_to_streamed_response_wrapper(
-            addons.archive_addon,
+        self.create = async_to_streamed_response_wrapper(
+            plans.create,
         )
-        self.create_addon = async_to_streamed_response_wrapper(
-            addons.create_addon,
+        self.retrieve = async_to_streamed_response_wrapper(
+            plans.retrieve,
         )
-        self.list_addons = async_to_streamed_response_wrapper(
-            addons.list_addons,
+        self.update = async_to_streamed_response_wrapper(
+            plans.update,
         )
-        self.publish_addon = async_to_streamed_response_wrapper(
-            addons.publish_addon,
+        self.list = async_to_streamed_response_wrapper(
+            plans.list,
         )
-        self.retrieve_addon = async_to_streamed_response_wrapper(
-            addons.retrieve_addon,
+        self.archive = async_to_streamed_response_wrapper(
+            plans.archive,
+        )
+        self.publish = async_to_streamed_response_wrapper(
+            plans.publish,
         )
         self.set_pricing = async_to_streamed_response_wrapper(
-            addons.set_pricing,
-        )
-        self.update_addon = async_to_streamed_response_wrapper(
-            addons.update_addon,
+            plans.set_pricing,
         )
 
     @cached_property
     def draft(self) -> AsyncDraftResourceWithStreamingResponse:
-        return AsyncDraftResourceWithStreamingResponse(self._addons.draft)
+        return AsyncDraftResourceWithStreamingResponse(self._plans.draft)
 
     @cached_property
     def entitlements(self) -> AsyncEntitlementsResourceWithStreamingResponse:
-        return AsyncEntitlementsResourceWithStreamingResponse(self._addons.entitlements)
+        return AsyncEntitlementsResourceWithStreamingResponse(self._plans.entitlements)

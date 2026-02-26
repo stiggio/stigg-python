@@ -8,35 +8,7 @@ from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["PlanRetrieveResponse", "Data", "DataDefaultTrialConfig", "DataDefaultTrialConfigBudget", "DataEntitlement"]
-
-
-class DataDefaultTrialConfigBudget(BaseModel):
-    """Budget configuration for the trial"""
-
-    has_soft_limit: bool = FieldInfo(alias="hasSoftLimit")
-    """Whether the budget limit is a soft limit (allows overage) or hard limit"""
-
-    limit: float
-    """The budget limit amount"""
-
-
-class DataDefaultTrialConfig(BaseModel):
-    """Default trial configuration for the plan"""
-
-    duration: float
-    """The duration of the trial in the specified units"""
-
-    units: Literal["DAY", "MONTH"]
-    """The time unit for the trial duration (DAY or MONTH)"""
-
-    budget: Optional[DataDefaultTrialConfigBudget] = None
-    """Budget configuration for the trial"""
-
-    trial_end_behavior: Optional[Literal["CONVERT_TO_PAID", "CANCEL_SUBSCRIPTION"]] = FieldInfo(
-        alias="trialEndBehavior", default=None
-    )
-    """Behavior when the trial ends (CONVERT_TO_PAID or CANCEL_SUBSCRIPTION)"""
+__all__ = ["Addon", "Data", "DataEntitlement"]
 
 
 class DataEntitlement(BaseModel):
@@ -49,7 +21,7 @@ class DataEntitlement(BaseModel):
 
 
 class Data(BaseModel):
-    """Plan configuration object"""
+    """Addon configuration object"""
 
     id: str
     """The unique identifier for the entity"""
@@ -57,13 +29,11 @@ class Data(BaseModel):
     billing_id: Optional[str] = FieldInfo(alias="billingId", default=None)
     """The unique identifier for the entity in the billing provider"""
 
-    compatible_addon_ids: Optional[List[str]] = FieldInfo(alias="compatibleAddonIds", default=None)
-
     created_at: datetime = FieldInfo(alias="createdAt")
     """Timestamp of when the record was created"""
 
-    default_trial_config: Optional[DataDefaultTrialConfig] = FieldInfo(alias="defaultTrialConfig", default=None)
-    """Default trial configuration for the plan"""
+    dependencies: Optional[List[str]] = None
+    """List of addons the addon is dependant on"""
 
     description: Optional[str] = None
     """The description of the package"""
@@ -77,11 +47,11 @@ class Data(BaseModel):
     is_latest: Optional[bool] = FieldInfo(alias="isLatest", default=None)
     """Indicates if the package is the latest version"""
 
+    max_quantity: Optional[int] = FieldInfo(alias="maxQuantity", default=None)
+    """The maximum quantity of this addon that can be added to a subscription"""
+
     metadata: Dict[str, str]
     """Metadata associated with the entity"""
-
-    parent_plan_id: Optional[str] = FieldInfo(alias="parentPlanId", default=None)
-    """The ID of the parent plan, if applicable"""
 
     pricing_type: Optional[Literal["FREE", "PAID", "CUSTOM"]] = FieldInfo(alias="pricingType", default=None)
     """The pricing type of the package"""
@@ -99,8 +69,8 @@ class Data(BaseModel):
     """The version number of the package"""
 
 
-class PlanRetrieveResponse(BaseModel):
+class Addon(BaseModel):
     """Response object"""
 
     data: Data
-    """Plan configuration object"""
+    """Addon configuration object"""
