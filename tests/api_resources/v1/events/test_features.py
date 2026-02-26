@@ -12,12 +12,8 @@ from tests.utils import assert_matches_type
 from stigg._utils import parse_datetime
 from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 from stigg.types.v1.events import (
+    Feature,
     FeatureListFeaturesResponse,
-    FeatureCreateFeatureResponse,
-    FeatureUpdateFeatureResponse,
-    FeatureArchiveFeatureResponse,
-    FeatureRetrieveFeatureResponse,
-    FeatureUnarchiveFeatureResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -32,7 +28,7 @@ class TestFeatures:
         feature = client.v1.events.features.archive_feature(
             "x",
         )
-        assert_matches_type(FeatureArchiveFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -44,7 +40,7 @@ class TestFeatures:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         feature = response.parse()
-        assert_matches_type(FeatureArchiveFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -56,7 +52,7 @@ class TestFeatures:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             feature = response.parse()
-            assert_matches_type(FeatureArchiveFeatureResponse, feature, path=["response"])
+            assert_matches_type(Feature, feature, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -76,7 +72,7 @@ class TestFeatures:
             display_name="displayName",
             feature_type="BOOLEAN",
         )
-        assert_matches_type(FeatureCreateFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -104,7 +100,7 @@ class TestFeatures:
                 "round": "UP",
             },
         )
-        assert_matches_type(FeatureCreateFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -118,7 +114,7 @@ class TestFeatures:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         feature = response.parse()
-        assert_matches_type(FeatureCreateFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -132,7 +128,7 @@ class TestFeatures:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             feature = response.parse()
-            assert_matches_type(FeatureCreateFeatureResponse, feature, path=["response"])
+            assert_matches_type(Feature, feature, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -190,7 +186,7 @@ class TestFeatures:
         feature = client.v1.events.features.retrieve_feature(
             "x",
         )
-        assert_matches_type(FeatureRetrieveFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -202,7 +198,7 @@ class TestFeatures:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         feature = response.parse()
-        assert_matches_type(FeatureRetrieveFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -214,7 +210,7 @@ class TestFeatures:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             feature = response.parse()
-            assert_matches_type(FeatureRetrieveFeatureResponse, feature, path=["response"])
+            assert_matches_type(Feature, feature, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -232,7 +228,7 @@ class TestFeatures:
         feature = client.v1.events.features.unarchive_feature(
             "x",
         )
-        assert_matches_type(FeatureUnarchiveFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -244,7 +240,7 @@ class TestFeatures:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         feature = response.parse()
-        assert_matches_type(FeatureUnarchiveFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -256,7 +252,7 @@ class TestFeatures:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             feature = response.parse()
-            assert_matches_type(FeatureUnarchiveFeatureResponse, feature, path=["response"])
+            assert_matches_type(Feature, feature, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -274,7 +270,7 @@ class TestFeatures:
         feature = client.v1.events.features.update_feature(
             id="x",
         )
-        assert_matches_type(FeatureUpdateFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -317,7 +313,7 @@ class TestFeatures:
                 "round": "UP",
             },
         )
-        assert_matches_type(FeatureUpdateFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -329,7 +325,7 @@ class TestFeatures:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         feature = response.parse()
-        assert_matches_type(FeatureUpdateFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -341,7 +337,7 @@ class TestFeatures:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             feature = response.parse()
-            assert_matches_type(FeatureUpdateFeatureResponse, feature, path=["response"])
+            assert_matches_type(Feature, feature, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -365,7 +361,7 @@ class TestAsyncFeatures:
         feature = await async_client.v1.events.features.archive_feature(
             "x",
         )
-        assert_matches_type(FeatureArchiveFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -377,7 +373,7 @@ class TestAsyncFeatures:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         feature = await response.parse()
-        assert_matches_type(FeatureArchiveFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -389,7 +385,7 @@ class TestAsyncFeatures:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             feature = await response.parse()
-            assert_matches_type(FeatureArchiveFeatureResponse, feature, path=["response"])
+            assert_matches_type(Feature, feature, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -409,7 +405,7 @@ class TestAsyncFeatures:
             display_name="displayName",
             feature_type="BOOLEAN",
         )
-        assert_matches_type(FeatureCreateFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -437,7 +433,7 @@ class TestAsyncFeatures:
                 "round": "UP",
             },
         )
-        assert_matches_type(FeatureCreateFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -451,7 +447,7 @@ class TestAsyncFeatures:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         feature = await response.parse()
-        assert_matches_type(FeatureCreateFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -465,7 +461,7 @@ class TestAsyncFeatures:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             feature = await response.parse()
-            assert_matches_type(FeatureCreateFeatureResponse, feature, path=["response"])
+            assert_matches_type(Feature, feature, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -523,7 +519,7 @@ class TestAsyncFeatures:
         feature = await async_client.v1.events.features.retrieve_feature(
             "x",
         )
-        assert_matches_type(FeatureRetrieveFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -535,7 +531,7 @@ class TestAsyncFeatures:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         feature = await response.parse()
-        assert_matches_type(FeatureRetrieveFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -547,7 +543,7 @@ class TestAsyncFeatures:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             feature = await response.parse()
-            assert_matches_type(FeatureRetrieveFeatureResponse, feature, path=["response"])
+            assert_matches_type(Feature, feature, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -565,7 +561,7 @@ class TestAsyncFeatures:
         feature = await async_client.v1.events.features.unarchive_feature(
             "x",
         )
-        assert_matches_type(FeatureUnarchiveFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -577,7 +573,7 @@ class TestAsyncFeatures:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         feature = await response.parse()
-        assert_matches_type(FeatureUnarchiveFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -589,7 +585,7 @@ class TestAsyncFeatures:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             feature = await response.parse()
-            assert_matches_type(FeatureUnarchiveFeatureResponse, feature, path=["response"])
+            assert_matches_type(Feature, feature, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -607,7 +603,7 @@ class TestAsyncFeatures:
         feature = await async_client.v1.events.features.update_feature(
             id="x",
         )
-        assert_matches_type(FeatureUpdateFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -650,7 +646,7 @@ class TestAsyncFeatures:
                 "round": "UP",
             },
         )
-        assert_matches_type(FeatureUpdateFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -662,7 +658,7 @@ class TestAsyncFeatures:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         feature = await response.parse()
-        assert_matches_type(FeatureUpdateFeatureResponse, feature, path=["response"])
+        assert_matches_type(Feature, feature, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -674,7 +670,7 @@ class TestAsyncFeatures:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             feature = await response.parse()
-            assert_matches_type(FeatureUpdateFeatureResponse, feature, path=["response"])
+            assert_matches_type(Feature, feature, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

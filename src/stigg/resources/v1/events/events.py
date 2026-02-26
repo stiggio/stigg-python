@@ -6,14 +6,6 @@ from typing import Iterable
 
 import httpx
 
-from .plans import (
-    PlansResource,
-    AsyncPlansResource,
-    PlansResourceWithRawResponse,
-    AsyncPlansResourceWithRawResponse,
-    PlansResourceWithStreamingResponse,
-    AsyncPlansResourceWithStreamingResponse,
-)
 from .features import (
     FeaturesResource,
     AsyncFeaturesResource,
@@ -26,6 +18,14 @@ from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ....types.v1 import event_report_params
+from .plans.plans import (
+    PlansResource,
+    AsyncPlansResource,
+    PlansResourceWithRawResponse,
+    AsyncPlansResourceWithRawResponse,
+    PlansResourceWithStreamingResponse,
+    AsyncPlansResourceWithStreamingResponse,
+)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,

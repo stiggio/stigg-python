@@ -24,12 +24,8 @@ from ....types.v1.events import (
     feature_create_feature_params,
     feature_update_feature_params,
 )
+from ....types.v1.events.feature import Feature
 from ....types.v1.events.feature_list_features_response import FeatureListFeaturesResponse
-from ....types.v1.events.feature_create_feature_response import FeatureCreateFeatureResponse
-from ....types.v1.events.feature_update_feature_response import FeatureUpdateFeatureResponse
-from ....types.v1.events.feature_archive_feature_response import FeatureArchiveFeatureResponse
-from ....types.v1.events.feature_retrieve_feature_response import FeatureRetrieveFeatureResponse
-from ....types.v1.events.feature_unarchive_feature_response import FeatureUnarchiveFeatureResponse
 
 __all__ = ["FeaturesResource", "AsyncFeaturesResource"]
 
@@ -64,7 +60,7 @@ class FeaturesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FeatureArchiveFeatureResponse:
+    ) -> Feature:
         """
         Archives a feature, preventing it from being used in new entitlements.
 
@@ -84,7 +80,7 @@ class FeaturesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FeatureArchiveFeatureResponse,
+            cast_to=Feature,
         )
 
     def create_feature(
@@ -107,7 +103,7 @@ class FeaturesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FeatureCreateFeatureResponse:
+    ) -> Feature:
         """
         Creates a new feature with the specified type, metering, and configuration.
 
@@ -163,7 +159,7 @@ class FeaturesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FeatureCreateFeatureResponse,
+            cast_to=Feature,
         )
 
     def list_features(
@@ -247,7 +243,7 @@ class FeaturesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FeatureRetrieveFeatureResponse:
+    ) -> Feature:
         """
         Retrieves a feature by its unique identifier.
 
@@ -267,7 +263,7 @@ class FeaturesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FeatureRetrieveFeatureResponse,
+            cast_to=Feature,
         )
 
     def unarchive_feature(
@@ -280,7 +276,7 @@ class FeaturesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FeatureUnarchiveFeatureResponse:
+    ) -> Feature:
         """
         Restores an archived feature, allowing it to be used in entitlements again.
 
@@ -300,7 +296,7 @@ class FeaturesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FeatureUnarchiveFeatureResponse,
+            cast_to=Feature,
         )
 
     def update_feature(
@@ -321,7 +317,7 @@ class FeaturesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FeatureUpdateFeatureResponse:
+    ) -> Feature:
         """
         Updates an existing feature's properties such as display name, description, and
         configuration.
@@ -369,7 +365,7 @@ class FeaturesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FeatureUpdateFeatureResponse,
+            cast_to=Feature,
         )
 
 
@@ -403,7 +399,7 @@ class AsyncFeaturesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FeatureArchiveFeatureResponse:
+    ) -> Feature:
         """
         Archives a feature, preventing it from being used in new entitlements.
 
@@ -423,7 +419,7 @@ class AsyncFeaturesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FeatureArchiveFeatureResponse,
+            cast_to=Feature,
         )
 
     async def create_feature(
@@ -446,7 +442,7 @@ class AsyncFeaturesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FeatureCreateFeatureResponse:
+    ) -> Feature:
         """
         Creates a new feature with the specified type, metering, and configuration.
 
@@ -502,7 +498,7 @@ class AsyncFeaturesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FeatureCreateFeatureResponse,
+            cast_to=Feature,
         )
 
     def list_features(
@@ -586,7 +582,7 @@ class AsyncFeaturesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FeatureRetrieveFeatureResponse:
+    ) -> Feature:
         """
         Retrieves a feature by its unique identifier.
 
@@ -606,7 +602,7 @@ class AsyncFeaturesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FeatureRetrieveFeatureResponse,
+            cast_to=Feature,
         )
 
     async def unarchive_feature(
@@ -619,7 +615,7 @@ class AsyncFeaturesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FeatureUnarchiveFeatureResponse:
+    ) -> Feature:
         """
         Restores an archived feature, allowing it to be used in entitlements again.
 
@@ -639,7 +635,7 @@ class AsyncFeaturesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FeatureUnarchiveFeatureResponse,
+            cast_to=Feature,
         )
 
     async def update_feature(
@@ -660,7 +656,7 @@ class AsyncFeaturesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FeatureUpdateFeatureResponse:
+    ) -> Feature:
         """
         Updates an existing feature's properties such as display name, description, and
         configuration.
@@ -708,7 +704,7 @@ class AsyncFeaturesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FeatureUpdateFeatureResponse,
+            cast_to=Feature,
         )
 
 
