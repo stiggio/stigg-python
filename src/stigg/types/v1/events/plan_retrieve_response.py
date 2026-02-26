@@ -8,7 +8,35 @@ from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["PlanRetrieveResponse", "Data", "DataEntitlement"]
+__all__ = ["PlanRetrieveResponse", "Data", "DataDefaultTrialConfig", "DataDefaultTrialConfigBudget", "DataEntitlement"]
+
+
+class DataDefaultTrialConfigBudget(BaseModel):
+    """Budget configuration for the trial"""
+
+    has_soft_limit: bool = FieldInfo(alias="hasSoftLimit")
+    """Whether the budget limit is a soft limit (allows overage) or hard limit"""
+
+    limit: float
+    """The budget limit amount"""
+
+
+class DataDefaultTrialConfig(BaseModel):
+    """Default trial configuration for the plan"""
+
+    duration: float
+    """The duration of the trial in the specified units"""
+
+    units: Literal["DAY", "MONTH"]
+    """The time unit for the trial duration (DAY or MONTH)"""
+
+    budget: Optional[DataDefaultTrialConfigBudget] = None
+    """Budget configuration for the trial"""
+
+    trial_end_behavior: Optional[Literal["CONVERT_TO_PAID", "CANCEL_SUBSCRIPTION"]] = FieldInfo(
+        alias="trialEndBehavior", default=None
+    )
+    """Behavior when the trial ends (CONVERT_TO_PAID or CANCEL_SUBSCRIPTION)"""
 
 
 class DataEntitlement(BaseModel):
@@ -29,8 +57,13 @@ class Data(BaseModel):
     billing_id: Optional[str] = FieldInfo(alias="billingId", default=None)
     """The unique identifier for the entity in the billing provider"""
 
+    compatible_addon_ids: Optional[List[str]] = FieldInfo(alias="compatibleAddonIds", default=None)
+
     created_at: datetime = FieldInfo(alias="createdAt")
     """Timestamp of when the record was created"""
+
+    default_trial_config: Optional[DataDefaultTrialConfig] = FieldInfo(alias="defaultTrialConfig", default=None)
+    """Default trial configuration for the plan"""
 
     description: Optional[str] = None
     """The description of the package"""

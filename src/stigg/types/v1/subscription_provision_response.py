@@ -106,6 +106,21 @@ class DataEntitlementUnionObjectVariant1Currency(BaseModel):
     currency_id: str = FieldInfo(alias="currencyId")
     """The unique identifier of the custom currency."""
 
+    display_name: str = FieldInfo(alias="displayName")
+    """The display name of the currency."""
+
+    additional_meta_data: Optional[object] = FieldInfo(alias="additionalMetaData", default=None)
+    """Additional metadata associated with the currency."""
+
+    description: Optional[str] = None
+    """A description of the currency."""
+
+    unit_plural: Optional[str] = FieldInfo(alias="unitPlural", default=None)
+    """The plural form of the currency unit."""
+
+    unit_singular: Optional[str] = FieldInfo(alias="unitSingular", default=None)
+    """The singular form of the currency unit."""
+
 
 class DataEntitlementUnionObjectVariant1(BaseModel):
     access_denied_reason: Optional[
