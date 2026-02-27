@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.0-alpha.10 (2026-02-27)
+
+Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
+
+### Features
+
+* **api:** api update ([f386b26](https://github.com/stiggio/stigg-python/commit/f386b26be09c15629c940a55b8e77f151bc067d4))
+* **api:** stainless config updates ([b2b1158](https://github.com/stiggio/stigg-python/commit/b2b1158c2db7018eb525f26679ab1a6e2942135a))
+* **api:** update endpoints and models ([cdd072d](https://github.com/stiggio/stigg-python/commit/cdd072decec88c323191e15f65069b7d75c43064))
+
+
+### Chores
+
+* **internal:** add request options to SSE classes ([bedf79a](https://github.com/stiggio/stigg-python/commit/bedf79a707b132a19b1867bfaf223db113df9950))
+* **internal:** make `test_proxy_environment_variables` more resilient ([064c566](https://github.com/stiggio/stigg-python/commit/064c566f266c9392f1c5a68fb00b3dc71b33bf0d))
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([20393b5](https://github.com/stiggio/stigg-python/commit/20393b594c1fd6d02e8d511354f29269a771f6b0))
+
 ## 0.1.0-alpha.9 (2026-02-22)
 
 Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
