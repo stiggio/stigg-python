@@ -82,7 +82,7 @@ class TestSubscriptions:
             id="x",
             addons=[
                 {
-                    "addon_id": "addonId",
+                    "id": "id",
                     "quantity": 0,
                 }
             ],
@@ -387,7 +387,21 @@ class TestSubscriptions:
                     "id": "id",
                     "customer_id": "customerId",
                     "plan_id": "planId",
+                    "addons": [
+                        {
+                            "id": "id",
+                            "quantity": 0,
+                        }
+                    ],
                     "billing_id": "billingId",
+                    "billing_period": "MONTHLY",
+                    "charges": [
+                        {
+                            "id": "id",
+                            "quantity": 1,
+                            "type": "FEATURE",
+                        }
+                    ],
                     "end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "metadata": {"foo": "string"},
                     "resource_id": "resourceId",
@@ -504,8 +518,8 @@ class TestSubscriptions:
             plan_id="planId",
             addons=[
                 {
-                    "addon_id": "addonId",
-                    "quantity": 1,
+                    "id": "id",
+                    "quantity": 0,
                 }
             ],
             applied_coupon={
@@ -625,8 +639,8 @@ class TestSubscriptions:
             id="id",
             addons=[
                 {
-                    "addon_id": "addonId",
-                    "quantity": 1,
+                    "id": "id",
+                    "quantity": 0,
                 }
             ],
             applied_coupon={
@@ -897,7 +911,7 @@ class TestAsyncSubscriptions:
             id="x",
             addons=[
                 {
-                    "addon_id": "addonId",
+                    "id": "id",
                     "quantity": 0,
                 }
             ],
@@ -1202,7 +1216,21 @@ class TestAsyncSubscriptions:
                     "id": "id",
                     "customer_id": "customerId",
                     "plan_id": "planId",
+                    "addons": [
+                        {
+                            "id": "id",
+                            "quantity": 0,
+                        }
+                    ],
                     "billing_id": "billingId",
+                    "billing_period": "MONTHLY",
+                    "charges": [
+                        {
+                            "id": "id",
+                            "quantity": 1,
+                            "type": "FEATURE",
+                        }
+                    ],
                     "end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "metadata": {"foo": "string"},
                     "resource_id": "resourceId",
@@ -1319,8 +1347,8 @@ class TestAsyncSubscriptions:
             plan_id="planId",
             addons=[
                 {
-                    "addon_id": "addonId",
-                    "quantity": 1,
+                    "id": "id",
+                    "quantity": 0,
                 }
             ],
             applied_coupon={
@@ -1440,8 +1468,8 @@ class TestAsyncSubscriptions:
             id="id",
             addons=[
                 {
-                    "addon_id": "addonId",
-                    "quantity": 1,
+                    "id": "id",
+                    "quantity": 0,
                 }
             ],
             applied_coupon={

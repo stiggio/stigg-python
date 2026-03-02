@@ -124,13 +124,13 @@ class DataBillingPeriodRange(BaseModel):
 
 
 class DataFreeItem(BaseModel):
-    """Free item in subscription"""
+    """Addon configuration"""
 
-    addon_id: str = FieldInfo(alias="addonId")
+    id: str
     """Addon ID"""
 
-    quantity: float
-    """Quantity"""
+    quantity: int
+    """Number of addon instances"""
 
 
 class DataRecurringInvoiceBillingPeriodRange(BaseModel):

@@ -17,6 +17,7 @@ __all__ = [
     "DataEntitlementUnionObjectVariant1",
     "DataEntitlementUnionObjectVariant1Currency",
     "DataSubscription",
+    "DataSubscriptionAddon",
     "DataSubscriptionPrice",
     "DataSubscriptionPricePrice",
     "DataSubscriptionPriceTier",
@@ -167,6 +168,16 @@ class DataEntitlementUnionObjectVariant1(BaseModel):
 
 
 DataEntitlement: TypeAlias = Union[DataEntitlementUnionObjectVariant0, DataEntitlementUnionObjectVariant1]
+
+
+class DataSubscriptionAddon(BaseModel):
+    """Addon configuration"""
+
+    id: str
+    """Addon ID"""
+
+    quantity: int
+    """Number of addon instances"""
 
 
 class DataSubscriptionPricePrice(BaseModel):
@@ -627,6 +638,8 @@ class DataSubscription(BaseModel):
 
     status: Literal["PAYMENT_PENDING", "ACTIVE", "EXPIRED", "IN_TRIAL", "CANCELED", "NOT_STARTED"]
     """Subscription status"""
+
+    addons: Optional[List[DataSubscriptionAddon]] = None
 
     cancellation_date: Optional[datetime] = FieldInfo(alias="cancellationDate", default=None)
     """Subscription cancellation date"""

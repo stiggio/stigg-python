@@ -113,11 +113,13 @@ class SubscriptionProvisionParams(TypedDict, total=False):
 
 
 class Addon(TypedDict, total=False):
-    addon_id: Required[Annotated[str, PropertyInfo(alias="addonId")]]
-    """Addon identifier"""
+    """Addon configuration"""
 
-    quantity: int
-    """Number of addon units"""
+    id: Required[str]
+    """Addon ID"""
+
+    quantity: Required[int]
+    """Number of addon instances"""
 
 
 class AppliedCouponConfiguration(TypedDict, total=False):
