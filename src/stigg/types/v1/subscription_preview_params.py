@@ -44,6 +44,9 @@ class SubscriptionPreviewParams(TypedDict, total=False):
     billing_country_code: Annotated[str, PropertyInfo(alias="billingCountryCode")]
     """ISO 3166-1 country code for localization"""
 
+    billing_cycle_anchor: Annotated[Literal["UNCHANGED", "NOW"], PropertyInfo(alias="billingCycleAnchor")]
+    """Billing cycle anchor behavior for the subscription"""
+
     billing_information: Annotated[BillingInformation, PropertyInfo(alias="billingInformation")]
     """Billing and tax configuration"""
 

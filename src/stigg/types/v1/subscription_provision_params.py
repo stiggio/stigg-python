@@ -56,6 +56,9 @@ class SubscriptionProvisionParams(TypedDict, total=False):
     billing_country_code: Annotated[Optional[str], PropertyInfo(alias="billingCountryCode")]
     """The ISO 3166-1 alpha-2 country code for billing"""
 
+    billing_cycle_anchor: Annotated[Literal["UNCHANGED", "NOW"], PropertyInfo(alias="billingCycleAnchor")]
+    """Billing cycle anchor behavior for the subscription"""
+
     billing_id: Annotated[Optional[str], PropertyInfo(alias="billingId")]
     """External billing system identifier"""
 

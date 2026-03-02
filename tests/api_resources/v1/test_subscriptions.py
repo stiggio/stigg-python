@@ -105,6 +105,7 @@ class TestSubscriptions:
                 "promotion_code": "promotionCode",
             },
             await_payment_confirmation=True,
+            billing_cycle_anchor="UNCHANGED",
             billing_information={
                 "billing_address": {
                     "city": "city",
@@ -547,6 +548,7 @@ class TestSubscriptions:
                 }
             ],
             billing_country_code="billingCountryCode",
+            billing_cycle_anchor="UNCHANGED",
             billing_information={
                 "billing_address": {
                     "city": "city",
@@ -663,6 +665,7 @@ class TestSubscriptions:
             },
             await_payment_confirmation=True,
             billing_country_code="billingCountryCode",
+            billing_cycle_anchor="UNCHANGED",
             billing_id="billingId",
             billing_information={
                 "billing_address": {
@@ -934,6 +937,7 @@ class TestAsyncSubscriptions:
                 "promotion_code": "promotionCode",
             },
             await_payment_confirmation=True,
+            billing_cycle_anchor="UNCHANGED",
             billing_information={
                 "billing_address": {
                     "city": "city",
@@ -1376,6 +1380,7 @@ class TestAsyncSubscriptions:
                 }
             ],
             billing_country_code="billingCountryCode",
+            billing_cycle_anchor="UNCHANGED",
             billing_information={
                 "billing_address": {
                     "city": "city",
@@ -1492,6 +1497,7 @@ class TestAsyncSubscriptions:
             },
             await_payment_confirmation=True,
             billing_country_code="billingCountryCode",
+            billing_cycle_anchor="UNCHANGED",
             billing_id="billingId",
             billing_information={
                 "billing_address": {
