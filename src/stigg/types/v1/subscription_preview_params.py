@@ -79,10 +79,10 @@ class SubscriptionPreviewParams(TypedDict, total=False):
 class Addon(TypedDict, total=False):
     """Addon configuration"""
 
-    addon_id: Required[Annotated[str, PropertyInfo(alias="addonId")]]
+    id: Required[str]
     """Addon ID"""
 
-    quantity: int
+    quantity: Required[int]
     """Number of addon instances"""
 
 

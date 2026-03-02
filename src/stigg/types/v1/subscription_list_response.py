@@ -8,7 +8,17 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["SubscriptionListResponse", "Price"]
+__all__ = ["SubscriptionListResponse", "Addon", "Price"]
+
+
+class Addon(BaseModel):
+    """Addon configuration"""
+
+    id: str
+    """Addon ID"""
+
+    quantity: int
+    """Number of addon instances"""
 
 
 class Price(BaseModel):
@@ -65,6 +75,8 @@ class SubscriptionListResponse(BaseModel):
 
     status: Literal["PAYMENT_PENDING", "ACTIVE", "EXPIRED", "IN_TRIAL", "CANCELED", "NOT_STARTED"]
     """Subscription status"""
+
+    addons: Optional[List[Addon]] = None
 
     cancellation_date: Optional[datetime] = FieldInfo(alias="cancellationDate", default=None)
     """Subscription cancellation date"""
