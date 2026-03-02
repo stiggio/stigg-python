@@ -4,11 +4,11 @@ from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["SubscriptionImportParams", "Subscription"]
+__all__ = ["SubscriptionImportParams", "Subscription", "SubscriptionAddon", "SubscriptionCharge"]
 
 
 class SubscriptionImportParams(TypedDict, total=False):
@@ -17,6 +17,29 @@ class SubscriptionImportParams(TypedDict, total=False):
 
     integration_id: Annotated[Optional[str], PropertyInfo(alias="integrationId")]
     """Integration ID to use for importing subscriptions"""
+
+
+class SubscriptionAddon(TypedDict, total=False):
+    """Addon configuration"""
+
+    id: Required[str]
+    """Addon ID"""
+
+    quantity: Required[int]
+    """Number of addon instances"""
+
+
+class SubscriptionCharge(TypedDict, total=False):
+    """Charge item"""
+
+    id: Required[str]
+    """Charge ID"""
+
+    quantity: Required[float]
+    """Charge quantity"""
+
+    type: Required[Literal["FEATURE", "CREDIT"]]
+    """Charge type"""
 
 
 class Subscription(TypedDict, total=False):
@@ -29,8 +52,15 @@ class Subscription(TypedDict, total=False):
     plan_id: Required[Annotated[str, PropertyInfo(alias="planId")]]
     """Plan ID"""
 
+    addons: Iterable[SubscriptionAddon]
+
     billing_id: Annotated[Optional[str], PropertyInfo(alias="billingId")]
     """Billing ID"""
+
+    billing_period: Annotated[Literal["MONTHLY", "ANNUALLY"], PropertyInfo(alias="billingPeriod")]
+    """Billing period (MONTHLY or ANNUALLY)"""
+
+    charges: Iterable[SubscriptionCharge]
 
     end_date: Annotated[Union[str, datetime, None], PropertyInfo(alias="endDate", format="iso8601")]
     """Subscription end date"""
