@@ -39,6 +39,8 @@ class SubscriptionUpdateParams(TypedDict, total=False):
 
     await_payment_confirmation: Annotated[bool, PropertyInfo(alias="awaitPaymentConfirmation")]
 
+    billing_cycle_anchor: Annotated[Literal["UNCHANGED", "NOW"], PropertyInfo(alias="billingCycleAnchor")]
+
     billing_information: Annotated[BillingInformation, PropertyInfo(alias="billingInformation")]
 
     billing_period: Annotated[Literal["MONTHLY", "ANNUALLY"], PropertyInfo(alias="billingPeriod")]
