@@ -137,6 +137,7 @@ class SubscriptionsResource(SyncAPIResource):
         addons: Iterable[subscription_update_params.Addon] | Omit = omit,
         applied_coupon: subscription_update_params.AppliedCoupon | Omit = omit,
         await_payment_confirmation: bool | Omit = omit,
+        billing_cycle_anchor: Literal["UNCHANGED", "NOW"] | Omit = omit,
         billing_information: subscription_update_params.BillingInformation | Omit = omit,
         billing_period: Literal["MONTHLY", "ANNUALLY"] | Omit = omit,
         budget: Optional[subscription_update_params.Budget] | Omit = omit,
@@ -181,6 +182,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "addons": addons,
                     "applied_coupon": applied_coupon,
                     "await_payment_confirmation": await_payment_confirmation,
+                    "billing_cycle_anchor": billing_cycle_anchor,
                     "billing_information": billing_information,
                     "billing_period": billing_period,
                     "budget": budget,
@@ -470,6 +472,7 @@ class SubscriptionsResource(SyncAPIResource):
         applied_coupon: subscription_preview_params.AppliedCoupon | Omit = omit,
         billable_features: Iterable[subscription_preview_params.BillableFeature] | Omit = omit,
         billing_country_code: str | Omit = omit,
+        billing_cycle_anchor: Literal["UNCHANGED", "NOW"] | Omit = omit,
         billing_information: subscription_preview_params.BillingInformation | Omit = omit,
         billing_period: Literal["MONTHLY", "ANNUALLY"] | Omit = omit,
         charges: Iterable[subscription_preview_params.Charge] | Omit = omit,
@@ -502,6 +505,8 @@ class SubscriptionsResource(SyncAPIResource):
           billable_features: Billable features with quantities
 
           billing_country_code: ISO 3166-1 country code for localization
+
+          billing_cycle_anchor: Billing cycle anchor behavior for the subscription
 
           billing_information: Billing and tax configuration
 
@@ -539,6 +544,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "applied_coupon": applied_coupon,
                     "billable_features": billable_features,
                     "billing_country_code": billing_country_code,
+                    "billing_cycle_anchor": billing_cycle_anchor,
                     "billing_information": billing_information,
                     "billing_period": billing_period,
                     "charges": charges,
@@ -567,6 +573,7 @@ class SubscriptionsResource(SyncAPIResource):
         applied_coupon: subscription_provision_params.AppliedCoupon | Omit = omit,
         await_payment_confirmation: bool | Omit = omit,
         billing_country_code: Optional[str] | Omit = omit,
+        billing_cycle_anchor: Literal["UNCHANGED", "NOW"] | Omit = omit,
         billing_id: Optional[str] | Omit = omit,
         billing_information: subscription_provision_params.BillingInformation | Omit = omit,
         billing_period: Literal["MONTHLY", "ANNUALLY"] | Omit = omit,
@@ -610,6 +617,8 @@ class SubscriptionsResource(SyncAPIResource):
 
           billing_country_code: The ISO 3166-1 alpha-2 country code for billing
 
+          billing_cycle_anchor: Billing cycle anchor behavior for the subscription
+
           billing_id: External billing system identifier
 
           billing_period: Billing period (MONTHLY or ANNUALLY)
@@ -651,6 +660,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "applied_coupon": applied_coupon,
                     "await_payment_confirmation": await_payment_confirmation,
                     "billing_country_code": billing_country_code,
+                    "billing_cycle_anchor": billing_cycle_anchor,
                     "billing_id": billing_id,
                     "billing_information": billing_information,
                     "billing_period": billing_period,
@@ -794,6 +804,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         addons: Iterable[subscription_update_params.Addon] | Omit = omit,
         applied_coupon: subscription_update_params.AppliedCoupon | Omit = omit,
         await_payment_confirmation: bool | Omit = omit,
+        billing_cycle_anchor: Literal["UNCHANGED", "NOW"] | Omit = omit,
         billing_information: subscription_update_params.BillingInformation | Omit = omit,
         billing_period: Literal["MONTHLY", "ANNUALLY"] | Omit = omit,
         budget: Optional[subscription_update_params.Budget] | Omit = omit,
@@ -838,6 +849,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "addons": addons,
                     "applied_coupon": applied_coupon,
                     "await_payment_confirmation": await_payment_confirmation,
+                    "billing_cycle_anchor": billing_cycle_anchor,
                     "billing_information": billing_information,
                     "billing_period": billing_period,
                     "budget": budget,
@@ -1127,6 +1139,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         applied_coupon: subscription_preview_params.AppliedCoupon | Omit = omit,
         billable_features: Iterable[subscription_preview_params.BillableFeature] | Omit = omit,
         billing_country_code: str | Omit = omit,
+        billing_cycle_anchor: Literal["UNCHANGED", "NOW"] | Omit = omit,
         billing_information: subscription_preview_params.BillingInformation | Omit = omit,
         billing_period: Literal["MONTHLY", "ANNUALLY"] | Omit = omit,
         charges: Iterable[subscription_preview_params.Charge] | Omit = omit,
@@ -1159,6 +1172,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           billable_features: Billable features with quantities
 
           billing_country_code: ISO 3166-1 country code for localization
+
+          billing_cycle_anchor: Billing cycle anchor behavior for the subscription
 
           billing_information: Billing and tax configuration
 
@@ -1196,6 +1211,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "applied_coupon": applied_coupon,
                     "billable_features": billable_features,
                     "billing_country_code": billing_country_code,
+                    "billing_cycle_anchor": billing_cycle_anchor,
                     "billing_information": billing_information,
                     "billing_period": billing_period,
                     "charges": charges,
@@ -1224,6 +1240,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         applied_coupon: subscription_provision_params.AppliedCoupon | Omit = omit,
         await_payment_confirmation: bool | Omit = omit,
         billing_country_code: Optional[str] | Omit = omit,
+        billing_cycle_anchor: Literal["UNCHANGED", "NOW"] | Omit = omit,
         billing_id: Optional[str] | Omit = omit,
         billing_information: subscription_provision_params.BillingInformation | Omit = omit,
         billing_period: Literal["MONTHLY", "ANNUALLY"] | Omit = omit,
@@ -1267,6 +1284,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           billing_country_code: The ISO 3166-1 alpha-2 country code for billing
 
+          billing_cycle_anchor: Billing cycle anchor behavior for the subscription
+
           billing_id: External billing system identifier
 
           billing_period: Billing period (MONTHLY or ANNUALLY)
@@ -1308,6 +1327,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "applied_coupon": applied_coupon,
                     "await_payment_confirmation": await_payment_confirmation,
                     "billing_country_code": billing_country_code,
+                    "billing_cycle_anchor": billing_cycle_anchor,
                     "billing_id": billing_id,
                     "billing_information": billing_information,
                     "billing_period": billing_period,
