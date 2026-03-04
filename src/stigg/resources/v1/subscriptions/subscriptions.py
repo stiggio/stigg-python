@@ -166,6 +166,8 @@ class SubscriptionsResource(SyncAPIResource):
         Args:
           metadata: Additional metadata for the subscription
 
+          minimum_spend: Minimum spend amount
+
           trial_end_date: Subscription trial end date
 
           extra_headers: Send extra headers
@@ -630,6 +632,8 @@ class SubscriptionsResource(SyncAPIResource):
 
           metadata: Additional metadata for the subscription
 
+          minimum_spend: Minimum spend amount
+
           paying_customer_id: Optional paying customer ID for split billing scenarios
 
           payment_collection_method: How payments should be collected for this subscription
@@ -835,6 +839,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
         Args:
           metadata: Additional metadata for the subscription
+
+          minimum_spend: Minimum spend amount
 
           trial_end_date: Subscription trial end date
 
@@ -1299,6 +1305,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           checkout_options: Checkout page configuration for payment collection
 
           metadata: Additional metadata for the subscription
+
+          minimum_spend: Minimum spend amount
 
           paying_customer_id: Optional paying customer ID for split billing scenarios
 
