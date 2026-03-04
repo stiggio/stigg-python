@@ -27,6 +27,8 @@ __all__ = ["PromotionalEntitlementsResource", "AsyncPromotionalEntitlementsResou
 
 
 class PromotionalEntitlementsResource(SyncAPIResource):
+    """Operations related to promotional entitlements"""
+
     @cached_property
     def with_raw_response(self) -> PromotionalEntitlementsResourceWithRawResponse:
         """
@@ -189,6 +191,8 @@ class PromotionalEntitlementsResource(SyncAPIResource):
 
 
 class AsyncPromotionalEntitlementsResource(AsyncAPIResource):
+    """Operations related to promotional entitlements"""
+
     @cached_property
     def with_raw_response(self) -> AsyncPromotionalEntitlementsResourceWithRawResponse:
         """

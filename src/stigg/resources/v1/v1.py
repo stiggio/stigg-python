@@ -91,30 +91,37 @@ class V1Resource(SyncAPIResource):
 
     @cached_property
     def coupons(self) -> CouponsResource:
+        """Operations related to coupons"""
         return CouponsResource(self._client)
 
     @cached_property
     def events(self) -> EventsResource:
+        """Operations related to usage & metering"""
         return EventsResource(self._client)
 
     @cached_property
     def features(self) -> FeaturesResource:
+        """Operations related to features"""
         return FeaturesResource(self._client)
 
     @cached_property
     def addons(self) -> AddonsResource:
+        """Operations related to addons"""
         return AddonsResource(self._client)
 
     @cached_property
     def plans(self) -> PlansResource:
+        """Operations related to plans"""
         return PlansResource(self._client)
 
     @cached_property
     def usage(self) -> UsageResource:
+        """Operations related to usage & metering"""
         return UsageResource(self._client)
 
     @cached_property
     def products(self) -> ProductsResource:
+        """Operations related to products"""
         return ProductsResource(self._client)
 
     @cached_property
@@ -148,30 +155,37 @@ class AsyncV1Resource(AsyncAPIResource):
 
     @cached_property
     def coupons(self) -> AsyncCouponsResource:
+        """Operations related to coupons"""
         return AsyncCouponsResource(self._client)
 
     @cached_property
     def events(self) -> AsyncEventsResource:
+        """Operations related to usage & metering"""
         return AsyncEventsResource(self._client)
 
     @cached_property
     def features(self) -> AsyncFeaturesResource:
+        """Operations related to features"""
         return AsyncFeaturesResource(self._client)
 
     @cached_property
     def addons(self) -> AsyncAddonsResource:
+        """Operations related to addons"""
         return AsyncAddonsResource(self._client)
 
     @cached_property
     def plans(self) -> AsyncPlansResource:
+        """Operations related to plans"""
         return AsyncPlansResource(self._client)
 
     @cached_property
     def usage(self) -> AsyncUsageResource:
+        """Operations related to usage & metering"""
         return AsyncUsageResource(self._client)
 
     @cached_property
     def products(self) -> AsyncProductsResource:
+        """Operations related to products"""
         return AsyncProductsResource(self._client)
 
     @cached_property
@@ -208,30 +222,37 @@ class V1ResourceWithRawResponse:
 
     @cached_property
     def coupons(self) -> CouponsResourceWithRawResponse:
+        """Operations related to coupons"""
         return CouponsResourceWithRawResponse(self._v1.coupons)
 
     @cached_property
     def events(self) -> EventsResourceWithRawResponse:
+        """Operations related to usage & metering"""
         return EventsResourceWithRawResponse(self._v1.events)
 
     @cached_property
     def features(self) -> FeaturesResourceWithRawResponse:
+        """Operations related to features"""
         return FeaturesResourceWithRawResponse(self._v1.features)
 
     @cached_property
     def addons(self) -> AddonsResourceWithRawResponse:
+        """Operations related to addons"""
         return AddonsResourceWithRawResponse(self._v1.addons)
 
     @cached_property
     def plans(self) -> PlansResourceWithRawResponse:
+        """Operations related to plans"""
         return PlansResourceWithRawResponse(self._v1.plans)
 
     @cached_property
     def usage(self) -> UsageResourceWithRawResponse:
+        """Operations related to usage & metering"""
         return UsageResourceWithRawResponse(self._v1.usage)
 
     @cached_property
     def products(self) -> ProductsResourceWithRawResponse:
+        """Operations related to products"""
         return ProductsResourceWithRawResponse(self._v1.products)
 
 
@@ -249,30 +270,37 @@ class AsyncV1ResourceWithRawResponse:
 
     @cached_property
     def coupons(self) -> AsyncCouponsResourceWithRawResponse:
+        """Operations related to coupons"""
         return AsyncCouponsResourceWithRawResponse(self._v1.coupons)
 
     @cached_property
     def events(self) -> AsyncEventsResourceWithRawResponse:
+        """Operations related to usage & metering"""
         return AsyncEventsResourceWithRawResponse(self._v1.events)
 
     @cached_property
     def features(self) -> AsyncFeaturesResourceWithRawResponse:
+        """Operations related to features"""
         return AsyncFeaturesResourceWithRawResponse(self._v1.features)
 
     @cached_property
     def addons(self) -> AsyncAddonsResourceWithRawResponse:
+        """Operations related to addons"""
         return AsyncAddonsResourceWithRawResponse(self._v1.addons)
 
     @cached_property
     def plans(self) -> AsyncPlansResourceWithRawResponse:
+        """Operations related to plans"""
         return AsyncPlansResourceWithRawResponse(self._v1.plans)
 
     @cached_property
     def usage(self) -> AsyncUsageResourceWithRawResponse:
+        """Operations related to usage & metering"""
         return AsyncUsageResourceWithRawResponse(self._v1.usage)
 
     @cached_property
     def products(self) -> AsyncProductsResourceWithRawResponse:
+        """Operations related to products"""
         return AsyncProductsResourceWithRawResponse(self._v1.products)
 
 
@@ -290,30 +318,37 @@ class V1ResourceWithStreamingResponse:
 
     @cached_property
     def coupons(self) -> CouponsResourceWithStreamingResponse:
+        """Operations related to coupons"""
         return CouponsResourceWithStreamingResponse(self._v1.coupons)
 
     @cached_property
     def events(self) -> EventsResourceWithStreamingResponse:
+        """Operations related to usage & metering"""
         return EventsResourceWithStreamingResponse(self._v1.events)
 
     @cached_property
     def features(self) -> FeaturesResourceWithStreamingResponse:
+        """Operations related to features"""
         return FeaturesResourceWithStreamingResponse(self._v1.features)
 
     @cached_property
     def addons(self) -> AddonsResourceWithStreamingResponse:
+        """Operations related to addons"""
         return AddonsResourceWithStreamingResponse(self._v1.addons)
 
     @cached_property
     def plans(self) -> PlansResourceWithStreamingResponse:
+        """Operations related to plans"""
         return PlansResourceWithStreamingResponse(self._v1.plans)
 
     @cached_property
     def usage(self) -> UsageResourceWithStreamingResponse:
+        """Operations related to usage & metering"""
         return UsageResourceWithStreamingResponse(self._v1.usage)
 
     @cached_property
     def products(self) -> ProductsResourceWithStreamingResponse:
+        """Operations related to products"""
         return ProductsResourceWithStreamingResponse(self._v1.products)
 
 
@@ -331,28 +366,35 @@ class AsyncV1ResourceWithStreamingResponse:
 
     @cached_property
     def coupons(self) -> AsyncCouponsResourceWithStreamingResponse:
+        """Operations related to coupons"""
         return AsyncCouponsResourceWithStreamingResponse(self._v1.coupons)
 
     @cached_property
     def events(self) -> AsyncEventsResourceWithStreamingResponse:
+        """Operations related to usage & metering"""
         return AsyncEventsResourceWithStreamingResponse(self._v1.events)
 
     @cached_property
     def features(self) -> AsyncFeaturesResourceWithStreamingResponse:
+        """Operations related to features"""
         return AsyncFeaturesResourceWithStreamingResponse(self._v1.features)
 
     @cached_property
     def addons(self) -> AsyncAddonsResourceWithStreamingResponse:
+        """Operations related to addons"""
         return AsyncAddonsResourceWithStreamingResponse(self._v1.addons)
 
     @cached_property
     def plans(self) -> AsyncPlansResourceWithStreamingResponse:
+        """Operations related to plans"""
         return AsyncPlansResourceWithStreamingResponse(self._v1.plans)
 
     @cached_property
     def usage(self) -> AsyncUsageResourceWithStreamingResponse:
+        """Operations related to usage & metering"""
         return AsyncUsageResourceWithStreamingResponse(self._v1.usage)
 
     @cached_property
     def products(self) -> AsyncProductsResourceWithStreamingResponse:
+        """Operations related to products"""
         return AsyncProductsResourceWithStreamingResponse(self._v1.products)
