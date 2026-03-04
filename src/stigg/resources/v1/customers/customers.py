@@ -52,10 +52,12 @@ __all__ = ["CustomersResource", "AsyncCustomersResource"]
 class CustomersResource(SyncAPIResource):
     @cached_property
     def payment_method(self) -> PaymentMethodResource:
+        """Operations related to customers"""
         return PaymentMethodResource(self._client)
 
     @cached_property
     def promotional_entitlements(self) -> PromotionalEntitlementsResource:
+        """Operations related to promotional entitlements"""
         return PromotionalEntitlementsResource(self._client)
 
     @cached_property
@@ -459,10 +461,12 @@ class CustomersResource(SyncAPIResource):
 class AsyncCustomersResource(AsyncAPIResource):
     @cached_property
     def payment_method(self) -> AsyncPaymentMethodResource:
+        """Operations related to customers"""
         return AsyncPaymentMethodResource(self._client)
 
     @cached_property
     def promotional_entitlements(self) -> AsyncPromotionalEntitlementsResource:
+        """Operations related to promotional entitlements"""
         return AsyncPromotionalEntitlementsResource(self._client)
 
     @cached_property
@@ -894,10 +898,12 @@ class CustomersResourceWithRawResponse:
 
     @cached_property
     def payment_method(self) -> PaymentMethodResourceWithRawResponse:
+        """Operations related to customers"""
         return PaymentMethodResourceWithRawResponse(self._customers.payment_method)
 
     @cached_property
     def promotional_entitlements(self) -> PromotionalEntitlementsResourceWithRawResponse:
+        """Operations related to promotional entitlements"""
         return PromotionalEntitlementsResourceWithRawResponse(self._customers.promotional_entitlements)
 
 
@@ -932,10 +938,12 @@ class AsyncCustomersResourceWithRawResponse:
 
     @cached_property
     def payment_method(self) -> AsyncPaymentMethodResourceWithRawResponse:
+        """Operations related to customers"""
         return AsyncPaymentMethodResourceWithRawResponse(self._customers.payment_method)
 
     @cached_property
     def promotional_entitlements(self) -> AsyncPromotionalEntitlementsResourceWithRawResponse:
+        """Operations related to promotional entitlements"""
         return AsyncPromotionalEntitlementsResourceWithRawResponse(self._customers.promotional_entitlements)
 
 
@@ -970,10 +978,12 @@ class CustomersResourceWithStreamingResponse:
 
     @cached_property
     def payment_method(self) -> PaymentMethodResourceWithStreamingResponse:
+        """Operations related to customers"""
         return PaymentMethodResourceWithStreamingResponse(self._customers.payment_method)
 
     @cached_property
     def promotional_entitlements(self) -> PromotionalEntitlementsResourceWithStreamingResponse:
+        """Operations related to promotional entitlements"""
         return PromotionalEntitlementsResourceWithStreamingResponse(self._customers.promotional_entitlements)
 
 
@@ -1008,8 +1018,10 @@ class AsyncCustomersResourceWithStreamingResponse:
 
     @cached_property
     def payment_method(self) -> AsyncPaymentMethodResourceWithStreamingResponse:
+        """Operations related to customers"""
         return AsyncPaymentMethodResourceWithStreamingResponse(self._customers.payment_method)
 
     @cached_property
     def promotional_entitlements(self) -> AsyncPromotionalEntitlementsResourceWithStreamingResponse:
+        """Operations related to promotional entitlements"""
         return AsyncPromotionalEntitlementsResourceWithStreamingResponse(self._customers.promotional_entitlements)

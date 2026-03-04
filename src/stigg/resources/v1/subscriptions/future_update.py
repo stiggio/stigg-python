@@ -20,6 +20,8 @@ __all__ = ["FutureUpdateResource", "AsyncFutureUpdateResource"]
 
 
 class FutureUpdateResource(SyncAPIResource):
+    """Operations related to subscriptions"""
+
     @cached_property
     def with_raw_response(self) -> FutureUpdateResourceWithRawResponse:
         """
@@ -108,6 +110,8 @@ class FutureUpdateResource(SyncAPIResource):
 
 
 class AsyncFutureUpdateResource(AsyncAPIResource):
+    """Operations related to subscriptions"""
+
     @cached_property
     def with_raw_response(self) -> AsyncFutureUpdateResourceWithRawResponse:
         """

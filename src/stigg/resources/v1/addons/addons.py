@@ -44,6 +44,8 @@ __all__ = ["AddonsResource", "AsyncAddonsResource"]
 
 
 class AddonsResource(SyncAPIResource):
+    """Operations related to addons"""
+
     @cached_property
     def entitlements(self) -> EntitlementsResource:
         return EntitlementsResource(self._client)
@@ -498,6 +500,8 @@ class AddonsResource(SyncAPIResource):
 
 
 class AsyncAddonsResource(AsyncAPIResource):
+    """Operations related to addons"""
+
     @cached_property
     def entitlements(self) -> AsyncEntitlementsResource:
         return AsyncEntitlementsResource(self._client)

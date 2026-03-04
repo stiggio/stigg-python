@@ -27,6 +27,8 @@ __all__ = ["CouponsResource", "AsyncCouponsResource"]
 
 
 class CouponsResource(SyncAPIResource):
+    """Operations related to coupons"""
+
     @cached_property
     def with_raw_response(self) -> CouponsResourceWithRawResponse:
         """
@@ -295,6 +297,8 @@ class CouponsResource(SyncAPIResource):
 
 
 class AsyncCouponsResource(AsyncAPIResource):
+    """Operations related to coupons"""
+
     @cached_property
     def with_raw_response(self) -> AsyncCouponsResourceWithRawResponse:
         """

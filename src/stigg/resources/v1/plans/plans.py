@@ -44,6 +44,8 @@ __all__ = ["PlansResource", "AsyncPlansResource"]
 
 
 class PlansResource(SyncAPIResource):
+    """Operations related to plans"""
+
     @cached_property
     def entitlements(self) -> EntitlementsResource:
         return EntitlementsResource(self._client)
@@ -505,6 +507,8 @@ class PlansResource(SyncAPIResource):
 
 
 class AsyncPlansResource(AsyncAPIResource):
+    """Operations related to plans"""
+
     @cached_property
     def entitlements(self) -> AsyncEntitlementsResource:
         return AsyncEntitlementsResource(self._client)
