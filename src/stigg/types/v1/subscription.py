@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import TYPE_CHECKING, Dict, List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -8,7 +8,24 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["Subscription", "Data", "DataAddon", "DataPrice"]
+__all__ = [
+    "Subscription",
+    "Data",
+    "DataAddon",
+    "DataBudget",
+    "DataCoupon",
+    "DataCouponAmountsOff",
+    "DataFutureUpdate",
+    "DataFutureUpdateTargetPackage",
+    "DataLatestInvoice",
+    "DataMinimumSpend",
+    "DataPrice",
+    "DataPriceTier",
+    "DataPriceTierFlatPrice",
+    "DataPriceTierUnitPrice",
+    "DataSubscriptionEntitlement",
+    "DataTrial",
+]
 
 
 class DataAddon(BaseModel):
@@ -21,27 +38,793 @@ class DataAddon(BaseModel):
     """Number of addon instances"""
 
 
-class DataPrice(BaseModel):
+class DataBudget(BaseModel):
+    """Budget configuration"""
+
+    has_soft_limit: bool = FieldInfo(alias="hasSoftLimit")
+    """Whether the budget is a soft limit"""
+
+    limit: float
+    """Maximum spending limit"""
+
+
+class DataCouponAmountsOff(BaseModel):
+    amount: Optional[float] = None
+    """The price amount"""
+
+    currency: Optional[
+        Literal[
+            "usd",
+            "aed",
+            "all",
+            "amd",
+            "ang",
+            "aud",
+            "awg",
+            "azn",
+            "bam",
+            "bbd",
+            "bdt",
+            "bgn",
+            "bif",
+            "bmd",
+            "bnd",
+            "bsd",
+            "bwp",
+            "byn",
+            "bzd",
+            "brl",
+            "cad",
+            "cdf",
+            "chf",
+            "cny",
+            "czk",
+            "dkk",
+            "dop",
+            "dzd",
+            "egp",
+            "etb",
+            "eur",
+            "fjd",
+            "gbp",
+            "gel",
+            "gip",
+            "gmd",
+            "gyd",
+            "hkd",
+            "hrk",
+            "htg",
+            "idr",
+            "ils",
+            "inr",
+            "isk",
+            "jmd",
+            "jpy",
+            "kes",
+            "kgs",
+            "khr",
+            "kmf",
+            "krw",
+            "kyd",
+            "kzt",
+            "lbp",
+            "lkr",
+            "lrd",
+            "lsl",
+            "mad",
+            "mdl",
+            "mga",
+            "mkd",
+            "mmk",
+            "mnt",
+            "mop",
+            "mro",
+            "mvr",
+            "mwk",
+            "mxn",
+            "myr",
+            "mzn",
+            "nad",
+            "ngn",
+            "nok",
+            "npr",
+            "nzd",
+            "pgk",
+            "php",
+            "pkr",
+            "pln",
+            "qar",
+            "ron",
+            "rsd",
+            "rub",
+            "rwf",
+            "sar",
+            "sbd",
+            "scr",
+            "sek",
+            "sgd",
+            "sle",
+            "sll",
+            "sos",
+            "szl",
+            "thb",
+            "tjs",
+            "top",
+            "try",
+            "ttd",
+            "tzs",
+            "uah",
+            "uzs",
+            "vnd",
+            "vuv",
+            "wst",
+            "xaf",
+            "xcd",
+            "yer",
+            "zar",
+            "zmw",
+            "clp",
+            "djf",
+            "gnf",
+            "ugx",
+            "pyg",
+            "xof",
+            "xpf",
+        ]
+    ] = None
+    """The price currency"""
+
+
+class DataCoupon(BaseModel):
+    """Coupon applied to a subscription"""
+
     id: str
-    """Price ID"""
+    """Coupon ID"""
 
-    created_at: str = FieldInfo(alias="createdAt")
-    """Creation timestamp"""
+    name: str
+    """Coupon name"""
 
-    updated_at: str = FieldInfo(alias="updatedAt")
-    """Last update timestamp"""
+    status: Literal["ACTIVE", "EXPIRED", "REMOVED"]
+    """Coupon status"""
 
-    if TYPE_CHECKING:
-        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
-        # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+    amounts_off: Optional[List[DataCouponAmountsOff]] = FieldInfo(alias="amountsOff", default=None)
+    """Fixed amount discounts by currency"""
 
-        # Stub to indicate that arbitrary properties are accepted.
-        # To access properties that are not valid identifiers you can use `getattr`, e.g.
-        # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> object: ...
-    else:
-        __pydantic_extra__: Dict[str, object]
+    percent_off: Optional[float] = FieldInfo(alias="percentOff", default=None)
+    """Percentage discount"""
+
+
+class DataFutureUpdateTargetPackage(BaseModel):
+    """Target package for the update"""
+
+    id: str
+    """Target package for the update"""
+
+
+class DataFutureUpdate(BaseModel):
+    """Scheduled subscription update"""
+
+    scheduled_execution_time: datetime = FieldInfo(alias="scheduledExecutionTime")
+    """Scheduled execution time"""
+
+    schedule_status: Literal["PENDING_PAYMENT", "SCHEDULED", "CANCELED", "DONE", "FAILED"] = FieldInfo(
+        alias="scheduleStatus"
+    )
+    """Status of the scheduled update"""
+
+    subscription_schedule_type: Literal[
+        "DOWNGRADE",
+        "PLAN",
+        "BILLING_PERIOD",
+        "UNIT_AMOUNT",
+        "RECURRING_CREDITS",
+        "PRICE_OVERRIDE",
+        "ADDON",
+        "COUPON",
+        "MIGRATE_TO_LATEST",
+        "ADDITIONAL_META_DATA",
+        "BILLING_INFO_METADATA",
+    ] = FieldInfo(alias="subscriptionScheduleType")
+    """Type of scheduled change"""
+
+    target_package: Optional[DataFutureUpdateTargetPackage] = FieldInfo(alias="targetPackage", default=None)
+    """Target package for the update"""
+
+
+class DataLatestInvoice(BaseModel):
+    """Latest invoice for the subscription"""
+
+    billing_id: str = FieldInfo(alias="billingId")
+    """Invoice billing ID"""
+
+    created_at: datetime = FieldInfo(alias="createdAt")
+    """Invoice creation date"""
+
+    requires_action: bool = FieldInfo(alias="requiresAction")
+    """Whether payment requires action"""
+
+    status: Literal["OPEN", "CANCELED", "PAID"]
+    """Invoice status"""
+
+    amount_due: Optional[float] = FieldInfo(alias="amountDue", default=None)
+    """Amount due"""
+
+    billing_reason: Optional[
+        Literal[
+            "BILLING_CYCLE",
+            "SUBSCRIPTION_CREATION",
+            "SUBSCRIPTION_UPDATE",
+            "MANUAL",
+            "MINIMUM_INVOICE_AMOUNT_EXCEEDED",
+            "OTHER",
+        ]
+    ] = FieldInfo(alias="billingReason", default=None)
+    """Billing reason"""
+
+    currency: Optional[str] = None
+    """Invoice currency"""
+
+    pdf_url: Optional[str] = FieldInfo(alias="pdfUrl", default=None)
+    """Invoice PDF URL"""
+
+    total: Optional[float] = None
+    """Total amount"""
+
+
+class DataMinimumSpend(BaseModel):
+    """Minimum spend configuration"""
+
+    amount: Optional[float] = None
+    """The price amount"""
+
+    currency: Optional[
+        Literal[
+            "usd",
+            "aed",
+            "all",
+            "amd",
+            "ang",
+            "aud",
+            "awg",
+            "azn",
+            "bam",
+            "bbd",
+            "bdt",
+            "bgn",
+            "bif",
+            "bmd",
+            "bnd",
+            "bsd",
+            "bwp",
+            "byn",
+            "bzd",
+            "brl",
+            "cad",
+            "cdf",
+            "chf",
+            "cny",
+            "czk",
+            "dkk",
+            "dop",
+            "dzd",
+            "egp",
+            "etb",
+            "eur",
+            "fjd",
+            "gbp",
+            "gel",
+            "gip",
+            "gmd",
+            "gyd",
+            "hkd",
+            "hrk",
+            "htg",
+            "idr",
+            "ils",
+            "inr",
+            "isk",
+            "jmd",
+            "jpy",
+            "kes",
+            "kgs",
+            "khr",
+            "kmf",
+            "krw",
+            "kyd",
+            "kzt",
+            "lbp",
+            "lkr",
+            "lrd",
+            "lsl",
+            "mad",
+            "mdl",
+            "mga",
+            "mkd",
+            "mmk",
+            "mnt",
+            "mop",
+            "mro",
+            "mvr",
+            "mwk",
+            "mxn",
+            "myr",
+            "mzn",
+            "nad",
+            "ngn",
+            "nok",
+            "npr",
+            "nzd",
+            "pgk",
+            "php",
+            "pkr",
+            "pln",
+            "qar",
+            "ron",
+            "rsd",
+            "rub",
+            "rwf",
+            "sar",
+            "sbd",
+            "scr",
+            "sek",
+            "sgd",
+            "sle",
+            "sll",
+            "sos",
+            "szl",
+            "thb",
+            "tjs",
+            "top",
+            "try",
+            "ttd",
+            "tzs",
+            "uah",
+            "uzs",
+            "vnd",
+            "vuv",
+            "wst",
+            "xaf",
+            "xcd",
+            "yer",
+            "zar",
+            "zmw",
+            "clp",
+            "djf",
+            "gnf",
+            "ugx",
+            "pyg",
+            "xof",
+            "xpf",
+        ]
+    ] = None
+    """The price currency"""
+
+
+class DataPriceTierFlatPrice(BaseModel):
+    """The flat fee price of the price tier"""
+
+    amount: float
+    """The price amount"""
+
+    currency: Literal[
+        "usd",
+        "aed",
+        "all",
+        "amd",
+        "ang",
+        "aud",
+        "awg",
+        "azn",
+        "bam",
+        "bbd",
+        "bdt",
+        "bgn",
+        "bif",
+        "bmd",
+        "bnd",
+        "bsd",
+        "bwp",
+        "byn",
+        "bzd",
+        "brl",
+        "cad",
+        "cdf",
+        "chf",
+        "cny",
+        "czk",
+        "dkk",
+        "dop",
+        "dzd",
+        "egp",
+        "etb",
+        "eur",
+        "fjd",
+        "gbp",
+        "gel",
+        "gip",
+        "gmd",
+        "gyd",
+        "hkd",
+        "hrk",
+        "htg",
+        "idr",
+        "ils",
+        "inr",
+        "isk",
+        "jmd",
+        "jpy",
+        "kes",
+        "kgs",
+        "khr",
+        "kmf",
+        "krw",
+        "kyd",
+        "kzt",
+        "lbp",
+        "lkr",
+        "lrd",
+        "lsl",
+        "mad",
+        "mdl",
+        "mga",
+        "mkd",
+        "mmk",
+        "mnt",
+        "mop",
+        "mro",
+        "mvr",
+        "mwk",
+        "mxn",
+        "myr",
+        "mzn",
+        "nad",
+        "ngn",
+        "nok",
+        "npr",
+        "nzd",
+        "pgk",
+        "php",
+        "pkr",
+        "pln",
+        "qar",
+        "ron",
+        "rsd",
+        "rub",
+        "rwf",
+        "sar",
+        "sbd",
+        "scr",
+        "sek",
+        "sgd",
+        "sle",
+        "sll",
+        "sos",
+        "szl",
+        "thb",
+        "tjs",
+        "top",
+        "try",
+        "ttd",
+        "tzs",
+        "uah",
+        "uzs",
+        "vnd",
+        "vuv",
+        "wst",
+        "xaf",
+        "xcd",
+        "yer",
+        "zar",
+        "zmw",
+        "clp",
+        "djf",
+        "gnf",
+        "ugx",
+        "pyg",
+        "xof",
+        "xpf",
+    ]
+    """The price currency"""
+
+
+class DataPriceTierUnitPrice(BaseModel):
+    """The unit price of the price tier"""
+
+    amount: float
+    """The price amount"""
+
+    currency: Literal[
+        "usd",
+        "aed",
+        "all",
+        "amd",
+        "ang",
+        "aud",
+        "awg",
+        "azn",
+        "bam",
+        "bbd",
+        "bdt",
+        "bgn",
+        "bif",
+        "bmd",
+        "bnd",
+        "bsd",
+        "bwp",
+        "byn",
+        "bzd",
+        "brl",
+        "cad",
+        "cdf",
+        "chf",
+        "cny",
+        "czk",
+        "dkk",
+        "dop",
+        "dzd",
+        "egp",
+        "etb",
+        "eur",
+        "fjd",
+        "gbp",
+        "gel",
+        "gip",
+        "gmd",
+        "gyd",
+        "hkd",
+        "hrk",
+        "htg",
+        "idr",
+        "ils",
+        "inr",
+        "isk",
+        "jmd",
+        "jpy",
+        "kes",
+        "kgs",
+        "khr",
+        "kmf",
+        "krw",
+        "kyd",
+        "kzt",
+        "lbp",
+        "lkr",
+        "lrd",
+        "lsl",
+        "mad",
+        "mdl",
+        "mga",
+        "mkd",
+        "mmk",
+        "mnt",
+        "mop",
+        "mro",
+        "mvr",
+        "mwk",
+        "mxn",
+        "myr",
+        "mzn",
+        "nad",
+        "ngn",
+        "nok",
+        "npr",
+        "nzd",
+        "pgk",
+        "php",
+        "pkr",
+        "pln",
+        "qar",
+        "ron",
+        "rsd",
+        "rub",
+        "rwf",
+        "sar",
+        "sbd",
+        "scr",
+        "sek",
+        "sgd",
+        "sle",
+        "sll",
+        "sos",
+        "szl",
+        "thb",
+        "tjs",
+        "top",
+        "try",
+        "ttd",
+        "tzs",
+        "uah",
+        "uzs",
+        "vnd",
+        "vuv",
+        "wst",
+        "xaf",
+        "xcd",
+        "yer",
+        "zar",
+        "zmw",
+        "clp",
+        "djf",
+        "gnf",
+        "ugx",
+        "pyg",
+        "xof",
+        "xpf",
+    ]
+    """The price currency"""
+
+
+class DataPriceTier(BaseModel):
+    flat_price: Optional[DataPriceTierFlatPrice] = FieldInfo(alias="flatPrice", default=None)
+    """The flat fee price of the price tier"""
+
+    unit_price: Optional[DataPriceTierUnitPrice] = FieldInfo(alias="unitPrice", default=None)
+    """The unit price of the price tier"""
+
+    up_to: Optional[float] = FieldInfo(alias="upTo", default=None)
+    """The up to quantity of the price tier"""
+
+
+class DataPrice(BaseModel):
+    addon_id: Optional[str] = FieldInfo(alias="addonId", default=None)
+    """Addon identifier for the price override"""
+
+    amount: Optional[float] = None
+    """The price amount"""
+
+    base_charge: Optional[bool] = FieldInfo(alias="baseCharge", default=None)
+    """Whether this is a base charge override"""
+
+    billing_country_code: Optional[str] = FieldInfo(alias="billingCountryCode", default=None)
+    """The billing country code of the price"""
+
+    block_size: Optional[float] = FieldInfo(alias="blockSize", default=None)
+    """Block size for pricing"""
+
+    currency: Optional[
+        Literal[
+            "usd",
+            "aed",
+            "all",
+            "amd",
+            "ang",
+            "aud",
+            "awg",
+            "azn",
+            "bam",
+            "bbd",
+            "bdt",
+            "bgn",
+            "bif",
+            "bmd",
+            "bnd",
+            "bsd",
+            "bwp",
+            "byn",
+            "bzd",
+            "brl",
+            "cad",
+            "cdf",
+            "chf",
+            "cny",
+            "czk",
+            "dkk",
+            "dop",
+            "dzd",
+            "egp",
+            "etb",
+            "eur",
+            "fjd",
+            "gbp",
+            "gel",
+            "gip",
+            "gmd",
+            "gyd",
+            "hkd",
+            "hrk",
+            "htg",
+            "idr",
+            "ils",
+            "inr",
+            "isk",
+            "jmd",
+            "jpy",
+            "kes",
+            "kgs",
+            "khr",
+            "kmf",
+            "krw",
+            "kyd",
+            "kzt",
+            "lbp",
+            "lkr",
+            "lrd",
+            "lsl",
+            "mad",
+            "mdl",
+            "mga",
+            "mkd",
+            "mmk",
+            "mnt",
+            "mop",
+            "mro",
+            "mvr",
+            "mwk",
+            "mxn",
+            "myr",
+            "mzn",
+            "nad",
+            "ngn",
+            "nok",
+            "npr",
+            "nzd",
+            "pgk",
+            "php",
+            "pkr",
+            "pln",
+            "qar",
+            "ron",
+            "rsd",
+            "rub",
+            "rwf",
+            "sar",
+            "sbd",
+            "scr",
+            "sek",
+            "sgd",
+            "sle",
+            "sll",
+            "sos",
+            "szl",
+            "thb",
+            "tjs",
+            "top",
+            "try",
+            "ttd",
+            "tzs",
+            "uah",
+            "uzs",
+            "vnd",
+            "vuv",
+            "wst",
+            "xaf",
+            "xcd",
+            "yer",
+            "zar",
+            "zmw",
+            "clp",
+            "djf",
+            "gnf",
+            "ugx",
+            "pyg",
+            "xof",
+            "xpf",
+        ]
+    ] = None
+    """The price currency"""
+
+    feature_id: Optional[str] = FieldInfo(alias="featureId", default=None)
+    """Feature identifier for the price override"""
+
+    tiers: Optional[List[DataPriceTier]] = None
+    """Pricing tiers configuration"""
+
+
+class DataSubscriptionEntitlement(BaseModel):
+    """Subscription entitlement reference"""
+
+    id: str
+    """Feature ID or currency ID"""
+
+    type: Literal["FEATURE", "CREDIT"]
+    """Entitlement type (FEATURE or CREDIT)"""
+
+
+class DataTrial(BaseModel):
+    """Trial configuration"""
+
+    trial_end_behavior: Literal["CONVERT_TO_PAID", "CANCEL_SUBSCRIPTION"] = FieldInfo(alias="trialEndBehavior")
+    """Behavior when the trial ends"""
 
 
 class Data(BaseModel):
@@ -78,6 +861,12 @@ class Data(BaseModel):
 
     addons: Optional[List[DataAddon]] = None
 
+    billing_cycle_anchor: Optional[datetime] = FieldInfo(alias="billingCycleAnchor", default=None)
+    """Billing cycle anchor date"""
+
+    budget: Optional[DataBudget] = None
+    """Budget configuration"""
+
     cancellation_date: Optional[datetime] = FieldInfo(alias="cancellationDate", default=None)
     """Subscription cancellation date"""
 
@@ -98,6 +887,9 @@ class Data(BaseModel):
     ] = FieldInfo(alias="cancelReason", default=None)
     """Subscription cancel reason"""
 
+    coupons: Optional[List[DataCoupon]] = None
+    """Coupons applied to the subscription"""
+
     current_billing_period_end: Optional[datetime] = FieldInfo(alias="currentBillingPeriodEnd", default=None)
     """End of the current billing period"""
 
@@ -110,8 +902,17 @@ class Data(BaseModel):
     end_date: Optional[datetime] = FieldInfo(alias="endDate", default=None)
     """Subscription end date"""
 
+    future_updates: Optional[List[DataFutureUpdate]] = FieldInfo(alias="futureUpdates", default=None)
+    """Scheduled future updates for the subscription"""
+
+    latest_invoice: Optional[DataLatestInvoice] = FieldInfo(alias="latestInvoice", default=None)
+    """Latest invoice for the subscription"""
+
     metadata: Optional[Dict[str, str]] = None
     """Additional metadata for the subscription"""
+
+    minimum_spend: Optional[DataMinimumSpend] = FieldInfo(alias="minimumSpend", default=None)
+    """Minimum spend configuration"""
 
     paying_customer_id: Optional[str] = FieldInfo(alias="payingCustomerId", default=None)
     """Paying customer ID for delegated billing"""
@@ -125,6 +926,14 @@ class Data(BaseModel):
 
     resource_id: Optional[str] = FieldInfo(alias="resourceId", default=None)
     """Resource ID"""
+
+    subscription_entitlements: Optional[List[DataSubscriptionEntitlement]] = FieldInfo(
+        alias="subscriptionEntitlements", default=None
+    )
+    """Entitlements associated with the subscription"""
+
+    trial: Optional[DataTrial] = None
+    """Trial configuration"""
 
     trial_end_date: Optional[datetime] = FieldInfo(alias="trialEndDate", default=None)
     """Subscription trial end date"""

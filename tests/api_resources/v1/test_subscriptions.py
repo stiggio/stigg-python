@@ -146,21 +146,17 @@ class TestSubscriptions:
             ],
             metadata={"foo": "string"},
             minimum_spend={
-                "minimum": {
-                    "amount": 0,
-                    "currency": "usd",
-                }
+                "amount": 0,
+                "currency": "usd",
             },
             price_overrides=[
                 {
                     "addon_id": "addonId",
+                    "amount": 0,
                     "base_charge": True,
+                    "currency": "usd",
                     "currency_id": "currencyId",
                     "feature_id": "featureId",
-                    "price": {
-                        "amount": 0,
-                        "currency": "usd",
-                    },
                 }
             ],
             promotion_code="promotionCode",
@@ -715,18 +711,17 @@ class TestSubscriptions:
             },
             metadata={"foo": "string"},
             minimum_spend={
-                "minimum": {
-                    "amount": 0,
-                    "billing_country_code": "billingCountryCode",
-                    "currency": "usd",
-                }
+                "amount": 0,
+                "currency": "usd",
             },
             paying_customer_id="payingCustomerId",
             payment_collection_method="CHARGE",
             price_overrides=[
                 {
                     "addon_id": "addonId",
+                    "amount": 0,
                     "base_charge": True,
+                    "billing_country_code": "billingCountryCode",
                     "block_size": 0,
                     "credit_grant_cadence": "BEGINNING_OF_BILLING_PERIOD",
                     "credit_rate": {
@@ -734,22 +729,16 @@ class TestSubscriptions:
                         "currency_id": "currencyId",
                         "cost_formula": "costFormula",
                     },
+                    "currency": "usd",
                     "feature_id": "featureId",
-                    "price": {
-                        "amount": 0,
-                        "billing_country_code": "billingCountryCode",
-                        "currency": "usd",
-                    },
                     "tiers": [
                         {
                             "flat_price": {
                                 "amount": 0,
-                                "billing_country_code": "billingCountryCode",
                                 "currency": "usd",
                             },
                             "unit_price": {
                                 "amount": 0,
-                                "billing_country_code": "billingCountryCode",
                                 "currency": "usd",
                             },
                             "up_to": 0,
@@ -978,21 +967,17 @@ class TestAsyncSubscriptions:
             ],
             metadata={"foo": "string"},
             minimum_spend={
-                "minimum": {
-                    "amount": 0,
-                    "currency": "usd",
-                }
+                "amount": 0,
+                "currency": "usd",
             },
             price_overrides=[
                 {
                     "addon_id": "addonId",
+                    "amount": 0,
                     "base_charge": True,
+                    "currency": "usd",
                     "currency_id": "currencyId",
                     "feature_id": "featureId",
-                    "price": {
-                        "amount": 0,
-                        "currency": "usd",
-                    },
                 }
             ],
             promotion_code="promotionCode",
@@ -1547,18 +1532,17 @@ class TestAsyncSubscriptions:
             },
             metadata={"foo": "string"},
             minimum_spend={
-                "minimum": {
-                    "amount": 0,
-                    "billing_country_code": "billingCountryCode",
-                    "currency": "usd",
-                }
+                "amount": 0,
+                "currency": "usd",
             },
             paying_customer_id="payingCustomerId",
             payment_collection_method="CHARGE",
             price_overrides=[
                 {
                     "addon_id": "addonId",
+                    "amount": 0,
                     "base_charge": True,
+                    "billing_country_code": "billingCountryCode",
                     "block_size": 0,
                     "credit_grant_cadence": "BEGINNING_OF_BILLING_PERIOD",
                     "credit_rate": {
@@ -1566,22 +1550,16 @@ class TestAsyncSubscriptions:
                         "currency_id": "currencyId",
                         "cost_formula": "costFormula",
                     },
+                    "currency": "usd",
                     "feature_id": "featureId",
-                    "price": {
-                        "amount": 0,
-                        "billing_country_code": "billingCountryCode",
-                        "currency": "usd",
-                    },
                     "tiers": [
                         {
                             "flat_price": {
                                 "amount": 0,
-                                "billing_country_code": "billingCountryCode",
                                 "currency": "usd",
                             },
                             "unit_price": {
                                 "amount": 0,
-                                "billing_country_code": "billingCountryCode",
                                 "currency": "usd",
                             },
                             "up_to": 0,
