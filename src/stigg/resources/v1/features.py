@@ -27,6 +27,8 @@ __all__ = ["FeaturesResource", "AsyncFeaturesResource"]
 
 
 class FeaturesResource(SyncAPIResource):
+    """Operations related to features"""
+
     @cached_property
     def with_raw_response(self) -> FeaturesResourceWithRawResponse:
         """
@@ -366,6 +368,8 @@ class FeaturesResource(SyncAPIResource):
 
 
 class AsyncFeaturesResource(AsyncAPIResource):
+    """Operations related to features"""
+
     @cached_property
     def with_raw_response(self) -> AsyncFeaturesResourceWithRawResponse:
         """

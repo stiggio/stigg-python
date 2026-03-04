@@ -67,14 +67,17 @@ __all__ = ["SubscriptionsResource", "AsyncSubscriptionsResource"]
 class SubscriptionsResource(SyncAPIResource):
     @cached_property
     def future_update(self) -> FutureUpdateResource:
+        """Operations related to subscriptions"""
         return FutureUpdateResource(self._client)
 
     @cached_property
     def usage(self) -> UsageResource:
+        """Operations related to subscriptions"""
         return UsageResource(self._client)
 
     @cached_property
     def invoice(self) -> InvoiceResource:
+        """Operations related to subscriptions"""
         return InvoiceResource(self._client)
 
     @cached_property
@@ -734,14 +737,17 @@ class SubscriptionsResource(SyncAPIResource):
 class AsyncSubscriptionsResource(AsyncAPIResource):
     @cached_property
     def future_update(self) -> AsyncFutureUpdateResource:
+        """Operations related to subscriptions"""
         return AsyncFutureUpdateResource(self._client)
 
     @cached_property
     def usage(self) -> AsyncUsageResource:
+        """Operations related to subscriptions"""
         return AsyncUsageResource(self._client)
 
     @cached_property
     def invoice(self) -> AsyncInvoiceResource:
+        """Operations related to subscriptions"""
         return AsyncInvoiceResource(self._client)
 
     @cached_property
@@ -1435,14 +1441,17 @@ class SubscriptionsResourceWithRawResponse:
 
     @cached_property
     def future_update(self) -> FutureUpdateResourceWithRawResponse:
+        """Operations related to subscriptions"""
         return FutureUpdateResourceWithRawResponse(self._subscriptions.future_update)
 
     @cached_property
     def usage(self) -> UsageResourceWithRawResponse:
+        """Operations related to subscriptions"""
         return UsageResourceWithRawResponse(self._subscriptions.usage)
 
     @cached_property
     def invoice(self) -> InvoiceResourceWithRawResponse:
+        """Operations related to subscriptions"""
         return InvoiceResourceWithRawResponse(self._subscriptions.invoice)
 
 
@@ -1483,14 +1492,17 @@ class AsyncSubscriptionsResourceWithRawResponse:
 
     @cached_property
     def future_update(self) -> AsyncFutureUpdateResourceWithRawResponse:
+        """Operations related to subscriptions"""
         return AsyncFutureUpdateResourceWithRawResponse(self._subscriptions.future_update)
 
     @cached_property
     def usage(self) -> AsyncUsageResourceWithRawResponse:
+        """Operations related to subscriptions"""
         return AsyncUsageResourceWithRawResponse(self._subscriptions.usage)
 
     @cached_property
     def invoice(self) -> AsyncInvoiceResourceWithRawResponse:
+        """Operations related to subscriptions"""
         return AsyncInvoiceResourceWithRawResponse(self._subscriptions.invoice)
 
 
@@ -1531,14 +1543,17 @@ class SubscriptionsResourceWithStreamingResponse:
 
     @cached_property
     def future_update(self) -> FutureUpdateResourceWithStreamingResponse:
+        """Operations related to subscriptions"""
         return FutureUpdateResourceWithStreamingResponse(self._subscriptions.future_update)
 
     @cached_property
     def usage(self) -> UsageResourceWithStreamingResponse:
+        """Operations related to subscriptions"""
         return UsageResourceWithStreamingResponse(self._subscriptions.usage)
 
     @cached_property
     def invoice(self) -> InvoiceResourceWithStreamingResponse:
+        """Operations related to subscriptions"""
         return InvoiceResourceWithStreamingResponse(self._subscriptions.invoice)
 
 
@@ -1579,12 +1594,15 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
 
     @cached_property
     def future_update(self) -> AsyncFutureUpdateResourceWithStreamingResponse:
+        """Operations related to subscriptions"""
         return AsyncFutureUpdateResourceWithStreamingResponse(self._subscriptions.future_update)
 
     @cached_property
     def usage(self) -> AsyncUsageResourceWithStreamingResponse:
+        """Operations related to subscriptions"""
         return AsyncUsageResourceWithStreamingResponse(self._subscriptions.usage)
 
     @cached_property
     def invoice(self) -> AsyncInvoiceResourceWithStreamingResponse:
+        """Operations related to subscriptions"""
         return AsyncInvoiceResourceWithStreamingResponse(self._subscriptions.invoice)
