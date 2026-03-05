@@ -22,5 +22,11 @@ class UsageHistoryParams(TypedDict, total=False):
 
     group_by: Annotated[str, PropertyInfo(alias="groupBy")]
 
+    include_historical_usage: Annotated[bool, PropertyInfo(alias="includeHistoricalUsage")]
+    """
+    When true, includes usage data from the most recent cancelled or expired
+    subscription
+    """
+
     resource_id: Annotated[Optional[str], PropertyInfo(alias="resourceId")]
     """Resource id"""
