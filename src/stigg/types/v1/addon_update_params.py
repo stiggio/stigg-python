@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Optional
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
@@ -29,3 +29,6 @@ class AddonUpdateParams(TypedDict, total=False):
 
     metadata: Dict[str, str]
     """Metadata associated with the entity"""
+
+    status: Literal["DRAFT", "PUBLISHED", "ARCHIVED"]
+    """The status of the package"""

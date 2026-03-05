@@ -142,6 +142,7 @@ class TestAddons:
             display_name="displayName",
             max_quantity=0,
             metadata={"foo": "string"},
+            status="DRAFT",
         )
         assert_matches_type(Addon, addon, path=["response"])
 
@@ -679,6 +680,7 @@ class TestAsyncAddons:
             display_name="displayName",
             max_quantity=0,
             metadata={"foo": "string"},
+            status="DRAFT",
         )
         assert_matches_type(Addon, addon, path=["response"])
 

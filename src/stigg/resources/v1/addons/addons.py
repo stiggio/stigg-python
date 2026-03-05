@@ -184,6 +184,7 @@ class AddonsResource(SyncAPIResource):
         display_name: str | Omit = omit,
         max_quantity: Optional[int] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
+        status: Literal["DRAFT", "PUBLISHED", "ARCHIVED"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -208,6 +209,8 @@ class AddonsResource(SyncAPIResource):
 
           metadata: Metadata associated with the entity
 
+          status: The status of the package
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -228,6 +231,7 @@ class AddonsResource(SyncAPIResource):
                     "display_name": display_name,
                     "max_quantity": max_quantity,
                     "metadata": metadata,
+                    "status": status,
                 },
                 addon_update_params.AddonUpdateParams,
             ),
@@ -640,6 +644,7 @@ class AsyncAddonsResource(AsyncAPIResource):
         display_name: str | Omit = omit,
         max_quantity: Optional[int] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
+        status: Literal["DRAFT", "PUBLISHED", "ARCHIVED"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -664,6 +669,8 @@ class AsyncAddonsResource(AsyncAPIResource):
 
           metadata: Metadata associated with the entity
 
+          status: The status of the package
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -684,6 +691,7 @@ class AsyncAddonsResource(AsyncAPIResource):
                     "display_name": display_name,
                     "max_quantity": max_quantity,
                     "metadata": metadata,
+                    "status": status,
                 },
                 addon_update_params.AddonUpdateParams,
             ),
