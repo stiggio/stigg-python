@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.16 (2026-03-08)
+
+Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
+
+### Features
+
+* **api:** api update ([db2bdbe](https://github.com/stiggio/stigg-python/commit/db2bdbed6edbe0ce646f7e18cbcbfd29e8aa1031))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([7a4dc5e](https://github.com/stiggio/stigg-python/commit/7a4dc5e43bbe85169b29be5b358544bb5677b655))
+
 ## 0.1.0-alpha.15 (2026-03-05)
 
 Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
