@@ -144,6 +144,25 @@ class TestSubscriptions:
                     "type": "FEATURE",
                 }
             ],
+            entitlements=[
+                {
+                    "credit": {
+                        "amount": 1,
+                        "cadence": "MONTH",
+                        "currency_id": "currencyId",
+                    },
+                    "feature": {
+                        "feature_id": "featureId",
+                        "has_soft_limit": True,
+                        "has_unlimited_usage": True,
+                        "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                        "reset_period": "YEAR",
+                        "usage_limit": 0,
+                        "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                        "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    },
+                }
+            ],
             metadata={"foo": "string"},
             minimum_spend={
                 "amount": 0,
@@ -161,19 +180,6 @@ class TestSubscriptions:
             ],
             promotion_code="promotionCode",
             schedule_strategy="END_OF_BILLING_PERIOD",
-            subscription_entitlements=[
-                {
-                    "id": "id",
-                    "feature_id": "featureId",
-                    "has_soft_limit": True,
-                    "has_unlimited_usage": True,
-                    "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                    "reset_period": "YEAR",
-                    "usage_limit": 0,
-                    "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                    "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                }
-            ],
             trial_end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(Subscription, subscription, path=["response"])
@@ -709,6 +715,25 @@ class TestSubscriptions:
                 "collect_phone_number": True,
                 "reference_id": "referenceId",
             },
+            entitlements=[
+                {
+                    "credit": {
+                        "amount": 1,
+                        "cadence": "MONTH",
+                        "currency_id": "currencyId",
+                    },
+                    "feature": {
+                        "feature_id": "featureId",
+                        "has_soft_limit": True,
+                        "has_unlimited_usage": True,
+                        "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                        "reset_period": "YEAR",
+                        "usage_limit": 0,
+                        "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                        "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    },
+                }
+            ],
             metadata={"foo": "string"},
             minimum_spend={
                 "amount": 0,
@@ -750,13 +775,6 @@ class TestSubscriptions:
             salesforce_id="salesforceId",
             schedule_strategy="END_OF_BILLING_PERIOD",
             start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
-            subscription_entitlements=[
-                {
-                    "feature_id": "featureId",
-                    "usage_limit": 0,
-                    "is_granted": True,
-                }
-            ],
             trial_override_configuration={
                 "is_trial": True,
                 "trial_end_behavior": "CONVERT_TO_PAID",
@@ -965,6 +983,25 @@ class TestAsyncSubscriptions:
                     "type": "FEATURE",
                 }
             ],
+            entitlements=[
+                {
+                    "credit": {
+                        "amount": 1,
+                        "cadence": "MONTH",
+                        "currency_id": "currencyId",
+                    },
+                    "feature": {
+                        "feature_id": "featureId",
+                        "has_soft_limit": True,
+                        "has_unlimited_usage": True,
+                        "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                        "reset_period": "YEAR",
+                        "usage_limit": 0,
+                        "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                        "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    },
+                }
+            ],
             metadata={"foo": "string"},
             minimum_spend={
                 "amount": 0,
@@ -982,19 +1019,6 @@ class TestAsyncSubscriptions:
             ],
             promotion_code="promotionCode",
             schedule_strategy="END_OF_BILLING_PERIOD",
-            subscription_entitlements=[
-                {
-                    "id": "id",
-                    "feature_id": "featureId",
-                    "has_soft_limit": True,
-                    "has_unlimited_usage": True,
-                    "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                    "reset_period": "YEAR",
-                    "usage_limit": 0,
-                    "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                    "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                }
-            ],
             trial_end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(Subscription, subscription, path=["response"])
@@ -1530,6 +1554,25 @@ class TestAsyncSubscriptions:
                 "collect_phone_number": True,
                 "reference_id": "referenceId",
             },
+            entitlements=[
+                {
+                    "credit": {
+                        "amount": 1,
+                        "cadence": "MONTH",
+                        "currency_id": "currencyId",
+                    },
+                    "feature": {
+                        "feature_id": "featureId",
+                        "has_soft_limit": True,
+                        "has_unlimited_usage": True,
+                        "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                        "reset_period": "YEAR",
+                        "usage_limit": 0,
+                        "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                        "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    },
+                }
+            ],
             metadata={"foo": "string"},
             minimum_spend={
                 "amount": 0,
@@ -1571,13 +1614,6 @@ class TestAsyncSubscriptions:
             salesforce_id="salesforceId",
             schedule_strategy="END_OF_BILLING_PERIOD",
             start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
-            subscription_entitlements=[
-                {
-                    "feature_id": "featureId",
-                    "usage_limit": 0,
-                    "is_granted": True,
-                }
-            ],
             trial_override_configuration={
                 "is_trial": True,
                 "trial_end_behavior": "CONVERT_TO_PAID",
