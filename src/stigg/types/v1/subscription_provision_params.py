@@ -22,13 +22,18 @@ __all__ = [
     "Budget",
     "Charge",
     "CheckoutOptions",
+    "Entitlement",
+    "EntitlementCredit",
+    "EntitlementFeature",
+    "EntitlementFeatureMonthlyResetPeriodConfiguration",
+    "EntitlementFeatureWeeklyResetPeriodConfiguration",
+    "EntitlementFeatureYearlyResetPeriodConfiguration",
     "MinimumSpend",
     "PriceOverride",
     "PriceOverrideCreditRate",
     "PriceOverrideTier",
     "PriceOverrideTierFlatPrice",
     "PriceOverrideTierUnitPrice",
-    "SubscriptionEntitlement",
     "TrialOverrideConfiguration",
 ]
 
@@ -72,6 +77,8 @@ class SubscriptionProvisionParams(TypedDict, total=False):
     checkout_options: Annotated[CheckoutOptions, PropertyInfo(alias="checkoutOptions")]
     """Checkout page configuration for payment collection"""
 
+    entitlements: Iterable[Entitlement]
+
     metadata: Dict[str, str]
     """Additional metadata for the subscription"""
 
@@ -101,10 +108,6 @@ class SubscriptionProvisionParams(TypedDict, total=False):
 
     start_date: Annotated[Union[str, datetime], PropertyInfo(alias="startDate", format="iso8601")]
     """Subscription start date"""
-
-    subscription_entitlements: Annotated[
-        Iterable[SubscriptionEntitlement], PropertyInfo(alias="subscriptionEntitlements")
-    ]
 
     trial_override_configuration: Annotated[
         TrialOverrideConfiguration, PropertyInfo(alias="trialOverrideConfiguration")
@@ -401,6 +404,101 @@ class CheckoutOptions(TypedDict, total=False):
 
     reference_id: Annotated[Optional[str], PropertyInfo(alias="referenceId")]
     """Optional reference ID for the checkout session"""
+
+
+class EntitlementCredit(TypedDict, total=False):
+    """Credit entitlement configuration"""
+
+    amount: Required[float]
+    """Credit grant amount"""
+
+    cadence: Required[Literal["MONTH", "YEAR"]]
+    """Credit grant cadence (MONTH or YEAR)"""
+
+    currency_id: Required[Annotated[str, PropertyInfo(alias="currencyId")]]
+    """The custom currency ID for the credit entitlement"""
+
+
+class EntitlementFeatureMonthlyResetPeriodConfiguration(TypedDict, total=False):
+    """Configuration for monthly reset period"""
+
+    according_to: Required[
+        Annotated[Literal["SubscriptionStart", "StartOfTheMonth"], PropertyInfo(alias="accordingTo")]
+    ]
+    """Reset anchor (SubscriptionStart or StartOfTheMonth)"""
+
+
+class EntitlementFeatureWeeklyResetPeriodConfiguration(TypedDict, total=False):
+    """Configuration for weekly reset period"""
+
+    according_to: Required[
+        Annotated[
+            Literal[
+                "SubscriptionStart",
+                "EverySunday",
+                "EveryMonday",
+                "EveryTuesday",
+                "EveryWednesday",
+                "EveryThursday",
+                "EveryFriday",
+                "EverySaturday",
+            ],
+            PropertyInfo(alias="accordingTo"),
+        ]
+    ]
+    """Reset anchor (SubscriptionStart or specific day)"""
+
+
+class EntitlementFeatureYearlyResetPeriodConfiguration(TypedDict, total=False):
+    """Configuration for yearly reset period"""
+
+    according_to: Required[Annotated[Literal["SubscriptionStart"], PropertyInfo(alias="accordingTo")]]
+    """Reset anchor (SubscriptionStart)"""
+
+
+class EntitlementFeature(TypedDict, total=False):
+    """Feature entitlement configuration"""
+
+    feature_id: Required[Annotated[str, PropertyInfo(alias="featureId")]]
+    """The feature ID to attach the entitlement to"""
+
+    has_soft_limit: Annotated[bool, PropertyInfo(alias="hasSoftLimit")]
+    """Whether the usage limit is a soft limit"""
+
+    has_unlimited_usage: Annotated[bool, PropertyInfo(alias="hasUnlimitedUsage")]
+    """Whether usage is unlimited"""
+
+    monthly_reset_period_configuration: Annotated[
+        Optional[EntitlementFeatureMonthlyResetPeriodConfiguration],
+        PropertyInfo(alias="monthlyResetPeriodConfiguration"),
+    ]
+    """Configuration for monthly reset period"""
+
+    reset_period: Annotated[Literal["YEAR", "MONTH", "WEEK", "DAY", "HOUR"], PropertyInfo(alias="resetPeriod")]
+    """Period at which usage resets"""
+
+    usage_limit: Annotated[int, PropertyInfo(alias="usageLimit")]
+    """Maximum allowed usage for the feature"""
+
+    weekly_reset_period_configuration: Annotated[
+        Optional[EntitlementFeatureWeeklyResetPeriodConfiguration], PropertyInfo(alias="weeklyResetPeriodConfiguration")
+    ]
+    """Configuration for weekly reset period"""
+
+    yearly_reset_period_configuration: Annotated[
+        Optional[EntitlementFeatureYearlyResetPeriodConfiguration], PropertyInfo(alias="yearlyResetPeriodConfiguration")
+    ]
+    """Configuration for yearly reset period"""
+
+
+class Entitlement(TypedDict, total=False):
+    """A single subscription entitlement. Provide exactly one of feature or credit."""
+
+    credit: EntitlementCredit
+    """Credit entitlement configuration"""
+
+    feature: EntitlementFeature
+    """Feature entitlement configuration"""
 
 
 class MinimumSpend(TypedDict, total=False):
@@ -957,15 +1055,6 @@ class PriceOverride(TypedDict, total=False):
 
     tiers: Iterable[PriceOverrideTier]
     """Pricing tiers configuration"""
-
-
-class SubscriptionEntitlement(TypedDict, total=False):
-    feature_id: Required[Annotated[str, PropertyInfo(alias="featureId")]]
-    """Feature ID"""
-
-    usage_limit: Required[Annotated[float, PropertyInfo(alias="usageLimit")]]
-
-    is_granted: Annotated[bool, PropertyInfo(alias="isGranted")]
 
 
 class TrialOverrideConfiguration(TypedDict, total=False):
