@@ -146,21 +146,15 @@ class TestSubscriptions:
             ],
             entitlements=[
                 {
-                    "credit": {
-                        "amount": 1,
-                        "cadence": "MONTH",
-                        "currency_id": "currencyId",
-                    },
-                    "feature": {
-                        "feature_id": "featureId",
-                        "has_soft_limit": True,
-                        "has_unlimited_usage": True,
-                        "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                        "reset_period": "YEAR",
-                        "usage_limit": 0,
-                        "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                        "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                    },
+                    "id": "id",
+                    "type": "FEATURE",
+                    "has_soft_limit": True,
+                    "has_unlimited_usage": True,
+                    "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    "reset_period": "YEAR",
+                    "usage_limit": 0,
+                    "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
                 }
             ],
             metadata={"foo": "string"},
@@ -717,21 +711,15 @@ class TestSubscriptions:
             },
             entitlements=[
                 {
-                    "credit": {
-                        "amount": 1,
-                        "cadence": "MONTH",
-                        "currency_id": "currencyId",
-                    },
-                    "feature": {
-                        "feature_id": "featureId",
-                        "has_soft_limit": True,
-                        "has_unlimited_usage": True,
-                        "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                        "reset_period": "YEAR",
-                        "usage_limit": 0,
-                        "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                        "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                    },
+                    "id": "id",
+                    "type": "FEATURE",
+                    "has_soft_limit": True,
+                    "has_unlimited_usage": True,
+                    "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    "reset_period": "YEAR",
+                    "usage_limit": 0,
+                    "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
                 }
             ],
             metadata={"foo": "string"},
@@ -985,21 +973,15 @@ class TestAsyncSubscriptions:
             ],
             entitlements=[
                 {
-                    "credit": {
-                        "amount": 1,
-                        "cadence": "MONTH",
-                        "currency_id": "currencyId",
-                    },
-                    "feature": {
-                        "feature_id": "featureId",
-                        "has_soft_limit": True,
-                        "has_unlimited_usage": True,
-                        "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                        "reset_period": "YEAR",
-                        "usage_limit": 0,
-                        "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                        "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                    },
+                    "id": "id",
+                    "type": "FEATURE",
+                    "has_soft_limit": True,
+                    "has_unlimited_usage": True,
+                    "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    "reset_period": "YEAR",
+                    "usage_limit": 0,
+                    "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
                 }
             ],
             metadata={"foo": "string"},
@@ -1556,21 +1538,15 @@ class TestAsyncSubscriptions:
             },
             entitlements=[
                 {
-                    "credit": {
-                        "amount": 1,
-                        "cadence": "MONTH",
-                        "currency_id": "currencyId",
-                    },
-                    "feature": {
-                        "feature_id": "featureId",
-                        "has_soft_limit": True,
-                        "has_unlimited_usage": True,
-                        "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                        "reset_period": "YEAR",
-                        "usage_limit": 0,
-                        "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                        "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                    },
+                    "id": "id",
+                    "type": "FEATURE",
+                    "has_soft_limit": True,
+                    "has_unlimited_usage": True,
+                    "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    "reset_period": "YEAR",
+                    "usage_limit": 0,
+                    "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
                 }
             ],
             metadata={"foo": "string"},
