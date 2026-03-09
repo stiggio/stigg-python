@@ -11,6 +11,9 @@ __all__ = ["CustomerUpdateParams", "Integration"]
 
 
 class CustomerUpdateParams(TypedDict, total=False):
+    billing_id: Annotated[Optional[str], PropertyInfo(alias="billingId")]
+    """The unique identifier for the entity in the billing provider"""
+
     coupon_id: Annotated[Optional[str], PropertyInfo(alias="couponId")]
     """Customer level coupon"""
 

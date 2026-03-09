@@ -69,6 +69,9 @@ class Data(BaseModel):
     updated_at: datetime = FieldInfo(alias="updatedAt")
     """Timestamp of when the record was last updated"""
 
+    billing_id: Optional[str] = FieldInfo(alias="billingId", default=None)
+    """The unique identifier for the entity in the billing provider"""
+
     coupon_id: Optional[str] = FieldInfo(alias="couponId", default=None)
     """Customer level coupon"""
 
