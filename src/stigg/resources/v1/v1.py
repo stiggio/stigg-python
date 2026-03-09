@@ -10,14 +10,6 @@ from .usage import (
     UsageResourceWithStreamingResponse,
     AsyncUsageResourceWithStreamingResponse,
 )
-from .events import (
-    EventsResource,
-    AsyncEventsResource,
-    EventsResourceWithRawResponse,
-    AsyncEventsResourceWithRawResponse,
-    EventsResourceWithStreamingResponse,
-    AsyncEventsResourceWithStreamingResponse,
-)
 from .coupons import (
     CouponsResource,
     AsyncCouponsResource,
@@ -59,6 +51,14 @@ from .addons.addons import (
     AsyncAddonsResourceWithRawResponse,
     AddonsResourceWithStreamingResponse,
     AsyncAddonsResourceWithStreamingResponse,
+)
+from .events.events import (
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
 )
 from .customers.customers import (
     CustomersResource,
