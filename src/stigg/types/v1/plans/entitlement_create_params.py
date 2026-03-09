@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing import List, Union, Iterable, Optional
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
@@ -11,53 +11,17 @@ from ...._utils import PropertyInfo
 __all__ = [
     "EntitlementCreateParams",
     "Entitlement",
-    "EntitlementCredit",
     "EntitlementFeature",
     "EntitlementFeatureMonthlyResetPeriodConfiguration",
     "EntitlementFeatureWeeklyResetPeriodConfiguration",
     "EntitlementFeatureYearlyResetPeriodConfiguration",
+    "EntitlementCredit",
 ]
 
 
 class EntitlementCreateParams(TypedDict, total=False):
     entitlements: Required[Iterable[Entitlement]]
     """Entitlements to create"""
-
-
-class EntitlementCredit(TypedDict, total=False):
-    """Credit entitlement to create"""
-
-    amount: Required[Optional[float]]
-    """Credit grant amount"""
-
-    cadence: Required[Literal["MONTH", "YEAR"]]
-    """Credit grant cadence (MONTH or YEAR)"""
-
-    custom_currency_id: Required[Annotated[str, PropertyInfo(alias="customCurrencyId")]]
-    """The custom currency ID for the credit entitlement"""
-
-    behavior: Literal["Increment", "Override"]
-    """Entitlement behavior (Increment or Override)"""
-
-    description: str
-    """Description of the entitlement"""
-
-    display_name_override: Annotated[str, PropertyInfo(alias="displayNameOverride")]
-    """Override display name for the entitlement"""
-
-    hidden_from_widgets: Annotated[
-        List[Literal["PAYWALL", "CUSTOMER_PORTAL", "CHECKOUT"]], PropertyInfo(alias="hiddenFromWidgets")
-    ]
-    """Widget types where this entitlement is hidden"""
-
-    is_custom: Annotated[bool, PropertyInfo(alias="isCustom")]
-    """Whether this is a custom entitlement"""
-
-    is_granted: Annotated[bool, PropertyInfo(alias="isGranted")]
-    """Whether the entitlement is granted"""
-
-    order: float
-    """Display order of the entitlement"""
 
 
 class EntitlementFeatureMonthlyResetPeriodConfiguration(TypedDict, total=False):
@@ -98,10 +62,13 @@ class EntitlementFeatureYearlyResetPeriodConfiguration(TypedDict, total=False):
 
 
 class EntitlementFeature(TypedDict, total=False):
-    """Feature entitlement to create"""
+    """Request to create a feature entitlement"""
 
-    feature_id: Required[Annotated[str, PropertyInfo(alias="featureId")]]
+    id: Required[str]
     """The feature ID to attach the entitlement to"""
+
+    type: Required[Literal["FEATURE"]]
+    """CreateFeatureEntitlementRequest"""
 
     behavior: Literal["Increment", "Override"]
     """Entitlement behavior (Increment or Override)"""
@@ -158,11 +125,43 @@ class EntitlementFeature(TypedDict, total=False):
     """Configuration for yearly reset period"""
 
 
-class Entitlement(TypedDict, total=False):
-    """A single entitlement to create. Provide exactly one of feature or credit."""
+class EntitlementCredit(TypedDict, total=False):
+    """Request to create a credit entitlement"""
 
-    credit: EntitlementCredit
-    """Credit entitlement to create"""
+    id: Required[str]
+    """The custom currency ID for the credit entitlement"""
 
-    feature: EntitlementFeature
-    """Feature entitlement to create"""
+    amount: Required[Optional[float]]
+    """Credit grant amount"""
+
+    cadence: Required[Literal["MONTH", "YEAR"]]
+    """Credit grant cadence (MONTH or YEAR)"""
+
+    type: Required[Literal["CREDIT"]]
+    """CreateCreditEntitlementRequest"""
+
+    behavior: Literal["Increment", "Override"]
+    """Entitlement behavior (Increment or Override)"""
+
+    description: str
+    """Description of the entitlement"""
+
+    display_name_override: Annotated[str, PropertyInfo(alias="displayNameOverride")]
+    """Override display name for the entitlement"""
+
+    hidden_from_widgets: Annotated[
+        List[Literal["PAYWALL", "CUSTOMER_PORTAL", "CHECKOUT"]], PropertyInfo(alias="hiddenFromWidgets")
+    ]
+    """Widget types where this entitlement is hidden"""
+
+    is_custom: Annotated[bool, PropertyInfo(alias="isCustom")]
+    """Whether this is a custom entitlement"""
+
+    is_granted: Annotated[bool, PropertyInfo(alias="isGranted")]
+    """Whether the entitlement is granted"""
+
+    order: float
+    """Display order of the entitlement"""
+
+
+Entitlement: TypeAlias = Union[EntitlementFeature, EntitlementCredit]

@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import List, Iterable, Optional
+from typing_extensions import Literal, overload
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ...._utils import required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -82,13 +83,37 @@ class EntitlementsResource(SyncAPIResource):
             cast_to=EntitlementCreateResponse,
         )
 
+    @overload
     def update(
         self,
         id: str,
         *,
         addon_id: str,
-        credit: entitlement_update_params.Credit | Omit = omit,
-        feature: entitlement_update_params.Feature | Omit = omit,
+        type: Literal["FEATURE"],
+        behavior: Literal["Increment", "Override"] | Omit = omit,
+        description: str | Omit = omit,
+        display_name_override: str | Omit = omit,
+        enum_values: SequenceNotStr[str] | Omit = omit,
+        has_soft_limit: bool | Omit = omit,
+        has_unlimited_usage: bool | Omit = omit,
+        hidden_from_widgets: List[Literal["PAYWALL", "CUSTOMER_PORTAL", "CHECKOUT"]] | Omit = omit,
+        is_custom: bool | Omit = omit,
+        is_granted: bool | Omit = omit,
+        monthly_reset_period_configuration: Optional[
+            entitlement_update_params.UpdateFeatureEntitlementRequestMonthlyResetPeriodConfiguration
+        ]
+        | Omit = omit,
+        order: float | Omit = omit,
+        reset_period: Literal["YEAR", "MONTH", "WEEK", "DAY", "HOUR"] | Omit = omit,
+        usage_limit: Optional[int] | Omit = omit,
+        weekly_reset_period_configuration: Optional[
+            entitlement_update_params.UpdateFeatureEntitlementRequestWeeklyResetPeriodConfiguration
+        ]
+        | Omit = omit,
+        yearly_reset_period_configuration: Optional[
+            entitlement_update_params.UpdateFeatureEntitlementRequestYearlyResetPeriodConfiguration
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -100,9 +125,37 @@ class EntitlementsResource(SyncAPIResource):
         Updates an existing entitlement on a draft addon.
 
         Args:
-          credit: Credit entitlement fields to update
+          type: UpdateFeatureEntitlementRequest
 
-          feature: Feature entitlement fields to update
+          behavior: Entitlement behavior (Increment or Override)
+
+          description: Description of the entitlement
+
+          display_name_override: Override display name for the entitlement
+
+          enum_values: Allowed enum values for the feature entitlement
+
+          has_soft_limit: Whether the usage limit is a soft limit
+
+          has_unlimited_usage: Whether usage is unlimited
+
+          hidden_from_widgets: Widget types where this entitlement is hidden
+
+          is_custom: Whether this is a custom entitlement
+
+          is_granted: Whether the entitlement is granted
+
+          monthly_reset_period_configuration: Configuration for monthly reset period
+
+          order: Display order of the entitlement
+
+          reset_period: Period at which usage resets
+
+          usage_limit: Maximum allowed usage for the feature
+
+          weekly_reset_period_configuration: Configuration for weekly reset period
+
+          yearly_reset_period_configuration: Configuration for yearly reset period
 
           extra_headers: Send extra headers
 
@@ -112,6 +165,105 @@ class EntitlementsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def update(
+        self,
+        id: str,
+        *,
+        addon_id: str,
+        type: Literal["CREDIT"],
+        amount: float | Omit = omit,
+        behavior: Literal["Increment", "Override"] | Omit = omit,
+        cadence: Literal["MONTH", "YEAR"] | Omit = omit,
+        description: str | Omit = omit,
+        display_name_override: str | Omit = omit,
+        hidden_from_widgets: List[Literal["PAYWALL", "CUSTOMER_PORTAL", "CHECKOUT"]] | Omit = omit,
+        is_custom: bool | Omit = omit,
+        is_granted: bool | Omit = omit,
+        order: float | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AddonPackageEntitlement:
+        """
+        Updates an existing entitlement on a draft addon.
+
+        Args:
+          type: UpdateCreditEntitlementRequest
+
+          amount: Credit grant amount
+
+          behavior: Entitlement behavior (Increment or Override)
+
+          cadence: Credit grant cadence (MONTH or YEAR)
+
+          description: Description of the entitlement
+
+          display_name_override: Override display name for the entitlement
+
+          hidden_from_widgets: Widget types where this entitlement is hidden
+
+          is_custom: Whether this is a custom entitlement
+
+          is_granted: Whether the entitlement is granted
+
+          order: Display order of the entitlement
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["addon_id", "type"])
+    def update(
+        self,
+        id: str,
+        *,
+        addon_id: str,
+        type: Literal["FEATURE"] | Literal["CREDIT"],
+        behavior: Literal["Increment", "Override"] | Omit = omit,
+        description: str | Omit = omit,
+        display_name_override: str | Omit = omit,
+        enum_values: SequenceNotStr[str] | Omit = omit,
+        has_soft_limit: bool | Omit = omit,
+        has_unlimited_usage: bool | Omit = omit,
+        hidden_from_widgets: List[Literal["PAYWALL", "CUSTOMER_PORTAL", "CHECKOUT"]] | Omit = omit,
+        is_custom: bool | Omit = omit,
+        is_granted: bool | Omit = omit,
+        monthly_reset_period_configuration: Optional[
+            entitlement_update_params.UpdateFeatureEntitlementRequestMonthlyResetPeriodConfiguration
+        ]
+        | Omit = omit,
+        order: float | Omit = omit,
+        reset_period: Literal["YEAR", "MONTH", "WEEK", "DAY", "HOUR"] | Omit = omit,
+        usage_limit: Optional[int] | Omit = omit,
+        weekly_reset_period_configuration: Optional[
+            entitlement_update_params.UpdateFeatureEntitlementRequestWeeklyResetPeriodConfiguration
+        ]
+        | Omit = omit,
+        yearly_reset_period_configuration: Optional[
+            entitlement_update_params.UpdateFeatureEntitlementRequestYearlyResetPeriodConfiguration
+        ]
+        | Omit = omit,
+        amount: float | Omit = omit,
+        cadence: Literal["MONTH", "YEAR"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AddonPackageEntitlement:
         if not addon_id:
             raise ValueError(f"Expected a non-empty value for `addon_id` but received {addon_id!r}")
         if not id:
@@ -120,8 +272,24 @@ class EntitlementsResource(SyncAPIResource):
             f"/api/v1/addons/{addon_id}/entitlements/{id}",
             body=maybe_transform(
                 {
-                    "credit": credit,
-                    "feature": feature,
+                    "type": type,
+                    "behavior": behavior,
+                    "description": description,
+                    "display_name_override": display_name_override,
+                    "enum_values": enum_values,
+                    "has_soft_limit": has_soft_limit,
+                    "has_unlimited_usage": has_unlimited_usage,
+                    "hidden_from_widgets": hidden_from_widgets,
+                    "is_custom": is_custom,
+                    "is_granted": is_granted,
+                    "monthly_reset_period_configuration": monthly_reset_period_configuration,
+                    "order": order,
+                    "reset_period": reset_period,
+                    "usage_limit": usage_limit,
+                    "weekly_reset_period_configuration": weekly_reset_period_configuration,
+                    "yearly_reset_period_configuration": yearly_reset_period_configuration,
+                    "amount": amount,
+                    "cadence": cadence,
                 },
                 entitlement_update_params.EntitlementUpdateParams,
             ),
@@ -260,13 +428,37 @@ class AsyncEntitlementsResource(AsyncAPIResource):
             cast_to=EntitlementCreateResponse,
         )
 
+    @overload
     async def update(
         self,
         id: str,
         *,
         addon_id: str,
-        credit: entitlement_update_params.Credit | Omit = omit,
-        feature: entitlement_update_params.Feature | Omit = omit,
+        type: Literal["FEATURE"],
+        behavior: Literal["Increment", "Override"] | Omit = omit,
+        description: str | Omit = omit,
+        display_name_override: str | Omit = omit,
+        enum_values: SequenceNotStr[str] | Omit = omit,
+        has_soft_limit: bool | Omit = omit,
+        has_unlimited_usage: bool | Omit = omit,
+        hidden_from_widgets: List[Literal["PAYWALL", "CUSTOMER_PORTAL", "CHECKOUT"]] | Omit = omit,
+        is_custom: bool | Omit = omit,
+        is_granted: bool | Omit = omit,
+        monthly_reset_period_configuration: Optional[
+            entitlement_update_params.UpdateFeatureEntitlementRequestMonthlyResetPeriodConfiguration
+        ]
+        | Omit = omit,
+        order: float | Omit = omit,
+        reset_period: Literal["YEAR", "MONTH", "WEEK", "DAY", "HOUR"] | Omit = omit,
+        usage_limit: Optional[int] | Omit = omit,
+        weekly_reset_period_configuration: Optional[
+            entitlement_update_params.UpdateFeatureEntitlementRequestWeeklyResetPeriodConfiguration
+        ]
+        | Omit = omit,
+        yearly_reset_period_configuration: Optional[
+            entitlement_update_params.UpdateFeatureEntitlementRequestYearlyResetPeriodConfiguration
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -278,9 +470,37 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         Updates an existing entitlement on a draft addon.
 
         Args:
-          credit: Credit entitlement fields to update
+          type: UpdateFeatureEntitlementRequest
 
-          feature: Feature entitlement fields to update
+          behavior: Entitlement behavior (Increment or Override)
+
+          description: Description of the entitlement
+
+          display_name_override: Override display name for the entitlement
+
+          enum_values: Allowed enum values for the feature entitlement
+
+          has_soft_limit: Whether the usage limit is a soft limit
+
+          has_unlimited_usage: Whether usage is unlimited
+
+          hidden_from_widgets: Widget types where this entitlement is hidden
+
+          is_custom: Whether this is a custom entitlement
+
+          is_granted: Whether the entitlement is granted
+
+          monthly_reset_period_configuration: Configuration for monthly reset period
+
+          order: Display order of the entitlement
+
+          reset_period: Period at which usage resets
+
+          usage_limit: Maximum allowed usage for the feature
+
+          weekly_reset_period_configuration: Configuration for weekly reset period
+
+          yearly_reset_period_configuration: Configuration for yearly reset period
 
           extra_headers: Send extra headers
 
@@ -290,6 +510,105 @@ class AsyncEntitlementsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def update(
+        self,
+        id: str,
+        *,
+        addon_id: str,
+        type: Literal["CREDIT"],
+        amount: float | Omit = omit,
+        behavior: Literal["Increment", "Override"] | Omit = omit,
+        cadence: Literal["MONTH", "YEAR"] | Omit = omit,
+        description: str | Omit = omit,
+        display_name_override: str | Omit = omit,
+        hidden_from_widgets: List[Literal["PAYWALL", "CUSTOMER_PORTAL", "CHECKOUT"]] | Omit = omit,
+        is_custom: bool | Omit = omit,
+        is_granted: bool | Omit = omit,
+        order: float | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AddonPackageEntitlement:
+        """
+        Updates an existing entitlement on a draft addon.
+
+        Args:
+          type: UpdateCreditEntitlementRequest
+
+          amount: Credit grant amount
+
+          behavior: Entitlement behavior (Increment or Override)
+
+          cadence: Credit grant cadence (MONTH or YEAR)
+
+          description: Description of the entitlement
+
+          display_name_override: Override display name for the entitlement
+
+          hidden_from_widgets: Widget types where this entitlement is hidden
+
+          is_custom: Whether this is a custom entitlement
+
+          is_granted: Whether the entitlement is granted
+
+          order: Display order of the entitlement
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["addon_id", "type"])
+    async def update(
+        self,
+        id: str,
+        *,
+        addon_id: str,
+        type: Literal["FEATURE"] | Literal["CREDIT"],
+        behavior: Literal["Increment", "Override"] | Omit = omit,
+        description: str | Omit = omit,
+        display_name_override: str | Omit = omit,
+        enum_values: SequenceNotStr[str] | Omit = omit,
+        has_soft_limit: bool | Omit = omit,
+        has_unlimited_usage: bool | Omit = omit,
+        hidden_from_widgets: List[Literal["PAYWALL", "CUSTOMER_PORTAL", "CHECKOUT"]] | Omit = omit,
+        is_custom: bool | Omit = omit,
+        is_granted: bool | Omit = omit,
+        monthly_reset_period_configuration: Optional[
+            entitlement_update_params.UpdateFeatureEntitlementRequestMonthlyResetPeriodConfiguration
+        ]
+        | Omit = omit,
+        order: float | Omit = omit,
+        reset_period: Literal["YEAR", "MONTH", "WEEK", "DAY", "HOUR"] | Omit = omit,
+        usage_limit: Optional[int] | Omit = omit,
+        weekly_reset_period_configuration: Optional[
+            entitlement_update_params.UpdateFeatureEntitlementRequestWeeklyResetPeriodConfiguration
+        ]
+        | Omit = omit,
+        yearly_reset_period_configuration: Optional[
+            entitlement_update_params.UpdateFeatureEntitlementRequestYearlyResetPeriodConfiguration
+        ]
+        | Omit = omit,
+        amount: float | Omit = omit,
+        cadence: Literal["MONTH", "YEAR"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AddonPackageEntitlement:
         if not addon_id:
             raise ValueError(f"Expected a non-empty value for `addon_id` but received {addon_id!r}")
         if not id:
@@ -298,8 +617,24 @@ class AsyncEntitlementsResource(AsyncAPIResource):
             f"/api/v1/addons/{addon_id}/entitlements/{id}",
             body=await async_maybe_transform(
                 {
-                    "credit": credit,
-                    "feature": feature,
+                    "type": type,
+                    "behavior": behavior,
+                    "description": description,
+                    "display_name_override": display_name_override,
+                    "enum_values": enum_values,
+                    "has_soft_limit": has_soft_limit,
+                    "has_unlimited_usage": has_unlimited_usage,
+                    "hidden_from_widgets": hidden_from_widgets,
+                    "is_custom": is_custom,
+                    "is_granted": is_granted,
+                    "monthly_reset_period_configuration": monthly_reset_period_configuration,
+                    "order": order,
+                    "reset_period": reset_period,
+                    "usage_limit": usage_limit,
+                    "weekly_reset_period_configuration": weekly_reset_period_configuration,
+                    "yearly_reset_period_configuration": yearly_reset_period_configuration,
+                    "amount": amount,
+                    "cadence": cadence,
                 },
                 entitlement_update_params.EntitlementUpdateParams,
             ),

@@ -26,7 +26,12 @@ class TestEntitlements:
     def test_method_create(self, client: Stigg) -> None:
         entitlement = client.v1.plans.entitlements.create(
             plan_id="planId",
-            entitlements=[{}],
+            entitlements=[
+                {
+                    "id": "id",
+                    "type": "FEATURE",
+                }
+            ],
         )
         assert_matches_type(EntitlementCreateResponse, entitlement, path=["response"])
 
@@ -35,7 +40,12 @@ class TestEntitlements:
     def test_raw_response_create(self, client: Stigg) -> None:
         response = client.v1.plans.entitlements.with_raw_response.create(
             plan_id="planId",
-            entitlements=[{}],
+            entitlements=[
+                {
+                    "id": "id",
+                    "type": "FEATURE",
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -48,7 +58,12 @@ class TestEntitlements:
     def test_streaming_response_create(self, client: Stigg) -> None:
         with client.v1.plans.entitlements.with_streaming_response.create(
             plan_id="planId",
-            entitlements=[{}],
+            entitlements=[
+                {
+                    "id": "id",
+                    "type": "FEATURE",
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -64,61 +79,56 @@ class TestEntitlements:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `plan_id` but received ''"):
             client.v1.plans.entitlements.with_raw_response.create(
                 plan_id="",
-                entitlements=[{}],
+                entitlements=[
+                    {
+                        "id": "id",
+                        "type": "FEATURE",
+                    }
+                ],
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update(self, client: Stigg) -> None:
+    def test_method_update_overload_1(self, client: Stigg) -> None:
         entitlement = client.v1.plans.entitlements.update(
             id="id",
             plan_id="planId",
+            type="FEATURE",
         )
         assert_matches_type(PlanEntitlement, entitlement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update_with_all_params(self, client: Stigg) -> None:
+    def test_method_update_with_all_params_overload_1(self, client: Stigg) -> None:
         entitlement = client.v1.plans.entitlements.update(
             id="id",
             plan_id="planId",
-            credit={
-                "amount": 1,
-                "behavior": "Increment",
-                "cadence": "MONTH",
-                "description": "description",
-                "display_name_override": "displayNameOverride",
-                "hidden_from_widgets": ["PAYWALL"],
-                "is_custom": True,
-                "is_granted": True,
-                "order": 0,
-            },
-            feature={
-                "behavior": "Increment",
-                "description": "description",
-                "display_name_override": "displayNameOverride",
-                "enum_values": ["string"],
-                "has_soft_limit": True,
-                "has_unlimited_usage": True,
-                "hidden_from_widgets": ["PAYWALL"],
-                "is_custom": True,
-                "is_granted": True,
-                "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                "order": 0,
-                "reset_period": "YEAR",
-                "usage_limit": 0,
-                "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-            },
+            type="FEATURE",
+            behavior="Increment",
+            description="description",
+            display_name_override="displayNameOverride",
+            enum_values=["string"],
+            has_soft_limit=True,
+            has_unlimited_usage=True,
+            hidden_from_widgets=["PAYWALL"],
+            is_custom=True,
+            is_granted=True,
+            monthly_reset_period_configuration={"according_to": "SubscriptionStart"},
+            order=0,
+            reset_period="YEAR",
+            usage_limit=0,
+            weekly_reset_period_configuration={"according_to": "SubscriptionStart"},
+            yearly_reset_period_configuration={"according_to": "SubscriptionStart"},
         )
         assert_matches_type(PlanEntitlement, entitlement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_update(self, client: Stigg) -> None:
+    def test_raw_response_update_overload_1(self, client: Stigg) -> None:
         response = client.v1.plans.entitlements.with_raw_response.update(
             id="id",
             plan_id="planId",
+            type="FEATURE",
         )
 
         assert response.is_closed is True
@@ -128,10 +138,11 @@ class TestEntitlements:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_update(self, client: Stigg) -> None:
+    def test_streaming_response_update_overload_1(self, client: Stigg) -> None:
         with client.v1.plans.entitlements.with_streaming_response.update(
             id="id",
             plan_id="planId",
+            type="FEATURE",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -143,17 +154,95 @@ class TestEntitlements:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_update(self, client: Stigg) -> None:
+    def test_path_params_update_overload_1(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `plan_id` but received ''"):
             client.v1.plans.entitlements.with_raw_response.update(
                 id="id",
                 plan_id="",
+                type="FEATURE",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.plans.entitlements.with_raw_response.update(
                 id="",
                 plan_id="planId",
+                type="FEATURE",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_update_overload_2(self, client: Stigg) -> None:
+        entitlement = client.v1.plans.entitlements.update(
+            id="id",
+            plan_id="planId",
+            type="CREDIT",
+        )
+        assert_matches_type(PlanEntitlement, entitlement, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_update_with_all_params_overload_2(self, client: Stigg) -> None:
+        entitlement = client.v1.plans.entitlements.update(
+            id="id",
+            plan_id="planId",
+            type="CREDIT",
+            amount=1,
+            behavior="Increment",
+            cadence="MONTH",
+            description="description",
+            display_name_override="displayNameOverride",
+            hidden_from_widgets=["PAYWALL"],
+            is_custom=True,
+            is_granted=True,
+            order=0,
+        )
+        assert_matches_type(PlanEntitlement, entitlement, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_update_overload_2(self, client: Stigg) -> None:
+        response = client.v1.plans.entitlements.with_raw_response.update(
+            id="id",
+            plan_id="planId",
+            type="CREDIT",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        entitlement = response.parse()
+        assert_matches_type(PlanEntitlement, entitlement, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_update_overload_2(self, client: Stigg) -> None:
+        with client.v1.plans.entitlements.with_streaming_response.update(
+            id="id",
+            plan_id="planId",
+            type="CREDIT",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            entitlement = response.parse()
+            assert_matches_type(PlanEntitlement, entitlement, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_update_overload_2(self, client: Stigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `plan_id` but received ''"):
+            client.v1.plans.entitlements.with_raw_response.update(
+                id="id",
+                plan_id="",
+                type="CREDIT",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.v1.plans.entitlements.with_raw_response.update(
+                id="",
+                plan_id="planId",
+                type="CREDIT",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -261,7 +350,12 @@ class TestAsyncEntitlements:
     async def test_method_create(self, async_client: AsyncStigg) -> None:
         entitlement = await async_client.v1.plans.entitlements.create(
             plan_id="planId",
-            entitlements=[{}],
+            entitlements=[
+                {
+                    "id": "id",
+                    "type": "FEATURE",
+                }
+            ],
         )
         assert_matches_type(EntitlementCreateResponse, entitlement, path=["response"])
 
@@ -270,7 +364,12 @@ class TestAsyncEntitlements:
     async def test_raw_response_create(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.plans.entitlements.with_raw_response.create(
             plan_id="planId",
-            entitlements=[{}],
+            entitlements=[
+                {
+                    "id": "id",
+                    "type": "FEATURE",
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -283,7 +382,12 @@ class TestAsyncEntitlements:
     async def test_streaming_response_create(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.plans.entitlements.with_streaming_response.create(
             plan_id="planId",
-            entitlements=[{}],
+            entitlements=[
+                {
+                    "id": "id",
+                    "type": "FEATURE",
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -299,61 +403,56 @@ class TestAsyncEntitlements:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `plan_id` but received ''"):
             await async_client.v1.plans.entitlements.with_raw_response.create(
                 plan_id="",
-                entitlements=[{}],
+                entitlements=[
+                    {
+                        "id": "id",
+                        "type": "FEATURE",
+                    }
+                ],
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update(self, async_client: AsyncStigg) -> None:
+    async def test_method_update_overload_1(self, async_client: AsyncStigg) -> None:
         entitlement = await async_client.v1.plans.entitlements.update(
             id="id",
             plan_id="planId",
+            type="FEATURE",
         )
         assert_matches_type(PlanEntitlement, entitlement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncStigg) -> None:
+    async def test_method_update_with_all_params_overload_1(self, async_client: AsyncStigg) -> None:
         entitlement = await async_client.v1.plans.entitlements.update(
             id="id",
             plan_id="planId",
-            credit={
-                "amount": 1,
-                "behavior": "Increment",
-                "cadence": "MONTH",
-                "description": "description",
-                "display_name_override": "displayNameOverride",
-                "hidden_from_widgets": ["PAYWALL"],
-                "is_custom": True,
-                "is_granted": True,
-                "order": 0,
-            },
-            feature={
-                "behavior": "Increment",
-                "description": "description",
-                "display_name_override": "displayNameOverride",
-                "enum_values": ["string"],
-                "has_soft_limit": True,
-                "has_unlimited_usage": True,
-                "hidden_from_widgets": ["PAYWALL"],
-                "is_custom": True,
-                "is_granted": True,
-                "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                "order": 0,
-                "reset_period": "YEAR",
-                "usage_limit": 0,
-                "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-            },
+            type="FEATURE",
+            behavior="Increment",
+            description="description",
+            display_name_override="displayNameOverride",
+            enum_values=["string"],
+            has_soft_limit=True,
+            has_unlimited_usage=True,
+            hidden_from_widgets=["PAYWALL"],
+            is_custom=True,
+            is_granted=True,
+            monthly_reset_period_configuration={"according_to": "SubscriptionStart"},
+            order=0,
+            reset_period="YEAR",
+            usage_limit=0,
+            weekly_reset_period_configuration={"according_to": "SubscriptionStart"},
+            yearly_reset_period_configuration={"according_to": "SubscriptionStart"},
         )
         assert_matches_type(PlanEntitlement, entitlement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncStigg) -> None:
+    async def test_raw_response_update_overload_1(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.plans.entitlements.with_raw_response.update(
             id="id",
             plan_id="planId",
+            type="FEATURE",
         )
 
         assert response.is_closed is True
@@ -363,10 +462,11 @@ class TestAsyncEntitlements:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncStigg) -> None:
+    async def test_streaming_response_update_overload_1(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.plans.entitlements.with_streaming_response.update(
             id="id",
             plan_id="planId",
+            type="FEATURE",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -378,17 +478,95 @@ class TestAsyncEntitlements:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncStigg) -> None:
+    async def test_path_params_update_overload_1(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `plan_id` but received ''"):
             await async_client.v1.plans.entitlements.with_raw_response.update(
                 id="id",
                 plan_id="",
+                type="FEATURE",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.plans.entitlements.with_raw_response.update(
                 id="",
                 plan_id="planId",
+                type="FEATURE",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_update_overload_2(self, async_client: AsyncStigg) -> None:
+        entitlement = await async_client.v1.plans.entitlements.update(
+            id="id",
+            plan_id="planId",
+            type="CREDIT",
+        )
+        assert_matches_type(PlanEntitlement, entitlement, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_update_with_all_params_overload_2(self, async_client: AsyncStigg) -> None:
+        entitlement = await async_client.v1.plans.entitlements.update(
+            id="id",
+            plan_id="planId",
+            type="CREDIT",
+            amount=1,
+            behavior="Increment",
+            cadence="MONTH",
+            description="description",
+            display_name_override="displayNameOverride",
+            hidden_from_widgets=["PAYWALL"],
+            is_custom=True,
+            is_granted=True,
+            order=0,
+        )
+        assert_matches_type(PlanEntitlement, entitlement, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_update_overload_2(self, async_client: AsyncStigg) -> None:
+        response = await async_client.v1.plans.entitlements.with_raw_response.update(
+            id="id",
+            plan_id="planId",
+            type="CREDIT",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        entitlement = await response.parse()
+        assert_matches_type(PlanEntitlement, entitlement, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_update_overload_2(self, async_client: AsyncStigg) -> None:
+        async with async_client.v1.plans.entitlements.with_streaming_response.update(
+            id="id",
+            plan_id="planId",
+            type="CREDIT",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            entitlement = await response.parse()
+            assert_matches_type(PlanEntitlement, entitlement, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_update_overload_2(self, async_client: AsyncStigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `plan_id` but received ''"):
+            await async_client.v1.plans.entitlements.with_raw_response.update(
+                id="id",
+                plan_id="",
+                type="CREDIT",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.v1.plans.entitlements.with_raw_response.update(
+                id="",
+                plan_id="planId",
+                type="CREDIT",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
