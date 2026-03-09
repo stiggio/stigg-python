@@ -140,7 +140,39 @@ from stigg.types.v1 import EventReportResponse
 
 Methods:
 
-- <code title="post /api/v1/events">client.v1.events.<a href="./src/stigg/resources/v1/events.py">report</a>(\*\*<a href="src/stigg/types/v1/event_report_params.py">params</a>) -> <a href="./src/stigg/types/v1/event_report_response.py">EventReportResponse</a></code>
+- <code title="post /api/v1/events">client.v1.events.<a href="./src/stigg/resources/v1/events/events.py">report</a>(\*\*<a href="src/stigg/types/v1/event_report_params.py">params</a>) -> <a href="./src/stigg/types/v1/event_report_response.py">EventReportResponse</a></code>
+
+### Credits
+
+Types:
+
+```python
+from stigg.types.v1.events import (
+    CreditGetAutoRechargeResponse,
+    CreditGetUsageResponse,
+    CreditListLedgerResponse,
+)
+```
+
+Methods:
+
+- <code title="get /api/v1/credits/auto-recharge">client.v1.events.credits.<a href="./src/stigg/resources/v1/events/credits/credits.py">get_auto_recharge</a>(\*\*<a href="src/stigg/types/v1/events/credit_get_auto_recharge_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/credit_get_auto_recharge_response.py">CreditGetAutoRechargeResponse</a></code>
+- <code title="get /api/v1/credits/usage">client.v1.events.credits.<a href="./src/stigg/resources/v1/events/credits/credits.py">get_usage</a>(\*\*<a href="src/stigg/types/v1/events/credit_get_usage_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/credit_get_usage_response.py">CreditGetUsageResponse</a></code>
+- <code title="get /api/v1/credits/ledger">client.v1.events.credits.<a href="./src/stigg/resources/v1/events/credits/credits.py">list_ledger</a>(\*\*<a href="src/stigg/types/v1/events/credit_list_ledger_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/credit_list_ledger_response.py">SyncMyCursorIDPage[CreditListLedgerResponse]</a></code>
+
+#### Grants
+
+Types:
+
+```python
+from stigg.types.v1.events.credits import CreditGrantResponse, GrantListResponse
+```
+
+Methods:
+
+- <code title="post /api/v1/credits/grants">client.v1.events.credits.grants.<a href="./src/stigg/resources/v1/events/credits/grants.py">create</a>(\*\*<a href="src/stigg/types/v1/events/credits/grant_create_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/credits/credit_grant_response.py">CreditGrantResponse</a></code>
+- <code title="get /api/v1/credits/grants">client.v1.events.credits.grants.<a href="./src/stigg/resources/v1/events/credits/grants.py">list</a>(\*\*<a href="src/stigg/types/v1/events/credits/grant_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/credits/grant_list_response.py">SyncMyCursorIDPage[GrantListResponse]</a></code>
+- <code title="post /api/v1/credits/grants/{id}/void">client.v1.events.credits.grants.<a href="./src/stigg/resources/v1/events/credits/grants.py">void</a>(id) -> <a href="./src/stigg/types/v1/events/credits/credit_grant_response.py">CreditGrantResponse</a></code>
 
 ## Features
 

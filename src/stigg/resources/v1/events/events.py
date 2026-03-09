@@ -6,25 +6,37 @@ from typing import Iterable
 
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ...types.v1 import event_report_params
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._utils import maybe_transform, async_maybe_transform
+from ...._compat import cached_property
+from ....types.v1 import event_report_params
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.v1.event_report_response import EventReportResponse
+from ...._base_client import make_request_options
+from .credits.credits import (
+    CreditsResource,
+    AsyncCreditsResource,
+    CreditsResourceWithRawResponse,
+    AsyncCreditsResourceWithRawResponse,
+    CreditsResourceWithStreamingResponse,
+    AsyncCreditsResourceWithStreamingResponse,
+)
+from ....types.v1.event_report_response import EventReportResponse
 
 __all__ = ["EventsResource", "AsyncEventsResource"]
 
 
 class EventsResource(SyncAPIResource):
     """Operations related to usage & metering"""
+
+    @cached_property
+    def credits(self) -> CreditsResource:
+        return CreditsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> EventsResourceWithRawResponse:
@@ -84,6 +96,10 @@ class EventsResource(SyncAPIResource):
 
 class AsyncEventsResource(AsyncAPIResource):
     """Operations related to usage & metering"""
+
+    @cached_property
+    def credits(self) -> AsyncCreditsResource:
+        return AsyncCreditsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncEventsResourceWithRawResponse:
@@ -149,6 +165,10 @@ class EventsResourceWithRawResponse:
             events.report,
         )
 
+    @cached_property
+    def credits(self) -> CreditsResourceWithRawResponse:
+        return CreditsResourceWithRawResponse(self._events.credits)
+
 
 class AsyncEventsResourceWithRawResponse:
     def __init__(self, events: AsyncEventsResource) -> None:
@@ -157,6 +177,10 @@ class AsyncEventsResourceWithRawResponse:
         self.report = async_to_raw_response_wrapper(
             events.report,
         )
+
+    @cached_property
+    def credits(self) -> AsyncCreditsResourceWithRawResponse:
+        return AsyncCreditsResourceWithRawResponse(self._events.credits)
 
 
 class EventsResourceWithStreamingResponse:
@@ -167,6 +191,10 @@ class EventsResourceWithStreamingResponse:
             events.report,
         )
 
+    @cached_property
+    def credits(self) -> CreditsResourceWithStreamingResponse:
+        return CreditsResourceWithStreamingResponse(self._events.credits)
+
 
 class AsyncEventsResourceWithStreamingResponse:
     def __init__(self, events: AsyncEventsResource) -> None:
@@ -175,3 +203,7 @@ class AsyncEventsResourceWithStreamingResponse:
         self.report = async_to_streamed_response_wrapper(
             events.report,
         )
+
+    @cached_property
+    def credits(self) -> AsyncCreditsResourceWithStreamingResponse:
+        return AsyncCreditsResourceWithStreamingResponse(self._events.credits)
