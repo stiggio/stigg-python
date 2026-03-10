@@ -22,7 +22,7 @@ class UsageHistoryParams(TypedDict, total=False):
 
     group_by: Annotated[str, PropertyInfo(alias="groupBy")]
 
-    include_historical_usage: Annotated[bool, PropertyInfo(alias="includeHistoricalUsage")]
+    include_inactive_subscriptions: Annotated[bool, PropertyInfo(alias="includeInactiveSubscriptions")]
     """
     When true, includes usage data from the most recent cancelled or expired
     subscription

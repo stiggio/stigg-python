@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
@@ -22,11 +22,11 @@ __all__ = [
     "Budget",
     "Charge",
     "Entitlement",
-    "EntitlementCredit",
     "EntitlementFeature",
     "EntitlementFeatureMonthlyResetPeriodConfiguration",
     "EntitlementFeatureWeeklyResetPeriodConfiguration",
     "EntitlementFeatureYearlyResetPeriodConfiguration",
+    "EntitlementCredit",
     "MinimumSpend",
     "PriceOverride",
 ]
@@ -312,19 +312,6 @@ class Charge(TypedDict, total=False):
     type: Required[Literal["FEATURE", "CREDIT"]]
 
 
-class EntitlementCredit(TypedDict, total=False):
-    """Credit entitlement configuration"""
-
-    amount: Required[float]
-    """Credit grant amount"""
-
-    cadence: Required[Literal["MONTH", "YEAR"]]
-    """Credit grant cadence (MONTH or YEAR)"""
-
-    currency_id: Required[Annotated[str, PropertyInfo(alias="currencyId")]]
-    """The custom currency ID for the credit entitlement"""
-
-
 class EntitlementFeatureMonthlyResetPeriodConfiguration(TypedDict, total=False):
     """Configuration for monthly reset period"""
 
@@ -363,10 +350,13 @@ class EntitlementFeatureYearlyResetPeriodConfiguration(TypedDict, total=False):
 
 
 class EntitlementFeature(TypedDict, total=False):
-    """Feature entitlement configuration"""
+    """Feature entitlement configuration for a subscription"""
 
-    feature_id: Required[Annotated[str, PropertyInfo(alias="featureId")]]
+    id: Required[str]
     """The feature ID to attach the entitlement to"""
+
+    type: Required[Literal["FEATURE"]]
+    """SubscriptionFeatureEntitlementRequest"""
 
     has_soft_limit: Annotated[bool, PropertyInfo(alias="hasSoftLimit")]
     """Whether the usage limit is a soft limit"""
@@ -397,14 +387,23 @@ class EntitlementFeature(TypedDict, total=False):
     """Configuration for yearly reset period"""
 
 
-class Entitlement(TypedDict, total=False):
-    """A single subscription entitlement. Provide exactly one of feature or credit."""
+class EntitlementCredit(TypedDict, total=False):
+    """Credit entitlement configuration for a subscription"""
 
-    credit: EntitlementCredit
-    """Credit entitlement configuration"""
+    id: Required[str]
+    """The custom currency ID for the credit entitlement"""
 
-    feature: EntitlementFeature
-    """Feature entitlement configuration"""
+    amount: Required[float]
+    """Credit grant amount"""
+
+    cadence: Required[Literal["MONTH", "YEAR"]]
+    """Credit grant cadence (MONTH or YEAR)"""
+
+    type: Required[Literal["CREDIT"]]
+    """SubscriptionCreditEntitlementRequest"""
+
+
+Entitlement: TypeAlias = Union[EntitlementFeature, EntitlementCredit]
 
 
 class MinimumSpend(TypedDict, total=False):

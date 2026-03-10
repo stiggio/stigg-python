@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -159,13 +159,16 @@ class CouponListResponse(BaseModel):
     description: Optional[str] = None
     """Description of the coupon"""
 
-    duration_in_months: Optional[float] = FieldInfo(alias="durationInMonths", default=None)
+    duration_in_months: Optional[int] = FieldInfo(alias="durationInMonths", default=None)
     """Duration of the coupon validity in months"""
+
+    metadata: Optional[Dict[str, str]] = None
+    """Metadata associated with the entity"""
 
     name: str
     """Name of the coupon"""
 
-    percent_off: Optional[float] = FieldInfo(alias="percentOff", default=None)
+    percent_off: Optional[int] = FieldInfo(alias="percentOff", default=None)
     """Percentage discount off the original price"""
 
     source: Optional[Literal["STIGG", "STIGG_ADHOC", "STRIPE"]] = None

@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.0-alpha.17 (2026-03-10)
+
+Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
+
+### Features
+
+* **api:** added credits resources ([f1f6b4a](https://github.com/stiggio/stigg-python/commit/f1f6b4ab41f0fc667967f3910efba62144264ab7))
+* **api:** api update ([ff2efcb](https://github.com/stiggio/stigg-python/commit/ff2efcbb9f3ed8c96e8a542ebd27bbf43ed1540a))
+* **api:** api update ([860d584](https://github.com/stiggio/stigg-python/commit/860d584517af3b09e4495c83dff91477d63da101))
+* **api:** api update ([b6518f6](https://github.com/stiggio/stigg-python/commit/b6518f697cc248164a441fc491cac130b98d8ed6))
+* **api:** api update ([76f7c44](https://github.com/stiggio/stigg-python/commit/76f7c448af1ea31513f907e490f644db67bea90c))
+
 ## 0.1.0-alpha.16 (2026-03-08)
 
 Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
