@@ -278,6 +278,7 @@ class CustomersResource(SyncAPIResource):
         self,
         *,
         customers: Iterable[customer_import_params.Customer],
+        integration_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -293,6 +294,8 @@ class CustomersResource(SyncAPIResource):
         Args:
           customers: List of customer objects to import
 
+          integration_id: Integration details
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -303,7 +306,13 @@ class CustomersResource(SyncAPIResource):
         """
         return self._post(
             "/api/v1/customers/import",
-            body=maybe_transform({"customers": customers}, customer_import_params.CustomerImportParams),
+            body=maybe_transform(
+                {
+                    "customers": customers,
+                    "integration_id": integration_id,
+                },
+                customer_import_params.CustomerImportParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -695,6 +704,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         self,
         *,
         customers: Iterable[customer_import_params.Customer],
+        integration_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -710,6 +720,8 @@ class AsyncCustomersResource(AsyncAPIResource):
         Args:
           customers: List of customer objects to import
 
+          integration_id: Integration details
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -720,7 +732,13 @@ class AsyncCustomersResource(AsyncAPIResource):
         """
         return await self._post(
             "/api/v1/customers/import",
-            body=await async_maybe_transform({"customers": customers}, customer_import_params.CustomerImportParams),
+            body=await async_maybe_transform(
+                {
+                    "customers": customers,
+                    "integration_id": integration_id,
+                },
+                customer_import_params.CustomerImportParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

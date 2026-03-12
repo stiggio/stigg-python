@@ -232,6 +232,26 @@ class TestCustomers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_import_with_all_params(self, client: Stigg) -> None:
+        customer = client.v1.customers.import_(
+            customers=[
+                {
+                    "id": "id",
+                    "email": "dev@stainless.com",
+                    "name": "name",
+                    "billing_id": "billingId",
+                    "metadata": {"foo": "string"},
+                    "payment_method_id": "paymentMethodId",
+                    "salesforce_id": "salesforceId",
+                    "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                }
+            ],
+            integration_id="integrationId",
+        )
+        assert_matches_type(CustomerImportResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_import(self, client: Stigg) -> None:
         response = client.v1.customers.with_raw_response.import_(
             customers=[
@@ -633,6 +653,26 @@ class TestAsyncCustomers:
                     "name": "name",
                 }
             ],
+        )
+        assert_matches_type(CustomerImportResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_import_with_all_params(self, async_client: AsyncStigg) -> None:
+        customer = await async_client.v1.customers.import_(
+            customers=[
+                {
+                    "id": "id",
+                    "email": "dev@stainless.com",
+                    "name": "name",
+                    "billing_id": "billingId",
+                    "metadata": {"foo": "string"},
+                    "payment_method_id": "paymentMethodId",
+                    "salesforce_id": "salesforceId",
+                    "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                }
+            ],
+            integration_id="integrationId",
         )
         assert_matches_type(CustomerImportResponse, customer, path=["response"])
 
