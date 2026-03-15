@@ -135,7 +135,7 @@ class DataAmountsOff(BaseModel):
         "xof",
         "xpf",
     ]
-    """The price currency"""
+    """ISO 4217 currency code"""
 
 
 class Data(BaseModel):

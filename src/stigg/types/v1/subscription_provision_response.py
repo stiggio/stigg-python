@@ -674,7 +674,7 @@ class DataSubscriptionPriceTierFlatPrice(BaseModel):
         "xof",
         "xpf",
     ]
-    """The price currency"""
+    """ISO 4217 currency code"""
 
 
 class DataSubscriptionPriceTierUnitPrice(BaseModel):
@@ -801,7 +801,7 @@ class DataSubscriptionPriceTierUnitPrice(BaseModel):
         "xof",
         "xpf",
     ]
-    """The price currency"""
+    """ISO 4217 currency code"""
 
 
 class DataSubscriptionPriceTier(BaseModel):

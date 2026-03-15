@@ -523,7 +523,7 @@ class PriceTierFlatPrice(BaseModel):
         "xof",
         "xpf",
     ]
-    """The price currency"""
+    """ISO 4217 currency code"""
 
 
 class PriceTierUnitPrice(BaseModel):
@@ -650,7 +650,7 @@ class PriceTierUnitPrice(BaseModel):
         "xof",
         "xpf",
     ]
-    """The price currency"""
+    """ISO 4217 currency code"""
 
 
 class PriceTier(BaseModel):

@@ -221,4 +221,4 @@ class Cost(TypedDict, total=False):
             "xpf",
         ]
     ]
-    """The price currency"""
+    """ISO 4217 currency code"""
