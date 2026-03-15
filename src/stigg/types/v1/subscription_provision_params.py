@@ -258,7 +258,7 @@ class AppliedCouponDiscountAmountsOff(TypedDict, total=False):
             "xpf",
         ]
     ]
-    """The price currency"""
+    """ISO 4217 currency code"""
 
 
 class AppliedCouponDiscount(TypedDict, total=False):
@@ -764,7 +764,7 @@ class PriceOverrideTierFlatPrice(TypedDict, total=False):
             "xpf",
         ]
     ]
-    """The price currency"""
+    """ISO 4217 currency code"""
 
 
 class PriceOverrideTierUnitPrice(TypedDict, total=False):
@@ -893,7 +893,7 @@ class PriceOverrideTierUnitPrice(TypedDict, total=False):
             "xpf",
         ]
     ]
-    """The price currency"""
+    """ISO 4217 currency code"""
 
 
 class PriceOverrideTier(TypedDict, total=False):

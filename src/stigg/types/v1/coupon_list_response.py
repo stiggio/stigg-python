@@ -135,7 +135,7 @@ class AmountsOff(BaseModel):
         "xof",
         "xpf",
     ]
-    """The price currency"""
+    """ISO 4217 currency code"""
 
 
 class CouponListResponse(BaseModel):
