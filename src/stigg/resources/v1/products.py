@@ -91,8 +91,8 @@ class ProductsResource(SyncAPIResource):
         self,
         *,
         id: str,
+        display_name: str,
         description: Optional[str] | Omit = omit,
-        display_name: str | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         multiple_subscriptions: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -108,9 +108,9 @@ class ProductsResource(SyncAPIResource):
         Args:
           id: The unique identifier for the entity
 
-          description: Description of the product
-
           display_name: Display name of the product
+
+          description: Description of the product
 
           metadata: Additional metadata for the product
 
@@ -129,8 +129,8 @@ class ProductsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "id": id,
-                    "description": description,
                     "display_name": display_name,
+                    "description": description,
                     "metadata": metadata,
                     "multiple_subscriptions": multiple_subscriptions,
                 },
@@ -411,8 +411,8 @@ class AsyncProductsResource(AsyncAPIResource):
         self,
         *,
         id: str,
+        display_name: str,
         description: Optional[str] | Omit = omit,
-        display_name: str | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         multiple_subscriptions: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -428,9 +428,9 @@ class AsyncProductsResource(AsyncAPIResource):
         Args:
           id: The unique identifier for the entity
 
-          description: Description of the product
-
           display_name: Display name of the product
+
+          description: Description of the product
 
           metadata: Additional metadata for the product
 
@@ -449,8 +449,8 @@ class AsyncProductsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "id": id,
-                    "description": description,
                     "display_name": display_name,
+                    "description": description,
                     "metadata": metadata,
                     "multiple_subscriptions": multiple_subscriptions,
                 },
