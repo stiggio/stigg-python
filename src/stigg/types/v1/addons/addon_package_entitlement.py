@@ -160,6 +160,13 @@ class DataCredit(BaseModel):
     updated_at: datetime = FieldInfo(alias="updatedAt")
     """Timestamp of when the record was last updated"""
 
+    dependency_feature_id: Optional[str] = FieldInfo(alias="dependencyFeatureId", default=None)
+    """The feature ID this entitlement depends on (for credit entitlements).
+
+    The entitlement value will be calculated as: base amount × dependency feature
+    usage limit
+    """
+
 
 Data: TypeAlias = Annotated[Union[DataFeature, DataCredit], PropertyInfo(discriminator="type")]
 
