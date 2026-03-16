@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -240,7 +240,7 @@ class CustomersResource(SyncAPIResource):
         ]
         | Omit = omit,
         billing_id: Optional[str] | Omit = omit,
-        coupon_id: Optional[str] | Omit = omit,
+        coupon_id: Union[str, Literal[""], None] | Omit = omit,
         email: Optional[str] | Omit = omit,
         integrations: Iterable[customer_update_params.Integration] | Omit = omit,
         language: Optional[str] | Omit = omit,
@@ -636,7 +636,7 @@ class CustomersResource(SyncAPIResource):
         ]
         | Omit = omit,
         billing_id: Optional[str] | Omit = omit,
-        coupon_id: Optional[str] | Omit = omit,
+        coupon_id: Union[str, Literal[""], None] | Omit = omit,
         default_payment_method: Optional[customer_provision_params.DefaultPaymentMethod] | Omit = omit,
         email: Optional[str] | Omit = omit,
         integrations: Iterable[customer_provision_params.Integration] | Omit = omit,
@@ -938,7 +938,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         ]
         | Omit = omit,
         billing_id: Optional[str] | Omit = omit,
-        coupon_id: Optional[str] | Omit = omit,
+        coupon_id: Union[str, Literal[""], None] | Omit = omit,
         email: Optional[str] | Omit = omit,
         integrations: Iterable[customer_update_params.Integration] | Omit = omit,
         language: Optional[str] | Omit = omit,
@@ -1334,7 +1334,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         ]
         | Omit = omit,
         billing_id: Optional[str] | Omit = omit,
-        coupon_id: Optional[str] | Omit = omit,
+        coupon_id: Union[str, Literal[""], None] | Omit = omit,
         default_payment_method: Optional[customer_provision_params.DefaultPaymentMethod] | Omit = omit,
         email: Optional[str] | Omit = omit,
         integrations: Iterable[customer_provision_params.Integration] | Omit = omit,
