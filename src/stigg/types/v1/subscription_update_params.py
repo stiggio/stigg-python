@@ -231,6 +231,7 @@ class AppliedCoupon(TypedDict, total=False):
     configuration: AppliedCouponConfiguration
 
     coupon_id: Annotated[str, PropertyInfo(alias="couponId")]
+    """Stigg coupon ID"""
 
     discount: AppliedCouponDiscount
 

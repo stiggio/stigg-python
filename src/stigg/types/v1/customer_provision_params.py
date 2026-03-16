@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
@@ -153,7 +153,7 @@ class CustomerProvisionParams(TypedDict, total=False):
     billing_id: Annotated[Optional[str], PropertyInfo(alias="billingId")]
     """The unique identifier for the entity in the billing provider"""
 
-    coupon_id: Annotated[Optional[str], PropertyInfo(alias="couponId")]
+    coupon_id: Annotated[Union[str, Literal[""], None], PropertyInfo(alias="couponId")]
     """Customer level coupon"""
 
     default_payment_method: Annotated[Optional[DefaultPaymentMethod], PropertyInfo(alias="defaultPaymentMethod")]

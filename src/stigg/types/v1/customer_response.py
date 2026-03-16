@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -452,7 +452,7 @@ class Data(BaseModel):
     billing_id: Optional[str] = FieldInfo(alias="billingId", default=None)
     """The unique identifier for the entity in the billing provider"""
 
-    coupon_id: Optional[str] = FieldInfo(alias="couponId", default=None)
+    coupon_id: Union[str, Literal[""], None] = FieldInfo(alias="couponId", default=None)
     """Customer level coupon"""
 
     default_payment_method: Optional[DataDefaultPaymentMethod] = FieldInfo(alias="defaultPaymentMethod", default=None)
