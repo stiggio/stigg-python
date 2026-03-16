@@ -201,10 +201,11 @@ from stigg import Stigg
 
 client = Stigg()
 
-page = client.v1.customers.list(
-    created_at={},
+customer_response = client.v1.customers.update(
+    id="x",
+    passthrough={},
 )
-print(page.data)
+print(customer_response.passthrough)
 ```
 
 ## Handling errors
