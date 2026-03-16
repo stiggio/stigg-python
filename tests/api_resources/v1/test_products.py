@@ -69,6 +69,7 @@ class TestProducts:
     def test_method_create_product(self, client: Stigg) -> None:
         product = client.v1.products.create_product(
             id="id",
+            display_name="displayName",
         )
         assert_matches_type(Product, product, path=["response"])
 
@@ -77,8 +78,8 @@ class TestProducts:
     def test_method_create_product_with_all_params(self, client: Stigg) -> None:
         product = client.v1.products.create_product(
             id="id",
-            description="description",
             display_name="displayName",
+            description="description",
             metadata={"foo": "string"},
             multiple_subscriptions=True,
         )
@@ -89,6 +90,7 @@ class TestProducts:
     def test_raw_response_create_product(self, client: Stigg) -> None:
         response = client.v1.products.with_raw_response.create_product(
             id="id",
+            display_name="displayName",
         )
 
         assert response.is_closed is True
@@ -101,6 +103,7 @@ class TestProducts:
     def test_streaming_response_create_product(self, client: Stigg) -> None:
         with client.v1.products.with_streaming_response.create_product(
             id="id",
+            display_name="displayName",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -371,6 +374,7 @@ class TestAsyncProducts:
     async def test_method_create_product(self, async_client: AsyncStigg) -> None:
         product = await async_client.v1.products.create_product(
             id="id",
+            display_name="displayName",
         )
         assert_matches_type(Product, product, path=["response"])
 
@@ -379,8 +383,8 @@ class TestAsyncProducts:
     async def test_method_create_product_with_all_params(self, async_client: AsyncStigg) -> None:
         product = await async_client.v1.products.create_product(
             id="id",
-            description="description",
             display_name="displayName",
+            description="description",
             metadata={"foo": "string"},
             multiple_subscriptions=True,
         )
@@ -391,6 +395,7 @@ class TestAsyncProducts:
     async def test_raw_response_create_product(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.products.with_raw_response.create_product(
             id="id",
+            display_name="displayName",
         )
 
         assert response.is_closed is True
@@ -403,6 +408,7 @@ class TestAsyncProducts:
     async def test_streaming_response_create_product(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.products.with_streaming_response.create_product(
             id="id",
+            display_name="displayName",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

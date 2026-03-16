@@ -14,11 +14,11 @@ class ProductCreateProductParams(TypedDict, total=False):
     id: Required[str]
     """The unique identifier for the entity"""
 
+    display_name: Required[Annotated[str, PropertyInfo(alias="displayName")]]
+    """Display name of the product"""
+
     description: Optional[str]
     """Description of the product"""
-
-    display_name: Annotated[str, PropertyInfo(alias="displayName")]
-    """Display name of the product"""
 
     metadata: Optional[Dict[str, str]]
     """Additional metadata for the product"""
