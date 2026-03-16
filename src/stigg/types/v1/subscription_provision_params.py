@@ -316,6 +316,8 @@ class BillingInformationBillingAddress(TypedDict, total=False):
 
 
 class BillingInformationTaxID(TypedDict, total=False):
+    """Tax identifier with type and value for customer tax exemptions."""
+
     type: Required[str]
     """The type of tax exemption identifier, such as VAT."""
 

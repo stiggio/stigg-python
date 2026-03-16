@@ -90,8 +90,53 @@ class TestCustomers:
                     "vendor_identifier": "AUTH0",
                 }
             ],
+            language="language",
             metadata={"foo": "string"},
             name="name",
+            passthrough={
+                "stripe": {
+                    "billing_address": {
+                        "city": "city",
+                        "country": "country",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "postal_code": "postalCode",
+                        "state": "state",
+                    },
+                    "customer_name": "customerName",
+                    "invoice_custom_fields": {"foo": "string"},
+                    "metadata": {"foo": "string"},
+                    "payment_method_id": "paymentMethodId",
+                    "shipping_address": {
+                        "city": "city",
+                        "country": "country",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "postal_code": "postalCode",
+                        "state": "state",
+                    },
+                    "tax_ids": [
+                        {
+                            "type": "type",
+                            "value": "value",
+                        }
+                    ],
+                },
+                "zuora": {
+                    "billing_address": {
+                        "city": "city",
+                        "country": "country",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "postal_code": "postalCode",
+                        "state": "state",
+                    },
+                    "currency": "usd",
+                    "metadata": {"foo": "string"},
+                    "payment_method_id": "paymentMethodId",
+                },
+            },
+            timezone="timezone",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 
@@ -373,8 +418,53 @@ class TestCustomers:
                     "vendor_identifier": "AUTH0",
                 }
             ],
+            language="language",
             metadata={"foo": "string"},
             name="name",
+            passthrough={
+                "stripe": {
+                    "billing_address": {
+                        "city": "city",
+                        "country": "country",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "postal_code": "postalCode",
+                        "state": "state",
+                    },
+                    "customer_name": "customerName",
+                    "invoice_custom_fields": {"foo": "string"},
+                    "metadata": {"foo": "string"},
+                    "payment_method_id": "paymentMethodId",
+                    "shipping_address": {
+                        "city": "city",
+                        "country": "country",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "postal_code": "postalCode",
+                        "state": "state",
+                    },
+                    "tax_ids": [
+                        {
+                            "type": "type",
+                            "value": "value",
+                        }
+                    ],
+                },
+                "zuora": {
+                    "billing_address": {
+                        "city": "city",
+                        "country": "country",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "postal_code": "postalCode",
+                        "state": "state",
+                    },
+                    "currency": "usd",
+                    "metadata": {"foo": "string"},
+                    "payment_method_id": "paymentMethodId",
+                },
+            },
+            timezone="timezone",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 
@@ -518,8 +608,53 @@ class TestAsyncCustomers:
                     "vendor_identifier": "AUTH0",
                 }
             ],
+            language="language",
             metadata={"foo": "string"},
             name="name",
+            passthrough={
+                "stripe": {
+                    "billing_address": {
+                        "city": "city",
+                        "country": "country",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "postal_code": "postalCode",
+                        "state": "state",
+                    },
+                    "customer_name": "customerName",
+                    "invoice_custom_fields": {"foo": "string"},
+                    "metadata": {"foo": "string"},
+                    "payment_method_id": "paymentMethodId",
+                    "shipping_address": {
+                        "city": "city",
+                        "country": "country",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "postal_code": "postalCode",
+                        "state": "state",
+                    },
+                    "tax_ids": [
+                        {
+                            "type": "type",
+                            "value": "value",
+                        }
+                    ],
+                },
+                "zuora": {
+                    "billing_address": {
+                        "city": "city",
+                        "country": "country",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "postal_code": "postalCode",
+                        "state": "state",
+                    },
+                    "currency": "usd",
+                    "metadata": {"foo": "string"},
+                    "payment_method_id": "paymentMethodId",
+                },
+            },
+            timezone="timezone",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 
@@ -801,8 +936,53 @@ class TestAsyncCustomers:
                     "vendor_identifier": "AUTH0",
                 }
             ],
+            language="language",
             metadata={"foo": "string"},
             name="name",
+            passthrough={
+                "stripe": {
+                    "billing_address": {
+                        "city": "city",
+                        "country": "country",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "postal_code": "postalCode",
+                        "state": "state",
+                    },
+                    "customer_name": "customerName",
+                    "invoice_custom_fields": {"foo": "string"},
+                    "metadata": {"foo": "string"},
+                    "payment_method_id": "paymentMethodId",
+                    "shipping_address": {
+                        "city": "city",
+                        "country": "country",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "postal_code": "postalCode",
+                        "state": "state",
+                    },
+                    "tax_ids": [
+                        {
+                            "type": "type",
+                            "value": "value",
+                        }
+                    ],
+                },
+                "zuora": {
+                    "billing_address": {
+                        "city": "city",
+                        "country": "country",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "postal_code": "postalCode",
+                        "state": "state",
+                    },
+                    "currency": "usd",
+                    "metadata": {"foo": "string"},
+                    "payment_method_id": "paymentMethodId",
+                },
+            },
+            timezone="timezone",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 

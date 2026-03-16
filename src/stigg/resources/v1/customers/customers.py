@@ -243,8 +243,11 @@ class CustomersResource(SyncAPIResource):
         coupon_id: Optional[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
         integrations: Iterable[customer_update_params.Integration] | Omit = omit,
+        language: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         name: Optional[str] | Omit = omit,
+        passthrough: customer_update_params.Passthrough | Omit = omit,
+        timezone: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -267,9 +270,15 @@ class CustomersResource(SyncAPIResource):
 
           integrations: List of integrations
 
+          language: Language to use for this customer
+
           metadata: Additional metadata
 
           name: The name of the customer
+
+          passthrough: Vendor-specific billing passthrough fields.
+
+          timezone: Timezone to use for this customer
 
           extra_headers: Send extra headers
 
@@ -290,8 +299,11 @@ class CustomersResource(SyncAPIResource):
                     "coupon_id": coupon_id,
                     "email": email,
                     "integrations": integrations,
+                    "language": language,
                     "metadata": metadata,
                     "name": name,
+                    "passthrough": passthrough,
+                    "timezone": timezone,
                 },
                 customer_update_params.CustomerUpdateParams,
             ),
@@ -628,8 +640,11 @@ class CustomersResource(SyncAPIResource):
         default_payment_method: Optional[customer_provision_params.DefaultPaymentMethod] | Omit = omit,
         email: Optional[str] | Omit = omit,
         integrations: Iterable[customer_provision_params.Integration] | Omit = omit,
+        language: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         name: Optional[str] | Omit = omit,
+        passthrough: customer_provision_params.Passthrough | Omit = omit,
+        timezone: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -656,9 +671,15 @@ class CustomersResource(SyncAPIResource):
 
           integrations: List of integrations
 
+          language: Language to use for this customer
+
           metadata: Additional metadata
 
           name: The name of the customer
+
+          passthrough: Vendor-specific billing passthrough fields.
+
+          timezone: Timezone to use for this customer
 
           extra_headers: Send extra headers
 
@@ -679,8 +700,11 @@ class CustomersResource(SyncAPIResource):
                     "default_payment_method": default_payment_method,
                     "email": email,
                     "integrations": integrations,
+                    "language": language,
                     "metadata": metadata,
                     "name": name,
+                    "passthrough": passthrough,
+                    "timezone": timezone,
                 },
                 customer_provision_params.CustomerProvisionParams,
             ),
@@ -917,8 +941,11 @@ class AsyncCustomersResource(AsyncAPIResource):
         coupon_id: Optional[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
         integrations: Iterable[customer_update_params.Integration] | Omit = omit,
+        language: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         name: Optional[str] | Omit = omit,
+        passthrough: customer_update_params.Passthrough | Omit = omit,
+        timezone: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -941,9 +968,15 @@ class AsyncCustomersResource(AsyncAPIResource):
 
           integrations: List of integrations
 
+          language: Language to use for this customer
+
           metadata: Additional metadata
 
           name: The name of the customer
+
+          passthrough: Vendor-specific billing passthrough fields.
+
+          timezone: Timezone to use for this customer
 
           extra_headers: Send extra headers
 
@@ -964,8 +997,11 @@ class AsyncCustomersResource(AsyncAPIResource):
                     "coupon_id": coupon_id,
                     "email": email,
                     "integrations": integrations,
+                    "language": language,
                     "metadata": metadata,
                     "name": name,
+                    "passthrough": passthrough,
+                    "timezone": timezone,
                 },
                 customer_update_params.CustomerUpdateParams,
             ),
@@ -1302,8 +1338,11 @@ class AsyncCustomersResource(AsyncAPIResource):
         default_payment_method: Optional[customer_provision_params.DefaultPaymentMethod] | Omit = omit,
         email: Optional[str] | Omit = omit,
         integrations: Iterable[customer_provision_params.Integration] | Omit = omit,
+        language: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         name: Optional[str] | Omit = omit,
+        passthrough: customer_provision_params.Passthrough | Omit = omit,
+        timezone: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1330,9 +1369,15 @@ class AsyncCustomersResource(AsyncAPIResource):
 
           integrations: List of integrations
 
+          language: Language to use for this customer
+
           metadata: Additional metadata
 
           name: The name of the customer
+
+          passthrough: Vendor-specific billing passthrough fields.
+
+          timezone: Timezone to use for this customer
 
           extra_headers: Send extra headers
 
@@ -1353,8 +1398,11 @@ class AsyncCustomersResource(AsyncAPIResource):
                     "default_payment_method": default_payment_method,
                     "email": email,
                     "integrations": integrations,
+                    "language": language,
                     "metadata": metadata,
                     "name": name,
+                    "passthrough": passthrough,
+                    "timezone": timezone,
                 },
                 customer_provision_params.CustomerProvisionParams,
             ),
