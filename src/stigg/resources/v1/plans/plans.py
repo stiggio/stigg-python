@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
+from typing import Dict, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -10,13 +10,7 @@ import httpx
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
-from ....types.v1 import (
-    plan_list_params,
-    plan_create_params,
-    plan_update_params,
-    plan_publish_params,
-    plan_set_pricing_params,
-)
+from ....types.v1 import plan_list_params, plan_create_params, plan_update_params, plan_publish_params
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -38,7 +32,6 @@ from ....types.v1.plan import Plan
 from ....types.v1.plan_list_response import PlanListResponse
 from ....types.v1.plan_publish_response import PlanPublishResponse
 from ....types.v1.plan_remove_draft_response import PlanRemoveDraftResponse
-from ....types.v1.set_package_pricing_response import SetPackagePricingResponse
 
 __all__ = ["PlansResource", "AsyncPlansResource"]
 
@@ -183,6 +176,7 @@ class PlansResource(SyncAPIResource):
         id: str,
         *,
         billing_id: Optional[str] | Omit = omit,
+        charges: plan_update_params.Charges | Omit = omit,
         compatible_addon_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         default_trial_config: Optional[plan_update_params.DefaultTrialConfig] | Omit = omit,
         description: Optional[str] | Omit = omit,
@@ -202,6 +196,8 @@ class PlansResource(SyncAPIResource):
 
         Args:
           billing_id: The unique identifier for the entity in the billing provider
+
+          charges: Pricing configuration to set on the plan draft
 
           default_trial_config: Default trial configuration for the plan
 
@@ -228,6 +224,7 @@ class PlansResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "billing_id": billing_id,
+                    "charges": charges,
                     "compatible_addon_ids": compatible_addon_ids,
                     "default_trial_config": default_trial_config,
                     "description": description,
@@ -442,69 +439,6 @@ class PlansResource(SyncAPIResource):
             cast_to=PlanRemoveDraftResponse,
         )
 
-    def set_pricing(
-        self,
-        id: str,
-        *,
-        pricing_type: Literal["FREE", "PAID", "CUSTOM"],
-        billing_id: str | Omit = omit,
-        minimum_spend: Optional[Iterable[plan_set_pricing_params.MinimumSpend]] | Omit = omit,
-        overage_billing_period: Literal["ON_SUBSCRIPTION_RENEWAL", "MONTHLY"] | Omit = omit,
-        overage_pricing_models: Iterable[plan_set_pricing_params.OveragePricingModel] | Omit = omit,
-        pricing_models: Iterable[plan_set_pricing_params.PricingModel] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SetPackagePricingResponse:
-        """
-        Sets the pricing configuration for a plan, including pricing models, overage
-        pricing, and minimum spend.
-
-        Args:
-          pricing_type: The pricing type (FREE, PAID, or CUSTOM)
-
-          billing_id: Deprecated: billing integration ID
-
-          minimum_spend: Minimum spend configuration per billing period
-
-          overage_billing_period: When overage charges are billed
-
-          overage_pricing_models: Array of overage pricing model configurations
-
-          pricing_models: Array of pricing model configurations
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._put(
-            f"/api/v1/plans/{id}/charges",
-            body=maybe_transform(
-                {
-                    "pricing_type": pricing_type,
-                    "billing_id": billing_id,
-                    "minimum_spend": minimum_spend,
-                    "overage_billing_period": overage_billing_period,
-                    "overage_pricing_models": overage_pricing_models,
-                    "pricing_models": pricing_models,
-                },
-                plan_set_pricing_params.PlanSetPricingParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=SetPackagePricingResponse,
-        )
-
 
 class AsyncPlansResource(AsyncAPIResource):
     """Operations related to plans"""
@@ -646,6 +580,7 @@ class AsyncPlansResource(AsyncAPIResource):
         id: str,
         *,
         billing_id: Optional[str] | Omit = omit,
+        charges: plan_update_params.Charges | Omit = omit,
         compatible_addon_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         default_trial_config: Optional[plan_update_params.DefaultTrialConfig] | Omit = omit,
         description: Optional[str] | Omit = omit,
@@ -665,6 +600,8 @@ class AsyncPlansResource(AsyncAPIResource):
 
         Args:
           billing_id: The unique identifier for the entity in the billing provider
+
+          charges: Pricing configuration to set on the plan draft
 
           default_trial_config: Default trial configuration for the plan
 
@@ -691,6 +628,7 @@ class AsyncPlansResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "billing_id": billing_id,
+                    "charges": charges,
                     "compatible_addon_ids": compatible_addon_ids,
                     "default_trial_config": default_trial_config,
                     "description": description,
@@ -905,69 +843,6 @@ class AsyncPlansResource(AsyncAPIResource):
             cast_to=PlanRemoveDraftResponse,
         )
 
-    async def set_pricing(
-        self,
-        id: str,
-        *,
-        pricing_type: Literal["FREE", "PAID", "CUSTOM"],
-        billing_id: str | Omit = omit,
-        minimum_spend: Optional[Iterable[plan_set_pricing_params.MinimumSpend]] | Omit = omit,
-        overage_billing_period: Literal["ON_SUBSCRIPTION_RENEWAL", "MONTHLY"] | Omit = omit,
-        overage_pricing_models: Iterable[plan_set_pricing_params.OveragePricingModel] | Omit = omit,
-        pricing_models: Iterable[plan_set_pricing_params.PricingModel] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SetPackagePricingResponse:
-        """
-        Sets the pricing configuration for a plan, including pricing models, overage
-        pricing, and minimum spend.
-
-        Args:
-          pricing_type: The pricing type (FREE, PAID, or CUSTOM)
-
-          billing_id: Deprecated: billing integration ID
-
-          minimum_spend: Minimum spend configuration per billing period
-
-          overage_billing_period: When overage charges are billed
-
-          overage_pricing_models: Array of overage pricing model configurations
-
-          pricing_models: Array of pricing model configurations
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._put(
-            f"/api/v1/plans/{id}/charges",
-            body=await async_maybe_transform(
-                {
-                    "pricing_type": pricing_type,
-                    "billing_id": billing_id,
-                    "minimum_spend": minimum_spend,
-                    "overage_billing_period": overage_billing_period,
-                    "overage_pricing_models": overage_pricing_models,
-                    "pricing_models": pricing_models,
-                },
-                plan_set_pricing_params.PlanSetPricingParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=SetPackagePricingResponse,
-        )
-
 
 class PlansResourceWithRawResponse:
     def __init__(self, plans: PlansResource) -> None:
@@ -996,9 +871,6 @@ class PlansResourceWithRawResponse:
         )
         self.remove_draft = to_raw_response_wrapper(
             plans.remove_draft,
-        )
-        self.set_pricing = to_raw_response_wrapper(
-            plans.set_pricing,
         )
 
     @cached_property
@@ -1034,9 +906,6 @@ class AsyncPlansResourceWithRawResponse:
         self.remove_draft = async_to_raw_response_wrapper(
             plans.remove_draft,
         )
-        self.set_pricing = async_to_raw_response_wrapper(
-            plans.set_pricing,
-        )
 
     @cached_property
     def entitlements(self) -> AsyncEntitlementsResourceWithRawResponse:
@@ -1071,9 +940,6 @@ class PlansResourceWithStreamingResponse:
         self.remove_draft = to_streamed_response_wrapper(
             plans.remove_draft,
         )
-        self.set_pricing = to_streamed_response_wrapper(
-            plans.set_pricing,
-        )
 
     @cached_property
     def entitlements(self) -> EntitlementsResourceWithStreamingResponse:
@@ -1107,9 +973,6 @@ class AsyncPlansResourceWithStreamingResponse:
         )
         self.remove_draft = async_to_streamed_response_wrapper(
             plans.remove_draft,
-        )
-        self.set_pricing = async_to_streamed_response_wrapper(
-            plans.set_pricing,
         )
 
     @cached_property
