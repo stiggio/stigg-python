@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
+from typing import Dict, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -10,13 +10,7 @@ import httpx
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
-from ....types.v1 import (
-    addon_list_params,
-    addon_create_params,
-    addon_update_params,
-    addon_publish_params,
-    addon_set_pricing_params,
-)
+from ....types.v1 import addon_list_params, addon_create_params, addon_update_params, addon_publish_params
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -38,7 +32,6 @@ from ....types.v1.addon import Addon
 from ....types.v1.addon_list_response import AddonListResponse
 from ....types.v1.addon_publish_response import AddonPublishResponse
 from ....types.v1.addon_remove_draft_response import AddonRemoveDraftResponse
-from ....types.v1.set_package_pricing_response import SetPackagePricingResponse
 
 __all__ = ["AddonsResource", "AsyncAddonsResource"]
 
@@ -179,6 +172,7 @@ class AddonsResource(SyncAPIResource):
         id: str,
         *,
         billing_id: Optional[str] | Omit = omit,
+        charges: addon_update_params.Charges | Omit = omit,
         dependencies: Optional[SequenceNotStr[str]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         display_name: str | Omit = omit,
@@ -198,6 +192,8 @@ class AddonsResource(SyncAPIResource):
 
         Args:
           billing_id: The unique identifier for the entity in the billing provider
+
+          charges: Pricing configuration to set on the addon draft
 
           dependencies: List of addons the addon is dependant on
 
@@ -226,6 +222,7 @@ class AddonsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "billing_id": billing_id,
+                    "charges": charges,
                     "dependencies": dependencies,
                     "description": description,
                     "display_name": display_name,
@@ -440,68 +437,6 @@ class AddonsResource(SyncAPIResource):
             cast_to=AddonRemoveDraftResponse,
         )
 
-    def set_pricing(
-        self,
-        id: str,
-        *,
-        pricing_type: Literal["FREE", "PAID", "CUSTOM"],
-        billing_id: str | Omit = omit,
-        minimum_spend: Optional[Iterable[addon_set_pricing_params.MinimumSpend]] | Omit = omit,
-        overage_billing_period: Literal["ON_SUBSCRIPTION_RENEWAL", "MONTHLY"] | Omit = omit,
-        overage_pricing_models: Iterable[addon_set_pricing_params.OveragePricingModel] | Omit = omit,
-        pricing_models: Iterable[addon_set_pricing_params.PricingModel] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SetPackagePricingResponse:
-        """
-        Sets the pricing configuration for an addon.
-
-        Args:
-          pricing_type: The pricing type (FREE, PAID, or CUSTOM)
-
-          billing_id: Deprecated: billing integration ID
-
-          minimum_spend: Minimum spend configuration per billing period
-
-          overage_billing_period: When overage charges are billed
-
-          overage_pricing_models: Array of overage pricing model configurations
-
-          pricing_models: Array of pricing model configurations
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._put(
-            f"/api/v1/addons/{id}/charges",
-            body=maybe_transform(
-                {
-                    "pricing_type": pricing_type,
-                    "billing_id": billing_id,
-                    "minimum_spend": minimum_spend,
-                    "overage_billing_period": overage_billing_period,
-                    "overage_pricing_models": overage_pricing_models,
-                    "pricing_models": pricing_models,
-                },
-                addon_set_pricing_params.AddonSetPricingParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=SetPackagePricingResponse,
-        )
-
 
 class AsyncAddonsResource(AsyncAPIResource):
     """Operations related to addons"""
@@ -639,6 +574,7 @@ class AsyncAddonsResource(AsyncAPIResource):
         id: str,
         *,
         billing_id: Optional[str] | Omit = omit,
+        charges: addon_update_params.Charges | Omit = omit,
         dependencies: Optional[SequenceNotStr[str]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         display_name: str | Omit = omit,
@@ -658,6 +594,8 @@ class AsyncAddonsResource(AsyncAPIResource):
 
         Args:
           billing_id: The unique identifier for the entity in the billing provider
+
+          charges: Pricing configuration to set on the addon draft
 
           dependencies: List of addons the addon is dependant on
 
@@ -686,6 +624,7 @@ class AsyncAddonsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "billing_id": billing_id,
+                    "charges": charges,
                     "dependencies": dependencies,
                     "description": description,
                     "display_name": display_name,
@@ -902,68 +841,6 @@ class AsyncAddonsResource(AsyncAPIResource):
             cast_to=AddonRemoveDraftResponse,
         )
 
-    async def set_pricing(
-        self,
-        id: str,
-        *,
-        pricing_type: Literal["FREE", "PAID", "CUSTOM"],
-        billing_id: str | Omit = omit,
-        minimum_spend: Optional[Iterable[addon_set_pricing_params.MinimumSpend]] | Omit = omit,
-        overage_billing_period: Literal["ON_SUBSCRIPTION_RENEWAL", "MONTHLY"] | Omit = omit,
-        overage_pricing_models: Iterable[addon_set_pricing_params.OveragePricingModel] | Omit = omit,
-        pricing_models: Iterable[addon_set_pricing_params.PricingModel] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SetPackagePricingResponse:
-        """
-        Sets the pricing configuration for an addon.
-
-        Args:
-          pricing_type: The pricing type (FREE, PAID, or CUSTOM)
-
-          billing_id: Deprecated: billing integration ID
-
-          minimum_spend: Minimum spend configuration per billing period
-
-          overage_billing_period: When overage charges are billed
-
-          overage_pricing_models: Array of overage pricing model configurations
-
-          pricing_models: Array of pricing model configurations
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._put(
-            f"/api/v1/addons/{id}/charges",
-            body=await async_maybe_transform(
-                {
-                    "pricing_type": pricing_type,
-                    "billing_id": billing_id,
-                    "minimum_spend": minimum_spend,
-                    "overage_billing_period": overage_billing_period,
-                    "overage_pricing_models": overage_pricing_models,
-                    "pricing_models": pricing_models,
-                },
-                addon_set_pricing_params.AddonSetPricingParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=SetPackagePricingResponse,
-        )
-
 
 class AddonsResourceWithRawResponse:
     def __init__(self, addons: AddonsResource) -> None:
@@ -992,9 +869,6 @@ class AddonsResourceWithRawResponse:
         )
         self.remove_draft = to_raw_response_wrapper(
             addons.remove_draft,
-        )
-        self.set_pricing = to_raw_response_wrapper(
-            addons.set_pricing,
         )
 
     @cached_property
@@ -1030,9 +904,6 @@ class AsyncAddonsResourceWithRawResponse:
         self.remove_draft = async_to_raw_response_wrapper(
             addons.remove_draft,
         )
-        self.set_pricing = async_to_raw_response_wrapper(
-            addons.set_pricing,
-        )
 
     @cached_property
     def entitlements(self) -> AsyncEntitlementsResourceWithRawResponse:
@@ -1067,9 +938,6 @@ class AddonsResourceWithStreamingResponse:
         self.remove_draft = to_streamed_response_wrapper(
             addons.remove_draft,
         )
-        self.set_pricing = to_streamed_response_wrapper(
-            addons.set_pricing,
-        )
 
     @cached_property
     def entitlements(self) -> EntitlementsResourceWithStreamingResponse:
@@ -1103,9 +971,6 @@ class AsyncAddonsResourceWithStreamingResponse:
         )
         self.remove_draft = async_to_streamed_response_wrapper(
             addons.remove_draft,
-        )
-        self.set_pricing = async_to_streamed_response_wrapper(
-            addons.set_pricing,
         )
 
     @cached_property

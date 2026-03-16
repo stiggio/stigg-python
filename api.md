@@ -196,14 +196,7 @@ Methods:
 Types:
 
 ```python
-from stigg.types.v1 import (
-    Addon,
-    SetPackagePricing,
-    SetPackagePricingResponse,
-    AddonListResponse,
-    AddonPublishResponse,
-    AddonRemoveDraftResponse,
-)
+from stigg.types.v1 import Addon, AddonListResponse, AddonPublishResponse, AddonRemoveDraftResponse
 ```
 
 Methods:
@@ -216,7 +209,6 @@ Methods:
 - <code title="post /api/v1/addons/{id}/draft">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">create_draft</a>(id) -> <a href="./src/stigg/types/v1/addon.py">Addon</a></code>
 - <code title="post /api/v1/addons/{id}/publish">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">publish</a>(id, \*\*<a href="src/stigg/types/v1/addon_publish_params.py">params</a>) -> <a href="./src/stigg/types/v1/addon_publish_response.py">AddonPublishResponse</a></code>
 - <code title="delete /api/v1/addons/{id}/draft">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">remove_draft</a>(id) -> <a href="./src/stigg/types/v1/addon_remove_draft_response.py">AddonRemoveDraftResponse</a></code>
-- <code title="put /api/v1/addons/{id}/charges">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">set_pricing</a>(id, \*\*<a href="src/stigg/types/v1/addon_set_pricing_params.py">params</a>) -> <a href="./src/stigg/types/v1/set_package_pricing_response.py">SetPackagePricingResponse</a></code>
 
 ### Entitlements
 
@@ -255,7 +247,6 @@ Methods:
 - <code title="post /api/v1/plans/{id}/draft">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">create_draft</a>(id) -> <a href="./src/stigg/types/v1/plan.py">Plan</a></code>
 - <code title="post /api/v1/plans/{id}/publish">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">publish</a>(id, \*\*<a href="src/stigg/types/v1/plan_publish_params.py">params</a>) -> <a href="./src/stigg/types/v1/plan_publish_response.py">PlanPublishResponse</a></code>
 - <code title="delete /api/v1/plans/{id}/draft">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">remove_draft</a>(id) -> <a href="./src/stigg/types/v1/plan_remove_draft_response.py">PlanRemoveDraftResponse</a></code>
-- <code title="put /api/v1/plans/{id}/charges">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">set_pricing</a>(id, \*\*<a href="src/stigg/types/v1/plan_set_pricing_params.py">params</a>) -> <a href="./src/stigg/types/v1/set_package_pricing_response.py">SetPackagePricingResponse</a></code>
 
 ### Entitlements
 

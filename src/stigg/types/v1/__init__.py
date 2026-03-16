@@ -34,8 +34,6 @@ from .customer_import_params import CustomerImportParams as CustomerImportParams
 from .customer_list_response import CustomerListResponse as CustomerListResponse
 from .customer_update_params import CustomerUpdateParams as CustomerUpdateParams
 from .usage_history_response import UsageHistoryResponse as UsageHistoryResponse
-from .plan_set_pricing_params import PlanSetPricingParams as PlanSetPricingParams
-from .addon_set_pricing_params import AddonSetPricingParams as AddonSetPricingParams
 from .customer_import_response import CustomerImportResponse as CustomerImportResponse
 from .subscription_list_params import SubscriptionListParams as SubscriptionListParams
 from .customer_provision_params import CustomerProvisionParams as CustomerProvisionParams
@@ -50,7 +48,6 @@ from .subscription_migrate_params import SubscriptionMigrateParams as Subscripti
 from .subscription_preview_params import SubscriptionPreviewParams as SubscriptionPreviewParams
 from .feature_list_features_params import FeatureListFeaturesParams as FeatureListFeaturesParams
 from .product_list_products_params import ProductListProductsParams as ProductListProductsParams
-from .set_package_pricing_response import SetPackagePricingResponse as SetPackagePricingResponse
 from .subscription_delegate_params import SubscriptionDelegateParams as SubscriptionDelegateParams
 from .subscription_import_response import SubscriptionImportResponse as SubscriptionImportResponse
 from .subscription_transfer_params import SubscriptionTransferParams as SubscriptionTransferParams

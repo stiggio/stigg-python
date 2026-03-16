@@ -143,6 +143,13 @@ class EntitlementCredit(TypedDict, total=False):
     behavior: Literal["Increment", "Override"]
     """Entitlement behavior (Increment or Override)"""
 
+    dependency_feature_id: Annotated[str, PropertyInfo(alias="dependencyFeatureId")]
+    """The feature ID this entitlement depends on.
+
+    The entitlement value will be calculated as: base amount × dependency feature
+    usage limit
+    """
+
     description: str
     """Description of the entitlement"""
 

@@ -15,7 +15,6 @@ from stigg.types.v1 import (
     AddonListResponse,
     AddonPublishResponse,
     AddonRemoveDraftResponse,
-    SetPackagePricingResponse,
 )
 from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 
@@ -137,6 +136,113 @@ class TestAddons:
         addon = client.v1.addons.update(
             id="x",
             billing_id="billingId",
+            charges={
+                "pricing_type": "FREE",
+                "billing_id": "billingId",
+                "minimum_spend": [
+                    {
+                        "billing_period": "MONTHLY",
+                        "minimum": {
+                            "amount": 0,
+                            "currency": "usd",
+                        },
+                    }
+                ],
+                "overage_billing_period": "ON_SUBSCRIPTION_RENEWAL",
+                "overage_pricing_models": [
+                    {
+                        "billing_model": "FLAT_FEE",
+                        "price_periods": [
+                            {
+                                "billing_period": "MONTHLY",
+                                "billing_country_code": "billingCountryCode",
+                                "block_size": 0,
+                                "credit_grant_cadence": "BEGINNING_OF_BILLING_PERIOD",
+                                "credit_rate": {
+                                    "amount": 1,
+                                    "currency_id": "currencyId",
+                                    "cost_formula": "costFormula",
+                                },
+                                "price": {
+                                    "amount": 0,
+                                    "currency": "usd",
+                                },
+                                "tiers": [
+                                    {
+                                        "flat_price": {
+                                            "amount": 0,
+                                            "currency": "usd",
+                                        },
+                                        "unit_price": {
+                                            "amount": 0,
+                                            "currency": "usd",
+                                        },
+                                        "up_to": 0,
+                                    }
+                                ],
+                            }
+                        ],
+                        "billing_cadence": "RECURRING",
+                        "entitlement": {
+                            "feature_id": "featureId",
+                            "has_soft_limit": True,
+                            "has_unlimited_usage": True,
+                            "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                            "reset_period": "YEAR",
+                            "usage_limit": 0,
+                            "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                            "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                        },
+                        "feature_id": "featureId",
+                        "top_up_custom_currency_id": "topUpCustomCurrencyId",
+                    }
+                ],
+                "pricing_models": [
+                    {
+                        "billing_model": "FLAT_FEE",
+                        "price_periods": [
+                            {
+                                "billing_period": "MONTHLY",
+                                "billing_country_code": "billingCountryCode",
+                                "block_size": 0,
+                                "credit_grant_cadence": "BEGINNING_OF_BILLING_PERIOD",
+                                "credit_rate": {
+                                    "amount": 1,
+                                    "currency_id": "currencyId",
+                                    "cost_formula": "costFormula",
+                                },
+                                "price": {
+                                    "amount": 0,
+                                    "currency": "usd",
+                                },
+                                "tiers": [
+                                    {
+                                        "flat_price": {
+                                            "amount": 0,
+                                            "currency": "usd",
+                                        },
+                                        "unit_price": {
+                                            "amount": 0,
+                                            "currency": "usd",
+                                        },
+                                        "up_to": 0,
+                                    }
+                                ],
+                            }
+                        ],
+                        "billing_cadence": "RECURRING",
+                        "feature_id": "featureId",
+                        "max_unit_quantity": 1,
+                        "min_unit_quantity": 1,
+                        "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                        "reset_period": "YEAR",
+                        "tiers_mode": "VOLUME",
+                        "top_up_custom_currency_id": "topUpCustomCurrencyId",
+                        "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                        "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    }
+                ],
+            },
             dependencies=["string"],
             description="description",
             display_name="displayName",
@@ -398,165 +504,6 @@ class TestAddons:
                 "",
             )
 
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_method_set_pricing(self, client: Stigg) -> None:
-        addon = client.v1.addons.set_pricing(
-            id="x",
-            pricing_type="FREE",
-        )
-        assert_matches_type(SetPackagePricingResponse, addon, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_method_set_pricing_with_all_params(self, client: Stigg) -> None:
-        addon = client.v1.addons.set_pricing(
-            id="x",
-            pricing_type="FREE",
-            billing_id="billingId",
-            minimum_spend=[
-                {
-                    "billing_period": "MONTHLY",
-                    "minimum": {
-                        "amount": 0,
-                        "currency": "usd",
-                    },
-                }
-            ],
-            overage_billing_period="ON_SUBSCRIPTION_RENEWAL",
-            overage_pricing_models=[
-                {
-                    "billing_model": "FLAT_FEE",
-                    "price_periods": [
-                        {
-                            "billing_period": "MONTHLY",
-                            "billing_country_code": "billingCountryCode",
-                            "block_size": 0,
-                            "credit_grant_cadence": "BEGINNING_OF_BILLING_PERIOD",
-                            "credit_rate": {
-                                "amount": 1,
-                                "currency_id": "currencyId",
-                                "cost_formula": "costFormula",
-                            },
-                            "price": {
-                                "amount": 0,
-                                "currency": "usd",
-                            },
-                            "tiers": [
-                                {
-                                    "flat_price": {
-                                        "amount": 0,
-                                        "currency": "usd",
-                                    },
-                                    "unit_price": {
-                                        "amount": 0,
-                                        "currency": "usd",
-                                    },
-                                    "up_to": 0,
-                                }
-                            ],
-                        }
-                    ],
-                    "billing_cadence": "RECURRING",
-                    "entitlement": {
-                        "feature_id": "featureId",
-                        "has_soft_limit": True,
-                        "has_unlimited_usage": True,
-                        "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                        "reset_period": "YEAR",
-                        "usage_limit": 0,
-                        "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                        "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                    },
-                    "feature_id": "featureId",
-                    "top_up_custom_currency_id": "topUpCustomCurrencyId",
-                }
-            ],
-            pricing_models=[
-                {
-                    "billing_model": "FLAT_FEE",
-                    "price_periods": [
-                        {
-                            "billing_period": "MONTHLY",
-                            "billing_country_code": "billingCountryCode",
-                            "block_size": 0,
-                            "credit_grant_cadence": "BEGINNING_OF_BILLING_PERIOD",
-                            "credit_rate": {
-                                "amount": 1,
-                                "currency_id": "currencyId",
-                                "cost_formula": "costFormula",
-                            },
-                            "price": {
-                                "amount": 0,
-                                "currency": "usd",
-                            },
-                            "tiers": [
-                                {
-                                    "flat_price": {
-                                        "amount": 0,
-                                        "currency": "usd",
-                                    },
-                                    "unit_price": {
-                                        "amount": 0,
-                                        "currency": "usd",
-                                    },
-                                    "up_to": 0,
-                                }
-                            ],
-                        }
-                    ],
-                    "billing_cadence": "RECURRING",
-                    "feature_id": "featureId",
-                    "max_unit_quantity": 1,
-                    "min_unit_quantity": 1,
-                    "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                    "reset_period": "YEAR",
-                    "tiers_mode": "VOLUME",
-                    "top_up_custom_currency_id": "topUpCustomCurrencyId",
-                    "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                    "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                }
-            ],
-        )
-        assert_matches_type(SetPackagePricingResponse, addon, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_raw_response_set_pricing(self, client: Stigg) -> None:
-        response = client.v1.addons.with_raw_response.set_pricing(
-            id="x",
-            pricing_type="FREE",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        addon = response.parse()
-        assert_matches_type(SetPackagePricingResponse, addon, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_streaming_response_set_pricing(self, client: Stigg) -> None:
-        with client.v1.addons.with_streaming_response.set_pricing(
-            id="x",
-            pricing_type="FREE",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            addon = response.parse()
-            assert_matches_type(SetPackagePricingResponse, addon, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_path_params_set_pricing(self, client: Stigg) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.v1.addons.with_raw_response.set_pricing(
-                id="",
-                pricing_type="FREE",
-            )
-
 
 class TestAsyncAddons:
     parametrize = pytest.mark.parametrize(
@@ -675,6 +622,113 @@ class TestAsyncAddons:
         addon = await async_client.v1.addons.update(
             id="x",
             billing_id="billingId",
+            charges={
+                "pricing_type": "FREE",
+                "billing_id": "billingId",
+                "minimum_spend": [
+                    {
+                        "billing_period": "MONTHLY",
+                        "minimum": {
+                            "amount": 0,
+                            "currency": "usd",
+                        },
+                    }
+                ],
+                "overage_billing_period": "ON_SUBSCRIPTION_RENEWAL",
+                "overage_pricing_models": [
+                    {
+                        "billing_model": "FLAT_FEE",
+                        "price_periods": [
+                            {
+                                "billing_period": "MONTHLY",
+                                "billing_country_code": "billingCountryCode",
+                                "block_size": 0,
+                                "credit_grant_cadence": "BEGINNING_OF_BILLING_PERIOD",
+                                "credit_rate": {
+                                    "amount": 1,
+                                    "currency_id": "currencyId",
+                                    "cost_formula": "costFormula",
+                                },
+                                "price": {
+                                    "amount": 0,
+                                    "currency": "usd",
+                                },
+                                "tiers": [
+                                    {
+                                        "flat_price": {
+                                            "amount": 0,
+                                            "currency": "usd",
+                                        },
+                                        "unit_price": {
+                                            "amount": 0,
+                                            "currency": "usd",
+                                        },
+                                        "up_to": 0,
+                                    }
+                                ],
+                            }
+                        ],
+                        "billing_cadence": "RECURRING",
+                        "entitlement": {
+                            "feature_id": "featureId",
+                            "has_soft_limit": True,
+                            "has_unlimited_usage": True,
+                            "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                            "reset_period": "YEAR",
+                            "usage_limit": 0,
+                            "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                            "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                        },
+                        "feature_id": "featureId",
+                        "top_up_custom_currency_id": "topUpCustomCurrencyId",
+                    }
+                ],
+                "pricing_models": [
+                    {
+                        "billing_model": "FLAT_FEE",
+                        "price_periods": [
+                            {
+                                "billing_period": "MONTHLY",
+                                "billing_country_code": "billingCountryCode",
+                                "block_size": 0,
+                                "credit_grant_cadence": "BEGINNING_OF_BILLING_PERIOD",
+                                "credit_rate": {
+                                    "amount": 1,
+                                    "currency_id": "currencyId",
+                                    "cost_formula": "costFormula",
+                                },
+                                "price": {
+                                    "amount": 0,
+                                    "currency": "usd",
+                                },
+                                "tiers": [
+                                    {
+                                        "flat_price": {
+                                            "amount": 0,
+                                            "currency": "usd",
+                                        },
+                                        "unit_price": {
+                                            "amount": 0,
+                                            "currency": "usd",
+                                        },
+                                        "up_to": 0,
+                                    }
+                                ],
+                            }
+                        ],
+                        "billing_cadence": "RECURRING",
+                        "feature_id": "featureId",
+                        "max_unit_quantity": 1,
+                        "min_unit_quantity": 1,
+                        "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                        "reset_period": "YEAR",
+                        "tiers_mode": "VOLUME",
+                        "top_up_custom_currency_id": "topUpCustomCurrencyId",
+                        "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                        "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    }
+                ],
+            },
             dependencies=["string"],
             description="description",
             display_name="displayName",
@@ -934,163 +988,4 @@ class TestAsyncAddons:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.addons.with_raw_response.remove_draft(
                 "",
-            )
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_method_set_pricing(self, async_client: AsyncStigg) -> None:
-        addon = await async_client.v1.addons.set_pricing(
-            id="x",
-            pricing_type="FREE",
-        )
-        assert_matches_type(SetPackagePricingResponse, addon, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_method_set_pricing_with_all_params(self, async_client: AsyncStigg) -> None:
-        addon = await async_client.v1.addons.set_pricing(
-            id="x",
-            pricing_type="FREE",
-            billing_id="billingId",
-            minimum_spend=[
-                {
-                    "billing_period": "MONTHLY",
-                    "minimum": {
-                        "amount": 0,
-                        "currency": "usd",
-                    },
-                }
-            ],
-            overage_billing_period="ON_SUBSCRIPTION_RENEWAL",
-            overage_pricing_models=[
-                {
-                    "billing_model": "FLAT_FEE",
-                    "price_periods": [
-                        {
-                            "billing_period": "MONTHLY",
-                            "billing_country_code": "billingCountryCode",
-                            "block_size": 0,
-                            "credit_grant_cadence": "BEGINNING_OF_BILLING_PERIOD",
-                            "credit_rate": {
-                                "amount": 1,
-                                "currency_id": "currencyId",
-                                "cost_formula": "costFormula",
-                            },
-                            "price": {
-                                "amount": 0,
-                                "currency": "usd",
-                            },
-                            "tiers": [
-                                {
-                                    "flat_price": {
-                                        "amount": 0,
-                                        "currency": "usd",
-                                    },
-                                    "unit_price": {
-                                        "amount": 0,
-                                        "currency": "usd",
-                                    },
-                                    "up_to": 0,
-                                }
-                            ],
-                        }
-                    ],
-                    "billing_cadence": "RECURRING",
-                    "entitlement": {
-                        "feature_id": "featureId",
-                        "has_soft_limit": True,
-                        "has_unlimited_usage": True,
-                        "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                        "reset_period": "YEAR",
-                        "usage_limit": 0,
-                        "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                        "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                    },
-                    "feature_id": "featureId",
-                    "top_up_custom_currency_id": "topUpCustomCurrencyId",
-                }
-            ],
-            pricing_models=[
-                {
-                    "billing_model": "FLAT_FEE",
-                    "price_periods": [
-                        {
-                            "billing_period": "MONTHLY",
-                            "billing_country_code": "billingCountryCode",
-                            "block_size": 0,
-                            "credit_grant_cadence": "BEGINNING_OF_BILLING_PERIOD",
-                            "credit_rate": {
-                                "amount": 1,
-                                "currency_id": "currencyId",
-                                "cost_formula": "costFormula",
-                            },
-                            "price": {
-                                "amount": 0,
-                                "currency": "usd",
-                            },
-                            "tiers": [
-                                {
-                                    "flat_price": {
-                                        "amount": 0,
-                                        "currency": "usd",
-                                    },
-                                    "unit_price": {
-                                        "amount": 0,
-                                        "currency": "usd",
-                                    },
-                                    "up_to": 0,
-                                }
-                            ],
-                        }
-                    ],
-                    "billing_cadence": "RECURRING",
-                    "feature_id": "featureId",
-                    "max_unit_quantity": 1,
-                    "min_unit_quantity": 1,
-                    "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                    "reset_period": "YEAR",
-                    "tiers_mode": "VOLUME",
-                    "top_up_custom_currency_id": "topUpCustomCurrencyId",
-                    "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                    "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
-                }
-            ],
-        )
-        assert_matches_type(SetPackagePricingResponse, addon, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_raw_response_set_pricing(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v1.addons.with_raw_response.set_pricing(
-            id="x",
-            pricing_type="FREE",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        addon = await response.parse()
-        assert_matches_type(SetPackagePricingResponse, addon, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_streaming_response_set_pricing(self, async_client: AsyncStigg) -> None:
-        async with async_client.v1.addons.with_streaming_response.set_pricing(
-            id="x",
-            pricing_type="FREE",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            addon = await response.parse()
-            assert_matches_type(SetPackagePricingResponse, addon, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_path_params_set_pricing(self, async_client: AsyncStigg) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.v1.addons.with_raw_response.set_pricing(
-                id="",
-                pricing_type="FREE",
             )

@@ -177,6 +177,7 @@ class EntitlementsResource(SyncAPIResource):
         amount: float | Omit = omit,
         behavior: Literal["Increment", "Override"] | Omit = omit,
         cadence: Literal["MONTH", "YEAR"] | Omit = omit,
+        dependency_feature_id: Optional[str] | Omit = omit,
         description: str | Omit = omit,
         display_name_override: str | Omit = omit,
         hidden_from_widgets: List[Literal["PAYWALL", "CUSTOMER_PORTAL", "CHECKOUT"]] | Omit = omit,
@@ -201,6 +202,9 @@ class EntitlementsResource(SyncAPIResource):
           behavior: Entitlement behavior (Increment or Override)
 
           cadence: Credit grant cadence (MONTH or YEAR)
+
+          dependency_feature_id: The feature ID this entitlement depends on. The entitlement value will be
+              calculated as: base amount × dependency feature usage limit
 
           description: Description of the entitlement
 
@@ -257,6 +261,7 @@ class EntitlementsResource(SyncAPIResource):
         | Omit = omit,
         amount: float | Omit = omit,
         cadence: Literal["MONTH", "YEAR"] | Omit = omit,
+        dependency_feature_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -290,6 +295,7 @@ class EntitlementsResource(SyncAPIResource):
                     "yearly_reset_period_configuration": yearly_reset_period_configuration,
                     "amount": amount,
                     "cadence": cadence,
+                    "dependency_feature_id": dependency_feature_id,
                 },
                 entitlement_update_params.EntitlementUpdateParams,
             ),
@@ -522,6 +528,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         amount: float | Omit = omit,
         behavior: Literal["Increment", "Override"] | Omit = omit,
         cadence: Literal["MONTH", "YEAR"] | Omit = omit,
+        dependency_feature_id: Optional[str] | Omit = omit,
         description: str | Omit = omit,
         display_name_override: str | Omit = omit,
         hidden_from_widgets: List[Literal["PAYWALL", "CUSTOMER_PORTAL", "CHECKOUT"]] | Omit = omit,
@@ -546,6 +553,9 @@ class AsyncEntitlementsResource(AsyncAPIResource):
           behavior: Entitlement behavior (Increment or Override)
 
           cadence: Credit grant cadence (MONTH or YEAR)
+
+          dependency_feature_id: The feature ID this entitlement depends on. The entitlement value will be
+              calculated as: base amount × dependency feature usage limit
 
           description: Description of the entitlement
 
@@ -602,6 +612,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         | Omit = omit,
         amount: float | Omit = omit,
         cadence: Literal["MONTH", "YEAR"] | Omit = omit,
+        dependency_feature_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -635,6 +646,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
                     "yearly_reset_period_configuration": yearly_reset_period_configuration,
                     "amount": amount,
                     "cadence": cadence,
+                    "dependency_feature_id": dependency_feature_id,
                 },
                 entitlement_update_params.EntitlementUpdateParams,
             ),
