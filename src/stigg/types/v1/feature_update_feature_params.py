@@ -56,10 +56,12 @@ class MeterAggregation(TypedDict, total=False):
     function: Required[Literal["SUM", "MAX", "MIN", "AVG", "COUNT", "UNIQUE"]]
 
     field: str
+    """Aggregation field name"""
 
 
 class MeterFilterCondition(TypedDict, total=False):
     field: Required[str]
+    """Condition field name"""
 
     operation: Required[
         Literal[
@@ -79,6 +81,7 @@ class MeterFilterCondition(TypedDict, total=False):
     ]
 
     value: str
+    """Condition value"""
 
     values: SequenceNotStr[str]
 
