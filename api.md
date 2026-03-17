@@ -10,6 +10,7 @@ from stigg.types.v1 import (
     CustomerListResponse,
     CustomerImportResponse,
     CustomerListResourcesResponse,
+    CustomerRetrieveEntitlementsResponse,
 )
 ```
 
@@ -22,6 +23,7 @@ Methods:
 - <code title="post /api/v1/customers/import">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">import\_</a>(\*\*<a href="src/stigg/types/v1/customer_import_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_import_response.py">CustomerImportResponse</a></code>
 - <code title="get /api/v1/customers/{id}/resources">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">list_resources</a>(id, \*\*<a href="src/stigg/types/v1/customer_list_resources_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_list_resources_response.py">SyncMyCursorIDPage[CustomerListResourcesResponse]</a></code>
 - <code title="post /api/v1/customers">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">provision</a>(\*\*<a href="src/stigg/types/v1/customer_provision_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_response.py">CustomerResponse</a></code>
+- <code title="get /api/v1/customers/{id}/entitlements">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">retrieve_entitlements</a>(id, \*\*<a href="src/stigg/types/v1/customer_retrieve_entitlements_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_retrieve_entitlements_response.py">CustomerRetrieveEntitlementsResponse</a></code>
 - <code title="post /api/v1/customers/{id}/unarchive">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">unarchive</a>(id) -> <a href="./src/stigg/types/v1/customer_response.py">CustomerResponse</a></code>
 
 ### PaymentMethod
