@@ -30,7 +30,13 @@ class CreditListLedgerResponse(BaseModel):
     """The unique event identifier"""
 
     event_type: Literal[
-        "CREDITS_GRANTED", "CREDITS_EXPIRED", "CREDITS_CONSUMED", "CREDITS_VOIDED", "CREDITS_UPDATED"
+        "CREDITS_GRANTED",
+        "CREDITS_EXPIRED",
+        "CREDITS_CONSUMED",
+        "CREDITS_VOIDED",
+        "CREDITS_UPDATED",
+        "CREDITS_CONSUMPTION_TRANSFER_SOURCE",
+        "CREDITS_CONSUMPTION_TRANSFER_TARGET",
     ] = FieldInfo(alias="eventType")
     """The type of credit event"""
 
