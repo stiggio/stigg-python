@@ -63,3 +63,9 @@ from .product_list_products_response import ProductListProductsResponse as Produ
 from .subscription_provision_response import SubscriptionProvisionResponse as SubscriptionProvisionResponse
 from .customer_list_resources_response import CustomerListResourcesResponse as CustomerListResourcesResponse
 from .product_duplicate_product_params import ProductDuplicateProductParams as ProductDuplicateProductParams
+from .customer_retrieve_entitlements_params import (
+    CustomerRetrieveEntitlementsParams as CustomerRetrieveEntitlementsParams,
+)
+from .customer_retrieve_entitlements_response import (
+    CustomerRetrieveEntitlementsResponse as CustomerRetrieveEntitlementsResponse,
+)
