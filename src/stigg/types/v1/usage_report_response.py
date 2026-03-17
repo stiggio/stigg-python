@@ -28,7 +28,7 @@ class Data(BaseModel):
     timestamp: datetime
     """Timestamp"""
 
-    value: float
+    value: int
     """The usage measurement record"""
 
     current_usage: Optional[float] = FieldInfo(alias="currentUsage", default=None)
