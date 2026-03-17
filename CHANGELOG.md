@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.21 (2026-03-17)
+
+Full Changelog: [v0.1.0-alpha.20...v0.1.0-alpha.21](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.20...v0.1.0-alpha.21)
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([4eb0d15](https://github.com/stiggio/stigg-python/commit/4eb0d1587909294cd59a147e19c363f29721760b))
+* **pydantic:** do not pass `by_alias` unless set ([16d0c72](https://github.com/stiggio/stigg-python/commit/16d0c72b4beefbee81b59741a53ab82d723919ca))
+
+
+### Chores
+
+* **internal:** tweak CI branches ([c49033b](https://github.com/stiggio/stigg-python/commit/c49033bcb16dc8098241d03ea4e368e8e1263dce))
+
 ## 0.1.0-alpha.20 (2026-03-16)
 
 Full Changelog: [v0.1.0-alpha.19...v0.1.0-alpha.20](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.19...v0.1.0-alpha.20)
