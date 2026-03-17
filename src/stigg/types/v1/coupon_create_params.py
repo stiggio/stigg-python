@@ -29,7 +29,7 @@ class CouponCreateParams(TypedDict, total=False):
     name: Required[str]
     """Name of the coupon"""
 
-    percent_off: Required[Annotated[Optional[int], PropertyInfo(alias="percentOff")]]
+    percent_off: Required[Annotated[Optional[float], PropertyInfo(alias="percentOff")]]
     """Percentage discount off the original price"""
 
 

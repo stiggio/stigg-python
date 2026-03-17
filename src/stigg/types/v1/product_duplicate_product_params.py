@@ -11,7 +11,7 @@ __all__ = ["ProductDuplicateProductParams"]
 
 
 class ProductDuplicateProductParams(TypedDict, total=False):
-    body_id: Required[Annotated[str, PropertyInfo(alias="id")]]
+    target_id: Required[Annotated[str, PropertyInfo(alias="targetId")]]
     """The unique identifier for the entity"""
 
     description: Optional[str]
