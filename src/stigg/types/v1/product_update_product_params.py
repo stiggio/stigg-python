@@ -52,6 +52,10 @@ class ProductSettings(TypedDict, total=False):
     """ID of the plan to downgrade to at the end of the billing period"""
 
     prorate_at_end_of_billing_period: Annotated[Optional[bool], PropertyInfo(alias="prorateAtEndOfBillingPeriod")]
+    """
+    Indicates if the subscription should be prorated at the end of the billing
+    period
+    """
 
     subscription_start_plan_id: Annotated[Optional[str], PropertyInfo(alias="subscriptionStartPlanId")]
     """ID of the plan to start the subscription with"""
