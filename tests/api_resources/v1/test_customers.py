@@ -15,6 +15,7 @@ from stigg.types.v1 import (
     CustomerListResponse,
     CustomerImportResponse,
     CustomerListResourcesResponse,
+    CustomerRetrieveEntitlementsResponse,
 )
 from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 
@@ -493,6 +494,57 @@ class TestCustomers:
             assert_matches_type(CustomerResponse, customer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_entitlements(self, client: Stigg) -> None:
+        customer = client.v1.customers.retrieve_entitlements(
+            id="x",
+        )
+        assert_matches_type(CustomerRetrieveEntitlementsResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_entitlements_with_all_params(self, client: Stigg) -> None:
+        customer = client.v1.customers.retrieve_entitlements(
+            id="x",
+            resource_id="resourceId",
+        )
+        assert_matches_type(CustomerRetrieveEntitlementsResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_retrieve_entitlements(self, client: Stigg) -> None:
+        response = client.v1.customers.with_raw_response.retrieve_entitlements(
+            id="x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = response.parse()
+        assert_matches_type(CustomerRetrieveEntitlementsResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_retrieve_entitlements(self, client: Stigg) -> None:
+        with client.v1.customers.with_streaming_response.retrieve_entitlements(
+            id="x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = response.parse()
+            assert_matches_type(CustomerRetrieveEntitlementsResponse, customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_retrieve_entitlements(self, client: Stigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.v1.customers.with_raw_response.retrieve_entitlements(
+                id="",
+            )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -1011,6 +1063,57 @@ class TestAsyncCustomers:
             assert_matches_type(CustomerResponse, customer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_entitlements(self, async_client: AsyncStigg) -> None:
+        customer = await async_client.v1.customers.retrieve_entitlements(
+            id="x",
+        )
+        assert_matches_type(CustomerRetrieveEntitlementsResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_entitlements_with_all_params(self, async_client: AsyncStigg) -> None:
+        customer = await async_client.v1.customers.retrieve_entitlements(
+            id="x",
+            resource_id="resourceId",
+        )
+        assert_matches_type(CustomerRetrieveEntitlementsResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_retrieve_entitlements(self, async_client: AsyncStigg) -> None:
+        response = await async_client.v1.customers.with_raw_response.retrieve_entitlements(
+            id="x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = await response.parse()
+        assert_matches_type(CustomerRetrieveEntitlementsResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_retrieve_entitlements(self, async_client: AsyncStigg) -> None:
+        async with async_client.v1.customers.with_streaming_response.retrieve_entitlements(
+            id="x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = await response.parse()
+            assert_matches_type(CustomerRetrieveEntitlementsResponse, customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_retrieve_entitlements(self, async_client: AsyncStigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.v1.customers.with_raw_response.retrieve_entitlements(
+                id="",
+            )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize

@@ -16,6 +16,7 @@ from ....types.v1 import (
     customer_update_params,
     customer_provision_params,
     customer_list_resources_params,
+    customer_retrieve_entitlements_params,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -46,6 +47,7 @@ from ....types.v1.customer_response import CustomerResponse
 from ....types.v1.customer_list_response import CustomerListResponse
 from ....types.v1.customer_import_response import CustomerImportResponse
 from ....types.v1.customer_list_resources_response import CustomerListResourcesResponse
+from ....types.v1.customer_retrieve_entitlements_response import CustomerRetrieveEntitlementsResponse
 
 __all__ = ["CustomersResource", "AsyncCustomersResource"]
 
@@ -712,6 +714,50 @@ class CustomersResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=CustomerResponse,
+        )
+
+    def retrieve_entitlements(
+        self,
+        id: str,
+        *,
+        resource_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CustomerRetrieveEntitlementsResponse:
+        """
+        Retrieves the effective entitlements for a customer or resource, including
+        feature and credit entitlements.
+
+        Args:
+          resource_id: Resource ID to scope entitlements to a specific resource
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/api/v1/customers/{id}/entitlements",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"resource_id": resource_id},
+                    customer_retrieve_entitlements_params.CustomerRetrieveEntitlementsParams,
+                ),
+            ),
+            cast_to=CustomerRetrieveEntitlementsResponse,
         )
 
     def unarchive(
@@ -1412,6 +1458,50 @@ class AsyncCustomersResource(AsyncAPIResource):
             cast_to=CustomerResponse,
         )
 
+    async def retrieve_entitlements(
+        self,
+        id: str,
+        *,
+        resource_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CustomerRetrieveEntitlementsResponse:
+        """
+        Retrieves the effective entitlements for a customer or resource, including
+        feature and credit entitlements.
+
+        Args:
+          resource_id: Resource ID to scope entitlements to a specific resource
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/api/v1/customers/{id}/entitlements",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"resource_id": resource_id},
+                    customer_retrieve_entitlements_params.CustomerRetrieveEntitlementsParams,
+                ),
+            ),
+            cast_to=CustomerRetrieveEntitlementsResponse,
+        )
+
     async def unarchive(
         self,
         id: str,
@@ -1471,6 +1561,9 @@ class CustomersResourceWithRawResponse:
         self.provision = to_raw_response_wrapper(
             customers.provision,
         )
+        self.retrieve_entitlements = to_raw_response_wrapper(
+            customers.retrieve_entitlements,
+        )
         self.unarchive = to_raw_response_wrapper(
             customers.unarchive,
         )
@@ -1510,6 +1603,9 @@ class AsyncCustomersResourceWithRawResponse:
         )
         self.provision = async_to_raw_response_wrapper(
             customers.provision,
+        )
+        self.retrieve_entitlements = async_to_raw_response_wrapper(
+            customers.retrieve_entitlements,
         )
         self.unarchive = async_to_raw_response_wrapper(
             customers.unarchive,
@@ -1551,6 +1647,9 @@ class CustomersResourceWithStreamingResponse:
         self.provision = to_streamed_response_wrapper(
             customers.provision,
         )
+        self.retrieve_entitlements = to_streamed_response_wrapper(
+            customers.retrieve_entitlements,
+        )
         self.unarchive = to_streamed_response_wrapper(
             customers.unarchive,
         )
@@ -1590,6 +1689,9 @@ class AsyncCustomersResourceWithStreamingResponse:
         )
         self.provision = async_to_streamed_response_wrapper(
             customers.provision,
+        )
+        self.retrieve_entitlements = async_to_streamed_response_wrapper(
+            customers.retrieve_entitlements,
         )
         self.unarchive = async_to_streamed_response_wrapper(
             customers.unarchive,
