@@ -72,6 +72,8 @@ class UsageResource(SyncAPIResource):
 
           end_date: The end date of the range
 
+          group_by: Criteria by which to group the usage history
+
           include_inactive_subscriptions: When true, includes usage data from the most recent cancelled or expired
               subscription
 
@@ -193,6 +195,8 @@ class AsyncUsageResource(AsyncAPIResource):
           start_date: The start date of the range
 
           end_date: The end date of the range
+
+          group_by: Criteria by which to group the usage history
 
           include_inactive_subscriptions: When true, includes usage data from the most recent cancelled or expired
               subscription

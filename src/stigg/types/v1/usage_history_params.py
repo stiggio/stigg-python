@@ -21,6 +21,7 @@ class UsageHistoryParams(TypedDict, total=False):
     """The end date of the range"""
 
     group_by: Annotated[str, PropertyInfo(alias="groupBy")]
+    """Criteria by which to group the usage history"""
 
     include_inactive_subscriptions: Annotated[bool, PropertyInfo(alias="includeInactiveSubscriptions")]
     """
