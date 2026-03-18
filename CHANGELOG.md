@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.22 (2026-03-18)
+
+Full Changelog: [v0.1.0-alpha.21...v0.1.0-alpha.22](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.21...v0.1.0-alpha.22)
+
+### Features
+
+* **api:** api update ([720bbdf](https://github.com/stiggio/stigg-python/commit/720bbdf11c619265174c0665cd0230322e48bdcd))
+* **api:** api update ([36ea9ef](https://github.com/stiggio/stigg-python/commit/36ea9ef5ad8285fad9a472a1e2aa1bd84043f6fe))
+* **api:** api update ([7628adf](https://github.com/stiggio/stigg-python/commit/7628adf88b98da5f9d2f3d7b2eccdc7a6ac4b1e9))
+* **api:** api update ([be01c15](https://github.com/stiggio/stigg-python/commit/be01c159c9af8cd0bda7279b9f1abbeee96099d4))
+* **api:** api update ([13c3335](https://github.com/stiggio/stigg-python/commit/13c33359812520e4282e007dd0876e1c1991c9b6))
+* **api:** updated stainless config with new endpoint ([861563c](https://github.com/stiggio/stigg-python/commit/861563c34309bfd8f8303a027f04f4aecae5ce64))
+
 ## 0.1.0-alpha.21 (2026-03-17)
 
 Full Changelog: [v0.1.0-alpha.20...v0.1.0-alpha.21](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.20...v0.1.0-alpha.21)
