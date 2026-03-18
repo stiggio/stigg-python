@@ -282,7 +282,7 @@ class BillingInformation(TypedDict, total=False):
 
     is_invoice_paid: Annotated[bool, PropertyInfo(alias="isInvoicePaid")]
 
-    metadata: Dict[str, object]
+    metadata: Dict[str, str]
     """Additional metadata for the subscription"""
 
     proration_behavior: Annotated[
