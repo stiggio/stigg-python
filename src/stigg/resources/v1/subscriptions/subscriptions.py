@@ -164,9 +164,13 @@ class SubscriptionsResource(SyncAPIResource):
         unit quantities, and discounts.
 
         Args:
+          await_payment_confirmation: Await payment confirmation
+
           metadata: Additional metadata for the subscription
 
           minimum_spend: Minimum spend amount
+
+          promotion_code: Promotion code
 
           trial_end_date: Subscription trial end date
 
@@ -486,7 +490,7 @@ class SubscriptionsResource(SyncAPIResource):
         schedule_strategy: Literal["END_OF_BILLING_PERIOD", "END_OF_BILLING_MONTH", "IMMEDIATE"] | Omit = omit,
         start_date: Union[str, datetime] | Omit = omit,
         trial_override_configuration: subscription_preview_params.TrialOverrideConfiguration | Omit = omit,
-        unit_quantity: float | Omit = omit,
+        unit_quantity: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -596,7 +600,7 @@ class SubscriptionsResource(SyncAPIResource):
         schedule_strategy: Literal["END_OF_BILLING_PERIOD", "END_OF_BILLING_MONTH", "IMMEDIATE"] | Omit = omit,
         start_date: Union[str, datetime] | Omit = omit,
         trial_override_configuration: subscription_provision_params.TrialOverrideConfiguration | Omit = omit,
-        unit_quantity: float | Omit = omit,
+        unit_quantity: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -647,6 +651,8 @@ class SubscriptionsResource(SyncAPIResource):
           start_date: Subscription start date
 
           trial_override_configuration: Trial period override settings
+
+          unit_quantity: Unit quantity
 
           extra_headers: Send extra headers
 
@@ -838,9 +844,13 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         unit quantities, and discounts.
 
         Args:
+          await_payment_confirmation: Await payment confirmation
+
           metadata: Additional metadata for the subscription
 
           minimum_spend: Minimum spend amount
+
+          promotion_code: Promotion code
 
           trial_end_date: Subscription trial end date
 
@@ -1160,7 +1170,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         schedule_strategy: Literal["END_OF_BILLING_PERIOD", "END_OF_BILLING_MONTH", "IMMEDIATE"] | Omit = omit,
         start_date: Union[str, datetime] | Omit = omit,
         trial_override_configuration: subscription_preview_params.TrialOverrideConfiguration | Omit = omit,
-        unit_quantity: float | Omit = omit,
+        unit_quantity: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1270,7 +1280,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         schedule_strategy: Literal["END_OF_BILLING_PERIOD", "END_OF_BILLING_MONTH", "IMMEDIATE"] | Omit = omit,
         start_date: Union[str, datetime] | Omit = omit,
         trial_override_configuration: subscription_provision_params.TrialOverrideConfiguration | Omit = omit,
-        unit_quantity: float | Omit = omit,
+        unit_quantity: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1321,6 +1331,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           start_date: Subscription start date
 
           trial_override_configuration: Trial period override settings
+
+          unit_quantity: Unit quantity
 
           extra_headers: Send extra headers
 

@@ -38,6 +38,7 @@ class SubscriptionUpdateParams(TypedDict, total=False):
     applied_coupon: Annotated[AppliedCoupon, PropertyInfo(alias="appliedCoupon")]
 
     await_payment_confirmation: Annotated[bool, PropertyInfo(alias="awaitPaymentConfirmation")]
+    """Await payment confirmation"""
 
     billing_cycle_anchor: Annotated[Literal["UNCHANGED", "NOW"], PropertyInfo(alias="billingCycleAnchor")]
 
@@ -60,6 +61,7 @@ class SubscriptionUpdateParams(TypedDict, total=False):
     price_overrides: Annotated[Iterable[PriceOverride], PropertyInfo(alias="priceOverrides")]
 
     promotion_code: Annotated[str, PropertyInfo(alias="promotionCode")]
+    """Promotion code"""
 
     schedule_strategy: Annotated[
         Literal["END_OF_BILLING_PERIOD", "END_OF_BILLING_MONTH", "IMMEDIATE"], PropertyInfo(alias="scheduleStrategy")
