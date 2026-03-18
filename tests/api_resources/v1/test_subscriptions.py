@@ -121,7 +121,7 @@ class TestSubscriptions:
                 "invoice_days_until_due": 0,
                 "is_backdated": True,
                 "is_invoice_paid": True,
-                "metadata": {"foo": "bar"},
+                "metadata": {"foo": "string"},
                 "proration_behavior": "INVOICE_IMMEDIATELY",
                 "tax_ids": [
                     {
@@ -559,7 +559,7 @@ class TestSubscriptions:
                 "invoice_days_until_due": 0,
                 "is_backdated": True,
                 "is_invoice_paid": True,
-                "metadata": {},
+                "metadata": {"foo": "string"},
                 "proration_behavior": "INVOICE_IMMEDIATELY",
                 "tax_ids": [
                     {
@@ -948,7 +948,7 @@ class TestAsyncSubscriptions:
                 "invoice_days_until_due": 0,
                 "is_backdated": True,
                 "is_invoice_paid": True,
-                "metadata": {"foo": "bar"},
+                "metadata": {"foo": "string"},
                 "proration_behavior": "INVOICE_IMMEDIATELY",
                 "tax_ids": [
                     {
@@ -1386,7 +1386,7 @@ class TestAsyncSubscriptions:
                 "invoice_days_until_due": 0,
                 "is_backdated": True,
                 "is_invoice_paid": True,
-                "metadata": {},
+                "metadata": {"foo": "string"},
                 "proration_behavior": "INVOICE_IMMEDIATELY",
                 "tax_ids": [
                     {
