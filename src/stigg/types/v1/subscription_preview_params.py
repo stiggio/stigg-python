@@ -75,7 +75,7 @@ class SubscriptionPreviewParams(TypedDict, total=False):
     ]
     """Trial period override settings"""
 
-    unit_quantity: Annotated[float, PropertyInfo(alias="unitQuantity")]
+    unit_quantity: Annotated[int, PropertyInfo(alias="unitQuantity")]
     """Unit quantity for per-unit pricing"""
 
 

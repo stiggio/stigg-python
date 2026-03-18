@@ -114,7 +114,8 @@ class SubscriptionProvisionParams(TypedDict, total=False):
     ]
     """Trial period override settings"""
 
-    unit_quantity: Annotated[float, PropertyInfo(alias="unitQuantity")]
+    unit_quantity: Annotated[int, PropertyInfo(alias="unitQuantity")]
+    """Unit quantity"""
 
 
 class Addon(TypedDict, total=False):
