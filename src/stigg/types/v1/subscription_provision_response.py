@@ -35,6 +35,9 @@ __all__ = [
 
 
 class DataEntitlementUnionObjectVariant0Feature(BaseModel):
+    id: str
+    """The unique reference ID of the entitlement."""
+
     display_name: str = FieldInfo(alias="displayName")
     """The human-readable name of the entitlement, shown in UI elements."""
 
@@ -43,9 +46,6 @@ class DataEntitlementUnionObjectVariant0Feature(BaseModel):
 
     feature_type: Literal["BOOLEAN", "NUMBER", "ENUM"] = FieldInfo(alias="featureType")
     """The type of feature associated with the entitlement."""
-
-    ref_id: str = FieldInfo(alias="refId")
-    """The unique reference ID of the entitlement."""
 
 
 class DataEntitlementUnionObjectVariant0(BaseModel):
