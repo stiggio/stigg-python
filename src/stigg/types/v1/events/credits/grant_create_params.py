@@ -24,7 +24,9 @@ class GrantCreateParams(TypedDict, total=False):
     display_name: Required[Annotated[str, PropertyInfo(alias="displayName")]]
     """The display name for the credit grant"""
 
-    grant_type: Required[Annotated[Literal["PAID", "PROMOTIONAL", "RECURRING"], PropertyInfo(alias="grantType")]]
+    grant_type: Required[
+        Annotated[Literal["PAID", "PROMOTIONAL", "RECURRING", "OVERDRAFT"], PropertyInfo(alias="grantType")]
+    ]
     """The type of credit grant (PAID, PROMOTIONAL, RECURRING)"""
 
     await_payment_confirmation: Annotated[bool, PropertyInfo(alias="awaitPaymentConfirmation")]

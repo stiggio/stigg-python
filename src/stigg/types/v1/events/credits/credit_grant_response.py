@@ -103,7 +103,7 @@ class Data(BaseModel):
     expire_at: Optional[datetime] = FieldInfo(alias="expireAt", default=None)
     """The date when the credit grant expires"""
 
-    grant_type: Literal["PAID", "PROMOTIONAL", "RECURRING"] = FieldInfo(alias="grantType")
+    grant_type: Literal["PAID", "PROMOTIONAL", "RECURRING", "OVERDRAFT"] = FieldInfo(alias="grantType")
     """The type of credit grant (PAID, PROMOTIONAL, RECURRING)"""
 
     invoice_id: Optional[str] = FieldInfo(alias="invoiceId", default=None)
