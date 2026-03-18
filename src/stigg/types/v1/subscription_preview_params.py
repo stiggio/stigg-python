@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -318,7 +318,7 @@ class BillingInformation(TypedDict, total=False):
     is_invoice_paid: Annotated[bool, PropertyInfo(alias="isInvoicePaid")]
     """Whether invoice is already paid"""
 
-    metadata: object
+    metadata: Dict[str, str]
     """Additional billing metadata"""
 
     proration_behavior: Annotated[

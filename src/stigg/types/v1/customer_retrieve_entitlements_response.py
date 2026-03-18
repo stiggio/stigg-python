@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypeAlias
 
@@ -104,11 +104,11 @@ class DataEntitlementCreditCurrency(BaseModel):
     display_name: str = FieldInfo(alias="displayName")
     """The display name of the currency."""
 
-    additional_meta_data: Optional[object] = FieldInfo(alias="additionalMetaData", default=None)
-    """Additional metadata associated with the currency."""
-
     description: Optional[str] = None
     """A description of the currency."""
+
+    metadata: Optional[Dict[str, str]] = None
+    """Additional metadata associated with the currency."""
 
     unit_plural: Optional[str] = FieldInfo(alias="unitPlural", default=None)
     """The plural form of the currency unit."""
