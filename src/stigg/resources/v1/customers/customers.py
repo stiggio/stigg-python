@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ....types.v1 import (
     customer_list_params,
@@ -109,7 +109,7 @@ class CustomersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/api/v1/customers/{id}",
+            path_template("/api/v1/customers/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -293,7 +293,7 @@ class CustomersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/api/v1/customers/{id}",
+            path_template("/api/v1/customers/{id}", id=id),
             body=maybe_transform(
                 {
                     "billing_currency": billing_currency,
@@ -406,7 +406,7 @@ class CustomersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/api/v1/customers/{id}/archive",
+            path_template("/api/v1/customers/{id}/archive", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -493,7 +493,7 @@ class CustomersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/api/v1/customers/{id}/resources",
+            path_template("/api/v1/customers/{id}/resources", id=id),
             page=SyncMyCursorIDPage[CustomerListResourcesResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -746,7 +746,7 @@ class CustomersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/api/v1/customers/{id}/entitlements",
+            path_template("/api/v1/customers/{id}/entitlements", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -786,7 +786,7 @@ class CustomersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/api/v1/customers/{id}/unarchive",
+            path_template("/api/v1/customers/{id}/unarchive", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -851,7 +851,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/api/v1/customers/{id}",
+            path_template("/api/v1/customers/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1035,7 +1035,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/api/v1/customers/{id}",
+            path_template("/api/v1/customers/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "billing_currency": billing_currency,
@@ -1148,7 +1148,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/api/v1/customers/{id}/archive",
+            path_template("/api/v1/customers/{id}/archive", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1235,7 +1235,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/api/v1/customers/{id}/resources",
+            path_template("/api/v1/customers/{id}/resources", id=id),
             page=AsyncMyCursorIDPage[CustomerListResourcesResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1488,7 +1488,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/api/v1/customers/{id}/entitlements",
+            path_template("/api/v1/customers/{id}/entitlements", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1528,7 +1528,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/api/v1/customers/{id}/unarchive",
+            path_template("/api/v1/customers/{id}/unarchive", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
