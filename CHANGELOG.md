@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.24 (2026-03-20)
+
+Full Changelog: [v0.1.0-alpha.23...v0.1.0-alpha.24](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.23...v0.1.0-alpha.24)
+
+### Bug Fixes
+
+* sanitize endpoint path params ([ddaa28b](https://github.com/stiggio/stigg-python/commit/ddaa28be61f7bdf0d7d4dc75baeb9e0124d2017a))
+
 ## 0.1.0-alpha.23 (2026-03-18)
 
 Full Changelog: [v0.1.0-alpha.22...v0.1.0-alpha.23](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.22...v0.1.0-alpha.23)
