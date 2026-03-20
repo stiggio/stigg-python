@@ -25,7 +25,7 @@ from .invoice import (
     AsyncInvoiceResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ....types.v1 import (
     subscription_list_params,
@@ -126,7 +126,7 @@ class SubscriptionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/api/v1/subscriptions/{id}",
+            path_template("/api/v1/subscriptions/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -185,7 +185,7 @@ class SubscriptionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/api/v1/subscriptions/{id}",
+            path_template("/api/v1/subscriptions/{id}", id=id),
             body=maybe_transform(
                 {
                     "addons": addons,
@@ -328,7 +328,7 @@ class SubscriptionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/api/v1/subscriptions/{id}/cancel",
+            path_template("/api/v1/subscriptions/{id}/cancel", id=id),
             body=maybe_transform(
                 {
                     "cancellation_action": cancellation_action,
@@ -376,7 +376,7 @@ class SubscriptionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/api/v1/subscriptions/{id}/delegate",
+            path_template("/api/v1/subscriptions/{id}/delegate", id=id),
             body=maybe_transform(
                 {"target_customer_id": target_customer_id}, subscription_delegate_params.SubscriptionDelegateParams
             ),
@@ -461,7 +461,7 @@ class SubscriptionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/api/v1/subscriptions/{id}/migrate",
+            path_template("/api/v1/subscriptions/{id}/migrate", id=id),
             body=maybe_transform(
                 {"subscription_migration_time": subscription_migration_time},
                 subscription_migrate_params.SubscriptionMigrateParams,
@@ -732,7 +732,7 @@ class SubscriptionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/api/v1/subscriptions/{id}/transfer",
+            path_template("/api/v1/subscriptions/{id}/transfer", id=id),
             body=maybe_transform(
                 {"destination_resource_id": destination_resource_id},
                 subscription_transfer_params.SubscriptionTransferParams,
@@ -806,7 +806,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/api/v1/subscriptions/{id}",
+            path_template("/api/v1/subscriptions/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -865,7 +865,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/api/v1/subscriptions/{id}",
+            path_template("/api/v1/subscriptions/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "addons": addons,
@@ -1008,7 +1008,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/api/v1/subscriptions/{id}/cancel",
+            path_template("/api/v1/subscriptions/{id}/cancel", id=id),
             body=await async_maybe_transform(
                 {
                     "cancellation_action": cancellation_action,
@@ -1056,7 +1056,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/api/v1/subscriptions/{id}/delegate",
+            path_template("/api/v1/subscriptions/{id}/delegate", id=id),
             body=await async_maybe_transform(
                 {"target_customer_id": target_customer_id}, subscription_delegate_params.SubscriptionDelegateParams
             ),
@@ -1141,7 +1141,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/api/v1/subscriptions/{id}/migrate",
+            path_template("/api/v1/subscriptions/{id}/migrate", id=id),
             body=await async_maybe_transform(
                 {"subscription_migration_time": subscription_migration_time},
                 subscription_migrate_params.SubscriptionMigrateParams,
@@ -1412,7 +1412,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/api/v1/subscriptions/{id}/transfer",
+            path_template("/api/v1/subscriptions/{id}/transfer", id=id),
             body=await async_maybe_transform(
                 {"destination_resource_id": destination_resource_id},
                 subscription_transfer_params.SubscriptionTransferParams,

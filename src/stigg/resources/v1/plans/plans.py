@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ....types.v1 import plan_list_params, plan_create_params, plan_update_params, plan_publish_params
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -164,7 +164,7 @@ class PlansResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/api/v1/plans/{id}",
+            path_template("/api/v1/plans/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -220,7 +220,7 @@ class PlansResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/api/v1/plans/{id}",
+            path_template("/api/v1/plans/{id}", id=id),
             body=maybe_transform(
                 {
                     "billing_id": billing_id,
@@ -329,7 +329,7 @@ class PlansResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/api/v1/plans/{id}/archive",
+            path_template("/api/v1/plans/{id}/archive", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -362,7 +362,7 @@ class PlansResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/api/v1/plans/{id}/draft",
+            path_template("/api/v1/plans/{id}/draft", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -398,7 +398,7 @@ class PlansResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/api/v1/plans/{id}/publish",
+            path_template("/api/v1/plans/{id}/publish", id=id),
             body=maybe_transform({"migration_type": migration_type}, plan_publish_params.PlanPublishParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -432,7 +432,7 @@ class PlansResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/api/v1/plans/{id}/draft",
+            path_template("/api/v1/plans/{id}/draft", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -568,7 +568,7 @@ class AsyncPlansResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/api/v1/plans/{id}",
+            path_template("/api/v1/plans/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -624,7 +624,7 @@ class AsyncPlansResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/api/v1/plans/{id}",
+            path_template("/api/v1/plans/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "billing_id": billing_id,
@@ -733,7 +733,7 @@ class AsyncPlansResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/api/v1/plans/{id}/archive",
+            path_template("/api/v1/plans/{id}/archive", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -766,7 +766,7 @@ class AsyncPlansResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/api/v1/plans/{id}/draft",
+            path_template("/api/v1/plans/{id}/draft", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -802,7 +802,7 @@ class AsyncPlansResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/api/v1/plans/{id}/publish",
+            path_template("/api/v1/plans/{id}/publish", id=id),
             body=await async_maybe_transform({"migration_type": migration_type}, plan_publish_params.PlanPublishParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -836,7 +836,7 @@ class AsyncPlansResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/api/v1/plans/{id}/draft",
+            path_template("/api/v1/plans/{id}/draft", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
