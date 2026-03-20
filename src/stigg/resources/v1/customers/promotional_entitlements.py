@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -78,7 +78,7 @@ class PromotionalEntitlementsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/api/v1/customers/{id}/promotional-entitlements",
+            path_template("/api/v1/customers/{id}/promotional-entitlements", id=id),
             body=maybe_transform(
                 {"promotional_entitlements": promotional_entitlements},
                 promotional_entitlement_create_params.PromotionalEntitlementCreateParams,
@@ -131,7 +131,7 @@ class PromotionalEntitlementsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/api/v1/customers/{id}/promotional-entitlements",
+            path_template("/api/v1/customers/{id}/promotional-entitlements", id=id),
             page=SyncMyCursorIDPage[PromotionalEntitlementListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -182,7 +182,7 @@ class PromotionalEntitlementsResource(SyncAPIResource):
         if not feature_id:
             raise ValueError(f"Expected a non-empty value for `feature_id` but received {feature_id!r}")
         return self._delete(
-            f"/api/v1/customers/{id}/promotional-entitlements/{feature_id}",
+            path_template("/api/v1/customers/{id}/promotional-entitlements/{feature_id}", id=id, feature_id=feature_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -242,7 +242,7 @@ class AsyncPromotionalEntitlementsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/api/v1/customers/{id}/promotional-entitlements",
+            path_template("/api/v1/customers/{id}/promotional-entitlements", id=id),
             body=await async_maybe_transform(
                 {"promotional_entitlements": promotional_entitlements},
                 promotional_entitlement_create_params.PromotionalEntitlementCreateParams,
@@ -295,7 +295,7 @@ class AsyncPromotionalEntitlementsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/api/v1/customers/{id}/promotional-entitlements",
+            path_template("/api/v1/customers/{id}/promotional-entitlements", id=id),
             page=AsyncMyCursorIDPage[PromotionalEntitlementListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -346,7 +346,7 @@ class AsyncPromotionalEntitlementsResource(AsyncAPIResource):
         if not feature_id:
             raise ValueError(f"Expected a non-empty value for `feature_id` but received {feature_id!r}")
         return await self._delete(
-            f"/api/v1/customers/{id}/promotional-entitlements/{feature_id}",
+            path_template("/api/v1/customers/{id}/promotional-entitlements/{feature_id}", id=id, feature_id=feature_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
