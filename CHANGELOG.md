@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.25 (2026-03-27)
+
+Full Changelog: [v0.1.0-alpha.24...v0.1.0-alpha.25](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.24...v0.1.0-alpha.25)
+
+### Features
+
+* **internal:** implement indices array format for query and form serialization ([99ccdae](https://github.com/stiggio/stigg-python/commit/99ccdaed554ece3b78ac483488c4d1843fd19969))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([38aae71](https://github.com/stiggio/stigg-python/commit/38aae718324ed160b6e09d3823b8cb0a7062bc03))
+* **internal:** update gitignore ([46448ed](https://github.com/stiggio/stigg-python/commit/46448edcef04c878595782abe8e1095fcc7e8a86))
+
 ## 0.1.0-alpha.24 (2026-03-20)
 
 Full Changelog: [v0.1.0-alpha.23...v0.1.0-alpha.24](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.23...v0.1.0-alpha.24)
