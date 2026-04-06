@@ -31,8 +31,9 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import v1
+    from .resources import v1, internal
     from .resources.v1.v1 import V1Resource, AsyncV1Resource
+    from .resources.internal.internal import InternalResource, AsyncInternalResource
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Stigg", "AsyncStigg", "Client", "AsyncClient"]
 
@@ -97,6 +98,12 @@ class Stigg(SyncAPIClient):
         from .resources.v1 import V1Resource
 
         return V1Resource(self)
+
+    @cached_property
+    def internal(self) -> InternalResource:
+        from .resources.internal import InternalResource
+
+        return InternalResource(self)
 
     @cached_property
     def with_raw_response(self) -> StiggWithRawResponse:
@@ -273,6 +280,12 @@ class AsyncStigg(AsyncAPIClient):
         return AsyncV1Resource(self)
 
     @cached_property
+    def internal(self) -> AsyncInternalResource:
+        from .resources.internal import AsyncInternalResource
+
+        return AsyncInternalResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncStiggWithRawResponse:
         return AsyncStiggWithRawResponse(self)
 
@@ -397,6 +410,12 @@ class StiggWithRawResponse:
 
         return V1ResourceWithRawResponse(self._client.v1)
 
+    @cached_property
+    def internal(self) -> internal.InternalResourceWithRawResponse:
+        from .resources.internal import InternalResourceWithRawResponse
+
+        return InternalResourceWithRawResponse(self._client.internal)
+
 
 class AsyncStiggWithRawResponse:
     _client: AsyncStigg
@@ -409,6 +428,12 @@ class AsyncStiggWithRawResponse:
         from .resources.v1 import AsyncV1ResourceWithRawResponse
 
         return AsyncV1ResourceWithRawResponse(self._client.v1)
+
+    @cached_property
+    def internal(self) -> internal.AsyncInternalResourceWithRawResponse:
+        from .resources.internal import AsyncInternalResourceWithRawResponse
+
+        return AsyncInternalResourceWithRawResponse(self._client.internal)
 
 
 class StiggWithStreamedResponse:
@@ -423,6 +448,12 @@ class StiggWithStreamedResponse:
 
         return V1ResourceWithStreamingResponse(self._client.v1)
 
+    @cached_property
+    def internal(self) -> internal.InternalResourceWithStreamingResponse:
+        from .resources.internal import InternalResourceWithStreamingResponse
+
+        return InternalResourceWithStreamingResponse(self._client.internal)
+
 
 class AsyncStiggWithStreamedResponse:
     _client: AsyncStigg
@@ -435,6 +466,12 @@ class AsyncStiggWithStreamedResponse:
         from .resources.v1 import AsyncV1ResourceWithStreamingResponse
 
         return AsyncV1ResourceWithStreamingResponse(self._client.v1)
+
+    @cached_property
+    def internal(self) -> internal.AsyncInternalResourceWithStreamingResponse:
+        from .resources.internal import AsyncInternalResourceWithStreamingResponse
+
+        return AsyncInternalResourceWithStreamingResponse(self._client.internal)
 
 
 Client = Stigg
