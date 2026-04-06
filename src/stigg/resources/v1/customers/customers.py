@@ -25,6 +25,14 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from .integrations import (
+    IntegrationsResource,
+    AsyncIntegrationsResource,
+    IntegrationsResourceWithRawResponse,
+    AsyncIntegrationsResourceWithRawResponse,
+    IntegrationsResourceWithStreamingResponse,
+    AsyncIntegrationsResourceWithStreamingResponse,
+)
 from ....pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 from .payment_method import (
     PaymentMethodResource,
@@ -62,6 +70,10 @@ class CustomersResource(SyncAPIResource):
     def promotional_entitlements(self) -> PromotionalEntitlementsResource:
         """Operations related to promotional entitlements"""
         return PromotionalEntitlementsResource(self._client)
+
+    @cached_property
+    def integrations(self) -> IntegrationsResource:
+        return IntegrationsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CustomersResourceWithRawResponse:
@@ -804,6 +816,10 @@ class AsyncCustomersResource(AsyncAPIResource):
     def promotional_entitlements(self) -> AsyncPromotionalEntitlementsResource:
         """Operations related to promotional entitlements"""
         return AsyncPromotionalEntitlementsResource(self._client)
+
+    @cached_property
+    def integrations(self) -> AsyncIntegrationsResource:
+        return AsyncIntegrationsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCustomersResourceWithRawResponse:
@@ -1578,6 +1594,10 @@ class CustomersResourceWithRawResponse:
         """Operations related to promotional entitlements"""
         return PromotionalEntitlementsResourceWithRawResponse(self._customers.promotional_entitlements)
 
+    @cached_property
+    def integrations(self) -> IntegrationsResourceWithRawResponse:
+        return IntegrationsResourceWithRawResponse(self._customers.integrations)
+
 
 class AsyncCustomersResourceWithRawResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -1620,6 +1640,10 @@ class AsyncCustomersResourceWithRawResponse:
     def promotional_entitlements(self) -> AsyncPromotionalEntitlementsResourceWithRawResponse:
         """Operations related to promotional entitlements"""
         return AsyncPromotionalEntitlementsResourceWithRawResponse(self._customers.promotional_entitlements)
+
+    @cached_property
+    def integrations(self) -> AsyncIntegrationsResourceWithRawResponse:
+        return AsyncIntegrationsResourceWithRawResponse(self._customers.integrations)
 
 
 class CustomersResourceWithStreamingResponse:
@@ -1664,6 +1688,10 @@ class CustomersResourceWithStreamingResponse:
         """Operations related to promotional entitlements"""
         return PromotionalEntitlementsResourceWithStreamingResponse(self._customers.promotional_entitlements)
 
+    @cached_property
+    def integrations(self) -> IntegrationsResourceWithStreamingResponse:
+        return IntegrationsResourceWithStreamingResponse(self._customers.integrations)
+
 
 class AsyncCustomersResourceWithStreamingResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -1706,3 +1734,7 @@ class AsyncCustomersResourceWithStreamingResponse:
     def promotional_entitlements(self) -> AsyncPromotionalEntitlementsResourceWithStreamingResponse:
         """Operations related to promotional entitlements"""
         return AsyncPromotionalEntitlementsResourceWithStreamingResponse(self._customers.promotional_entitlements)
+
+    @cached_property
+    def integrations(self) -> AsyncIntegrationsResourceWithStreamingResponse:
+        return AsyncIntegrationsResourceWithStreamingResponse(self._customers.integrations)

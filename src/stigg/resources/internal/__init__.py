@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .v1 import (
-    V1Resource,
-    AsyncV1Resource,
-    V1ResourceWithRawResponse,
-    AsyncV1ResourceWithRawResponse,
-    V1ResourceWithStreamingResponse,
-    AsyncV1ResourceWithStreamingResponse,
+from .beta import (
+    BetaResource,
+    AsyncBetaResource,
+    BetaResourceWithRawResponse,
+    AsyncBetaResourceWithRawResponse,
+    BetaResourceWithStreamingResponse,
+    AsyncBetaResourceWithStreamingResponse,
 )
 from .internal import (
     InternalResource,
@@ -18,12 +18,12 @@ from .internal import (
 )
 
 __all__ = [
-    "V1Resource",
-    "AsyncV1Resource",
-    "V1ResourceWithRawResponse",
-    "AsyncV1ResourceWithRawResponse",
-    "V1ResourceWithStreamingResponse",
-    "AsyncV1ResourceWithStreamingResponse",
+    "BetaResource",
+    "AsyncBetaResource",
+    "BetaResourceWithRawResponse",
+    "AsyncBetaResourceWithRawResponse",
+    "BetaResourceWithStreamingResponse",
+    "AsyncBetaResourceWithStreamingResponse",
     "InternalResource",
     "AsyncInternalResource",
     "InternalResourceWithRawResponse",
