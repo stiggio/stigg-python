@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.26 (2026-04-07)
+
+Full Changelog: [v0.1.0-alpha.25...v0.1.0-alpha.26](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.25...v0.1.0-alpha.26)
+
+### Features
+
+* **api:** add customer integrations and internal event queues endpoints ([9d3e573](https://github.com/stiggio/stigg-python/commit/9d3e5738655a6156e4d405ce176107a655b2290a))
+* **api:** stainless.yml ([8a4afe8](https://github.com/stiggio/stigg-python/commit/8a4afe8adc37fbbe49728d5dfd064983ee8526f8))
+
 ## 0.1.0-alpha.25 (2026-03-27)
 
 Full Changelog: [v0.1.0-alpha.24...v0.1.0-alpha.25](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.24...v0.1.0-alpha.25)
