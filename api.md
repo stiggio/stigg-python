@@ -6,6 +6,7 @@ Types:
 
 ```python
 from stigg.types.v1 import (
+    CustomerIntegrationResponse,
     CustomerResponse,
     CustomerListResponse,
     CustomerImportResponse,
@@ -50,6 +51,22 @@ Methods:
 - <code title="post /api/v1/customers/{id}/promotional-entitlements">client.v1.customers.promotional_entitlements.<a href="./src/stigg/resources/v1/customers/promotional_entitlements.py">create</a>(id, \*\*<a href="src/stigg/types/v1/customers/promotional_entitlement_create_params.py">params</a>) -> <a href="./src/stigg/types/v1/customers/promotional_entitlement_create_response.py">PromotionalEntitlementCreateResponse</a></code>
 - <code title="get /api/v1/customers/{id}/promotional-entitlements">client.v1.customers.promotional_entitlements.<a href="./src/stigg/resources/v1/customers/promotional_entitlements.py">list</a>(id, \*\*<a href="src/stigg/types/v1/customers/promotional_entitlement_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/customers/promotional_entitlement_list_response.py">SyncMyCursorIDPage[PromotionalEntitlementListResponse]</a></code>
 - <code title="delete /api/v1/customers/{id}/promotional-entitlements/{featureId}">client.v1.customers.promotional_entitlements.<a href="./src/stigg/resources/v1/customers/promotional_entitlements.py">revoke</a>(feature_id, \*, id) -> <a href="./src/stigg/types/v1/customers/promotional_entitlement_revoke_response.py">PromotionalEntitlementRevokeResponse</a></code>
+
+### Integrations
+
+Types:
+
+```python
+from stigg.types.v1.customers import IntegrationListResponse
+```
+
+Methods:
+
+- <code title="get /api/v1/customers/{id}/integrations/{integrationId}">client.v1.customers.integrations.<a href="./src/stigg/resources/v1/customers/integrations.py">retrieve</a>(integration_id, \*, id) -> <a href="./src/stigg/types/v1/customer_integration_response.py">CustomerIntegrationResponse</a></code>
+- <code title="patch /api/v1/customers/{id}/integrations/{integrationId}">client.v1.customers.integrations.<a href="./src/stigg/resources/v1/customers/integrations.py">update</a>(integration_id, \*, id, \*\*<a href="src/stigg/types/v1/customers/integration_update_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_integration_response.py">CustomerIntegrationResponse</a></code>
+- <code title="get /api/v1/customers/{id}/integrations">client.v1.customers.integrations.<a href="./src/stigg/resources/v1/customers/integrations.py">list</a>(id, \*\*<a href="src/stigg/types/v1/customers/integration_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/customers/integration_list_response.py">SyncMyCursorIDPage[IntegrationListResponse]</a></code>
+- <code title="post /api/v1/customers/{id}/integrations">client.v1.customers.integrations.<a href="./src/stigg/resources/v1/customers/integrations.py">link</a>(path_id, \*\*<a href="src/stigg/types/v1/customers/integration_link_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_integration_response.py">CustomerIntegrationResponse</a></code>
+- <code title="delete /api/v1/customers/{id}/integrations/{integrationId}">client.v1.customers.integrations.<a href="./src/stigg/resources/v1/customers/integrations.py">unlink</a>(integration_id, \*, id) -> <a href="./src/stigg/types/v1/customer_integration_response.py">CustomerIntegrationResponse</a></code>
 
 ## Subscriptions
 
@@ -294,3 +311,23 @@ Methods:
 - <code title="get /api/v1/products">client.v1.products.<a href="./src/stigg/resources/v1/products.py">list_products</a>(\*\*<a href="src/stigg/types/v1/product_list_products_params.py">params</a>) -> <a href="./src/stigg/types/v1/product_list_products_response.py">SyncMyCursorIDPage[ProductListProductsResponse]</a></code>
 - <code title="post /api/v1/products/{id}/unarchive">client.v1.products.<a href="./src/stigg/resources/v1/products.py">unarchive_product</a>(id) -> <a href="./src/stigg/types/v1/product.py">Product</a></code>
 - <code title="patch /api/v1/products/{id}">client.v1.products.<a href="./src/stigg/resources/v1/products.py">update_product</a>(id, \*\*<a href="src/stigg/types/v1/product_update_product_params.py">params</a>) -> <a href="./src/stigg/types/v1/product.py">Product</a></code>
+
+# Internal
+
+## Beta
+
+### EventQueues
+
+Types:
+
+```python
+from stigg.types.internal.beta import EventQueueResponse, EventQueueListResponse
+```
+
+Methods:
+
+- <code title="get /internal/beta/event-queues/{queueName}">client.internal.beta.event_queues.<a href="./src/stigg/resources/internal/beta/event_queues.py">retrieve</a>(queue_name) -> <a href="./src/stigg/types/internal/beta/event_queue_response.py">EventQueueResponse</a></code>
+- <code title="patch /internal/beta/event-queues/{queueName}">client.internal.beta.event_queues.<a href="./src/stigg/resources/internal/beta/event_queues.py">update</a>(queue_name, \*\*<a href="src/stigg/types/internal/beta/event_queue_update_params.py">params</a>) -> <a href="./src/stigg/types/internal/beta/event_queue_response.py">EventQueueResponse</a></code>
+- <code title="get /internal/beta/event-queues">client.internal.beta.event_queues.<a href="./src/stigg/resources/internal/beta/event_queues.py">list</a>() -> <a href="./src/stigg/types/internal/beta/event_queue_list_response.py">EventQueueListResponse</a></code>
+- <code title="delete /internal/beta/event-queues/{queueName}">client.internal.beta.event_queues.<a href="./src/stigg/resources/internal/beta/event_queues.py">delete</a>(queue_name) -> <a href="./src/stigg/types/internal/beta/event_queue_response.py">EventQueueResponse</a></code>
+- <code title="post /internal/beta/event-queues/provision">client.internal.beta.event_queues.<a href="./src/stigg/resources/internal/beta/event_queues.py">provision</a>(\*\*<a href="src/stigg/types/internal/beta/event_queue_provision_params.py">params</a>) -> <a href="./src/stigg/types/internal/beta/event_queue_response.py">EventQueueResponse</a></code>
