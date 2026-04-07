@@ -10,11 +10,8 @@ import pytest
 from stigg import Stigg, AsyncStigg
 from tests.utils import assert_matches_type
 from stigg.types.internal.beta import (
+    EventQueueResponse,
     EventQueueListResponse,
-    EventQueueDeleteResponse,
-    EventQueueUpdateResponse,
-    EventQueueRetrieveResponse,
-    EventQueueProvisionResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -29,7 +26,7 @@ class TestEventQueues:
         event_queue = client.internal.beta.event_queues.retrieve(
             "x",
         )
-        assert_matches_type(EventQueueRetrieveResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -41,7 +38,7 @@ class TestEventQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event_queue = response.parse()
-        assert_matches_type(EventQueueRetrieveResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -53,7 +50,7 @@ class TestEventQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event_queue = response.parse()
-            assert_matches_type(EventQueueRetrieveResponse, event_queue, path=["response"])
+            assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -71,7 +68,7 @@ class TestEventQueues:
         event_queue = client.internal.beta.event_queues.update(
             queue_name="x",
         )
-        assert_matches_type(EventQueueUpdateResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -82,7 +79,7 @@ class TestEventQueues:
             create_low_priority_queues=True,
             event_types=["MEMBER_INVITED"],
         )
-        assert_matches_type(EventQueueUpdateResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -94,7 +91,7 @@ class TestEventQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event_queue = response.parse()
-        assert_matches_type(EventQueueUpdateResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -106,7 +103,7 @@ class TestEventQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event_queue = response.parse()
-            assert_matches_type(EventQueueUpdateResponse, event_queue, path=["response"])
+            assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -152,7 +149,7 @@ class TestEventQueues:
         event_queue = client.internal.beta.event_queues.delete(
             "x",
         )
-        assert_matches_type(EventQueueDeleteResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -164,7 +161,7 @@ class TestEventQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event_queue = response.parse()
-        assert_matches_type(EventQueueDeleteResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -176,7 +173,7 @@ class TestEventQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event_queue = response.parse()
-            assert_matches_type(EventQueueDeleteResponse, event_queue, path=["response"])
+            assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -194,7 +191,7 @@ class TestEventQueues:
         event_queue = client.internal.beta.event_queues.provision(
             region="us-east-1",
         )
-        assert_matches_type(EventQueueProvisionResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -206,7 +203,7 @@ class TestEventQueues:
             event_types=["MEMBER_INVITED"],
             suffix="suffix",
         )
-        assert_matches_type(EventQueueProvisionResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -218,7 +215,7 @@ class TestEventQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event_queue = response.parse()
-        assert_matches_type(EventQueueProvisionResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -230,7 +227,7 @@ class TestEventQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event_queue = response.parse()
-            assert_matches_type(EventQueueProvisionResponse, event_queue, path=["response"])
+            assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -246,7 +243,7 @@ class TestAsyncEventQueues:
         event_queue = await async_client.internal.beta.event_queues.retrieve(
             "x",
         )
-        assert_matches_type(EventQueueRetrieveResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -258,7 +255,7 @@ class TestAsyncEventQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event_queue = await response.parse()
-        assert_matches_type(EventQueueRetrieveResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -270,7 +267,7 @@ class TestAsyncEventQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event_queue = await response.parse()
-            assert_matches_type(EventQueueRetrieveResponse, event_queue, path=["response"])
+            assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -288,7 +285,7 @@ class TestAsyncEventQueues:
         event_queue = await async_client.internal.beta.event_queues.update(
             queue_name="x",
         )
-        assert_matches_type(EventQueueUpdateResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -299,7 +296,7 @@ class TestAsyncEventQueues:
             create_low_priority_queues=True,
             event_types=["MEMBER_INVITED"],
         )
-        assert_matches_type(EventQueueUpdateResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -311,7 +308,7 @@ class TestAsyncEventQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event_queue = await response.parse()
-        assert_matches_type(EventQueueUpdateResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -323,7 +320,7 @@ class TestAsyncEventQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event_queue = await response.parse()
-            assert_matches_type(EventQueueUpdateResponse, event_queue, path=["response"])
+            assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -369,7 +366,7 @@ class TestAsyncEventQueues:
         event_queue = await async_client.internal.beta.event_queues.delete(
             "x",
         )
-        assert_matches_type(EventQueueDeleteResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -381,7 +378,7 @@ class TestAsyncEventQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event_queue = await response.parse()
-        assert_matches_type(EventQueueDeleteResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -393,7 +390,7 @@ class TestAsyncEventQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event_queue = await response.parse()
-            assert_matches_type(EventQueueDeleteResponse, event_queue, path=["response"])
+            assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -411,7 +408,7 @@ class TestAsyncEventQueues:
         event_queue = await async_client.internal.beta.event_queues.provision(
             region="us-east-1",
         )
-        assert_matches_type(EventQueueProvisionResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -423,7 +420,7 @@ class TestAsyncEventQueues:
             event_types=["MEMBER_INVITED"],
             suffix="suffix",
         )
-        assert_matches_type(EventQueueProvisionResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -435,7 +432,7 @@ class TestAsyncEventQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event_queue = await response.parse()
-        assert_matches_type(EventQueueProvisionResponse, event_queue, path=["response"])
+        assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -447,6 +444,6 @@ class TestAsyncEventQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event_queue = await response.parse()
-            assert_matches_type(EventQueueProvisionResponse, event_queue, path=["response"])
+            assert_matches_type(EventQueueResponse, event_queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
