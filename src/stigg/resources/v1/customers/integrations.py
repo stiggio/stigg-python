@@ -20,11 +20,8 @@ from ...._response import (
 from ....pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.v1.customers import integration_link_params, integration_list_params, integration_update_params
-from ....types.v1.customers.integration_link_response import IntegrationLinkResponse
+from ....types.v1.customer_integration_response import CustomerIntegrationResponse
 from ....types.v1.customers.integration_list_response import IntegrationListResponse
-from ....types.v1.customers.integration_unlink_response import IntegrationUnlinkResponse
-from ....types.v1.customers.integration_update_response import IntegrationUpdateResponse
-from ....types.v1.customers.integration_retrieve_response import IntegrationRetrieveResponse
 
 __all__ = ["IntegrationsResource", "AsyncIntegrationsResource"]
 
@@ -60,7 +57,7 @@ class IntegrationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IntegrationRetrieveResponse:
+    ) -> CustomerIntegrationResponse:
         """
         Retrieves a specific integration for a customer by integration ID.
 
@@ -82,7 +79,7 @@ class IntegrationsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IntegrationRetrieveResponse,
+            cast_to=CustomerIntegrationResponse,
         )
 
     def update(
@@ -97,7 +94,7 @@ class IntegrationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IntegrationUpdateResponse:
+    ) -> CustomerIntegrationResponse:
         """
         Updates a customer's integration link, such as changing the synced external
         entity ID.
@@ -125,7 +122,7 @@ class IntegrationsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IntegrationUpdateResponse,
+            cast_to=CustomerIntegrationResponse,
         )
 
     def list(
@@ -212,7 +209,7 @@ class IntegrationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IntegrationLinkResponse:
+    ) -> CustomerIntegrationResponse:
         """
         Links a customer to an external integration by specifying the vendor and
         external entity ID.
@@ -247,7 +244,7 @@ class IntegrationsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IntegrationLinkResponse,
+            cast_to=CustomerIntegrationResponse,
         )
 
     def unlink(
@@ -261,7 +258,7 @@ class IntegrationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IntegrationUnlinkResponse:
+    ) -> CustomerIntegrationResponse:
         """
         Removes the link between a customer and an external integration.
 
@@ -283,7 +280,7 @@ class IntegrationsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IntegrationUnlinkResponse,
+            cast_to=CustomerIntegrationResponse,
         )
 
 
@@ -318,7 +315,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IntegrationRetrieveResponse:
+    ) -> CustomerIntegrationResponse:
         """
         Retrieves a specific integration for a customer by integration ID.
 
@@ -340,7 +337,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IntegrationRetrieveResponse,
+            cast_to=CustomerIntegrationResponse,
         )
 
     async def update(
@@ -355,7 +352,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IntegrationUpdateResponse:
+    ) -> CustomerIntegrationResponse:
         """
         Updates a customer's integration link, such as changing the synced external
         entity ID.
@@ -383,7 +380,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IntegrationUpdateResponse,
+            cast_to=CustomerIntegrationResponse,
         )
 
     def list(
@@ -470,7 +467,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IntegrationLinkResponse:
+    ) -> CustomerIntegrationResponse:
         """
         Links a customer to an external integration by specifying the vendor and
         external entity ID.
@@ -505,7 +502,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IntegrationLinkResponse,
+            cast_to=CustomerIntegrationResponse,
         )
 
     async def unlink(
@@ -519,7 +516,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IntegrationUnlinkResponse:
+    ) -> CustomerIntegrationResponse:
         """
         Removes the link between a customer and an external integration.
 
@@ -541,7 +538,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IntegrationUnlinkResponse,
+            cast_to=CustomerIntegrationResponse,
         )
 
 

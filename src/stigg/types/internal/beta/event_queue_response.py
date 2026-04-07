@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["EventQueueUpdateResponse", "Data"]
+__all__ = ["EventQueueResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -67,7 +67,7 @@ class Data(BaseModel):
     """Queue suffix for disambiguation"""
 
 
-class EventQueueUpdateResponse(BaseModel):
+class EventQueueResponse(BaseModel):
     """Response object"""
 
     data: Data

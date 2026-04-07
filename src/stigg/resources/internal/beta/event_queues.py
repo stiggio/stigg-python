@@ -19,11 +19,8 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.internal.beta import event_queue_update_params, event_queue_provision_params
+from ....types.internal.beta.event_queue_response import EventQueueResponse
 from ....types.internal.beta.event_queue_list_response import EventQueueListResponse
-from ....types.internal.beta.event_queue_delete_response import EventQueueDeleteResponse
-from ....types.internal.beta.event_queue_update_response import EventQueueUpdateResponse
-from ....types.internal.beta.event_queue_retrieve_response import EventQueueRetrieveResponse
-from ....types.internal.beta.event_queue_provision_response import EventQueueProvisionResponse
 
 __all__ = ["EventQueuesResource", "AsyncEventQueuesResource"]
 
@@ -58,7 +55,7 @@ class EventQueuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventQueueRetrieveResponse:
+    ) -> EventQueueResponse:
         """
         Get event queue by queue name
 
@@ -78,7 +75,7 @@ class EventQueuesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EventQueueRetrieveResponse,
+            cast_to=EventQueueResponse,
         )
 
     def update(
@@ -213,7 +210,7 @@ class EventQueuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventQueueUpdateResponse:
+    ) -> EventQueueResponse:
         """
         Update event queue configuration
 
@@ -243,7 +240,7 @@ class EventQueuesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EventQueueUpdateResponse,
+            cast_to=EventQueueResponse,
         )
 
     def list(
@@ -275,7 +272,7 @@ class EventQueuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventQueueDeleteResponse:
+    ) -> EventQueueResponse:
         """
         Delete an event queue and tear down its infrastructure
 
@@ -295,7 +292,7 @@ class EventQueuesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EventQueueDeleteResponse,
+            cast_to=EventQueueResponse,
         )
 
     def provision(
@@ -459,7 +456,7 @@ class EventQueuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventQueueProvisionResponse:
+    ) -> EventQueueResponse:
         """
         Provision SQS queue, SNS subscriptions, and IAM role for the current environment
 
@@ -498,7 +495,7 @@ class EventQueuesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EventQueueProvisionResponse,
+            cast_to=EventQueueResponse,
         )
 
 
@@ -532,7 +529,7 @@ class AsyncEventQueuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventQueueRetrieveResponse:
+    ) -> EventQueueResponse:
         """
         Get event queue by queue name
 
@@ -552,7 +549,7 @@ class AsyncEventQueuesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EventQueueRetrieveResponse,
+            cast_to=EventQueueResponse,
         )
 
     async def update(
@@ -687,7 +684,7 @@ class AsyncEventQueuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventQueueUpdateResponse:
+    ) -> EventQueueResponse:
         """
         Update event queue configuration
 
@@ -717,7 +714,7 @@ class AsyncEventQueuesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EventQueueUpdateResponse,
+            cast_to=EventQueueResponse,
         )
 
     async def list(
@@ -749,7 +746,7 @@ class AsyncEventQueuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventQueueDeleteResponse:
+    ) -> EventQueueResponse:
         """
         Delete an event queue and tear down its infrastructure
 
@@ -769,7 +766,7 @@ class AsyncEventQueuesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EventQueueDeleteResponse,
+            cast_to=EventQueueResponse,
         )
 
     async def provision(
@@ -933,7 +930,7 @@ class AsyncEventQueuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventQueueProvisionResponse:
+    ) -> EventQueueResponse:
         """
         Provision SQS queue, SNS subscriptions, and IAM role for the current environment
 
@@ -972,7 +969,7 @@ class AsyncEventQueuesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EventQueueProvisionResponse,
+            cast_to=EventQueueResponse,
         )
 
 
