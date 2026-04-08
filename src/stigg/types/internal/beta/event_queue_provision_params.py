@@ -141,7 +141,6 @@ class EventQueueProvisionParams(TypedDict, total=False):
                 "EDGE_API_PACKAGE_ENTITLEMENTS_DATA_RESYNC",
                 "EDGE_API_PRODUCT_CACHE_DATA_RESYNC",
                 "EDGE_API_PLAN_CACHE_DATA_RESYNC",
-                "EDGE_API_CUSTOM_CURRENCY_CACHE_DATA_RESYNC",
                 "REPLAY_WEBHOOK_EVENT",
                 "SUBSCRIPTIONS_MIGRATED",
                 "SUBSCRIPTIONS_MIGRATION_TRIGGERED",

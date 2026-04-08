@@ -55,6 +55,7 @@ class UsageResource(SyncAPIResource):
         start_date: Union[str, datetime],
         end_date: Union[str, datetime] | Omit = omit,
         group_by: str | Omit = omit,
+        include_inactive_subscriptions: bool | Omit = omit,
         resource_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -72,6 +73,9 @@ class UsageResource(SyncAPIResource):
           end_date: The end date of the range
 
           group_by: Criteria by which to group the usage history
+
+          include_inactive_subscriptions: When true, includes usage data from the most recent cancelled or expired
+              subscription
 
           resource_id: Resource id
 
@@ -101,6 +105,7 @@ class UsageResource(SyncAPIResource):
                         "start_date": start_date,
                         "end_date": end_date,
                         "group_by": group_by,
+                        "include_inactive_subscriptions": include_inactive_subscriptions,
                         "resource_id": resource_id,
                     },
                     usage_history_params.UsageHistoryParams,
@@ -176,6 +181,7 @@ class AsyncUsageResource(AsyncAPIResource):
         start_date: Union[str, datetime],
         end_date: Union[str, datetime] | Omit = omit,
         group_by: str | Omit = omit,
+        include_inactive_subscriptions: bool | Omit = omit,
         resource_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -193,6 +199,9 @@ class AsyncUsageResource(AsyncAPIResource):
           end_date: The end date of the range
 
           group_by: Criteria by which to group the usage history
+
+          include_inactive_subscriptions: When true, includes usage data from the most recent cancelled or expired
+              subscription
 
           resource_id: Resource id
 
@@ -222,6 +231,7 @@ class AsyncUsageResource(AsyncAPIResource):
                         "start_date": start_date,
                         "end_date": end_date,
                         "group_by": group_by,
+                        "include_inactive_subscriptions": include_inactive_subscriptions,
                         "resource_id": resource_id,
                     },
                     usage_history_params.UsageHistoryParams,
