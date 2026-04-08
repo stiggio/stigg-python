@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.27 (2026-04-08)
+
+Full Changelog: [v0.1.0-alpha.26...v0.1.0-alpha.27](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.26...v0.1.0-alpha.27)
+
+### Features
+
+* **api:** add currency cache resync event, remove include_inactive_subscriptions from usage ([9dca813](https://github.com/stiggio/stigg-python/commit/9dca81385576377c8f6f4efc3c2274749d6d1561))
+* **api:** add include_inactive_subscriptions to usage, remove enum from event_queues ([fc7b301](https://github.com/stiggio/stigg-python/commit/fc7b301c8c31f475c87aa9cffada9dfd744d83bb))
+
+
+### Bug Fixes
+
+* **client:** preserve hardcoded query params when merging with user params ([77d4125](https://github.com/stiggio/stigg-python/commit/77d41255d822705d0af625de084dcc102d4feb00))
+
 ## 0.1.0-alpha.26 (2026-04-07)
 
 Full Changelog: [v0.1.0-alpha.25...v0.1.0-alpha.26](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.25...v0.1.0-alpha.26)
