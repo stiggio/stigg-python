@@ -37,7 +37,6 @@ class TestUsage:
             start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             group_by="groupBy",
-            include_inactive_subscriptions=True,
             resource_id="resourceId",
         )
         assert_matches_type(UsageHistoryResponse, usage, path=["response"])
@@ -166,7 +165,6 @@ class TestAsyncUsage:
             start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             group_by="groupBy",
-            include_inactive_subscriptions=True,
             resource_id="resourceId",
         )
         assert_matches_type(UsageHistoryResponse, usage, path=["response"])
