@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.28 (2026-04-11)
+
+Full Changelog: [v0.1.0-alpha.27...v0.1.0-alpha.28](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.27...v0.1.0-alpha.28)
+
+### Bug Fixes
+
+* ensure file data are only sent as 1 parameter ([c5907d0](https://github.com/stiggio/stigg-python/commit/c5907d0289bc7bc7eb979cfe5c811407ad4cb599))
+
+
+### Documentation
+
+* improve examples ([d49ae06](https://github.com/stiggio/stigg-python/commit/d49ae06dd400b8f616ce043d30fc5244ea80a9e8))
+
 ## 0.1.0-alpha.27 (2026-04-08)
 
 Full Changelog: [v0.1.0-alpha.26...v0.1.0-alpha.27](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.26...v0.1.0-alpha.27)
