@@ -82,7 +82,7 @@ class TestCustomers:
             id="x",
             billing_currency="usd",
             billing_id="billingId",
-            coupon_id="NxI",
+            coupon_id="",
             email="dev@stainless.com",
             integrations=[
                 {
@@ -403,7 +403,7 @@ class TestCustomers:
             id="id",
             billing_currency="usd",
             billing_id="billingId",
-            coupon_id="NxI",
+            coupon_id="",
             default_payment_method={
                 "billing_id": "billingId",
                 "card_expiry_month": 0,
@@ -651,7 +651,7 @@ class TestAsyncCustomers:
             id="x",
             billing_currency="usd",
             billing_id="billingId",
-            coupon_id="NxI",
+            coupon_id="",
             email="dev@stainless.com",
             integrations=[
                 {
@@ -972,7 +972,7 @@ class TestAsyncCustomers:
             id="id",
             billing_currency="usd",
             billing_id="billingId",
-            coupon_id="NxI",
+            coupon_id="",
             default_payment_method={
                 "billing_id": "billingId",
                 "card_expiry_month": 0,
