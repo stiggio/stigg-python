@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.29 (2026-04-13)
+
+Full Changelog: [v0.1.0-alpha.28...v0.1.0-alpha.29](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.28...v0.1.0-alpha.29)
+
+### Features
+
+* **api:** add currency resync to event_queues, remove include_inactive_subscriptions from usage ([92a2709](https://github.com/stiggio/stigg-python/commit/92a2709e4a70337d873a68f0603f6a8b2fc5d8b4))
+
 ## 0.1.0-alpha.28 (2026-04-11)
 
 Full Changelog: [v0.1.0-alpha.27...v0.1.0-alpha.28](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.27...v0.1.0-alpha.28)
