@@ -744,6 +744,11 @@ class CustomersResource(SyncAPIResource):
         Retrieves the effective entitlements for a customer or resource, including
         feature and credit entitlements.
 
+        **Warning:** This REST API endpoint lacks built-in client-side caching, fallback
+        mechanisms, and low-latency guarantees. It is not recommended for hot-path
+        entitlement checks. For production use, consider using the Stigg Node Server SDK
+        with caching or the Sidecar for low-latency cached responses.
+
         Args:
           resource_id: Resource ID to scope entitlements to a specific resource
 
@@ -1489,6 +1494,11 @@ class AsyncCustomersResource(AsyncAPIResource):
         """
         Retrieves the effective entitlements for a customer or resource, including
         feature and credit entitlements.
+
+        **Warning:** This REST API endpoint lacks built-in client-side caching, fallback
+        mechanisms, and low-latency guarantees. It is not recommended for hot-path
+        entitlement checks. For production use, consider using the Stigg Node Server SDK
+        with caching or the Sidecar for low-latency cached responses.
 
         Args:
           resource_id: Resource ID to scope entitlements to a specific resource
