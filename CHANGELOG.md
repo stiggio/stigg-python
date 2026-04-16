@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.30 (2026-04-16)
+
+Full Changelog: [v0.1.0-alpha.29...v0.1.0-alpha.30](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.29...v0.1.0-alpha.30)
+
+### Features
+
+* **api:** add custom currency event types to event_queues ([03d469c](https://github.com/stiggio/stigg-python/commit/03d469cfb67315aac597fbafd3f04b6138a860cb))
+* **api:** add event types to event_queues, remove param from usage.history ([ddc6174](https://github.com/stiggio/stigg-python/commit/ddc6174d56f342d7447ccbdbcd0e3053746fe147))
+
 ## 0.1.0-alpha.29 (2026-04-13)
 
 Full Changelog: [v0.1.0-alpha.28...v0.1.0-alpha.29](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.28...v0.1.0-alpha.29)
