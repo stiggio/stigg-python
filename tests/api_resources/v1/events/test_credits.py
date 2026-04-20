@@ -9,6 +9,7 @@ import pytest
 
 from stigg import Stigg, AsyncStigg
 from tests.utils import assert_matches_type
+from stigg._utils import parse_datetime
 from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 from stigg.types.v1.events import (
     CreditGetUsageResponse,
@@ -73,7 +74,9 @@ class TestCredits:
         credit = client.v1.events.credits.get_usage(
             customer_id="customerId",
             currency_id="currencyId",
+            end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             resource_id="resourceId",
+            start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             time_range="LAST_DAY",
         )
         assert_matches_type(CreditGetUsageResponse, credit, path=["response"])
@@ -208,7 +211,9 @@ class TestAsyncCredits:
         credit = await async_client.v1.events.credits.get_usage(
             customer_id="customerId",
             currency_id="currencyId",
+            end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             resource_id="resourceId",
+            start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             time_range="LAST_DAY",
         )
         assert_matches_type(CreditGetUsageResponse, credit, path=["response"])

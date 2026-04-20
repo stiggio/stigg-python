@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Union
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
@@ -111,7 +113,9 @@ class CreditsResource(SyncAPIResource):
         *,
         customer_id: str,
         currency_id: str | Omit = omit,
+        end_date: Union[str, datetime] | Omit = omit,
         resource_id: str | Omit = omit,
+        start_date: Union[str, datetime] | Omit = omit,
         time_range: Literal["LAST_DAY", "LAST_WEEK", "LAST_MONTH", "LAST_YEAR"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -129,7 +133,13 @@ class CreditsResource(SyncAPIResource):
 
           currency_id: Filter by currency ID
 
+          end_date: End date for the credit usage time range (ISO 8601). Defaults to now when
+              startDate is provided
+
           resource_id: Filter by resource ID
+
+          start_date: Start date for the credit usage time range (ISO 8601). Takes precedence over
+              timeRange when provided
 
           time_range: Time range for usage data (LAST_DAY, LAST_WEEK, LAST_MONTH, LAST_YEAR). Defaults
               to LAST_MONTH
@@ -153,7 +163,9 @@ class CreditsResource(SyncAPIResource):
                     {
                         "customer_id": customer_id,
                         "currency_id": currency_id,
+                        "end_date": end_date,
                         "resource_id": resource_id,
+                        "start_date": start_date,
                         "time_range": time_range,
                     },
                     credit_get_usage_params.CreditGetUsageParams,
@@ -303,7 +315,9 @@ class AsyncCreditsResource(AsyncAPIResource):
         *,
         customer_id: str,
         currency_id: str | Omit = omit,
+        end_date: Union[str, datetime] | Omit = omit,
         resource_id: str | Omit = omit,
+        start_date: Union[str, datetime] | Omit = omit,
         time_range: Literal["LAST_DAY", "LAST_WEEK", "LAST_MONTH", "LAST_YEAR"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -321,7 +335,13 @@ class AsyncCreditsResource(AsyncAPIResource):
 
           currency_id: Filter by currency ID
 
+          end_date: End date for the credit usage time range (ISO 8601). Defaults to now when
+              startDate is provided
+
           resource_id: Filter by resource ID
+
+          start_date: Start date for the credit usage time range (ISO 8601). Takes precedence over
+              timeRange when provided
 
           time_range: Time range for usage data (LAST_DAY, LAST_WEEK, LAST_MONTH, LAST_YEAR). Defaults
               to LAST_MONTH
@@ -345,7 +365,9 @@ class AsyncCreditsResource(AsyncAPIResource):
                     {
                         "customer_id": customer_id,
                         "currency_id": currency_id,
+                        "end_date": end_date,
                         "resource_id": resource_id,
+                        "start_date": start_date,
                         "time_range": time_range,
                     },
                     credit_get_usage_params.CreditGetUsageParams,
