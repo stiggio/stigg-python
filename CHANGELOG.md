@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.31 (2026-04-21)
+
+Full Changelog: [v0.1.0-alpha.30...v0.1.0-alpha.31](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.30...v0.1.0-alpha.31)
+
+### Features
+
+* **api:** add start_date and end_date parameters to credits get_usage method ([50b29bf](https://github.com/stiggio/stigg-python/commit/50b29bf2ae4a97c86c57f28db78a1d9720cc5e88))
+
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([1883ec5](https://github.com/stiggio/stigg-python/commit/1883ec5d211a4be06171574c9a3971b38fe8a4ac))
+
 ## 0.1.0-alpha.30 (2026-04-16)
 
 Full Changelog: [v0.1.0-alpha.29...v0.1.0-alpha.30](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.29...v0.1.0-alpha.30)
