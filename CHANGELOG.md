@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.1.0-alpha.32 (2026-04-28)
+
+Full Changelog: [v0.1.0-alpha.31...v0.1.0-alpha.32](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.31...v0.1.0-alpha.32)
+
+### Features
+
+* support setting headers via env ([6227847](https://github.com/stiggio/stigg-python/commit/62278472725577c96271dc7be23588f1ef552c41))
+
+
+### Bug Fixes
+
+* use correct field name format for multipart file arrays ([c420071](https://github.com/stiggio/stigg-python/commit/c420071782e6d873434af86ff12cd87e5ad26409))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([9c337a6](https://github.com/stiggio/stigg-python/commit/9c337a6dd77d0a8d074e5f7a22bb3bdfdd43d9e8))
+
 ## 0.1.0-alpha.31 (2026-04-21)
 
 Full Changelog: [v0.1.0-alpha.30...v0.1.0-alpha.31](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.30...v0.1.0-alpha.31)
