@@ -8,14 +8,6 @@ from .v1 import (
     V1ResourceWithStreamingResponse,
     AsyncV1ResourceWithStreamingResponse,
 )
-from .internal import (
-    InternalResource,
-    AsyncInternalResource,
-    InternalResourceWithRawResponse,
-    AsyncInternalResourceWithRawResponse,
-    InternalResourceWithStreamingResponse,
-    AsyncInternalResourceWithStreamingResponse,
-)
 
 __all__ = [
     "V1Resource",
@@ -24,10 +16,4 @@ __all__ = [
     "AsyncV1ResourceWithRawResponse",
     "V1ResourceWithStreamingResponse",
     "AsyncV1ResourceWithStreamingResponse",
-    "InternalResource",
-    "AsyncInternalResource",
-    "InternalResourceWithRawResponse",
-    "AsyncInternalResourceWithRawResponse",
-    "InternalResourceWithStreamingResponse",
-    "AsyncInternalResourceWithStreamingResponse",
 ]
