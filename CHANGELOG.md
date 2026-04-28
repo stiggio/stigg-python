@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.33 (2026-04-28)
+
+Full Changelog: [v0.1.0-alpha.32...v0.1.0-alpha.33](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.32...v0.1.0-alpha.33)
+
+### Features
+
+* **api:** remove internal.beta.event_queues resource ([fe01449](https://github.com/stiggio/stigg-python/commit/fe0144993b17b86c66bef7ed4db50821c1a3c0f9))
+
 ## 0.1.0-alpha.32 (2026-04-28)
 
 Full Changelog: [v0.1.0-alpha.31...v0.1.0-alpha.32](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.31...v0.1.0-alpha.32)
