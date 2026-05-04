@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.34 (2026-05-04)
+
+Full Changelog: [v0.1.0-alpha.33...v0.1.0-alpha.34](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.33...v0.1.0-alpha.34)
+
+### Chores
+
+* **internal:** reformat pyproject.toml ([49b5a0c](https://github.com/stiggio/stigg-python/commit/49b5a0cfbb23e06d4d7c0fe696e30193f4cf10a6))
+
 ## 0.1.0-alpha.33 (2026-04-28)
 
 Full Changelog: [v0.1.0-alpha.32...v0.1.0-alpha.33](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.32...v0.1.0-alpha.33)
