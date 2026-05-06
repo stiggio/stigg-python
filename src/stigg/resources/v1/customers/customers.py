@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ....types.v1 import (
@@ -16,6 +16,7 @@ from ....types.v1 import (
     customer_update_params,
     customer_provision_params,
     customer_list_resources_params,
+    customer_check_entitlement_params,
     customer_retrieve_entitlements_params,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -55,6 +56,7 @@ from ....types.v1.customer_response import CustomerResponse
 from ....types.v1.customer_list_response import CustomerListResponse
 from ....types.v1.customer_import_response import CustomerImportResponse
 from ....types.v1.customer_list_resources_response import CustomerListResourcesResponse
+from ....types.v1.customer_check_entitlement_response import CustomerCheckEntitlementResponse
 from ....types.v1.customer_retrieve_entitlements_response import CustomerRetrieveEntitlementsResponse
 
 __all__ = ["CustomersResource", "AsyncCustomersResource"]
@@ -423,6 +425,76 @@ class CustomersResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=CustomerResponse,
+        )
+
+    def check_entitlement(
+        self,
+        id: str,
+        *,
+        currency_id: str | Omit = omit,
+        feature_id: str | Omit = omit,
+        requested_usage: int | Omit = omit,
+        requested_values: SequenceNotStr[str] | Omit = omit,
+        resource_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CustomerCheckEntitlementResponse:
+        """
+        Checks a single entitlement (feature or credit) for a customer or resource.
+        Supports `requestedUsage` and `requestedValues` to evaluate against limits or
+        enum values.
+
+        **Warning:** This REST API endpoint lacks built-in client-side caching, fallback
+        mechanisms, and low-latency guarantees. It is not recommended for hot-path
+        entitlement checks. For production use, consider using the Stigg Node Server SDK
+        with caching or the Sidecar for low-latency cached responses.
+
+        Args:
+          currency_id: Currency ID (refId) to check for credit entitlements. Mutually exclusive with
+              `featureId`.
+
+          feature_id: Feature ID (refId) to check. Mutually exclusive with `currencyId`.
+
+          requested_usage: Requested usage amount to evaluate against the entitlement limit (numeric
+              features only)
+
+          requested_values: Requested values to evaluate against allowed values (enum features only)
+
+          resource_id: Resource ID to scope the entitlement check to a specific resource
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            path_template("/api/v1/customers/{id}/entitlements/check", id=id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "currency_id": currency_id,
+                        "feature_id": feature_id,
+                        "requested_usage": requested_usage,
+                        "requested_values": requested_values,
+                        "resource_id": resource_id,
+                    },
+                    customer_check_entitlement_params.CustomerCheckEntitlementParams,
+                ),
+            ),
+            cast_to=CustomerCheckEntitlementResponse,
         )
 
     def import_(
@@ -1176,6 +1248,76 @@ class AsyncCustomersResource(AsyncAPIResource):
             cast_to=CustomerResponse,
         )
 
+    async def check_entitlement(
+        self,
+        id: str,
+        *,
+        currency_id: str | Omit = omit,
+        feature_id: str | Omit = omit,
+        requested_usage: int | Omit = omit,
+        requested_values: SequenceNotStr[str] | Omit = omit,
+        resource_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CustomerCheckEntitlementResponse:
+        """
+        Checks a single entitlement (feature or credit) for a customer or resource.
+        Supports `requestedUsage` and `requestedValues` to evaluate against limits or
+        enum values.
+
+        **Warning:** This REST API endpoint lacks built-in client-side caching, fallback
+        mechanisms, and low-latency guarantees. It is not recommended for hot-path
+        entitlement checks. For production use, consider using the Stigg Node Server SDK
+        with caching or the Sidecar for low-latency cached responses.
+
+        Args:
+          currency_id: Currency ID (refId) to check for credit entitlements. Mutually exclusive with
+              `featureId`.
+
+          feature_id: Feature ID (refId) to check. Mutually exclusive with `currencyId`.
+
+          requested_usage: Requested usage amount to evaluate against the entitlement limit (numeric
+              features only)
+
+          requested_values: Requested values to evaluate against allowed values (enum features only)
+
+          resource_id: Resource ID to scope the entitlement check to a specific resource
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            path_template("/api/v1/customers/{id}/entitlements/check", id=id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "currency_id": currency_id,
+                        "feature_id": feature_id,
+                        "requested_usage": requested_usage,
+                        "requested_values": requested_values,
+                        "resource_id": resource_id,
+                    },
+                    customer_check_entitlement_params.CustomerCheckEntitlementParams,
+                ),
+            ),
+            cast_to=CustomerCheckEntitlementResponse,
+        )
+
     async def import_(
         self,
         *,
@@ -1578,6 +1720,9 @@ class CustomersResourceWithRawResponse:
         self.archive = to_raw_response_wrapper(
             customers.archive,
         )
+        self.check_entitlement = to_raw_response_wrapper(
+            customers.check_entitlement,
+        )
         self.import_ = to_raw_response_wrapper(
             customers.import_,
         )
@@ -1624,6 +1769,9 @@ class AsyncCustomersResourceWithRawResponse:
         )
         self.archive = async_to_raw_response_wrapper(
             customers.archive,
+        )
+        self.check_entitlement = async_to_raw_response_wrapper(
+            customers.check_entitlement,
         )
         self.import_ = async_to_raw_response_wrapper(
             customers.import_,
@@ -1672,6 +1820,9 @@ class CustomersResourceWithStreamingResponse:
         self.archive = to_streamed_response_wrapper(
             customers.archive,
         )
+        self.check_entitlement = to_streamed_response_wrapper(
+            customers.check_entitlement,
+        )
         self.import_ = to_streamed_response_wrapper(
             customers.import_,
         )
@@ -1718,6 +1869,9 @@ class AsyncCustomersResourceWithStreamingResponse:
         )
         self.archive = async_to_streamed_response_wrapper(
             customers.archive,
+        )
+        self.check_entitlement = async_to_streamed_response_wrapper(
+            customers.check_entitlement,
         )
         self.import_ = async_to_streamed_response_wrapper(
             customers.import_,
