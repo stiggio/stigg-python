@@ -9,6 +9,7 @@ from stigg.types.v1 import (
     CustomerIntegrationResponse,
     CustomerResponse,
     CustomerListResponse,
+    CustomerCheckEntitlementResponse,
     CustomerImportResponse,
     CustomerListResourcesResponse,
     CustomerRetrieveEntitlementsResponse,
@@ -21,6 +22,7 @@ Methods:
 - <code title="patch /api/v1/customers/{id}">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">update</a>(id, \*\*<a href="src/stigg/types/v1/customer_update_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_response.py">CustomerResponse</a></code>
 - <code title="get /api/v1/customers">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">list</a>(\*\*<a href="src/stigg/types/v1/customer_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_list_response.py">SyncMyCursorIDPage[CustomerListResponse]</a></code>
 - <code title="post /api/v1/customers/{id}/archive">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">archive</a>(id) -> <a href="./src/stigg/types/v1/customer_response.py">CustomerResponse</a></code>
+- <code title="get /api/v1/customers/{id}/entitlements/check">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">check_entitlement</a>(id, \*\*<a href="src/stigg/types/v1/customer_check_entitlement_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_check_entitlement_response.py">CustomerCheckEntitlementResponse</a></code>
 - <code title="post /api/v1/customers/import">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">import\_</a>(\*\*<a href="src/stigg/types/v1/customer_import_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_import_response.py">CustomerImportResponse</a></code>
 - <code title="get /api/v1/customers/{id}/resources">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">list_resources</a>(id, \*\*<a href="src/stigg/types/v1/customer_list_resources_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_list_resources_response.py">SyncMyCursorIDPage[CustomerListResourcesResponse]</a></code>
 - <code title="post /api/v1/customers">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">provision</a>(\*\*<a href="src/stigg/types/v1/customer_provision_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_response.py">CustomerResponse</a></code>
