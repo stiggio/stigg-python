@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.35 (2026-05-06)
+
+Full Changelog: [v0.1.0-alpha.34...v0.1.0-alpha.35](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.34...v0.1.0-alpha.35)
+
+### Bug Fixes
+
+* **types:** remove RECURRING option from grant_type in credits grants ([37eca55](https://github.com/stiggio/stigg-python/commit/37eca5565d249e9c5656cb94d4e30d3e10e47cd0))
+
+
+### Chores
+
+* **internal:** regenerate SDK with no functional changes ([4aa4ba2](https://github.com/stiggio/stigg-python/commit/4aa4ba2acffe956a7a330304da2a7b1acab8affe))
+
 ## 0.1.0-alpha.34 (2026-05-06)
 
 Full Changelog: [v0.1.0-alpha.33...v0.1.0-alpha.34](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.33...v0.1.0-alpha.34)
