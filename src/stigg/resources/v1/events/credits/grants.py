@@ -56,7 +56,7 @@ class GrantsResource(SyncAPIResource):
         currency_id: str,
         customer_id: str,
         display_name: str,
-        grant_type: Literal["PAID", "PROMOTIONAL", "RECURRING", "OVERDRAFT"],
+        grant_type: Literal["PAID", "PROMOTIONAL"],
         await_payment_confirmation: bool | Omit = omit,
         billing_information: grant_create_params.BillingInformation | Omit = omit,
         comment: str | Omit = omit,
@@ -87,7 +87,7 @@ class GrantsResource(SyncAPIResource):
 
           display_name: The display name for the credit grant
 
-          grant_type: The type of credit grant (PAID, PROMOTIONAL, RECURRING)
+          grant_type: The type of credit grant (PAID, PROMOTIONAL)
 
           await_payment_confirmation: Whether to wait for payment confirmation before returning (default: true)
 
@@ -276,7 +276,7 @@ class AsyncGrantsResource(AsyncAPIResource):
         currency_id: str,
         customer_id: str,
         display_name: str,
-        grant_type: Literal["PAID", "PROMOTIONAL", "RECURRING", "OVERDRAFT"],
+        grant_type: Literal["PAID", "PROMOTIONAL"],
         await_payment_confirmation: bool | Omit = omit,
         billing_information: grant_create_params.BillingInformation | Omit = omit,
         comment: str | Omit = omit,
@@ -307,7 +307,7 @@ class AsyncGrantsResource(AsyncAPIResource):
 
           display_name: The display name for the credit grant
 
-          grant_type: The type of credit grant (PAID, PROMOTIONAL, RECURRING)
+          grant_type: The type of credit grant (PAID, PROMOTIONAL)
 
           await_payment_confirmation: Whether to wait for payment confirmation before returning (default: true)
 
