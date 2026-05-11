@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.37 (2026-05-11)
+
+Full Changelog: [v0.1.0-alpha.36...v0.1.0-alpha.37](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.36...v0.1.0-alpha.37)
+
+### Features
+
+* **api:** manual updates ([2f07464](https://github.com/stiggio/stigg-python/commit/2f07464a05ba15bfbe2e66cecc7f27c0d07cc59d))
+
 ## 0.1.0-alpha.36 (2026-05-09)
 
 Full Changelog: [v0.1.0-alpha.35...v0.1.0-alpha.36](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.35...v0.1.0-alpha.36)
