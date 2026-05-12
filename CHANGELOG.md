@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.38 (2026-05-12)
+
+Full Changelog: [v0.1.0-alpha.37...v0.1.0-alpha.38](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.37...v0.1.0-alpha.38)
+
+### Features
+
+* **internal/types:** support eagerly validating pydantic iterators ([4e2d07b](https://github.com/stiggio/stigg-python/commit/4e2d07b12c69dfe400f7ba952d63900bbd6b48a5))
+
 ## 0.1.0-alpha.37 (2026-05-11)
 
 Full Changelog: [v0.1.0-alpha.36...v0.1.0-alpha.37](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.36...v0.1.0-alpha.37)
