@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
@@ -27,7 +27,7 @@ class CouponListParams(TypedDict, total=False):
     limit: int
     """Maximum number of items to return"""
 
-    status: str
+    status: List[Literal["ACTIVE", "ARCHIVED"]]
     """Filter by coupon status. Supports comma-separated values for multiple statuses"""
 
     type: Literal["FIXED", "PERCENTAGE"]

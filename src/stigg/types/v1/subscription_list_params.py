@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import List, Union
 from datetime import datetime
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -30,13 +30,13 @@ class SubscriptionListParams(TypedDict, total=False):
     plan_id: Annotated[str, PropertyInfo(alias="planId")]
     """Filter by plan ID"""
 
-    pricing_type: Annotated[str, PropertyInfo(alias="pricingType")]
+    pricing_type: Annotated[List[Literal["FREE", "PAID", "CUSTOM"]], PropertyInfo(alias="pricingType")]
     """Filter by pricing type. Supports comma-separated values for multiple types"""
 
     resource_id: Annotated[str, PropertyInfo(alias="resourceId")]
     """Filter by resource ID"""
 
-    status: str
+    status: List[Literal["PAYMENT_PENDING", "ACTIVE", "EXPIRED", "IN_TRIAL", "CANCELED", "NOT_STARTED"]]
     """Filter by subscription status.
 
     Supports comma-separated values for multiple statuses

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
+from typing import Dict, List, Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -167,10 +167,10 @@ class FeaturesResource(SyncAPIResource):
         after: str | Omit = omit,
         before: str | Omit = omit,
         created_at: feature_list_features_params.CreatedAt | Omit = omit,
-        feature_type: str | Omit = omit,
+        feature_type: List[Literal["BOOLEAN", "NUMBER", "ENUM"]] | Omit = omit,
         limit: int | Omit = omit,
-        meter_type: str | Omit = omit,
-        status: str | Omit = omit,
+        meter_type: List[Literal["None", "FLUCTUATING", "INCREMENTAL"]] | Omit = omit,
+        status: List[Literal["NEW", "SUSPENDED", "ACTIVE"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -508,10 +508,10 @@ class AsyncFeaturesResource(AsyncAPIResource):
         after: str | Omit = omit,
         before: str | Omit = omit,
         created_at: feature_list_features_params.CreatedAt | Omit = omit,
-        feature_type: str | Omit = omit,
+        feature_type: List[Literal["BOOLEAN", "NUMBER", "ENUM"]] | Omit = omit,
         limit: int | Omit = omit,
-        meter_type: str | Omit = omit,
-        status: str | Omit = omit,
+        meter_type: List[Literal["None", "FLUCTUATING", "INCREMENTAL"]] | Omit = omit,
+        status: List[Literal["NEW", "SUSPENDED", "ACTIVE"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

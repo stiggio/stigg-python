@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -221,9 +221,10 @@ class SubscriptionsResource(SyncAPIResource):
         customer_id: str | Omit = omit,
         limit: int | Omit = omit,
         plan_id: str | Omit = omit,
-        pricing_type: str | Omit = omit,
+        pricing_type: List[Literal["FREE", "PAID", "CUSTOM"]] | Omit = omit,
         resource_id: str | Omit = omit,
-        status: str | Omit = omit,
+        status: List[Literal["PAYMENT_PENDING", "ACTIVE", "EXPIRED", "IN_TRIAL", "CANCELED", "NOT_STARTED"]]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -901,9 +902,10 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         customer_id: str | Omit = omit,
         limit: int | Omit = omit,
         plan_id: str | Omit = omit,
-        pricing_type: str | Omit = omit,
+        pricing_type: List[Literal["FREE", "PAID", "CUSTOM"]] | Omit = omit,
         resource_id: str | Omit = omit,
-        status: str | Omit = omit,
+        status: List[Literal["PAYMENT_PENDING", "ACTIVE", "EXPIRED", "IN_TRIAL", "CANCELED", "NOT_STARTED"]]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

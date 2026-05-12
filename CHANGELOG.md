@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.1 (2026-05-12)
+
+Full Changelog: [v0.1.0-alpha.39...v0.1.0-beta.1](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.39...v0.1.0-beta.1)
+
+### Features
+
+* **api:** add custom_currencies endpoints to credits ([b3a04fc](https://github.com/stiggio/stigg-python/commit/b3a04fc63138877b6c5a6dd4551a21c2e26ec2ee))
+
 ## 0.1.0-alpha.39 (2026-05-12)
 
 Full Changelog: [v0.1.0-alpha.38...v0.1.0-alpha.39](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.38...v0.1.0-alpha.39)

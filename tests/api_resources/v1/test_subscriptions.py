@@ -233,9 +233,9 @@ class TestSubscriptions:
             customer_id="customerId",
             limit=1,
             plan_id="planId",
-            pricing_type="pricingType",
+            pricing_type=["FREE"],
             resource_id="resourceId",
-            status="status",
+            status=["PAYMENT_PENDING"],
         )
         assert_matches_type(SyncMyCursorIDPage[SubscriptionListResponse], subscription, path=["response"])
 
@@ -1060,9 +1060,9 @@ class TestAsyncSubscriptions:
             customer_id="customerId",
             limit=1,
             plan_id="planId",
-            pricing_type="pricingType",
+            pricing_type=["FREE"],
             resource_id="resourceId",
-            status="status",
+            status=["PAYMENT_PENDING"],
         )
         assert_matches_type(AsyncMyCursorIDPage[SubscriptionListResponse], subscription, path=["response"])
 

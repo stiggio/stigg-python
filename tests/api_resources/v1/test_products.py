@@ -190,7 +190,7 @@ class TestProducts:
                 "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
             limit=1,
-            status="status",
+            status=["PUBLISHED"],
         )
         assert_matches_type(SyncMyCursorIDPage[ProductListProductsResponse], product, path=["response"])
 
@@ -495,7 +495,7 @@ class TestAsyncProducts:
                 "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
             limit=1,
-            status="status",
+            status=["PUBLISHED"],
         )
         assert_matches_type(AsyncMyCursorIDPage[ProductListProductsResponse], product, path=["response"])
 

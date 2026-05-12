@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import Annotated, TypedDict
+from typing import List
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
@@ -19,7 +20,23 @@ class IntegrationListParams(TypedDict, total=False):
     limit: int
     """Maximum number of items to return"""
 
-    vendor_identifier: Annotated[str, PropertyInfo(alias="vendorIdentifier")]
+    vendor_identifier: Annotated[
+        List[
+            Literal[
+                "AUTH0",
+                "ZUORA",
+                "STRIPE",
+                "HUBSPOT",
+                "AWS_MARKETPLACE",
+                "SNOWFLAKE",
+                "SALESFORCE",
+                "BIG_QUERY",
+                "OPEN_FGA",
+                "APP_STORE",
+            ]
+        ],
+        PropertyInfo(alias="vendorIdentifier"),
+    ]
     """Filter by vendor identifier.
 
     Supports comma-separated values for multiple vendors (e.g., STRIPE,HUBSPOT)
