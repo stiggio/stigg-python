@@ -48,6 +48,14 @@ from .coupons import (
     CouponsResourceWithStreamingResponse,
     AsyncCouponsResourceWithStreamingResponse,
 )
+from .credits import (
+    CreditsResource,
+    AsyncCreditsResource,
+    CreditsResourceWithRawResponse,
+    AsyncCreditsResourceWithRawResponse,
+    CreditsResourceWithStreamingResponse,
+    AsyncCreditsResourceWithStreamingResponse,
+)
 from .features import (
     FeaturesResource,
     AsyncFeaturesResource,
@@ -106,6 +114,12 @@ __all__ = [
     "AsyncEventsResourceWithRawResponse",
     "EventsResourceWithStreamingResponse",
     "AsyncEventsResourceWithStreamingResponse",
+    "CreditsResource",
+    "AsyncCreditsResource",
+    "CreditsResourceWithRawResponse",
+    "AsyncCreditsResourceWithRawResponse",
+    "CreditsResourceWithStreamingResponse",
+    "AsyncCreditsResourceWithStreamingResponse",
     "FeaturesResource",
     "AsyncFeaturesResource",
     "FeaturesResourceWithRawResponse",
