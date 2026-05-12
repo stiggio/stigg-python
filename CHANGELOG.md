@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.39 (2026-05-12)
+
+Full Changelog: [v0.1.0-alpha.38...v0.1.0-alpha.39](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.38...v0.1.0-alpha.39)
+
+### Features
+
+* Trunk/stigg 7618 credits engine reconciliation adapter ([aaac101](https://github.com/stiggio/stigg-python/commit/aaac1016cdc2d140d3af7a9930c1e6e3fb454ef5))
+
 ## 0.1.0-alpha.38 (2026-05-12)
 
 Full Changelog: [v0.1.0-alpha.37...v0.1.0-alpha.38](https://github.com/stiggio/stigg-python/compare/v0.1.0-alpha.37...v0.1.0-alpha.38)
