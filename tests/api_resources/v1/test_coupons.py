@@ -151,7 +151,7 @@ class TestCoupons:
                 "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
             limit=1,
-            status="status",
+            status=["ACTIVE"],
             type="FIXED",
         )
         assert_matches_type(SyncMyCursorIDPage[CouponListResponse], coupon, path=["response"])
@@ -408,7 +408,7 @@ class TestAsyncCoupons:
                 "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
             limit=1,
-            status="status",
+            status=["ACTIVE"],
             type="FIXED",
         )
         assert_matches_type(AsyncMyCursorIDPage[CouponListResponse], coupon, path=["response"])

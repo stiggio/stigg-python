@@ -28,6 +28,14 @@ from ....._response import (
 )
 from .....pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 from ....._base_client import AsyncPaginator, make_request_options
+from .custom_currencies import (
+    CustomCurrenciesResource,
+    AsyncCustomCurrenciesResource,
+    CustomCurrenciesResourceWithRawResponse,
+    AsyncCustomCurrenciesResourceWithRawResponse,
+    CustomCurrenciesResourceWithStreamingResponse,
+    AsyncCustomCurrenciesResourceWithStreamingResponse,
+)
 from .....types.v1.events import credit_get_usage_params, credit_list_ledger_params, credit_get_auto_recharge_params
 from .....types.v1.events.credit_get_usage_response import CreditGetUsageResponse
 from .....types.v1.events.credit_list_ledger_response import CreditListLedgerResponse
@@ -41,6 +49,11 @@ class CreditsResource(SyncAPIResource):
     def grants(self) -> GrantsResource:
         """Operations related to credit grants"""
         return GrantsResource(self._client)
+
+    @cached_property
+    def custom_currencies(self) -> CustomCurrenciesResource:
+        """Operations related to custom currencies"""
+        return CustomCurrenciesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CreditsResourceWithRawResponse:
@@ -243,6 +256,11 @@ class AsyncCreditsResource(AsyncAPIResource):
     def grants(self) -> AsyncGrantsResource:
         """Operations related to credit grants"""
         return AsyncGrantsResource(self._client)
+
+    @cached_property
+    def custom_currencies(self) -> AsyncCustomCurrenciesResource:
+        """Operations related to custom currencies"""
+        return AsyncCustomCurrenciesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCreditsResourceWithRawResponse:
@@ -459,6 +477,11 @@ class CreditsResourceWithRawResponse:
         """Operations related to credit grants"""
         return GrantsResourceWithRawResponse(self._credits.grants)
 
+    @cached_property
+    def custom_currencies(self) -> CustomCurrenciesResourceWithRawResponse:
+        """Operations related to custom currencies"""
+        return CustomCurrenciesResourceWithRawResponse(self._credits.custom_currencies)
+
 
 class AsyncCreditsResourceWithRawResponse:
     def __init__(self, credits: AsyncCreditsResource) -> None:
@@ -478,6 +501,11 @@ class AsyncCreditsResourceWithRawResponse:
     def grants(self) -> AsyncGrantsResourceWithRawResponse:
         """Operations related to credit grants"""
         return AsyncGrantsResourceWithRawResponse(self._credits.grants)
+
+    @cached_property
+    def custom_currencies(self) -> AsyncCustomCurrenciesResourceWithRawResponse:
+        """Operations related to custom currencies"""
+        return AsyncCustomCurrenciesResourceWithRawResponse(self._credits.custom_currencies)
 
 
 class CreditsResourceWithStreamingResponse:
@@ -499,6 +527,11 @@ class CreditsResourceWithStreamingResponse:
         """Operations related to credit grants"""
         return GrantsResourceWithStreamingResponse(self._credits.grants)
 
+    @cached_property
+    def custom_currencies(self) -> CustomCurrenciesResourceWithStreamingResponse:
+        """Operations related to custom currencies"""
+        return CustomCurrenciesResourceWithStreamingResponse(self._credits.custom_currencies)
+
 
 class AsyncCreditsResourceWithStreamingResponse:
     def __init__(self, credits: AsyncCreditsResource) -> None:
@@ -518,3 +551,8 @@ class AsyncCreditsResourceWithStreamingResponse:
     def grants(self) -> AsyncGrantsResourceWithStreamingResponse:
         """Operations related to credit grants"""
         return AsyncGrantsResourceWithStreamingResponse(self._credits.grants)
+
+    @cached_property
+    def custom_currencies(self) -> AsyncCustomCurrenciesResourceWithStreamingResponse:
+        """Operations related to custom currencies"""
+        return AsyncCustomCurrenciesResourceWithStreamingResponse(self._credits.custom_currencies)

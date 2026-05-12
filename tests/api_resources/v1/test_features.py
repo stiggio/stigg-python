@@ -151,10 +151,10 @@ class TestFeatures:
                 "lt": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
-            feature_type="featureType",
+            feature_type=["BOOLEAN"],
             limit=1,
-            meter_type="meterType",
-            status="status",
+            meter_type=["None"],
+            status=["NEW"],
         )
         assert_matches_type(SyncMyCursorIDPage[FeatureListFeaturesResponse], feature, path=["response"])
 
@@ -484,10 +484,10 @@ class TestAsyncFeatures:
                 "lt": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
-            feature_type="featureType",
+            feature_type=["BOOLEAN"],
             limit=1,
-            meter_type="meterType",
-            status="status",
+            meter_type=["None"],
+            status=["NEW"],
         )
         assert_matches_type(AsyncMyCursorIDPage[FeatureListFeaturesResponse], feature, path=["response"])
 

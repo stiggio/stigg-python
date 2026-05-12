@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import List, Union
 from datetime import datetime
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
@@ -24,7 +24,7 @@ class PromotionalEntitlementListParams(TypedDict, total=False):
     limit: int
     """Maximum number of items to return"""
 
-    status: str
+    status: List[Literal["Active", "Expired", "Paused"]]
     """Filter by promotional entitlement status.
 
     Supports comma-separated values for multiple statuses

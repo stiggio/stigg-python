@@ -146,7 +146,7 @@ class TestIntegrations:
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
-            vendor_identifier="vendorIdentifier",
+            vendor_identifier=["AUTH0"],
         )
         assert_matches_type(SyncMyCursorIDPage[IntegrationListResponse], integration, path=["response"])
 
@@ -421,7 +421,7 @@ class TestAsyncIntegrations:
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
-            vendor_identifier="vendorIdentifier",
+            vendor_identifier=["AUTH0"],
         )
         assert_matches_type(AsyncMyCursorIDPage[IntegrationListResponse], integration, path=["response"])
 

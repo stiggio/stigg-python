@@ -306,7 +306,7 @@ class TestAddons:
             },
             limit=1,
             product_id="productId",
-            status="status",
+            status=["DRAFT"],
         )
         assert_matches_type(SyncMyCursorIDPage[AddonListResponse], addon, path=["response"])
 
@@ -792,7 +792,7 @@ class TestAsyncAddons:
             },
             limit=1,
             product_id="productId",
-            status="status",
+            status=["DRAFT"],
         )
         assert_matches_type(AsyncMyCursorIDPage[AddonListResponse], addon, path=["response"])
 
