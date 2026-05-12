@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import List, Iterable
+from typing_extensions import Literal
 
 import httpx
 
@@ -97,7 +98,7 @@ class PromotionalEntitlementsResource(SyncAPIResource):
         before: str | Omit = omit,
         created_at: promotional_entitlement_list_params.CreatedAt | Omit = omit,
         limit: int | Omit = omit,
-        status: str | Omit = omit,
+        status: List[Literal["Active", "Expired", "Paused"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -261,7 +262,7 @@ class AsyncPromotionalEntitlementsResource(AsyncAPIResource):
         before: str | Omit = omit,
         created_at: promotional_entitlement_list_params.CreatedAt | Omit = omit,
         limit: int | Omit = omit,
-        status: str | Omit = omit,
+        status: List[Literal["Active", "Expired", "Paused"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

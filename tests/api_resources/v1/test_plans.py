@@ -323,7 +323,7 @@ class TestPlans:
             },
             limit=1,
             product_id="productId",
-            status="status",
+            status=["DRAFT"],
         )
         assert_matches_type(SyncMyCursorIDPage[PlanListResponse], plan, path=["response"])
 
@@ -826,7 +826,7 @@ class TestAsyncPlans:
             },
             limit=1,
             product_id="productId",
-            status="status",
+            status=["DRAFT"],
         )
         assert_matches_type(AsyncMyCursorIDPage[PlanListResponse], plan, path=["response"])
 

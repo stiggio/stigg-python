@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import List, Union
 from datetime import datetime
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -24,16 +24,16 @@ class FeatureListFeaturesParams(TypedDict, total=False):
     created_at: Annotated[CreatedAt, PropertyInfo(alias="createdAt")]
     """Filter by creation date using range operators: gt, gte, lt, lte"""
 
-    feature_type: Annotated[str, PropertyInfo(alias="featureType")]
+    feature_type: Annotated[List[Literal["BOOLEAN", "NUMBER", "ENUM"]], PropertyInfo(alias="featureType")]
     """Filter by feature type. Supports comma-separated values for multiple types"""
 
     limit: int
     """Maximum number of items to return"""
 
-    meter_type: Annotated[str, PropertyInfo(alias="meterType")]
+    meter_type: Annotated[List[Literal["None", "FLUCTUATING", "INCREMENTAL"]], PropertyInfo(alias="meterType")]
     """Filter by meter type. Supports comma-separated values for multiple types"""
 
-    status: str
+    status: List[Literal["NEW", "SUSPENDED", "ACTIVE"]]
     """Filter by feature status. Supports comma-separated values for multiple statuses"""
 
 

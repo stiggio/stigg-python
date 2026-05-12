@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
+from typing import Dict, List, Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -153,7 +153,7 @@ class CouponsResource(SyncAPIResource):
         before: str | Omit = omit,
         created_at: coupon_list_params.CreatedAt | Omit = omit,
         limit: int | Omit = omit,
-        status: str | Omit = omit,
+        status: List[Literal["ACTIVE", "ARCHIVED"]] | Omit = omit,
         type: Literal["FIXED", "PERCENTAGE"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -423,7 +423,7 @@ class AsyncCouponsResource(AsyncAPIResource):
         before: str | Omit = omit,
         created_at: coupon_list_params.CreatedAt | Omit = omit,
         limit: int | Omit = omit,
-        status: str | Omit = omit,
+        status: List[Literal["ACTIVE", "ARCHIVED"]] | Omit = omit,
         type: Literal["FIXED", "PERCENTAGE"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
