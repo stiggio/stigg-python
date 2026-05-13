@@ -534,7 +534,7 @@ class SubscriptionsResource(SyncAPIResource):
 
           trial_override_configuration: Trial period override settings
 
-          unit_quantity: Unit quantity for per-unit pricing
+          unit_quantity: Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
 
           extra_headers: Send extra headers
 
@@ -653,7 +653,7 @@ class SubscriptionsResource(SyncAPIResource):
 
           trial_override_configuration: Trial period override settings
 
-          unit_quantity: Unit quantity
+          unit_quantity: Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
 
           extra_headers: Send extra headers
 
@@ -1215,7 +1215,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           trial_override_configuration: Trial period override settings
 
-          unit_quantity: Unit quantity for per-unit pricing
+          unit_quantity: Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
 
           extra_headers: Send extra headers
 
@@ -1334,7 +1334,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           trial_override_configuration: Trial period override settings
 
-          unit_quantity: Unit quantity
+          unit_quantity: Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
 
           extra_headers: Send extra headers
 

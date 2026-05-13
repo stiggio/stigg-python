@@ -115,7 +115,7 @@ class SubscriptionProvisionParams(TypedDict, total=False):
     """Trial period override settings"""
 
     unit_quantity: Annotated[int, PropertyInfo(alias="unitQuantity")]
-    """Unit quantity"""
+    """Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed)."""
 
 
 class Addon(TypedDict, total=False):
@@ -378,7 +378,7 @@ class Charge(TypedDict, total=False):
     """Charge ID"""
 
     quantity: Required[float]
-    """Charge quantity"""
+    """Charge quantity. Minimum is 0 (zero is allowed)."""
 
     type: Required[Literal["FEATURE", "CREDIT"]]
     """Charge type"""

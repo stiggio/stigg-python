@@ -140,7 +140,7 @@ class TestSubscriptions:
             charges=[
                 {
                     "id": "id",
-                    "quantity": 1,
+                    "quantity": 0,
                     "type": "FEATURE",
                 }
             ],
@@ -395,7 +395,7 @@ class TestSubscriptions:
                     "charges": [
                         {
                             "id": "id",
-                            "quantity": 1,
+                            "quantity": 0,
                             "type": "FEATURE",
                         }
                     ],
@@ -540,7 +540,7 @@ class TestSubscriptions:
             billable_features=[
                 {
                     "feature_id": "featureId",
-                    "quantity": 1,
+                    "quantity": 0,
                 }
             ],
             billing_country_code="billingCountryCode",
@@ -574,7 +574,7 @@ class TestSubscriptions:
             charges=[
                 {
                     "id": "id",
-                    "quantity": 1,
+                    "quantity": 0,
                     "type": "FEATURE",
                 }
             ],
@@ -587,7 +587,7 @@ class TestSubscriptions:
                 "trial_end_behavior": "CONVERT_TO_PAID",
                 "trial_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
-            unit_quantity=1,
+            unit_quantity=0,
         )
         assert_matches_type(SubscriptionPreviewResponse, subscription, path=["response"])
 
@@ -696,7 +696,7 @@ class TestSubscriptions:
             charges=[
                 {
                     "id": "id",
-                    "quantity": 1,
+                    "quantity": 0,
                     "type": "FEATURE",
                 }
             ],
@@ -768,7 +768,7 @@ class TestSubscriptions:
                 "trial_end_behavior": "CONVERT_TO_PAID",
                 "trial_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
-            unit_quantity=1,
+            unit_quantity=0,
         )
         assert_matches_type(SubscriptionProvisionResponse, subscription, path=["response"])
 
@@ -967,7 +967,7 @@ class TestAsyncSubscriptions:
             charges=[
                 {
                     "id": "id",
-                    "quantity": 1,
+                    "quantity": 0,
                     "type": "FEATURE",
                 }
             ],
@@ -1222,7 +1222,7 @@ class TestAsyncSubscriptions:
                     "charges": [
                         {
                             "id": "id",
-                            "quantity": 1,
+                            "quantity": 0,
                             "type": "FEATURE",
                         }
                     ],
@@ -1367,7 +1367,7 @@ class TestAsyncSubscriptions:
             billable_features=[
                 {
                     "feature_id": "featureId",
-                    "quantity": 1,
+                    "quantity": 0,
                 }
             ],
             billing_country_code="billingCountryCode",
@@ -1401,7 +1401,7 @@ class TestAsyncSubscriptions:
             charges=[
                 {
                     "id": "id",
-                    "quantity": 1,
+                    "quantity": 0,
                     "type": "FEATURE",
                 }
             ],
@@ -1414,7 +1414,7 @@ class TestAsyncSubscriptions:
                 "trial_end_behavior": "CONVERT_TO_PAID",
                 "trial_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
-            unit_quantity=1,
+            unit_quantity=0,
         )
         assert_matches_type(SubscriptionPreviewResponse, subscription, path=["response"])
 
@@ -1523,7 +1523,7 @@ class TestAsyncSubscriptions:
             charges=[
                 {
                     "id": "id",
-                    "quantity": 1,
+                    "quantity": 0,
                     "type": "FEATURE",
                 }
             ],
@@ -1595,7 +1595,7 @@ class TestAsyncSubscriptions:
                 "trial_end_behavior": "CONVERT_TO_PAID",
                 "trial_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
-            unit_quantity=1,
+            unit_quantity=0,
         )
         assert_matches_type(SubscriptionProvisionResponse, subscription, path=["response"])
 
