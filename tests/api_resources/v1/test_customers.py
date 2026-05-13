@@ -277,11 +277,11 @@ class TestCustomers:
     def test_method_check_entitlement_with_all_params(self, client: Stigg) -> None:
         customer = client.v1.customers.check_entitlement(
             id="x",
-            currency_id="x",
-            feature_id="x",
+            currency_id="currencyId",
+            feature_id="featureId",
             requested_usage=0,
             requested_values=["string"],
-            resource_id="x",
+            resource_id="resourceId",
         )
         assert_matches_type(CustomerCheckEntitlementResponse, customer, path=["response"])
 
@@ -901,11 +901,11 @@ class TestAsyncCustomers:
     async def test_method_check_entitlement_with_all_params(self, async_client: AsyncStigg) -> None:
         customer = await async_client.v1.customers.check_entitlement(
             id="x",
-            currency_id="x",
-            feature_id="x",
+            currency_id="currencyId",
+            feature_id="featureId",
             requested_usage=0,
             requested_values=["string"],
-            resource_id="x",
+            resource_id="resourceId",
         )
         assert_matches_type(CustomerCheckEntitlementResponse, customer, path=["response"])
 
