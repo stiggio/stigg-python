@@ -36,7 +36,7 @@ class SubscriptionCharge(TypedDict, total=False):
     """Charge ID"""
 
     quantity: Required[float]
-    """Charge quantity"""
+    """Charge quantity. Minimum is 0 (zero is allowed)."""
 
     type: Required[Literal["FEATURE", "CREDIT"]]
     """Charge type"""
