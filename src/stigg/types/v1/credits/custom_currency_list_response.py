@@ -5,12 +5,12 @@ from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
-from ....._models import BaseModel
+from ...._models import BaseModel
 
-__all__ = ["CustomCurrencyCreateResponse", "Data", "DataUnits"]
+__all__ = ["CustomCurrencyListResponse", "Units"]
 
 
-class DataUnits(BaseModel):
+class Units(BaseModel):
     """Singular and plural unit labels for a custom currency"""
 
     plural: Optional[str] = None
@@ -20,7 +20,7 @@ class DataUnits(BaseModel):
     """Singular form of the unit label"""
 
 
-class Data(BaseModel):
+class CustomCurrencyListResponse(BaseModel):
     """A custom currency used to denominate credit-based entitlements and pricing"""
 
     id: str
@@ -44,15 +44,8 @@ class Data(BaseModel):
     symbol: Optional[str] = None
     """The symbol used to represent the custom currency"""
 
-    units: Optional[DataUnits] = None
+    units: Optional[Units] = None
     """Singular and plural unit labels for a custom currency"""
 
     updated_at: datetime = FieldInfo(alias="updatedAt")
     """Timestamp of when the record was last updated"""
-
-
-class CustomCurrencyCreateResponse(BaseModel):
-    """Response object"""
-
-    data: Data
-    """A custom currency used to denominate credit-based entitlements and pricing"""

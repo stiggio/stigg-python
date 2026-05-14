@@ -11,7 +11,7 @@ from stigg import Stigg, AsyncStigg
 from tests.utils import assert_matches_type
 from stigg._utils import parse_datetime
 from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
-from stigg.types.v1.events.credits import GrantListResponse, CreditGrantResponse
+from stigg.types.v1.credits import GrantListResponse, CreditGrantResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +22,7 @@ class TestGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Stigg) -> None:
-        grant = client.v1.events.credits.grants.create(
+        grant = client.v1.credits.grants.create(
             amount=0,
             currency_id="currencyId",
             customer_id="customerId",
@@ -34,7 +34,7 @@ class TestGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Stigg) -> None:
-        grant = client.v1.events.credits.grants.create(
+        grant = client.v1.credits.grants.create(
             amount=0,
             currency_id="currencyId",
             customer_id="customerId",
@@ -70,7 +70,7 @@ class TestGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Stigg) -> None:
-        response = client.v1.events.credits.grants.with_raw_response.create(
+        response = client.v1.credits.grants.with_raw_response.create(
             amount=0,
             currency_id="currencyId",
             customer_id="customerId",
@@ -86,7 +86,7 @@ class TestGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Stigg) -> None:
-        with client.v1.events.credits.grants.with_streaming_response.create(
+        with client.v1.credits.grants.with_streaming_response.create(
             amount=0,
             currency_id="currencyId",
             customer_id="customerId",
@@ -104,7 +104,7 @@ class TestGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Stigg) -> None:
-        grant = client.v1.events.credits.grants.list(
+        grant = client.v1.credits.grants.list(
             customer_id="customerId",
         )
         assert_matches_type(SyncMyCursorIDPage[GrantListResponse], grant, path=["response"])
@@ -112,7 +112,7 @@ class TestGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Stigg) -> None:
-        grant = client.v1.events.credits.grants.list(
+        grant = client.v1.credits.grants.list(
             customer_id="customerId",
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -131,7 +131,7 @@ class TestGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Stigg) -> None:
-        response = client.v1.events.credits.grants.with_raw_response.list(
+        response = client.v1.credits.grants.with_raw_response.list(
             customer_id="customerId",
         )
 
@@ -143,7 +143,7 @@ class TestGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Stigg) -> None:
-        with client.v1.events.credits.grants.with_streaming_response.list(
+        with client.v1.credits.grants.with_streaming_response.list(
             customer_id="customerId",
         ) as response:
             assert not response.is_closed
@@ -157,7 +157,7 @@ class TestGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_void(self, client: Stigg) -> None:
-        grant = client.v1.events.credits.grants.void(
+        grant = client.v1.credits.grants.void(
             "x",
         )
         assert_matches_type(CreditGrantResponse, grant, path=["response"])
@@ -165,7 +165,7 @@ class TestGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_void(self, client: Stigg) -> None:
-        response = client.v1.events.credits.grants.with_raw_response.void(
+        response = client.v1.credits.grants.with_raw_response.void(
             "x",
         )
 
@@ -177,7 +177,7 @@ class TestGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_void(self, client: Stigg) -> None:
-        with client.v1.events.credits.grants.with_streaming_response.void(
+        with client.v1.credits.grants.with_streaming_response.void(
             "x",
         ) as response:
             assert not response.is_closed
@@ -192,7 +192,7 @@ class TestGrants:
     @parametrize
     def test_path_params_void(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.v1.events.credits.grants.with_raw_response.void(
+            client.v1.credits.grants.with_raw_response.void(
                 "",
             )
 
@@ -205,7 +205,7 @@ class TestAsyncGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncStigg) -> None:
-        grant = await async_client.v1.events.credits.grants.create(
+        grant = await async_client.v1.credits.grants.create(
             amount=0,
             currency_id="currencyId",
             customer_id="customerId",
@@ -217,7 +217,7 @@ class TestAsyncGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncStigg) -> None:
-        grant = await async_client.v1.events.credits.grants.create(
+        grant = await async_client.v1.credits.grants.create(
             amount=0,
             currency_id="currencyId",
             customer_id="customerId",
@@ -253,7 +253,7 @@ class TestAsyncGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v1.events.credits.grants.with_raw_response.create(
+        response = await async_client.v1.credits.grants.with_raw_response.create(
             amount=0,
             currency_id="currencyId",
             customer_id="customerId",
@@ -269,7 +269,7 @@ class TestAsyncGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncStigg) -> None:
-        async with async_client.v1.events.credits.grants.with_streaming_response.create(
+        async with async_client.v1.credits.grants.with_streaming_response.create(
             amount=0,
             currency_id="currencyId",
             customer_id="customerId",
@@ -287,7 +287,7 @@ class TestAsyncGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncStigg) -> None:
-        grant = await async_client.v1.events.credits.grants.list(
+        grant = await async_client.v1.credits.grants.list(
             customer_id="customerId",
         )
         assert_matches_type(AsyncMyCursorIDPage[GrantListResponse], grant, path=["response"])
@@ -295,7 +295,7 @@ class TestAsyncGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStigg) -> None:
-        grant = await async_client.v1.events.credits.grants.list(
+        grant = await async_client.v1.credits.grants.list(
             customer_id="customerId",
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -314,7 +314,7 @@ class TestAsyncGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v1.events.credits.grants.with_raw_response.list(
+        response = await async_client.v1.credits.grants.with_raw_response.list(
             customer_id="customerId",
         )
 
@@ -326,7 +326,7 @@ class TestAsyncGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStigg) -> None:
-        async with async_client.v1.events.credits.grants.with_streaming_response.list(
+        async with async_client.v1.credits.grants.with_streaming_response.list(
             customer_id="customerId",
         ) as response:
             assert not response.is_closed
@@ -340,7 +340,7 @@ class TestAsyncGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_void(self, async_client: AsyncStigg) -> None:
-        grant = await async_client.v1.events.credits.grants.void(
+        grant = await async_client.v1.credits.grants.void(
             "x",
         )
         assert_matches_type(CreditGrantResponse, grant, path=["response"])
@@ -348,7 +348,7 @@ class TestAsyncGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_void(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v1.events.credits.grants.with_raw_response.void(
+        response = await async_client.v1.credits.grants.with_raw_response.void(
             "x",
         )
 
@@ -360,7 +360,7 @@ class TestAsyncGrants:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_void(self, async_client: AsyncStigg) -> None:
-        async with async_client.v1.events.credits.grants.with_streaming_response.void(
+        async with async_client.v1.credits.grants.with_streaming_response.void(
             "x",
         ) as response:
             assert not response.is_closed
@@ -375,6 +375,6 @@ class TestAsyncGrants:
     @parametrize
     async def test_path_params_void(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.v1.events.credits.grants.with_raw_response.void(
+            await async_client.v1.credits.grants.with_raw_response.void(
                 "",
             )

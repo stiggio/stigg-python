@@ -10,12 +10,12 @@ import pytest
 from stigg import Stigg, AsyncStigg
 from tests.utils import assert_matches_type
 from stigg._utils import parse_datetime
-from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
-from stigg.types.v1.events import (
+from stigg.types.v1 import (
     CreditGetUsageResponse,
     CreditListLedgerResponse,
     CreditGetAutoRechargeResponse,
 )
+from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +26,7 @@ class TestCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_auto_recharge(self, client: Stigg) -> None:
-        credit = client.v1.events.credits.get_auto_recharge(
+        credit = client.v1.credits.get_auto_recharge(
             currency_id="currencyId",
             customer_id="customerId",
         )
@@ -35,7 +35,7 @@ class TestCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_auto_recharge(self, client: Stigg) -> None:
-        response = client.v1.events.credits.with_raw_response.get_auto_recharge(
+        response = client.v1.credits.with_raw_response.get_auto_recharge(
             currency_id="currencyId",
             customer_id="customerId",
         )
@@ -48,7 +48,7 @@ class TestCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_auto_recharge(self, client: Stigg) -> None:
-        with client.v1.events.credits.with_streaming_response.get_auto_recharge(
+        with client.v1.credits.with_streaming_response.get_auto_recharge(
             currency_id="currencyId",
             customer_id="customerId",
         ) as response:
@@ -63,7 +63,7 @@ class TestCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_usage(self, client: Stigg) -> None:
-        credit = client.v1.events.credits.get_usage(
+        credit = client.v1.credits.get_usage(
             customer_id="customerId",
         )
         assert_matches_type(CreditGetUsageResponse, credit, path=["response"])
@@ -71,7 +71,7 @@ class TestCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_usage_with_all_params(self, client: Stigg) -> None:
-        credit = client.v1.events.credits.get_usage(
+        credit = client.v1.credits.get_usage(
             customer_id="customerId",
             currency_id="currencyId",
             end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -84,7 +84,7 @@ class TestCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_usage(self, client: Stigg) -> None:
-        response = client.v1.events.credits.with_raw_response.get_usage(
+        response = client.v1.credits.with_raw_response.get_usage(
             customer_id="customerId",
         )
 
@@ -96,7 +96,7 @@ class TestCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_usage(self, client: Stigg) -> None:
-        with client.v1.events.credits.with_streaming_response.get_usage(
+        with client.v1.credits.with_streaming_response.get_usage(
             customer_id="customerId",
         ) as response:
             assert not response.is_closed
@@ -110,7 +110,7 @@ class TestCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_ledger(self, client: Stigg) -> None:
-        credit = client.v1.events.credits.list_ledger(
+        credit = client.v1.credits.list_ledger(
             customer_id="customerId",
         )
         assert_matches_type(SyncMyCursorIDPage[CreditListLedgerResponse], credit, path=["response"])
@@ -118,7 +118,7 @@ class TestCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_ledger_with_all_params(self, client: Stigg) -> None:
-        credit = client.v1.events.credits.list_ledger(
+        credit = client.v1.credits.list_ledger(
             customer_id="customerId",
             after="after",
             before="before",
@@ -131,7 +131,7 @@ class TestCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list_ledger(self, client: Stigg) -> None:
-        response = client.v1.events.credits.with_raw_response.list_ledger(
+        response = client.v1.credits.with_raw_response.list_ledger(
             customer_id="customerId",
         )
 
@@ -143,7 +143,7 @@ class TestCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list_ledger(self, client: Stigg) -> None:
-        with client.v1.events.credits.with_streaming_response.list_ledger(
+        with client.v1.credits.with_streaming_response.list_ledger(
             customer_id="customerId",
         ) as response:
             assert not response.is_closed
@@ -163,7 +163,7 @@ class TestAsyncCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_auto_recharge(self, async_client: AsyncStigg) -> None:
-        credit = await async_client.v1.events.credits.get_auto_recharge(
+        credit = await async_client.v1.credits.get_auto_recharge(
             currency_id="currencyId",
             customer_id="customerId",
         )
@@ -172,7 +172,7 @@ class TestAsyncCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_auto_recharge(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v1.events.credits.with_raw_response.get_auto_recharge(
+        response = await async_client.v1.credits.with_raw_response.get_auto_recharge(
             currency_id="currencyId",
             customer_id="customerId",
         )
@@ -185,7 +185,7 @@ class TestAsyncCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_auto_recharge(self, async_client: AsyncStigg) -> None:
-        async with async_client.v1.events.credits.with_streaming_response.get_auto_recharge(
+        async with async_client.v1.credits.with_streaming_response.get_auto_recharge(
             currency_id="currencyId",
             customer_id="customerId",
         ) as response:
@@ -200,7 +200,7 @@ class TestAsyncCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_usage(self, async_client: AsyncStigg) -> None:
-        credit = await async_client.v1.events.credits.get_usage(
+        credit = await async_client.v1.credits.get_usage(
             customer_id="customerId",
         )
         assert_matches_type(CreditGetUsageResponse, credit, path=["response"])
@@ -208,7 +208,7 @@ class TestAsyncCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_usage_with_all_params(self, async_client: AsyncStigg) -> None:
-        credit = await async_client.v1.events.credits.get_usage(
+        credit = await async_client.v1.credits.get_usage(
             customer_id="customerId",
             currency_id="currencyId",
             end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -221,7 +221,7 @@ class TestAsyncCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_usage(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v1.events.credits.with_raw_response.get_usage(
+        response = await async_client.v1.credits.with_raw_response.get_usage(
             customer_id="customerId",
         )
 
@@ -233,7 +233,7 @@ class TestAsyncCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_usage(self, async_client: AsyncStigg) -> None:
-        async with async_client.v1.events.credits.with_streaming_response.get_usage(
+        async with async_client.v1.credits.with_streaming_response.get_usage(
             customer_id="customerId",
         ) as response:
             assert not response.is_closed
@@ -247,7 +247,7 @@ class TestAsyncCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_ledger(self, async_client: AsyncStigg) -> None:
-        credit = await async_client.v1.events.credits.list_ledger(
+        credit = await async_client.v1.credits.list_ledger(
             customer_id="customerId",
         )
         assert_matches_type(AsyncMyCursorIDPage[CreditListLedgerResponse], credit, path=["response"])
@@ -255,7 +255,7 @@ class TestAsyncCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_ledger_with_all_params(self, async_client: AsyncStigg) -> None:
-        credit = await async_client.v1.events.credits.list_ledger(
+        credit = await async_client.v1.credits.list_ledger(
             customer_id="customerId",
             after="after",
             before="before",
@@ -268,7 +268,7 @@ class TestAsyncCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list_ledger(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v1.events.credits.with_raw_response.list_ledger(
+        response = await async_client.v1.credits.with_raw_response.list_ledger(
             customer_id="customerId",
         )
 
@@ -280,7 +280,7 @@ class TestAsyncCredits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list_ledger(self, async_client: AsyncStigg) -> None:
-        async with async_client.v1.events.credits.with_streaming_response.list_ledger(
+        async with async_client.v1.credits.with_streaming_response.list_ledger(
             customer_id="customerId",
         ) as response:
             assert not response.is_closed
