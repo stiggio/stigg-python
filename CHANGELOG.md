@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-beta.3 (2026-05-14)
+
+Full Changelog: [v0.1.0-beta.2...v0.1.0-beta.3](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.2...v0.1.0-beta.3)
+
+### Features
+
+* **api:** fix credits resource ([9a50c99](https://github.com/stiggio/stigg-python/commit/9a50c991c9c16ae59819fb5778331048b14b6e4e))
+
+
+### Chores
+
+* **tests:** improve fixture values in customers check_entitlement ([d21d7ee](https://github.com/stiggio/stigg-python/commit/d21d7ee3c39ca83913d44ba7cb046f0cb91762ec))
+* **tests:** update check_entitlement test fixtures ([0138db9](https://github.com/stiggio/stigg-python/commit/0138db944d49919dbe7ee9f5b708f8acc3764a19))
+
 ## 0.1.0-beta.2 (2026-05-12)
 
 Full Changelog: [v0.1.0-beta.1...v0.1.0-beta.2](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.1...v0.1.0-beta.2)
