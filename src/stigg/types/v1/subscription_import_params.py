@@ -30,7 +30,9 @@ class SubscriptionAddon(TypedDict, total=False):
 
 
 class SubscriptionCharge(TypedDict, total=False):
-    """Charge item"""
+    """
+    A charge selection for a subscription (references a catalog charge with a quantity).
+    """
 
     id: Required[str]
     """Charge ID"""

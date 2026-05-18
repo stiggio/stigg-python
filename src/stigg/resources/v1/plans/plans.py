@@ -10,7 +10,14 @@ import httpx
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
-from ....types.v1 import plan_list_params, plan_create_params, plan_update_params, plan_publish_params
+from ....types.v1 import (
+    plan_list_params,
+    plan_create_params,
+    plan_update_params,
+    plan_publish_params,
+    plan_list_charges_params,
+    plan_list_overage_charges_params,
+)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -31,7 +38,9 @@ from ...._base_client import AsyncPaginator, make_request_options
 from ....types.v1.plan import Plan
 from ....types.v1.plan_list_response import PlanListResponse
 from ....types.v1.plan_publish_response import PlanPublishResponse
+from ....types.v1.plan_list_charges_response import PlanListChargesResponse
 from ....types.v1.plan_remove_draft_response import PlanRemoveDraftResponse
+from ....types.v1.plan_list_overage_charges_response import PlanListOverageChargesResponse
 
 __all__ = ["PlansResource", "AsyncPlansResource"]
 
@@ -367,6 +376,114 @@ class PlansResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Plan,
+        )
+
+    def list_charges(
+        self,
+        id: str,
+        *,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncMyCursorIDPage[PlanListChargesResponse]:
+        """
+        Retrieves the list of charges configured on a plan.
+
+        Args:
+          after: Return items that come after this cursor
+
+          before: Return items that come before this cursor
+
+          limit: Maximum number of items to return
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get_api_list(
+            path_template("/api/v1/plans/{id}/charges", id=id),
+            page=SyncMyCursorIDPage[PlanListChargesResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "limit": limit,
+                    },
+                    plan_list_charges_params.PlanListChargesParams,
+                ),
+            ),
+            model=PlanListChargesResponse,
+        )
+
+    def list_overage_charges(
+        self,
+        id: str,
+        *,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncMyCursorIDPage[PlanListOverageChargesResponse]:
+        """
+        Retrieves the list of overage charges configured on a plan.
+
+        Args:
+          after: Return items that come after this cursor
+
+          before: Return items that come before this cursor
+
+          limit: Maximum number of items to return
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get_api_list(
+            path_template("/api/v1/plans/{id}/overage-charges", id=id),
+            page=SyncMyCursorIDPage[PlanListOverageChargesResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "limit": limit,
+                    },
+                    plan_list_overage_charges_params.PlanListOverageChargesParams,
+                ),
+            ),
+            model=PlanListOverageChargesResponse,
         )
 
     def publish(
@@ -773,6 +890,114 @@ class AsyncPlansResource(AsyncAPIResource):
             cast_to=Plan,
         )
 
+    def list_charges(
+        self,
+        id: str,
+        *,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[PlanListChargesResponse, AsyncMyCursorIDPage[PlanListChargesResponse]]:
+        """
+        Retrieves the list of charges configured on a plan.
+
+        Args:
+          after: Return items that come after this cursor
+
+          before: Return items that come before this cursor
+
+          limit: Maximum number of items to return
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get_api_list(
+            path_template("/api/v1/plans/{id}/charges", id=id),
+            page=AsyncMyCursorIDPage[PlanListChargesResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "limit": limit,
+                    },
+                    plan_list_charges_params.PlanListChargesParams,
+                ),
+            ),
+            model=PlanListChargesResponse,
+        )
+
+    def list_overage_charges(
+        self,
+        id: str,
+        *,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[PlanListOverageChargesResponse, AsyncMyCursorIDPage[PlanListOverageChargesResponse]]:
+        """
+        Retrieves the list of overage charges configured on a plan.
+
+        Args:
+          after: Return items that come after this cursor
+
+          before: Return items that come before this cursor
+
+          limit: Maximum number of items to return
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get_api_list(
+            path_template("/api/v1/plans/{id}/overage-charges", id=id),
+            page=AsyncMyCursorIDPage[PlanListOverageChargesResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "limit": limit,
+                    },
+                    plan_list_overage_charges_params.PlanListOverageChargesParams,
+                ),
+            ),
+            model=PlanListOverageChargesResponse,
+        )
+
     async def publish(
         self,
         id: str,
@@ -866,6 +1091,12 @@ class PlansResourceWithRawResponse:
         self.create_draft = to_raw_response_wrapper(
             plans.create_draft,
         )
+        self.list_charges = to_raw_response_wrapper(
+            plans.list_charges,
+        )
+        self.list_overage_charges = to_raw_response_wrapper(
+            plans.list_overage_charges,
+        )
         self.publish = to_raw_response_wrapper(
             plans.publish,
         )
@@ -899,6 +1130,12 @@ class AsyncPlansResourceWithRawResponse:
         )
         self.create_draft = async_to_raw_response_wrapper(
             plans.create_draft,
+        )
+        self.list_charges = async_to_raw_response_wrapper(
+            plans.list_charges,
+        )
+        self.list_overage_charges = async_to_raw_response_wrapper(
+            plans.list_overage_charges,
         )
         self.publish = async_to_raw_response_wrapper(
             plans.publish,
@@ -934,6 +1171,12 @@ class PlansResourceWithStreamingResponse:
         self.create_draft = to_streamed_response_wrapper(
             plans.create_draft,
         )
+        self.list_charges = to_streamed_response_wrapper(
+            plans.list_charges,
+        )
+        self.list_overage_charges = to_streamed_response_wrapper(
+            plans.list_overage_charges,
+        )
         self.publish = to_streamed_response_wrapper(
             plans.publish,
         )
@@ -967,6 +1210,12 @@ class AsyncPlansResourceWithStreamingResponse:
         )
         self.create_draft = async_to_streamed_response_wrapper(
             plans.create_draft,
+        )
+        self.list_charges = async_to_streamed_response_wrapper(
+            plans.list_charges,
+        )
+        self.list_overage_charges = async_to_streamed_response_wrapper(
+            plans.list_overage_charges,
         )
         self.publish = async_to_streamed_response_wrapper(
             plans.publish,

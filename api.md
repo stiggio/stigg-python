@@ -238,7 +238,13 @@ Methods:
 Types:
 
 ```python
-from stigg.types.v1 import Addon, AddonListResponse, AddonPublishResponse, AddonRemoveDraftResponse
+from stigg.types.v1 import (
+    Addon,
+    AddonListResponse,
+    AddonListChargesResponse,
+    AddonPublishResponse,
+    AddonRemoveDraftResponse,
+)
 ```
 
 Methods:
@@ -249,6 +255,7 @@ Methods:
 - <code title="get /api/v1/addons">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">list</a>(\*\*<a href="src/stigg/types/v1/addon_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/addon_list_response.py">SyncMyCursorIDPage[AddonListResponse]</a></code>
 - <code title="post /api/v1/addons/{id}/archive">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">archive</a>(id) -> <a href="./src/stigg/types/v1/addon.py">Addon</a></code>
 - <code title="post /api/v1/addons/{id}/draft">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">create_draft</a>(id) -> <a href="./src/stigg/types/v1/addon.py">Addon</a></code>
+- <code title="get /api/v1/addons/{id}/charges">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">list_charges</a>(id, \*\*<a href="src/stigg/types/v1/addon_list_charges_params.py">params</a>) -> <a href="./src/stigg/types/v1/addon_list_charges_response.py">SyncMyCursorIDPage[AddonListChargesResponse]</a></code>
 - <code title="post /api/v1/addons/{id}/publish">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">publish</a>(id, \*\*<a href="src/stigg/types/v1/addon_publish_params.py">params</a>) -> <a href="./src/stigg/types/v1/addon_publish_response.py">AddonPublishResponse</a></code>
 - <code title="delete /api/v1/addons/{id}/draft">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">remove_draft</a>(id) -> <a href="./src/stigg/types/v1/addon_remove_draft_response.py">AddonRemoveDraftResponse</a></code>
 
@@ -276,7 +283,14 @@ Methods:
 Types:
 
 ```python
-from stigg.types.v1 import Plan, PlanListResponse, PlanPublishResponse, PlanRemoveDraftResponse
+from stigg.types.v1 import (
+    Plan,
+    PlanListResponse,
+    PlanListChargesResponse,
+    PlanListOverageChargesResponse,
+    PlanPublishResponse,
+    PlanRemoveDraftResponse,
+)
 ```
 
 Methods:
@@ -287,6 +301,8 @@ Methods:
 - <code title="get /api/v1/plans">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">list</a>(\*\*<a href="src/stigg/types/v1/plan_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/plan_list_response.py">SyncMyCursorIDPage[PlanListResponse]</a></code>
 - <code title="post /api/v1/plans/{id}/archive">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">archive</a>(id) -> <a href="./src/stigg/types/v1/plan.py">Plan</a></code>
 - <code title="post /api/v1/plans/{id}/draft">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">create_draft</a>(id) -> <a href="./src/stigg/types/v1/plan.py">Plan</a></code>
+- <code title="get /api/v1/plans/{id}/charges">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">list_charges</a>(id, \*\*<a href="src/stigg/types/v1/plan_list_charges_params.py">params</a>) -> <a href="./src/stigg/types/v1/plan_list_charges_response.py">SyncMyCursorIDPage[PlanListChargesResponse]</a></code>
+- <code title="get /api/v1/plans/{id}/overage-charges">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">list_overage_charges</a>(id, \*\*<a href="src/stigg/types/v1/plan_list_overage_charges_params.py">params</a>) -> <a href="./src/stigg/types/v1/plan_list_overage_charges_response.py">SyncMyCursorIDPage[PlanListOverageChargesResponse]</a></code>
 - <code title="post /api/v1/plans/{id}/publish">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">publish</a>(id, \*\*<a href="src/stigg/types/v1/plan_publish_params.py">params</a>) -> <a href="./src/stigg/types/v1/plan_publish_response.py">PlanPublishResponse</a></code>
 - <code title="delete /api/v1/plans/{id}/draft">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">remove_draft</a>(id) -> <a href="./src/stigg/types/v1/plan_remove_draft_response.py">PlanRemoveDraftResponse</a></code>
 
