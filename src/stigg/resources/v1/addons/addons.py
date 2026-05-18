@@ -10,7 +10,13 @@ import httpx
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
-from ....types.v1 import addon_list_params, addon_create_params, addon_update_params, addon_publish_params
+from ....types.v1 import (
+    addon_list_params,
+    addon_create_params,
+    addon_update_params,
+    addon_publish_params,
+    addon_list_charges_params,
+)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -31,6 +37,7 @@ from ...._base_client import AsyncPaginator, make_request_options
 from ....types.v1.addon import Addon
 from ....types.v1.addon_list_response import AddonListResponse
 from ....types.v1.addon_publish_response import AddonPublishResponse
+from ....types.v1.addon_list_charges_response import AddonListChargesResponse
 from ....types.v1.addon_remove_draft_response import AddonRemoveDraftResponse
 
 __all__ = ["AddonsResource", "AsyncAddonsResource"]
@@ -365,6 +372,60 @@ class AddonsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Addon,
+        )
+
+    def list_charges(
+        self,
+        id: str,
+        *,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncMyCursorIDPage[AddonListChargesResponse]:
+        """
+        Retrieves the list of charges configured on an addon.
+
+        Args:
+          after: Return items that come after this cursor
+
+          before: Return items that come before this cursor
+
+          limit: Maximum number of items to return
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get_api_list(
+            path_template("/api/v1/addons/{id}/charges", id=id),
+            page=SyncMyCursorIDPage[AddonListChargesResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "limit": limit,
+                    },
+                    addon_list_charges_params.AddonListChargesParams,
+                ),
+            ),
+            model=AddonListChargesResponse,
         )
 
     def publish(
@@ -769,6 +830,60 @@ class AsyncAddonsResource(AsyncAPIResource):
             cast_to=Addon,
         )
 
+    def list_charges(
+        self,
+        id: str,
+        *,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[AddonListChargesResponse, AsyncMyCursorIDPage[AddonListChargesResponse]]:
+        """
+        Retrieves the list of charges configured on an addon.
+
+        Args:
+          after: Return items that come after this cursor
+
+          before: Return items that come before this cursor
+
+          limit: Maximum number of items to return
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get_api_list(
+            path_template("/api/v1/addons/{id}/charges", id=id),
+            page=AsyncMyCursorIDPage[AddonListChargesResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "limit": limit,
+                    },
+                    addon_list_charges_params.AddonListChargesParams,
+                ),
+            ),
+            model=AddonListChargesResponse,
+        )
+
     async def publish(
         self,
         id: str,
@@ -864,6 +979,9 @@ class AddonsResourceWithRawResponse:
         self.create_draft = to_raw_response_wrapper(
             addons.create_draft,
         )
+        self.list_charges = to_raw_response_wrapper(
+            addons.list_charges,
+        )
         self.publish = to_raw_response_wrapper(
             addons.publish,
         )
@@ -897,6 +1015,9 @@ class AsyncAddonsResourceWithRawResponse:
         )
         self.create_draft = async_to_raw_response_wrapper(
             addons.create_draft,
+        )
+        self.list_charges = async_to_raw_response_wrapper(
+            addons.list_charges,
         )
         self.publish = async_to_raw_response_wrapper(
             addons.publish,
@@ -932,6 +1053,9 @@ class AddonsResourceWithStreamingResponse:
         self.create_draft = to_streamed_response_wrapper(
             addons.create_draft,
         )
+        self.list_charges = to_streamed_response_wrapper(
+            addons.list_charges,
+        )
         self.publish = to_streamed_response_wrapper(
             addons.publish,
         )
@@ -965,6 +1089,9 @@ class AsyncAddonsResourceWithStreamingResponse:
         )
         self.create_draft = async_to_streamed_response_wrapper(
             addons.create_draft,
+        )
+        self.list_charges = async_to_streamed_response_wrapper(
+            addons.list_charges,
         )
         self.publish = async_to_streamed_response_wrapper(
             addons.publish,

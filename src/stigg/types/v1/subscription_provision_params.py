@@ -372,7 +372,9 @@ class Budget(TypedDict, total=False):
 
 
 class Charge(TypedDict, total=False):
-    """Charge item"""
+    """
+    A charge selection for a subscription (references a catalog charge with a quantity).
+    """
 
     id: Required[str]
     """Charge ID"""
