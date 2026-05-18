@@ -14,6 +14,7 @@ from stigg.types.v1 import (
     Addon,
     AddonListResponse,
     AddonPublishResponse,
+    AddonListChargesResponse,
     AddonRemoveDraftResponse,
 )
 from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
@@ -414,6 +415,59 @@ class TestAddons:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.addons.with_raw_response.create_draft(
                 "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_list_charges(self, client: Stigg) -> None:
+        addon = client.v1.addons.list_charges(
+            id="x",
+        )
+        assert_matches_type(SyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_list_charges_with_all_params(self, client: Stigg) -> None:
+        addon = client.v1.addons.list_charges(
+            id="x",
+            after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            limit=1,
+        )
+        assert_matches_type(SyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_list_charges(self, client: Stigg) -> None:
+        response = client.v1.addons.with_raw_response.list_charges(
+            id="x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        addon = response.parse()
+        assert_matches_type(SyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_list_charges(self, client: Stigg) -> None:
+        with client.v1.addons.with_streaming_response.list_charges(
+            id="x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            addon = response.parse()
+            assert_matches_type(SyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_list_charges(self, client: Stigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.v1.addons.with_raw_response.list_charges(
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -900,6 +954,59 @@ class TestAsyncAddons:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.addons.with_raw_response.create_draft(
                 "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_list_charges(self, async_client: AsyncStigg) -> None:
+        addon = await async_client.v1.addons.list_charges(
+            id="x",
+        )
+        assert_matches_type(AsyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_list_charges_with_all_params(self, async_client: AsyncStigg) -> None:
+        addon = await async_client.v1.addons.list_charges(
+            id="x",
+            after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            limit=1,
+        )
+        assert_matches_type(AsyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_list_charges(self, async_client: AsyncStigg) -> None:
+        response = await async_client.v1.addons.with_raw_response.list_charges(
+            id="x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        addon = await response.parse()
+        assert_matches_type(AsyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_list_charges(self, async_client: AsyncStigg) -> None:
+        async with async_client.v1.addons.with_streaming_response.list_charges(
+            id="x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            addon = await response.parse()
+            assert_matches_type(AsyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_list_charges(self, async_client: AsyncStigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.v1.addons.with_raw_response.list_charges(
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
