@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.4 (2026-05-18)
+
+Full Changelog: [v0.1.0-beta.3...v0.1.0-beta.4](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.3...v0.1.0-beta.4)
+
+### Features
+
+* **api:** add list_charges to addons/plans, list_overage_charges to plans ([9b9c7a2](https://github.com/stiggio/stigg-python/commit/9b9c7a22d2e6c25a466c02951e5385bd93943ec4))
+
 ## 0.1.0-beta.3 (2026-05-14)
 
 Full Changelog: [v0.1.0-beta.2...v0.1.0-beta.3](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.2...v0.1.0-beta.3)
