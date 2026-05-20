@@ -16,19 +16,18 @@ from .grants import (
     GrantsResourceWithStreamingResponse,
     AsyncGrantsResourceWithStreamingResponse,
 )
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
-from ...._compat import cached_property
-from ....types.v1 import credit_get_usage_params, credit_list_ledger_params, credit_get_auto_recharge_params
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ....._utils import maybe_transform, async_maybe_transform
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
-from ...._base_client import AsyncPaginator, make_request_options
+from .....pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
+from ....._base_client import AsyncPaginator, make_request_options
 from .custom_currencies import (
     CustomCurrenciesResource,
     AsyncCustomCurrenciesResource,
@@ -37,9 +36,10 @@ from .custom_currencies import (
     CustomCurrenciesResourceWithStreamingResponse,
     AsyncCustomCurrenciesResourceWithStreamingResponse,
 )
-from ....types.v1.credit_get_usage_response import CreditGetUsageResponse
-from ....types.v1.credit_list_ledger_response import CreditListLedgerResponse
-from ....types.v1.credit_get_auto_recharge_response import CreditGetAutoRechargeResponse
+from .....types.v1.events import credit_get_usage_params, credit_list_ledger_params, credit_get_auto_recharge_params
+from .....types.v1.events.credit_get_usage_response import CreditGetUsageResponse
+from .....types.v1.events.credit_list_ledger_response import CreditListLedgerResponse
+from .....types.v1.events.credit_get_auto_recharge_response import CreditGetAutoRechargeResponse
 
 __all__ = ["CreditsResource", "AsyncCreditsResource"]
 
