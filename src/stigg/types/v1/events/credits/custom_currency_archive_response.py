@@ -5,9 +5,9 @@ from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
-from ...._models import BaseModel
+from ....._models import BaseModel
 
-__all__ = ["CustomCurrencyResponse", "Data", "DataUnits"]
+__all__ = ["CustomCurrencyArchiveResponse", "Data", "DataUnits"]
 
 
 class DataUnits(BaseModel):
@@ -51,7 +51,7 @@ class Data(BaseModel):
     """Timestamp of when the record was last updated"""
 
 
-class CustomCurrencyResponse(BaseModel):
+class CustomCurrencyArchiveResponse(BaseModel):
     """Response object"""
 
     data: Data

@@ -10,14 +10,6 @@ from .usage import (
     UsageResourceWithStreamingResponse,
     AsyncUsageResourceWithStreamingResponse,
 )
-from .events import (
-    EventsResource,
-    AsyncEventsResource,
-    EventsResourceWithRawResponse,
-    AsyncEventsResourceWithRawResponse,
-    EventsResourceWithStreamingResponse,
-    AsyncEventsResourceWithStreamingResponse,
-)
 from .coupons import (
     CouponsResource,
     AsyncCouponsResource,
@@ -60,13 +52,13 @@ from .addons.addons import (
     AddonsResourceWithStreamingResponse,
     AsyncAddonsResourceWithStreamingResponse,
 )
-from .credits.credits import (
-    CreditsResource,
-    AsyncCreditsResource,
-    CreditsResourceWithRawResponse,
-    AsyncCreditsResourceWithRawResponse,
-    CreditsResourceWithStreamingResponse,
-    AsyncCreditsResourceWithStreamingResponse,
+from .events.events import (
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
 )
 from .customers.customers import (
     CustomersResource,
@@ -106,10 +98,6 @@ class V1Resource(SyncAPIResource):
     def events(self) -> EventsResource:
         """Operations related to usage & metering"""
         return EventsResource(self._client)
-
-    @cached_property
-    def credits(self) -> CreditsResource:
-        return CreditsResource(self._client)
 
     @cached_property
     def features(self) -> FeaturesResource:
@@ -174,10 +162,6 @@ class AsyncV1Resource(AsyncAPIResource):
     def events(self) -> AsyncEventsResource:
         """Operations related to usage & metering"""
         return AsyncEventsResource(self._client)
-
-    @cached_property
-    def credits(self) -> AsyncCreditsResource:
-        return AsyncCreditsResource(self._client)
 
     @cached_property
     def features(self) -> AsyncFeaturesResource:
@@ -247,10 +231,6 @@ class V1ResourceWithRawResponse:
         return EventsResourceWithRawResponse(self._v1.events)
 
     @cached_property
-    def credits(self) -> CreditsResourceWithRawResponse:
-        return CreditsResourceWithRawResponse(self._v1.credits)
-
-    @cached_property
     def features(self) -> FeaturesResourceWithRawResponse:
         """Operations related to features"""
         return FeaturesResourceWithRawResponse(self._v1.features)
@@ -297,10 +277,6 @@ class AsyncV1ResourceWithRawResponse:
     def events(self) -> AsyncEventsResourceWithRawResponse:
         """Operations related to usage & metering"""
         return AsyncEventsResourceWithRawResponse(self._v1.events)
-
-    @cached_property
-    def credits(self) -> AsyncCreditsResourceWithRawResponse:
-        return AsyncCreditsResourceWithRawResponse(self._v1.credits)
 
     @cached_property
     def features(self) -> AsyncFeaturesResourceWithRawResponse:
@@ -351,10 +327,6 @@ class V1ResourceWithStreamingResponse:
         return EventsResourceWithStreamingResponse(self._v1.events)
 
     @cached_property
-    def credits(self) -> CreditsResourceWithStreamingResponse:
-        return CreditsResourceWithStreamingResponse(self._v1.credits)
-
-    @cached_property
     def features(self) -> FeaturesResourceWithStreamingResponse:
         """Operations related to features"""
         return FeaturesResourceWithStreamingResponse(self._v1.features)
@@ -401,10 +373,6 @@ class AsyncV1ResourceWithStreamingResponse:
     def events(self) -> AsyncEventsResourceWithStreamingResponse:
         """Operations related to usage & metering"""
         return AsyncEventsResourceWithStreamingResponse(self._v1.events)
-
-    @cached_property
-    def credits(self) -> AsyncCreditsResourceWithStreamingResponse:
-        return AsyncCreditsResourceWithStreamingResponse(self._v1.credits)
 
     @cached_property
     def features(self) -> AsyncFeaturesResourceWithStreamingResponse:
