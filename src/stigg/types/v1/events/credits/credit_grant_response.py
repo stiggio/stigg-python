@@ -6,12 +6,12 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from ...._models import BaseModel
+from ....._models import BaseModel
 
-__all__ = ["GrantListResponse", "Cost", "LatestInvoice"]
+__all__ = ["CreditGrantResponse", "Data", "DataCost", "DataLatestInvoice"]
 
 
-class Cost(BaseModel):
+class DataCost(BaseModel):
     """The monetary cost of the credit grant"""
 
     amount: float
@@ -21,7 +21,7 @@ class Cost(BaseModel):
     """The currency code"""
 
 
-class LatestInvoice(BaseModel):
+class DataLatestInvoice(BaseModel):
     """The latest invoice details for this grant"""
 
     billing_id: str = FieldInfo(alias="billingId")
@@ -67,7 +67,7 @@ class LatestInvoice(BaseModel):
     """The invoice last update date"""
 
 
-class GrantListResponse(BaseModel):
+class Data(BaseModel):
     """Credit grant object representing allocated credits for a customer"""
 
     id: str
@@ -82,7 +82,7 @@ class GrantListResponse(BaseModel):
     consumed_amount: float = FieldInfo(alias="consumedAmount")
     """The total credits consumed from this grant"""
 
-    cost: Cost
+    cost: DataCost
     """The monetary cost of the credit grant"""
 
     created_at: datetime = FieldInfo(alias="createdAt")
@@ -109,7 +109,7 @@ class GrantListResponse(BaseModel):
     invoice_id: Optional[str] = FieldInfo(alias="invoiceId", default=None)
     """The billing invoice ID associated with this grant"""
 
-    latest_invoice: Optional[LatestInvoice] = FieldInfo(alias="latestInvoice", default=None)
+    latest_invoice: Optional[DataLatestInvoice] = FieldInfo(alias="latestInvoice", default=None)
     """The latest invoice details for this grant"""
 
     metadata: Dict[str, str]
@@ -139,3 +139,10 @@ class GrantListResponse(BaseModel):
 
     voided_at: Optional[datetime] = FieldInfo(alias="voidedAt", default=None)
     """The date when the credit grant was voided"""
+
+
+class CreditGrantResponse(BaseModel):
+    """Response object"""
+
+    data: Data
+    """Credit grant object representing allocated credits for a customer"""

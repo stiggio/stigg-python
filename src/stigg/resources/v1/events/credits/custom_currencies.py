@@ -7,26 +7,29 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ....._utils import path_template, maybe_transform, async_maybe_transform
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.v1.credits import (
+from .....pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.v1.events.credits import (
     custom_currency_list_params,
     custom_currency_create_params,
     custom_currency_update_params,
 )
-from ....types.v1.credits.custom_currency_response import CustomCurrencyResponse
-from ....types.v1.credits.custom_currency_list_response import CustomCurrencyListResponse
-from ....types.v1.credits.custom_currency_list_associated_entities_response import (
+from .....types.v1.events.credits.custom_currency_list_response import CustomCurrencyListResponse
+from .....types.v1.events.credits.custom_currency_create_response import CustomCurrencyCreateResponse
+from .....types.v1.events.credits.custom_currency_update_response import CustomCurrencyUpdateResponse
+from .....types.v1.events.credits.custom_currency_archive_response import CustomCurrencyArchiveResponse
+from .....types.v1.events.credits.custom_currency_unarchive_response import CustomCurrencyUnarchiveResponse
+from .....types.v1.events.credits.custom_currency_list_associated_entities_response import (
     CustomCurrencyListAssociatedEntitiesResponse,
 )
 
@@ -70,7 +73,7 @@ class CustomCurrenciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomCurrencyResponse:
+    ) -> CustomCurrencyCreateResponse:
         """
         Creates a new custom currency in the environment.
 
@@ -112,7 +115,7 @@ class CustomCurrenciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomCurrencyResponse,
+            cast_to=CustomCurrencyCreateResponse,
         )
 
     def update(
@@ -130,7 +133,7 @@ class CustomCurrenciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomCurrencyResponse:
+    ) -> CustomCurrencyUpdateResponse:
         """Updates an existing custom currency.
 
         Only the supplied fields are modified.
@@ -173,7 +176,7 @@ class CustomCurrenciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomCurrencyResponse,
+            cast_to=CustomCurrencyUpdateResponse,
         )
 
     def list(
@@ -245,7 +248,7 @@ class CustomCurrenciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomCurrencyResponse:
+    ) -> CustomCurrencyArchiveResponse:
         """Archives a custom currency.
 
         Fails if the currency is still associated with any
@@ -268,7 +271,7 @@ class CustomCurrenciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomCurrencyResponse,
+            cast_to=CustomCurrencyArchiveResponse,
         )
 
     def list_associated_entities(
@@ -318,7 +321,7 @@ class CustomCurrenciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomCurrencyResponse:
+    ) -> CustomCurrencyUnarchiveResponse:
         """Restores a previously archived custom currency.
 
         Fails if another active currency
@@ -340,7 +343,7 @@ class CustomCurrenciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomCurrencyResponse,
+            cast_to=CustomCurrencyUnarchiveResponse,
         )
 
 
@@ -381,7 +384,7 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomCurrencyResponse:
+    ) -> CustomCurrencyCreateResponse:
         """
         Creates a new custom currency in the environment.
 
@@ -423,7 +426,7 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomCurrencyResponse,
+            cast_to=CustomCurrencyCreateResponse,
         )
 
     async def update(
@@ -441,7 +444,7 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomCurrencyResponse:
+    ) -> CustomCurrencyUpdateResponse:
         """Updates an existing custom currency.
 
         Only the supplied fields are modified.
@@ -484,7 +487,7 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomCurrencyResponse,
+            cast_to=CustomCurrencyUpdateResponse,
         )
 
     def list(
@@ -556,7 +559,7 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomCurrencyResponse:
+    ) -> CustomCurrencyArchiveResponse:
         """Archives a custom currency.
 
         Fails if the currency is still associated with any
@@ -579,7 +582,7 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomCurrencyResponse,
+            cast_to=CustomCurrencyArchiveResponse,
         )
 
     async def list_associated_entities(
@@ -629,7 +632,7 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomCurrencyResponse:
+    ) -> CustomCurrencyUnarchiveResponse:
         """Restores a previously archived custom currency.
 
         Fails if another active currency
@@ -651,7 +654,7 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomCurrencyResponse,
+            cast_to=CustomCurrencyUnarchiveResponse,
         )
 
 
