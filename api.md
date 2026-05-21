@@ -161,7 +161,23 @@ from stigg.types.v1 import EventReportResponse
 
 Methods:
 
-- <code title="post /api/v1/events">client.v1.events.<a href="./src/stigg/resources/v1/events.py">report</a>(\*\*<a href="src/stigg/types/v1/event_report_params.py">params</a>) -> <a href="./src/stigg/types/v1/event_report_response.py">EventReportResponse</a></code>
+- <code title="post /api/v1/events">client.v1.events.<a href="./src/stigg/resources/v1/events/events.py">report</a>(\*\*<a href="src/stigg/types/v1/event_report_params.py">params</a>) -> <a href="./src/stigg/types/v1/event_report_response.py">EventReportResponse</a></code>
+
+### Beta
+
+#### Customers
+
+##### Entitlements
+
+Types:
+
+```python
+from stigg.types.v1.events.beta.customers import EntitlementCheckResponse
+```
+
+Methods:
+
+- <code title="get /api/v1-beta/customers/{id}/entitlements/check">client.v1.events.beta.customers.entitlements.<a href="./src/stigg/resources/v1/events/beta/customers/entitlements.py">check</a>(id, \*\*<a href="src/stigg/types/v1/events/beta/customers/entitlement_check_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/beta/customers/entitlement_check_response.py">EntitlementCheckResponse</a></code>
 
 ## Credits
 
