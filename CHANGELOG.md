@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-beta.5 (2026-05-21)
+
+Full Changelog: [v0.1.0-beta.4...v0.1.0-beta.5](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.4...v0.1.0-beta.5)
+
+### Features
+
+* **api:** add check method to beta customers entitlements ([0852b63](https://github.com/stiggio/stigg-python/commit/0852b63248bbe03a58348b2d2e877d17bf951ff4))
+
+
+### Chores
+
+* **internal:** regenerate SDK with no functional changes ([0d595b4](https://github.com/stiggio/stigg-python/commit/0d595b4771309f7665904b8679ff22bebc995089))
+* **internal:** regenerate SDK with no functional changes ([d360d93](https://github.com/stiggio/stigg-python/commit/d360d931cb14a92c176bb6b2dec5860ebdc7f422))
+
 ## 0.1.0-beta.4 (2026-05-18)
 
 Full Changelog: [v0.1.0-beta.3...v0.1.0-beta.4](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.3...v0.1.0-beta.4)
