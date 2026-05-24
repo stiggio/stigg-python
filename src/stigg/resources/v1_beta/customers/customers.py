@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from ......_compat import cached_property
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from .entitlements import (
     EntitlementsResource,
     AsyncEntitlementsResource,
@@ -11,7 +12,6 @@ from .entitlements import (
     EntitlementsResourceWithStreamingResponse,
     AsyncEntitlementsResourceWithStreamingResponse,
 )
-from ......_resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["CustomersResource", "AsyncCustomersResource"]
 

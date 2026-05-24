@@ -6,37 +6,25 @@ from typing import Iterable
 
 import httpx
 
-from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
-from .beta.beta import (
-    BetaResource,
-    AsyncBetaResource,
-    BetaResourceWithRawResponse,
-    AsyncBetaResourceWithRawResponse,
-    BetaResourceWithStreamingResponse,
-    AsyncBetaResourceWithStreamingResponse,
-)
-from ...._compat import cached_property
-from ....types.v1 import event_report_params
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._utils import maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ...types.v1 import event_report_params
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
-from ....types.v1.event_report_response import EventReportResponse
+from ..._base_client import make_request_options
+from ...types.v1.event_report_response import EventReportResponse
 
 __all__ = ["EventsResource", "AsyncEventsResource"]
 
 
 class EventsResource(SyncAPIResource):
     """Operations related to usage & metering"""
-
-    @cached_property
-    def beta(self) -> BetaResource:
-        return BetaResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> EventsResourceWithRawResponse:
@@ -96,10 +84,6 @@ class EventsResource(SyncAPIResource):
 
 class AsyncEventsResource(AsyncAPIResource):
     """Operations related to usage & metering"""
-
-    @cached_property
-    def beta(self) -> AsyncBetaResource:
-        return AsyncBetaResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncEventsResourceWithRawResponse:
@@ -165,10 +149,6 @@ class EventsResourceWithRawResponse:
             events.report,
         )
 
-    @cached_property
-    def beta(self) -> BetaResourceWithRawResponse:
-        return BetaResourceWithRawResponse(self._events.beta)
-
 
 class AsyncEventsResourceWithRawResponse:
     def __init__(self, events: AsyncEventsResource) -> None:
@@ -177,10 +157,6 @@ class AsyncEventsResourceWithRawResponse:
         self.report = async_to_raw_response_wrapper(
             events.report,
         )
-
-    @cached_property
-    def beta(self) -> AsyncBetaResourceWithRawResponse:
-        return AsyncBetaResourceWithRawResponse(self._events.beta)
 
 
 class EventsResourceWithStreamingResponse:
@@ -191,10 +167,6 @@ class EventsResourceWithStreamingResponse:
             events.report,
         )
 
-    @cached_property
-    def beta(self) -> BetaResourceWithStreamingResponse:
-        return BetaResourceWithStreamingResponse(self._events.beta)
-
 
 class AsyncEventsResourceWithStreamingResponse:
     def __init__(self, events: AsyncEventsResource) -> None:
@@ -203,7 +175,3 @@ class AsyncEventsResourceWithStreamingResponse:
         self.report = async_to_streamed_response_wrapper(
             events.report,
         )
-
-    @cached_property
-    def beta(self) -> AsyncBetaResourceWithStreamingResponse:
-        return AsyncBetaResourceWithStreamingResponse(self._events.beta)
