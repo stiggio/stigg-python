@@ -9,7 +9,7 @@ import pytest
 
 from stigg import Stigg, AsyncStigg
 from tests.utils import assert_matches_type
-from stigg.types.v1.events.beta.customers import EntitlementCheckResponse
+from stigg.types.v1_beta.customers import EntitlementCheckResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,7 +20,7 @@ class TestEntitlements:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_check(self, client: Stigg) -> None:
-        entitlement = client.v1.events.beta.customers.entitlements.check(
+        entitlement = client.v1_beta.customers.entitlements.check(
             id="x",
         )
         assert_matches_type(EntitlementCheckResponse, entitlement, path=["response"])
@@ -28,7 +28,7 @@ class TestEntitlements:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_check_with_all_params(self, client: Stigg) -> None:
-        entitlement = client.v1.events.beta.customers.entitlements.check(
+        entitlement = client.v1_beta.customers.entitlements.check(
             id="x",
             currency_id="x",
             dimensions={"foo": "string"},
@@ -42,7 +42,7 @@ class TestEntitlements:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_check(self, client: Stigg) -> None:
-        response = client.v1.events.beta.customers.entitlements.with_raw_response.check(
+        response = client.v1_beta.customers.entitlements.with_raw_response.check(
             id="x",
         )
 
@@ -54,7 +54,7 @@ class TestEntitlements:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_check(self, client: Stigg) -> None:
-        with client.v1.events.beta.customers.entitlements.with_streaming_response.check(
+        with client.v1_beta.customers.entitlements.with_streaming_response.check(
             id="x",
         ) as response:
             assert not response.is_closed
@@ -69,7 +69,7 @@ class TestEntitlements:
     @parametrize
     def test_path_params_check(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.v1.events.beta.customers.entitlements.with_raw_response.check(
+            client.v1_beta.customers.entitlements.with_raw_response.check(
                 id="",
             )
 
@@ -82,7 +82,7 @@ class TestAsyncEntitlements:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_check(self, async_client: AsyncStigg) -> None:
-        entitlement = await async_client.v1.events.beta.customers.entitlements.check(
+        entitlement = await async_client.v1_beta.customers.entitlements.check(
             id="x",
         )
         assert_matches_type(EntitlementCheckResponse, entitlement, path=["response"])
@@ -90,7 +90,7 @@ class TestAsyncEntitlements:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_check_with_all_params(self, async_client: AsyncStigg) -> None:
-        entitlement = await async_client.v1.events.beta.customers.entitlements.check(
+        entitlement = await async_client.v1_beta.customers.entitlements.check(
             id="x",
             currency_id="x",
             dimensions={"foo": "string"},
@@ -104,7 +104,7 @@ class TestAsyncEntitlements:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_check(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v1.events.beta.customers.entitlements.with_raw_response.check(
+        response = await async_client.v1_beta.customers.entitlements.with_raw_response.check(
             id="x",
         )
 
@@ -116,7 +116,7 @@ class TestAsyncEntitlements:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_check(self, async_client: AsyncStigg) -> None:
-        async with async_client.v1.events.beta.customers.entitlements.with_streaming_response.check(
+        async with async_client.v1_beta.customers.entitlements.with_streaming_response.check(
             id="x",
         ) as response:
             assert not response.is_closed
@@ -131,6 +131,6 @@ class TestAsyncEntitlements:
     @parametrize
     async def test_path_params_check(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.v1.events.beta.customers.entitlements.with_raw_response.check(
+            await async_client.v1_beta.customers.entitlements.with_raw_response.check(
                 id="",
             )
