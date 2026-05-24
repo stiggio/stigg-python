@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.6 (2026-05-24)
+
+Full Changelog: [v0.1.0-beta.5...v0.1.0-beta.6](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.5...v0.1.0-beta.6)
+
+### Features
+
+* **api:** add entity_types resource with list/upsert methods to v1.events.beta ([9c485d9](https://github.com/stiggio/stigg-python/commit/9c485d9122c6209691590bc0a91bdecc150d3b0c))
+
 ## 0.1.0-beta.5 (2026-05-21)
 
 Full Changelog: [v0.1.0-beta.4...v0.1.0-beta.5](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.4...v0.1.0-beta.5)
