@@ -8,6 +8,14 @@ from .v1_beta import (
     V1BetaResourceWithStreamingResponse,
     AsyncV1BetaResourceWithStreamingResponse,
 )
+from .entities import (
+    EntitiesResource,
+    AsyncEntitiesResource,
+    EntitiesResourceWithRawResponse,
+    AsyncEntitiesResourceWithRawResponse,
+    EntitiesResourceWithStreamingResponse,
+    AsyncEntitiesResourceWithStreamingResponse,
+)
 from .customers import (
     CustomersResource,
     AsyncCustomersResource,
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncEntityTypesResourceWithRawResponse",
     "EntityTypesResourceWithStreamingResponse",
     "AsyncEntityTypesResourceWithStreamingResponse",
+    "EntitiesResource",
+    "AsyncEntitiesResource",
+    "EntitiesResourceWithRawResponse",
+    "AsyncEntitiesResourceWithRawResponse",
+    "EntitiesResourceWithStreamingResponse",
+    "AsyncEntitiesResourceWithStreamingResponse",
     "V1BetaResource",
     "AsyncV1BetaResource",
     "V1BetaResourceWithRawResponse",
