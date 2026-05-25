@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.7 (2026-05-25)
+
+Full Changelog: [v0.1.0-beta.6...v0.1.0-beta.7](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.6...v0.1.0-beta.7)
+
+### Features
+
+* **api:** add customers entities resource with retrieve/list/archive/unarchive/upsert ([20e8b62](https://github.com/stiggio/stigg-python/commit/20e8b62dc9dff79615846d14a607735bb44a6dd4))
+
 ## 0.1.0-beta.6 (2026-05-24)
 
 Full Changelog: [v0.1.0-beta.5...v0.1.0-beta.6](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.5...v0.1.0-beta.6)
