@@ -2,9 +2,9 @@
 
 from typing import List
 
-from ..._models import BaseModel
+from ...._models import BaseModel
 
-__all__ = ["EntityUnarchiveResponse", "Data"]
+__all__ = ["EntityArchiveResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -14,7 +14,7 @@ class Data(BaseModel):
     """Entity identifiers to act on"""
 
 
-class EntityUnarchiveResponse(BaseModel):
+class EntityArchiveResponse(BaseModel):
     """
     Wrapped response echoing the ids that were acted on by an archive/unarchive call
     """
