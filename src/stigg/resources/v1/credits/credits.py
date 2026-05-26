@@ -127,6 +127,7 @@ class CreditsResource(SyncAPIResource):
         customer_id: str,
         currency_id: str | Omit = omit,
         end_date: Union[str, datetime] | Omit = omit,
+        group_by: str | Omit = omit,
         resource_id: str | Omit = omit,
         start_date: Union[str, datetime] | Omit = omit,
         time_range: Literal["LAST_DAY", "LAST_WEEK", "LAST_MONTH", "LAST_YEAR"] | Omit = omit,
@@ -148,6 +149,9 @@ class CreditsResource(SyncAPIResource):
 
           end_date: End date for the credit usage time range (ISO 8601). Defaults to now when
               startDate is provided
+
+          group_by: Comma-separated list of feature dimension keys to group usage series by (up to
+              3). Each key matches /^[a-zA-Z0-9_$-]+$/
 
           resource_id: Filter by resource ID
 
@@ -177,6 +181,7 @@ class CreditsResource(SyncAPIResource):
                         "customer_id": customer_id,
                         "currency_id": currency_id,
                         "end_date": end_date,
+                        "group_by": group_by,
                         "resource_id": resource_id,
                         "start_date": start_date,
                         "time_range": time_range,
@@ -334,6 +339,7 @@ class AsyncCreditsResource(AsyncAPIResource):
         customer_id: str,
         currency_id: str | Omit = omit,
         end_date: Union[str, datetime] | Omit = omit,
+        group_by: str | Omit = omit,
         resource_id: str | Omit = omit,
         start_date: Union[str, datetime] | Omit = omit,
         time_range: Literal["LAST_DAY", "LAST_WEEK", "LAST_MONTH", "LAST_YEAR"] | Omit = omit,
@@ -355,6 +361,9 @@ class AsyncCreditsResource(AsyncAPIResource):
 
           end_date: End date for the credit usage time range (ISO 8601). Defaults to now when
               startDate is provided
+
+          group_by: Comma-separated list of feature dimension keys to group usage series by (up to
+              3). Each key matches /^[a-zA-Z0-9_$-]+$/
 
           resource_id: Filter by resource ID
 
@@ -384,6 +393,7 @@ class AsyncCreditsResource(AsyncAPIResource):
                         "customer_id": customer_id,
                         "currency_id": currency_id,
                         "end_date": end_date,
+                        "group_by": group_by,
                         "resource_id": resource_id,
                         "start_date": start_date,
                         "time_range": time_range,

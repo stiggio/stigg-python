@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["CreditGetUsageResponse", "Data", "DataCurrency", "DataSeries", "DataSeriesPoint"]
+__all__ = ["CreditGetUsageResponse", "Data", "DataCurrency", "DataSeries", "DataSeriesPoint", "DataSeriesTag"]
 
 
 class DataCurrency(BaseModel):
@@ -39,20 +39,33 @@ class DataSeriesPoint(BaseModel):
     """The credit usage value at this point"""
 
 
+class DataSeriesTag(BaseModel):
+    """Dimension key/value pair identifying a credit usage series"""
+
+    key: str
+    """The dimension key"""
+
+    value: str
+    """The dimension value for this series"""
+
+
 class DataSeries(BaseModel):
     """Credit usage data for a single feature"""
 
-    feature_id: str = FieldInfo(alias="featureId")
-    """The feature ID"""
+    feature_id: Optional[str] = FieldInfo(alias="featureId", default=None)
+    """The feature ID; null when grouping by dimensions only"""
 
-    feature_name: str = FieldInfo(alias="featureName")
-    """The display name of the feature"""
+    feature_name: Optional[str] = FieldInfo(alias="featureName", default=None)
+    """The display name of the feature; null when grouping by dimensions only"""
 
     points: List[DataSeriesPoint]
     """Time-series data points for this feature"""
 
     total_credits: float = FieldInfo(alias="totalCredits")
     """Total credits consumed by this feature in the time range"""
+
+    tags: Optional[List[DataSeriesTag]] = None
+    """Dimension key/value pairs identifying this series when groupBy is applied"""
 
 
 class Data(BaseModel):
