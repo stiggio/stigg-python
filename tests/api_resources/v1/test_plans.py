@@ -14,11 +14,10 @@ from stigg.types.v1 import (
     Plan,
     PlanListResponse,
     PlanPublishResponse,
-    PlanListChargesResponse,
     PlanRemoveDraftResponse,
-    PlanListOverageChargesResponse,
 )
 from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
+from stigg.types.v1.charge_list import Data
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -441,7 +440,7 @@ class TestPlans:
         plan = client.v1.plans.list_charges(
             id="x",
         )
-        assert_matches_type(SyncMyCursorIDPage[PlanListChargesResponse], plan, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[Data], plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -452,7 +451,7 @@ class TestPlans:
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
         )
-        assert_matches_type(SyncMyCursorIDPage[PlanListChargesResponse], plan, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[Data], plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -464,7 +463,7 @@ class TestPlans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         plan = response.parse()
-        assert_matches_type(SyncMyCursorIDPage[PlanListChargesResponse], plan, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[Data], plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -476,7 +475,7 @@ class TestPlans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             plan = response.parse()
-            assert_matches_type(SyncMyCursorIDPage[PlanListChargesResponse], plan, path=["response"])
+            assert_matches_type(SyncMyCursorIDPage[Data], plan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -494,7 +493,7 @@ class TestPlans:
         plan = client.v1.plans.list_overage_charges(
             id="x",
         )
-        assert_matches_type(SyncMyCursorIDPage[PlanListOverageChargesResponse], plan, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[Data], plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -505,7 +504,7 @@ class TestPlans:
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
         )
-        assert_matches_type(SyncMyCursorIDPage[PlanListOverageChargesResponse], plan, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[Data], plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -517,7 +516,7 @@ class TestPlans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         plan = response.parse()
-        assert_matches_type(SyncMyCursorIDPage[PlanListOverageChargesResponse], plan, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[Data], plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -529,7 +528,7 @@ class TestPlans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             plan = response.parse()
-            assert_matches_type(SyncMyCursorIDPage[PlanListOverageChargesResponse], plan, path=["response"])
+            assert_matches_type(SyncMyCursorIDPage[Data], plan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1050,7 +1049,7 @@ class TestAsyncPlans:
         plan = await async_client.v1.plans.list_charges(
             id="x",
         )
-        assert_matches_type(AsyncMyCursorIDPage[PlanListChargesResponse], plan, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[Data], plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -1061,7 +1060,7 @@ class TestAsyncPlans:
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
         )
-        assert_matches_type(AsyncMyCursorIDPage[PlanListChargesResponse], plan, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[Data], plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -1073,7 +1072,7 @@ class TestAsyncPlans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         plan = await response.parse()
-        assert_matches_type(AsyncMyCursorIDPage[PlanListChargesResponse], plan, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[Data], plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -1085,7 +1084,7 @@ class TestAsyncPlans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             plan = await response.parse()
-            assert_matches_type(AsyncMyCursorIDPage[PlanListChargesResponse], plan, path=["response"])
+            assert_matches_type(AsyncMyCursorIDPage[Data], plan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1103,7 +1102,7 @@ class TestAsyncPlans:
         plan = await async_client.v1.plans.list_overage_charges(
             id="x",
         )
-        assert_matches_type(AsyncMyCursorIDPage[PlanListOverageChargesResponse], plan, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[Data], plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -1114,7 +1113,7 @@ class TestAsyncPlans:
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
         )
-        assert_matches_type(AsyncMyCursorIDPage[PlanListOverageChargesResponse], plan, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[Data], plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -1126,7 +1125,7 @@ class TestAsyncPlans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         plan = await response.parse()
-        assert_matches_type(AsyncMyCursorIDPage[PlanListOverageChargesResponse], plan, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[Data], plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -1138,7 +1137,7 @@ class TestAsyncPlans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             plan = await response.parse()
-            assert_matches_type(AsyncMyCursorIDPage[PlanListOverageChargesResponse], plan, path=["response"])
+            assert_matches_type(AsyncMyCursorIDPage[Data], plan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

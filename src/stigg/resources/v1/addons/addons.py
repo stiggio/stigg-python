@@ -35,9 +35,9 @@ from .entitlements import (
 from ....pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.v1.addon import Addon
+from ....types.v1.charge_list import Data
 from ....types.v1.addon_list_response import AddonListResponse
 from ....types.v1.addon_publish_response import AddonPublishResponse
-from ....types.v1.addon_list_charges_response import AddonListChargesResponse
 from ....types.v1.addon_remove_draft_response import AddonRemoveDraftResponse
 
 __all__ = ["AddonsResource", "AsyncAddonsResource"]
@@ -387,7 +387,7 @@ class AddonsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncMyCursorIDPage[AddonListChargesResponse]:
+    ) -> SyncMyCursorIDPage[Data]:
         """
         Retrieves the list of charges configured on an addon.
 
@@ -410,7 +410,7 @@ class AddonsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template("/api/v1/addons/{id}/charges", id=id),
-            page=SyncMyCursorIDPage[AddonListChargesResponse],
+            page=SyncMyCursorIDPage[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -425,7 +425,7 @@ class AddonsResource(SyncAPIResource):
                     addon_list_charges_params.AddonListChargesParams,
                 ),
             ),
-            model=AddonListChargesResponse,
+            model=Data,
         )
 
     def publish(
@@ -843,7 +843,7 @@ class AsyncAddonsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[AddonListChargesResponse, AsyncMyCursorIDPage[AddonListChargesResponse]]:
+    ) -> AsyncPaginator[Data, AsyncMyCursorIDPage[Data]]:
         """
         Retrieves the list of charges configured on an addon.
 
@@ -866,7 +866,7 @@ class AsyncAddonsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template("/api/v1/addons/{id}/charges", id=id),
-            page=AsyncMyCursorIDPage[AddonListChargesResponse],
+            page=AsyncMyCursorIDPage[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -881,7 +881,7 @@ class AsyncAddonsResource(AsyncAPIResource):
                     addon_list_charges_params.AddonListChargesParams,
                 ),
             ),
-            model=AddonListChargesResponse,
+            model=Data,
         )
 
     async def publish(

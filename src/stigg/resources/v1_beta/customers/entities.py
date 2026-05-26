@@ -27,9 +27,8 @@ from ....types.v1_beta.customers import (
 )
 from ....types.v1_beta.customers.entity_list_response import EntityListResponse
 from ....types.v1_beta.customers.entity_upsert_response import EntityUpsertResponse
-from ....types.v1_beta.customers.entity_archive_response import EntityArchiveResponse
 from ....types.v1_beta.customers.entity_retrieve_response import EntityRetrieveResponse
-from ....types.v1_beta.customers.entity_unarchive_response import EntityUnarchiveResponse
+from ....types.v1_beta.customers.entity_ids_action_response_dto import EntityIDsActionResponseDto
 
 __all__ = ["EntitiesResource", "AsyncEntitiesResource"]
 
@@ -163,7 +162,7 @@ class EntitiesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EntityArchiveResponse:
+    ) -> EntityIDsActionResponseDto:
         """
         Archives entities in bulk for the given customer by id.
 
@@ -186,7 +185,7 @@ class EntitiesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EntityArchiveResponse,
+            cast_to=EntityIDsActionResponseDto,
         )
 
     def unarchive(
@@ -200,7 +199,7 @@ class EntitiesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EntityUnarchiveResponse:
+    ) -> EntityIDsActionResponseDto:
         """
         Restores previously archived entities in bulk for the given customer by id.
 
@@ -223,7 +222,7 @@ class EntitiesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EntityUnarchiveResponse,
+            cast_to=EntityIDsActionResponseDto,
         )
 
     def upsert(
@@ -395,7 +394,7 @@ class AsyncEntitiesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EntityArchiveResponse:
+    ) -> EntityIDsActionResponseDto:
         """
         Archives entities in bulk for the given customer by id.
 
@@ -418,7 +417,7 @@ class AsyncEntitiesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EntityArchiveResponse,
+            cast_to=EntityIDsActionResponseDto,
         )
 
     async def unarchive(
@@ -432,7 +431,7 @@ class AsyncEntitiesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EntityUnarchiveResponse:
+    ) -> EntityIDsActionResponseDto:
         """
         Restores previously archived entities in bulk for the given customer by id.
 
@@ -455,7 +454,7 @@ class AsyncEntitiesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EntityUnarchiveResponse,
+            cast_to=EntityIDsActionResponseDto,
         )
 
     async def upsert(
