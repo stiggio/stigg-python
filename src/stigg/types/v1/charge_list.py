@@ -8,10 +8,19 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["PlanListOverageChargesResponse", "CreditRate", "Price", "Tier", "TierFlatPrice", "TierUnitPrice"]
+__all__ = [
+    "ChargeList",
+    "Data",
+    "DataCreditRate",
+    "DataPrice",
+    "DataTier",
+    "DataTierFlatPrice",
+    "DataTierUnitPrice",
+    "Pagination",
+]
 
 
-class CreditRate(BaseModel):
+class DataCreditRate(BaseModel):
     """Credit rate configuration for credit-based pricing"""
 
     amount: float
@@ -24,7 +33,7 @@ class CreditRate(BaseModel):
     """Optional cost formula expression"""
 
 
-class Price(BaseModel):
+class DataPrice(BaseModel):
     """The flat price amount and currency, when applicable"""
 
     amount: float
@@ -151,7 +160,7 @@ class Price(BaseModel):
     """ISO 4217 currency code"""
 
 
-class TierFlatPrice(BaseModel):
+class DataTierFlatPrice(BaseModel):
     """Flat price for this tier"""
 
     amount: float
@@ -278,7 +287,7 @@ class TierFlatPrice(BaseModel):
     """ISO 4217 currency code"""
 
 
-class TierUnitPrice(BaseModel):
+class DataTierUnitPrice(BaseModel):
     """Per-unit price in this tier"""
 
     amount: float
@@ -405,20 +414,20 @@ class TierUnitPrice(BaseModel):
     """ISO 4217 currency code"""
 
 
-class Tier(BaseModel):
+class DataTier(BaseModel):
     """A single tier within a tiered charge"""
 
-    flat_price: Optional[TierFlatPrice] = FieldInfo(alias="flatPrice", default=None)
+    flat_price: Optional[DataTierFlatPrice] = FieldInfo(alias="flatPrice", default=None)
     """Flat price for this tier"""
 
-    unit_price: Optional[TierUnitPrice] = FieldInfo(alias="unitPrice", default=None)
+    unit_price: Optional[DataTierUnitPrice] = FieldInfo(alias="unitPrice", default=None)
     """Per-unit price in this tier"""
 
     up_to: Optional[float] = FieldInfo(alias="upTo", default=None)
     """Upper bound of this tier (null for unlimited)"""
 
 
-class PlanListOverageChargesResponse(BaseModel):
+class Data(BaseModel):
     """A single pricing row on a plan or addon.
 
     Each charge encodes one (billingPeriod, billingModel, billingCadence, billingCountryCode) combination. Plans and addons own many of these — one per currency / billing period / feature.
@@ -457,7 +466,7 @@ class PlanListOverageChargesResponse(BaseModel):
     )
     """When credits are granted (for credit-based pricing)"""
 
-    credit_rate: Optional[CreditRate] = FieldInfo(alias="creditRate", default=None)
+    credit_rate: Optional[DataCreditRate] = FieldInfo(alias="creditRate", default=None)
     """Credit rate configuration for credit-based pricing"""
 
     crm_id: Optional[str] = FieldInfo(alias="crmId", default=None)
@@ -475,10 +484,10 @@ class PlanListOverageChargesResponse(BaseModel):
     min_unit_quantity: Optional[float] = FieldInfo(alias="minUnitQuantity", default=None)
     """Minimum unit quantity that can be purchased"""
 
-    price: Optional[Price] = None
+    price: Optional[DataPrice] = None
     """The flat price amount and currency, when applicable"""
 
-    tiers: Optional[List[Tier]] = None
+    tiers: Optional[List[DataTier]] = None
     """Tiered pricing rows when the charge is tiered"""
 
     tiers_mode: Optional[Literal["VOLUME", "GRADUATED"]] = FieldInfo(alias="tiersMode", default=None)
@@ -489,3 +498,25 @@ class PlanListOverageChargesResponse(BaseModel):
 
     used_in_subscriptions: Optional[bool] = FieldInfo(alias="usedInSubscriptions", default=None)
     """True if this charge is referenced by at least one subscription"""
+
+
+class Pagination(BaseModel):
+    """Pagination metadata including cursors for navigating through results"""
+
+    next: Optional[str] = None
+    """
+    Cursor for fetching the next page of results, or null if no additional pages
+    exist
+    """
+
+    prev: Optional[str] = None
+    """Cursor for fetching the previous page of results, or null if at the beginning"""
+
+
+class ChargeList(BaseModel):
+    """Response list object"""
+
+    data: List[Data]
+
+    pagination: Pagination
+    """Pagination metadata including cursors for navigating through results"""

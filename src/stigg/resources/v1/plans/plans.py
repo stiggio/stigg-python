@@ -36,11 +36,10 @@ from .entitlements import (
 from ....pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.v1.plan import Plan
+from ....types.v1.charge_list import Data
 from ....types.v1.plan_list_response import PlanListResponse
 from ....types.v1.plan_publish_response import PlanPublishResponse
-from ....types.v1.plan_list_charges_response import PlanListChargesResponse
 from ....types.v1.plan_remove_draft_response import PlanRemoveDraftResponse
-from ....types.v1.plan_list_overage_charges_response import PlanListOverageChargesResponse
 
 __all__ = ["PlansResource", "AsyncPlansResource"]
 
@@ -391,7 +390,7 @@ class PlansResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncMyCursorIDPage[PlanListChargesResponse]:
+    ) -> SyncMyCursorIDPage[Data]:
         """
         Retrieves the list of charges configured on a plan.
 
@@ -414,7 +413,7 @@ class PlansResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template("/api/v1/plans/{id}/charges", id=id),
-            page=SyncMyCursorIDPage[PlanListChargesResponse],
+            page=SyncMyCursorIDPage[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -429,7 +428,7 @@ class PlansResource(SyncAPIResource):
                     plan_list_charges_params.PlanListChargesParams,
                 ),
             ),
-            model=PlanListChargesResponse,
+            model=Data,
         )
 
     def list_overage_charges(
@@ -445,7 +444,7 @@ class PlansResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncMyCursorIDPage[PlanListOverageChargesResponse]:
+    ) -> SyncMyCursorIDPage[Data]:
         """
         Retrieves the list of overage charges configured on a plan.
 
@@ -468,7 +467,7 @@ class PlansResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template("/api/v1/plans/{id}/overage-charges", id=id),
-            page=SyncMyCursorIDPage[PlanListOverageChargesResponse],
+            page=SyncMyCursorIDPage[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -483,7 +482,7 @@ class PlansResource(SyncAPIResource):
                     plan_list_overage_charges_params.PlanListOverageChargesParams,
                 ),
             ),
-            model=PlanListOverageChargesResponse,
+            model=Data,
         )
 
     def publish(
@@ -903,7 +902,7 @@ class AsyncPlansResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PlanListChargesResponse, AsyncMyCursorIDPage[PlanListChargesResponse]]:
+    ) -> AsyncPaginator[Data, AsyncMyCursorIDPage[Data]]:
         """
         Retrieves the list of charges configured on a plan.
 
@@ -926,7 +925,7 @@ class AsyncPlansResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template("/api/v1/plans/{id}/charges", id=id),
-            page=AsyncMyCursorIDPage[PlanListChargesResponse],
+            page=AsyncMyCursorIDPage[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -941,7 +940,7 @@ class AsyncPlansResource(AsyncAPIResource):
                     plan_list_charges_params.PlanListChargesParams,
                 ),
             ),
-            model=PlanListChargesResponse,
+            model=Data,
         )
 
     def list_overage_charges(
@@ -957,7 +956,7 @@ class AsyncPlansResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PlanListOverageChargesResponse, AsyncMyCursorIDPage[PlanListOverageChargesResponse]]:
+    ) -> AsyncPaginator[Data, AsyncMyCursorIDPage[Data]]:
         """
         Retrieves the list of overage charges configured on a plan.
 
@@ -980,7 +979,7 @@ class AsyncPlansResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template("/api/v1/plans/{id}/overage-charges", id=id),
-            page=AsyncMyCursorIDPage[PlanListOverageChargesResponse],
+            page=AsyncMyCursorIDPage[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -995,7 +994,7 @@ class AsyncPlansResource(AsyncAPIResource):
                     plan_list_overage_charges_params.PlanListOverageChargesParams,
                 ),
             ),
-            model=PlanListOverageChargesResponse,
+            model=Data,
         )
 
     async def publish(

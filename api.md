@@ -240,8 +240,8 @@ Types:
 ```python
 from stigg.types.v1 import (
     Addon,
+    ChargeList,
     AddonListResponse,
-    AddonListChargesResponse,
     AddonPublishResponse,
     AddonRemoveDraftResponse,
 )
@@ -255,7 +255,7 @@ Methods:
 - <code title="get /api/v1/addons">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">list</a>(\*\*<a href="src/stigg/types/v1/addon_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/addon_list_response.py">SyncMyCursorIDPage[AddonListResponse]</a></code>
 - <code title="post /api/v1/addons/{id}/archive">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">archive</a>(id) -> <a href="./src/stigg/types/v1/addon.py">Addon</a></code>
 - <code title="post /api/v1/addons/{id}/draft">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">create_draft</a>(id) -> <a href="./src/stigg/types/v1/addon.py">Addon</a></code>
-- <code title="get /api/v1/addons/{id}/charges">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">list_charges</a>(id, \*\*<a href="src/stigg/types/v1/addon_list_charges_params.py">params</a>) -> <a href="./src/stigg/types/v1/addon_list_charges_response.py">SyncMyCursorIDPage[AddonListChargesResponse]</a></code>
+- <code title="get /api/v1/addons/{id}/charges">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">list_charges</a>(id, \*\*<a href="src/stigg/types/v1/addon_list_charges_params.py">params</a>) -> SyncMyCursorIDPage[Data]</code>
 - <code title="post /api/v1/addons/{id}/publish">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">publish</a>(id, \*\*<a href="src/stigg/types/v1/addon_publish_params.py">params</a>) -> <a href="./src/stigg/types/v1/addon_publish_response.py">AddonPublishResponse</a></code>
 - <code title="delete /api/v1/addons/{id}/draft">client.v1.addons.<a href="./src/stigg/resources/v1/addons/addons.py">remove_draft</a>(id) -> <a href="./src/stigg/types/v1/addon_remove_draft_response.py">AddonRemoveDraftResponse</a></code>
 
@@ -283,14 +283,7 @@ Methods:
 Types:
 
 ```python
-from stigg.types.v1 import (
-    Plan,
-    PlanListResponse,
-    PlanListChargesResponse,
-    PlanListOverageChargesResponse,
-    PlanPublishResponse,
-    PlanRemoveDraftResponse,
-)
+from stigg.types.v1 import Plan, PlanListResponse, PlanPublishResponse, PlanRemoveDraftResponse
 ```
 
 Methods:
@@ -301,8 +294,8 @@ Methods:
 - <code title="get /api/v1/plans">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">list</a>(\*\*<a href="src/stigg/types/v1/plan_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/plan_list_response.py">SyncMyCursorIDPage[PlanListResponse]</a></code>
 - <code title="post /api/v1/plans/{id}/archive">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">archive</a>(id) -> <a href="./src/stigg/types/v1/plan.py">Plan</a></code>
 - <code title="post /api/v1/plans/{id}/draft">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">create_draft</a>(id) -> <a href="./src/stigg/types/v1/plan.py">Plan</a></code>
-- <code title="get /api/v1/plans/{id}/charges">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">list_charges</a>(id, \*\*<a href="src/stigg/types/v1/plan_list_charges_params.py">params</a>) -> <a href="./src/stigg/types/v1/plan_list_charges_response.py">SyncMyCursorIDPage[PlanListChargesResponse]</a></code>
-- <code title="get /api/v1/plans/{id}/overage-charges">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">list_overage_charges</a>(id, \*\*<a href="src/stigg/types/v1/plan_list_overage_charges_params.py">params</a>) -> <a href="./src/stigg/types/v1/plan_list_overage_charges_response.py">SyncMyCursorIDPage[PlanListOverageChargesResponse]</a></code>
+- <code title="get /api/v1/plans/{id}/charges">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">list_charges</a>(id, \*\*<a href="src/stigg/types/v1/plan_list_charges_params.py">params</a>) -> SyncMyCursorIDPage[Data]</code>
+- <code title="get /api/v1/plans/{id}/overage-charges">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">list_overage_charges</a>(id, \*\*<a href="src/stigg/types/v1/plan_list_overage_charges_params.py">params</a>) -> SyncMyCursorIDPage[Data]</code>
 - <code title="post /api/v1/plans/{id}/publish">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">publish</a>(id, \*\*<a href="src/stigg/types/v1/plan_publish_params.py">params</a>) -> <a href="./src/stigg/types/v1/plan_publish_response.py">PlanPublishResponse</a></code>
 - <code title="delete /api/v1/plans/{id}/draft">client.v1.plans.<a href="./src/stigg/resources/v1/plans/plans.py">remove_draft</a>(id) -> <a href="./src/stigg/types/v1/plan_remove_draft_response.py">PlanRemoveDraftResponse</a></code>
 
@@ -373,10 +366,10 @@ Types:
 
 ```python
 from stigg.types.v1_beta.customers import (
+    EntityIDsActionResponseDto,
+    EntityIDsRequestDto,
     EntityRetrieveResponse,
     EntityListResponse,
-    EntityArchiveResponse,
-    EntityUnarchiveResponse,
     EntityUpsertResponse,
 )
 ```
@@ -385,8 +378,8 @@ Methods:
 
 - <code title="get /api/v1-beta/customers/{id}/entities/{entityId}">client.v1_beta.customers.entities.<a href="./src/stigg/resources/v1_beta/customers/entities.py">retrieve</a>(entity_id, \*, id) -> <a href="./src/stigg/types/v1_beta/customers/entity_retrieve_response.py">EntityRetrieveResponse</a></code>
 - <code title="get /api/v1-beta/customers/{id}/entities">client.v1_beta.customers.entities.<a href="./src/stigg/resources/v1_beta/customers/entities.py">list</a>(id, \*\*<a href="src/stigg/types/v1_beta/customers/entity_list_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/customers/entity_list_response.py">SyncMyCursorIDPage[EntityListResponse]</a></code>
-- <code title="post /api/v1-beta/customers/{id}/entities/archive">client.v1_beta.customers.entities.<a href="./src/stigg/resources/v1_beta/customers/entities.py">archive</a>(id, \*\*<a href="src/stigg/types/v1_beta/customers/entity_archive_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/customers/entity_archive_response.py">EntityArchiveResponse</a></code>
-- <code title="post /api/v1-beta/customers/{id}/entities/unarchive">client.v1_beta.customers.entities.<a href="./src/stigg/resources/v1_beta/customers/entities.py">unarchive</a>(id, \*\*<a href="src/stigg/types/v1_beta/customers/entity_unarchive_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/customers/entity_unarchive_response.py">EntityUnarchiveResponse</a></code>
+- <code title="post /api/v1-beta/customers/{id}/entities/archive">client.v1_beta.customers.entities.<a href="./src/stigg/resources/v1_beta/customers/entities.py">archive</a>(id, \*\*<a href="src/stigg/types/v1_beta/customers/entity_archive_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/customers/entity_ids_action_response_dto.py">EntityIDsActionResponseDto</a></code>
+- <code title="post /api/v1-beta/customers/{id}/entities/unarchive">client.v1_beta.customers.entities.<a href="./src/stigg/resources/v1_beta/customers/entities.py">unarchive</a>(id, \*\*<a href="src/stigg/types/v1_beta/customers/entity_unarchive_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/customers/entity_ids_action_response_dto.py">EntityIDsActionResponseDto</a></code>
 - <code title="put /api/v1-beta/customers/{id}/entities">client.v1_beta.customers.entities.<a href="./src/stigg/resources/v1_beta/customers/entities.py">upsert</a>(id, \*\*<a href="src/stigg/types/v1_beta/customers/entity_upsert_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/customers/entity_upsert_response.py">EntityUpsertResponse</a></code>
 
 ### Assignments

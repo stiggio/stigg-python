@@ -13,9 +13,8 @@ from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 from stigg.types.v1_beta.customers import (
     EntityListResponse,
     EntityUpsertResponse,
-    EntityArchiveResponse,
     EntityRetrieveResponse,
-    EntityUnarchiveResponse,
+    EntityIDsActionResponseDto,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -138,7 +137,7 @@ class TestEntities:
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
         )
-        assert_matches_type(EntityArchiveResponse, entity, path=["response"])
+        assert_matches_type(EntityIDsActionResponseDto, entity, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -151,7 +150,7 @@ class TestEntities:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entity = response.parse()
-        assert_matches_type(EntityArchiveResponse, entity, path=["response"])
+        assert_matches_type(EntityIDsActionResponseDto, entity, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -164,7 +163,7 @@ class TestEntities:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entity = response.parse()
-            assert_matches_type(EntityArchiveResponse, entity, path=["response"])
+            assert_matches_type(EntityIDsActionResponseDto, entity, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -184,7 +183,7 @@ class TestEntities:
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
         )
-        assert_matches_type(EntityUnarchiveResponse, entity, path=["response"])
+        assert_matches_type(EntityIDsActionResponseDto, entity, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -197,7 +196,7 @@ class TestEntities:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entity = response.parse()
-        assert_matches_type(EntityUnarchiveResponse, entity, path=["response"])
+        assert_matches_type(EntityIDsActionResponseDto, entity, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -210,7 +209,7 @@ class TestEntities:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entity = response.parse()
-            assert_matches_type(EntityUnarchiveResponse, entity, path=["response"])
+            assert_matches_type(EntityIDsActionResponseDto, entity, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -389,7 +388,7 @@ class TestAsyncEntities:
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
         )
-        assert_matches_type(EntityArchiveResponse, entity, path=["response"])
+        assert_matches_type(EntityIDsActionResponseDto, entity, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -402,7 +401,7 @@ class TestAsyncEntities:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entity = await response.parse()
-        assert_matches_type(EntityArchiveResponse, entity, path=["response"])
+        assert_matches_type(EntityIDsActionResponseDto, entity, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -415,7 +414,7 @@ class TestAsyncEntities:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entity = await response.parse()
-            assert_matches_type(EntityArchiveResponse, entity, path=["response"])
+            assert_matches_type(EntityIDsActionResponseDto, entity, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -435,7 +434,7 @@ class TestAsyncEntities:
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
         )
-        assert_matches_type(EntityUnarchiveResponse, entity, path=["response"])
+        assert_matches_type(EntityIDsActionResponseDto, entity, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -448,7 +447,7 @@ class TestAsyncEntities:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entity = await response.parse()
-        assert_matches_type(EntityUnarchiveResponse, entity, path=["response"])
+        assert_matches_type(EntityIDsActionResponseDto, entity, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -461,7 +460,7 @@ class TestAsyncEntities:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entity = await response.parse()
-            assert_matches_type(EntityUnarchiveResponse, entity, path=["response"])
+            assert_matches_type(EntityIDsActionResponseDto, entity, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
