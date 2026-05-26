@@ -5,12 +5,12 @@ from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
-from ..._models import BaseModel
+from ...._models import BaseModel
 
-__all__ = ["EntityListResponse"]
+__all__ = ["EntityRetrieveResponse", "Data"]
 
 
-class EntityListResponse(BaseModel):
+class Data(BaseModel):
     """A stored entity instance tracked by the governance service for a given customer"""
 
     id: str
@@ -30,3 +30,10 @@ class EntityListResponse(BaseModel):
 
     updated_at: datetime = FieldInfo(alias="updatedAt")
     """Timestamp of when the record was last updated"""
+
+
+class EntityRetrieveResponse(BaseModel):
+    """Response object"""
+
+    data: Data
+    """A stored entity instance tracked by the governance service for a given customer"""
