@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.8 (2026-05-26)
+
+Full Changelog: [v0.1.0-beta.7...v0.1.0-beta.8](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.7...v0.1.0-beta.8)
+
+### Features
+
+* **api:** add list and upsert methods to customer assignments ([b7b4d29](https://github.com/stiggio/stigg-python/commit/b7b4d2911b6e2e88fc2ea21df5a235136429d5a8))
+
 ## 0.1.0-beta.7 (2026-05-25)
 
 Full Changelog: [v0.1.0-beta.6...v0.1.0-beta.7](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.6...v0.1.0-beta.7)
