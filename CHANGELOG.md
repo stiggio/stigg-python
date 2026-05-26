@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-beta.9 (2026-05-26)
+
+Full Changelog: [v0.1.0-beta.8...v0.1.0-beta.9](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.8...v0.1.0-beta.9)
+
+### Features
+
+* **api:** add group_by param, tags field, DataSeriesTag model to credits.get_usage ([0f25227](https://github.com/stiggio/stigg-python/commit/0f25227de5765f5de3c1d8945fdb5b7a00dac3b5))
+* **api:** manual updates ([0fc7bb9](https://github.com/stiggio/stigg-python/commit/0fc7bb9ef3bd9b439c7d79f92e3e90e7185e47cd))
+
 ## 0.1.0-beta.8 (2026-05-26)
 
 Full Changelog: [v0.1.0-beta.7...v0.1.0-beta.8](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.7...v0.1.0-beta.8)
