@@ -10,7 +10,7 @@ import pytest
 from stigg import Stigg, AsyncStigg
 from tests.utils import assert_matches_type
 from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
-from stigg.types.v1_beta import (
+from stigg.types.v1_beta.customers import (
     EntityListResponse,
     EntityUpsertResponse,
     EntityArchiveResponse,
@@ -27,7 +27,7 @@ class TestEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Stigg) -> None:
-        entity = client.v1_beta.entities.retrieve(
+        entity = client.v1_beta.customers.entities.retrieve(
             entity_id="x",
             id="id",
         )
@@ -36,7 +36,7 @@ class TestEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Stigg) -> None:
-        response = client.v1_beta.entities.with_raw_response.retrieve(
+        response = client.v1_beta.customers.entities.with_raw_response.retrieve(
             entity_id="x",
             id="id",
         )
@@ -49,7 +49,7 @@ class TestEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Stigg) -> None:
-        with client.v1_beta.entities.with_streaming_response.retrieve(
+        with client.v1_beta.customers.entities.with_streaming_response.retrieve(
             entity_id="x",
             id="id",
         ) as response:
@@ -65,13 +65,13 @@ class TestEntities:
     @parametrize
     def test_path_params_retrieve(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.v1_beta.entities.with_raw_response.retrieve(
+            client.v1_beta.customers.entities.with_raw_response.retrieve(
                 entity_id="x",
                 id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entity_id` but received ''"):
-            client.v1_beta.entities.with_raw_response.retrieve(
+            client.v1_beta.customers.entities.with_raw_response.retrieve(
                 entity_id="",
                 id="id",
             )
@@ -79,7 +79,7 @@ class TestEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Stigg) -> None:
-        entity = client.v1_beta.entities.list(
+        entity = client.v1_beta.customers.entities.list(
             id="id",
         )
         assert_matches_type(SyncMyCursorIDPage[EntityListResponse], entity, path=["response"])
@@ -87,7 +87,7 @@ class TestEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Stigg) -> None:
-        entity = client.v1_beta.entities.list(
+        entity = client.v1_beta.customers.entities.list(
             id="id",
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -100,7 +100,7 @@ class TestEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Stigg) -> None:
-        response = client.v1_beta.entities.with_raw_response.list(
+        response = client.v1_beta.customers.entities.with_raw_response.list(
             id="id",
         )
 
@@ -112,7 +112,7 @@ class TestEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Stigg) -> None:
-        with client.v1_beta.entities.with_streaming_response.list(
+        with client.v1_beta.customers.entities.with_streaming_response.list(
             id="id",
         ) as response:
             assert not response.is_closed
@@ -127,14 +127,14 @@ class TestEntities:
     @parametrize
     def test_path_params_list(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.v1_beta.entities.with_raw_response.list(
+            client.v1_beta.customers.entities.with_raw_response.list(
                 id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_archive(self, client: Stigg) -> None:
-        entity = client.v1_beta.entities.archive(
+        entity = client.v1_beta.customers.entities.archive(
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
         )
@@ -143,7 +143,7 @@ class TestEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_archive(self, client: Stigg) -> None:
-        response = client.v1_beta.entities.with_raw_response.archive(
+        response = client.v1_beta.customers.entities.with_raw_response.archive(
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
         )
@@ -156,7 +156,7 @@ class TestEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_archive(self, client: Stigg) -> None:
-        with client.v1_beta.entities.with_streaming_response.archive(
+        with client.v1_beta.customers.entities.with_streaming_response.archive(
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
         ) as response:
@@ -172,7 +172,7 @@ class TestEntities:
     @parametrize
     def test_path_params_archive(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.v1_beta.entities.with_raw_response.archive(
+            client.v1_beta.customers.entities.with_raw_response.archive(
                 id="",
                 ids=["user-7f3a0c1d", "user-c4d1b2e9"],
             )
@@ -180,7 +180,7 @@ class TestEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_unarchive(self, client: Stigg) -> None:
-        entity = client.v1_beta.entities.unarchive(
+        entity = client.v1_beta.customers.entities.unarchive(
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
         )
@@ -189,7 +189,7 @@ class TestEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_unarchive(self, client: Stigg) -> None:
-        response = client.v1_beta.entities.with_raw_response.unarchive(
+        response = client.v1_beta.customers.entities.with_raw_response.unarchive(
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
         )
@@ -202,7 +202,7 @@ class TestEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_unarchive(self, client: Stigg) -> None:
-        with client.v1_beta.entities.with_streaming_response.unarchive(
+        with client.v1_beta.customers.entities.with_streaming_response.unarchive(
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
         ) as response:
@@ -218,7 +218,7 @@ class TestEntities:
     @parametrize
     def test_path_params_unarchive(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.v1_beta.entities.with_raw_response.unarchive(
+            client.v1_beta.customers.entities.with_raw_response.unarchive(
                 id="",
                 ids=["user-7f3a0c1d", "user-c4d1b2e9"],
             )
@@ -226,7 +226,7 @@ class TestEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_upsert(self, client: Stigg) -> None:
-        entity = client.v1_beta.entities.upsert(
+        entity = client.v1_beta.customers.entities.upsert(
             id="id",
             entities=[{"id": "user-7f3a0c1d"}, {"id": "user-c4d1b2e9"}],
         )
@@ -235,7 +235,7 @@ class TestEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_upsert(self, client: Stigg) -> None:
-        response = client.v1_beta.entities.with_raw_response.upsert(
+        response = client.v1_beta.customers.entities.with_raw_response.upsert(
             id="id",
             entities=[{"id": "user-7f3a0c1d"}, {"id": "user-c4d1b2e9"}],
         )
@@ -248,7 +248,7 @@ class TestEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_upsert(self, client: Stigg) -> None:
-        with client.v1_beta.entities.with_streaming_response.upsert(
+        with client.v1_beta.customers.entities.with_streaming_response.upsert(
             id="id",
             entities=[{"id": "user-7f3a0c1d"}, {"id": "user-c4d1b2e9"}],
         ) as response:
@@ -264,7 +264,7 @@ class TestEntities:
     @parametrize
     def test_path_params_upsert(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.v1_beta.entities.with_raw_response.upsert(
+            client.v1_beta.customers.entities.with_raw_response.upsert(
                 id="",
                 entities=[{"id": "user-7f3a0c1d"}, {"id": "user-c4d1b2e9"}],
             )
@@ -278,7 +278,7 @@ class TestAsyncEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncStigg) -> None:
-        entity = await async_client.v1_beta.entities.retrieve(
+        entity = await async_client.v1_beta.customers.entities.retrieve(
             entity_id="x",
             id="id",
         )
@@ -287,7 +287,7 @@ class TestAsyncEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v1_beta.entities.with_raw_response.retrieve(
+        response = await async_client.v1_beta.customers.entities.with_raw_response.retrieve(
             entity_id="x",
             id="id",
         )
@@ -300,7 +300,7 @@ class TestAsyncEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncStigg) -> None:
-        async with async_client.v1_beta.entities.with_streaming_response.retrieve(
+        async with async_client.v1_beta.customers.entities.with_streaming_response.retrieve(
             entity_id="x",
             id="id",
         ) as response:
@@ -316,13 +316,13 @@ class TestAsyncEntities:
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.v1_beta.entities.with_raw_response.retrieve(
+            await async_client.v1_beta.customers.entities.with_raw_response.retrieve(
                 entity_id="x",
                 id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entity_id` but received ''"):
-            await async_client.v1_beta.entities.with_raw_response.retrieve(
+            await async_client.v1_beta.customers.entities.with_raw_response.retrieve(
                 entity_id="",
                 id="id",
             )
@@ -330,7 +330,7 @@ class TestAsyncEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncStigg) -> None:
-        entity = await async_client.v1_beta.entities.list(
+        entity = await async_client.v1_beta.customers.entities.list(
             id="id",
         )
         assert_matches_type(AsyncMyCursorIDPage[EntityListResponse], entity, path=["response"])
@@ -338,7 +338,7 @@ class TestAsyncEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStigg) -> None:
-        entity = await async_client.v1_beta.entities.list(
+        entity = await async_client.v1_beta.customers.entities.list(
             id="id",
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -351,7 +351,7 @@ class TestAsyncEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v1_beta.entities.with_raw_response.list(
+        response = await async_client.v1_beta.customers.entities.with_raw_response.list(
             id="id",
         )
 
@@ -363,7 +363,7 @@ class TestAsyncEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStigg) -> None:
-        async with async_client.v1_beta.entities.with_streaming_response.list(
+        async with async_client.v1_beta.customers.entities.with_streaming_response.list(
             id="id",
         ) as response:
             assert not response.is_closed
@@ -378,14 +378,14 @@ class TestAsyncEntities:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.v1_beta.entities.with_raw_response.list(
+            await async_client.v1_beta.customers.entities.with_raw_response.list(
                 id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_archive(self, async_client: AsyncStigg) -> None:
-        entity = await async_client.v1_beta.entities.archive(
+        entity = await async_client.v1_beta.customers.entities.archive(
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
         )
@@ -394,7 +394,7 @@ class TestAsyncEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_archive(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v1_beta.entities.with_raw_response.archive(
+        response = await async_client.v1_beta.customers.entities.with_raw_response.archive(
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
         )
@@ -407,7 +407,7 @@ class TestAsyncEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_archive(self, async_client: AsyncStigg) -> None:
-        async with async_client.v1_beta.entities.with_streaming_response.archive(
+        async with async_client.v1_beta.customers.entities.with_streaming_response.archive(
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
         ) as response:
@@ -423,7 +423,7 @@ class TestAsyncEntities:
     @parametrize
     async def test_path_params_archive(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.v1_beta.entities.with_raw_response.archive(
+            await async_client.v1_beta.customers.entities.with_raw_response.archive(
                 id="",
                 ids=["user-7f3a0c1d", "user-c4d1b2e9"],
             )
@@ -431,7 +431,7 @@ class TestAsyncEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_unarchive(self, async_client: AsyncStigg) -> None:
-        entity = await async_client.v1_beta.entities.unarchive(
+        entity = await async_client.v1_beta.customers.entities.unarchive(
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
         )
@@ -440,7 +440,7 @@ class TestAsyncEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_unarchive(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v1_beta.entities.with_raw_response.unarchive(
+        response = await async_client.v1_beta.customers.entities.with_raw_response.unarchive(
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
         )
@@ -453,7 +453,7 @@ class TestAsyncEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_unarchive(self, async_client: AsyncStigg) -> None:
-        async with async_client.v1_beta.entities.with_streaming_response.unarchive(
+        async with async_client.v1_beta.customers.entities.with_streaming_response.unarchive(
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
         ) as response:
@@ -469,7 +469,7 @@ class TestAsyncEntities:
     @parametrize
     async def test_path_params_unarchive(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.v1_beta.entities.with_raw_response.unarchive(
+            await async_client.v1_beta.customers.entities.with_raw_response.unarchive(
                 id="",
                 ids=["user-7f3a0c1d", "user-c4d1b2e9"],
             )
@@ -477,7 +477,7 @@ class TestAsyncEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_upsert(self, async_client: AsyncStigg) -> None:
-        entity = await async_client.v1_beta.entities.upsert(
+        entity = await async_client.v1_beta.customers.entities.upsert(
             id="id",
             entities=[{"id": "user-7f3a0c1d"}, {"id": "user-c4d1b2e9"}],
         )
@@ -486,7 +486,7 @@ class TestAsyncEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_upsert(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v1_beta.entities.with_raw_response.upsert(
+        response = await async_client.v1_beta.customers.entities.with_raw_response.upsert(
             id="id",
             entities=[{"id": "user-7f3a0c1d"}, {"id": "user-c4d1b2e9"}],
         )
@@ -499,7 +499,7 @@ class TestAsyncEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_upsert(self, async_client: AsyncStigg) -> None:
-        async with async_client.v1_beta.entities.with_streaming_response.upsert(
+        async with async_client.v1_beta.customers.entities.with_streaming_response.upsert(
             id="id",
             entities=[{"id": "user-7f3a0c1d"}, {"id": "user-c4d1b2e9"}],
         ) as response:
@@ -515,7 +515,7 @@ class TestAsyncEntities:
     @parametrize
     async def test_path_params_upsert(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.v1_beta.entities.with_raw_response.upsert(
+            await async_client.v1_beta.customers.entities.with_raw_response.upsert(
                 id="",
                 entities=[{"id": "user-7f3a0c1d"}, {"id": "user-c4d1b2e9"}],
             )

@@ -1,16 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
-from ..._models import BaseModel
+from ...._models import BaseModel
 
-__all__ = ["EntityUpsertResponse", "Data"]
+__all__ = ["EntityListResponse"]
 
 
-class Data(BaseModel):
+class EntityListResponse(BaseModel):
     """A stored entity instance tracked by the governance service for a given customer"""
 
     id: str
@@ -30,9 +30,3 @@ class Data(BaseModel):
 
     updated_at: datetime = FieldInfo(alias="updatedAt")
     """Timestamp of when the record was last updated"""
-
-
-class EntityUpsertResponse(BaseModel):
-    """List of entities created or updated by an upsert request"""
-
-    data: List[Data]

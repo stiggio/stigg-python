@@ -367,6 +367,41 @@ Methods:
 
 - <code title="get /api/v1-beta/customers/{id}/entitlements/check">client.v1_beta.customers.entitlements.<a href="./src/stigg/resources/v1_beta/customers/entitlements.py">check</a>(id, \*\*<a href="src/stigg/types/v1_beta/customers/entitlement_check_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/customers/entitlement_check_response.py">EntitlementCheckResponse</a></code>
 
+### Entities
+
+Types:
+
+```python
+from stigg.types.v1_beta.customers import (
+    EntityRetrieveResponse,
+    EntityListResponse,
+    EntityArchiveResponse,
+    EntityUnarchiveResponse,
+    EntityUpsertResponse,
+)
+```
+
+Methods:
+
+- <code title="get /api/v1-beta/customers/{id}/entities/{entityId}">client.v1_beta.customers.entities.<a href="./src/stigg/resources/v1_beta/customers/entities.py">retrieve</a>(entity_id, \*, id) -> <a href="./src/stigg/types/v1_beta/customers/entity_retrieve_response.py">EntityRetrieveResponse</a></code>
+- <code title="get /api/v1-beta/customers/{id}/entities">client.v1_beta.customers.entities.<a href="./src/stigg/resources/v1_beta/customers/entities.py">list</a>(id, \*\*<a href="src/stigg/types/v1_beta/customers/entity_list_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/customers/entity_list_response.py">SyncMyCursorIDPage[EntityListResponse]</a></code>
+- <code title="post /api/v1-beta/customers/{id}/entities/archive">client.v1_beta.customers.entities.<a href="./src/stigg/resources/v1_beta/customers/entities.py">archive</a>(id, \*\*<a href="src/stigg/types/v1_beta/customers/entity_archive_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/customers/entity_archive_response.py">EntityArchiveResponse</a></code>
+- <code title="post /api/v1-beta/customers/{id}/entities/unarchive">client.v1_beta.customers.entities.<a href="./src/stigg/resources/v1_beta/customers/entities.py">unarchive</a>(id, \*\*<a href="src/stigg/types/v1_beta/customers/entity_unarchive_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/customers/entity_unarchive_response.py">EntityUnarchiveResponse</a></code>
+- <code title="put /api/v1-beta/customers/{id}/entities">client.v1_beta.customers.entities.<a href="./src/stigg/resources/v1_beta/customers/entities.py">upsert</a>(id, \*\*<a href="src/stigg/types/v1_beta/customers/entity_upsert_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/customers/entity_upsert_response.py">EntityUpsertResponse</a></code>
+
+### Assignments
+
+Types:
+
+```python
+from stigg.types.v1_beta.customers import AssignmentListResponse, AssignmentUpsertResponse
+```
+
+Methods:
+
+- <code title="get /api/v1-beta/customers/{id}/assignments">client.v1_beta.customers.assignments.<a href="./src/stigg/resources/v1_beta/customers/assignments.py">list</a>(id, \*\*<a href="src/stigg/types/v1_beta/customers/assignment_list_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/customers/assignment_list_response.py">SyncMyCursorIDPage[AssignmentListResponse]</a></code>
+- <code title="put /api/v1-beta/customers/{id}/assignments">client.v1_beta.customers.assignments.<a href="./src/stigg/resources/v1_beta/customers/assignments.py">upsert</a>(id, \*\*<a href="src/stigg/types/v1_beta/customers/assignment_upsert_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/customers/assignment_upsert_response.py">AssignmentUpsertResponse</a></code>
+
 ## EntityTypes
 
 Types:
@@ -379,25 +414,3 @@ Methods:
 
 - <code title="get /api/v1-beta/entity-types">client.v1_beta.entity_types.<a href="./src/stigg/resources/v1_beta/entity_types.py">list</a>(\*\*<a href="src/stigg/types/v1_beta/entity_type_list_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/entity_type_list_response.py">SyncMyCursorIDPage[EntityTypeListResponse]</a></code>
 - <code title="put /api/v1-beta/entity-types">client.v1_beta.entity_types.<a href="./src/stigg/resources/v1_beta/entity_types.py">upsert</a>(\*\*<a href="src/stigg/types/v1_beta/entity_type_upsert_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/entity_type_upsert_response.py">EntityTypeUpsertResponse</a></code>
-
-## Entities
-
-Types:
-
-```python
-from stigg.types.v1_beta import (
-    EntityRetrieveResponse,
-    EntityListResponse,
-    EntityArchiveResponse,
-    EntityUnarchiveResponse,
-    EntityUpsertResponse,
-)
-```
-
-Methods:
-
-- <code title="get /api/v1-beta/customers/{id}/entities/{entityId}">client.v1_beta.entities.<a href="./src/stigg/resources/v1_beta/entities.py">retrieve</a>(entity_id, \*, id) -> <a href="./src/stigg/types/v1_beta/entity_retrieve_response.py">EntityRetrieveResponse</a></code>
-- <code title="get /api/v1-beta/customers/{id}/entities">client.v1_beta.entities.<a href="./src/stigg/resources/v1_beta/entities.py">list</a>(id, \*\*<a href="src/stigg/types/v1_beta/entity_list_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/entity_list_response.py">SyncMyCursorIDPage[EntityListResponse]</a></code>
-- <code title="post /api/v1-beta/customers/{id}/entities/archive">client.v1_beta.entities.<a href="./src/stigg/resources/v1_beta/entities.py">archive</a>(id, \*\*<a href="src/stigg/types/v1_beta/entity_archive_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/entity_archive_response.py">EntityArchiveResponse</a></code>
-- <code title="post /api/v1-beta/customers/{id}/entities/unarchive">client.v1_beta.entities.<a href="./src/stigg/resources/v1_beta/entities.py">unarchive</a>(id, \*\*<a href="src/stigg/types/v1_beta/entity_unarchive_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/entity_unarchive_response.py">EntityUnarchiveResponse</a></code>
-- <code title="put /api/v1-beta/customers/{id}/entities">client.v1_beta.entities.<a href="./src/stigg/resources/v1_beta/entities.py">upsert</a>(id, \*\*<a href="src/stigg/types/v1_beta/entity_upsert_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/entity_upsert_response.py">EntityUpsertResponse</a></code>

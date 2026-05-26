@@ -2,7 +2,23 @@
 
 from __future__ import annotations
 
+from .entities import (
+    EntitiesResource,
+    AsyncEntitiesResource,
+    EntitiesResourceWithRawResponse,
+    AsyncEntitiesResourceWithRawResponse,
+    EntitiesResourceWithStreamingResponse,
+    AsyncEntitiesResourceWithStreamingResponse,
+)
 from ...._compat import cached_property
+from .assignments import (
+    AssignmentsResource,
+    AsyncAssignmentsResource,
+    AssignmentsResourceWithRawResponse,
+    AsyncAssignmentsResourceWithRawResponse,
+    AssignmentsResourceWithStreamingResponse,
+    AsyncAssignmentsResourceWithStreamingResponse,
+)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from .entitlements import (
     EntitlementsResource,
@@ -20,6 +36,14 @@ class CustomersResource(SyncAPIResource):
     @cached_property
     def entitlements(self) -> EntitlementsResource:
         return EntitlementsResource(self._client)
+
+    @cached_property
+    def entities(self) -> EntitiesResource:
+        return EntitiesResource(self._client)
+
+    @cached_property
+    def assignments(self) -> AssignmentsResource:
+        return AssignmentsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CustomersResourceWithRawResponse:
@@ -45,6 +69,14 @@ class AsyncCustomersResource(AsyncAPIResource):
     @cached_property
     def entitlements(self) -> AsyncEntitlementsResource:
         return AsyncEntitlementsResource(self._client)
+
+    @cached_property
+    def entities(self) -> AsyncEntitiesResource:
+        return AsyncEntitiesResource(self._client)
+
+    @cached_property
+    def assignments(self) -> AsyncAssignmentsResource:
+        return AsyncAssignmentsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCustomersResourceWithRawResponse:
@@ -74,6 +106,14 @@ class CustomersResourceWithRawResponse:
     def entitlements(self) -> EntitlementsResourceWithRawResponse:
         return EntitlementsResourceWithRawResponse(self._customers.entitlements)
 
+    @cached_property
+    def entities(self) -> EntitiesResourceWithRawResponse:
+        return EntitiesResourceWithRawResponse(self._customers.entities)
+
+    @cached_property
+    def assignments(self) -> AssignmentsResourceWithRawResponse:
+        return AssignmentsResourceWithRawResponse(self._customers.assignments)
+
 
 class AsyncCustomersResourceWithRawResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -82,6 +122,14 @@ class AsyncCustomersResourceWithRawResponse:
     @cached_property
     def entitlements(self) -> AsyncEntitlementsResourceWithRawResponse:
         return AsyncEntitlementsResourceWithRawResponse(self._customers.entitlements)
+
+    @cached_property
+    def entities(self) -> AsyncEntitiesResourceWithRawResponse:
+        return AsyncEntitiesResourceWithRawResponse(self._customers.entities)
+
+    @cached_property
+    def assignments(self) -> AsyncAssignmentsResourceWithRawResponse:
+        return AsyncAssignmentsResourceWithRawResponse(self._customers.assignments)
 
 
 class CustomersResourceWithStreamingResponse:
@@ -92,6 +140,14 @@ class CustomersResourceWithStreamingResponse:
     def entitlements(self) -> EntitlementsResourceWithStreamingResponse:
         return EntitlementsResourceWithStreamingResponse(self._customers.entitlements)
 
+    @cached_property
+    def entities(self) -> EntitiesResourceWithStreamingResponse:
+        return EntitiesResourceWithStreamingResponse(self._customers.entities)
+
+    @cached_property
+    def assignments(self) -> AssignmentsResourceWithStreamingResponse:
+        return AssignmentsResourceWithStreamingResponse(self._customers.assignments)
+
 
 class AsyncCustomersResourceWithStreamingResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -100,3 +156,11 @@ class AsyncCustomersResourceWithStreamingResponse:
     @cached_property
     def entitlements(self) -> AsyncEntitlementsResourceWithStreamingResponse:
         return AsyncEntitlementsResourceWithStreamingResponse(self._customers.entitlements)
+
+    @cached_property
+    def entities(self) -> AsyncEntitiesResourceWithStreamingResponse:
+        return AsyncEntitiesResourceWithStreamingResponse(self._customers.entities)
+
+    @cached_property
+    def assignments(self) -> AsyncAssignmentsResourceWithStreamingResponse:
+        return AsyncAssignmentsResourceWithStreamingResponse(self._customers.assignments)

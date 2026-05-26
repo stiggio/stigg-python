@@ -2,14 +2,6 @@
 
 from __future__ import annotations
 
-from .entities import (
-    EntitiesResource,
-    AsyncEntitiesResource,
-    EntitiesResourceWithRawResponse,
-    AsyncEntitiesResourceWithRawResponse,
-    EntitiesResourceWithStreamingResponse,
-    AsyncEntitiesResourceWithStreamingResponse,
-)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .entity_types import (
@@ -42,10 +34,6 @@ class V1BetaResource(SyncAPIResource):
         return EntityTypesResource(self._client)
 
     @cached_property
-    def entities(self) -> EntitiesResource:
-        return EntitiesResource(self._client)
-
-    @cached_property
     def with_raw_response(self) -> V1BetaResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -73,10 +61,6 @@ class AsyncV1BetaResource(AsyncAPIResource):
     @cached_property
     def entity_types(self) -> AsyncEntityTypesResource:
         return AsyncEntityTypesResource(self._client)
-
-    @cached_property
-    def entities(self) -> AsyncEntitiesResource:
-        return AsyncEntitiesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncV1BetaResourceWithRawResponse:
@@ -110,10 +94,6 @@ class V1BetaResourceWithRawResponse:
     def entity_types(self) -> EntityTypesResourceWithRawResponse:
         return EntityTypesResourceWithRawResponse(self._v1_beta.entity_types)
 
-    @cached_property
-    def entities(self) -> EntitiesResourceWithRawResponse:
-        return EntitiesResourceWithRawResponse(self._v1_beta.entities)
-
 
 class AsyncV1BetaResourceWithRawResponse:
     def __init__(self, v1_beta: AsyncV1BetaResource) -> None:
@@ -126,10 +106,6 @@ class AsyncV1BetaResourceWithRawResponse:
     @cached_property
     def entity_types(self) -> AsyncEntityTypesResourceWithRawResponse:
         return AsyncEntityTypesResourceWithRawResponse(self._v1_beta.entity_types)
-
-    @cached_property
-    def entities(self) -> AsyncEntitiesResourceWithRawResponse:
-        return AsyncEntitiesResourceWithRawResponse(self._v1_beta.entities)
 
 
 class V1BetaResourceWithStreamingResponse:
@@ -144,10 +120,6 @@ class V1BetaResourceWithStreamingResponse:
     def entity_types(self) -> EntityTypesResourceWithStreamingResponse:
         return EntityTypesResourceWithStreamingResponse(self._v1_beta.entity_types)
 
-    @cached_property
-    def entities(self) -> EntitiesResourceWithStreamingResponse:
-        return EntitiesResourceWithStreamingResponse(self._v1_beta.entities)
-
 
 class AsyncV1BetaResourceWithStreamingResponse:
     def __init__(self, v1_beta: AsyncV1BetaResource) -> None:
@@ -160,7 +132,3 @@ class AsyncV1BetaResourceWithStreamingResponse:
     @cached_property
     def entity_types(self) -> AsyncEntityTypesResourceWithStreamingResponse:
         return AsyncEntityTypesResourceWithStreamingResponse(self._v1_beta.entity_types)
-
-    @cached_property
-    def entities(self) -> AsyncEntitiesResourceWithStreamingResponse:
-        return AsyncEntitiesResourceWithStreamingResponse(self._v1_beta.entities)

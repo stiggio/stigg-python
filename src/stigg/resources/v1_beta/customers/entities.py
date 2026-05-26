@@ -7,24 +7,29 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.v1_beta import entity_list_params, entity_upsert_params, entity_archive_params, entity_unarchive_params
-from ...types.v1_beta.entity_list_response import EntityListResponse
-from ...types.v1_beta.entity_upsert_response import EntityUpsertResponse
-from ...types.v1_beta.entity_archive_response import EntityArchiveResponse
-from ...types.v1_beta.entity_retrieve_response import EntityRetrieveResponse
-from ...types.v1_beta.entity_unarchive_response import EntityUnarchiveResponse
+from ....pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.v1_beta.customers import (
+    entity_list_params,
+    entity_upsert_params,
+    entity_archive_params,
+    entity_unarchive_params,
+)
+from ....types.v1_beta.customers.entity_list_response import EntityListResponse
+from ....types.v1_beta.customers.entity_upsert_response import EntityUpsertResponse
+from ....types.v1_beta.customers.entity_archive_response import EntityArchiveResponse
+from ....types.v1_beta.customers.entity_retrieve_response import EntityRetrieveResponse
+from ....types.v1_beta.customers.entity_unarchive_response import EntityUnarchiveResponse
 
 __all__ = ["EntitiesResource", "AsyncEntitiesResource"]
 
