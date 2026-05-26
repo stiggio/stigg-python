@@ -24,6 +24,12 @@ class CreditGetUsageParams(TypedDict, total=False):
     Defaults to now when startDate is provided
     """
 
+    group_by: Annotated[str, PropertyInfo(alias="groupBy")]
+    """
+    Comma-separated list of feature dimension keys to group usage series by (up to
+    3). Each key matches /^[a-zA-Z0-9_$-]+$/
+    """
+
     resource_id: Annotated[str, PropertyInfo(alias="resourceId")]
     """Filter by resource ID"""
 
