@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.10 (2026-05-28)
+
+Full Changelog: [v0.1.0-beta.9...v0.1.0-beta.10](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.9...v0.1.0-beta.10)
+
+### Features
+
+* **api:** add RECEIVED to vendorIdentifier in customers integrations/payment_method ([b8cc5db](https://github.com/stiggio/stigg-python/commit/b8cc5db99a7ab24baa450a9e51460312bb8235cd))
+
 ## 0.1.0-beta.9 (2026-05-26)
 
 Full Changelog: [v0.1.0-beta.8...v0.1.0-beta.9](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.8...v0.1.0-beta.9)
