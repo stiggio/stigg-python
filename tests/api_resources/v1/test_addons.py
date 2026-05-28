@@ -14,10 +14,10 @@ from stigg.types.v1 import (
     Addon,
     AddonListResponse,
     AddonPublishResponse,
+    AddonListChargesResponse,
     AddonRemoveDraftResponse,
 )
 from stigg.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
-from stigg.types.v1.charge_list import Data
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -423,7 +423,7 @@ class TestAddons:
         addon = client.v1.addons.list_charges(
             id="x",
         )
-        assert_matches_type(SyncMyCursorIDPage[Data], addon, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -434,7 +434,7 @@ class TestAddons:
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
         )
-        assert_matches_type(SyncMyCursorIDPage[Data], addon, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -446,7 +446,7 @@ class TestAddons:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         addon = response.parse()
-        assert_matches_type(SyncMyCursorIDPage[Data], addon, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -458,7 +458,7 @@ class TestAddons:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             addon = response.parse()
-            assert_matches_type(SyncMyCursorIDPage[Data], addon, path=["response"])
+            assert_matches_type(SyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -962,7 +962,7 @@ class TestAsyncAddons:
         addon = await async_client.v1.addons.list_charges(
             id="x",
         )
-        assert_matches_type(AsyncMyCursorIDPage[Data], addon, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -973,7 +973,7 @@ class TestAsyncAddons:
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
         )
-        assert_matches_type(AsyncMyCursorIDPage[Data], addon, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -985,7 +985,7 @@ class TestAsyncAddons:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         addon = await response.parse()
-        assert_matches_type(AsyncMyCursorIDPage[Data], addon, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -997,7 +997,7 @@ class TestAsyncAddons:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             addon = await response.parse()
-            assert_matches_type(AsyncMyCursorIDPage[Data], addon, path=["response"])
+            assert_matches_type(AsyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -144,6 +144,7 @@ class IntegrationsResource(SyncAPIResource):
                 "BIG_QUERY",
                 "OPEN_FGA",
                 "APP_STORE",
+                "RECEIVED",
             ]
         ]
         | Omit = omit,
@@ -216,6 +217,7 @@ class IntegrationsResource(SyncAPIResource):
             "BIG_QUERY",
             "OPEN_FGA",
             "APP_STORE",
+            "RECEIVED",
         ],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -416,6 +418,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
                 "BIG_QUERY",
                 "OPEN_FGA",
                 "APP_STORE",
+                "RECEIVED",
             ]
         ]
         | Omit = omit,
@@ -488,6 +491,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             "BIG_QUERY",
             "OPEN_FGA",
             "APP_STORE",
+            "RECEIVED",
         ],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
