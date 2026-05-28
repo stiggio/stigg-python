@@ -63,6 +63,7 @@ class PaymentMethodResource(SyncAPIResource):
             "BIG_QUERY",
             "OPEN_FGA",
             "APP_STORE",
+            "RECEIVED",
         ],
         billing_currency: Optional[
             Literal[
@@ -308,6 +309,7 @@ class AsyncPaymentMethodResource(AsyncAPIResource):
             "BIG_QUERY",
             "OPEN_FGA",
             "APP_STORE",
+            "RECEIVED",
         ],
         billing_currency: Optional[
             Literal[

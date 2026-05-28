@@ -61,6 +61,7 @@ class Integration(BaseModel):
         "BIG_QUERY",
         "OPEN_FGA",
         "APP_STORE",
+        "RECEIVED",
     ] = FieldInfo(alias="vendorIdentifier")
     """The vendor identifier of integration"""
 

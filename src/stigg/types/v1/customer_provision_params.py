@@ -222,6 +222,7 @@ class Integration(TypedDict, total=False):
                 "BIG_QUERY",
                 "OPEN_FGA",
                 "APP_STORE",
+                "RECEIVED",
             ],
             PropertyInfo(alias="vendorIdentifier"),
         ]
