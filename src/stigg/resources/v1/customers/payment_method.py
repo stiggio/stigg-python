@@ -64,6 +64,7 @@ class PaymentMethodResource(SyncAPIResource):
             "OPEN_FGA",
             "APP_STORE",
             "RECEIVED",
+            "PREQUEL",
         ],
         billing_currency: Optional[
             Literal[
@@ -310,6 +311,7 @@ class AsyncPaymentMethodResource(AsyncAPIResource):
             "OPEN_FGA",
             "APP_STORE",
             "RECEIVED",
+            "PREQUEL",
         ],
         billing_currency: Optional[
             Literal[
