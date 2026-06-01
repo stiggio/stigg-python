@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.11 (2026-06-01)
+
+Full Changelog: [v0.1.0-beta.10...v0.1.0-beta.11](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.10...v0.1.0-beta.11)
+
+### Features
+
+* **STIGG-8001:** add VendorIdentifier.DATA_EXPORT + [@deprecated](https://github.com/deprecated) on SNOWFLAKE / BIG_QUERY ([1942876](https://github.com/stiggio/stigg-python/commit/1942876cd89fc02b4204d0c6f56d450a4d9048c6))
+
 ## 0.1.0-beta.10 (2026-05-28)
 
 Full Changelog: [v0.1.0-beta.9...v0.1.0-beta.10](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.9...v0.1.0-beta.10)
