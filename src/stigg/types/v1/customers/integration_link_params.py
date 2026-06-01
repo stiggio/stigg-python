@@ -30,6 +30,7 @@ class IntegrationLinkParams(TypedDict, total=False):
                 "OPEN_FGA",
                 "APP_STORE",
                 "RECEIVED",
+                "PREQUEL",
             ],
             PropertyInfo(alias="vendorIdentifier"),
         ]

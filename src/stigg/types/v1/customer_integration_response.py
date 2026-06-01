@@ -78,6 +78,7 @@ class Data(BaseModel):
         "OPEN_FGA",
         "APP_STORE",
         "RECEIVED",
+        "PREQUEL",
     ] = FieldInfo(alias="vendorIdentifier")
     """The vendor identifier of integration"""
 
