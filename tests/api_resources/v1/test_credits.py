@@ -73,9 +73,12 @@ class TestCredits:
     def test_method_get_usage_with_all_params(self, client: Stigg) -> None:
         credit = client.v1.credits.get_usage(
             customer_id="customerId",
+            after="after",
+            before="before",
             currency_id="currencyId",
             end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             group_by="groupBy",
+            limit=1,
             resource_id="resourceId",
             start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             time_range="LAST_DAY",
@@ -211,9 +214,12 @@ class TestAsyncCredits:
     async def test_method_get_usage_with_all_params(self, async_client: AsyncStigg) -> None:
         credit = await async_client.v1.credits.get_usage(
             customer_id="customerId",
+            after="after",
+            before="before",
             currency_id="currencyId",
             end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             group_by="groupBy",
+            limit=1,
             resource_id="resourceId",
             start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             time_range="LAST_DAY",
