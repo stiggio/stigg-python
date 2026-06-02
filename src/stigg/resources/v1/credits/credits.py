@@ -125,9 +125,12 @@ class CreditsResource(SyncAPIResource):
         self,
         *,
         customer_id: str,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
         currency_id: str | Omit = omit,
         end_date: Union[str, datetime] | Omit = omit,
         group_by: str | Omit = omit,
+        limit: int | Omit = omit,
         resource_id: str | Omit = omit,
         start_date: Union[str, datetime] | Omit = omit,
         time_range: Literal["LAST_DAY", "LAST_WEEK", "LAST_MONTH", "LAST_YEAR"] | Omit = omit,
@@ -145,6 +148,10 @@ class CreditsResource(SyncAPIResource):
         Args:
           customer_id: Filter by customer ID (required)
 
+          after: Return items that come after this cursor
+
+          before: Return items that come before this cursor
+
           currency_id: Filter by currency ID
 
           end_date: End date for the credit usage time range (ISO 8601). Defaults to now when
@@ -152,6 +159,8 @@ class CreditsResource(SyncAPIResource):
 
           group_by: Comma-separated list of feature dimension keys to group usage series by (up to
               3). Each key matches /^[a-zA-Z0-9_$-]+$/
+
+          limit: Maximum number of items to return
 
           resource_id: Filter by resource ID
 
@@ -179,9 +188,12 @@ class CreditsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "customer_id": customer_id,
+                        "after": after,
+                        "before": before,
                         "currency_id": currency_id,
                         "end_date": end_date,
                         "group_by": group_by,
+                        "limit": limit,
                         "resource_id": resource_id,
                         "start_date": start_date,
                         "time_range": time_range,
@@ -337,9 +349,12 @@ class AsyncCreditsResource(AsyncAPIResource):
         self,
         *,
         customer_id: str,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
         currency_id: str | Omit = omit,
         end_date: Union[str, datetime] | Omit = omit,
         group_by: str | Omit = omit,
+        limit: int | Omit = omit,
         resource_id: str | Omit = omit,
         start_date: Union[str, datetime] | Omit = omit,
         time_range: Literal["LAST_DAY", "LAST_WEEK", "LAST_MONTH", "LAST_YEAR"] | Omit = omit,
@@ -357,6 +372,10 @@ class AsyncCreditsResource(AsyncAPIResource):
         Args:
           customer_id: Filter by customer ID (required)
 
+          after: Return items that come after this cursor
+
+          before: Return items that come before this cursor
+
           currency_id: Filter by currency ID
 
           end_date: End date for the credit usage time range (ISO 8601). Defaults to now when
@@ -364,6 +383,8 @@ class AsyncCreditsResource(AsyncAPIResource):
 
           group_by: Comma-separated list of feature dimension keys to group usage series by (up to
               3). Each key matches /^[a-zA-Z0-9_$-]+$/
+
+          limit: Maximum number of items to return
 
           resource_id: Filter by resource ID
 
@@ -391,9 +412,12 @@ class AsyncCreditsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "customer_id": customer_id,
+                        "after": after,
+                        "before": before,
                         "currency_id": currency_id,
                         "end_date": end_date,
                         "group_by": group_by,
+                        "limit": limit,
                         "resource_id": resource_id,
                         "start_date": start_date,
                         "time_range": time_range,
