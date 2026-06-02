@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.13 (2026-06-02)
+
+Full Changelog: [v0.1.0-beta.12...v0.1.0-beta.13](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.12...v0.1.0-beta.13)
+
+### Features
+
+* **api:** add pagination to credits.get_usage ([b7ea4a9](https://github.com/stiggio/stigg-python/commit/b7ea4a97f493fe6f4729f7a20c7869ad7c8c4d1d))
+
 ## 0.1.0-beta.12 (2026-06-02)
 
 Full Changelog: [v0.1.0-beta.11...v0.1.0-beta.12](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.11...v0.1.0-beta.12)
