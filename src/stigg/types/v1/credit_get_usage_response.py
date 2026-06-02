@@ -7,7 +7,15 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["CreditGetUsageResponse", "Data", "DataCurrency", "DataSeries", "DataSeriesPoint", "DataSeriesTag"]
+__all__ = [
+    "CreditGetUsageResponse",
+    "Data",
+    "DataCurrency",
+    "DataPagination",
+    "DataSeries",
+    "DataSeriesPoint",
+    "DataSeriesTag",
+]
 
 
 class DataCurrency(BaseModel):
@@ -27,6 +35,22 @@ class DataCurrency(BaseModel):
 
     symbol: Optional[str] = None
     """The currency symbol"""
+
+
+class DataPagination(BaseModel):
+    """Cursor-based pagination for the returned series.
+
+    `next`/`prev` are opaque cursors; pass them back as `after`/`before` to traverse pages. The series axis is `groupBy` when provided, otherwise `featureId`
+    """
+
+    next: Optional[str] = None
+    """
+    Cursor for fetching the next page of results, or null if no additional pages
+    exist
+    """
+
+    prev: Optional[str] = None
+    """Cursor for fetching the previous page of results, or null if at the beginning"""
 
 
 class DataSeriesPoint(BaseModel):
@@ -73,6 +97,13 @@ class Data(BaseModel):
 
     currency: Optional[DataCurrency] = None
     """The custom currency used for credit measurement"""
+
+    pagination: DataPagination
+    """Cursor-based pagination for the returned series.
+
+    `next`/`prev` are opaque cursors; pass them back as `after`/`before` to traverse
+    pages. The series axis is `groupBy` when provided, otherwise `featureId`
+    """
 
     series: List[DataSeries]
     """Credit usage series grouped by feature"""

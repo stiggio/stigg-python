@@ -15,6 +15,12 @@ class CreditGetUsageParams(TypedDict, total=False):
     customer_id: Required[Annotated[str, PropertyInfo(alias="customerId")]]
     """Filter by customer ID (required)"""
 
+    after: str
+    """Return items that come after this cursor"""
+
+    before: str
+    """Return items that come before this cursor"""
+
     currency_id: Annotated[str, PropertyInfo(alias="currencyId")]
     """Filter by currency ID"""
 
@@ -29,6 +35,9 @@ class CreditGetUsageParams(TypedDict, total=False):
     Comma-separated list of feature dimension keys to group usage series by (up to
     3). Each key matches /^[a-zA-Z0-9_$-]+$/
     """
+
+    limit: int
+    """Maximum number of items to return"""
 
     resource_id: Annotated[str, PropertyInfo(alias="resourceId")]
     """Filter by resource ID"""
