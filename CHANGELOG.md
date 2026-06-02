@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.12 (2026-06-02)
+
+Full Changelog: [v0.1.0-beta.11...v0.1.0-beta.12](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.11...v0.1.0-beta.12)
+
+### Features
+
+* **api:** manual updates ([0ca7a32](https://github.com/stiggio/stigg-python/commit/0ca7a3293db737e82058e74d63b4df65ca8ebf81))
+
 ## 0.1.0-beta.11 (2026-06-01)
 
 Full Changelog: [v0.1.0-beta.10...v0.1.0-beta.11](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.10...v0.1.0-beta.11)
