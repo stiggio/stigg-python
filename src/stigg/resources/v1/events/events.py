@@ -26,6 +26,14 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
+from .data_export.data_export import (
+    DataExportResource,
+    AsyncDataExportResource,
+    DataExportResourceWithRawResponse,
+    AsyncDataExportResourceWithRawResponse,
+    DataExportResourceWithStreamingResponse,
+    AsyncDataExportResourceWithStreamingResponse,
+)
 from ....types.v1.event_report_response import EventReportResponse
 
 __all__ = ["EventsResource", "AsyncEventsResource"]
@@ -37,6 +45,10 @@ class EventsResource(SyncAPIResource):
     @cached_property
     def beta(self) -> BetaResource:
         return BetaResource(self._client)
+
+    @cached_property
+    def data_export(self) -> DataExportResource:
+        return DataExportResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> EventsResourceWithRawResponse:
@@ -100,6 +112,10 @@ class AsyncEventsResource(AsyncAPIResource):
     @cached_property
     def beta(self) -> AsyncBetaResource:
         return AsyncBetaResource(self._client)
+
+    @cached_property
+    def data_export(self) -> AsyncDataExportResource:
+        return AsyncDataExportResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncEventsResourceWithRawResponse:
@@ -169,6 +185,10 @@ class EventsResourceWithRawResponse:
     def beta(self) -> BetaResourceWithRawResponse:
         return BetaResourceWithRawResponse(self._events.beta)
 
+    @cached_property
+    def data_export(self) -> DataExportResourceWithRawResponse:
+        return DataExportResourceWithRawResponse(self._events.data_export)
+
 
 class AsyncEventsResourceWithRawResponse:
     def __init__(self, events: AsyncEventsResource) -> None:
@@ -181,6 +201,10 @@ class AsyncEventsResourceWithRawResponse:
     @cached_property
     def beta(self) -> AsyncBetaResourceWithRawResponse:
         return AsyncBetaResourceWithRawResponse(self._events.beta)
+
+    @cached_property
+    def data_export(self) -> AsyncDataExportResourceWithRawResponse:
+        return AsyncDataExportResourceWithRawResponse(self._events.data_export)
 
 
 class EventsResourceWithStreamingResponse:
@@ -195,6 +219,10 @@ class EventsResourceWithStreamingResponse:
     def beta(self) -> BetaResourceWithStreamingResponse:
         return BetaResourceWithStreamingResponse(self._events.beta)
 
+    @cached_property
+    def data_export(self) -> DataExportResourceWithStreamingResponse:
+        return DataExportResourceWithStreamingResponse(self._events.data_export)
+
 
 class AsyncEventsResourceWithStreamingResponse:
     def __init__(self, events: AsyncEventsResource) -> None:
@@ -207,3 +235,7 @@ class AsyncEventsResourceWithStreamingResponse:
     @cached_property
     def beta(self) -> AsyncBetaResourceWithStreamingResponse:
         return AsyncBetaResourceWithStreamingResponse(self._events.beta)
+
+    @cached_property
+    def data_export(self) -> AsyncDataExportResourceWithStreamingResponse:
+        return AsyncDataExportResourceWithStreamingResponse(self._events.data_export)
