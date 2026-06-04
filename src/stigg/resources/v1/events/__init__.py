@@ -16,6 +16,14 @@ from .events import (
     EventsResourceWithStreamingResponse,
     AsyncEventsResourceWithStreamingResponse,
 )
+from .data_export import (
+    DataExportResource,
+    AsyncDataExportResource,
+    DataExportResourceWithRawResponse,
+    AsyncDataExportResourceWithRawResponse,
+    DataExportResourceWithStreamingResponse,
+    AsyncDataExportResourceWithStreamingResponse,
+)
 
 __all__ = [
     "BetaResource",
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncBetaResourceWithRawResponse",
     "BetaResourceWithStreamingResponse",
     "AsyncBetaResourceWithStreamingResponse",
+    "DataExportResource",
+    "AsyncDataExportResource",
+    "DataExportResourceWithRawResponse",
+    "AsyncDataExportResourceWithRawResponse",
+    "DataExportResourceWithStreamingResponse",
+    "AsyncDataExportResourceWithStreamingResponse",
     "EventsResource",
     "AsyncEventsResource",
     "EventsResourceWithRawResponse",

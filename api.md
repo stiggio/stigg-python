@@ -227,6 +227,32 @@ Methods:
 - <code title="get /api/v1-beta/entity-types">client.v1.events.beta.entity_types.<a href="./src/stigg/resources/v1/events/beta/entity_types.py">list</a>(\*\*<a href="src/stigg/types/v1/events/beta/entity_type_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/beta/entity_type_list_response.py">SyncMyCursorIDPage[EntityTypeListResponse]</a></code>
 - <code title="put /api/v1-beta/entity-types">client.v1.events.beta.entity_types.<a href="./src/stigg/resources/v1/events/beta/entity_types.py">upsert</a>(\*\*<a href="src/stigg/types/v1/events/beta/entity_type_upsert_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/beta/entity_type_upsert_response.py">EntityTypeUpsertResponse</a></code>
 
+### DataExport
+
+Types:
+
+```python
+from stigg.types.v1.events import DataExportMintScopedTokenResponse, DataExportTriggerSyncResponse
+```
+
+Methods:
+
+- <code title="post /api/v1/data-export/scoped-token">client.v1.events.data_export.<a href="./src/stigg/resources/v1/events/data_export/data_export.py">mint_scoped_token</a>(\*\*<a href="src/stigg/types/v1/events/data_export_mint_scoped_token_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/data_export_mint_scoped_token_response.py">DataExportMintScopedTokenResponse</a></code>
+- <code title="post /api/v1/data-export/sync">client.v1.events.data_export.<a href="./src/stigg/resources/v1/events/data_export/data_export.py">trigger_sync</a>(\*\*<a href="src/stigg/types/v1/events/data_export_trigger_sync_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/data_export_trigger_sync_response.py">DataExportTriggerSyncResponse</a></code>
+
+#### Destinations
+
+Types:
+
+```python
+from stigg.types.v1.events.data_export import DestinationCreateResponse, DestinationDeleteResponse
+```
+
+Methods:
+
+- <code title="post /api/v1/data-export/destinations">client.v1.events.data_export.destinations.<a href="./src/stigg/resources/v1/events/data_export/destinations.py">create</a>(\*\*<a href="src/stigg/types/v1/events/data_export/destination_create_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/data_export/destination_create_response.py">DestinationCreateResponse</a></code>
+- <code title="delete /api/v1/data-export/destinations/{destinationId}">client.v1.events.data_export.destinations.<a href="./src/stigg/resources/v1/events/data_export/destinations.py">delete</a>(destination_id) -> <a href="./src/stigg/types/v1/events/data_export/destination_delete_response.py">DestinationDeleteResponse</a></code>
+
 ## Credits
 
 Types:
