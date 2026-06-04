@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-beta.15 (2026-06-04)
+
+Full Changelog: [v0.1.0-beta.14...v0.1.0-beta.15](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.14...v0.1.0-beta.15)
+
+### Features
+
+* **api:** add data_export resource and destinations sub-resource to events ([4d51a77](https://github.com/stiggio/stigg-python/commit/4d51a771d83dda8ac9b7488016bcb8bc64dac929))
+
+
+### Chores
+
+* **api:** relocate v1_beta resource to v1.events.beta namespace ([3e17fcc](https://github.com/stiggio/stigg-python/commit/3e17fcccb0fb943ec4f1495c3712b5c8ac5927f0))
+
 ## 0.1.0-beta.14 (2026-06-03)
 
 Full Changelog: [v0.1.0-beta.13...v0.1.0-beta.14](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.13...v0.1.0-beta.14)
