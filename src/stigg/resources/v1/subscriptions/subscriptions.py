@@ -144,6 +144,7 @@ class SubscriptionsResource(SyncAPIResource):
         billing_information: subscription_update_params.BillingInformation | Omit = omit,
         billing_period: Literal["MONTHLY", "ANNUALLY"] | Omit = omit,
         budget: Optional[subscription_update_params.Budget] | Omit = omit,
+        cancellation_date: Union[str, datetime, None] | Omit = omit,
         charges: Iterable[subscription_update_params.Charge] | Omit = omit,
         entitlements: Iterable[subscription_update_params.Entitlement] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
@@ -165,6 +166,8 @@ class SubscriptionsResource(SyncAPIResource):
 
         Args:
           await_payment_confirmation: Await payment confirmation
+
+          cancellation_date: Subscription cancellation date
 
           metadata: Additional metadata for the subscription
 
@@ -195,6 +198,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "billing_information": billing_information,
                     "billing_period": billing_period,
                     "budget": budget,
+                    "cancellation_date": cancellation_date,
                     "charges": charges,
                     "entitlements": entitlements,
                     "metadata": metadata,
@@ -588,6 +592,7 @@ class SubscriptionsResource(SyncAPIResource):
         billing_information: subscription_provision_params.BillingInformation | Omit = omit,
         billing_period: Literal["MONTHLY", "ANNUALLY"] | Omit = omit,
         budget: Optional[subscription_provision_params.Budget] | Omit = omit,
+        cancellation_date: Union[str, datetime] | Omit = omit,
         charges: Iterable[subscription_provision_params.Charge] | Omit = omit,
         checkout_options: subscription_provision_params.CheckoutOptions | Omit = omit,
         entitlements: Iterable[subscription_provision_params.Entitlement] | Omit = omit,
@@ -632,6 +637,8 @@ class SubscriptionsResource(SyncAPIResource):
           billing_id: External billing system identifier
 
           billing_period: Billing period (MONTHLY or ANNUALLY)
+
+          cancellation_date: Subscription cancellation date
 
           checkout_options: Checkout page configuration for payment collection
 
@@ -679,6 +686,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "billing_information": billing_information,
                     "billing_period": billing_period,
                     "budget": budget,
+                    "cancellation_date": cancellation_date,
                     "charges": charges,
                     "checkout_options": checkout_options,
                     "entitlements": entitlements,
@@ -825,6 +833,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         billing_information: subscription_update_params.BillingInformation | Omit = omit,
         billing_period: Literal["MONTHLY", "ANNUALLY"] | Omit = omit,
         budget: Optional[subscription_update_params.Budget] | Omit = omit,
+        cancellation_date: Union[str, datetime, None] | Omit = omit,
         charges: Iterable[subscription_update_params.Charge] | Omit = omit,
         entitlements: Iterable[subscription_update_params.Entitlement] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
@@ -846,6 +855,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
         Args:
           await_payment_confirmation: Await payment confirmation
+
+          cancellation_date: Subscription cancellation date
 
           metadata: Additional metadata for the subscription
 
@@ -876,6 +887,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "billing_information": billing_information,
                     "billing_period": billing_period,
                     "budget": budget,
+                    "cancellation_date": cancellation_date,
                     "charges": charges,
                     "entitlements": entitlements,
                     "metadata": metadata,
@@ -1269,6 +1281,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         billing_information: subscription_provision_params.BillingInformation | Omit = omit,
         billing_period: Literal["MONTHLY", "ANNUALLY"] | Omit = omit,
         budget: Optional[subscription_provision_params.Budget] | Omit = omit,
+        cancellation_date: Union[str, datetime] | Omit = omit,
         charges: Iterable[subscription_provision_params.Charge] | Omit = omit,
         checkout_options: subscription_provision_params.CheckoutOptions | Omit = omit,
         entitlements: Iterable[subscription_provision_params.Entitlement] | Omit = omit,
@@ -1313,6 +1326,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           billing_id: External billing system identifier
 
           billing_period: Billing period (MONTHLY or ANNUALLY)
+
+          cancellation_date: Subscription cancellation date
 
           checkout_options: Checkout page configuration for payment collection
 
@@ -1360,6 +1375,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "billing_information": billing_information,
                     "billing_period": billing_period,
                     "budget": budget,
+                    "cancellation_date": cancellation_date,
                     "charges": charges,
                     "checkout_options": checkout_options,
                     "entitlements": entitlements,
