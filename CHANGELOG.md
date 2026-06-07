@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.16 (2026-06-07)
+
+Full Changelog: [v0.1.0-beta.15...v0.1.0-beta.16](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.15...v0.1.0-beta.16)
+
+### Features
+
+* **api:** add cancellation_date parameter to subscriptions update/provision ([1bb5819](https://github.com/stiggio/stigg-python/commit/1bb5819c359fc70e6dc84ce92de7d5edcd22cd6e))
+
 ## 0.1.0-beta.15 (2026-06-04)
 
 Full Changelog: [v0.1.0-beta.14...v0.1.0-beta.15](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.14...v0.1.0-beta.15)
