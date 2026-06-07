@@ -48,6 +48,9 @@ class SubscriptionUpdateParams(TypedDict, total=False):
 
     budget: Optional[Budget]
 
+    cancellation_date: Annotated[Union[str, datetime, None], PropertyInfo(alias="cancellationDate", format="iso8601")]
+    """Subscription cancellation date"""
+
     charges: Iterable[Charge]
 
     entitlements: Iterable[Entitlement]
