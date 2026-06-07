@@ -72,6 +72,9 @@ class SubscriptionProvisionParams(TypedDict, total=False):
 
     budget: Optional[Budget]
 
+    cancellation_date: Annotated[Union[str, datetime], PropertyInfo(alias="cancellationDate", format="iso8601")]
+    """Subscription cancellation date"""
+
     charges: Iterable[Charge]
 
     checkout_options: Annotated[CheckoutOptions, PropertyInfo(alias="checkoutOptions")]
