@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.17 (2026-06-08)
+
+Full Changelog: [v0.1.0-beta.16...v0.1.0-beta.17](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.16...v0.1.0-beta.17)
+
+### Features
+
+* **api:** add sync status tracking to data_export destination responses ([0b27048](https://github.com/stiggio/stigg-python/commit/0b27048d22d1c4991ec4caded802d19813decc41))
+
 ## 0.1.0-beta.16 (2026-06-07)
 
 Full Changelog: [v0.1.0-beta.15...v0.1.0-beta.16](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.15...v0.1.0-beta.16)
