@@ -39,6 +39,8 @@ class TestAssignments:
             capability_id="capabilityId",
             entity_id="entityId",
             limit=1,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SyncMyCursorIDPage[AssignmentListResponse], assignment, path=["response"])
 
@@ -91,6 +93,30 @@ class TestAssignments:
                     "entity_id": "workspace-002",
                 },
             ],
+        )
+        assert_matches_type(AssignmentUpsertResponse, assignment, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_upsert_with_all_params(self, client: Stigg) -> None:
+        assignment = client.v1.events.beta.customers.assignments.upsert(
+            id="id",
+            assignments=[
+                {
+                    "capability_id": "compute-minutes",
+                    "entity_id": "workspace-001",
+                    "cadence": "MONTH",
+                    "usage_limit": 1000,
+                },
+                {
+                    "capability_id": "compute-minutes",
+                    "entity_id": "workspace-002",
+                    "cadence": "MONTH",
+                    "usage_limit": 2000,
+                },
+            ],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AssignmentUpsertResponse, assignment, path=["response"])
 
@@ -182,6 +208,8 @@ class TestAsyncAssignments:
             capability_id="capabilityId",
             entity_id="entityId",
             limit=1,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AsyncMyCursorIDPage[AssignmentListResponse], assignment, path=["response"])
 
@@ -234,6 +262,30 @@ class TestAsyncAssignments:
                     "entity_id": "workspace-002",
                 },
             ],
+        )
+        assert_matches_type(AssignmentUpsertResponse, assignment, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_upsert_with_all_params(self, async_client: AsyncStigg) -> None:
+        assignment = await async_client.v1.events.beta.customers.assignments.upsert(
+            id="id",
+            assignments=[
+                {
+                    "capability_id": "compute-minutes",
+                    "entity_id": "workspace-001",
+                    "cadence": "MONTH",
+                    "usage_limit": 1000,
+                },
+                {
+                    "capability_id": "compute-minutes",
+                    "entity_id": "workspace-002",
+                    "cadence": "MONTH",
+                    "usage_limit": 2000,
+                },
+            ],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AssignmentUpsertResponse, assignment, path=["response"])
 

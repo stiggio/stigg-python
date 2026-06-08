@@ -14,3 +14,7 @@ __all__ = ["UsageChargeUsageParams"]
 class UsageChargeUsageParams(TypedDict, total=False):
     until_date: Annotated[Union[str, datetime], PropertyInfo(alias="untilDate", format="iso8601")]
     """Cutoff date for usage calculation. If not provided, the current time is used."""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

@@ -59,6 +59,10 @@ class GrantCreateParams(TypedDict, total=False):
     resource_id: Annotated[str, PropertyInfo(alias="resourceId")]
     """The resource ID to scope the grant to"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class BillingInformationBillingAddress(TypedDict, total=False):
     """The billing address"""

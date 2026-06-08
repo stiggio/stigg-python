@@ -29,7 +29,17 @@ class TestSubscriptions:
     @parametrize
     def test_method_retrieve(self, client: Stigg) -> None:
         subscription = client.v1.subscriptions.retrieve(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Subscription, subscription, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_with_all_params(self, client: Stigg) -> None:
+        subscription = client.v1.subscriptions.retrieve(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
@@ -37,7 +47,7 @@ class TestSubscriptions:
     @parametrize
     def test_raw_response_retrieve(self, client: Stigg) -> None:
         response = client.v1.subscriptions.with_raw_response.retrieve(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -49,7 +59,7 @@ class TestSubscriptions:
     @parametrize
     def test_streaming_response_retrieve(self, client: Stigg) -> None:
         with client.v1.subscriptions.with_streaming_response.retrieve(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -64,7 +74,7 @@ class TestSubscriptions:
     def test_path_params_retrieve(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.subscriptions.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -176,6 +186,8 @@ class TestSubscriptions:
             promotion_code="promotionCode",
             schedule_strategy="END_OF_BILLING_PERIOD",
             trial_end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
@@ -237,6 +249,8 @@ class TestSubscriptions:
             pricing_type=["FREE"],
             resource_id="resourceId",
             status=["PAYMENT_PENDING"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SyncMyCursorIDPage[SubscriptionListResponse], subscription, path=["response"])
 
@@ -279,6 +293,8 @@ class TestSubscriptions:
             cancellation_time="END_OF_BILLING_PERIOD",
             end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             prorate=True,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
@@ -322,6 +338,17 @@ class TestSubscriptions:
         subscription = client.v1.subscriptions.delegate(
             id="x",
             target_customer_id="targetCustomerId",
+        )
+        assert_matches_type(Subscription, subscription, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_delegate_with_all_params(self, client: Stigg) -> None:
+        subscription = client.v1.subscriptions.delegate(
+            id="x",
+            target_customer_id="targetCustomerId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
@@ -407,6 +434,8 @@ class TestSubscriptions:
                 }
             ],
             integration_id="integrationId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SubscriptionImportResponse, subscription, path=["response"])
 
@@ -462,6 +491,8 @@ class TestSubscriptions:
         subscription = client.v1.subscriptions.migrate(
             id="x",
             subscription_migration_time="END_OF_BILLING_PERIOD",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
@@ -589,6 +620,8 @@ class TestSubscriptions:
                 "trial_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
             unit_quantity=0,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SubscriptionPreviewResponse, subscription, path=["response"])
 
@@ -771,6 +804,8 @@ class TestSubscriptions:
                 "trial_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
             unit_quantity=0,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SubscriptionProvisionResponse, subscription, path=["response"])
 
@@ -808,6 +843,17 @@ class TestSubscriptions:
         subscription = client.v1.subscriptions.transfer(
             id="x",
             destination_resource_id="destinationResourceId",
+        )
+        assert_matches_type(Subscription, subscription, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_transfer_with_all_params(self, client: Stigg) -> None:
+        subscription = client.v1.subscriptions.transfer(
+            id="x",
+            destination_resource_id="destinationResourceId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
@@ -858,7 +904,17 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncStigg) -> None:
         subscription = await async_client.v1.subscriptions.retrieve(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Subscription, subscription, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncStigg) -> None:
+        subscription = await async_client.v1.subscriptions.retrieve(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
@@ -866,7 +922,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.subscriptions.with_raw_response.retrieve(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -878,7 +934,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.subscriptions.with_streaming_response.retrieve(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -893,7 +949,7 @@ class TestAsyncSubscriptions:
     async def test_path_params_retrieve(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.subscriptions.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -1005,6 +1061,8 @@ class TestAsyncSubscriptions:
             promotion_code="promotionCode",
             schedule_strategy="END_OF_BILLING_PERIOD",
             trial_end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
@@ -1066,6 +1124,8 @@ class TestAsyncSubscriptions:
             pricing_type=["FREE"],
             resource_id="resourceId",
             status=["PAYMENT_PENDING"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AsyncMyCursorIDPage[SubscriptionListResponse], subscription, path=["response"])
 
@@ -1108,6 +1168,8 @@ class TestAsyncSubscriptions:
             cancellation_time="END_OF_BILLING_PERIOD",
             end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             prorate=True,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
@@ -1151,6 +1213,17 @@ class TestAsyncSubscriptions:
         subscription = await async_client.v1.subscriptions.delegate(
             id="x",
             target_customer_id="targetCustomerId",
+        )
+        assert_matches_type(Subscription, subscription, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_delegate_with_all_params(self, async_client: AsyncStigg) -> None:
+        subscription = await async_client.v1.subscriptions.delegate(
+            id="x",
+            target_customer_id="targetCustomerId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
@@ -1236,6 +1309,8 @@ class TestAsyncSubscriptions:
                 }
             ],
             integration_id="integrationId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SubscriptionImportResponse, subscription, path=["response"])
 
@@ -1291,6 +1366,8 @@ class TestAsyncSubscriptions:
         subscription = await async_client.v1.subscriptions.migrate(
             id="x",
             subscription_migration_time="END_OF_BILLING_PERIOD",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
@@ -1418,6 +1495,8 @@ class TestAsyncSubscriptions:
                 "trial_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
             unit_quantity=0,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SubscriptionPreviewResponse, subscription, path=["response"])
 
@@ -1600,6 +1679,8 @@ class TestAsyncSubscriptions:
                 "trial_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
             unit_quantity=0,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SubscriptionProvisionResponse, subscription, path=["response"])
 
@@ -1637,6 +1718,17 @@ class TestAsyncSubscriptions:
         subscription = await async_client.v1.subscriptions.transfer(
             id="x",
             destination_resource_id="destinationResourceId",
+        )
+        assert_matches_type(Subscription, subscription, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_transfer_with_all_params(self, async_client: AsyncStigg) -> None:
+        subscription = await async_client.v1.subscriptions.transfer(
+            id="x",
+            destination_resource_id="destinationResourceId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 

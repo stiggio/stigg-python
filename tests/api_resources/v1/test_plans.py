@@ -58,6 +58,8 @@ class TestPlans:
             parent_plan_id="parentPlanId",
             pricing_type="FREE",
             status="DRAFT",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Plan, plan, path=["response"])
 
@@ -95,7 +97,17 @@ class TestPlans:
     @parametrize
     def test_method_retrieve(self, client: Stigg) -> None:
         plan = client.v1.plans.retrieve(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Plan, plan, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_with_all_params(self, client: Stigg) -> None:
+        plan = client.v1.plans.retrieve(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Plan, plan, path=["response"])
 
@@ -103,7 +115,7 @@ class TestPlans:
     @parametrize
     def test_raw_response_retrieve(self, client: Stigg) -> None:
         response = client.v1.plans.with_raw_response.retrieve(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -115,7 +127,7 @@ class TestPlans:
     @parametrize
     def test_streaming_response_retrieve(self, client: Stigg) -> None:
         with client.v1.plans.with_streaming_response.retrieve(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -130,7 +142,7 @@ class TestPlans:
     def test_path_params_retrieve(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.plans.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -268,6 +280,8 @@ class TestPlans:
             display_name="displayName",
             metadata={"foo": "string"},
             parent_plan_id="parentPlanId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Plan, plan, path=["response"])
 
@@ -326,6 +340,8 @@ class TestPlans:
             limit=1,
             product_id="productId",
             status=["DRAFT"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SyncMyCursorIDPage[PlanListResponse], plan, path=["response"])
 
@@ -355,7 +371,17 @@ class TestPlans:
     @parametrize
     def test_method_archive(self, client: Stigg) -> None:
         plan = client.v1.plans.archive(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Plan, plan, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_archive_with_all_params(self, client: Stigg) -> None:
+        plan = client.v1.plans.archive(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Plan, plan, path=["response"])
 
@@ -363,7 +389,7 @@ class TestPlans:
     @parametrize
     def test_raw_response_archive(self, client: Stigg) -> None:
         response = client.v1.plans.with_raw_response.archive(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -375,7 +401,7 @@ class TestPlans:
     @parametrize
     def test_streaming_response_archive(self, client: Stigg) -> None:
         with client.v1.plans.with_streaming_response.archive(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -390,14 +416,24 @@ class TestPlans:
     def test_path_params_archive(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.plans.with_raw_response.archive(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_draft(self, client: Stigg) -> None:
         plan = client.v1.plans.create_draft(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Plan, plan, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_create_draft_with_all_params(self, client: Stigg) -> None:
+        plan = client.v1.plans.create_draft(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Plan, plan, path=["response"])
 
@@ -405,7 +441,7 @@ class TestPlans:
     @parametrize
     def test_raw_response_create_draft(self, client: Stigg) -> None:
         response = client.v1.plans.with_raw_response.create_draft(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -417,7 +453,7 @@ class TestPlans:
     @parametrize
     def test_streaming_response_create_draft(self, client: Stigg) -> None:
         with client.v1.plans.with_streaming_response.create_draft(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -432,7 +468,7 @@ class TestPlans:
     def test_path_params_create_draft(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.plans.with_raw_response.create_draft(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -451,6 +487,8 @@ class TestPlans:
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SyncMyCursorIDPage[PlanListChargesResponse], plan, path=["response"])
 
@@ -504,6 +542,8 @@ class TestPlans:
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SyncMyCursorIDPage[PlanListOverageChargesResponse], plan, path=["response"])
 
@@ -552,6 +592,17 @@ class TestPlans:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_publish_with_all_params(self, client: Stigg) -> None:
+        plan = client.v1.plans.publish(
+            id="x",
+            migration_type="NEW_CUSTOMERS",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
+        )
+        assert_matches_type(PlanPublishResponse, plan, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_publish(self, client: Stigg) -> None:
         response = client.v1.plans.with_raw_response.publish(
             id="x",
@@ -591,7 +642,17 @@ class TestPlans:
     @parametrize
     def test_method_remove_draft(self, client: Stigg) -> None:
         plan = client.v1.plans.remove_draft(
-            "x",
+            id="x",
+        )
+        assert_matches_type(PlanRemoveDraftResponse, plan, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_remove_draft_with_all_params(self, client: Stigg) -> None:
+        plan = client.v1.plans.remove_draft(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(PlanRemoveDraftResponse, plan, path=["response"])
 
@@ -599,7 +660,7 @@ class TestPlans:
     @parametrize
     def test_raw_response_remove_draft(self, client: Stigg) -> None:
         response = client.v1.plans.with_raw_response.remove_draft(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -611,7 +672,7 @@ class TestPlans:
     @parametrize
     def test_streaming_response_remove_draft(self, client: Stigg) -> None:
         with client.v1.plans.with_streaming_response.remove_draft(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -626,7 +687,7 @@ class TestPlans:
     def test_path_params_remove_draft(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.plans.with_raw_response.remove_draft(
-                "",
+                id="",
             )
 
 
@@ -667,6 +728,8 @@ class TestAsyncPlans:
             parent_plan_id="parentPlanId",
             pricing_type="FREE",
             status="DRAFT",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Plan, plan, path=["response"])
 
@@ -704,7 +767,17 @@ class TestAsyncPlans:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncStigg) -> None:
         plan = await async_client.v1.plans.retrieve(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Plan, plan, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncStigg) -> None:
+        plan = await async_client.v1.plans.retrieve(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Plan, plan, path=["response"])
 
@@ -712,7 +785,7 @@ class TestAsyncPlans:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.plans.with_raw_response.retrieve(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -724,7 +797,7 @@ class TestAsyncPlans:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.plans.with_streaming_response.retrieve(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -739,7 +812,7 @@ class TestAsyncPlans:
     async def test_path_params_retrieve(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.plans.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -877,6 +950,8 @@ class TestAsyncPlans:
             display_name="displayName",
             metadata={"foo": "string"},
             parent_plan_id="parentPlanId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Plan, plan, path=["response"])
 
@@ -935,6 +1010,8 @@ class TestAsyncPlans:
             limit=1,
             product_id="productId",
             status=["DRAFT"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AsyncMyCursorIDPage[PlanListResponse], plan, path=["response"])
 
@@ -964,7 +1041,17 @@ class TestAsyncPlans:
     @parametrize
     async def test_method_archive(self, async_client: AsyncStigg) -> None:
         plan = await async_client.v1.plans.archive(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Plan, plan, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_archive_with_all_params(self, async_client: AsyncStigg) -> None:
+        plan = await async_client.v1.plans.archive(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Plan, plan, path=["response"])
 
@@ -972,7 +1059,7 @@ class TestAsyncPlans:
     @parametrize
     async def test_raw_response_archive(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.plans.with_raw_response.archive(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -984,7 +1071,7 @@ class TestAsyncPlans:
     @parametrize
     async def test_streaming_response_archive(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.plans.with_streaming_response.archive(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -999,14 +1086,24 @@ class TestAsyncPlans:
     async def test_path_params_archive(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.plans.with_raw_response.archive(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_draft(self, async_client: AsyncStigg) -> None:
         plan = await async_client.v1.plans.create_draft(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Plan, plan, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_create_draft_with_all_params(self, async_client: AsyncStigg) -> None:
+        plan = await async_client.v1.plans.create_draft(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Plan, plan, path=["response"])
 
@@ -1014,7 +1111,7 @@ class TestAsyncPlans:
     @parametrize
     async def test_raw_response_create_draft(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.plans.with_raw_response.create_draft(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -1026,7 +1123,7 @@ class TestAsyncPlans:
     @parametrize
     async def test_streaming_response_create_draft(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.plans.with_streaming_response.create_draft(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1041,7 +1138,7 @@ class TestAsyncPlans:
     async def test_path_params_create_draft(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.plans.with_raw_response.create_draft(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -1060,6 +1157,8 @@ class TestAsyncPlans:
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AsyncMyCursorIDPage[PlanListChargesResponse], plan, path=["response"])
 
@@ -1113,6 +1212,8 @@ class TestAsyncPlans:
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AsyncMyCursorIDPage[PlanListOverageChargesResponse], plan, path=["response"])
 
@@ -1161,6 +1262,17 @@ class TestAsyncPlans:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    async def test_method_publish_with_all_params(self, async_client: AsyncStigg) -> None:
+        plan = await async_client.v1.plans.publish(
+            id="x",
+            migration_type="NEW_CUSTOMERS",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
+        )
+        assert_matches_type(PlanPublishResponse, plan, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     async def test_raw_response_publish(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.plans.with_raw_response.publish(
             id="x",
@@ -1200,7 +1312,17 @@ class TestAsyncPlans:
     @parametrize
     async def test_method_remove_draft(self, async_client: AsyncStigg) -> None:
         plan = await async_client.v1.plans.remove_draft(
-            "x",
+            id="x",
+        )
+        assert_matches_type(PlanRemoveDraftResponse, plan, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_remove_draft_with_all_params(self, async_client: AsyncStigg) -> None:
+        plan = await async_client.v1.plans.remove_draft(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(PlanRemoveDraftResponse, plan, path=["response"])
 
@@ -1208,7 +1330,7 @@ class TestAsyncPlans:
     @parametrize
     async def test_raw_response_remove_draft(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.plans.with_raw_response.remove_draft(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -1220,7 +1342,7 @@ class TestAsyncPlans:
     @parametrize
     async def test_streaming_response_remove_draft(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.plans.with_streaming_response.remove_draft(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1235,5 +1357,5 @@ class TestAsyncPlans:
     async def test_path_params_remove_draft(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.plans.with_raw_response.remove_draft(
-                "",
+                id="",
             )

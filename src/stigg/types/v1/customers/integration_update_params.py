@@ -15,3 +15,7 @@ class IntegrationUpdateParams(TypedDict, total=False):
 
     synced_entity_id: Required[Annotated[Optional[str], PropertyInfo(alias="syncedEntityId")]]
     """Synced entity id"""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

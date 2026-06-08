@@ -21,7 +21,17 @@ class TestInvoice:
     @parametrize
     def test_method_mark_as_paid(self, client: Stigg) -> None:
         invoice = client.v1.subscriptions.invoice.mark_as_paid(
-            "x",
+            id="x",
+        )
+        assert_matches_type(InvoiceMarkAsPaidResponse, invoice, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_mark_as_paid_with_all_params(self, client: Stigg) -> None:
+        invoice = client.v1.subscriptions.invoice.mark_as_paid(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(InvoiceMarkAsPaidResponse, invoice, path=["response"])
 
@@ -29,7 +39,7 @@ class TestInvoice:
     @parametrize
     def test_raw_response_mark_as_paid(self, client: Stigg) -> None:
         response = client.v1.subscriptions.invoice.with_raw_response.mark_as_paid(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -41,7 +51,7 @@ class TestInvoice:
     @parametrize
     def test_streaming_response_mark_as_paid(self, client: Stigg) -> None:
         with client.v1.subscriptions.invoice.with_streaming_response.mark_as_paid(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -56,7 +66,7 @@ class TestInvoice:
     def test_path_params_mark_as_paid(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.subscriptions.invoice.with_raw_response.mark_as_paid(
-                "",
+                id="",
             )
 
 
@@ -69,7 +79,17 @@ class TestAsyncInvoice:
     @parametrize
     async def test_method_mark_as_paid(self, async_client: AsyncStigg) -> None:
         invoice = await async_client.v1.subscriptions.invoice.mark_as_paid(
-            "x",
+            id="x",
+        )
+        assert_matches_type(InvoiceMarkAsPaidResponse, invoice, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_mark_as_paid_with_all_params(self, async_client: AsyncStigg) -> None:
+        invoice = await async_client.v1.subscriptions.invoice.mark_as_paid(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(InvoiceMarkAsPaidResponse, invoice, path=["response"])
 
@@ -77,7 +97,7 @@ class TestAsyncInvoice:
     @parametrize
     async def test_raw_response_mark_as_paid(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.subscriptions.invoice.with_raw_response.mark_as_paid(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -89,7 +109,7 @@ class TestAsyncInvoice:
     @parametrize
     async def test_streaming_response_mark_as_paid(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.subscriptions.invoice.with_streaming_response.mark_as_paid(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -104,5 +124,5 @@ class TestAsyncInvoice:
     async def test_path_params_mark_as_paid(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.subscriptions.invoice.with_raw_response.mark_as_paid(
-                "",
+                id="",
             )

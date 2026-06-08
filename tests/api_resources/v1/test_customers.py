@@ -30,7 +30,17 @@ class TestCustomers:
     @parametrize
     def test_method_retrieve(self, client: Stigg) -> None:
         customer = client.v1.customers.retrieve(
-            "x",
+            id="x",
+        )
+        assert_matches_type(CustomerResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_with_all_params(self, client: Stigg) -> None:
+        customer = client.v1.customers.retrieve(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 
@@ -38,7 +48,7 @@ class TestCustomers:
     @parametrize
     def test_raw_response_retrieve(self, client: Stigg) -> None:
         response = client.v1.customers.with_raw_response.retrieve(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -50,7 +60,7 @@ class TestCustomers:
     @parametrize
     def test_streaming_response_retrieve(self, client: Stigg) -> None:
         with client.v1.customers.with_streaming_response.retrieve(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -65,7 +75,7 @@ class TestCustomers:
     def test_path_params_retrieve(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.customers.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -139,6 +149,8 @@ class TestCustomers:
                 },
             },
             timezone="timezone",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 
@@ -197,6 +209,8 @@ class TestCustomers:
             email="email",
             limit=1,
             name="name",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SyncMyCursorIDPage[CustomerListResponse], customer, path=["response"])
 
@@ -226,7 +240,17 @@ class TestCustomers:
     @parametrize
     def test_method_archive(self, client: Stigg) -> None:
         customer = client.v1.customers.archive(
-            "x",
+            id="x",
+        )
+        assert_matches_type(CustomerResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_archive_with_all_params(self, client: Stigg) -> None:
+        customer = client.v1.customers.archive(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 
@@ -234,7 +258,7 @@ class TestCustomers:
     @parametrize
     def test_raw_response_archive(self, client: Stigg) -> None:
         response = client.v1.customers.with_raw_response.archive(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -246,7 +270,7 @@ class TestCustomers:
     @parametrize
     def test_streaming_response_archive(self, client: Stigg) -> None:
         with client.v1.customers.with_streaming_response.archive(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -261,7 +285,7 @@ class TestCustomers:
     def test_path_params_archive(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.customers.with_raw_response.archive(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -282,6 +306,8 @@ class TestCustomers:
             requested_usage=0,
             requested_values=["string"],
             resource_id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerCheckEntitlementResponse, customer, path=["response"])
 
@@ -350,6 +376,8 @@ class TestCustomers:
                 }
             ],
             integration_id="integrationId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerImportResponse, customer, path=["response"])
 
@@ -407,6 +435,8 @@ class TestCustomers:
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SyncMyCursorIDPage[CustomerListResourcesResponse], customer, path=["response"])
 
@@ -522,6 +552,8 @@ class TestCustomers:
                 },
             },
             timezone="timezone",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 
@@ -565,6 +597,8 @@ class TestCustomers:
         customer = client.v1.customers.retrieve_entitlements(
             id="x",
             resource_id="resourceId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerRetrieveEntitlementsResponse, customer, path=["response"])
 
@@ -606,7 +640,17 @@ class TestCustomers:
     @parametrize
     def test_method_unarchive(self, client: Stigg) -> None:
         customer = client.v1.customers.unarchive(
-            "x",
+            id="x",
+        )
+        assert_matches_type(CustomerResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_unarchive_with_all_params(self, client: Stigg) -> None:
+        customer = client.v1.customers.unarchive(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 
@@ -614,7 +658,7 @@ class TestCustomers:
     @parametrize
     def test_raw_response_unarchive(self, client: Stigg) -> None:
         response = client.v1.customers.with_raw_response.unarchive(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -626,7 +670,7 @@ class TestCustomers:
     @parametrize
     def test_streaming_response_unarchive(self, client: Stigg) -> None:
         with client.v1.customers.with_streaming_response.unarchive(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -641,7 +685,7 @@ class TestCustomers:
     def test_path_params_unarchive(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.customers.with_raw_response.unarchive(
-                "",
+                id="",
             )
 
 
@@ -654,7 +698,17 @@ class TestAsyncCustomers:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncStigg) -> None:
         customer = await async_client.v1.customers.retrieve(
-            "x",
+            id="x",
+        )
+        assert_matches_type(CustomerResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncStigg) -> None:
+        customer = await async_client.v1.customers.retrieve(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 
@@ -662,7 +716,7 @@ class TestAsyncCustomers:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.customers.with_raw_response.retrieve(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -674,7 +728,7 @@ class TestAsyncCustomers:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.customers.with_streaming_response.retrieve(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -689,7 +743,7 @@ class TestAsyncCustomers:
     async def test_path_params_retrieve(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.customers.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -763,6 +817,8 @@ class TestAsyncCustomers:
                 },
             },
             timezone="timezone",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 
@@ -821,6 +877,8 @@ class TestAsyncCustomers:
             email="email",
             limit=1,
             name="name",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AsyncMyCursorIDPage[CustomerListResponse], customer, path=["response"])
 
@@ -850,7 +908,17 @@ class TestAsyncCustomers:
     @parametrize
     async def test_method_archive(self, async_client: AsyncStigg) -> None:
         customer = await async_client.v1.customers.archive(
-            "x",
+            id="x",
+        )
+        assert_matches_type(CustomerResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_archive_with_all_params(self, async_client: AsyncStigg) -> None:
+        customer = await async_client.v1.customers.archive(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 
@@ -858,7 +926,7 @@ class TestAsyncCustomers:
     @parametrize
     async def test_raw_response_archive(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.customers.with_raw_response.archive(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -870,7 +938,7 @@ class TestAsyncCustomers:
     @parametrize
     async def test_streaming_response_archive(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.customers.with_streaming_response.archive(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -885,7 +953,7 @@ class TestAsyncCustomers:
     async def test_path_params_archive(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.customers.with_raw_response.archive(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -906,6 +974,8 @@ class TestAsyncCustomers:
             requested_usage=0,
             requested_values=["string"],
             resource_id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerCheckEntitlementResponse, customer, path=["response"])
 
@@ -974,6 +1044,8 @@ class TestAsyncCustomers:
                 }
             ],
             integration_id="integrationId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerImportResponse, customer, path=["response"])
 
@@ -1031,6 +1103,8 @@ class TestAsyncCustomers:
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AsyncMyCursorIDPage[CustomerListResourcesResponse], customer, path=["response"])
 
@@ -1146,6 +1220,8 @@ class TestAsyncCustomers:
                 },
             },
             timezone="timezone",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 
@@ -1189,6 +1265,8 @@ class TestAsyncCustomers:
         customer = await async_client.v1.customers.retrieve_entitlements(
             id="x",
             resource_id="resourceId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerRetrieveEntitlementsResponse, customer, path=["response"])
 
@@ -1230,7 +1308,17 @@ class TestAsyncCustomers:
     @parametrize
     async def test_method_unarchive(self, async_client: AsyncStigg) -> None:
         customer = await async_client.v1.customers.unarchive(
-            "x",
+            id="x",
+        )
+        assert_matches_type(CustomerResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_unarchive_with_all_params(self, async_client: AsyncStigg) -> None:
+        customer = await async_client.v1.customers.unarchive(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerResponse, customer, path=["response"])
 
@@ -1238,7 +1326,7 @@ class TestAsyncCustomers:
     @parametrize
     async def test_raw_response_unarchive(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.customers.with_raw_response.unarchive(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -1250,7 +1338,7 @@ class TestAsyncCustomers:
     @parametrize
     async def test_streaming_response_unarchive(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.customers.with_streaming_response.unarchive(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1265,5 +1353,5 @@ class TestAsyncCustomers:
     async def test_path_params_unarchive(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.customers.with_raw_response.unarchive(
-                "",
+                id="",
             )

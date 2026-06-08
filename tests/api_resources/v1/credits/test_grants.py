@@ -64,6 +64,8 @@ class TestGrants:
             payment_collection_method="CHARGE",
             priority=0,
             resource_id="resourceId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CreditGrantResponse, grant, path=["response"])
 
@@ -125,6 +127,8 @@ class TestGrants:
             currency_id="currencyId",
             limit=1,
             resource_id="resourceId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SyncMyCursorIDPage[GrantListResponse], grant, path=["response"])
 
@@ -158,7 +162,17 @@ class TestGrants:
     @parametrize
     def test_method_void(self, client: Stigg) -> None:
         grant = client.v1.credits.grants.void(
-            "x",
+            id="x",
+        )
+        assert_matches_type(CreditGrantResponse, grant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_void_with_all_params(self, client: Stigg) -> None:
+        grant = client.v1.credits.grants.void(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CreditGrantResponse, grant, path=["response"])
 
@@ -166,7 +180,7 @@ class TestGrants:
     @parametrize
     def test_raw_response_void(self, client: Stigg) -> None:
         response = client.v1.credits.grants.with_raw_response.void(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -178,7 +192,7 @@ class TestGrants:
     @parametrize
     def test_streaming_response_void(self, client: Stigg) -> None:
         with client.v1.credits.grants.with_streaming_response.void(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -193,7 +207,7 @@ class TestGrants:
     def test_path_params_void(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.credits.grants.with_raw_response.void(
-                "",
+                id="",
             )
 
 
@@ -247,6 +261,8 @@ class TestAsyncGrants:
             payment_collection_method="CHARGE",
             priority=0,
             resource_id="resourceId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CreditGrantResponse, grant, path=["response"])
 
@@ -308,6 +324,8 @@ class TestAsyncGrants:
             currency_id="currencyId",
             limit=1,
             resource_id="resourceId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AsyncMyCursorIDPage[GrantListResponse], grant, path=["response"])
 
@@ -341,7 +359,17 @@ class TestAsyncGrants:
     @parametrize
     async def test_method_void(self, async_client: AsyncStigg) -> None:
         grant = await async_client.v1.credits.grants.void(
-            "x",
+            id="x",
+        )
+        assert_matches_type(CreditGrantResponse, grant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_void_with_all_params(self, async_client: AsyncStigg) -> None:
+        grant = await async_client.v1.credits.grants.void(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CreditGrantResponse, grant, path=["response"])
 
@@ -349,7 +377,7 @@ class TestAsyncGrants:
     @parametrize
     async def test_raw_response_void(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.credits.grants.with_raw_response.void(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -361,7 +389,7 @@ class TestAsyncGrants:
     @parametrize
     async def test_streaming_response_void(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.credits.grants.with_streaming_response.void(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -376,5 +404,5 @@ class TestAsyncGrants:
     async def test_path_params_void(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.credits.grants.with_raw_response.void(
-                "",
+                id="",
             )

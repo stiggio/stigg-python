@@ -41,6 +41,10 @@ class PlanCreateParams(TypedDict, total=False):
     status: Literal["DRAFT", "PUBLISHED", "ARCHIVED"]
     """The status of the package"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class DefaultTrialConfigBudget(TypedDict, total=False):
     """Budget configuration for the trial"""

@@ -42,7 +42,7 @@ client = Stigg(
 )
 
 customer_response = client.v1.customers.retrieve(
-    "REPLACE_ME",
+    id="REPLACE_ME",
 )
 print(customer_response.data)
 ```
@@ -68,7 +68,7 @@ client = AsyncStigg(
 
 async def main() -> None:
     customer_response = await client.v1.customers.retrieve(
-        "REPLACE_ME",
+        id="REPLACE_ME",
     )
     print(customer_response.data)
 
@@ -104,7 +104,7 @@ async def main() -> None:
         http_client=DefaultAioHttpClient(),
     ) as client:
         customer_response = await client.v1.customers.retrieve(
-            "REPLACE_ME",
+            id="REPLACE_ME",
         )
         print(customer_response.data)
 
@@ -225,7 +225,7 @@ client = Stigg()
 
 try:
     client.v1.customers.retrieve(
-        "REPLACE_ME",
+        id="REPLACE_ME",
     )
 except stigg.APIConnectionError as e:
     print("The server could not be reached")
@@ -270,7 +270,7 @@ client = Stigg(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).v1.customers.retrieve(
-    "REPLACE_ME",
+    id="REPLACE_ME",
 )
 ```
 
@@ -295,7 +295,7 @@ client = Stigg(
 
 # Override per-request:
 client.with_options(timeout=5.0).v1.customers.retrieve(
-    "REPLACE_ME",
+    id="REPLACE_ME",
 )
 ```
 
@@ -338,7 +338,7 @@ from stigg import Stigg
 
 client = Stigg()
 response = client.v1.customers.with_raw_response.retrieve(
-    "REPLACE_ME",
+    id="REPLACE_ME",
 )
 print(response.headers.get('X-My-Header'))
 
@@ -358,7 +358,7 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.v1.customers.with_streaming_response.retrieve(
-    "REPLACE_ME",
+    id="REPLACE_ME",
 ) as response:
     print(response.headers.get("X-My-Header"))
 

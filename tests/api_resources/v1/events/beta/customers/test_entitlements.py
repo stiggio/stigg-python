@@ -36,6 +36,8 @@ class TestEntitlements:
             requested_usage=0,
             requested_values=["string"],
             resource_id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(EntitlementCheckResponse, entitlement, path=["response"])
 
@@ -98,6 +100,8 @@ class TestAsyncEntitlements:
             requested_usage=0,
             requested_values=["string"],
             resource_id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(EntitlementCheckResponse, entitlement, path=["response"])
 

@@ -38,6 +38,8 @@ class TestUsage:
             end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             group_by="groupBy",
             resource_id="resourceId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(UsageHistoryResponse, usage, path=["response"])
 
@@ -99,6 +101,26 @@ class TestUsage:
                     "value": -9007199254740991,
                 }
             ],
+        )
+        assert_matches_type(UsageReportResponse, usage, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_report_with_all_params(self, client: Stigg) -> None:
+        usage = client.v1.usage.report(
+            usages=[
+                {
+                    "customer_id": "customerId",
+                    "feature_id": "featureId",
+                    "value": -9007199254740991,
+                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "dimensions": {"foo": "string"},
+                    "resource_id": "resourceId",
+                    "update_behavior": "DELTA",
+                }
+            ],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(UsageReportResponse, usage, path=["response"])
 
@@ -166,6 +188,8 @@ class TestAsyncUsage:
             end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             group_by="groupBy",
             resource_id="resourceId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(UsageHistoryResponse, usage, path=["response"])
 
@@ -227,6 +251,26 @@ class TestAsyncUsage:
                     "value": -9007199254740991,
                 }
             ],
+        )
+        assert_matches_type(UsageReportResponse, usage, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_report_with_all_params(self, async_client: AsyncStigg) -> None:
+        usage = await async_client.v1.usage.report(
+            usages=[
+                {
+                    "customer_id": "customerId",
+                    "feature_id": "featureId",
+                    "value": -9007199254740991,
+                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "dimensions": {"foo": "string"},
+                    "resource_id": "resourceId",
+                    "update_behavior": "DELTA",
+                }
+            ],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(UsageReportResponse, usage, path=["response"])
 

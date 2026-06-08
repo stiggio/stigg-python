@@ -15,6 +15,10 @@ class EventReportParams(TypedDict, total=False):
     events: Required[Iterable[Event]]
     """A list of usage events to report"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class Event(TypedDict, total=False):
     """Raw usage event"""

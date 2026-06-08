@@ -28,6 +28,10 @@ class ProductUpdateProductParams(TypedDict, total=False):
     usage_reset_cutoff_rule: Annotated[UsageResetCutoffRule, PropertyInfo(alias="usageResetCutoffRule")]
     """Rule defining when usage resets upon subscription update."""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class ProductSettings(TypedDict, total=False):
     subscription_cancellation_time: Required[

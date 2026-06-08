@@ -15,6 +15,10 @@ class UsageReportParams(TypedDict, total=False):
     usages: Required[Iterable[Usage]]
     """A list of usage reports to be submitted in bulk"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class Usage(TypedDict, total=False):
     """Single usage measurement"""

@@ -49,6 +49,32 @@ class TestPromotionalEntitlements:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_create_with_all_params(self, client: Stigg) -> None:
+        promotional_entitlement = client.v1.customers.promotional_entitlements.create(
+            id="x",
+            promotional_entitlements=[
+                {
+                    "custom_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "enum_values": ["string"],
+                    "feature_id": "featureId",
+                    "has_soft_limit": True,
+                    "has_unlimited_usage": True,
+                    "is_visible": True,
+                    "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    "period": "1 week",
+                    "reset_period": "YEAR",
+                    "usage_limit": -9007199254740991,
+                    "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                }
+            ],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
+        )
+        assert_matches_type(PromotionalEntitlementCreateResponse, promotional_entitlement, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_create(self, client: Stigg) -> None:
         response = client.v1.customers.promotional_entitlements.with_raw_response.create(
             id="x",
@@ -154,6 +180,8 @@ class TestPromotionalEntitlements:
             },
             limit=1,
             status=["Active"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(
             SyncMyCursorIDPage[PromotionalEntitlementListResponse], promotional_entitlement, path=["response"]
@@ -203,6 +231,17 @@ class TestPromotionalEntitlements:
         promotional_entitlement = client.v1.customers.promotional_entitlements.revoke(
             feature_id="featureId",
             id="id",
+        )
+        assert_matches_type(PromotionalEntitlementRevokeResponse, promotional_entitlement, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_revoke_with_all_params(self, client: Stigg) -> None:
+        promotional_entitlement = client.v1.customers.promotional_entitlements.revoke(
+            feature_id="featureId",
+            id="id",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(PromotionalEntitlementRevokeResponse, promotional_entitlement, path=["response"])
 
@@ -276,6 +315,32 @@ class TestAsyncPromotionalEntitlements:
                     "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
                 }
             ],
+        )
+        assert_matches_type(PromotionalEntitlementCreateResponse, promotional_entitlement, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncStigg) -> None:
+        promotional_entitlement = await async_client.v1.customers.promotional_entitlements.create(
+            id="x",
+            promotional_entitlements=[
+                {
+                    "custom_end_date": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "enum_values": ["string"],
+                    "feature_id": "featureId",
+                    "has_soft_limit": True,
+                    "has_unlimited_usage": True,
+                    "is_visible": True,
+                    "monthly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    "period": "1 week",
+                    "reset_period": "YEAR",
+                    "usage_limit": -9007199254740991,
+                    "weekly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                    "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
+                }
+            ],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(PromotionalEntitlementCreateResponse, promotional_entitlement, path=["response"])
 
@@ -386,6 +451,8 @@ class TestAsyncPromotionalEntitlements:
             },
             limit=1,
             status=["Active"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(
             AsyncMyCursorIDPage[PromotionalEntitlementListResponse], promotional_entitlement, path=["response"]
@@ -435,6 +502,17 @@ class TestAsyncPromotionalEntitlements:
         promotional_entitlement = await async_client.v1.customers.promotional_entitlements.revoke(
             feature_id="featureId",
             id="id",
+        )
+        assert_matches_type(PromotionalEntitlementRevokeResponse, promotional_entitlement, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_revoke_with_all_params(self, async_client: AsyncStigg) -> None:
+        promotional_entitlement = await async_client.v1.customers.promotional_entitlements.revoke(
+            feature_id="featureId",
+            id="id",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(PromotionalEntitlementRevokeResponse, promotional_entitlement, path=["response"])
 

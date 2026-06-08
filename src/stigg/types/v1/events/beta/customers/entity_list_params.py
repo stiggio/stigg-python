@@ -24,3 +24,7 @@ class EntityListParams(TypedDict, total=False):
 
     type_ref_id: Annotated[str, PropertyInfo(alias="typeRefId")]
     """Filter results to entities of a specific entity type, by the type's refId"""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

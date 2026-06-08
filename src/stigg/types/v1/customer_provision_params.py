@@ -180,6 +180,10 @@ class CustomerProvisionParams(TypedDict, total=False):
     timezone: Optional[str]
     """Timezone to use for this customer"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class DefaultPaymentMethod(TypedDict, total=False):
     """The default payment method details"""

@@ -30,6 +30,10 @@ class CustomerListParams(TypedDict, total=False):
     name: str
     """Filter by exact customer name"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class CreatedAt(TypedDict, total=False):
     """Filter by creation date using range operators: gt, gte, lt, lte"""

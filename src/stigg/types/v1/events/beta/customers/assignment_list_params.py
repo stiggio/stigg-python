@@ -24,3 +24,7 @@ class AssignmentListParams(TypedDict, total=False):
 
     limit: int
     """Maximum number of items to return"""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

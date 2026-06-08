@@ -9,6 +9,7 @@ import pytest
 
 from stigg import Stigg, AsyncStigg
 from tests.utils import assert_matches_type
+from stigg._utils import parse_datetime
 from stigg.types.v1 import EventReportResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -28,6 +29,25 @@ class TestEvents:
                     "idempotency_key": "x",
                 }
             ],
+        )
+        assert_matches_type(EventReportResponse, event, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_report_with_all_params(self, client: Stigg) -> None:
+        event = client.v1.events.report(
+            events=[
+                {
+                    "customer_id": "customerId",
+                    "event_name": "x",
+                    "idempotency_key": "x",
+                    "dimensions": {"foo": "string"},
+                    "resource_id": "resourceId",
+                    "timestamp": parse_datetime("2019-12-27T18:11:19.117Z"),
+                }
+            ],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(EventReportResponse, event, path=["response"])
 
@@ -86,6 +106,25 @@ class TestAsyncEvents:
                     "idempotency_key": "x",
                 }
             ],
+        )
+        assert_matches_type(EventReportResponse, event, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_report_with_all_params(self, async_client: AsyncStigg) -> None:
+        event = await async_client.v1.events.report(
+            events=[
+                {
+                    "customer_id": "customerId",
+                    "event_name": "x",
+                    "idempotency_key": "x",
+                    "dimensions": {"foo": "string"},
+                    "resource_id": "resourceId",
+                    "timestamp": parse_datetime("2019-12-27T18:11:19.117Z"),
+                }
+            ],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(EventReportResponse, event, path=["response"])
 

@@ -35,6 +35,10 @@ class CustomCurrencyUpdateParams(TypedDict, total=False):
     Both fields are required when supplied.
     """
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class Units(TypedDict, total=False):
     """Singular and plural unit labels for a custom currency.

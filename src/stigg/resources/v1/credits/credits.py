@@ -17,7 +17,7 @@ from .grants import (
     AsyncGrantsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ....types.v1 import credit_get_usage_params, credit_list_ledger_params, credit_get_auto_recharge_params
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -79,6 +79,8 @@ class CreditsResource(SyncAPIResource):
         *,
         currency_id: str,
         customer_id: str,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -103,6 +105,15 @@ class CreditsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get(
             "/api/v1/credits/auto-recharge",
             options=make_request_options(
@@ -134,6 +145,8 @@ class CreditsResource(SyncAPIResource):
         resource_id: str | Omit = omit,
         start_date: Union[str, datetime] | Omit = omit,
         time_range: Literal["LAST_DAY", "LAST_WEEK", "LAST_MONTH", "LAST_YEAR"] | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -178,6 +191,15 @@ class CreditsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get(
             "/api/v1/credits/usage",
             options=make_request_options(
@@ -213,6 +235,8 @@ class CreditsResource(SyncAPIResource):
         currency_id: str | Omit = omit,
         limit: int | Omit = omit,
         resource_id: str | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -244,6 +268,15 @@ class CreditsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get_api_list(
             "/api/v1/credits/ledger",
             page=SyncMyCursorIDPage[CreditListLedgerResponse],
@@ -303,6 +336,8 @@ class AsyncCreditsResource(AsyncAPIResource):
         *,
         currency_id: str,
         customer_id: str,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -327,6 +362,15 @@ class AsyncCreditsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._get(
             "/api/v1/credits/auto-recharge",
             options=make_request_options(
@@ -358,6 +402,8 @@ class AsyncCreditsResource(AsyncAPIResource):
         resource_id: str | Omit = omit,
         start_date: Union[str, datetime] | Omit = omit,
         time_range: Literal["LAST_DAY", "LAST_WEEK", "LAST_MONTH", "LAST_YEAR"] | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -402,6 +448,15 @@ class AsyncCreditsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._get(
             "/api/v1/credits/usage",
             options=make_request_options(
@@ -437,6 +492,8 @@ class AsyncCreditsResource(AsyncAPIResource):
         currency_id: str | Omit = omit,
         limit: int | Omit = omit,
         resource_id: str | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -468,6 +525,15 @@ class AsyncCreditsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get_api_list(
             "/api/v1/credits/ledger",
             page=AsyncMyCursorIDPage[CreditListLedgerResponse],

@@ -44,6 +44,10 @@ class FeatureCreateFeatureParams(TypedDict, total=False):
     unit_transformation: Annotated[Optional[UnitTransformation], PropertyInfo(alias="unitTransformation")]
     """Unit transformation to be applied to the reported usage"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class EnumConfiguration(TypedDict, total=False):
     display_name: Required[Annotated[str, PropertyInfo(alias="displayName")]]

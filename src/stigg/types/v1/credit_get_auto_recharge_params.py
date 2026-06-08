@@ -15,3 +15,7 @@ class CreditGetAutoRechargeParams(TypedDict, total=False):
 
     customer_id: Required[Annotated[str, PropertyInfo(alias="customerId")]]
     """Filter by customer ID (required)"""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

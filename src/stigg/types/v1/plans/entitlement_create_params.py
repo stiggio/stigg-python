@@ -23,6 +23,10 @@ class EntitlementCreateParams(TypedDict, total=False):
     entitlements: Required[Iterable[Entitlement]]
     """Entitlements to create"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class EntitlementFeatureMonthlyResetPeriodConfiguration(TypedDict, total=False):
     """Configuration for monthly reset period"""

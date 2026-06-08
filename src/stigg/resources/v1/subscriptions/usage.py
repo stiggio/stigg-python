@@ -8,7 +8,7 @@ from datetime import datetime
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -52,6 +52,8 @@ class UsageResource(SyncAPIResource):
         id: str,
         *,
         until_date: Union[str, datetime] | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -76,6 +78,15 @@ class UsageResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             path_template("/api/v1/subscriptions/{id}/usage/charge", id=id),
             body=maybe_transform({"until_date": until_date}, usage_charge_usage_params.UsageChargeUsageParams),
@@ -89,6 +100,8 @@ class UsageResource(SyncAPIResource):
         self,
         id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -111,6 +124,15 @@ class UsageResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             path_template("/api/v1/subscriptions/{id}/usage/sync", id=id),
             options=make_request_options(
@@ -147,6 +169,8 @@ class AsyncUsageResource(AsyncAPIResource):
         id: str,
         *,
         until_date: Union[str, datetime] | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -171,6 +195,15 @@ class AsyncUsageResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             path_template("/api/v1/subscriptions/{id}/usage/charge", id=id),
             body=await async_maybe_transform(
@@ -186,6 +219,8 @@ class AsyncUsageResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -208,6 +243,15 @@ class AsyncUsageResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             path_template("/api/v1/subscriptions/{id}/usage/sync", id=id),
             options=make_request_options(

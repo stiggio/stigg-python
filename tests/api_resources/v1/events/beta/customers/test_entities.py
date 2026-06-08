@@ -35,6 +35,17 @@ class TestEntities:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_retrieve_with_all_params(self, client: Stigg) -> None:
+        entity = client.v1.events.beta.customers.entities.retrieve(
+            entity_id="x",
+            id="id",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
+        )
+        assert_matches_type(EntityRetrieveResponse, entity, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_retrieve(self, client: Stigg) -> None:
         response = client.v1.events.beta.customers.entities.with_raw_response.retrieve(
             entity_id="x",
@@ -94,6 +105,8 @@ class TestEntities:
             include_archived="true",
             limit=1,
             type_ref_id="typeRefId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SyncMyCursorIDPage[EntityListResponse], entity, path=["response"])
 
@@ -137,6 +150,17 @@ class TestEntities:
         entity = client.v1.events.beta.customers.entities.archive(
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
+        )
+        assert_matches_type(EntityArchiveResponse, entity, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_archive_with_all_params(self, client: Stigg) -> None:
+        entity = client.v1.events.beta.customers.entities.archive(
+            id="id",
+            ids=["user-7f3a0c1d", "user-c4d1b2e9"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(EntityArchiveResponse, entity, path=["response"])
 
@@ -188,6 +212,17 @@ class TestEntities:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_unarchive_with_all_params(self, client: Stigg) -> None:
+        entity = client.v1.events.beta.customers.entities.unarchive(
+            id="id",
+            ids=["user-7f3a0c1d", "user-c4d1b2e9"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
+        )
+        assert_matches_type(EntityUnarchiveResponse, entity, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_unarchive(self, client: Stigg) -> None:
         response = client.v1.events.beta.customers.entities.with_raw_response.unarchive(
             id="id",
@@ -229,6 +264,31 @@ class TestEntities:
         entity = client.v1.events.beta.customers.entities.upsert(
             id="id",
             entities=[{"id": "user-7f3a0c1d"}, {"id": "user-c4d1b2e9"}],
+        )
+        assert_matches_type(EntityUpsertResponse, entity, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_upsert_with_all_params(self, client: Stigg) -> None:
+        entity = client.v1.events.beta.customers.entities.upsert(
+            id="id",
+            entities=[
+                {
+                    "id": "user-7f3a0c1d",
+                    "metadata": {
+                        "email": "jane@acme.com",
+                        "role": "admin",
+                    },
+                    "type_ref_id": "user",
+                },
+                {
+                    "id": "user-c4d1b2e9",
+                    "metadata": {"email": "john@acme.com"},
+                    "type_ref_id": "user",
+                },
+            ],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(EntityUpsertResponse, entity, path=["response"])
 
@@ -281,6 +341,17 @@ class TestAsyncEntities:
         entity = await async_client.v1.events.beta.customers.entities.retrieve(
             entity_id="x",
             id="id",
+        )
+        assert_matches_type(EntityRetrieveResponse, entity, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncStigg) -> None:
+        entity = await async_client.v1.events.beta.customers.entities.retrieve(
+            entity_id="x",
+            id="id",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(EntityRetrieveResponse, entity, path=["response"])
 
@@ -345,6 +416,8 @@ class TestAsyncEntities:
             include_archived="true",
             limit=1,
             type_ref_id="typeRefId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AsyncMyCursorIDPage[EntityListResponse], entity, path=["response"])
 
@@ -388,6 +461,17 @@ class TestAsyncEntities:
         entity = await async_client.v1.events.beta.customers.entities.archive(
             id="id",
             ids=["user-7f3a0c1d", "user-c4d1b2e9"],
+        )
+        assert_matches_type(EntityArchiveResponse, entity, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_archive_with_all_params(self, async_client: AsyncStigg) -> None:
+        entity = await async_client.v1.events.beta.customers.entities.archive(
+            id="id",
+            ids=["user-7f3a0c1d", "user-c4d1b2e9"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(EntityArchiveResponse, entity, path=["response"])
 
@@ -439,6 +523,17 @@ class TestAsyncEntities:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    async def test_method_unarchive_with_all_params(self, async_client: AsyncStigg) -> None:
+        entity = await async_client.v1.events.beta.customers.entities.unarchive(
+            id="id",
+            ids=["user-7f3a0c1d", "user-c4d1b2e9"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
+        )
+        assert_matches_type(EntityUnarchiveResponse, entity, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     async def test_raw_response_unarchive(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.events.beta.customers.entities.with_raw_response.unarchive(
             id="id",
@@ -480,6 +575,31 @@ class TestAsyncEntities:
         entity = await async_client.v1.events.beta.customers.entities.upsert(
             id="id",
             entities=[{"id": "user-7f3a0c1d"}, {"id": "user-c4d1b2e9"}],
+        )
+        assert_matches_type(EntityUpsertResponse, entity, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_upsert_with_all_params(self, async_client: AsyncStigg) -> None:
+        entity = await async_client.v1.events.beta.customers.entities.upsert(
+            id="id",
+            entities=[
+                {
+                    "id": "user-7f3a0c1d",
+                    "metadata": {
+                        "email": "jane@acme.com",
+                        "role": "admin",
+                    },
+                    "type_ref_id": "user",
+                },
+                {
+                    "id": "user-c4d1b2e9",
+                    "metadata": {"email": "john@acme.com"},
+                    "type_ref_id": "user",
+                },
+            ],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(EntityUpsertResponse, entity, path=["response"])
 
