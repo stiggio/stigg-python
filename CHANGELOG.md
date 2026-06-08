@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.18 (2026-06-08)
+
+Full Changelog: [v0.1.0-beta.17...v0.1.0-beta.18](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.17...v0.1.0-beta.18)
+
+### Features
+
+* **api:** add x_account_id/x_environment_id header parameters across resources ([fb71370](https://github.com/stiggio/stigg-python/commit/fb7137024b31e2182b378c826a6725507dc93a85))
+
 ## 0.1.0-beta.17 (2026-06-08)
 
 Full Changelog: [v0.1.0-beta.16...v0.1.0-beta.17](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.16...v0.1.0-beta.17)
