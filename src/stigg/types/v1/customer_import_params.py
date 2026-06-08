@@ -18,6 +18,10 @@ class CustomerImportParams(TypedDict, total=False):
     integration_id: Annotated[str, PropertyInfo(alias="integrationId")]
     """Integration details"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class Customer(TypedDict, total=False):
     id: Required[str]

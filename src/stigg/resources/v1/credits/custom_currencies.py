@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -64,6 +64,8 @@ class CustomCurrenciesResource(SyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         symbol: str | Omit = omit,
         units: custom_currency_create_params.Units | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -96,6 +98,15 @@ class CustomCurrenciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             "/api/v1/credits/custom-currencies",
             body=maybe_transform(
@@ -124,6 +135,8 @@ class CustomCurrenciesResource(SyncAPIResource):
         metadata: Optional[Dict[str, str]] | Omit = omit,
         symbol: Optional[str] | Omit = omit,
         units: custom_currency_update_params.Units | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -158,6 +171,15 @@ class CustomCurrenciesResource(SyncAPIResource):
         """
         if not currency_id:
             raise ValueError(f"Expected a non-empty value for `currency_id` but received {currency_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._patch(
             path_template("/api/v1/credits/custom-currencies/{currency_id}", currency_id=currency_id),
             body=maybe_transform(
@@ -183,6 +205,8 @@ class CustomCurrenciesResource(SyncAPIResource):
         before: str | Omit = omit,
         limit: int | Omit = omit,
         status: List[Literal["ACTIVE", "ARCHIVED"]] | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -214,6 +238,15 @@ class CustomCurrenciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get_api_list(
             "/api/v1/credits/custom-currencies",
             page=SyncMyCursorIDPage[CustomCurrencyListResponse],
@@ -239,6 +272,8 @@ class CustomCurrenciesResource(SyncAPIResource):
         self,
         currency_id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -263,6 +298,15 @@ class CustomCurrenciesResource(SyncAPIResource):
         """
         if not currency_id:
             raise ValueError(f"Expected a non-empty value for `currency_id` but received {currency_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             path_template("/api/v1/credits/custom-currencies/{currency_id}/archive", currency_id=currency_id),
             options=make_request_options(
@@ -275,6 +319,8 @@ class CustomCurrenciesResource(SyncAPIResource):
         self,
         currency_id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -298,6 +344,15 @@ class CustomCurrenciesResource(SyncAPIResource):
         """
         if not currency_id:
             raise ValueError(f"Expected a non-empty value for `currency_id` but received {currency_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get(
             path_template(
                 "/api/v1/credits/custom-currencies/{currency_id}/associated-entities", currency_id=currency_id
@@ -312,6 +367,8 @@ class CustomCurrenciesResource(SyncAPIResource):
         self,
         currency_id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -335,6 +392,15 @@ class CustomCurrenciesResource(SyncAPIResource):
         """
         if not currency_id:
             raise ValueError(f"Expected a non-empty value for `currency_id` but received {currency_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             path_template("/api/v1/credits/custom-currencies/{currency_id}/unarchive", currency_id=currency_id),
             options=make_request_options(
@@ -375,6 +441,8 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         symbol: str | Omit = omit,
         units: custom_currency_create_params.Units | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -407,6 +475,15 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             "/api/v1/credits/custom-currencies",
             body=await async_maybe_transform(
@@ -435,6 +512,8 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
         metadata: Optional[Dict[str, str]] | Omit = omit,
         symbol: Optional[str] | Omit = omit,
         units: custom_currency_update_params.Units | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -469,6 +548,15 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
         """
         if not currency_id:
             raise ValueError(f"Expected a non-empty value for `currency_id` but received {currency_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._patch(
             path_template("/api/v1/credits/custom-currencies/{currency_id}", currency_id=currency_id),
             body=await async_maybe_transform(
@@ -494,6 +582,8 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
         before: str | Omit = omit,
         limit: int | Omit = omit,
         status: List[Literal["ACTIVE", "ARCHIVED"]] | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -525,6 +615,15 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get_api_list(
             "/api/v1/credits/custom-currencies",
             page=AsyncMyCursorIDPage[CustomCurrencyListResponse],
@@ -550,6 +649,8 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
         self,
         currency_id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -574,6 +675,15 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
         """
         if not currency_id:
             raise ValueError(f"Expected a non-empty value for `currency_id` but received {currency_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             path_template("/api/v1/credits/custom-currencies/{currency_id}/archive", currency_id=currency_id),
             options=make_request_options(
@@ -586,6 +696,8 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
         self,
         currency_id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -609,6 +721,15 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
         """
         if not currency_id:
             raise ValueError(f"Expected a non-empty value for `currency_id` but received {currency_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._get(
             path_template(
                 "/api/v1/credits/custom-currencies/{currency_id}/associated-entities", currency_id=currency_id
@@ -623,6 +744,8 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
         self,
         currency_id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -646,6 +769,15 @@ class AsyncCustomCurrenciesResource(AsyncAPIResource):
         """
         if not currency_id:
             raise ValueError(f"Expected a non-empty value for `currency_id` but received {currency_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             path_template("/api/v1/credits/custom-currencies/{currency_id}/unarchive", currency_id=currency_id),
             options=make_request_options(

@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from typing import Dict, Optional
-from typing_extensions import TypedDict
+from typing_extensions import Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["CouponUpdateCouponParams"]
 
@@ -17,3 +19,7 @@ class CouponUpdateCouponParams(TypedDict, total=False):
 
     name: str
     """Name of the coupon"""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

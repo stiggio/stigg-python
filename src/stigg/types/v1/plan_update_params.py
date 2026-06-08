@@ -63,6 +63,10 @@ class PlanUpdateParams(TypedDict, total=False):
     parent_plan_id: Annotated[Optional[str], PropertyInfo(alias="parentPlanId")]
     """The ID of the parent plan, if applicable"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class ChargesMinimumSpendMinimum(TypedDict, total=False):
     """The minimum spend amount"""

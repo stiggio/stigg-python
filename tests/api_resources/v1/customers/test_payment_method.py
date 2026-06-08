@@ -37,6 +37,8 @@ class TestPaymentMethod:
             payment_method_id="paymentMethodId",
             vendor_identifier="AUTH0",
             billing_currency="usd",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerResponse, payment_method, path=["response"])
 
@@ -87,7 +89,17 @@ class TestPaymentMethod:
     @parametrize
     def test_method_detach(self, client: Stigg) -> None:
         payment_method = client.v1.customers.payment_method.detach(
-            "x",
+            id="x",
+        )
+        assert_matches_type(CustomerResponse, payment_method, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_detach_with_all_params(self, client: Stigg) -> None:
+        payment_method = client.v1.customers.payment_method.detach(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerResponse, payment_method, path=["response"])
 
@@ -95,7 +107,7 @@ class TestPaymentMethod:
     @parametrize
     def test_raw_response_detach(self, client: Stigg) -> None:
         response = client.v1.customers.payment_method.with_raw_response.detach(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -107,7 +119,7 @@ class TestPaymentMethod:
     @parametrize
     def test_streaming_response_detach(self, client: Stigg) -> None:
         with client.v1.customers.payment_method.with_streaming_response.detach(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -122,7 +134,7 @@ class TestPaymentMethod:
     def test_path_params_detach(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.customers.payment_method.with_raw_response.detach(
-                "",
+                id="",
             )
 
 
@@ -151,6 +163,8 @@ class TestAsyncPaymentMethod:
             payment_method_id="paymentMethodId",
             vendor_identifier="AUTH0",
             billing_currency="usd",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerResponse, payment_method, path=["response"])
 
@@ -201,7 +215,17 @@ class TestAsyncPaymentMethod:
     @parametrize
     async def test_method_detach(self, async_client: AsyncStigg) -> None:
         payment_method = await async_client.v1.customers.payment_method.detach(
-            "x",
+            id="x",
+        )
+        assert_matches_type(CustomerResponse, payment_method, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_detach_with_all_params(self, async_client: AsyncStigg) -> None:
+        payment_method = await async_client.v1.customers.payment_method.detach(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerResponse, payment_method, path=["response"])
 
@@ -209,7 +233,7 @@ class TestAsyncPaymentMethod:
     @parametrize
     async def test_raw_response_detach(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.customers.payment_method.with_raw_response.detach(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -221,7 +245,7 @@ class TestAsyncPaymentMethod:
     @parametrize
     async def test_streaming_response_detach(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.customers.payment_method.with_streaming_response.detach(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -236,5 +260,5 @@ class TestAsyncPaymentMethod:
     async def test_path_params_detach(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.customers.payment_method.with_raw_response.detach(
-                "",
+                id="",
             )

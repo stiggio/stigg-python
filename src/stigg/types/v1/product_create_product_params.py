@@ -25,3 +25,7 @@ class ProductCreateProductParams(TypedDict, total=False):
 
     multiple_subscriptions: Annotated[bool, PropertyInfo(alias="multipleSubscriptions")]
     """Indicates if multiple subscriptions to this product are allowed"""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

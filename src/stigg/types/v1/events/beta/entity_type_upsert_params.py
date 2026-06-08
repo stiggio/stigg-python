@@ -15,6 +15,10 @@ class EntityTypeUpsertParams(TypedDict, total=False):
     types: Required[Iterable[Type]]
     """Entity types to upsert (1–100 per request)"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class Type(TypedDict, total=False):
     """A single entity type definition."""

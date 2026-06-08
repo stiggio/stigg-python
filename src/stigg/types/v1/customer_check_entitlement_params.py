@@ -31,3 +31,7 @@ class CustomerCheckEntitlementParams(TypedDict, total=False):
 
     resource_id: Annotated[str, PropertyInfo(alias="resourceId")]
     """Resource ID to scope the entitlement check to a specific resource"""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

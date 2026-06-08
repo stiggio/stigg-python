@@ -14,3 +14,7 @@ class SubscriptionMigrateParams(TypedDict, total=False):
         Literal["END_OF_BILLING_PERIOD", "IMMEDIATE"], PropertyInfo(alias="subscriptionMigrationTime")
     ]
     """When to migrate (immediate or period end)"""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

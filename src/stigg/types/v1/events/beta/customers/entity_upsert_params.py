@@ -14,6 +14,10 @@ class EntityUpsertParams(TypedDict, total=False):
     entities: Required[Iterable[Entity]]
     """List of entities to create or update (1-100 entries)"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class Entity(TypedDict, total=False):
     """A single entity to create or update."""

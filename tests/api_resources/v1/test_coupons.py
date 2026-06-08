@@ -43,6 +43,27 @@ class TestCoupons:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_create_with_all_params(self, client: Stigg) -> None:
+        coupon = client.v1.coupons.create(
+            id="id",
+            amounts_off=[
+                {
+                    "amount": 0,
+                    "currency": "usd",
+                }
+            ],
+            description="description",
+            duration_in_months=1,
+            metadata={"foo": "string"},
+            name="name",
+            percent_off=1,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
+        )
+        assert_matches_type(Coupon, coupon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_create(self, client: Stigg) -> None:
         response = client.v1.coupons.with_raw_response.create(
             id="id",
@@ -93,7 +114,17 @@ class TestCoupons:
     @parametrize
     def test_method_retrieve(self, client: Stigg) -> None:
         coupon = client.v1.coupons.retrieve(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Coupon, coupon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_with_all_params(self, client: Stigg) -> None:
+        coupon = client.v1.coupons.retrieve(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 
@@ -101,7 +132,7 @@ class TestCoupons:
     @parametrize
     def test_raw_response_retrieve(self, client: Stigg) -> None:
         response = client.v1.coupons.with_raw_response.retrieve(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -113,7 +144,7 @@ class TestCoupons:
     @parametrize
     def test_streaming_response_retrieve(self, client: Stigg) -> None:
         with client.v1.coupons.with_streaming_response.retrieve(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -128,7 +159,7 @@ class TestCoupons:
     def test_path_params_retrieve(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.coupons.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -153,6 +184,8 @@ class TestCoupons:
             limit=1,
             status=["ACTIVE"],
             type="FIXED",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SyncMyCursorIDPage[CouponListResponse], coupon, path=["response"])
 
@@ -182,7 +215,17 @@ class TestCoupons:
     @parametrize
     def test_method_archive_coupon(self, client: Stigg) -> None:
         coupon = client.v1.coupons.archive_coupon(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Coupon, coupon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_archive_coupon_with_all_params(self, client: Stigg) -> None:
+        coupon = client.v1.coupons.archive_coupon(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 
@@ -190,7 +233,7 @@ class TestCoupons:
     @parametrize
     def test_raw_response_archive_coupon(self, client: Stigg) -> None:
         response = client.v1.coupons.with_raw_response.archive_coupon(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -202,7 +245,7 @@ class TestCoupons:
     @parametrize
     def test_streaming_response_archive_coupon(self, client: Stigg) -> None:
         with client.v1.coupons.with_streaming_response.archive_coupon(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -217,7 +260,7 @@ class TestCoupons:
     def test_path_params_archive_coupon(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.coupons.with_raw_response.archive_coupon(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -236,6 +279,8 @@ class TestCoupons:
             description="description",
             metadata={"foo": "string"},
             name="name",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 
@@ -300,6 +345,27 @@ class TestAsyncCoupons:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncStigg) -> None:
+        coupon = await async_client.v1.coupons.create(
+            id="id",
+            amounts_off=[
+                {
+                    "amount": 0,
+                    "currency": "usd",
+                }
+            ],
+            description="description",
+            duration_in_months=1,
+            metadata={"foo": "string"},
+            name="name",
+            percent_off=1,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
+        )
+        assert_matches_type(Coupon, coupon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     async def test_raw_response_create(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.coupons.with_raw_response.create(
             id="id",
@@ -350,7 +416,17 @@ class TestAsyncCoupons:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncStigg) -> None:
         coupon = await async_client.v1.coupons.retrieve(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Coupon, coupon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncStigg) -> None:
+        coupon = await async_client.v1.coupons.retrieve(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 
@@ -358,7 +434,7 @@ class TestAsyncCoupons:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.coupons.with_raw_response.retrieve(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -370,7 +446,7 @@ class TestAsyncCoupons:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.coupons.with_streaming_response.retrieve(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -385,7 +461,7 @@ class TestAsyncCoupons:
     async def test_path_params_retrieve(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.coupons.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -410,6 +486,8 @@ class TestAsyncCoupons:
             limit=1,
             status=["ACTIVE"],
             type="FIXED",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AsyncMyCursorIDPage[CouponListResponse], coupon, path=["response"])
 
@@ -439,7 +517,17 @@ class TestAsyncCoupons:
     @parametrize
     async def test_method_archive_coupon(self, async_client: AsyncStigg) -> None:
         coupon = await async_client.v1.coupons.archive_coupon(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Coupon, coupon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_archive_coupon_with_all_params(self, async_client: AsyncStigg) -> None:
+        coupon = await async_client.v1.coupons.archive_coupon(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 
@@ -447,7 +535,7 @@ class TestAsyncCoupons:
     @parametrize
     async def test_raw_response_archive_coupon(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.coupons.with_raw_response.archive_coupon(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -459,7 +547,7 @@ class TestAsyncCoupons:
     @parametrize
     async def test_streaming_response_archive_coupon(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.coupons.with_streaming_response.archive_coupon(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -474,7 +562,7 @@ class TestAsyncCoupons:
     async def test_path_params_archive_coupon(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.coupons.with_raw_response.archive_coupon(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -493,6 +581,8 @@ class TestAsyncCoupons:
             description="description",
             metadata={"foo": "string"},
             name="name",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Coupon, coupon, path=["response"])
 

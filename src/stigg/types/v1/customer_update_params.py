@@ -173,6 +173,10 @@ class CustomerUpdateParams(TypedDict, total=False):
     timezone: Optional[str]
     """Timezone to use for this customer"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class Integration(TypedDict, total=False):
     """External billing or CRM integration link"""

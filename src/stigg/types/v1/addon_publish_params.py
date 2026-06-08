@@ -12,3 +12,7 @@ __all__ = ["AddonPublishParams"]
 class AddonPublishParams(TypedDict, total=False):
     migration_type: Required[Annotated[Literal["NEW_CUSTOMERS", "ALL_CUSTOMERS"], PropertyInfo(alias="migrationType")]]
     """The migration type of the package"""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

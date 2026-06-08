@@ -44,6 +44,8 @@ class TestCustomCurrencies:
                 "plural": "plural",
                 "singular": "singular",
             },
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomCurrencyResponse, custom_currency, path=["response"])
 
@@ -96,6 +98,8 @@ class TestCustomCurrencies:
                 "plural": "plural",
                 "singular": "singular",
             },
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomCurrencyResponse, custom_currency, path=["response"])
 
@@ -147,6 +151,8 @@ class TestCustomCurrencies:
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
             status=["ACTIVE"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SyncMyCursorIDPage[CustomCurrencyListResponse], custom_currency, path=["response"])
 
@@ -176,7 +182,17 @@ class TestCustomCurrencies:
     @parametrize
     def test_method_archive(self, client: Stigg) -> None:
         custom_currency = client.v1.credits.custom_currencies.archive(
-            "currencyId",
+            currency_id="currencyId",
+        )
+        assert_matches_type(CustomCurrencyResponse, custom_currency, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_archive_with_all_params(self, client: Stigg) -> None:
+        custom_currency = client.v1.credits.custom_currencies.archive(
+            currency_id="currencyId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomCurrencyResponse, custom_currency, path=["response"])
 
@@ -184,7 +200,7 @@ class TestCustomCurrencies:
     @parametrize
     def test_raw_response_archive(self, client: Stigg) -> None:
         response = client.v1.credits.custom_currencies.with_raw_response.archive(
-            "currencyId",
+            currency_id="currencyId",
         )
 
         assert response.is_closed is True
@@ -196,7 +212,7 @@ class TestCustomCurrencies:
     @parametrize
     def test_streaming_response_archive(self, client: Stigg) -> None:
         with client.v1.credits.custom_currencies.with_streaming_response.archive(
-            "currencyId",
+            currency_id="currencyId",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -211,14 +227,24 @@ class TestCustomCurrencies:
     def test_path_params_archive(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `currency_id` but received ''"):
             client.v1.credits.custom_currencies.with_raw_response.archive(
-                "",
+                currency_id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_associated_entities(self, client: Stigg) -> None:
         custom_currency = client.v1.credits.custom_currencies.list_associated_entities(
-            "currencyId",
+            currency_id="currencyId",
+        )
+        assert_matches_type(CustomCurrencyListAssociatedEntitiesResponse, custom_currency, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_list_associated_entities_with_all_params(self, client: Stigg) -> None:
+        custom_currency = client.v1.credits.custom_currencies.list_associated_entities(
+            currency_id="currencyId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomCurrencyListAssociatedEntitiesResponse, custom_currency, path=["response"])
 
@@ -226,7 +252,7 @@ class TestCustomCurrencies:
     @parametrize
     def test_raw_response_list_associated_entities(self, client: Stigg) -> None:
         response = client.v1.credits.custom_currencies.with_raw_response.list_associated_entities(
-            "currencyId",
+            currency_id="currencyId",
         )
 
         assert response.is_closed is True
@@ -238,7 +264,7 @@ class TestCustomCurrencies:
     @parametrize
     def test_streaming_response_list_associated_entities(self, client: Stigg) -> None:
         with client.v1.credits.custom_currencies.with_streaming_response.list_associated_entities(
-            "currencyId",
+            currency_id="currencyId",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -253,14 +279,24 @@ class TestCustomCurrencies:
     def test_path_params_list_associated_entities(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `currency_id` but received ''"):
             client.v1.credits.custom_currencies.with_raw_response.list_associated_entities(
-                "",
+                currency_id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_unarchive(self, client: Stigg) -> None:
         custom_currency = client.v1.credits.custom_currencies.unarchive(
-            "currencyId",
+            currency_id="currencyId",
+        )
+        assert_matches_type(CustomCurrencyResponse, custom_currency, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_unarchive_with_all_params(self, client: Stigg) -> None:
+        custom_currency = client.v1.credits.custom_currencies.unarchive(
+            currency_id="currencyId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomCurrencyResponse, custom_currency, path=["response"])
 
@@ -268,7 +304,7 @@ class TestCustomCurrencies:
     @parametrize
     def test_raw_response_unarchive(self, client: Stigg) -> None:
         response = client.v1.credits.custom_currencies.with_raw_response.unarchive(
-            "currencyId",
+            currency_id="currencyId",
         )
 
         assert response.is_closed is True
@@ -280,7 +316,7 @@ class TestCustomCurrencies:
     @parametrize
     def test_streaming_response_unarchive(self, client: Stigg) -> None:
         with client.v1.credits.custom_currencies.with_streaming_response.unarchive(
-            "currencyId",
+            currency_id="currencyId",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -295,7 +331,7 @@ class TestCustomCurrencies:
     def test_path_params_unarchive(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `currency_id` but received ''"):
             client.v1.credits.custom_currencies.with_raw_response.unarchive(
-                "",
+                currency_id="",
             )
 
 
@@ -326,6 +362,8 @@ class TestAsyncCustomCurrencies:
                 "plural": "plural",
                 "singular": "singular",
             },
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomCurrencyResponse, custom_currency, path=["response"])
 
@@ -378,6 +416,8 @@ class TestAsyncCustomCurrencies:
                 "plural": "plural",
                 "singular": "singular",
             },
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomCurrencyResponse, custom_currency, path=["response"])
 
@@ -429,6 +469,8 @@ class TestAsyncCustomCurrencies:
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
             status=["ACTIVE"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AsyncMyCursorIDPage[CustomCurrencyListResponse], custom_currency, path=["response"])
 
@@ -458,7 +500,17 @@ class TestAsyncCustomCurrencies:
     @parametrize
     async def test_method_archive(self, async_client: AsyncStigg) -> None:
         custom_currency = await async_client.v1.credits.custom_currencies.archive(
-            "currencyId",
+            currency_id="currencyId",
+        )
+        assert_matches_type(CustomCurrencyResponse, custom_currency, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_archive_with_all_params(self, async_client: AsyncStigg) -> None:
+        custom_currency = await async_client.v1.credits.custom_currencies.archive(
+            currency_id="currencyId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomCurrencyResponse, custom_currency, path=["response"])
 
@@ -466,7 +518,7 @@ class TestAsyncCustomCurrencies:
     @parametrize
     async def test_raw_response_archive(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.credits.custom_currencies.with_raw_response.archive(
-            "currencyId",
+            currency_id="currencyId",
         )
 
         assert response.is_closed is True
@@ -478,7 +530,7 @@ class TestAsyncCustomCurrencies:
     @parametrize
     async def test_streaming_response_archive(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.credits.custom_currencies.with_streaming_response.archive(
-            "currencyId",
+            currency_id="currencyId",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -493,14 +545,24 @@ class TestAsyncCustomCurrencies:
     async def test_path_params_archive(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `currency_id` but received ''"):
             await async_client.v1.credits.custom_currencies.with_raw_response.archive(
-                "",
+                currency_id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_associated_entities(self, async_client: AsyncStigg) -> None:
         custom_currency = await async_client.v1.credits.custom_currencies.list_associated_entities(
-            "currencyId",
+            currency_id="currencyId",
+        )
+        assert_matches_type(CustomCurrencyListAssociatedEntitiesResponse, custom_currency, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_list_associated_entities_with_all_params(self, async_client: AsyncStigg) -> None:
+        custom_currency = await async_client.v1.credits.custom_currencies.list_associated_entities(
+            currency_id="currencyId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomCurrencyListAssociatedEntitiesResponse, custom_currency, path=["response"])
 
@@ -508,7 +570,7 @@ class TestAsyncCustomCurrencies:
     @parametrize
     async def test_raw_response_list_associated_entities(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.credits.custom_currencies.with_raw_response.list_associated_entities(
-            "currencyId",
+            currency_id="currencyId",
         )
 
         assert response.is_closed is True
@@ -520,7 +582,7 @@ class TestAsyncCustomCurrencies:
     @parametrize
     async def test_streaming_response_list_associated_entities(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.credits.custom_currencies.with_streaming_response.list_associated_entities(
-            "currencyId",
+            currency_id="currencyId",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -535,14 +597,24 @@ class TestAsyncCustomCurrencies:
     async def test_path_params_list_associated_entities(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `currency_id` but received ''"):
             await async_client.v1.credits.custom_currencies.with_raw_response.list_associated_entities(
-                "",
+                currency_id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_unarchive(self, async_client: AsyncStigg) -> None:
         custom_currency = await async_client.v1.credits.custom_currencies.unarchive(
-            "currencyId",
+            currency_id="currencyId",
+        )
+        assert_matches_type(CustomCurrencyResponse, custom_currency, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_unarchive_with_all_params(self, async_client: AsyncStigg) -> None:
+        custom_currency = await async_client.v1.credits.custom_currencies.unarchive(
+            currency_id="currencyId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomCurrencyResponse, custom_currency, path=["response"])
 
@@ -550,7 +622,7 @@ class TestAsyncCustomCurrencies:
     @parametrize
     async def test_raw_response_unarchive(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.credits.custom_currencies.with_raw_response.unarchive(
-            "currencyId",
+            currency_id="currencyId",
         )
 
         assert response.is_closed is True
@@ -562,7 +634,7 @@ class TestAsyncCustomCurrencies:
     @parametrize
     async def test_streaming_response_unarchive(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.credits.custom_currencies.with_streaming_response.unarchive(
-            "currencyId",
+            currency_id="currencyId",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -577,5 +649,5 @@ class TestAsyncCustomCurrencies:
     async def test_path_params_unarchive(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `currency_id` but received ''"):
             await async_client.v1.credits.custom_currencies.with_raw_response.unarchive(
-                "",
+                currency_id="",
             )

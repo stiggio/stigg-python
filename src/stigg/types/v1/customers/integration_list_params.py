@@ -43,3 +43,7 @@ class IntegrationListParams(TypedDict, total=False):
 
     Supports comma-separated values for multiple vendors (e.g., STRIPE,HUBSPOT)
     """
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

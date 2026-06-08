@@ -42,6 +42,10 @@ class SubscriptionListParams(TypedDict, total=False):
     Supports comma-separated values for multiple statuses
     """
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class CreatedAt(TypedDict, total=False):
     """Filter by creation date using range operators: gt, gte, lt, lte"""

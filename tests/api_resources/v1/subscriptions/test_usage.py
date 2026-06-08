@@ -32,6 +32,8 @@ class TestUsage:
         usage = client.v1.subscriptions.usage.charge_usage(
             id="x",
             until_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(UsageChargeUsageResponse, usage, path=["response"])
 
@@ -73,7 +75,17 @@ class TestUsage:
     @parametrize
     def test_method_sync(self, client: Stigg) -> None:
         usage = client.v1.subscriptions.usage.sync(
-            "x",
+            id="x",
+        )
+        assert_matches_type(UsageSyncResponse, usage, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_sync_with_all_params(self, client: Stigg) -> None:
+        usage = client.v1.subscriptions.usage.sync(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(UsageSyncResponse, usage, path=["response"])
 
@@ -81,7 +93,7 @@ class TestUsage:
     @parametrize
     def test_raw_response_sync(self, client: Stigg) -> None:
         response = client.v1.subscriptions.usage.with_raw_response.sync(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -93,7 +105,7 @@ class TestUsage:
     @parametrize
     def test_streaming_response_sync(self, client: Stigg) -> None:
         with client.v1.subscriptions.usage.with_streaming_response.sync(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -108,7 +120,7 @@ class TestUsage:
     def test_path_params_sync(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.subscriptions.usage.with_raw_response.sync(
-                "",
+                id="",
             )
 
 
@@ -131,6 +143,8 @@ class TestAsyncUsage:
         usage = await async_client.v1.subscriptions.usage.charge_usage(
             id="x",
             until_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(UsageChargeUsageResponse, usage, path=["response"])
 
@@ -172,7 +186,17 @@ class TestAsyncUsage:
     @parametrize
     async def test_method_sync(self, async_client: AsyncStigg) -> None:
         usage = await async_client.v1.subscriptions.usage.sync(
-            "x",
+            id="x",
+        )
+        assert_matches_type(UsageSyncResponse, usage, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_sync_with_all_params(self, async_client: AsyncStigg) -> None:
+        usage = await async_client.v1.subscriptions.usage.sync(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(UsageSyncResponse, usage, path=["response"])
 
@@ -180,7 +204,7 @@ class TestAsyncUsage:
     @parametrize
     async def test_raw_response_sync(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.subscriptions.usage.with_raw_response.sync(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -192,7 +216,7 @@ class TestAsyncUsage:
     @parametrize
     async def test_streaming_response_sync(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.subscriptions.usage.with_streaming_response.sync(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -207,5 +231,5 @@ class TestAsyncUsage:
     async def test_path_params_sync(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.subscriptions.usage.with_raw_response.sync(
-                "",
+                id="",
             )

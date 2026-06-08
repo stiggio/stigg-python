@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
+
+from ...._utils import PropertyInfo
 
 __all__ = ["CustomCurrencyListParams"]
 
@@ -23,3 +25,7 @@ class CustomCurrencyListParams(TypedDict, total=False):
 
     Supports comma-separated values (e.g., `ACTIVE,ARCHIVED`). Defaults to `ACTIVE`.
     """
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

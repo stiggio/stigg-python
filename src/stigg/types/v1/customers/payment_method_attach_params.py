@@ -162,3 +162,7 @@ class PaymentMethodAttachParams(TypedDict, total=False):
         PropertyInfo(alias="billingCurrency"),
     ]
     """Customers selected currency"""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
