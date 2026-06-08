@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ....types.v1 import (
     addon_list_params,
@@ -81,6 +81,8 @@ class AddonsResource(SyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         pricing_type: Optional[Literal["FREE", "PAID", "CUSTOM"]] | Omit = omit,
         status: Literal["DRAFT", "PUBLISHED", "ARCHIVED"] | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -118,6 +120,15 @@ class AddonsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             "/api/v1/addons",
             body=maybe_transform(
@@ -144,6 +155,8 @@ class AddonsResource(SyncAPIResource):
         self,
         id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -166,6 +179,15 @@ class AddonsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get(
             path_template("/api/v1/addons/{id}", id=id),
             options=make_request_options(
@@ -186,6 +208,8 @@ class AddonsResource(SyncAPIResource):
         max_quantity: Optional[int] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         status: Literal["DRAFT", "PUBLISHED", "ARCHIVED"] | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -224,6 +248,15 @@ class AddonsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._patch(
             path_template("/api/v1/addons/{id}", id=id),
             body=maybe_transform(
@@ -254,6 +287,8 @@ class AddonsResource(SyncAPIResource):
         limit: int | Omit = omit,
         product_id: str | Omit = omit,
         status: List[Literal["DRAFT", "PUBLISHED", "ARCHIVED"]] | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -285,6 +320,15 @@ class AddonsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get_api_list(
             "/api/v1/addons",
             page=SyncMyCursorIDPage[AddonListResponse],
@@ -312,6 +356,8 @@ class AddonsResource(SyncAPIResource):
         self,
         id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -333,6 +379,15 @@ class AddonsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             path_template("/api/v1/addons/{id}/archive", id=id),
             options=make_request_options(
@@ -345,6 +400,8 @@ class AddonsResource(SyncAPIResource):
         self,
         id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -366,6 +423,15 @@ class AddonsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             path_template("/api/v1/addons/{id}/draft", id=id),
             options=make_request_options(
@@ -381,6 +447,8 @@ class AddonsResource(SyncAPIResource):
         after: str | Omit = omit,
         before: str | Omit = omit,
         limit: int | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -408,6 +476,15 @@ class AddonsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get_api_list(
             path_template("/api/v1/addons/{id}/charges", id=id),
             page=SyncMyCursorIDPage[AddonListChargesResponse],
@@ -433,6 +510,8 @@ class AddonsResource(SyncAPIResource):
         id: str,
         *,
         migration_type: Literal["NEW_CUSTOMERS", "ALL_CUSTOMERS"],
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -456,6 +535,15 @@ class AddonsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             path_template("/api/v1/addons/{id}/publish", id=id),
             body=maybe_transform({"migration_type": migration_type}, addon_publish_params.AddonPublishParams),
@@ -469,6 +557,8 @@ class AddonsResource(SyncAPIResource):
         self,
         id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -490,6 +580,15 @@ class AddonsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._delete(
             path_template("/api/v1/addons/{id}/draft", id=id),
             options=make_request_options(
@@ -537,6 +636,8 @@ class AsyncAddonsResource(AsyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         pricing_type: Optional[Literal["FREE", "PAID", "CUSTOM"]] | Omit = omit,
         status: Literal["DRAFT", "PUBLISHED", "ARCHIVED"] | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -574,6 +675,15 @@ class AsyncAddonsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             "/api/v1/addons",
             body=await async_maybe_transform(
@@ -600,6 +710,8 @@ class AsyncAddonsResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -622,6 +734,15 @@ class AsyncAddonsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._get(
             path_template("/api/v1/addons/{id}", id=id),
             options=make_request_options(
@@ -642,6 +763,8 @@ class AsyncAddonsResource(AsyncAPIResource):
         max_quantity: Optional[int] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         status: Literal["DRAFT", "PUBLISHED", "ARCHIVED"] | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -680,6 +803,15 @@ class AsyncAddonsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._patch(
             path_template("/api/v1/addons/{id}", id=id),
             body=await async_maybe_transform(
@@ -710,6 +842,8 @@ class AsyncAddonsResource(AsyncAPIResource):
         limit: int | Omit = omit,
         product_id: str | Omit = omit,
         status: List[Literal["DRAFT", "PUBLISHED", "ARCHIVED"]] | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -741,6 +875,15 @@ class AsyncAddonsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get_api_list(
             "/api/v1/addons",
             page=AsyncMyCursorIDPage[AddonListResponse],
@@ -768,6 +911,8 @@ class AsyncAddonsResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -789,6 +934,15 @@ class AsyncAddonsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             path_template("/api/v1/addons/{id}/archive", id=id),
             options=make_request_options(
@@ -801,6 +955,8 @@ class AsyncAddonsResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -822,6 +978,15 @@ class AsyncAddonsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             path_template("/api/v1/addons/{id}/draft", id=id),
             options=make_request_options(
@@ -837,6 +1002,8 @@ class AsyncAddonsResource(AsyncAPIResource):
         after: str | Omit = omit,
         before: str | Omit = omit,
         limit: int | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -864,6 +1031,15 @@ class AsyncAddonsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get_api_list(
             path_template("/api/v1/addons/{id}/charges", id=id),
             page=AsyncMyCursorIDPage[AddonListChargesResponse],
@@ -889,6 +1065,8 @@ class AsyncAddonsResource(AsyncAPIResource):
         id: str,
         *,
         migration_type: Literal["NEW_CUSTOMERS", "ALL_CUSTOMERS"],
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -912,6 +1090,15 @@ class AsyncAddonsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             path_template("/api/v1/addons/{id}/publish", id=id),
             body=await async_maybe_transform(
@@ -927,6 +1114,8 @@ class AsyncAddonsResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -948,6 +1137,15 @@ class AsyncAddonsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._delete(
             path_template("/api/v1/addons/{id}/draft", id=id),
             options=make_request_options(

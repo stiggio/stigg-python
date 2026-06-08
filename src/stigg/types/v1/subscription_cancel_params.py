@@ -25,3 +25,7 @@ class SubscriptionCancelParams(TypedDict, total=False):
 
     prorate: bool
     """If set, enables or disables prorating of credits on subscription cancellation."""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

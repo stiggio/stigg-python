@@ -14,6 +14,10 @@ class AssignmentUpsertParams(TypedDict, total=False):
     assignments: Required[Iterable[Assignment]]
     """Assignments to upsert (1–100 per request)"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class Assignment(TypedDict, total=False):
     """A single assignment to create or update.

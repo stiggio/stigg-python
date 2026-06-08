@@ -34,6 +34,8 @@ class TestEntityTypes:
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SyncMyCursorIDPage[EntityTypeListResponse], entity_type, path=["response"])
 
@@ -75,6 +77,27 @@ class TestEntityTypes:
                     "display_name": "Team",
                 },
             ],
+        )
+        assert_matches_type(EntityTypeUpsertResponse, entity_type, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_upsert_with_all_params(self, client: Stigg) -> None:
+        entity_type = client.v1.events.beta.entity_types.upsert(
+            types=[
+                {
+                    "id": "org",
+                    "attribution_keys": ["organizationId"],
+                    "display_name": "Organization",
+                },
+                {
+                    "id": "team",
+                    "attribution_keys": ["teamId"],
+                    "display_name": "Team",
+                },
+            ],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(EntityTypeUpsertResponse, entity_type, path=["response"])
 
@@ -145,6 +168,8 @@ class TestAsyncEntityTypes:
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AsyncMyCursorIDPage[EntityTypeListResponse], entity_type, path=["response"])
 
@@ -186,6 +211,27 @@ class TestAsyncEntityTypes:
                     "display_name": "Team",
                 },
             ],
+        )
+        assert_matches_type(EntityTypeUpsertResponse, entity_type, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_upsert_with_all_params(self, async_client: AsyncStigg) -> None:
+        entity_type = await async_client.v1.events.beta.entity_types.upsert(
+            types=[
+                {
+                    "id": "org",
+                    "attribution_keys": ["organizationId"],
+                    "display_name": "Organization",
+                },
+                {
+                    "id": "team",
+                    "attribution_keys": ["teamId"],
+                    "display_name": "Team",
+                },
+            ],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(EntityTypeUpsertResponse, entity_type, path=["response"])
 

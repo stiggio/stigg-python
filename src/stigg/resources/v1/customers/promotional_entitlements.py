@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -54,6 +54,8 @@ class PromotionalEntitlementsResource(SyncAPIResource):
         id: str,
         *,
         promotional_entitlements: Iterable[promotional_entitlement_create_params.PromotionalEntitlement],
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -78,6 +80,15 @@ class PromotionalEntitlementsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             path_template("/api/v1/customers/{id}/promotional-entitlements", id=id),
             body=maybe_transform(
@@ -99,6 +110,8 @@ class PromotionalEntitlementsResource(SyncAPIResource):
         created_at: promotional_entitlement_list_params.CreatedAt | Omit = omit,
         limit: int | Omit = omit,
         status: List[Literal["Active", "Expired", "Paused"]] | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -131,6 +144,15 @@ class PromotionalEntitlementsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get_api_list(
             path_template("/api/v1/customers/{id}/promotional-entitlements", id=id),
             page=SyncMyCursorIDPage[PromotionalEntitlementListResponse],
@@ -158,6 +180,8 @@ class PromotionalEntitlementsResource(SyncAPIResource):
         feature_id: str,
         *,
         id: str,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -182,6 +206,15 @@ class PromotionalEntitlementsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not feature_id:
             raise ValueError(f"Expected a non-empty value for `feature_id` but received {feature_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._delete(
             path_template("/api/v1/customers/{id}/promotional-entitlements/{feature_id}", id=id, feature_id=feature_id),
             options=make_request_options(
@@ -218,6 +251,8 @@ class AsyncPromotionalEntitlementsResource(AsyncAPIResource):
         id: str,
         *,
         promotional_entitlements: Iterable[promotional_entitlement_create_params.PromotionalEntitlement],
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -242,6 +277,15 @@ class AsyncPromotionalEntitlementsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             path_template("/api/v1/customers/{id}/promotional-entitlements", id=id),
             body=await async_maybe_transform(
@@ -263,6 +307,8 @@ class AsyncPromotionalEntitlementsResource(AsyncAPIResource):
         created_at: promotional_entitlement_list_params.CreatedAt | Omit = omit,
         limit: int | Omit = omit,
         status: List[Literal["Active", "Expired", "Paused"]] | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -295,6 +341,15 @@ class AsyncPromotionalEntitlementsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get_api_list(
             path_template("/api/v1/customers/{id}/promotional-entitlements", id=id),
             page=AsyncMyCursorIDPage[PromotionalEntitlementListResponse],
@@ -322,6 +377,8 @@ class AsyncPromotionalEntitlementsResource(AsyncAPIResource):
         feature_id: str,
         *,
         id: str,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -346,6 +403,15 @@ class AsyncPromotionalEntitlementsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not feature_id:
             raise ValueError(f"Expected a non-empty value for `feature_id` but received {feature_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._delete(
             path_template("/api/v1/customers/{id}/promotional-entitlements/{feature_id}", id=id, feature_id=feature_id),
             options=make_request_options(

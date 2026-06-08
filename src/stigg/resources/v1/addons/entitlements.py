@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
+from ...._utils import path_template, required_args, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -51,6 +51,8 @@ class EntitlementsResource(SyncAPIResource):
         addon_id: str,
         *,
         entitlements: Iterable[entitlement_create_params.Entitlement],
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -74,6 +76,15 @@ class EntitlementsResource(SyncAPIResource):
         """
         if not addon_id:
             raise ValueError(f"Expected a non-empty value for `addon_id` but received {addon_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             path_template("/api/v1/addons/{addon_id}/entitlements", addon_id=addon_id),
             body=maybe_transform({"entitlements": entitlements}, entitlement_create_params.EntitlementCreateParams),
@@ -114,6 +125,8 @@ class EntitlementsResource(SyncAPIResource):
             entitlement_update_params.UpdateFeatureEntitlementRequestYearlyResetPeriodConfiguration
         ]
         | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -184,6 +197,8 @@ class EntitlementsResource(SyncAPIResource):
         is_custom: bool | Omit = omit,
         is_granted: bool | Omit = omit,
         order: float | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -259,6 +274,8 @@ class EntitlementsResource(SyncAPIResource):
             entitlement_update_params.UpdateFeatureEntitlementRequestYearlyResetPeriodConfiguration
         ]
         | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         amount: float | Omit = omit,
         cadence: Literal["MONTH", "YEAR"] | Omit = omit,
         dependency_feature_id: Optional[str] | Omit = omit,
@@ -273,6 +290,15 @@ class EntitlementsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `addon_id` but received {addon_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._patch(
             path_template("/api/v1/addons/{addon_id}/entitlements/{id}", addon_id=addon_id, id=id),
             body=maybe_transform(
@@ -309,6 +335,8 @@ class EntitlementsResource(SyncAPIResource):
         self,
         addon_id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -330,6 +358,15 @@ class EntitlementsResource(SyncAPIResource):
         """
         if not addon_id:
             raise ValueError(f"Expected a non-empty value for `addon_id` but received {addon_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get(
             path_template("/api/v1/addons/{addon_id}/entitlements", addon_id=addon_id),
             options=make_request_options(
@@ -343,6 +380,8 @@ class EntitlementsResource(SyncAPIResource):
         id: str,
         *,
         addon_id: str,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -366,6 +405,15 @@ class EntitlementsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `addon_id` but received {addon_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._delete(
             path_template("/api/v1/addons/{addon_id}/entitlements/{id}", addon_id=addon_id, id=id),
             options=make_request_options(
@@ -400,6 +448,8 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         addon_id: str,
         *,
         entitlements: Iterable[entitlement_create_params.Entitlement],
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -423,6 +473,15 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         """
         if not addon_id:
             raise ValueError(f"Expected a non-empty value for `addon_id` but received {addon_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             path_template("/api/v1/addons/{addon_id}/entitlements", addon_id=addon_id),
             body=await async_maybe_transform(
@@ -465,6 +524,8 @@ class AsyncEntitlementsResource(AsyncAPIResource):
             entitlement_update_params.UpdateFeatureEntitlementRequestYearlyResetPeriodConfiguration
         ]
         | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -535,6 +596,8 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         is_custom: bool | Omit = omit,
         is_granted: bool | Omit = omit,
         order: float | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -610,6 +673,8 @@ class AsyncEntitlementsResource(AsyncAPIResource):
             entitlement_update_params.UpdateFeatureEntitlementRequestYearlyResetPeriodConfiguration
         ]
         | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         amount: float | Omit = omit,
         cadence: Literal["MONTH", "YEAR"] | Omit = omit,
         dependency_feature_id: Optional[str] | Omit = omit,
@@ -624,6 +689,15 @@ class AsyncEntitlementsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `addon_id` but received {addon_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._patch(
             path_template("/api/v1/addons/{addon_id}/entitlements/{id}", addon_id=addon_id, id=id),
             body=await async_maybe_transform(
@@ -660,6 +734,8 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         self,
         addon_id: str,
         *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -681,6 +757,15 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         """
         if not addon_id:
             raise ValueError(f"Expected a non-empty value for `addon_id` but received {addon_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._get(
             path_template("/api/v1/addons/{addon_id}/entitlements", addon_id=addon_id),
             options=make_request_options(
@@ -694,6 +779,8 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         id: str,
         *,
         addon_id: str,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -717,6 +804,15 @@ class AsyncEntitlementsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `addon_id` but received {addon_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._delete(
             path_template("/api/v1/addons/{addon_id}/entitlements/{id}", addon_id=addon_id, id=id),
             options=make_request_options(

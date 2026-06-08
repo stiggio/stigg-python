@@ -120,6 +120,10 @@ class SubscriptionProvisionParams(TypedDict, total=False):
     unit_quantity: Annotated[int, PropertyInfo(alias="unitQuantity")]
     """Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed)."""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class Addon(TypedDict, total=False):
     """Addon configuration"""

@@ -21,7 +21,17 @@ class TestFutureUpdate:
     @parametrize
     def test_method_cancel_pending_payment(self, client: Stigg) -> None:
         future_update = client.v1.subscriptions.future_update.cancel_pending_payment(
-            "x",
+            id="x",
+        )
+        assert_matches_type(CancelSubscription, future_update, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_cancel_pending_payment_with_all_params(self, client: Stigg) -> None:
+        future_update = client.v1.subscriptions.future_update.cancel_pending_payment(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CancelSubscription, future_update, path=["response"])
 
@@ -29,7 +39,7 @@ class TestFutureUpdate:
     @parametrize
     def test_raw_response_cancel_pending_payment(self, client: Stigg) -> None:
         response = client.v1.subscriptions.future_update.with_raw_response.cancel_pending_payment(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -41,7 +51,7 @@ class TestFutureUpdate:
     @parametrize
     def test_streaming_response_cancel_pending_payment(self, client: Stigg) -> None:
         with client.v1.subscriptions.future_update.with_streaming_response.cancel_pending_payment(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -56,14 +66,24 @@ class TestFutureUpdate:
     def test_path_params_cancel_pending_payment(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.subscriptions.future_update.with_raw_response.cancel_pending_payment(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_cancel_schedule(self, client: Stigg) -> None:
         future_update = client.v1.subscriptions.future_update.cancel_schedule(
-            "x",
+            id="x",
+        )
+        assert_matches_type(CancelSubscription, future_update, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_cancel_schedule_with_all_params(self, client: Stigg) -> None:
+        future_update = client.v1.subscriptions.future_update.cancel_schedule(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CancelSubscription, future_update, path=["response"])
 
@@ -71,7 +91,7 @@ class TestFutureUpdate:
     @parametrize
     def test_raw_response_cancel_schedule(self, client: Stigg) -> None:
         response = client.v1.subscriptions.future_update.with_raw_response.cancel_schedule(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -83,7 +103,7 @@ class TestFutureUpdate:
     @parametrize
     def test_streaming_response_cancel_schedule(self, client: Stigg) -> None:
         with client.v1.subscriptions.future_update.with_streaming_response.cancel_schedule(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -98,7 +118,7 @@ class TestFutureUpdate:
     def test_path_params_cancel_schedule(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.subscriptions.future_update.with_raw_response.cancel_schedule(
-                "",
+                id="",
             )
 
 
@@ -111,7 +131,17 @@ class TestAsyncFutureUpdate:
     @parametrize
     async def test_method_cancel_pending_payment(self, async_client: AsyncStigg) -> None:
         future_update = await async_client.v1.subscriptions.future_update.cancel_pending_payment(
-            "x",
+            id="x",
+        )
+        assert_matches_type(CancelSubscription, future_update, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_cancel_pending_payment_with_all_params(self, async_client: AsyncStigg) -> None:
+        future_update = await async_client.v1.subscriptions.future_update.cancel_pending_payment(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CancelSubscription, future_update, path=["response"])
 
@@ -119,7 +149,7 @@ class TestAsyncFutureUpdate:
     @parametrize
     async def test_raw_response_cancel_pending_payment(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.subscriptions.future_update.with_raw_response.cancel_pending_payment(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -131,7 +161,7 @@ class TestAsyncFutureUpdate:
     @parametrize
     async def test_streaming_response_cancel_pending_payment(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.subscriptions.future_update.with_streaming_response.cancel_pending_payment(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -146,14 +176,24 @@ class TestAsyncFutureUpdate:
     async def test_path_params_cancel_pending_payment(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.subscriptions.future_update.with_raw_response.cancel_pending_payment(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_cancel_schedule(self, async_client: AsyncStigg) -> None:
         future_update = await async_client.v1.subscriptions.future_update.cancel_schedule(
-            "x",
+            id="x",
+        )
+        assert_matches_type(CancelSubscription, future_update, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_cancel_schedule_with_all_params(self, async_client: AsyncStigg) -> None:
+        future_update = await async_client.v1.subscriptions.future_update.cancel_schedule(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CancelSubscription, future_update, path=["response"])
 
@@ -161,7 +201,7 @@ class TestAsyncFutureUpdate:
     @parametrize
     async def test_raw_response_cancel_schedule(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.subscriptions.future_update.with_raw_response.cancel_schedule(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -173,7 +213,7 @@ class TestAsyncFutureUpdate:
     @parametrize
     async def test_streaming_response_cancel_schedule(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.subscriptions.future_update.with_streaming_response.cancel_schedule(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -188,5 +228,5 @@ class TestAsyncFutureUpdate:
     async def test_path_params_cancel_schedule(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.subscriptions.future_update.with_raw_response.cancel_schedule(
-                "",
+                id="",
             )

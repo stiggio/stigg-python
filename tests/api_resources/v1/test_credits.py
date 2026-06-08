@@ -34,6 +34,17 @@ class TestCredits:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_get_auto_recharge_with_all_params(self, client: Stigg) -> None:
+        credit = client.v1.credits.get_auto_recharge(
+            currency_id="currencyId",
+            customer_id="customerId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
+        )
+        assert_matches_type(CreditGetAutoRechargeResponse, credit, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_get_auto_recharge(self, client: Stigg) -> None:
         response = client.v1.credits.with_raw_response.get_auto_recharge(
             currency_id="currencyId",
@@ -82,6 +93,8 @@ class TestCredits:
             resource_id="resourceId",
             start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             time_range="LAST_DAY",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CreditGetUsageResponse, credit, path=["response"])
 
@@ -129,6 +142,8 @@ class TestCredits:
             currency_id="currencyId",
             limit=1,
             resource_id="resourceId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SyncMyCursorIDPage[CreditListLedgerResponse], credit, path=["response"])
 
@@ -170,6 +185,17 @@ class TestAsyncCredits:
         credit = await async_client.v1.credits.get_auto_recharge(
             currency_id="currencyId",
             customer_id="customerId",
+        )
+        assert_matches_type(CreditGetAutoRechargeResponse, credit, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_get_auto_recharge_with_all_params(self, async_client: AsyncStigg) -> None:
+        credit = await async_client.v1.credits.get_auto_recharge(
+            currency_id="currencyId",
+            customer_id="customerId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CreditGetAutoRechargeResponse, credit, path=["response"])
 
@@ -223,6 +249,8 @@ class TestAsyncCredits:
             resource_id="resourceId",
             start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             time_range="LAST_DAY",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CreditGetUsageResponse, credit, path=["response"])
 
@@ -270,6 +298,8 @@ class TestAsyncCredits:
             currency_id="currencyId",
             limit=1,
             resource_id="resourceId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AsyncMyCursorIDPage[CreditListLedgerResponse], credit, path=["response"])
 

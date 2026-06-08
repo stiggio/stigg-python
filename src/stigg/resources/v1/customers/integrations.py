@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -51,6 +51,8 @@ class IntegrationsResource(SyncAPIResource):
         integration_id: str,
         *,
         id: str,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -74,6 +76,15 @@ class IntegrationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not integration_id:
             raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get(
             path_template("/api/v1/customers/{id}/integrations/{integration_id}", id=id, integration_id=integration_id),
             options=make_request_options(
@@ -88,6 +99,8 @@ class IntegrationsResource(SyncAPIResource):
         *,
         id: str,
         synced_entity_id: Optional[str],
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -114,6 +127,15 @@ class IntegrationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not integration_id:
             raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._patch(
             path_template("/api/v1/customers/{id}/integrations/{integration_id}", id=id, integration_id=integration_id),
             body=maybe_transform(
@@ -149,6 +171,8 @@ class IntegrationsResource(SyncAPIResource):
             ]
         ]
         | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -180,6 +204,15 @@ class IntegrationsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get_api_list(
             path_template("/api/v1/customers/{id}/integrations", id=id),
             page=SyncMyCursorIDPage[IntegrationListResponse],
@@ -221,6 +254,8 @@ class IntegrationsResource(SyncAPIResource):
             "RECEIVED",
             "PREQUEL",
         ],
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -249,6 +284,15 @@ class IntegrationsResource(SyncAPIResource):
         """
         if not path_id:
             raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             path_template("/api/v1/customers/{path_id}/integrations", path_id=path_id),
             body=maybe_transform(
@@ -270,6 +314,8 @@ class IntegrationsResource(SyncAPIResource):
         integration_id: str,
         *,
         id: str,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -293,6 +339,15 @@ class IntegrationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not integration_id:
             raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._delete(
             path_template("/api/v1/customers/{id}/integrations/{integration_id}", id=id, integration_id=integration_id),
             options=make_request_options(
@@ -327,6 +382,8 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         integration_id: str,
         *,
         id: str,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -350,6 +407,15 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not integration_id:
             raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._get(
             path_template("/api/v1/customers/{id}/integrations/{integration_id}", id=id, integration_id=integration_id),
             options=make_request_options(
@@ -364,6 +430,8 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         *,
         id: str,
         synced_entity_id: Optional[str],
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -390,6 +458,15 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not integration_id:
             raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._patch(
             path_template("/api/v1/customers/{id}/integrations/{integration_id}", id=id, integration_id=integration_id),
             body=await async_maybe_transform(
@@ -425,6 +502,8 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             ]
         ]
         | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -456,6 +535,15 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get_api_list(
             path_template("/api/v1/customers/{id}/integrations", id=id),
             page=AsyncMyCursorIDPage[IntegrationListResponse],
@@ -497,6 +585,8 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             "RECEIVED",
             "PREQUEL",
         ],
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -525,6 +615,15 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         """
         if not path_id:
             raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             path_template("/api/v1/customers/{path_id}/integrations", path_id=path_id),
             body=await async_maybe_transform(
@@ -546,6 +645,8 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         integration_id: str,
         *,
         id: str,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -569,6 +670,15 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not integration_id:
             raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._delete(
             path_template("/api/v1/customers/{id}/integrations/{integration_id}", id=id, integration_id=integration_id),
             options=make_request_options(

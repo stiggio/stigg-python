@@ -48,6 +48,8 @@ class TestAddons:
             metadata={"foo": "string"},
             pricing_type="FREE",
             status="DRAFT",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Addon, addon, path=["response"])
 
@@ -85,7 +87,17 @@ class TestAddons:
     @parametrize
     def test_method_retrieve(self, client: Stigg) -> None:
         addon = client.v1.addons.retrieve(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Addon, addon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_with_all_params(self, client: Stigg) -> None:
+        addon = client.v1.addons.retrieve(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Addon, addon, path=["response"])
 
@@ -93,7 +105,7 @@ class TestAddons:
     @parametrize
     def test_raw_response_retrieve(self, client: Stigg) -> None:
         response = client.v1.addons.with_raw_response.retrieve(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -105,7 +117,7 @@ class TestAddons:
     @parametrize
     def test_streaming_response_retrieve(self, client: Stigg) -> None:
         with client.v1.addons.with_streaming_response.retrieve(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -120,7 +132,7 @@ class TestAddons:
     def test_path_params_retrieve(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.addons.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -250,6 +262,8 @@ class TestAddons:
             max_quantity=0,
             metadata={"foo": "string"},
             status="DRAFT",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Addon, addon, path=["response"])
 
@@ -308,6 +322,8 @@ class TestAddons:
             limit=1,
             product_id="productId",
             status=["DRAFT"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SyncMyCursorIDPage[AddonListResponse], addon, path=["response"])
 
@@ -337,7 +353,17 @@ class TestAddons:
     @parametrize
     def test_method_archive(self, client: Stigg) -> None:
         addon = client.v1.addons.archive(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Addon, addon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_archive_with_all_params(self, client: Stigg) -> None:
+        addon = client.v1.addons.archive(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Addon, addon, path=["response"])
 
@@ -345,7 +371,7 @@ class TestAddons:
     @parametrize
     def test_raw_response_archive(self, client: Stigg) -> None:
         response = client.v1.addons.with_raw_response.archive(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -357,7 +383,7 @@ class TestAddons:
     @parametrize
     def test_streaming_response_archive(self, client: Stigg) -> None:
         with client.v1.addons.with_streaming_response.archive(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -372,14 +398,24 @@ class TestAddons:
     def test_path_params_archive(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.addons.with_raw_response.archive(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_draft(self, client: Stigg) -> None:
         addon = client.v1.addons.create_draft(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Addon, addon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_create_draft_with_all_params(self, client: Stigg) -> None:
+        addon = client.v1.addons.create_draft(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Addon, addon, path=["response"])
 
@@ -387,7 +423,7 @@ class TestAddons:
     @parametrize
     def test_raw_response_create_draft(self, client: Stigg) -> None:
         response = client.v1.addons.with_raw_response.create_draft(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -399,7 +435,7 @@ class TestAddons:
     @parametrize
     def test_streaming_response_create_draft(self, client: Stigg) -> None:
         with client.v1.addons.with_streaming_response.create_draft(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -414,7 +450,7 @@ class TestAddons:
     def test_path_params_create_draft(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.addons.with_raw_response.create_draft(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -433,6 +469,8 @@ class TestAddons:
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
 
@@ -481,6 +519,17 @@ class TestAddons:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_publish_with_all_params(self, client: Stigg) -> None:
+        addon = client.v1.addons.publish(
+            id="x",
+            migration_type="NEW_CUSTOMERS",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
+        )
+        assert_matches_type(AddonPublishResponse, addon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_publish(self, client: Stigg) -> None:
         response = client.v1.addons.with_raw_response.publish(
             id="x",
@@ -520,7 +569,17 @@ class TestAddons:
     @parametrize
     def test_method_remove_draft(self, client: Stigg) -> None:
         addon = client.v1.addons.remove_draft(
-            "x",
+            id="x",
+        )
+        assert_matches_type(AddonRemoveDraftResponse, addon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_remove_draft_with_all_params(self, client: Stigg) -> None:
+        addon = client.v1.addons.remove_draft(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AddonRemoveDraftResponse, addon, path=["response"])
 
@@ -528,7 +587,7 @@ class TestAddons:
     @parametrize
     def test_raw_response_remove_draft(self, client: Stigg) -> None:
         response = client.v1.addons.with_raw_response.remove_draft(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -540,7 +599,7 @@ class TestAddons:
     @parametrize
     def test_streaming_response_remove_draft(self, client: Stigg) -> None:
         with client.v1.addons.with_streaming_response.remove_draft(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -555,7 +614,7 @@ class TestAddons:
     def test_path_params_remove_draft(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.addons.with_raw_response.remove_draft(
-                "",
+                id="",
             )
 
 
@@ -587,6 +646,8 @@ class TestAsyncAddons:
             metadata={"foo": "string"},
             pricing_type="FREE",
             status="DRAFT",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Addon, addon, path=["response"])
 
@@ -624,7 +685,17 @@ class TestAsyncAddons:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncStigg) -> None:
         addon = await async_client.v1.addons.retrieve(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Addon, addon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncStigg) -> None:
+        addon = await async_client.v1.addons.retrieve(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Addon, addon, path=["response"])
 
@@ -632,7 +703,7 @@ class TestAsyncAddons:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.addons.with_raw_response.retrieve(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -644,7 +715,7 @@ class TestAsyncAddons:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.addons.with_streaming_response.retrieve(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -659,7 +730,7 @@ class TestAsyncAddons:
     async def test_path_params_retrieve(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.addons.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -789,6 +860,8 @@ class TestAsyncAddons:
             max_quantity=0,
             metadata={"foo": "string"},
             status="DRAFT",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Addon, addon, path=["response"])
 
@@ -847,6 +920,8 @@ class TestAsyncAddons:
             limit=1,
             product_id="productId",
             status=["DRAFT"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AsyncMyCursorIDPage[AddonListResponse], addon, path=["response"])
 
@@ -876,7 +951,17 @@ class TestAsyncAddons:
     @parametrize
     async def test_method_archive(self, async_client: AsyncStigg) -> None:
         addon = await async_client.v1.addons.archive(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Addon, addon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_archive_with_all_params(self, async_client: AsyncStigg) -> None:
+        addon = await async_client.v1.addons.archive(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Addon, addon, path=["response"])
 
@@ -884,7 +969,7 @@ class TestAsyncAddons:
     @parametrize
     async def test_raw_response_archive(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.addons.with_raw_response.archive(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -896,7 +981,7 @@ class TestAsyncAddons:
     @parametrize
     async def test_streaming_response_archive(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.addons.with_streaming_response.archive(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -911,14 +996,24 @@ class TestAsyncAddons:
     async def test_path_params_archive(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.addons.with_raw_response.archive(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_draft(self, async_client: AsyncStigg) -> None:
         addon = await async_client.v1.addons.create_draft(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Addon, addon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_create_draft_with_all_params(self, async_client: AsyncStigg) -> None:
+        addon = await async_client.v1.addons.create_draft(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Addon, addon, path=["response"])
 
@@ -926,7 +1021,7 @@ class TestAsyncAddons:
     @parametrize
     async def test_raw_response_create_draft(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.addons.with_raw_response.create_draft(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -938,7 +1033,7 @@ class TestAsyncAddons:
     @parametrize
     async def test_streaming_response_create_draft(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.addons.with_streaming_response.create_draft(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -953,7 +1048,7 @@ class TestAsyncAddons:
     async def test_path_params_create_draft(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.addons.with_raw_response.create_draft(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -972,6 +1067,8 @@ class TestAsyncAddons:
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AsyncMyCursorIDPage[AddonListChargesResponse], addon, path=["response"])
 
@@ -1020,6 +1117,17 @@ class TestAsyncAddons:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    async def test_method_publish_with_all_params(self, async_client: AsyncStigg) -> None:
+        addon = await async_client.v1.addons.publish(
+            id="x",
+            migration_type="NEW_CUSTOMERS",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
+        )
+        assert_matches_type(AddonPublishResponse, addon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     async def test_raw_response_publish(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.addons.with_raw_response.publish(
             id="x",
@@ -1059,7 +1167,17 @@ class TestAsyncAddons:
     @parametrize
     async def test_method_remove_draft(self, async_client: AsyncStigg) -> None:
         addon = await async_client.v1.addons.remove_draft(
-            "x",
+            id="x",
+        )
+        assert_matches_type(AddonRemoveDraftResponse, addon, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_remove_draft_with_all_params(self, async_client: AsyncStigg) -> None:
+        addon = await async_client.v1.addons.remove_draft(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AddonRemoveDraftResponse, addon, path=["response"])
 
@@ -1067,7 +1185,7 @@ class TestAsyncAddons:
     @parametrize
     async def test_raw_response_remove_draft(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.addons.with_raw_response.remove_draft(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -1079,7 +1197,7 @@ class TestAsyncAddons:
     @parametrize
     async def test_streaming_response_remove_draft(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.addons.with_streaming_response.remove_draft(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1094,5 +1212,5 @@ class TestAsyncAddons:
     async def test_path_params_remove_draft(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.addons.with_raw_response.remove_draft(
-                "",
+                id="",
             )

@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ......_types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ......_utils import path_template, maybe_transform, async_maybe_transform
+from ......_utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -59,6 +59,8 @@ class EntitiesResource(SyncAPIResource):
         entity_id: str,
         *,
         id: str,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -82,6 +84,15 @@ class EntitiesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not entity_id:
             raise ValueError(f"Expected a non-empty value for `entity_id` but received {entity_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get(
             path_template("/api/v1-beta/customers/{id}/entities/{entity_id}", id=id, entity_id=entity_id),
             options=make_request_options(
@@ -99,6 +110,8 @@ class EntitiesResource(SyncAPIResource):
         include_archived: Literal["true", "false"] | Omit = omit,
         limit: int | Omit = omit,
         type_ref_id: str | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,6 +143,15 @@ class EntitiesResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get_api_list(
             path_template("/api/v1-beta/customers/{id}/entities", id=id),
             page=SyncMyCursorIDPage[EntityListResponse],
@@ -157,6 +179,8 @@ class EntitiesResource(SyncAPIResource):
         id: str,
         *,
         ids: SequenceNotStr[str],
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -180,6 +204,15 @@ class EntitiesResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             path_template("/api/v1-beta/customers/{id}/entities/archive", id=id),
             body=maybe_transform({"ids": ids}, entity_archive_params.EntityArchiveParams),
@@ -194,6 +227,8 @@ class EntitiesResource(SyncAPIResource):
         id: str,
         *,
         ids: SequenceNotStr[str],
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -217,6 +252,15 @@ class EntitiesResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             path_template("/api/v1-beta/customers/{id}/entities/unarchive", id=id),
             body=maybe_transform({"ids": ids}, entity_unarchive_params.EntityUnarchiveParams),
@@ -231,6 +275,8 @@ class EntitiesResource(SyncAPIResource):
         id: str,
         *,
         entities: Iterable[entity_upsert_params.Entity],
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -256,6 +302,15 @@ class EntitiesResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._put(
             path_template("/api/v1-beta/customers/{id}/entities", id=id),
             body=maybe_transform({"entities": entities}, entity_upsert_params.EntityUpsertParams),
@@ -291,6 +346,8 @@ class AsyncEntitiesResource(AsyncAPIResource):
         entity_id: str,
         *,
         id: str,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -314,6 +371,15 @@ class AsyncEntitiesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not entity_id:
             raise ValueError(f"Expected a non-empty value for `entity_id` but received {entity_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._get(
             path_template("/api/v1-beta/customers/{id}/entities/{entity_id}", id=id, entity_id=entity_id),
             options=make_request_options(
@@ -331,6 +397,8 @@ class AsyncEntitiesResource(AsyncAPIResource):
         include_archived: Literal["true", "false"] | Omit = omit,
         limit: int | Omit = omit,
         type_ref_id: str | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -362,6 +430,15 @@ class AsyncEntitiesResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get_api_list(
             path_template("/api/v1-beta/customers/{id}/entities", id=id),
             page=AsyncMyCursorIDPage[EntityListResponse],
@@ -389,6 +466,8 @@ class AsyncEntitiesResource(AsyncAPIResource):
         id: str,
         *,
         ids: SequenceNotStr[str],
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -412,6 +491,15 @@ class AsyncEntitiesResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             path_template("/api/v1-beta/customers/{id}/entities/archive", id=id),
             body=await async_maybe_transform({"ids": ids}, entity_archive_params.EntityArchiveParams),
@@ -426,6 +514,8 @@ class AsyncEntitiesResource(AsyncAPIResource):
         id: str,
         *,
         ids: SequenceNotStr[str],
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -449,6 +539,15 @@ class AsyncEntitiesResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             path_template("/api/v1-beta/customers/{id}/entities/unarchive", id=id),
             body=await async_maybe_transform({"ids": ids}, entity_unarchive_params.EntityUnarchiveParams),
@@ -463,6 +562,8 @@ class AsyncEntitiesResource(AsyncAPIResource):
         id: str,
         *,
         entities: Iterable[entity_upsert_params.Entity],
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -488,6 +589,15 @@ class AsyncEntitiesResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._put(
             path_template("/api/v1-beta/customers/{id}/entities", id=id),
             body=await async_maybe_transform({"entities": entities}, entity_upsert_params.EntityUpsertParams),

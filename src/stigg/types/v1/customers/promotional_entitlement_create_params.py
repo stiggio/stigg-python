@@ -24,6 +24,10 @@ class PromotionalEntitlementCreateParams(TypedDict, total=False):
     ]
     """Promotional entitlements to grant"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class PromotionalEntitlementMonthlyResetPeriodConfiguration(TypedDict, total=False):
     """

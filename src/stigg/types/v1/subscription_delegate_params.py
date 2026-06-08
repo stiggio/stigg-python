@@ -16,3 +16,7 @@ class SubscriptionDelegateParams(TypedDict, total=False):
     this subscription. This customer must already exist in your Stigg account and
     have a valid payment method if the subscription requires payment.
     """
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

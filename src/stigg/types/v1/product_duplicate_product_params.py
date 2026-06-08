@@ -19,3 +19,7 @@ class ProductDuplicateProductParams(TypedDict, total=False):
 
     display_name: Annotated[str, PropertyInfo(alias="displayName")]
     """Display name of the product"""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

@@ -18,6 +18,10 @@ class SubscriptionImportParams(TypedDict, total=False):
     integration_id: Annotated[Optional[str], PropertyInfo(alias="integrationId")]
     """Integration ID to use for importing subscriptions"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class SubscriptionAddon(TypedDict, total=False):
     """Addon configuration"""

@@ -876,7 +876,7 @@ class TestStigg:
         respx_mock.get("/api/v1/customers/x").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            client.v1.customers.with_streaming_response.retrieve("x").__enter__()
+            client.v1.customers.with_streaming_response.retrieve(id="x").__enter__()
 
         assert _get_open_connections(client) == 0
 
@@ -886,7 +886,7 @@ class TestStigg:
         respx_mock.get("/api/v1/customers/x").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            client.v1.customers.with_streaming_response.retrieve("x").__enter__()
+            client.v1.customers.with_streaming_response.retrieve(id="x").__enter__()
         assert _get_open_connections(client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -915,7 +915,7 @@ class TestStigg:
 
         respx_mock.get("/api/v1/customers/x").mock(side_effect=retry_handler)
 
-        response = client.v1.customers.with_raw_response.retrieve("x")
+        response = client.v1.customers.with_raw_response.retrieve(id="x")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -938,7 +938,7 @@ class TestStigg:
         respx_mock.get("/api/v1/customers/x").mock(side_effect=retry_handler)
 
         response = client.v1.customers.with_raw_response.retrieve(
-            "x", extra_headers={"x-stainless-retry-count": Omit()}
+            id="x", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -962,7 +962,9 @@ class TestStigg:
 
         respx_mock.get("/api/v1/customers/x").mock(side_effect=retry_handler)
 
-        response = client.v1.customers.with_raw_response.retrieve("x", extra_headers={"x-stainless-retry-count": "42"})
+        response = client.v1.customers.with_raw_response.retrieve(
+            id="x", extra_headers={"x-stainless-retry-count": "42"}
+        )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
@@ -1804,7 +1806,7 @@ class TestAsyncStigg:
         respx_mock.get("/api/v1/customers/x").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await async_client.v1.customers.with_streaming_response.retrieve("x").__aenter__()
+            await async_client.v1.customers.with_streaming_response.retrieve(id="x").__aenter__()
 
         assert _get_open_connections(async_client) == 0
 
@@ -1814,7 +1816,7 @@ class TestAsyncStigg:
         respx_mock.get("/api/v1/customers/x").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await async_client.v1.customers.with_streaming_response.retrieve("x").__aenter__()
+            await async_client.v1.customers.with_streaming_response.retrieve(id="x").__aenter__()
         assert _get_open_connections(async_client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -1843,7 +1845,7 @@ class TestAsyncStigg:
 
         respx_mock.get("/api/v1/customers/x").mock(side_effect=retry_handler)
 
-        response = await client.v1.customers.with_raw_response.retrieve("x")
+        response = await client.v1.customers.with_raw_response.retrieve(id="x")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1868,7 +1870,7 @@ class TestAsyncStigg:
         respx_mock.get("/api/v1/customers/x").mock(side_effect=retry_handler)
 
         response = await client.v1.customers.with_raw_response.retrieve(
-            "x", extra_headers={"x-stainless-retry-count": Omit()}
+            id="x", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -1893,7 +1895,7 @@ class TestAsyncStigg:
         respx_mock.get("/api/v1/customers/x").mock(side_effect=retry_handler)
 
         response = await client.v1.customers.with_raw_response.retrieve(
-            "x", extra_headers={"x-stainless-retry-count": "42"}
+            id="x", extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"

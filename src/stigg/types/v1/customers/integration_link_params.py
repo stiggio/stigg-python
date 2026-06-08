@@ -36,3 +36,7 @@ class IntegrationLinkParams(TypedDict, total=False):
         ]
     ]
     """The vendor identifier of integration"""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

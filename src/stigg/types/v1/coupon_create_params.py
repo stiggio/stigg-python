@@ -32,6 +32,10 @@ class CouponCreateParams(TypedDict, total=False):
     percent_off: Required[Annotated[Optional[float], PropertyInfo(alias="percentOff")]]
     """Percentage discount off the original price"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class AmountsOff(TypedDict, total=False):
     """Monetary amount with currency"""

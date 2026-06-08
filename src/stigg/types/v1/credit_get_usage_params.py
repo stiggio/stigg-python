@@ -53,3 +53,7 @@ class CreditGetUsageParams(TypedDict, total=False):
 
     Defaults to LAST_MONTH
     """
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

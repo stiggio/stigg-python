@@ -26,7 +26,17 @@ class TestFeatures:
     @parametrize
     def test_method_archive_feature(self, client: Stigg) -> None:
         feature = client.v1.features.archive_feature(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Feature, feature, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_archive_feature_with_all_params(self, client: Stigg) -> None:
+        feature = client.v1.features.archive_feature(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Feature, feature, path=["response"])
 
@@ -34,7 +44,7 @@ class TestFeatures:
     @parametrize
     def test_raw_response_archive_feature(self, client: Stigg) -> None:
         response = client.v1.features.with_raw_response.archive_feature(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -46,7 +56,7 @@ class TestFeatures:
     @parametrize
     def test_streaming_response_archive_feature(self, client: Stigg) -> None:
         with client.v1.features.with_streaming_response.archive_feature(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,7 +71,7 @@ class TestFeatures:
     def test_path_params_archive_feature(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.features.with_raw_response.archive_feature(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -99,6 +109,8 @@ class TestFeatures:
                 "feature_units_plural": "featureUnitsPlural",
                 "round": "UP",
             },
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Feature, feature, path=["response"])
 
@@ -155,6 +167,8 @@ class TestFeatures:
             limit=1,
             meter_type=["None"],
             status=["NEW"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SyncMyCursorIDPage[FeatureListFeaturesResponse], feature, path=["response"])
 
@@ -184,7 +198,17 @@ class TestFeatures:
     @parametrize
     def test_method_retrieve_feature(self, client: Stigg) -> None:
         feature = client.v1.features.retrieve_feature(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Feature, feature, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_feature_with_all_params(self, client: Stigg) -> None:
+        feature = client.v1.features.retrieve_feature(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Feature, feature, path=["response"])
 
@@ -192,7 +216,7 @@ class TestFeatures:
     @parametrize
     def test_raw_response_retrieve_feature(self, client: Stigg) -> None:
         response = client.v1.features.with_raw_response.retrieve_feature(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -204,7 +228,7 @@ class TestFeatures:
     @parametrize
     def test_streaming_response_retrieve_feature(self, client: Stigg) -> None:
         with client.v1.features.with_streaming_response.retrieve_feature(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -219,14 +243,24 @@ class TestFeatures:
     def test_path_params_retrieve_feature(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.features.with_raw_response.retrieve_feature(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_unarchive_feature(self, client: Stigg) -> None:
         feature = client.v1.features.unarchive_feature(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Feature, feature, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_unarchive_feature_with_all_params(self, client: Stigg) -> None:
+        feature = client.v1.features.unarchive_feature(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Feature, feature, path=["response"])
 
@@ -234,7 +268,7 @@ class TestFeatures:
     @parametrize
     def test_raw_response_unarchive_feature(self, client: Stigg) -> None:
         response = client.v1.features.with_raw_response.unarchive_feature(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -246,7 +280,7 @@ class TestFeatures:
     @parametrize
     def test_streaming_response_unarchive_feature(self, client: Stigg) -> None:
         with client.v1.features.with_streaming_response.unarchive_feature(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -261,7 +295,7 @@ class TestFeatures:
     def test_path_params_unarchive_feature(self, client: Stigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.v1.features.with_raw_response.unarchive_feature(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -312,6 +346,8 @@ class TestFeatures:
                 "feature_units_plural": "featureUnitsPlural",
                 "round": "UP",
             },
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Feature, feature, path=["response"])
 
@@ -359,7 +395,17 @@ class TestAsyncFeatures:
     @parametrize
     async def test_method_archive_feature(self, async_client: AsyncStigg) -> None:
         feature = await async_client.v1.features.archive_feature(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Feature, feature, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_archive_feature_with_all_params(self, async_client: AsyncStigg) -> None:
+        feature = await async_client.v1.features.archive_feature(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Feature, feature, path=["response"])
 
@@ -367,7 +413,7 @@ class TestAsyncFeatures:
     @parametrize
     async def test_raw_response_archive_feature(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.features.with_raw_response.archive_feature(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -379,7 +425,7 @@ class TestAsyncFeatures:
     @parametrize
     async def test_streaming_response_archive_feature(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.features.with_streaming_response.archive_feature(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -394,7 +440,7 @@ class TestAsyncFeatures:
     async def test_path_params_archive_feature(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.features.with_raw_response.archive_feature(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -432,6 +478,8 @@ class TestAsyncFeatures:
                 "feature_units_plural": "featureUnitsPlural",
                 "round": "UP",
             },
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Feature, feature, path=["response"])
 
@@ -488,6 +536,8 @@ class TestAsyncFeatures:
             limit=1,
             meter_type=["None"],
             status=["NEW"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AsyncMyCursorIDPage[FeatureListFeaturesResponse], feature, path=["response"])
 
@@ -517,7 +567,17 @@ class TestAsyncFeatures:
     @parametrize
     async def test_method_retrieve_feature(self, async_client: AsyncStigg) -> None:
         feature = await async_client.v1.features.retrieve_feature(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Feature, feature, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_feature_with_all_params(self, async_client: AsyncStigg) -> None:
+        feature = await async_client.v1.features.retrieve_feature(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Feature, feature, path=["response"])
 
@@ -525,7 +585,7 @@ class TestAsyncFeatures:
     @parametrize
     async def test_raw_response_retrieve_feature(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.features.with_raw_response.retrieve_feature(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -537,7 +597,7 @@ class TestAsyncFeatures:
     @parametrize
     async def test_streaming_response_retrieve_feature(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.features.with_streaming_response.retrieve_feature(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -552,14 +612,24 @@ class TestAsyncFeatures:
     async def test_path_params_retrieve_feature(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.features.with_raw_response.retrieve_feature(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_unarchive_feature(self, async_client: AsyncStigg) -> None:
         feature = await async_client.v1.features.unarchive_feature(
-            "x",
+            id="x",
+        )
+        assert_matches_type(Feature, feature, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_unarchive_feature_with_all_params(self, async_client: AsyncStigg) -> None:
+        feature = await async_client.v1.features.unarchive_feature(
+            id="x",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Feature, feature, path=["response"])
 
@@ -567,7 +637,7 @@ class TestAsyncFeatures:
     @parametrize
     async def test_raw_response_unarchive_feature(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.features.with_raw_response.unarchive_feature(
-            "x",
+            id="x",
         )
 
         assert response.is_closed is True
@@ -579,7 +649,7 @@ class TestAsyncFeatures:
     @parametrize
     async def test_streaming_response_unarchive_feature(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.features.with_streaming_response.unarchive_feature(
-            "x",
+            id="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -594,7 +664,7 @@ class TestAsyncFeatures:
     async def test_path_params_unarchive_feature(self, async_client: AsyncStigg) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.v1.features.with_raw_response.unarchive_feature(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -645,6 +715,8 @@ class TestAsyncFeatures:
                 "feature_units_plural": "featureUnitsPlural",
                 "round": "UP",
             },
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(Feature, feature, path=["response"])
 

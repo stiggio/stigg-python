@@ -12,3 +12,7 @@ __all__ = ["SubscriptionTransferParams"]
 class SubscriptionTransferParams(TypedDict, total=False):
     destination_resource_id: Required[Annotated[str, PropertyInfo(alias="destinationResourceId")]]
     """Resource ID to transfer the subscription to"""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

@@ -32,6 +32,17 @@ class TestIntegrations:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_retrieve_with_all_params(self, client: Stigg) -> None:
+        integration = client.v1.customers.integrations.retrieve(
+            integration_id="integrationId",
+            id="id",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
+        )
+        assert_matches_type(CustomerIntegrationResponse, integration, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_retrieve(self, client: Stigg) -> None:
         response = client.v1.customers.integrations.with_raw_response.retrieve(
             integration_id="integrationId",
@@ -80,6 +91,18 @@ class TestIntegrations:
             integration_id="integrationId",
             id="id",
             synced_entity_id="syncedEntityId",
+        )
+        assert_matches_type(CustomerIntegrationResponse, integration, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_update_with_all_params(self, client: Stigg) -> None:
+        integration = client.v1.customers.integrations.update(
+            integration_id="integrationId",
+            id="id",
+            synced_entity_id="syncedEntityId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerIntegrationResponse, integration, path=["response"])
 
@@ -147,6 +170,8 @@ class TestIntegrations:
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
             vendor_identifier=["AUTH0"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(SyncMyCursorIDPage[IntegrationListResponse], integration, path=["response"])
 
@@ -192,6 +217,19 @@ class TestIntegrations:
             body_id="id",
             synced_entity_id="syncedEntityId",
             vendor_identifier="AUTH0",
+        )
+        assert_matches_type(CustomerIntegrationResponse, integration, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_link_with_all_params(self, client: Stigg) -> None:
+        integration = client.v1.customers.integrations.link(
+            path_id="x",
+            body_id="id",
+            synced_entity_id="syncedEntityId",
+            vendor_identifier="AUTH0",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerIntegrationResponse, integration, path=["response"])
 
@@ -244,6 +282,17 @@ class TestIntegrations:
         integration = client.v1.customers.integrations.unlink(
             integration_id="integrationId",
             id="id",
+        )
+        assert_matches_type(CustomerIntegrationResponse, integration, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_unlink_with_all_params(self, client: Stigg) -> None:
+        integration = client.v1.customers.integrations.unlink(
+            integration_id="integrationId",
+            id="id",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerIntegrationResponse, integration, path=["response"])
 
@@ -307,6 +356,17 @@ class TestAsyncIntegrations:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncStigg) -> None:
+        integration = await async_client.v1.customers.integrations.retrieve(
+            integration_id="integrationId",
+            id="id",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
+        )
+        assert_matches_type(CustomerIntegrationResponse, integration, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.customers.integrations.with_raw_response.retrieve(
             integration_id="integrationId",
@@ -355,6 +415,18 @@ class TestAsyncIntegrations:
             integration_id="integrationId",
             id="id",
             synced_entity_id="syncedEntityId",
+        )
+        assert_matches_type(CustomerIntegrationResponse, integration, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncStigg) -> None:
+        integration = await async_client.v1.customers.integrations.update(
+            integration_id="integrationId",
+            id="id",
+            synced_entity_id="syncedEntityId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerIntegrationResponse, integration, path=["response"])
 
@@ -422,6 +494,8 @@ class TestAsyncIntegrations:
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
             vendor_identifier=["AUTH0"],
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(AsyncMyCursorIDPage[IntegrationListResponse], integration, path=["response"])
 
@@ -467,6 +541,19 @@ class TestAsyncIntegrations:
             body_id="id",
             synced_entity_id="syncedEntityId",
             vendor_identifier="AUTH0",
+        )
+        assert_matches_type(CustomerIntegrationResponse, integration, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_link_with_all_params(self, async_client: AsyncStigg) -> None:
+        integration = await async_client.v1.customers.integrations.link(
+            path_id="x",
+            body_id="id",
+            synced_entity_id="syncedEntityId",
+            vendor_identifier="AUTH0",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerIntegrationResponse, integration, path=["response"])
 
@@ -519,6 +606,17 @@ class TestAsyncIntegrations:
         integration = await async_client.v1.customers.integrations.unlink(
             integration_id="integrationId",
             id="id",
+        )
+        assert_matches_type(CustomerIntegrationResponse, integration, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_unlink_with_all_params(self, async_client: AsyncStigg) -> None:
+        integration = await async_client.v1.customers.integrations.unlink(
+            integration_id="integrationId",
+            id="id",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(CustomerIntegrationResponse, integration, path=["response"])
 

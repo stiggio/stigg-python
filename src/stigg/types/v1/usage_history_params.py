@@ -25,3 +25,7 @@ class UsageHistoryParams(TypedDict, total=False):
 
     resource_id: Annotated[Optional[str], PropertyInfo(alias="resourceId")]
     """Resource id"""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]

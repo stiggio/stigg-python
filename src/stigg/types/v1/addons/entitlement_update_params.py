@@ -80,6 +80,10 @@ class UpdateFeatureEntitlementRequest(TypedDict, total=False):
     ]
     """Configuration for yearly reset period"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class UpdateFeatureEntitlementRequestMonthlyResetPeriodConfiguration(TypedDict, total=False):
     """Configuration for monthly reset period"""
@@ -159,6 +163,10 @@ class UpdateCreditEntitlementRequest(TypedDict, total=False):
 
     order: float
     """Display order of the entitlement"""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
 
 
 EntitlementUpdateParams: TypeAlias = Union[UpdateFeatureEntitlementRequest, UpdateCreditEntitlementRequest]

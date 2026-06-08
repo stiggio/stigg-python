@@ -73,6 +73,10 @@ class SubscriptionUpdateParams(TypedDict, total=False):
     trial_end_date: Annotated[Union[str, datetime], PropertyInfo(alias="trialEndDate", format="iso8601")]
     """Subscription trial end date"""
 
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
+
 
 class Addon(TypedDict, total=False):
     """Addon configuration"""
