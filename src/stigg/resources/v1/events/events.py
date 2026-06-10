@@ -8,14 +8,6 @@ import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, strip_not_given, async_maybe_transform
-from .beta.beta import (
-    BetaResource,
-    AsyncBetaResource,
-    BetaResourceWithRawResponse,
-    AsyncBetaResourceWithRawResponse,
-    BetaResourceWithStreamingResponse,
-    AsyncBetaResourceWithStreamingResponse,
-)
 from ...._compat import cached_property
 from ....types.v1 import event_report_params
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -41,10 +33,6 @@ __all__ = ["EventsResource", "AsyncEventsResource"]
 
 class EventsResource(SyncAPIResource):
     """Operations related to usage & metering"""
-
-    @cached_property
-    def beta(self) -> BetaResource:
-        return BetaResource(self._client)
 
     @cached_property
     def data_export(self) -> DataExportResource:
@@ -119,10 +107,6 @@ class EventsResource(SyncAPIResource):
 
 class AsyncEventsResource(AsyncAPIResource):
     """Operations related to usage & metering"""
-
-    @cached_property
-    def beta(self) -> AsyncBetaResource:
-        return AsyncBetaResource(self._client)
 
     @cached_property
     def data_export(self) -> AsyncDataExportResource:
@@ -204,10 +188,6 @@ class EventsResourceWithRawResponse:
         )
 
     @cached_property
-    def beta(self) -> BetaResourceWithRawResponse:
-        return BetaResourceWithRawResponse(self._events.beta)
-
-    @cached_property
     def data_export(self) -> DataExportResourceWithRawResponse:
         return DataExportResourceWithRawResponse(self._events.data_export)
 
@@ -219,10 +199,6 @@ class AsyncEventsResourceWithRawResponse:
         self.report = async_to_raw_response_wrapper(
             events.report,
         )
-
-    @cached_property
-    def beta(self) -> AsyncBetaResourceWithRawResponse:
-        return AsyncBetaResourceWithRawResponse(self._events.beta)
 
     @cached_property
     def data_export(self) -> AsyncDataExportResourceWithRawResponse:
@@ -238,10 +214,6 @@ class EventsResourceWithStreamingResponse:
         )
 
     @cached_property
-    def beta(self) -> BetaResourceWithStreamingResponse:
-        return BetaResourceWithStreamingResponse(self._events.beta)
-
-    @cached_property
     def data_export(self) -> DataExportResourceWithStreamingResponse:
         return DataExportResourceWithStreamingResponse(self._events.data_export)
 
@@ -253,10 +225,6 @@ class AsyncEventsResourceWithStreamingResponse:
         self.report = async_to_streamed_response_wrapper(
             events.report,
         )
-
-    @cached_property
-    def beta(self) -> AsyncBetaResourceWithStreamingResponse:
-        return AsyncBetaResourceWithStreamingResponse(self._events.beta)
 
     @cached_property
     def data_export(self) -> AsyncDataExportResourceWithStreamingResponse:

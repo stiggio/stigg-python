@@ -4,14 +4,20 @@ from __future__ import annotations
 
 from typing_extensions import Annotated, TypedDict
 
-from ...._utils import PropertyInfo
+from ..._utils import PropertyInfo
 
-__all__ = ["DataExportTriggerSyncParams"]
+__all__ = ["EntityTypeListParams"]
 
 
-class DataExportTriggerSyncParams(TypedDict, total=False):
-    destination_id: Annotated[str, PropertyInfo(alias="destinationId")]
-    """Provider destination ID to sync. Omit to sync all destinations."""
+class EntityTypeListParams(TypedDict, total=False):
+    after: str
+    """Return items that come after this cursor"""
+
+    before: str
+    """Return items that come before this cursor"""
+
+    limit: int
+    """Maximum number of items to return"""
 
     x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
 

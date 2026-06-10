@@ -15,3 +15,7 @@ class DataExportMintScopedTokenParams(TypedDict, total=False):
 
     destination_type: Annotated[str, PropertyInfo(alias="destinationType")]
     """Pin the token to a specific warehouse connect flow"""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
