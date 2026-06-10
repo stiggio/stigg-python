@@ -34,6 +34,8 @@ class TestDataExport:
         data_export = client.v1.events.data_export.mint_scoped_token(
             application_origin="x",
             destination_type="destinationType",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(DataExportMintScopedTokenResponse, data_export, path=["response"])
 
@@ -74,6 +76,8 @@ class TestDataExport:
     def test_method_trigger_sync_with_all_params(self, client: Stigg) -> None:
         data_export = client.v1.events.data_export.trigger_sync(
             destination_id="destinationId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(DataExportTriggerSyncResponse, data_export, path=["response"])
 
@@ -119,6 +123,8 @@ class TestAsyncDataExport:
         data_export = await async_client.v1.events.data_export.mint_scoped_token(
             application_origin="x",
             destination_type="destinationType",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(DataExportMintScopedTokenResponse, data_export, path=["response"])
 
@@ -159,6 +165,8 @@ class TestAsyncDataExport:
     async def test_method_trigger_sync_with_all_params(self, async_client: AsyncStigg) -> None:
         data_export = await async_client.v1.events.data_export.trigger_sync(
             destination_id="destinationId",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
         )
         assert_matches_type(DataExportTriggerSyncResponse, data_export, path=["response"])
 

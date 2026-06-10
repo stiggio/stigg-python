@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ....._compat import cached_property
 from .destinations import (
     DestinationsResource,
@@ -59,6 +59,8 @@ class DataExportResource(SyncAPIResource):
         *,
         application_origin: str,
         destination_type: str | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -84,6 +86,15 @@ class DataExportResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             "/api/v1/data-export/scoped-token",
             body=maybe_transform(
@@ -103,6 +114,8 @@ class DataExportResource(SyncAPIResource):
         self,
         *,
         destination_id: str | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -125,6 +138,15 @@ class DataExportResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             "/api/v1/data-export/sync",
             body=maybe_transform(
@@ -166,6 +188,8 @@ class AsyncDataExportResource(AsyncAPIResource):
         *,
         application_origin: str,
         destination_type: str | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -191,6 +215,15 @@ class AsyncDataExportResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             "/api/v1/data-export/scoped-token",
             body=await async_maybe_transform(
@@ -210,6 +243,8 @@ class AsyncDataExportResource(AsyncAPIResource):
         self,
         *,
         destination_id: str | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -232,6 +267,15 @@ class AsyncDataExportResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             "/api/v1/data-export/sync",
             body=await async_maybe_transform(

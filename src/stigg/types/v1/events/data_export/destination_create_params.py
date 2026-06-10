@@ -15,3 +15,7 @@ class DestinationCreateParams(TypedDict, total=False):
 
     destination_type: Required[Annotated[str, PropertyInfo(alias="destinationType")]]
     """The destination type (e.g. snowflake, bigquery)"""
+
+    x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
+
+    x_environment_id: Annotated[str, PropertyInfo(alias="X-ENVIRONMENT-ID")]
