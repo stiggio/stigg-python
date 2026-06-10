@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.19 (2026-06-10)
+
+Full Changelog: [v0.1.0-beta.18...v0.1.0-beta.19](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.18...v0.1.0-beta.19)
+
+### Features
+
+* **api:** add parent/scope fields, replace capability_id in customer assignments ([a98104f](https://github.com/stiggio/stigg-python/commit/a98104fa24bd66c8cf31e06c3027cdfb24227ba0))
+
 ## 0.1.0-beta.18 (2026-06-08)
 
 Full Changelog: [v0.1.0-beta.17...v0.1.0-beta.18](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.17...v0.1.0-beta.18)
