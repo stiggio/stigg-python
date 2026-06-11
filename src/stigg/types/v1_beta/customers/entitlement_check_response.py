@@ -35,6 +35,14 @@ class DataFeatureChain(BaseModel):
     is_granted: bool = FieldInfo(alias="isGranted")
     """Whether this node alone permits the requested usage."""
 
+    scope_entity_ids: List[str] = FieldInfo(alias="scopeEntityIds")
+    """External ids of the entities this budget is scoped to.
+
+    Empty (`[]`) is the node-wide budget; a non-empty set is the dimension-scoped
+    budget that matched this request — use it to tell apart multiple budgets on the
+    same entity.
+    """
+
     usage_limit: Optional[float] = FieldInfo(alias="usageLimit", default=None)
     """Hard usage limit for this node; null when no assignment is configured."""
 
@@ -157,6 +165,14 @@ class DataCreditChain(BaseModel):
 
     is_granted: bool = FieldInfo(alias="isGranted")
     """Whether this node alone permits the requested usage."""
+
+    scope_entity_ids: List[str] = FieldInfo(alias="scopeEntityIds")
+    """External ids of the entities this budget is scoped to.
+
+    Empty (`[]`) is the node-wide budget; a non-empty set is the dimension-scoped
+    budget that matched this request — use it to tell apart multiple budgets on the
+    same entity.
+    """
 
     usage_limit: Optional[float] = FieldInfo(alias="usageLimit", default=None)
     """Hard usage limit for this node; null when no assignment is configured."""
