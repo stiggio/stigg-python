@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.20 (2026-06-11)
+
+Full Changelog: [v0.1.0-beta.19...v0.1.0-beta.20](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.19...v0.1.0-beta.20)
+
+### Features
+
+* **api:** add scope_entity_ids field to entitlement check response ([13c0877](https://github.com/stiggio/stigg-python/commit/13c08771374295828bea912e7ea5f800a0e15c39))
+
 ## 0.1.0-beta.19 (2026-06-10)
 
 Full Changelog: [v0.1.0-beta.18...v0.1.0-beta.19](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.18...v0.1.0-beta.19)
