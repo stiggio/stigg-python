@@ -189,6 +189,20 @@ Methods:
 - <code title="post /api/v1/data-export/destinations">client.v1.events.data_export.destinations.<a href="./src/stigg/resources/v1/events/data_export/destinations.py">create</a>(\*\*<a href="src/stigg/types/v1/events/data_export/destination_create_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/data_export/destination_create_response.py">DestinationCreateResponse</a></code>
 - <code title="delete /api/v1/data-export/destinations/{destinationId}">client.v1.events.data_export.destinations.<a href="./src/stigg/resources/v1/events/data_export/destinations.py">delete</a>(destination_id) -> <a href="./src/stigg/types/v1/events/data_export/destination_delete_response.py">DestinationDeleteResponse</a></code>
 
+### Beta
+
+#### Customers
+
+Types:
+
+```python
+from stigg.types.v1.events.beta import CustomerRetrieveGovernanceResponse
+```
+
+Methods:
+
+- <code title="get /api/v1-beta/customers/{id}/governance">client.v1.events.beta.customers.<a href="./src/stigg/resources/v1/events/beta/customers.py">retrieve_governance</a>(id, \*\*<a href="src/stigg/types/v1/events/beta/customer_retrieve_governance_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/beta/customer_retrieve_governance_response.py">CustomerRetrieveGovernanceResponse</a></code>
+
 ## Credits
 
 Types:
