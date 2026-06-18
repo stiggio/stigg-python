@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.21 (2026-06-18)
+
+Full Changelog: [v0.1.0-beta.20...v0.1.0-beta.21](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.20...v0.1.0-beta.21)
+
+### Features
+
+* **api:** add retrieve_governance method to events.beta.customers ([b460d21](https://github.com/stiggio/stigg-python/commit/b460d21395f8af27061f6b8b5c91120e1c8152ef))
+
 ## 0.1.0-beta.20 (2026-06-11)
 
 Full Changelog: [v0.1.0-beta.19...v0.1.0-beta.20](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.19...v0.1.0-beta.20)
