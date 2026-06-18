@@ -51,5 +51,5 @@ class Assignment(TypedDict, total=False):
 
     scope_entity_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="scopeEntityIds")]
 
-    usage_limit: Annotated[float, PropertyInfo(alias="usageLimit")]
+    usage_limit: Annotated[Optional[float], PropertyInfo(alias="usageLimit")]
     """Maximum usage allowed within one cadence window (required on create)"""
