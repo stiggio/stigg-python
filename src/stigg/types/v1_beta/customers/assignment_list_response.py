@@ -43,7 +43,7 @@ class AssignmentListResponse(BaseModel):
     updated_at: datetime = FieldInfo(alias="updatedAt")
     """Timestamp of when the record was last updated"""
 
-    usage_limit: float = FieldInfo(alias="usageLimit")
+    usage_limit: Optional[float] = FieldInfo(alias="usageLimit", default=None)
     """Maximum usage allowed within one cadence window"""
 
     currency_id: Optional[str] = FieldInfo(alias="currencyId", default=None)
