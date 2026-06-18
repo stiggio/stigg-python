@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.22 (2026-06-18)
+
+Full Changelog: [v0.1.0-beta.21...v0.1.0-beta.22](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.21...v0.1.0-beta.22)
+
+### Bug Fixes
+
+* **types:** make usage_limit optional in customers assignment types ([f3b8d67](https://github.com/stiggio/stigg-python/commit/f3b8d67026bb15b2ded9ee42bca548c8f7d00a53))
+
 ## 0.1.0-beta.21 (2026-06-18)
 
 Full Changelog: [v0.1.0-beta.20...v0.1.0-beta.21](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.20...v0.1.0-beta.21)
