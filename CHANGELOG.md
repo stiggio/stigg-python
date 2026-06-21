@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.23 (2026-06-21)
+
+Full Changelog: [v0.1.0-beta.22...v0.1.0-beta.23](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.22...v0.1.0-beta.23)
+
+### Bug Fixes
+
+* **types:** change cadence from Literal to str in customers assignments ([87cc853](https://github.com/stiggio/stigg-python/commit/87cc8535aae55079ac61cc6e6e35a0904dc4ac08))
+
 ## 0.1.0-beta.22 (2026-06-18)
 
 Full Changelog: [v0.1.0-beta.21...v0.1.0-beta.22](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.21...v0.1.0-beta.22)
