@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.24 (2026-06-21)
+
+Full Changelog: [v0.1.0-beta.23...v0.1.0-beta.24](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.23...v0.1.0-beta.24)
+
+### Features
+
+* **api:** add list_models method, enabled_models param/field to data_export ([5fbd0c9](https://github.com/stiggio/stigg-python/commit/5fbd0c9b2afdce149ee4da8481ec2a8146740309))
+
 ## 0.1.0-beta.23 (2026-06-21)
 
 Full Changelog: [v0.1.0-beta.22...v0.1.0-beta.23](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.22...v0.1.0-beta.23)
