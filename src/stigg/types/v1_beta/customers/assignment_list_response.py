@@ -2,7 +2,6 @@
 
 from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
@@ -20,8 +19,11 @@ class AssignmentListResponse(BaseModel):
     id: str
     """Synthetic UUID identifier — also the cursor anchor for paginated lists"""
 
-    cadence: Literal["MONTH"]
-    """Usage-reset cadence. Currently only `MONTH` is supported"""
+    cadence: str
+    """Usage-reset cadence as an ISO-8601 single-unit duration, e.g.
+
+    `P1M`, `P30D`, `PT1M`.
+    """
 
     created_at: datetime = FieldInfo(alias="createdAt")
     """Timestamp of when the record was created"""

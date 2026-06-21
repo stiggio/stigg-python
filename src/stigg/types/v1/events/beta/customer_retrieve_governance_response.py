@@ -2,7 +2,6 @@
 
 from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
@@ -16,8 +15,11 @@ class Data(BaseModel):
     A node of the governance hierarchy tree with its usage configuration (limit, cadence, scope) and current usage. Usage is read from a periodically-refreshed read model and may lag the live counter by a short interval; it never gates access.
     """
 
-    cadence: Optional[Literal["MONTH"]] = None
-    """Usage-reset cadence. Currently only `MONTH` is supported."""
+    cadence: Optional[str] = None
+    """Usage-reset cadence as an ISO-8601 single-unit duration, e.g.
+
+    `P1M`, `P30D`, `PT1M`; `null` when the node has no usage configuration.
+    """
 
     current_usage: Optional[float] = FieldInfo(alias="currentUsage", default=None)
     """
