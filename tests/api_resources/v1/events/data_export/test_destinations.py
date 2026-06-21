@@ -35,6 +35,7 @@ class TestDestinations:
         destination = client.v1.events.data_export.destinations.create(
             destination_id="x",
             destination_type="x",
+            enabled_models=["x"],
             x_account_id="X-ACCOUNT-ID",
             x_environment_id="X-ENVIRONMENT-ID",
         )
@@ -141,6 +142,7 @@ class TestAsyncDestinations:
         destination = await async_client.v1.events.data_export.destinations.create(
             destination_id="x",
             destination_type="x",
+            enabled_models=["x"],
             x_account_id="X-ACCOUNT-ID",
             x_environment_id="X-ENVIRONMENT-ID",
         )

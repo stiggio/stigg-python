@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -47,6 +47,7 @@ class DestinationsResource(SyncAPIResource):
         *,
         destination_id: str,
         destination_type: str,
+        enabled_models: SequenceNotStr[str] | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -89,6 +90,7 @@ class DestinationsResource(SyncAPIResource):
                 {
                     "destination_id": destination_id,
                     "destination_type": destination_type,
+                    "enabled_models": enabled_models,
                 },
                 destination_create_params.DestinationCreateParams,
             ),
@@ -169,6 +171,7 @@ class AsyncDestinationsResource(AsyncAPIResource):
         *,
         destination_id: str,
         destination_type: str,
+        enabled_models: SequenceNotStr[str] | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -211,6 +214,7 @@ class AsyncDestinationsResource(AsyncAPIResource):
                 {
                     "destination_id": destination_id,
                     "destination_type": destination_type,
+                    "enabled_models": enabled_models,
                 },
                 destination_create_params.DestinationCreateParams,
             ),

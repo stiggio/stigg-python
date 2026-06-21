@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Required, Annotated, TypedDict
 
+from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
 __all__ = ["DataExportMintScopedTokenParams"]
@@ -15,6 +16,8 @@ class DataExportMintScopedTokenParams(TypedDict, total=False):
 
     destination_type: Annotated[str, PropertyInfo(alias="destinationType")]
     """Pin the token to a specific warehouse connect flow"""
+
+    enabled_models: Annotated[SequenceNotStr[str], PropertyInfo(alias="enabledModels")]
 
     x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
 

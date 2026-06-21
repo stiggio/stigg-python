@@ -46,6 +46,8 @@ class DataDestination(BaseModel):
     connection_status: Optional[str] = FieldInfo(alias="connectionStatus", default=None)
     """Connection status of the destination (connected, failed)"""
 
+    enabled_models: Optional[List[str]] = FieldInfo(alias="enabledModels", default=None)
+
     last_sync_status: Optional[DataDestinationLastSyncStatus] = FieldInfo(alias="lastSyncStatus", default=None)
     """Latest sync snapshot for the destination, refreshed by the provider webhook"""
 
