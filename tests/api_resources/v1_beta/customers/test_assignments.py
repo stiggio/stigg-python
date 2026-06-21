@@ -95,7 +95,7 @@ class TestAssignments:
             assignments=[
                 {
                     "entity_id": "workspace-001",
-                    "cadence": "MONTH",
+                    "cadence": "P1M",
                     "currency_id": "currencyId",
                     "feature_id": "compute-minutes",
                     "parent_id": "parentId",
@@ -104,7 +104,7 @@ class TestAssignments:
                 },
                 {
                     "entity_id": "workspace-002",
-                    "cadence": "MONTH",
+                    "cadence": "P1M",
                     "currency_id": "cred-type-tokens",
                     "feature_id": "featureId",
                     "parent_id": "workspace-001",
@@ -234,7 +234,7 @@ class TestAsyncAssignments:
             assignments=[
                 {
                     "entity_id": "workspace-001",
-                    "cadence": "MONTH",
+                    "cadence": "P1M",
                     "currency_id": "currencyId",
                     "feature_id": "compute-minutes",
                     "parent_id": "parentId",
@@ -243,7 +243,7 @@ class TestAsyncAssignments:
                 },
                 {
                     "entity_id": "workspace-002",
-                    "cadence": "MONTH",
+                    "cadence": "P1M",
                     "currency_id": "cred-type-tokens",
                     "feature_id": "featureId",
                     "parent_id": "workspace-001",
