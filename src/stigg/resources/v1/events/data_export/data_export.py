@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ....._compat import cached_property
 from .destinations import (
@@ -24,6 +24,7 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.v1.events import data_export_trigger_sync_params, data_export_mint_scoped_token_params
+from .....types.v1.events.data_export_list_models_response import DataExportListModelsResponse
 from .....types.v1.events.data_export_trigger_sync_response import DataExportTriggerSyncResponse
 from .....types.v1.events.data_export_mint_scoped_token_response import DataExportMintScopedTokenResponse
 
@@ -54,11 +55,54 @@ class DataExportResource(SyncAPIResource):
         """
         return DataExportResourceWithStreamingResponse(self)
 
+    def list_models(
+        self,
+        *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DataExportListModelsResponse:
+        """
+        List the catalog of data-export models the customer can opt into when connecting
+        a destination.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._get(
+            "/api/v1/data-export/models",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DataExportListModelsResponse,
+        )
+
     def mint_scoped_token(
         self,
         *,
         application_origin: str,
         destination_type: str | Omit = omit,
+        enabled_models: SequenceNotStr[str] | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -101,6 +145,7 @@ class DataExportResource(SyncAPIResource):
                 {
                     "application_origin": application_origin,
                     "destination_type": destination_type,
+                    "enabled_models": enabled_models,
                 },
                 data_export_mint_scoped_token_params.DataExportMintScopedTokenParams,
             ),
@@ -183,11 +228,54 @@ class AsyncDataExportResource(AsyncAPIResource):
         """
         return AsyncDataExportResourceWithStreamingResponse(self)
 
+    async def list_models(
+        self,
+        *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DataExportListModelsResponse:
+        """
+        List the catalog of data-export models the customer can opt into when connecting
+        a destination.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._get(
+            "/api/v1/data-export/models",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DataExportListModelsResponse,
+        )
+
     async def mint_scoped_token(
         self,
         *,
         application_origin: str,
         destination_type: str | Omit = omit,
+        enabled_models: SequenceNotStr[str] | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -230,6 +318,7 @@ class AsyncDataExportResource(AsyncAPIResource):
                 {
                     "application_origin": application_origin,
                     "destination_type": destination_type,
+                    "enabled_models": enabled_models,
                 },
                 data_export_mint_scoped_token_params.DataExportMintScopedTokenParams,
             ),
@@ -292,6 +381,9 @@ class DataExportResourceWithRawResponse:
     def __init__(self, data_export: DataExportResource) -> None:
         self._data_export = data_export
 
+        self.list_models = to_raw_response_wrapper(
+            data_export.list_models,
+        )
         self.mint_scoped_token = to_raw_response_wrapper(
             data_export.mint_scoped_token,
         )
@@ -308,6 +400,9 @@ class AsyncDataExportResourceWithRawResponse:
     def __init__(self, data_export: AsyncDataExportResource) -> None:
         self._data_export = data_export
 
+        self.list_models = async_to_raw_response_wrapper(
+            data_export.list_models,
+        )
         self.mint_scoped_token = async_to_raw_response_wrapper(
             data_export.mint_scoped_token,
         )
@@ -324,6 +419,9 @@ class DataExportResourceWithStreamingResponse:
     def __init__(self, data_export: DataExportResource) -> None:
         self._data_export = data_export
 
+        self.list_models = to_streamed_response_wrapper(
+            data_export.list_models,
+        )
         self.mint_scoped_token = to_streamed_response_wrapper(
             data_export.mint_scoped_token,
         )
@@ -340,6 +438,9 @@ class AsyncDataExportResourceWithStreamingResponse:
     def __init__(self, data_export: AsyncDataExportResource) -> None:
         self._data_export = data_export
 
+        self.list_models = async_to_streamed_response_wrapper(
+            data_export.list_models,
+        )
         self.mint_scoped_token = async_to_streamed_response_wrapper(
             data_export.mint_scoped_token,
         )
