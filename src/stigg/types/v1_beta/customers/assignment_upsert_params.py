@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable, Optional
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
@@ -29,8 +29,11 @@ class Assignment(TypedDict, total=False):
     entity_id: Required[Annotated[str, PropertyInfo(alias="entityId")]]
     """The entity refId this assignment is attached to"""
 
-    cadence: Literal["MONTH"]
-    """Usage-reset cadence (required on create). Currently only `MONTH` is supported"""
+    cadence: str
+    """
+    Usage-reset cadence (required on create) as an ISO-8601 single-unit duration,
+    e.g. `P1M`, `P30D`, `PT1M`.
+    """
 
     currency_id: Annotated[str, PropertyInfo(alias="currencyId")]
     """Currency refId this assignment grants (credit budgets).
