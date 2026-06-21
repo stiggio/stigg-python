@@ -168,11 +168,16 @@ Methods:
 Types:
 
 ```python
-from stigg.types.v1.events import DataExportMintScopedTokenResponse, DataExportTriggerSyncResponse
+from stigg.types.v1.events import (
+    DataExportListModelsResponse,
+    DataExportMintScopedTokenResponse,
+    DataExportTriggerSyncResponse,
+)
 ```
 
 Methods:
 
+- <code title="get /api/v1/data-export/models">client.v1.events.data_export.<a href="./src/stigg/resources/v1/events/data_export/data_export.py">list_models</a>() -> <a href="./src/stigg/types/v1/events/data_export_list_models_response.py">DataExportListModelsResponse</a></code>
 - <code title="post /api/v1/data-export/scoped-token">client.v1.events.data_export.<a href="./src/stigg/resources/v1/events/data_export/data_export.py">mint_scoped_token</a>(\*\*<a href="src/stigg/types/v1/events/data_export_mint_scoped_token_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/data_export_mint_scoped_token_response.py">DataExportMintScopedTokenResponse</a></code>
 - <code title="post /api/v1/data-export/sync">client.v1.events.data_export.<a href="./src/stigg/resources/v1/events/data_export/data_export.py">trigger_sync</a>(\*\*<a href="src/stigg/types/v1/events/data_export_trigger_sync_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/data_export_trigger_sync_response.py">DataExportTriggerSyncResponse</a></code>
 
