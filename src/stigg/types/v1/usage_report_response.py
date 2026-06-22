@@ -7,7 +7,26 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["UsageReportResponse", "Data"]
+__all__ = ["UsageReportResponse", "Data", "DataCredit"]
+
+
+class DataCredit(BaseModel):
+    """Optimistic credit balance for a credit-backed feature"""
+
+    currency_id: str = FieldInfo(alias="currencyId")
+    """The credit currency identifier"""
+
+    current_usage: float = FieldInfo(alias="currentUsage")
+    """The credits consumed (optimistic — includes not-yet-reconciled usage)"""
+
+    timestamp: datetime
+    """
+    The grant-version timestamp of this balance, used by the SDK for last-write-wins
+    reconciliation
+    """
+
+    usage_limit: float = FieldInfo(alias="usageLimit")
+    """The total credits granted"""
 
 
 class Data(BaseModel):
@@ -30,6 +49,9 @@ class Data(BaseModel):
 
     value: int
     """The usage measurement record"""
+
+    credit: Optional[DataCredit] = None
+    """Optimistic credit balance for a credit-backed feature"""
 
     current_usage: Optional[float] = FieldInfo(alias="currentUsage", default=None)
     """The current measured usage value"""
