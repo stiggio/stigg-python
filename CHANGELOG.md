@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.25 (2026-06-22)
+
+Full Changelog: [v0.1.0-beta.24...v0.1.0-beta.25](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.24...v0.1.0-beta.25)
+
+### Features
+
+* **api:** add credit field and DataCredit model to usage report response ([ba63e21](https://github.com/stiggio/stigg-python/commit/ba63e21a5c8de464f9494af090b1cb55ab4110a1))
+
 ## 0.1.0-beta.24 (2026-06-21)
 
 Full Changelog: [v0.1.0-beta.23...v0.1.0-beta.24](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.23...v0.1.0-beta.24)
