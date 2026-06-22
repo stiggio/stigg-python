@@ -162,6 +162,7 @@ class SubscriptionsResource(SyncAPIResource):
         minimum_spend: Optional[subscription_update_params.MinimumSpend] | Omit = omit,
         price_overrides: Iterable[subscription_update_params.PriceOverride] | Omit = omit,
         promotion_code: str | Omit = omit,
+        salesforce_id: Optional[str] | Omit = omit,
         schedule_strategy: Literal["END_OF_BILLING_PERIOD", "END_OF_BILLING_MONTH", "IMMEDIATE"] | Omit = omit,
         trial_end_date: Union[str, datetime] | Omit = omit,
         x_account_id: str | Omit = omit,
@@ -187,6 +188,8 @@ class SubscriptionsResource(SyncAPIResource):
           minimum_spend: Minimum spend amount
 
           promotion_code: Promotion code
+
+          salesforce_id: Salesforce ID
 
           trial_end_date: Subscription trial end date
 
@@ -227,6 +230,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "minimum_spend": minimum_spend,
                     "price_overrides": price_overrides,
                     "promotion_code": promotion_code,
+                    "salesforce_id": salesforce_id,
                     "schedule_strategy": schedule_strategy,
                     "trial_end_date": trial_end_date,
                 },
@@ -961,6 +965,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         minimum_spend: Optional[subscription_update_params.MinimumSpend] | Omit = omit,
         price_overrides: Iterable[subscription_update_params.PriceOverride] | Omit = omit,
         promotion_code: str | Omit = omit,
+        salesforce_id: Optional[str] | Omit = omit,
         schedule_strategy: Literal["END_OF_BILLING_PERIOD", "END_OF_BILLING_MONTH", "IMMEDIATE"] | Omit = omit,
         trial_end_date: Union[str, datetime] | Omit = omit,
         x_account_id: str | Omit = omit,
@@ -986,6 +991,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           minimum_spend: Minimum spend amount
 
           promotion_code: Promotion code
+
+          salesforce_id: Salesforce ID
 
           trial_end_date: Subscription trial end date
 
@@ -1026,6 +1033,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "minimum_spend": minimum_spend,
                     "price_overrides": price_overrides,
                     "promotion_code": promotion_code,
+                    "salesforce_id": salesforce_id,
                     "schedule_strategy": schedule_strategy,
                     "trial_end_date": trial_end_date,
                 },

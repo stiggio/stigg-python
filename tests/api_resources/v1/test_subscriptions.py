@@ -184,6 +184,7 @@ class TestSubscriptions:
                 }
             ],
             promotion_code="promotionCode",
+            salesforce_id="salesforceId",
             schedule_strategy="END_OF_BILLING_PERIOD",
             trial_end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             x_account_id="X-ACCOUNT-ID",
@@ -1059,6 +1060,7 @@ class TestAsyncSubscriptions:
                 }
             ],
             promotion_code="promotionCode",
+            salesforce_id="salesforceId",
             schedule_strategy="END_OF_BILLING_PERIOD",
             trial_end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             x_account_id="X-ACCOUNT-ID",
