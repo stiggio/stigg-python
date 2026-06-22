@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.26 (2026-06-22)
+
+Full Changelog: [v0.1.0-beta.25...v0.1.0-beta.26](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.25...v0.1.0-beta.26)
+
+### Features
+
+* **api:** add salesforce_id parameter to subscriptions update method ([e560821](https://github.com/stiggio/stigg-python/commit/e560821d22ac5da29910c7a2a4a29fb757aad587))
+
 ## 0.1.0-beta.25 (2026-06-22)
 
 Full Changelog: [v0.1.0-beta.24...v0.1.0-beta.25](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.24...v0.1.0-beta.25)
