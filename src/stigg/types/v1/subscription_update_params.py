@@ -66,6 +66,9 @@ class SubscriptionUpdateParams(TypedDict, total=False):
     promotion_code: Annotated[str, PropertyInfo(alias="promotionCode")]
     """Promotion code"""
 
+    salesforce_id: Annotated[Optional[str], PropertyInfo(alias="salesforceId")]
+    """Salesforce ID"""
+
     schedule_strategy: Annotated[
         Literal["END_OF_BILLING_PERIOD", "END_OF_BILLING_MONTH", "IMMEDIATE"], PropertyInfo(alias="scheduleStrategy")
     ]
