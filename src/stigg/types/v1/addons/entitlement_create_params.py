@@ -160,6 +160,13 @@ class EntitlementCredit(TypedDict, total=False):
     display_name_override: Annotated[str, PropertyInfo(alias="displayNameOverride")]
     """Override display name for the entitlement"""
 
+    has_soft_limit: Annotated[bool, PropertyInfo(alias="hasSoftLimit")]
+    """Whether the credit wallet is soft-limited.
+
+    When true, getEntitlement returns hasAccess=true past the limit; vendors decide
+    whether to enforce. Defaults to false.
+    """
+
     hidden_from_widgets: Annotated[
         List[Literal["PAYWALL", "CUSTOMER_PORTAL", "CHECKOUT"]], PropertyInfo(alias="hiddenFromWidgets")
     ]

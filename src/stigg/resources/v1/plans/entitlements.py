@@ -193,6 +193,7 @@ class EntitlementsResource(SyncAPIResource):
         dependency_feature_id: Optional[str] | Omit = omit,
         description: str | Omit = omit,
         display_name_override: str | Omit = omit,
+        has_soft_limit: bool | Omit = omit,
         hidden_from_widgets: List[Literal["PAYWALL", "CUSTOMER_PORTAL", "CHECKOUT"]] | Omit = omit,
         is_custom: bool | Omit = omit,
         is_granted: bool | Omit = omit,
@@ -224,6 +225,10 @@ class EntitlementsResource(SyncAPIResource):
           description: Description of the entitlement
 
           display_name_override: Override display name for the entitlement
+
+          has_soft_limit: Whether the credit wallet is soft-limited. When true, getEntitlement returns
+              hasAccess=true past the limit; vendors decide whether to enforce. Defaults to
+              false.
 
           hidden_from_widgets: Widget types where this entitlement is hidden
 
@@ -592,6 +597,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         dependency_feature_id: Optional[str] | Omit = omit,
         description: str | Omit = omit,
         display_name_override: str | Omit = omit,
+        has_soft_limit: bool | Omit = omit,
         hidden_from_widgets: List[Literal["PAYWALL", "CUSTOMER_PORTAL", "CHECKOUT"]] | Omit = omit,
         is_custom: bool | Omit = omit,
         is_granted: bool | Omit = omit,
@@ -623,6 +629,10 @@ class AsyncEntitlementsResource(AsyncAPIResource):
           description: Description of the entitlement
 
           display_name_override: Override display name for the entitlement
+
+          has_soft_limit: Whether the credit wallet is soft-limited. When true, getEntitlement returns
+              hasAccess=true past the limit; vendors decide whether to enforce. Defaults to
+              false.
 
           hidden_from_widgets: Widget types where this entitlement is hidden
 
