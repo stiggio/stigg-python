@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.28 (2026-06-23)
+
+Full Changelog: [v0.1.0-beta.27...v0.1.0-beta.28](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.27...v0.1.0-beta.28)
+
+### Features
+
+* **api:** add usage_period_end field to usage report response ([56d4cfc](https://github.com/stiggio/stigg-python/commit/56d4cfc4ebb6c08357780469d129fe371bd52515))
+
 ## 0.1.0-beta.27 (2026-06-23)
 
 Full Changelog: [v0.1.0-beta.26...v0.1.0-beta.27](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.26...v0.1.0-beta.27)
