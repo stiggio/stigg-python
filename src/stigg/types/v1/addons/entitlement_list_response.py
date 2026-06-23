@@ -143,6 +143,13 @@ class DataCredit(BaseModel):
     display_name_override: Optional[str] = FieldInfo(alias="displayNameOverride", default=None)
     """Override display name for the entitlement"""
 
+    has_soft_limit: Optional[bool] = FieldInfo(alias="hasSoftLimit", default=None)
+    """Whether the credit wallet is soft-limited.
+
+    When true, getEntitlement returns hasAccess=true past the limit; vendors decide
+    whether to enforce. Defaults to false.
+    """
+
     hidden_from_widgets: List[Literal["PAYWALL", "CUSTOMER_PORTAL", "CHECKOUT"]] = FieldInfo(alias="hiddenFromWidgets")
     """Widget types where this entitlement is hidden"""
 
