@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.29 (2026-06-23)
+
+Full Changelog: [v0.1.0-beta.28...v0.1.0-beta.29](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.28...v0.1.0-beta.29)
+
+### Features
+
+* **api:** add update method to data export destinations ([d7166a7](https://github.com/stiggio/stigg-python/commit/d7166a7efc21c7bb19b10a55dcb6695b0d81c481))
+
 ## 0.1.0-beta.28 (2026-06-23)
 
 Full Changelog: [v0.1.0-beta.27...v0.1.0-beta.28](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.27...v0.1.0-beta.28)
