@@ -28,6 +28,12 @@ class DataCredit(BaseModel):
     usage_limit: float = FieldInfo(alias="usageLimit")
     """The total credits granted"""
 
+    usage_period_end: Optional[datetime] = FieldInfo(alias="usagePeriodEnd", default=None)
+    """
+    End of the current credit grant period (when recurring credits reset), if
+    applicable
+    """
+
 
 class Data(BaseModel):
     """Recorded usage with period info"""
