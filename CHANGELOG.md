@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.27 (2026-06-23)
+
+Full Changelog: [v0.1.0-beta.26...v0.1.0-beta.27](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.26...v0.1.0-beta.27)
+
+### Features
+
+* **api:** add has_soft_limit parameter to addons/plans entitlements ([74cff73](https://github.com/stiggio/stigg-python/commit/74cff73cd8457463b0b309b9c8dffeb4a0f536c4))
+
 ## 0.1.0-beta.26 (2026-06-22)
 
 Full Changelog: [v0.1.0-beta.25...v0.1.0-beta.26](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.25...v0.1.0-beta.26)
