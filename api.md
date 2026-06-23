@@ -186,12 +186,17 @@ Methods:
 Types:
 
 ```python
-from stigg.types.v1.events.data_export import DestinationCreateResponse, DestinationDeleteResponse
+from stigg.types.v1.events.data_export import (
+    DestinationCreateResponse,
+    DestinationUpdateResponse,
+    DestinationDeleteResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /api/v1/data-export/destinations">client.v1.events.data_export.destinations.<a href="./src/stigg/resources/v1/events/data_export/destinations.py">create</a>(\*\*<a href="src/stigg/types/v1/events/data_export/destination_create_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/data_export/destination_create_response.py">DestinationCreateResponse</a></code>
+- <code title="patch /api/v1/data-export/destinations/{destinationId}">client.v1.events.data_export.destinations.<a href="./src/stigg/resources/v1/events/data_export/destinations.py">update</a>(destination_id, \*\*<a href="src/stigg/types/v1/events/data_export/destination_update_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/data_export/destination_update_response.py">DestinationUpdateResponse</a></code>
 - <code title="delete /api/v1/data-export/destinations/{destinationId}">client.v1.events.data_export.destinations.<a href="./src/stigg/resources/v1/events/data_export/destinations.py">delete</a>(destination_id) -> <a href="./src/stigg/types/v1/events/data_export/destination_delete_response.py">DestinationDeleteResponse</a></code>
 
 ### Beta
