@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.30 (2026-06-28)
+
+Full Changelog: [v0.1.0-beta.29...v0.1.0-beta.30](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.29...v0.1.0-beta.30)
+
+### Features
+
+* **stainless:** update production server to edge.api.stigg.io ([b2ef52d](https://github.com/stiggio/stigg-python/commit/b2ef52d94939bdb5c225b9edc6ddfda57309fd76))
+
 ## 0.1.0-beta.29 (2026-06-23)
 
 Full Changelog: [v0.1.0-beta.28...v0.1.0-beta.29](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.28...v0.1.0-beta.29)
