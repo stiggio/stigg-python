@@ -35,6 +35,7 @@ class IntegrationListParams(TypedDict, total=False):
                 "APP_STORE",
                 "RECEIVED",
                 "PREQUEL",
+                "AIRWALLEX",
             ]
         ],
         PropertyInfo(alias="vendorIdentifier"),

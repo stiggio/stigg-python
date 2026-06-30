@@ -168,6 +168,7 @@ class IntegrationsResource(SyncAPIResource):
                 "APP_STORE",
                 "RECEIVED",
                 "PREQUEL",
+                "AIRWALLEX",
             ]
         ]
         | Omit = omit,
@@ -253,6 +254,7 @@ class IntegrationsResource(SyncAPIResource):
             "APP_STORE",
             "RECEIVED",
             "PREQUEL",
+            "AIRWALLEX",
         ],
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
@@ -499,6 +501,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
                 "APP_STORE",
                 "RECEIVED",
                 "PREQUEL",
+                "AIRWALLEX",
             ]
         ]
         | Omit = omit,
@@ -584,6 +587,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             "APP_STORE",
             "RECEIVED",
             "PREQUEL",
+            "AIRWALLEX",
         ],
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
