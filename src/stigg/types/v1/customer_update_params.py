@@ -202,6 +202,7 @@ class Integration(TypedDict, total=False):
                 "APP_STORE",
                 "RECEIVED",
                 "PREQUEL",
+                "AIRWALLEX",
             ],
             PropertyInfo(alias="vendorIdentifier"),
         ]
