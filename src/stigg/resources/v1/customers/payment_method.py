@@ -65,6 +65,7 @@ class PaymentMethodResource(SyncAPIResource):
             "APP_STORE",
             "RECEIVED",
             "PREQUEL",
+            "AIRWALLEX",
         ],
         billing_currency: Optional[
             Literal[
@@ -334,6 +335,7 @@ class AsyncPaymentMethodResource(AsyncAPIResource):
             "APP_STORE",
             "RECEIVED",
             "PREQUEL",
+            "AIRWALLEX",
         ],
         billing_currency: Optional[
             Literal[
