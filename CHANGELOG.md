@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-beta.31 (2026-07-01)
+
+Full Changelog: [v0.1.0-beta.30...v0.1.0-beta.31](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.30...v0.1.0-beta.31)
+
+### Features
+
+* **api:** add AIRWALLEX vendor identifier to customers integrations/payment_method ([e78f045](https://github.com/stiggio/stigg-python/commit/e78f045932224c603eef1bb84e67168555700510))
+* **api:** add consumption resource with consume/consume_async to credits ([33dbc4a](https://github.com/stiggio/stigg-python/commit/33dbc4a59170224fd881af5be0dd1fc72b5ff51e))
+
 ## 0.1.0-beta.30 (2026-06-28)
 
 Full Changelog: [v0.1.0-beta.29...v0.1.0-beta.30](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.29...v0.1.0-beta.30)
