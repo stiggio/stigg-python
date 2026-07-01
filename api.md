@@ -266,6 +266,19 @@ Methods:
 - <code title="get /api/v1/credits/custom-currencies/{currencyId}/associated-entities">client.v1.credits.custom_currencies.<a href="./src/stigg/resources/v1/credits/custom_currencies.py">list_associated_entities</a>(currency_id) -> <a href="./src/stigg/types/v1/credits/custom_currency_list_associated_entities_response.py">CustomCurrencyListAssociatedEntitiesResponse</a></code>
 - <code title="post /api/v1/credits/custom-currencies/{currencyId}/unarchive">client.v1.credits.custom_currencies.<a href="./src/stigg/resources/v1/credits/custom_currencies.py">unarchive</a>(currency_id) -> <a href="./src/stigg/types/v1/credits/custom_currency_response.py">CustomCurrencyResponse</a></code>
 
+### Consumption
+
+Types:
+
+```python
+from stigg.types.v1.credits import ConsumptionConsumeResponse, ConsumptionConsumeAsyncResponse
+```
+
+Methods:
+
+- <code title="post /api/v1/credits/consumption">client.v1.credits.consumption.<a href="./src/stigg/resources/v1/credits/consumption.py">consume</a>(\*\*<a href="src/stigg/types/v1/credits/consumption_consume_params.py">params</a>) -> <a href="./src/stigg/types/v1/credits/consumption_consume_response.py">ConsumptionConsumeResponse</a></code>
+- <code title="post /api/v1/credits/consumption/async">client.v1.credits.consumption.<a href="./src/stigg/resources/v1/credits/consumption.py">consume_async</a>(\*\*<a href="src/stigg/types/v1/credits/consumption_consume_async_params.py">params</a>) -> <a href="./src/stigg/types/v1/credits/consumption_consume_async_response.py">ConsumptionConsumeAsyncResponse</a></code>
+
 ## Features
 
 Types:

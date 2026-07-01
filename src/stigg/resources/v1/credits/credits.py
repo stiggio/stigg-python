@@ -20,6 +20,14 @@ from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ....types.v1 import credit_get_usage_params, credit_list_ledger_params, credit_get_auto_recharge_params
+from .consumption import (
+    ConsumptionResource,
+    AsyncConsumptionResource,
+    ConsumptionResourceWithRawResponse,
+    AsyncConsumptionResourceWithRawResponse,
+    ConsumptionResourceWithStreamingResponse,
+    AsyncConsumptionResourceWithStreamingResponse,
+)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -54,6 +62,10 @@ class CreditsResource(SyncAPIResource):
     def custom_currencies(self) -> CustomCurrenciesResource:
         """Operations related to custom currencies"""
         return CustomCurrenciesResource(self._client)
+
+    @cached_property
+    def consumption(self) -> ConsumptionResource:
+        return ConsumptionResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CreditsResourceWithRawResponse:
@@ -311,6 +323,10 @@ class AsyncCreditsResource(AsyncAPIResource):
     def custom_currencies(self) -> AsyncCustomCurrenciesResource:
         """Operations related to custom currencies"""
         return AsyncCustomCurrenciesResource(self._client)
+
+    @cached_property
+    def consumption(self) -> AsyncConsumptionResource:
+        return AsyncConsumptionResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCreditsResourceWithRawResponse:
@@ -582,6 +598,10 @@ class CreditsResourceWithRawResponse:
         """Operations related to custom currencies"""
         return CustomCurrenciesResourceWithRawResponse(self._credits.custom_currencies)
 
+    @cached_property
+    def consumption(self) -> ConsumptionResourceWithRawResponse:
+        return ConsumptionResourceWithRawResponse(self._credits.consumption)
+
 
 class AsyncCreditsResourceWithRawResponse:
     def __init__(self, credits: AsyncCreditsResource) -> None:
@@ -606,6 +626,10 @@ class AsyncCreditsResourceWithRawResponse:
     def custom_currencies(self) -> AsyncCustomCurrenciesResourceWithRawResponse:
         """Operations related to custom currencies"""
         return AsyncCustomCurrenciesResourceWithRawResponse(self._credits.custom_currencies)
+
+    @cached_property
+    def consumption(self) -> AsyncConsumptionResourceWithRawResponse:
+        return AsyncConsumptionResourceWithRawResponse(self._credits.consumption)
 
 
 class CreditsResourceWithStreamingResponse:
@@ -632,6 +656,10 @@ class CreditsResourceWithStreamingResponse:
         """Operations related to custom currencies"""
         return CustomCurrenciesResourceWithStreamingResponse(self._credits.custom_currencies)
 
+    @cached_property
+    def consumption(self) -> ConsumptionResourceWithStreamingResponse:
+        return ConsumptionResourceWithStreamingResponse(self._credits.consumption)
+
 
 class AsyncCreditsResourceWithStreamingResponse:
     def __init__(self, credits: AsyncCreditsResource) -> None:
@@ -656,3 +684,7 @@ class AsyncCreditsResourceWithStreamingResponse:
     def custom_currencies(self) -> AsyncCustomCurrenciesResourceWithStreamingResponse:
         """Operations related to custom currencies"""
         return AsyncCustomCurrenciesResourceWithStreamingResponse(self._credits.custom_currencies)
+
+    @cached_property
+    def consumption(self) -> AsyncConsumptionResourceWithStreamingResponse:
+        return AsyncConsumptionResourceWithStreamingResponse(self._credits.consumption)
