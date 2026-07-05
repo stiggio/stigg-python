@@ -16,11 +16,20 @@ class AssignmentListParams(TypedDict, total=False):
     before: str
     """Return items that come before this cursor"""
 
-    capability_id: Annotated[str, PropertyInfo(alias="capabilityId")]
-    """Filter assignments to a specific capability ID"""
+    currency_id: Annotated[str, PropertyInfo(alias="currencyId")]
+    """Filter assignments to a specific currency, by its ID.
+
+    Mutually exclusive with `featureId`.
+    """
 
     entity_id: Annotated[str, PropertyInfo(alias="entityId")]
     """Filter assignments to a specific entity ID"""
+
+    feature_id: Annotated[str, PropertyInfo(alias="featureId")]
+    """Filter assignments to a specific feature, by its ID.
+
+    Mutually exclusive with `currencyId`.
+    """
 
     limit: int
     """Maximum number of items to return"""

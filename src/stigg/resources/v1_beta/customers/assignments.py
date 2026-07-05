@@ -51,8 +51,9 @@ class AssignmentsResource(SyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
-        capability_id: str | Omit = omit,
+        currency_id: str | Omit = omit,
         entity_id: str | Omit = omit,
+        feature_id: str | Omit = omit,
         limit: int | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
@@ -74,9 +75,13 @@ class AssignmentsResource(SyncAPIResource):
 
           before: Return items that come before this cursor
 
-          capability_id: Filter assignments to a specific capability ID
+          currency_id: Filter assignments to a specific currency, by its ID. Mutually exclusive with
+              `featureId`.
 
           entity_id: Filter assignments to a specific entity ID
+
+          feature_id: Filter assignments to a specific feature, by its ID. Mutually exclusive with
+              `currencyId`.
 
           limit: Maximum number of items to return
 
@@ -111,8 +116,9 @@ class AssignmentsResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "capability_id": capability_id,
+                        "currency_id": currency_id,
                         "entity_id": entity_id,
+                        "feature_id": feature_id,
                         "limit": limit,
                     },
                     assignment_list_params.AssignmentListParams,
@@ -200,8 +206,9 @@ class AsyncAssignmentsResource(AsyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
-        capability_id: str | Omit = omit,
+        currency_id: str | Omit = omit,
         entity_id: str | Omit = omit,
+        feature_id: str | Omit = omit,
         limit: int | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
@@ -223,9 +230,13 @@ class AsyncAssignmentsResource(AsyncAPIResource):
 
           before: Return items that come before this cursor
 
-          capability_id: Filter assignments to a specific capability ID
+          currency_id: Filter assignments to a specific currency, by its ID. Mutually exclusive with
+              `featureId`.
 
           entity_id: Filter assignments to a specific entity ID
+
+          feature_id: Filter assignments to a specific feature, by its ID. Mutually exclusive with
+              `currencyId`.
 
           limit: Maximum number of items to return
 
@@ -260,8 +271,9 @@ class AsyncAssignmentsResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "capability_id": capability_id,
+                        "currency_id": currency_id,
                         "entity_id": entity_id,
+                        "feature_id": feature_id,
                         "limit": limit,
                     },
                     assignment_list_params.AssignmentListParams,
