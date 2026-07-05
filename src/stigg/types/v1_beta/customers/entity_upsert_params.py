@@ -25,15 +25,15 @@ class Entity(TypedDict, total=False):
     id: Required[str]
     """The unique identifier for the entity"""
 
+    entity_type_id: Annotated[str, PropertyInfo(alias="entityTypeId")]
+    """The entity type ID this entity instantiates.
+
+    Required when creating a new entity; on a re-upsert may be omitted to preserve
+    the existing type. Governance returns 400 if missing on create.
+    """
+
     metadata: Dict[str, str]
     """Free-form key/value metadata.
 
     Patch semantics: empty-string value removes a key, omitted keys are preserved.
-    """
-
-    type_ref_id: Annotated[str, PropertyInfo(alias="typeRefId")]
-    """The entity type refId this entity instantiates.
-
-    Required when creating a new entity; on a re-upsert may be omitted to preserve
-    the existing type. Governance returns 400 if missing on create.
     """

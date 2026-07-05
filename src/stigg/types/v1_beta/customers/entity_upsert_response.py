@@ -22,11 +22,11 @@ class Data(BaseModel):
     created_at: datetime = FieldInfo(alias="createdAt")
     """Timestamp of when the record was created"""
 
+    entity_type_id: str = FieldInfo(alias="entityTypeId")
+    """The entity type identifier this entity instantiates"""
+
     metadata: Dict[str, str]
     """Free-form key/value metadata attached to the entity"""
-
-    type_id: str = FieldInfo(alias="typeId")
-    """The entity type identifier this entity instantiates"""
 
     updated_at: datetime = FieldInfo(alias="updatedAt")
     """Timestamp of when the record was last updated"""

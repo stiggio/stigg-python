@@ -30,7 +30,7 @@ class Data(BaseModel):
     entity_id: str = FieldInfo(alias="entityId")
     """External id of the entity at this node."""
 
-    entity_type: str = FieldInfo(alias="entityType")
+    entity_type_id: str = FieldInfo(alias="entityTypeId")
     """External id of the entity type (e.g. `team`, `user`)."""
 
     parent_id: Optional[str] = FieldInfo(alias="parentId", default=None)
@@ -69,14 +69,12 @@ class Data(BaseModel):
 
     currency_id: Optional[str] = FieldInfo(alias="currencyId", default=None)
     """
-    The metered currency refId (present when the configured capability is a credit
+    The metered currency ID (present when the configured capability is a credit
     currency).
     """
 
     feature_id: Optional[str] = FieldInfo(alias="featureId", default=None)
-    """
-    The metered feature refId (present when the configured capability is a feature).
-    """
+    """The metered feature ID (present when the configured capability is a feature)."""
 
 
 class Pagination(BaseModel):

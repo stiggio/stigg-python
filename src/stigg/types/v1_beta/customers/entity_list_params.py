@@ -16,14 +16,14 @@ class EntityListParams(TypedDict, total=False):
     before: str
     """Return items that come before this cursor"""
 
+    entity_type_id: Annotated[str, PropertyInfo(alias="entityTypeId")]
+    """Filter results to entities of a specific entity type, by the type's ID"""
+
     include_archived: Annotated[Literal["true", "false"], PropertyInfo(alias="includeArchived")]
     """Whether to include archived entities. One of: true, false"""
 
     limit: int
     """Maximum number of items to return"""
-
-    type_ref_id: Annotated[str, PropertyInfo(alias="typeRefId")]
-    """Filter results to entities of a specific entity type, by the type's refId"""
 
     x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
 

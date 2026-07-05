@@ -27,7 +27,7 @@ class Assignment(TypedDict, total=False):
     """
 
     entity_id: Required[Annotated[str, PropertyInfo(alias="entityId")]]
-    """The entity refId this assignment is attached to"""
+    """The entity ID this assignment is attached to"""
 
     cadence: str
     """
@@ -36,19 +36,19 @@ class Assignment(TypedDict, total=False):
     """
 
     currency_id: Annotated[str, PropertyInfo(alias="currencyId")]
-    """Currency refId this assignment grants (credit budgets).
+    """Currency ID this assignment grants (credit budgets).
 
     Mutually exclusive with `featureId`.
     """
 
     feature_id: Annotated[str, PropertyInfo(alias="featureId")]
-    """Feature refId this assignment grants. Mutually exclusive with `currencyId`."""
+    """Feature ID this assignment grants. Mutually exclusive with `currencyId`."""
 
     parent_id: Annotated[Optional[str], PropertyInfo(alias="parentId")]
-    """Parent entity refId in the hierarchy.
+    """Parent entity ID in the hierarchy.
 
     Omit to leave the current parent untouched (a new node defaults to a root);
-    `null` detaches to a root; a refId sets or changes the parent. Reparenting an
+    `null` detaches to a root; an ID sets or changes the parent. Reparenting an
     existing node is leaf-only.
     """
 

@@ -107,9 +107,9 @@ class EntitiesResource(SyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        entity_type_id: str | Omit = omit,
         include_archived: Literal["true", "false"] | Omit = omit,
         limit: int | Omit = omit,
-        type_ref_id: str | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -127,11 +127,11 @@ class EntitiesResource(SyncAPIResource):
 
           before: Return items that come before this cursor
 
+          entity_type_id: Filter results to entities of a specific entity type, by the type's ID
+
           include_archived: Whether to include archived entities. One of: true, false
 
           limit: Maximum number of items to return
-
-          type_ref_id: Filter results to entities of a specific entity type, by the type's refId
 
           extra_headers: Send extra headers
 
@@ -164,9 +164,9 @@ class EntitiesResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "entity_type_id": entity_type_id,
                         "include_archived": include_archived,
                         "limit": limit,
-                        "type_ref_id": type_ref_id,
                     },
                     entity_list_params.EntityListParams,
                 ),
@@ -394,9 +394,9 @@ class AsyncEntitiesResource(AsyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        entity_type_id: str | Omit = omit,
         include_archived: Literal["true", "false"] | Omit = omit,
         limit: int | Omit = omit,
-        type_ref_id: str | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -414,11 +414,11 @@ class AsyncEntitiesResource(AsyncAPIResource):
 
           before: Return items that come before this cursor
 
+          entity_type_id: Filter results to entities of a specific entity type, by the type's ID
+
           include_archived: Whether to include archived entities. One of: true, false
 
           limit: Maximum number of items to return
-
-          type_ref_id: Filter results to entities of a specific entity type, by the type's refId
 
           extra_headers: Send extra headers
 
@@ -451,9 +451,9 @@ class AsyncEntitiesResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "entity_type_id": entity_type_id,
                         "include_archived": include_archived,
                         "limit": limit,
-                        "type_ref_id": type_ref_id,
                     },
                     entity_list_params.EntityListParams,
                 ),
