@@ -74,9 +74,9 @@ class AssignmentsResource(SyncAPIResource):
 
           before: Return items that come before this cursor
 
-          capability_id: Filter assignments to a specific capability refId
+          capability_id: Filter assignments to a specific capability ID
 
-          entity_id: Filter assignments to a specific entity refId
+          entity_id: Filter assignments to a specific entity ID
 
           limit: Maximum number of items to return
 
@@ -223,9 +223,9 @@ class AsyncAssignmentsResource(AsyncAPIResource):
 
           before: Return items that come before this cursor
 
-          capability_id: Filter assignments to a specific capability refId
+          capability_id: Filter assignments to a specific capability ID
 
-          entity_id: Filter assignments to a specific entity refId
+          entity_id: Filter assignments to a specific entity ID
 
           limit: Maximum number of items to return
 

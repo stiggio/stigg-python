@@ -102,9 +102,9 @@ class TestEntities:
             id="id",
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            entity_type_id="entityTypeId",
             include_archived="true",
             limit=1,
-            type_ref_id="typeRefId",
             x_account_id="X-ACCOUNT-ID",
             x_environment_id="X-ENVIRONMENT-ID",
         )
@@ -275,16 +275,16 @@ class TestEntities:
             entities=[
                 {
                     "id": "user-7f3a0c1d",
+                    "entity_type_id": "user",
                     "metadata": {
                         "email": "jane@acme.com",
                         "role": "admin",
                     },
-                    "type_ref_id": "user",
                 },
                 {
                     "id": "user-c4d1b2e9",
+                    "entity_type_id": "user",
                     "metadata": {"email": "john@acme.com"},
-                    "type_ref_id": "user",
                 },
             ],
             x_account_id="X-ACCOUNT-ID",
@@ -413,9 +413,9 @@ class TestAsyncEntities:
             id="id",
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            entity_type_id="entityTypeId",
             include_archived="true",
             limit=1,
-            type_ref_id="typeRefId",
             x_account_id="X-ACCOUNT-ID",
             x_environment_id="X-ENVIRONMENT-ID",
         )
@@ -586,16 +586,16 @@ class TestAsyncEntities:
             entities=[
                 {
                     "id": "user-7f3a0c1d",
+                    "entity_type_id": "user",
                     "metadata": {
                         "email": "jane@acme.com",
                         "role": "admin",
                     },
-                    "type_ref_id": "user",
                 },
                 {
                     "id": "user-c4d1b2e9",
+                    "entity_type_id": "user",
                     "metadata": {"email": "john@acme.com"},
-                    "type_ref_id": "user",
                 },
             ],
             x_account_id="X-ACCOUNT-ID",
