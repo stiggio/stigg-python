@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.33 (2026-07-05)
+
+Full Changelog: [v0.1.0-beta.32...v0.1.0-beta.33](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.32...v0.1.0-beta.33)
+
+### Features
+
+* **api:** rename capability_id to currency_id, add feature_id to assignments list ([9ec7c43](https://github.com/stiggio/stigg-python/commit/9ec7c4337b77b6e23a8a250d422901e004d77f91))
+
 ## 0.1.0-beta.32 (2026-07-05)
 
 Full Changelog: [v0.1.0-beta.31...v0.1.0-beta.32](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.31...v0.1.0-beta.32)
