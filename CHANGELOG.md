@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.32 (2026-07-05)
+
+Full Changelog: [v0.1.0-beta.31...v0.1.0-beta.32](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.31...v0.1.0-beta.32)
+
+### Bug Fixes
+
+* **api:** rename type_ref_id/type_id to entity_type_id in entities/governance ([75ae28c](https://github.com/stiggio/stigg-python/commit/75ae28c6bda1ce4c6eb11b69e53a2556201e7d31))
+
 ## 0.1.0-beta.31 (2026-07-01)
 
 Full Changelog: [v0.1.0-beta.30...v0.1.0-beta.31](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.30...v0.1.0-beta.31)
