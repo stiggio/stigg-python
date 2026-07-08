@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-beta.34 (2026-07-08)
+
+Full Changelog: [v0.1.0-beta.33...v0.1.0-beta.34](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.33...v0.1.0-beta.34)
+
+### Features
+
+* **STIGG-8447:** regroup governance REST endpoints under Governance tags ([27b5b2a](https://github.com/stiggio/stigg-python/commit/27b5b2acdc1ed2ea6b9717188b0198a7451f3e4b))
+
+
+### Chores
+
+* **tests:** update max_quantity test fixture values in addons tests ([f9b3ee4](https://github.com/stiggio/stigg-python/commit/f9b3ee48a4ecf671bd92c77cecf1b0332e1e8aad))
+
 ## 0.1.0-beta.33 (2026-07-05)
 
 Full Changelog: [v0.1.0-beta.32...v0.1.0-beta.33](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.32...v0.1.0-beta.33)
