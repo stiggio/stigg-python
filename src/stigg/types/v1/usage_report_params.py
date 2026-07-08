@@ -38,6 +38,9 @@ class Usage(TypedDict, total=False):
     dimensions: Dict[str, Union[str, float, bool]]
     """Additional dimensions for the usage report"""
 
+    idempotency_key: Annotated[str, PropertyInfo(alias="idempotencyKey")]
+    """Idempotency key"""
+
     resource_id: Annotated[Optional[str], PropertyInfo(alias="resourceId")]
     """Resource id"""
 
