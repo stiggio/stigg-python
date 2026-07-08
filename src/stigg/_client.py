@@ -84,7 +84,7 @@ class Stigg(SyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("STIGG_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.stigg.io"
+            base_url = f"https://edge.api.stigg.io"
 
         custom_headers_env = os.environ.get("STIGG_CUSTOM_HEADERS")
         if custom_headers_env is not None:
@@ -273,7 +273,7 @@ class AsyncStigg(AsyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("STIGG_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.stigg.io"
+            base_url = f"https://edge.api.stigg.io"
 
         custom_headers_env = os.environ.get("STIGG_CUSTOM_HEADERS")
         if custom_headers_env is not None:
