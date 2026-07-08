@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.35 (2026-07-08)
+
+Full Changelog: [v0.1.0-beta.34...v0.1.0-beta.35](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.34...v0.1.0-beta.35)
+
+### Features
+
+* **api:** add idempotency_key parameter to usage report ([c11f476](https://github.com/stiggio/stigg-python/commit/c11f476ac4b5b4b78ca19896ec4e10a9091e06b6))
+
 ## 0.1.0-beta.34 (2026-07-08)
 
 Full Changelog: [v0.1.0-beta.33...v0.1.0-beta.34](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.33...v0.1.0-beta.34)
