@@ -115,6 +115,7 @@ class TestUsage:
                     "value": -9007199254740991,
                     "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "dimensions": {"foo": "string"},
+                    "idempotency_key": "x",
                     "resource_id": "resourceId",
                     "update_behavior": "DELTA",
                 }
@@ -265,6 +266,7 @@ class TestAsyncUsage:
                     "value": -9007199254740991,
                     "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "dimensions": {"foo": "string"},
+                    "idempotency_key": "x",
                     "resource_id": "resourceId",
                     "update_behavior": "DELTA",
                 }
