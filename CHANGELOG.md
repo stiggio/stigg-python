@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.36 (2026-07-12)
+
+Full Changelog: [v0.1.0-beta.35...v0.1.0-beta.36](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.35...v0.1.0-beta.36)
+
+### Features
+
+* **api:** add consumed field to consumption_consume and usage_report responses ([3bd4b32](https://github.com/stiggio/stigg-python/commit/3bd4b325dd1d9103a9a700127e883e2cd2c5ec0c))
+
 ## 0.1.0-beta.35 (2026-07-08)
 
 Full Changelog: [v0.1.0-beta.34...v0.1.0-beta.35](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.34...v0.1.0-beta.35)
