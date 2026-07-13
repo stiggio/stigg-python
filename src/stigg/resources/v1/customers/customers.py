@@ -818,8 +818,7 @@ class CustomersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Creates a new customer and optionally provisions an initial subscription in a
-        single operation.
+        Creates a new customer.
 
         Args:
           id: Customer slug
@@ -1749,8 +1748,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerResponse:
         """
-        Creates a new customer and optionally provisions an initial subscription in a
-        single operation.
+        Creates a new customer.
 
         Args:
           id: Customer slug
