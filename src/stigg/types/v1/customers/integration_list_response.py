@@ -76,6 +76,7 @@ class IntegrationListResponse(BaseModel):
         "RECEIVED",
         "PREQUEL",
         "AIRWALLEX",
+        "STRIPE_INVOICING",
     ] = FieldInfo(alias="vendorIdentifier")
     """The vendor identifier of integration"""
 
