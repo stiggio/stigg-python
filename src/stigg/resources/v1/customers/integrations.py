@@ -169,6 +169,7 @@ class IntegrationsResource(SyncAPIResource):
                 "RECEIVED",
                 "PREQUEL",
                 "AIRWALLEX",
+                "STRIPE_INVOICING",
             ]
         ]
         | Omit = omit,
@@ -255,6 +256,7 @@ class IntegrationsResource(SyncAPIResource):
             "RECEIVED",
             "PREQUEL",
             "AIRWALLEX",
+            "STRIPE_INVOICING",
         ],
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
@@ -502,6 +504,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
                 "RECEIVED",
                 "PREQUEL",
                 "AIRWALLEX",
+                "STRIPE_INVOICING",
             ]
         ]
         | Omit = omit,
@@ -588,6 +591,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             "RECEIVED",
             "PREQUEL",
             "AIRWALLEX",
+            "STRIPE_INVOICING",
         ],
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
