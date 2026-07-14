@@ -156,11 +156,12 @@ Methods:
 Types:
 
 ```python
-from stigg.types.v1 import EventReportResponse
+from stigg.types.v1 import EventEstimateCostResponse, EventReportResponse
 ```
 
 Methods:
 
+- <code title="post /api/v1/events/estimate">client.v1.events.<a href="./src/stigg/resources/v1/events/events.py">estimate_cost</a>(\*\*<a href="src/stigg/types/v1/event_estimate_cost_params.py">params</a>) -> <a href="./src/stigg/types/v1/event_estimate_cost_response.py">EventEstimateCostResponse</a></code>
 - <code title="post /api/v1/events">client.v1.events.<a href="./src/stigg/resources/v1/events/events.py">report</a>(\*\*<a href="src/stigg/types/v1/event_report_params.py">params</a>) -> <a href="./src/stigg/types/v1/event_report_response.py">EventReportResponse</a></code>
 
 ### DataExport
@@ -389,11 +390,12 @@ Methods:
 Types:
 
 ```python
-from stigg.types.v1 import UsageHistoryResponse, UsageReportResponse
+from stigg.types.v1 import UsageEstimateCostResponse, UsageHistoryResponse, UsageReportResponse
 ```
 
 Methods:
 
+- <code title="post /api/v1/usage/estimate">client.v1.usage.<a href="./src/stigg/resources/v1/usage.py">estimate_cost</a>(\*\*<a href="src/stigg/types/v1/usage_estimate_cost_params.py">params</a>) -> <a href="./src/stigg/types/v1/usage_estimate_cost_response.py">UsageEstimateCostResponse</a></code>
 - <code title="get /api/v1/usage/{customerId}/history/{featureId}">client.v1.usage.<a href="./src/stigg/resources/v1/usage.py">history</a>(feature_id, \*, customer_id, \*\*<a href="src/stigg/types/v1/usage_history_params.py">params</a>) -> <a href="./src/stigg/types/v1/usage_history_response.py">UsageHistoryResponse</a></code>
 - <code title="post /api/v1/usage">client.v1.usage.<a href="./src/stigg/resources/v1/usage.py">report</a>(\*\*<a href="src/stigg/types/v1/usage_report_params.py">params</a>) -> <a href="./src/stigg/types/v1/usage_report_response.py">UsageReportResponse</a></code>
 
