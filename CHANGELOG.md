@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.38 (2026-07-14)
+
+Full Changelog: [v0.1.0-beta.37...v0.1.0-beta.38](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.37...v0.1.0-beta.38)
+
+### Features
+
+* **api:** add STRIPE_INVOICING to vendor identifier enum in customers ([abed2a7](https://github.com/stiggio/stigg-python/commit/abed2a75f2dc9673e646d404706817ba67c9521c))
+
 ## 0.1.0-beta.37 (2026-07-14)
 
 Full Changelog: [v0.1.0-beta.36...v0.1.0-beta.37](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.36...v0.1.0-beta.37)
