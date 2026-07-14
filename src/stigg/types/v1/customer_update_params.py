@@ -203,6 +203,7 @@ class Integration(TypedDict, total=False):
                 "RECEIVED",
                 "PREQUEL",
                 "AIRWALLEX",
+                "STRIPE_INVOICING",
             ],
             PropertyInfo(alias="vendorIdentifier"),
         ]
