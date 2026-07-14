@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-beta.37 (2026-07-14)
+
+Full Changelog: [v0.1.0-beta.36...v0.1.0-beta.37](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.36...v0.1.0-beta.37)
+
+### Features
+
+* **api:** add events.estimate and usage.estimate methods to customers ([384fa00](https://github.com/stiggio/stigg-python/commit/384fa00b3db891fa788a5de3710393015582271f))
+
+
+### Documentation
+
+* **api:** simplify customers create method description ([d564146](https://github.com/stiggio/stigg-python/commit/d564146199bbb1937131cd758599fa20d4939cd0))
+* **api:** update delete method documentation in data_export destinations ([2c46a0a](https://github.com/stiggio/stigg-python/commit/2c46a0a9fa211e5fdda78b2de6ac86f0435de978))
+
 ## 0.1.0-beta.36 (2026-07-12)
 
 Full Changelog: [v0.1.0-beta.35...v0.1.0-beta.36](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.35...v0.1.0-beta.36)
