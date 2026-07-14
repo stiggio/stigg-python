@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .beta import (
-    BetaResource,
-    AsyncBetaResource,
-    BetaResourceWithRawResponse,
-    AsyncBetaResourceWithRawResponse,
-    BetaResourceWithStreamingResponse,
-    AsyncBetaResourceWithStreamingResponse,
-)
 from .events import (
     EventsResource,
     AsyncEventsResource,
@@ -32,12 +24,6 @@ __all__ = [
     "AsyncDataExportResourceWithRawResponse",
     "DataExportResourceWithStreamingResponse",
     "AsyncDataExportResourceWithStreamingResponse",
-    "BetaResource",
-    "AsyncBetaResource",
-    "BetaResourceWithRawResponse",
-    "AsyncBetaResourceWithRawResponse",
-    "BetaResourceWithStreamingResponse",
-    "AsyncBetaResourceWithStreamingResponse",
     "EventsResource",
     "AsyncEventsResource",
     "EventsResourceWithRawResponse",
