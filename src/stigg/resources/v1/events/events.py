@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Dict, Union, Iterable, Optional
 
 import httpx
 
@@ -17,7 +17,7 @@ from .beta.beta import (
     AsyncBetaResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
-from ....types.v1 import event_report_params
+from ....types.v1 import event_report_params, event_estimate_cost_params
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -35,6 +35,7 @@ from .data_export.data_export import (
     AsyncDataExportResourceWithStreamingResponse,
 )
 from ....types.v1.event_report_response import EventReportResponse
+from ....types.v1.event_estimate_cost_response import EventEstimateCostResponse
 
 __all__ = ["EventsResource", "AsyncEventsResource"]
 
@@ -68,6 +69,71 @@ class EventsResource(SyncAPIResource):
         For more information, see https://www.github.com/stiggio/stigg-python#with_streaming_response
         """
         return EventsResourceWithStreamingResponse(self)
+
+    def estimate_cost(
+        self,
+        *,
+        customer_id: str,
+        event_name: str,
+        dimensions: Dict[str, Union[str, float, bool]] | Omit = omit,
+        resource_id: Optional[str] | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EventEstimateCostResponse:
+        """Estimates the credit cost of a usage event without ingesting it.
+
+        Returns the
+        estimated cost per credit currency, the current balance, and the balance after
+        the estimated consumption.
+
+        Args:
+          customer_id: Customer id
+
+          event_name: The name of the usage event
+
+          dimensions: Dimensions associated with the usage event
+
+          resource_id: Resource id
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._post(
+            "/api/v1/events/estimate",
+            body=maybe_transform(
+                {
+                    "customer_id": customer_id,
+                    "event_name": event_name,
+                    "dimensions": dimensions,
+                    "resource_id": resource_id,
+                },
+                event_estimate_cost_params.EventEstimateCostParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EventEstimateCostResponse,
+        )
 
     def report(
         self,
@@ -147,6 +213,71 @@ class AsyncEventsResource(AsyncAPIResource):
         """
         return AsyncEventsResourceWithStreamingResponse(self)
 
+    async def estimate_cost(
+        self,
+        *,
+        customer_id: str,
+        event_name: str,
+        dimensions: Dict[str, Union[str, float, bool]] | Omit = omit,
+        resource_id: Optional[str] | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EventEstimateCostResponse:
+        """Estimates the credit cost of a usage event without ingesting it.
+
+        Returns the
+        estimated cost per credit currency, the current balance, and the balance after
+        the estimated consumption.
+
+        Args:
+          customer_id: Customer id
+
+          event_name: The name of the usage event
+
+          dimensions: Dimensions associated with the usage event
+
+          resource_id: Resource id
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._post(
+            "/api/v1/events/estimate",
+            body=await async_maybe_transform(
+                {
+                    "customer_id": customer_id,
+                    "event_name": event_name,
+                    "dimensions": dimensions,
+                    "resource_id": resource_id,
+                },
+                event_estimate_cost_params.EventEstimateCostParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EventEstimateCostResponse,
+        )
+
     async def report(
         self,
         *,
@@ -199,6 +330,9 @@ class EventsResourceWithRawResponse:
     def __init__(self, events: EventsResource) -> None:
         self._events = events
 
+        self.estimate_cost = to_raw_response_wrapper(
+            events.estimate_cost,
+        )
         self.report = to_raw_response_wrapper(
             events.report,
         )
@@ -216,6 +350,9 @@ class AsyncEventsResourceWithRawResponse:
     def __init__(self, events: AsyncEventsResource) -> None:
         self._events = events
 
+        self.estimate_cost = async_to_raw_response_wrapper(
+            events.estimate_cost,
+        )
         self.report = async_to_raw_response_wrapper(
             events.report,
         )
@@ -233,6 +370,9 @@ class EventsResourceWithStreamingResponse:
     def __init__(self, events: EventsResource) -> None:
         self._events = events
 
+        self.estimate_cost = to_streamed_response_wrapper(
+            events.estimate_cost,
+        )
         self.report = to_streamed_response_wrapper(
             events.report,
         )
@@ -250,6 +390,9 @@ class AsyncEventsResourceWithStreamingResponse:
     def __init__(self, events: AsyncEventsResource) -> None:
         self._events = events
 
+        self.estimate_cost = async_to_streamed_response_wrapper(
+            events.estimate_cost,
+        )
         self.report = async_to_streamed_response_wrapper(
             events.report,
         )
