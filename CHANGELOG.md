@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-beta.39 (2026-07-18)
+
+Full Changelog: [v0.1.0-beta.38...v0.1.0-beta.39](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.38...v0.1.0-beta.39)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([83da6bf](https://github.com/stiggio/stigg-python/commit/83da6bf28e4eac1ef08fcf5046aa9566cd719a19))
+
+
+### Chores
+
+* **api:** relocate customers.retrieve_governance from v1.events.beta to v1_beta ([c5bd19f](https://github.com/stiggio/stigg-python/commit/c5bd19ff3705d2fe46131a7262e98fd695b0e8f4))
+
 ## 0.1.0-beta.38 (2026-07-14)
 
 Full Changelog: [v0.1.0-beta.37...v0.1.0-beta.38](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.37...v0.1.0-beta.38)
