@@ -245,6 +245,7 @@ class CreditsResource(SyncAPIResource):
         after: str | Omit = omit,
         before: str | Omit = omit,
         currency_id: str | Omit = omit,
+        event_type: str | Omit = omit,
         limit: int | Omit = omit,
         resource_id: str | Omit = omit,
         x_account_id: str | Omit = omit,
@@ -267,6 +268,8 @@ class CreditsResource(SyncAPIResource):
           before: Return items that come before this cursor
 
           currency_id: Filter by currency ID
+
+          event_type: Filter by event type(s), comma-separated
 
           limit: Maximum number of items to return
 
@@ -303,6 +306,7 @@ class CreditsResource(SyncAPIResource):
                         "after": after,
                         "before": before,
                         "currency_id": currency_id,
+                        "event_type": event_type,
                         "limit": limit,
                         "resource_id": resource_id,
                     },
@@ -506,6 +510,7 @@ class AsyncCreditsResource(AsyncAPIResource):
         after: str | Omit = omit,
         before: str | Omit = omit,
         currency_id: str | Omit = omit,
+        event_type: str | Omit = omit,
         limit: int | Omit = omit,
         resource_id: str | Omit = omit,
         x_account_id: str | Omit = omit,
@@ -528,6 +533,8 @@ class AsyncCreditsResource(AsyncAPIResource):
           before: Return items that come before this cursor
 
           currency_id: Filter by currency ID
+
+          event_type: Filter by event type(s), comma-separated
 
           limit: Maximum number of items to return
 
@@ -564,6 +571,7 @@ class AsyncCreditsResource(AsyncAPIResource):
                         "after": after,
                         "before": before,
                         "currency_id": currency_id,
+                        "event_type": event_type,
                         "limit": limit,
                         "resource_id": resource_id,
                     },
