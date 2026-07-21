@@ -22,6 +22,9 @@ class CreditListLedgerParams(TypedDict, total=False):
     currency_id: Annotated[str, PropertyInfo(alias="currencyId")]
     """Filter by currency ID"""
 
+    event_type: Annotated[str, PropertyInfo(alias="eventType")]
+    """Filter by event type(s), comma-separated"""
+
     limit: int
     """Maximum number of items to return"""
 
