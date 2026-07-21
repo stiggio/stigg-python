@@ -1,4 +1,4 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 __title__ = "stigg"
-__version__ = "0.1.0-beta.40"  # x-release-please-version
+__version__ = "0.1.0-beta.41"  # x-release-please-version
