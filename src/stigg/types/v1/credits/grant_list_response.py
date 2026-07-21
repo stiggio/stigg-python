@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["GrantListResponse", "Cost", "LatestInvoice"]
+__all__ = ["GrantListResponse", "Cost", "LatestInvoice", "SyncState"]
 
 
 class Cost(BaseModel):
@@ -65,6 +65,32 @@ class LatestInvoice(BaseModel):
 
     updated_at: datetime = FieldInfo(alias="updatedAt")
     """The invoice last update date"""
+
+
+class SyncState(BaseModel):
+    status: Literal["PENDING", "ERROR", "SUCCESS", "NO_SYNC_REQUIRED"]
+    """Status of the integration sync"""
+
+    synced_entity_id: Optional[str] = FieldInfo(alias="syncedEntityId", default=None)
+    """Synced entity id"""
+
+    vendor_identifier: Literal[
+        "AUTH0",
+        "ZUORA",
+        "STRIPE",
+        "HUBSPOT",
+        "AWS_MARKETPLACE",
+        "SNOWFLAKE",
+        "SALESFORCE",
+        "BIG_QUERY",
+        "OPEN_FGA",
+        "APP_STORE",
+        "RECEIVED",
+        "PREQUEL",
+        "AIRWALLEX",
+        "STRIPE_INVOICING",
+    ] = FieldInfo(alias="vendorIdentifier")
+    """The vendor identifier of integration"""
 
 
 class GrantListResponse(BaseModel):
@@ -133,6 +159,9 @@ class GrantListResponse(BaseModel):
 
     status: Literal["PAYMENT_PENDING", "ACTIVE", "EXPIRED", "VOIDED", "SCHEDULED"]
     """The effective status of the credit grant"""
+
+    sync_states: Optional[List[SyncState]] = FieldInfo(alias="syncStates", default=None)
+    """The synchronization states of the entity with external systems"""
 
     updated_at: datetime = FieldInfo(alias="updatedAt")
     """Timestamp of when the record was last updated"""
