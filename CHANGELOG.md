@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.41 (2026-07-21)
+
+Full Changelog: [v0.1.0-beta.40...v0.1.0-beta.41](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.40...v0.1.0-beta.41)
+
+### Features
+
+* **api:** add sync_states field to credit grant responses ([ee95962](https://github.com/stiggio/stigg-python/commit/ee95962c9188c1f592210dd25ab2c7fdd0fd1d36))
+
 ## 0.1.0-beta.40 (2026-07-21)
 
 Full Changelog: [v0.1.0-beta.39...v0.1.0-beta.40](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.39...v0.1.0-beta.40)
