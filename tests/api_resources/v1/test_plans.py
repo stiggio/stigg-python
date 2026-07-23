@@ -206,6 +206,7 @@ class TestPlans:
                             }
                         ],
                         "billing_cadence": "RECURRING",
+                        "currency_id": "currencyId",
                         "entitlement": {
                             "feature_id": "featureId",
                             "has_soft_limit": True,
@@ -217,7 +218,6 @@ class TestPlans:
                             "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
                         },
                         "feature_id": "featureId",
-                        "top_up_custom_currency_id": "topUpCustomCurrencyId",
                     }
                 ],
                 "pricing_models": [
@@ -876,6 +876,7 @@ class TestAsyncPlans:
                             }
                         ],
                         "billing_cadence": "RECURRING",
+                        "currency_id": "currencyId",
                         "entitlement": {
                             "feature_id": "featureId",
                             "has_soft_limit": True,
@@ -887,7 +888,6 @@ class TestAsyncPlans:
                             "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
                         },
                         "feature_id": "featureId",
-                        "top_up_custom_currency_id": "topUpCustomCurrencyId",
                     }
                 ],
                 "pricing_models": [

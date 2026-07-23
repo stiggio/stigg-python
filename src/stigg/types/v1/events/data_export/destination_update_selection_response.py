@@ -6,7 +6,7 @@ from pydantic import Field as FieldInfo
 
 from ....._models import BaseModel
 
-__all__ = ["DestinationUpdateResponse", "Data", "DataDestination", "DataDestinationLastSyncStatus"]
+__all__ = ["DestinationUpdateSelectionResponse", "Data", "DataDestination", "DataDestinationLastSyncStatus"]
 
 
 class DataDestinationLastSyncStatus(BaseModel):
@@ -59,7 +59,7 @@ class Data(BaseModel):
     """Current destinations under the DATA_EXPORT integration"""
 
 
-class DestinationUpdateResponse(BaseModel):
+class DestinationUpdateSelectionResponse(BaseModel):
     """Response object"""
 
     data: Data
