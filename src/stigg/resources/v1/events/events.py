@@ -8,8 +8,16 @@ import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, strip_not_given, async_maybe_transform
+from .beta.beta import (
+    BetaResource,
+    AsyncBetaResource,
+    BetaResourceWithRawResponse,
+    AsyncBetaResourceWithRawResponse,
+    BetaResourceWithStreamingResponse,
+    AsyncBetaResourceWithStreamingResponse,
+)
 from ...._compat import cached_property
-from ....types.v1 import event_report_params, event_estimate_cost_params
+from ....types.v1 import event_report_params, event_estimate_params
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -27,7 +35,7 @@ from .data_export.data_export import (
     AsyncDataExportResourceWithStreamingResponse,
 )
 from ....types.v1.event_report_response import EventReportResponse
-from ....types.v1.event_estimate_cost_response import EventEstimateCostResponse
+from ....types.v1.event_estimate_response import EventEstimateResponse
 
 __all__ = ["EventsResource", "AsyncEventsResource"]
 
@@ -38,6 +46,10 @@ class EventsResource(SyncAPIResource):
     @cached_property
     def data_export(self) -> DataExportResource:
         return DataExportResource(self._client)
+
+    @cached_property
+    def beta(self) -> BetaResource:
+        return BetaResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> EventsResourceWithRawResponse:
@@ -58,7 +70,7 @@ class EventsResource(SyncAPIResource):
         """
         return EventsResourceWithStreamingResponse(self)
 
-    def estimate_cost(
+    def estimate(
         self,
         *,
         customer_id: str,
@@ -73,7 +85,7 @@ class EventsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventEstimateCostResponse:
+    ) -> EventEstimateResponse:
         """Estimates the credit cost of a usage event without ingesting it.
 
         Returns the
@@ -115,12 +127,12 @@ class EventsResource(SyncAPIResource):
                     "dimensions": dimensions,
                     "resource_id": resource_id,
                 },
-                event_estimate_cost_params.EventEstimateCostParams,
+                event_estimate_params.EventEstimateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EventEstimateCostResponse,
+            cast_to=EventEstimateResponse,
         )
 
     def report(
@@ -179,6 +191,10 @@ class AsyncEventsResource(AsyncAPIResource):
         return AsyncDataExportResource(self._client)
 
     @cached_property
+    def beta(self) -> AsyncBetaResource:
+        return AsyncBetaResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncEventsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -197,7 +213,7 @@ class AsyncEventsResource(AsyncAPIResource):
         """
         return AsyncEventsResourceWithStreamingResponse(self)
 
-    async def estimate_cost(
+    async def estimate(
         self,
         *,
         customer_id: str,
@@ -212,7 +228,7 @@ class AsyncEventsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventEstimateCostResponse:
+    ) -> EventEstimateResponse:
         """Estimates the credit cost of a usage event without ingesting it.
 
         Returns the
@@ -254,12 +270,12 @@ class AsyncEventsResource(AsyncAPIResource):
                     "dimensions": dimensions,
                     "resource_id": resource_id,
                 },
-                event_estimate_cost_params.EventEstimateCostParams,
+                event_estimate_params.EventEstimateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EventEstimateCostResponse,
+            cast_to=EventEstimateResponse,
         )
 
     async def report(
@@ -314,8 +330,8 @@ class EventsResourceWithRawResponse:
     def __init__(self, events: EventsResource) -> None:
         self._events = events
 
-        self.estimate_cost = to_raw_response_wrapper(
-            events.estimate_cost,
+        self.estimate = to_raw_response_wrapper(
+            events.estimate,
         )
         self.report = to_raw_response_wrapper(
             events.report,
@@ -325,13 +341,17 @@ class EventsResourceWithRawResponse:
     def data_export(self) -> DataExportResourceWithRawResponse:
         return DataExportResourceWithRawResponse(self._events.data_export)
 
+    @cached_property
+    def beta(self) -> BetaResourceWithRawResponse:
+        return BetaResourceWithRawResponse(self._events.beta)
+
 
 class AsyncEventsResourceWithRawResponse:
     def __init__(self, events: AsyncEventsResource) -> None:
         self._events = events
 
-        self.estimate_cost = async_to_raw_response_wrapper(
-            events.estimate_cost,
+        self.estimate = async_to_raw_response_wrapper(
+            events.estimate,
         )
         self.report = async_to_raw_response_wrapper(
             events.report,
@@ -341,13 +361,17 @@ class AsyncEventsResourceWithRawResponse:
     def data_export(self) -> AsyncDataExportResourceWithRawResponse:
         return AsyncDataExportResourceWithRawResponse(self._events.data_export)
 
+    @cached_property
+    def beta(self) -> AsyncBetaResourceWithRawResponse:
+        return AsyncBetaResourceWithRawResponse(self._events.beta)
+
 
 class EventsResourceWithStreamingResponse:
     def __init__(self, events: EventsResource) -> None:
         self._events = events
 
-        self.estimate_cost = to_streamed_response_wrapper(
-            events.estimate_cost,
+        self.estimate = to_streamed_response_wrapper(
+            events.estimate,
         )
         self.report = to_streamed_response_wrapper(
             events.report,
@@ -357,13 +381,17 @@ class EventsResourceWithStreamingResponse:
     def data_export(self) -> DataExportResourceWithStreamingResponse:
         return DataExportResourceWithStreamingResponse(self._events.data_export)
 
+    @cached_property
+    def beta(self) -> BetaResourceWithStreamingResponse:
+        return BetaResourceWithStreamingResponse(self._events.beta)
+
 
 class AsyncEventsResourceWithStreamingResponse:
     def __init__(self, events: AsyncEventsResource) -> None:
         self._events = events
 
-        self.estimate_cost = async_to_streamed_response_wrapper(
-            events.estimate_cost,
+        self.estimate = async_to_streamed_response_wrapper(
+            events.estimate,
         )
         self.report = async_to_streamed_response_wrapper(
             events.report,
@@ -372,3 +400,7 @@ class AsyncEventsResourceWithStreamingResponse:
     @cached_property
     def data_export(self) -> AsyncDataExportResourceWithStreamingResponse:
         return AsyncDataExportResourceWithStreamingResponse(self._events.data_export)
+
+    @cached_property
+    def beta(self) -> AsyncBetaResourceWithStreamingResponse:
+        return AsyncBetaResourceWithStreamingResponse(self._events.beta)
