@@ -731,14 +731,14 @@ class ChargesOveragePricingModel(TypedDict, total=False):
     billing_cadence: Annotated[Literal["RECURRING", "ONE_OFF"], PropertyInfo(alias="billingCadence")]
     """The billing cadence for overages"""
 
+    currency_id: Annotated[str, PropertyInfo(alias="currencyId")]
+    """The refId of the custom currency this credit overage applies to"""
+
     entitlement: ChargesOveragePricingModelEntitlement
     """Entitlement configuration for the overage feature"""
 
     feature_id: Annotated[str, PropertyInfo(alias="featureId")]
     """The feature ID for overage pricing"""
-
-    top_up_custom_currency_id: Annotated[str, PropertyInfo(alias="topUpCustomCurrencyId")]
-    """Custom currency ID for overage top-up"""
 
 
 class ChargesPricingModelPricePeriodCreditRate(TypedDict, total=False):

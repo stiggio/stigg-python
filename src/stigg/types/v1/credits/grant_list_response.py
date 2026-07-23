@@ -130,7 +130,7 @@ class GrantListResponse(BaseModel):
     """The date when the credit grant expires"""
 
     grant_type: Literal["PAID", "PROMOTIONAL", "RECURRING", "OVERDRAFT"] = FieldInfo(alias="grantType")
-    """The type of credit grant (PAID, PROMOTIONAL, RECURRING)"""
+    """The type of credit grant (PAID, PROMOTIONAL, RECURRING, OVERDRAFT)"""
 
     invoice_id: Optional[str] = FieldInfo(alias="invoiceId", default=None)
     """The billing invoice ID associated with this grant"""

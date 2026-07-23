@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["EventEstimateCostResponse", "Data", "DataEstimate", "DataEstimateBreakdown"]
+__all__ = ["UsageEstimateResponse", "Data", "DataEstimate", "DataEstimateBreakdown"]
 
 
 class DataEstimateBreakdown(BaseModel):
@@ -51,7 +51,7 @@ class Data(BaseModel):
     """Request-level warnings about the estimation context"""
 
 
-class EventEstimateCostResponse(BaseModel):
+class UsageEstimateResponse(BaseModel):
     """Response object"""
 
     data: Data
