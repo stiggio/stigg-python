@@ -156,12 +156,12 @@ Methods:
 Types:
 
 ```python
-from stigg.types.v1 import EventEstimateCostResponse, EventReportResponse
+from stigg.types.v1 import EventEstimateResponse, EventReportResponse
 ```
 
 Methods:
 
-- <code title="post /api/v1/events/estimate">client.v1.events.<a href="./src/stigg/resources/v1/events/events.py">estimate_cost</a>(\*\*<a href="src/stigg/types/v1/event_estimate_cost_params.py">params</a>) -> <a href="./src/stigg/types/v1/event_estimate_cost_response.py">EventEstimateCostResponse</a></code>
+- <code title="post /api/v1/events/estimate">client.v1.events.<a href="./src/stigg/resources/v1/events/events.py">estimate</a>(\*\*<a href="src/stigg/types/v1/event_estimate_params.py">params</a>) -> <a href="./src/stigg/types/v1/event_estimate_response.py">EventEstimateResponse</a></code>
 - <code title="post /api/v1/events">client.v1.events.<a href="./src/stigg/resources/v1/events/events.py">report</a>(\*\*<a href="src/stigg/types/v1/event_report_params.py">params</a>) -> <a href="./src/stigg/types/v1/event_report_response.py">EventReportResponse</a></code>
 
 ### DataExport
@@ -189,16 +189,30 @@ Types:
 ```python
 from stigg.types.v1.events.data_export import (
     DestinationCreateResponse,
-    DestinationUpdateResponse,
     DestinationDeleteResponse,
+    DestinationUpdateSelectionResponse,
 )
 ```
 
 Methods:
 
 - <code title="post /api/v1/data-export/destinations">client.v1.events.data_export.destinations.<a href="./src/stigg/resources/v1/events/data_export/destinations.py">create</a>(\*\*<a href="src/stigg/types/v1/events/data_export/destination_create_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/data_export/destination_create_response.py">DestinationCreateResponse</a></code>
-- <code title="patch /api/v1/data-export/destinations/{destinationId}">client.v1.events.data_export.destinations.<a href="./src/stigg/resources/v1/events/data_export/destinations.py">update</a>(destination_id, \*\*<a href="src/stigg/types/v1/events/data_export/destination_update_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/data_export/destination_update_response.py">DestinationUpdateResponse</a></code>
 - <code title="delete /api/v1/data-export/destinations/{destinationId}">client.v1.events.data_export.destinations.<a href="./src/stigg/resources/v1/events/data_export/destinations.py">delete</a>(destination_id) -> <a href="./src/stigg/types/v1/events/data_export/destination_delete_response.py">DestinationDeleteResponse</a></code>
+- <code title="patch /api/v1/data-export/destinations/{destinationId}">client.v1.events.data_export.destinations.<a href="./src/stigg/resources/v1/events/data_export/destinations.py">update_selection</a>(destination_id, \*\*<a href="src/stigg/types/v1/events/data_export/destination_update_selection_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/data_export/destination_update_selection_response.py">DestinationUpdateSelectionResponse</a></code>
+
+### Beta
+
+#### Customers
+
+Types:
+
+```python
+from stigg.types.v1.events.beta import CustomerRetrieveGovernanceResponse
+```
+
+Methods:
+
+- <code title="get /api/v1-beta/customers/{id}/governance">client.v1.events.beta.customers.<a href="./src/stigg/resources/v1/events/beta/customers.py">retrieve_governance</a>(id, \*\*<a href="src/stigg/types/v1/events/beta/customer_retrieve_governance_params.py">params</a>) -> <a href="./src/stigg/types/v1/events/beta/customer_retrieve_governance_response.py">CustomerRetrieveGovernanceResponse</a></code>
 
 ## Credits
 
@@ -376,12 +390,12 @@ Methods:
 Types:
 
 ```python
-from stigg.types.v1 import UsageEstimateCostResponse, UsageHistoryResponse, UsageReportResponse
+from stigg.types.v1 import UsageEstimateResponse, UsageHistoryResponse, UsageReportResponse
 ```
 
 Methods:
 
-- <code title="post /api/v1/usage/estimate">client.v1.usage.<a href="./src/stigg/resources/v1/usage.py">estimate_cost</a>(\*\*<a href="src/stigg/types/v1/usage_estimate_cost_params.py">params</a>) -> <a href="./src/stigg/types/v1/usage_estimate_cost_response.py">UsageEstimateCostResponse</a></code>
+- <code title="post /api/v1/usage/estimate">client.v1.usage.<a href="./src/stigg/resources/v1/usage.py">estimate</a>(\*\*<a href="src/stigg/types/v1/usage_estimate_params.py">params</a>) -> <a href="./src/stigg/types/v1/usage_estimate_response.py">UsageEstimateResponse</a></code>
 - <code title="get /api/v1/usage/{customerId}/history/{featureId}">client.v1.usage.<a href="./src/stigg/resources/v1/usage.py">history</a>(feature_id, \*, customer_id, \*\*<a href="src/stigg/types/v1/usage_history_params.py">params</a>) -> <a href="./src/stigg/types/v1/usage_history_response.py">UsageHistoryResponse</a></code>
 - <code title="post /api/v1/usage">client.v1.usage.<a href="./src/stigg/resources/v1/usage.py">report</a>(\*\*<a href="src/stigg/types/v1/usage_report_params.py">params</a>) -> <a href="./src/stigg/types/v1/usage_report_response.py">UsageReportResponse</a></code>
 
@@ -405,16 +419,6 @@ Methods:
 # V1Beta
 
 ## Customers
-
-Types:
-
-```python
-from stigg.types.v1_beta import CustomerRetrieveGovernanceResponse
-```
-
-Methods:
-
-- <code title="get /api/v1-beta/customers/{id}/governance">client.v1_beta.customers.<a href="./src/stigg/resources/v1_beta/customers/customers.py">retrieve_governance</a>(id, \*\*<a href="src/stigg/types/v1_beta/customer_retrieve_governance_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/customer_retrieve_governance_response.py">CustomerRetrieveGovernanceResponse</a></code>
 
 ### Entitlements
 

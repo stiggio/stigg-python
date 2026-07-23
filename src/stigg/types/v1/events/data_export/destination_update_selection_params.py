@@ -7,10 +7,10 @@ from typing_extensions import Required, Annotated, TypedDict
 from ....._types import SequenceNotStr
 from ....._utils import PropertyInfo
 
-__all__ = ["DestinationUpdateParams"]
+__all__ = ["DestinationUpdateSelectionParams"]
 
 
-class DestinationUpdateParams(TypedDict, total=False):
+class DestinationUpdateSelectionParams(TypedDict, total=False):
     enabled_models: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="enabledModels")]]
 
     integration_id: Required[Annotated[str, PropertyInfo(alias="integrationId")]]

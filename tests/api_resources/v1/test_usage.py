@@ -13,7 +13,7 @@ from stigg._utils import parse_datetime
 from stigg.types.v1 import (
     UsageReportResponse,
     UsageHistoryResponse,
-    UsageEstimateCostResponse,
+    UsageEstimateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -24,18 +24,18 @@ class TestUsage:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_estimate_cost(self, client: Stigg) -> None:
-        usage = client.v1.usage.estimate_cost(
+    def test_method_estimate(self, client: Stigg) -> None:
+        usage = client.v1.usage.estimate(
             customer_id="customerId",
             feature_id="featureId",
             value=-9007199254740991,
         )
-        assert_matches_type(UsageEstimateCostResponse, usage, path=["response"])
+        assert_matches_type(UsageEstimateResponse, usage, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_estimate_cost_with_all_params(self, client: Stigg) -> None:
-        usage = client.v1.usage.estimate_cost(
+    def test_method_estimate_with_all_params(self, client: Stigg) -> None:
+        usage = client.v1.usage.estimate(
             customer_id="customerId",
             feature_id="featureId",
             value=-9007199254740991,
@@ -45,12 +45,12 @@ class TestUsage:
             x_account_id="X-ACCOUNT-ID",
             x_environment_id="X-ENVIRONMENT-ID",
         )
-        assert_matches_type(UsageEstimateCostResponse, usage, path=["response"])
+        assert_matches_type(UsageEstimateResponse, usage, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_estimate_cost(self, client: Stigg) -> None:
-        response = client.v1.usage.with_raw_response.estimate_cost(
+    def test_raw_response_estimate(self, client: Stigg) -> None:
+        response = client.v1.usage.with_raw_response.estimate(
             customer_id="customerId",
             feature_id="featureId",
             value=-9007199254740991,
@@ -59,12 +59,12 @@ class TestUsage:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         usage = response.parse()
-        assert_matches_type(UsageEstimateCostResponse, usage, path=["response"])
+        assert_matches_type(UsageEstimateResponse, usage, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_estimate_cost(self, client: Stigg) -> None:
-        with client.v1.usage.with_streaming_response.estimate_cost(
+    def test_streaming_response_estimate(self, client: Stigg) -> None:
+        with client.v1.usage.with_streaming_response.estimate(
             customer_id="customerId",
             feature_id="featureId",
             value=-9007199254740991,
@@ -73,7 +73,7 @@ class TestUsage:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             usage = response.parse()
-            assert_matches_type(UsageEstimateCostResponse, usage, path=["response"])
+            assert_matches_type(UsageEstimateResponse, usage, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -230,18 +230,18 @@ class TestAsyncUsage:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_estimate_cost(self, async_client: AsyncStigg) -> None:
-        usage = await async_client.v1.usage.estimate_cost(
+    async def test_method_estimate(self, async_client: AsyncStigg) -> None:
+        usage = await async_client.v1.usage.estimate(
             customer_id="customerId",
             feature_id="featureId",
             value=-9007199254740991,
         )
-        assert_matches_type(UsageEstimateCostResponse, usage, path=["response"])
+        assert_matches_type(UsageEstimateResponse, usage, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_estimate_cost_with_all_params(self, async_client: AsyncStigg) -> None:
-        usage = await async_client.v1.usage.estimate_cost(
+    async def test_method_estimate_with_all_params(self, async_client: AsyncStigg) -> None:
+        usage = await async_client.v1.usage.estimate(
             customer_id="customerId",
             feature_id="featureId",
             value=-9007199254740991,
@@ -251,12 +251,12 @@ class TestAsyncUsage:
             x_account_id="X-ACCOUNT-ID",
             x_environment_id="X-ENVIRONMENT-ID",
         )
-        assert_matches_type(UsageEstimateCostResponse, usage, path=["response"])
+        assert_matches_type(UsageEstimateResponse, usage, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_estimate_cost(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v1.usage.with_raw_response.estimate_cost(
+    async def test_raw_response_estimate(self, async_client: AsyncStigg) -> None:
+        response = await async_client.v1.usage.with_raw_response.estimate(
             customer_id="customerId",
             feature_id="featureId",
             value=-9007199254740991,
@@ -265,12 +265,12 @@ class TestAsyncUsage:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         usage = await response.parse()
-        assert_matches_type(UsageEstimateCostResponse, usage, path=["response"])
+        assert_matches_type(UsageEstimateResponse, usage, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_estimate_cost(self, async_client: AsyncStigg) -> None:
-        async with async_client.v1.usage.with_streaming_response.estimate_cost(
+    async def test_streaming_response_estimate(self, async_client: AsyncStigg) -> None:
+        async with async_client.v1.usage.with_streaming_response.estimate(
             customer_id="customerId",
             feature_id="featureId",
             value=-9007199254740991,
@@ -279,7 +279,7 @@ class TestAsyncUsage:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             usage = await response.parse()
-            assert_matches_type(UsageEstimateCostResponse, usage, path=["response"])
+            assert_matches_type(UsageEstimateResponse, usage, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -11,7 +11,7 @@ import httpx
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
-from ...types.v1 import usage_report_params, usage_history_params, usage_estimate_cost_params
+from ...types.v1 import usage_report_params, usage_history_params, usage_estimate_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -22,7 +22,7 @@ from ..._response import (
 from ..._base_client import make_request_options
 from ...types.v1.usage_report_response import UsageReportResponse
 from ...types.v1.usage_history_response import UsageHistoryResponse
-from ...types.v1.usage_estimate_cost_response import UsageEstimateCostResponse
+from ...types.v1.usage_estimate_response import UsageEstimateResponse
 
 __all__ = ["UsageResource", "AsyncUsageResource"]
 
@@ -49,7 +49,7 @@ class UsageResource(SyncAPIResource):
         """
         return UsageResourceWithStreamingResponse(self)
 
-    def estimate_cost(
+    def estimate(
         self,
         *,
         customer_id: str,
@@ -66,7 +66,7 @@ class UsageResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UsageEstimateCostResponse:
+    ) -> UsageEstimateResponse:
         """Estimates the credit cost of a usage report without recording it.
 
         Returns the
@@ -114,12 +114,12 @@ class UsageResource(SyncAPIResource):
                     "resource_id": resource_id,
                     "update_behavior": update_behavior,
                 },
-                usage_estimate_cost_params.UsageEstimateCostParams,
+                usage_estimate_params.UsageEstimateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UsageEstimateCostResponse,
+            cast_to=UsageEstimateResponse,
         )
 
     def history(
@@ -265,7 +265,7 @@ class AsyncUsageResource(AsyncAPIResource):
         """
         return AsyncUsageResourceWithStreamingResponse(self)
 
-    async def estimate_cost(
+    async def estimate(
         self,
         *,
         customer_id: str,
@@ -282,7 +282,7 @@ class AsyncUsageResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UsageEstimateCostResponse:
+    ) -> UsageEstimateResponse:
         """Estimates the credit cost of a usage report without recording it.
 
         Returns the
@@ -330,12 +330,12 @@ class AsyncUsageResource(AsyncAPIResource):
                     "resource_id": resource_id,
                     "update_behavior": update_behavior,
                 },
-                usage_estimate_cost_params.UsageEstimateCostParams,
+                usage_estimate_params.UsageEstimateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UsageEstimateCostResponse,
+            cast_to=UsageEstimateResponse,
         )
 
     async def history(
@@ -463,8 +463,8 @@ class UsageResourceWithRawResponse:
     def __init__(self, usage: UsageResource) -> None:
         self._usage = usage
 
-        self.estimate_cost = to_raw_response_wrapper(
-            usage.estimate_cost,
+        self.estimate = to_raw_response_wrapper(
+            usage.estimate,
         )
         self.history = to_raw_response_wrapper(
             usage.history,
@@ -478,8 +478,8 @@ class AsyncUsageResourceWithRawResponse:
     def __init__(self, usage: AsyncUsageResource) -> None:
         self._usage = usage
 
-        self.estimate_cost = async_to_raw_response_wrapper(
-            usage.estimate_cost,
+        self.estimate = async_to_raw_response_wrapper(
+            usage.estimate,
         )
         self.history = async_to_raw_response_wrapper(
             usage.history,
@@ -493,8 +493,8 @@ class UsageResourceWithStreamingResponse:
     def __init__(self, usage: UsageResource) -> None:
         self._usage = usage
 
-        self.estimate_cost = to_streamed_response_wrapper(
-            usage.estimate_cost,
+        self.estimate = to_streamed_response_wrapper(
+            usage.estimate,
         )
         self.history = to_streamed_response_wrapper(
             usage.history,
@@ -508,8 +508,8 @@ class AsyncUsageResourceWithStreamingResponse:
     def __init__(self, usage: AsyncUsageResource) -> None:
         self._usage = usage
 
-        self.estimate_cost = async_to_streamed_response_wrapper(
-            usage.estimate_cost,
+        self.estimate = async_to_streamed_response_wrapper(
+            usage.estimate,
         )
         self.history = async_to_streamed_response_wrapper(
             usage.history,

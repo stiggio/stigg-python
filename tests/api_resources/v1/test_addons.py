@@ -196,6 +196,7 @@ class TestAddons:
                             }
                         ],
                         "billing_cadence": "RECURRING",
+                        "currency_id": "currencyId",
                         "entitlement": {
                             "feature_id": "featureId",
                             "has_soft_limit": True,
@@ -207,7 +208,6 @@ class TestAddons:
                             "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
                         },
                         "feature_id": "featureId",
-                        "top_up_custom_currency_id": "topUpCustomCurrencyId",
                     }
                 ],
                 "pricing_models": [
@@ -794,6 +794,7 @@ class TestAsyncAddons:
                             }
                         ],
                         "billing_cadence": "RECURRING",
+                        "currency_id": "currencyId",
                         "entitlement": {
                             "feature_id": "featureId",
                             "has_soft_limit": True,
@@ -805,7 +806,6 @@ class TestAsyncAddons:
                             "yearly_reset_period_configuration": {"according_to": "SubscriptionStart"},
                         },
                         "feature_id": "featureId",
-                        "top_up_custom_currency_id": "topUpCustomCurrencyId",
                     }
                 ],
                 "pricing_models": [

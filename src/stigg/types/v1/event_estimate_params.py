@@ -7,10 +7,10 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["EventEstimateCostParams"]
+__all__ = ["EventEstimateParams"]
 
 
-class EventEstimateCostParams(TypedDict, total=False):
+class EventEstimateParams(TypedDict, total=False):
     customer_id: Required[Annotated[str, PropertyInfo(alias="customerId")]]
     """Customer id"""
 
