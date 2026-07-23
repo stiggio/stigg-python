@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.42 (2026-07-23)
+
+Full Changelog: [v0.1.0-beta.41...v0.1.0-beta.42](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.41...v0.1.0-beta.42)
+
+### Chores
+
+* **internal:** regenerate SDK with no functional changes ([6403cd4](https://github.com/stiggio/stigg-python/commit/6403cd4783b0e58d9153293eb788a90e1ccc4543))
+
 ## 0.1.0-beta.41 (2026-07-21)
 
 Full Changelog: [v0.1.0-beta.40...v0.1.0-beta.41](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.40...v0.1.0-beta.41)
