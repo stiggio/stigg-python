@@ -196,6 +196,11 @@ class TestAddons:
                             }
                         ],
                         "billing_cadence": "RECURRING",
+                        "credit_entitlement": {
+                            "amount": 1,
+                            "cadence": "MONTH",
+                            "custom_currency_id": "customCurrencyId",
+                        },
                         "currency_id": "currencyId",
                         "entitlement": {
                             "feature_id": "featureId",
@@ -794,6 +799,11 @@ class TestAsyncAddons:
                             }
                         ],
                         "billing_cadence": "RECURRING",
+                        "credit_entitlement": {
+                            "amount": 1,
+                            "cadence": "MONTH",
+                            "custom_currency_id": "customCurrencyId",
+                        },
                         "currency_id": "currencyId",
                         "entitlement": {
                             "feature_id": "featureId",
