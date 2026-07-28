@@ -886,6 +886,9 @@ class SubscriptionListResponse(BaseModel):
     ] = FieldInfo(alias="cancelReason", default=None)
     """Subscription cancel reason"""
 
+    contract_id: Optional[str] = FieldInfo(alias="contractId", default=None)
+    """The Stigg contract this subscription is linked to, when any"""
+
     coupons: Optional[List[Coupon]] = None
     """Coupons applied to the subscription"""
 

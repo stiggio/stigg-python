@@ -11,6 +11,8 @@ from stigg.types.v1 import (
     CustomerListResponse,
     CustomerCheckEntitlementResponse,
     CustomerImportResponse,
+    CustomerListContractsResponse,
+    CustomerListInvoicesResponse,
     CustomerListResourcesResponse,
     CustomerRetrieveEntitlementsResponse,
 )
@@ -24,6 +26,8 @@ Methods:
 - <code title="post /api/v1/customers/{id}/archive">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">archive</a>(id) -> <a href="./src/stigg/types/v1/customer_response.py">CustomerResponse</a></code>
 - <code title="get /api/v1/customers/{id}/entitlements/check">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">check_entitlement</a>(id, \*\*<a href="src/stigg/types/v1/customer_check_entitlement_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_check_entitlement_response.py">CustomerCheckEntitlementResponse</a></code>
 - <code title="post /api/v1/customers/import">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">import\_</a>(\*\*<a href="src/stigg/types/v1/customer_import_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_import_response.py">CustomerImportResponse</a></code>
+- <code title="get /api/v1/customers/{id}/contracts">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">list_contracts</a>(id) -> <a href="./src/stigg/types/v1/customer_list_contracts_response.py">CustomerListContractsResponse</a></code>
+- <code title="get /api/v1/customers/{id}/invoices">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">list_invoices</a>(id, \*\*<a href="src/stigg/types/v1/customer_list_invoices_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_list_invoices_response.py">SyncMyCursorIDPage[CustomerListInvoicesResponse]</a></code>
 - <code title="get /api/v1/customers/{id}/resources">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">list_resources</a>(id, \*\*<a href="src/stigg/types/v1/customer_list_resources_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_list_resources_response.py">SyncMyCursorIDPage[CustomerListResourcesResponse]</a></code>
 - <code title="post /api/v1/customers">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">provision</a>(\*\*<a href="src/stigg/types/v1/customer_provision_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_response.py">CustomerResponse</a></code>
 - <code title="get /api/v1/customers/{id}/entitlements">client.v1.customers.<a href="./src/stigg/resources/v1/customers/customers.py">retrieve_entitlements</a>(id, \*\*<a href="src/stigg/types/v1/customer_retrieve_entitlements_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_retrieve_entitlements_response.py">CustomerRetrieveEntitlementsResponse</a></code>
@@ -415,6 +419,28 @@ Methods:
 - <code title="get /api/v1/products">client.v1.products.<a href="./src/stigg/resources/v1/products.py">list_products</a>(\*\*<a href="src/stigg/types/v1/product_list_products_params.py">params</a>) -> <a href="./src/stigg/types/v1/product_list_products_response.py">SyncMyCursorIDPage[ProductListProductsResponse]</a></code>
 - <code title="post /api/v1/products/{id}/unarchive">client.v1.products.<a href="./src/stigg/resources/v1/products.py">unarchive_product</a>(id) -> <a href="./src/stigg/types/v1/product.py">Product</a></code>
 - <code title="patch /api/v1/products/{id}">client.v1.products.<a href="./src/stigg/resources/v1/products.py">update_product</a>(id, \*\*<a href="src/stigg/types/v1/product_update_product_params.py">params</a>) -> <a href="./src/stigg/types/v1/product.py">Product</a></code>
+
+## Contracts
+
+Types:
+
+```python
+from stigg.types.v1 import (
+    ContractCreateResponse,
+    ContractRetrieveResponse,
+    ContractUpdateResponse,
+    ContractListResponse,
+    ContractDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /api/v1/contracts">client.v1.contracts.<a href="./src/stigg/resources/v1/contracts.py">create</a>(\*\*<a href="src/stigg/types/v1/contract_create_params.py">params</a>) -> <a href="./src/stigg/types/v1/contract_create_response.py">ContractCreateResponse</a></code>
+- <code title="get /api/v1/contracts/{id}">client.v1.contracts.<a href="./src/stigg/resources/v1/contracts.py">retrieve</a>(id) -> <a href="./src/stigg/types/v1/contract_retrieve_response.py">ContractRetrieveResponse</a></code>
+- <code title="patch /api/v1/contracts/{id}">client.v1.contracts.<a href="./src/stigg/resources/v1/contracts.py">update</a>(id, \*\*<a href="src/stigg/types/v1/contract_update_params.py">params</a>) -> <a href="./src/stigg/types/v1/contract_update_response.py">ContractUpdateResponse</a></code>
+- <code title="get /api/v1/contracts">client.v1.contracts.<a href="./src/stigg/resources/v1/contracts.py">list</a>(\*\*<a href="src/stigg/types/v1/contract_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/contract_list_response.py">SyncMyCursorIDPage[ContractListResponse]</a></code>
+- <code title="post /api/v1/contracts/{id}/archive">client.v1.contracts.<a href="./src/stigg/resources/v1/contracts.py">delete</a>(id) -> <a href="./src/stigg/types/v1/contract_delete_response.py">ContractDeleteResponse</a></code>
 
 # V1Beta
 
