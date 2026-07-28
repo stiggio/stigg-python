@@ -1037,6 +1037,9 @@ class DataSubscription(BaseModel):
     ] = FieldInfo(alias="cancelReason", default=None)
     """Subscription cancel reason"""
 
+    contract_id: Optional[str] = FieldInfo(alias="contractId", default=None)
+    """The Stigg contract this subscription is linked to, when any"""
+
     coupons: Optional[List[DataSubscriptionCoupon]] = None
     """Coupons applied to the subscription"""
 
