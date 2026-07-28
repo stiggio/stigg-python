@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.43 (2026-07-28)
+
+Full Changelog: [v0.1.0-beta.42...v0.1.0-beta.43](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.42...v0.1.0-beta.43)
+
+### Features
+
+* **api:** add contracts resource, retrieve_contracts to customers, sync_states to credits ([d161be9](https://github.com/stiggio/stigg-python/commit/d161be9eb06ebbf568f0a5e56c936c6ad810cdb1))
+
 ## 0.1.0-beta.42 (2026-07-26)
 
 Full Changelog: [v0.1.0-beta.41...v0.1.0-beta.42](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.41...v0.1.0-beta.42)
