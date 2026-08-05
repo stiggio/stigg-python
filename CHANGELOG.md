@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.44 (2026-08-05)
+
+Full Changelog: [v0.1.0-beta.43...v0.1.0-beta.44](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.43...v0.1.0-beta.44)
+
+### Features
+
+* **api:** add event_count field to credit usage response types ([664c365](https://github.com/stiggio/stigg-python/commit/664c3653d38e053848bbc13ced31dcb83468fdc0))
+
 ## 0.1.0-beta.43 (2026-07-28)
 
 Full Changelog: [v0.1.0-beta.42...v0.1.0-beta.43](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.42...v0.1.0-beta.43)
