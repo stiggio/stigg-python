@@ -275,6 +275,7 @@ class TestEntities:
             entities=[
                 {
                     "id": "user-7f3a0c1d",
+                    "display_name": "Jane Doe",
                     "entity_type_id": "user",
                     "metadata": {
                         "email": "jane@acme.com",
@@ -283,6 +284,7 @@ class TestEntities:
                 },
                 {
                     "id": "user-c4d1b2e9",
+                    "display_name": "John Roe",
                     "entity_type_id": "user",
                     "metadata": {"email": "john@acme.com"},
                 },
@@ -586,6 +588,7 @@ class TestAsyncEntities:
             entities=[
                 {
                     "id": "user-7f3a0c1d",
+                    "display_name": "Jane Doe",
                     "entity_type_id": "user",
                     "metadata": {
                         "email": "jane@acme.com",
@@ -594,6 +597,7 @@ class TestAsyncEntities:
                 },
                 {
                     "id": "user-c4d1b2e9",
+                    "display_name": "John Roe",
                     "entity_type_id": "user",
                     "metadata": {"email": "john@acme.com"},
                 },

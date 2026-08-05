@@ -79,7 +79,8 @@ class CustomersResource(SyncAPIResource):
           currency_ids: Currency ids to include, repeated per value (e.g. `?currencyIds=credits`). Omit
               both featureIds and currencyIds for tree mode.
 
-          entity_id_search: Case-insensitive substring match on the entity id (`%`/`_` matched literally).
+          entity_id_search: Case-insensitive substring match on the entity id or its display name (`%`/`_`
+              matched literally).
 
           entity_type_ids: Filter to one or more entity types, repeated per value (e.g.
               `?entityTypeIds=team&entityTypeIds=user`).
@@ -204,7 +205,8 @@ class AsyncCustomersResource(AsyncAPIResource):
           currency_ids: Currency ids to include, repeated per value (e.g. `?currencyIds=credits`). Omit
               both featureIds and currencyIds for tree mode.
 
-          entity_id_search: Case-insensitive substring match on the entity id (`%`/`_` matched literally).
+          entity_id_search: Case-insensitive substring match on the entity id or its display name (`%`/`_`
+              matched literally).
 
           entity_type_ids: Filter to one or more entity types, repeated per value (e.g.
               `?entityTypeIds=team&entityTypeIds=user`).

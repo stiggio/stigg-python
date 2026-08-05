@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
+from typing import Dict, Iterable, Optional
 from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
@@ -24,6 +24,12 @@ class Entity(TypedDict, total=False):
 
     id: Required[str]
     """The unique identifier for the entity"""
+
+    display_name: Annotated[Optional[str], PropertyInfo(alias="displayName")]
+    """Human-readable name for the entity.
+
+    Omit to preserve the stored value, or send an empty string or null to clear it.
+    """
 
     entity_type_id: Annotated[str, PropertyInfo(alias="entityTypeId")]
     """The entity type ID this entity instantiates.
