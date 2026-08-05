@@ -14,6 +14,8 @@ from stigg.types.v1 import (
     CustomerResponse,
     CustomerListResponse,
     CustomerImportResponse,
+    CustomerListInvoicesResponse,
+    CustomerListContractsResponse,
     CustomerListResourcesResponse,
     CustomerCheckEntitlementResponse,
     CustomerRetrieveEntitlementsResponse,
@@ -418,6 +420,119 @@ class TestCustomers:
             assert_matches_type(CustomerImportResponse, customer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_list_contracts(self, client: Stigg) -> None:
+        customer = client.v1.customers.list_contracts(
+            id="id",
+        )
+        assert_matches_type(CustomerListContractsResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_list_contracts_with_all_params(self, client: Stigg) -> None:
+        customer = client.v1.customers.list_contracts(
+            id="id",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
+        )
+        assert_matches_type(CustomerListContractsResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_list_contracts(self, client: Stigg) -> None:
+        response = client.v1.customers.with_raw_response.list_contracts(
+            id="id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = response.parse()
+        assert_matches_type(CustomerListContractsResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_list_contracts(self, client: Stigg) -> None:
+        with client.v1.customers.with_streaming_response.list_contracts(
+            id="id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = response.parse()
+            assert_matches_type(CustomerListContractsResponse, customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_list_contracts(self, client: Stigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.v1.customers.with_raw_response.list_contracts(
+                id="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_list_invoices(self, client: Stigg) -> None:
+        customer = client.v1.customers.list_invoices(
+            id="id",
+        )
+        assert_matches_type(SyncMyCursorIDPage[CustomerListInvoicesResponse], customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_list_invoices_with_all_params(self, client: Stigg) -> None:
+        customer = client.v1.customers.list_invoices(
+            id="id",
+            after="after",
+            before="before",
+            contract_external_id="contractExternalId",
+            issued_after=parse_datetime("2019-12-27T18:11:19.117Z"),
+            issued_before=parse_datetime("2019-12-27T18:11:19.117Z"),
+            limit=1,
+            order_by="issueDate",
+            order_dir="ASC",
+            state_in="stateIn",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
+        )
+        assert_matches_type(SyncMyCursorIDPage[CustomerListInvoicesResponse], customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_list_invoices(self, client: Stigg) -> None:
+        response = client.v1.customers.with_raw_response.list_invoices(
+            id="id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = response.parse()
+        assert_matches_type(SyncMyCursorIDPage[CustomerListInvoicesResponse], customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_list_invoices(self, client: Stigg) -> None:
+        with client.v1.customers.with_streaming_response.list_invoices(
+            id="id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = response.parse()
+            assert_matches_type(SyncMyCursorIDPage[CustomerListInvoicesResponse], customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_list_invoices(self, client: Stigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.v1.customers.with_raw_response.list_invoices(
+                id="",
+            )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -1086,6 +1201,119 @@ class TestAsyncCustomers:
             assert_matches_type(CustomerImportResponse, customer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_list_contracts(self, async_client: AsyncStigg) -> None:
+        customer = await async_client.v1.customers.list_contracts(
+            id="id",
+        )
+        assert_matches_type(CustomerListContractsResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_list_contracts_with_all_params(self, async_client: AsyncStigg) -> None:
+        customer = await async_client.v1.customers.list_contracts(
+            id="id",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
+        )
+        assert_matches_type(CustomerListContractsResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_list_contracts(self, async_client: AsyncStigg) -> None:
+        response = await async_client.v1.customers.with_raw_response.list_contracts(
+            id="id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = await response.parse()
+        assert_matches_type(CustomerListContractsResponse, customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_list_contracts(self, async_client: AsyncStigg) -> None:
+        async with async_client.v1.customers.with_streaming_response.list_contracts(
+            id="id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = await response.parse()
+            assert_matches_type(CustomerListContractsResponse, customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_list_contracts(self, async_client: AsyncStigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.v1.customers.with_raw_response.list_contracts(
+                id="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_list_invoices(self, async_client: AsyncStigg) -> None:
+        customer = await async_client.v1.customers.list_invoices(
+            id="id",
+        )
+        assert_matches_type(AsyncMyCursorIDPage[CustomerListInvoicesResponse], customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_list_invoices_with_all_params(self, async_client: AsyncStigg) -> None:
+        customer = await async_client.v1.customers.list_invoices(
+            id="id",
+            after="after",
+            before="before",
+            contract_external_id="contractExternalId",
+            issued_after=parse_datetime("2019-12-27T18:11:19.117Z"),
+            issued_before=parse_datetime("2019-12-27T18:11:19.117Z"),
+            limit=1,
+            order_by="issueDate",
+            order_dir="ASC",
+            state_in="stateIn",
+            x_account_id="X-ACCOUNT-ID",
+            x_environment_id="X-ENVIRONMENT-ID",
+        )
+        assert_matches_type(AsyncMyCursorIDPage[CustomerListInvoicesResponse], customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_list_invoices(self, async_client: AsyncStigg) -> None:
+        response = await async_client.v1.customers.with_raw_response.list_invoices(
+            id="id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = await response.parse()
+        assert_matches_type(AsyncMyCursorIDPage[CustomerListInvoicesResponse], customer, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_list_invoices(self, async_client: AsyncStigg) -> None:
+        async with async_client.v1.customers.with_streaming_response.list_invoices(
+            id="id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = await response.parse()
+            assert_matches_type(AsyncMyCursorIDPage[CustomerListInvoicesResponse], customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_list_invoices(self, async_client: AsyncStigg) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.v1.customers.with_raw_response.list_invoices(
+                id="",
+            )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize

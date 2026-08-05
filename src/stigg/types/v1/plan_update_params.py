@@ -20,6 +20,7 @@ __all__ = [
     "ChargesOveragePricingModelPricePeriodTier",
     "ChargesOveragePricingModelPricePeriodTierFlatPrice",
     "ChargesOveragePricingModelPricePeriodTierUnitPrice",
+    "ChargesOveragePricingModelCreditEntitlement",
     "ChargesOveragePricingModelEntitlement",
     "ChargesOveragePricingModelEntitlementMonthlyResetPeriodConfiguration",
     "ChargesOveragePricingModelEntitlementWeeklyResetPeriodConfiguration",
@@ -639,6 +640,21 @@ class ChargesOveragePricingModelPricePeriod(TypedDict, total=False):
     """Tiered pricing configuration"""
 
 
+class ChargesOveragePricingModelCreditEntitlement(TypedDict, total=False):
+    """
+    Credit entitlement to grant when a credit overage targets a currency not yet granted on the plan
+    """
+
+    amount: Required[float]
+    """The base credit balance granted per cadence"""
+
+    cadence: Required[Literal["MONTH", "YEAR"]]
+    """The credit grant cadence (MONTH or YEAR)"""
+
+    custom_currency_id: Required[Annotated[str, PropertyInfo(alias="customCurrencyId")]]
+    """The refId of the custom currency to grant"""
+
+
 class ChargesOveragePricingModelEntitlementMonthlyResetPeriodConfiguration(TypedDict, total=False):
     """Monthly reset configuration"""
 
@@ -732,14 +748,20 @@ class ChargesOveragePricingModel(TypedDict, total=False):
     billing_cadence: Annotated[Literal["RECURRING", "ONE_OFF"], PropertyInfo(alias="billingCadence")]
     """The billing cadence for overages"""
 
+    credit_entitlement: Annotated[ChargesOveragePricingModelCreditEntitlement, PropertyInfo(alias="creditEntitlement")]
+    """
+    Credit entitlement to grant when a credit overage targets a currency not yet
+    granted on the plan
+    """
+
+    currency_id: Annotated[str, PropertyInfo(alias="currencyId")]
+    """The refId of the custom currency this credit overage applies to"""
+
     entitlement: ChargesOveragePricingModelEntitlement
     """Entitlement configuration for the overage feature"""
 
     feature_id: Annotated[str, PropertyInfo(alias="featureId")]
     """The feature ID for overage pricing"""
-
-    top_up_custom_currency_id: Annotated[str, PropertyInfo(alias="topUpCustomCurrencyId")]
-    """Custom currency ID for overage top-up"""
 
 
 class ChargesPricingModelPricePeriodCreditRate(TypedDict, total=False):

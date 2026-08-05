@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
@@ -34,3 +34,9 @@ class Type(TypedDict, total=False):
 
     display_name: Required[Annotated[str, PropertyInfo(alias="displayName")]]
     """The display name for the entity type"""
+
+    description: Optional[str]
+    """What this entity type represents and what it is for governing.
+
+    Omit to preserve the stored value, or send an empty string or null to clear it.
+    """

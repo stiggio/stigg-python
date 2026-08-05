@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
@@ -15,6 +16,7 @@ from ....types.v1 import (
     customer_import_params,
     customer_update_params,
     customer_provision_params,
+    customer_list_invoices_params,
     customer_list_resources_params,
     customer_check_entitlement_params,
     customer_retrieve_entitlements_params,
@@ -55,6 +57,8 @@ from .promotional_entitlements import (
 from ....types.v1.customer_response import CustomerResponse
 from ....types.v1.customer_list_response import CustomerListResponse
 from ....types.v1.customer_import_response import CustomerImportResponse
+from ....types.v1.customer_list_invoices_response import CustomerListInvoicesResponse
+from ....types.v1.customer_list_contracts_response import CustomerListContractsResponse
 from ....types.v1.customer_list_resources_response import CustomerListResourcesResponse
 from ....types.v1.customer_check_entitlement_response import CustomerCheckEntitlementResponse
 from ....types.v1.customer_retrieve_entitlements_response import CustomerRetrieveEntitlementsResponse
@@ -606,6 +610,148 @@ class CustomersResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=CustomerImportResponse,
+        )
+
+    def list_contracts(
+        self,
+        id: str,
+        *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CustomerListContractsResponse:
+        """
+        Retrieves a customer's contracts, fetched live from the connected billing
+        provider, each enriched with a preview of its upcoming (next) invoice when
+        available. Returns an empty list when no billing provider is connected or the
+        customer is not synced.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._get(
+            path_template("/api/v1/customers/{id}/contracts", id=id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CustomerListContractsResponse,
+        )
+
+    def list_invoices(
+        self,
+        id: str,
+        *,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        contract_external_id: str | Omit = omit,
+        issued_after: Union[str, datetime] | Omit = omit,
+        issued_before: Union[str, datetime] | Omit = omit,
+        limit: int | Omit = omit,
+        order_by: Literal["issueDate", "dueDate", "total"] | Omit = omit,
+        order_dir: Literal["ASC", "DESC"] | Omit = omit,
+        state_in: str | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncMyCursorIDPage[CustomerListInvoicesResponse]:
+        """
+        Retrieves a cursor-paginated list of a customer's invoices, fetched live from
+        the connected billing provider. Ordered by issue date ascending by default;
+        override with orderBy (issueDate | dueDate | total) and orderDir (ASC | DESC).
+        Optionally narrowed to one contract, an issue-date range, and/or a set of
+        invoice states. Returns an empty list when no billing provider is connected or
+        the customer is not synced.
+
+        Args:
+          after: Return items that come after this cursor
+
+          before: Return items that come before this cursor
+
+          contract_external_id: Filter to invoices for this contract only (contract external ID or Received
+              contract ID). Omit for all contracts.
+
+          issued_after: Filter to invoices issued on or after this date, inclusive (ISO 8601)
+
+          issued_before: Filter to invoices issued on or before this date, inclusive (ISO 8601)
+
+          limit: Maximum number of items to return
+
+          order_by: Field to sort by: issueDate (default), dueDate, or total
+
+          order_dir: Sort direction: ASC (default) or DESC
+
+          state_in: Filter by invoice state. Supports comma-separated values for multiple states
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._get_api_list(
+            path_template("/api/v1/customers/{id}/invoices", id=id),
+            page=SyncMyCursorIDPage[CustomerListInvoicesResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "contract_external_id": contract_external_id,
+                        "issued_after": issued_after,
+                        "issued_before": issued_before,
+                        "limit": limit,
+                        "order_by": order_by,
+                        "order_dir": order_dir,
+                        "state_in": state_in,
+                    },
+                    customer_list_invoices_params.CustomerListInvoicesParams,
+                ),
+            ),
+            model=CustomerListInvoicesResponse,
         )
 
     def list_resources(
@@ -1538,6 +1684,148 @@ class AsyncCustomersResource(AsyncAPIResource):
             cast_to=CustomerImportResponse,
         )
 
+    async def list_contracts(
+        self,
+        id: str,
+        *,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CustomerListContractsResponse:
+        """
+        Retrieves a customer's contracts, fetched live from the connected billing
+        provider, each enriched with a preview of its upcoming (next) invoice when
+        available. Returns an empty list when no billing provider is connected or the
+        customer is not synced.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._get(
+            path_template("/api/v1/customers/{id}/contracts", id=id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CustomerListContractsResponse,
+        )
+
+    def list_invoices(
+        self,
+        id: str,
+        *,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        contract_external_id: str | Omit = omit,
+        issued_after: Union[str, datetime] | Omit = omit,
+        issued_before: Union[str, datetime] | Omit = omit,
+        limit: int | Omit = omit,
+        order_by: Literal["issueDate", "dueDate", "total"] | Omit = omit,
+        order_dir: Literal["ASC", "DESC"] | Omit = omit,
+        state_in: str | Omit = omit,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[CustomerListInvoicesResponse, AsyncMyCursorIDPage[CustomerListInvoicesResponse]]:
+        """
+        Retrieves a cursor-paginated list of a customer's invoices, fetched live from
+        the connected billing provider. Ordered by issue date ascending by default;
+        override with orderBy (issueDate | dueDate | total) and orderDir (ASC | DESC).
+        Optionally narrowed to one contract, an issue-date range, and/or a set of
+        invoice states. Returns an empty list when no billing provider is connected or
+        the customer is not synced.
+
+        Args:
+          after: Return items that come after this cursor
+
+          before: Return items that come before this cursor
+
+          contract_external_id: Filter to invoices for this contract only (contract external ID or Received
+              contract ID). Omit for all contracts.
+
+          issued_after: Filter to invoices issued on or after this date, inclusive (ISO 8601)
+
+          issued_before: Filter to invoices issued on or before this date, inclusive (ISO 8601)
+
+          limit: Maximum number of items to return
+
+          order_by: Field to sort by: issueDate (default), dueDate, or total
+
+          order_dir: Sort direction: ASC (default) or DESC
+
+          state_in: Filter by invoice state. Supports comma-separated values for multiple states
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._get_api_list(
+            path_template("/api/v1/customers/{id}/invoices", id=id),
+            page=AsyncMyCursorIDPage[CustomerListInvoicesResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "contract_external_id": contract_external_id,
+                        "issued_after": issued_after,
+                        "issued_before": issued_before,
+                        "limit": limit,
+                        "order_by": order_by,
+                        "order_dir": order_dir,
+                        "state_in": state_in,
+                    },
+                    customer_list_invoices_params.CustomerListInvoicesParams,
+                ),
+            ),
+            model=CustomerListInvoicesResponse,
+        )
+
     def list_resources(
         self,
         id: str,
@@ -1944,6 +2232,12 @@ class CustomersResourceWithRawResponse:
         self.import_ = to_raw_response_wrapper(
             customers.import_,
         )
+        self.list_contracts = to_raw_response_wrapper(
+            customers.list_contracts,
+        )
+        self.list_invoices = to_raw_response_wrapper(
+            customers.list_invoices,
+        )
         self.list_resources = to_raw_response_wrapper(
             customers.list_resources,
         )
@@ -1993,6 +2287,12 @@ class AsyncCustomersResourceWithRawResponse:
         )
         self.import_ = async_to_raw_response_wrapper(
             customers.import_,
+        )
+        self.list_contracts = async_to_raw_response_wrapper(
+            customers.list_contracts,
+        )
+        self.list_invoices = async_to_raw_response_wrapper(
+            customers.list_invoices,
         )
         self.list_resources = async_to_raw_response_wrapper(
             customers.list_resources,
@@ -2044,6 +2344,12 @@ class CustomersResourceWithStreamingResponse:
         self.import_ = to_streamed_response_wrapper(
             customers.import_,
         )
+        self.list_contracts = to_streamed_response_wrapper(
+            customers.list_contracts,
+        )
+        self.list_invoices = to_streamed_response_wrapper(
+            customers.list_invoices,
+        )
         self.list_resources = to_streamed_response_wrapper(
             customers.list_resources,
         )
@@ -2093,6 +2399,12 @@ class AsyncCustomersResourceWithStreamingResponse:
         )
         self.import_ = async_to_streamed_response_wrapper(
             customers.import_,
+        )
+        self.list_contracts = async_to_streamed_response_wrapper(
+            customers.list_contracts,
+        )
+        self.list_invoices = async_to_streamed_response_wrapper(
+            customers.list_invoices,
         )
         self.list_resources = async_to_streamed_response_wrapper(
             customers.list_resources,

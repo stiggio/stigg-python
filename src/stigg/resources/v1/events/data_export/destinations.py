@@ -15,10 +15,10 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.v1.events.data_export import destination_create_params, destination_update_params
+from .....types.v1.events.data_export import destination_create_params, destination_update_selection_params
 from .....types.v1.events.data_export.destination_create_response import DestinationCreateResponse
 from .....types.v1.events.data_export.destination_delete_response import DestinationDeleteResponse
-from .....types.v1.events.data_export.destination_update_response import DestinationUpdateResponse
+from .....types.v1.events.data_export.destination_update_selection_response import DestinationUpdateSelectionResponse
 
 __all__ = ["DestinationsResource", "AsyncDestinationsResource"]
 
@@ -101,64 +101,6 @@ class DestinationsResource(SyncAPIResource):
             cast_to=DestinationCreateResponse,
         )
 
-    def update(
-        self,
-        destination_id: str,
-        *,
-        enabled_models: SequenceNotStr[str],
-        integration_id: str,
-        x_account_id: str | Omit = omit,
-        x_environment_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DestinationUpdateResponse:
-        """Update a destination's entity selection.
-
-        Pushes the new enabled_models to the
-        provider first, then persists the selection. Applies on the next scheduled
-        transfer.
-
-        Args:
-          integration_id: Target integration row hosting the destination
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not destination_id:
-            raise ValueError(f"Expected a non-empty value for `destination_id` but received {destination_id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "X-ACCOUNT-ID": x_account_id,
-                    "X-ENVIRONMENT-ID": x_environment_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return self._patch(
-            path_template("/api/v1/data-export/destinations/{destination_id}", destination_id=destination_id),
-            body=maybe_transform(
-                {
-                    "enabled_models": enabled_models,
-                    "integration_id": integration_id,
-                },
-                destination_update_params.DestinationUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DestinationUpdateResponse,
-        )
-
     def delete(
         self,
         destination_id: str,
@@ -203,6 +145,64 @@ class DestinationsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=DestinationDeleteResponse,
+        )
+
+    def update_selection(
+        self,
+        destination_id: str,
+        *,
+        enabled_models: SequenceNotStr[str],
+        integration_id: str,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DestinationUpdateSelectionResponse:
+        """Update a destination's entity selection.
+
+        Pushes the new enabled_models to the
+        provider first, then persists the selection. Applies on the next scheduled
+        transfer.
+
+        Args:
+          integration_id: Target integration row hosting the destination
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not destination_id:
+            raise ValueError(f"Expected a non-empty value for `destination_id` but received {destination_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._patch(
+            path_template("/api/v1/data-export/destinations/{destination_id}", destination_id=destination_id),
+            body=maybe_transform(
+                {
+                    "enabled_models": enabled_models,
+                    "integration_id": integration_id,
+                },
+                destination_update_selection_params.DestinationUpdateSelectionParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DestinationUpdateSelectionResponse,
         )
 
 
@@ -284,64 +284,6 @@ class AsyncDestinationsResource(AsyncAPIResource):
             cast_to=DestinationCreateResponse,
         )
 
-    async def update(
-        self,
-        destination_id: str,
-        *,
-        enabled_models: SequenceNotStr[str],
-        integration_id: str,
-        x_account_id: str | Omit = omit,
-        x_environment_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DestinationUpdateResponse:
-        """Update a destination's entity selection.
-
-        Pushes the new enabled_models to the
-        provider first, then persists the selection. Applies on the next scheduled
-        transfer.
-
-        Args:
-          integration_id: Target integration row hosting the destination
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not destination_id:
-            raise ValueError(f"Expected a non-empty value for `destination_id` but received {destination_id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "X-ACCOUNT-ID": x_account_id,
-                    "X-ENVIRONMENT-ID": x_environment_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return await self._patch(
-            path_template("/api/v1/data-export/destinations/{destination_id}", destination_id=destination_id),
-            body=await async_maybe_transform(
-                {
-                    "enabled_models": enabled_models,
-                    "integration_id": integration_id,
-                },
-                destination_update_params.DestinationUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DestinationUpdateResponse,
-        )
-
     async def delete(
         self,
         destination_id: str,
@@ -388,6 +330,64 @@ class AsyncDestinationsResource(AsyncAPIResource):
             cast_to=DestinationDeleteResponse,
         )
 
+    async def update_selection(
+        self,
+        destination_id: str,
+        *,
+        enabled_models: SequenceNotStr[str],
+        integration_id: str,
+        x_account_id: str | Omit = omit,
+        x_environment_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DestinationUpdateSelectionResponse:
+        """Update a destination's entity selection.
+
+        Pushes the new enabled_models to the
+        provider first, then persists the selection. Applies on the next scheduled
+        transfer.
+
+        Args:
+          integration_id: Target integration row hosting the destination
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not destination_id:
+            raise ValueError(f"Expected a non-empty value for `destination_id` but received {destination_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "X-ACCOUNT-ID": x_account_id,
+                    "X-ENVIRONMENT-ID": x_environment_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._patch(
+            path_template("/api/v1/data-export/destinations/{destination_id}", destination_id=destination_id),
+            body=await async_maybe_transform(
+                {
+                    "enabled_models": enabled_models,
+                    "integration_id": integration_id,
+                },
+                destination_update_selection_params.DestinationUpdateSelectionParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DestinationUpdateSelectionResponse,
+        )
+
 
 class DestinationsResourceWithRawResponse:
     def __init__(self, destinations: DestinationsResource) -> None:
@@ -396,11 +396,11 @@ class DestinationsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             destinations.create,
         )
-        self.update = to_raw_response_wrapper(
-            destinations.update,
-        )
         self.delete = to_raw_response_wrapper(
             destinations.delete,
+        )
+        self.update_selection = to_raw_response_wrapper(
+            destinations.update_selection,
         )
 
 
@@ -411,11 +411,11 @@ class AsyncDestinationsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             destinations.create,
         )
-        self.update = async_to_raw_response_wrapper(
-            destinations.update,
-        )
         self.delete = async_to_raw_response_wrapper(
             destinations.delete,
+        )
+        self.update_selection = async_to_raw_response_wrapper(
+            destinations.update_selection,
         )
 
 
@@ -426,11 +426,11 @@ class DestinationsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             destinations.create,
         )
-        self.update = to_streamed_response_wrapper(
-            destinations.update,
-        )
         self.delete = to_streamed_response_wrapper(
             destinations.delete,
+        )
+        self.update_selection = to_streamed_response_wrapper(
+            destinations.update_selection,
         )
 
 
@@ -441,9 +441,9 @@ class AsyncDestinationsResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             destinations.create,
         )
-        self.update = async_to_streamed_response_wrapper(
-            destinations.update,
-        )
         self.delete = async_to_streamed_response_wrapper(
             destinations.delete,
+        )
+        self.update_selection = async_to_streamed_response_wrapper(
+            destinations.update_selection,
         )

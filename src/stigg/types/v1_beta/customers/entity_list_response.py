@@ -22,6 +22,12 @@ class EntityListResponse(BaseModel):
     created_at: datetime = FieldInfo(alias="createdAt")
     """Timestamp of when the record was created"""
 
+    display_name: Optional[str] = FieldInfo(alias="displayName", default=None)
+    """
+    Human-readable name for the entity, or null when none is set — in which case
+    clients display the entity ID
+    """
+
     entity_type_id: str = FieldInfo(alias="entityTypeId")
     """The entity type identifier this entity instantiates"""
 

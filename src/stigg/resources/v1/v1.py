@@ -35,6 +35,14 @@ from .products import (
     AsyncProductsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
+from .contracts import (
+    ContractsResource,
+    AsyncContractsResource,
+    ContractsResourceWithRawResponse,
+    AsyncContractsResourceWithRawResponse,
+    ContractsResourceWithStreamingResponse,
+    AsyncContractsResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .plans.plans import (
     PlansResource,
@@ -137,6 +145,10 @@ class V1Resource(SyncAPIResource):
         return ProductsResource(self._client)
 
     @cached_property
+    def contracts(self) -> ContractsResource:
+        return ContractsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> V1ResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -203,6 +215,10 @@ class AsyncV1Resource(AsyncAPIResource):
     def products(self) -> AsyncProductsResource:
         """Operations related to products"""
         return AsyncProductsResource(self._client)
+
+    @cached_property
+    def contracts(self) -> AsyncContractsResource:
+        return AsyncContractsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncV1ResourceWithRawResponse:
@@ -275,6 +291,10 @@ class V1ResourceWithRawResponse:
         """Operations related to products"""
         return ProductsResourceWithRawResponse(self._v1.products)
 
+    @cached_property
+    def contracts(self) -> ContractsResourceWithRawResponse:
+        return ContractsResourceWithRawResponse(self._v1.contracts)
+
 
 class AsyncV1ResourceWithRawResponse:
     def __init__(self, v1: AsyncV1Resource) -> None:
@@ -326,6 +346,10 @@ class AsyncV1ResourceWithRawResponse:
     def products(self) -> AsyncProductsResourceWithRawResponse:
         """Operations related to products"""
         return AsyncProductsResourceWithRawResponse(self._v1.products)
+
+    @cached_property
+    def contracts(self) -> AsyncContractsResourceWithRawResponse:
+        return AsyncContractsResourceWithRawResponse(self._v1.contracts)
 
 
 class V1ResourceWithStreamingResponse:
@@ -379,6 +403,10 @@ class V1ResourceWithStreamingResponse:
         """Operations related to products"""
         return ProductsResourceWithStreamingResponse(self._v1.products)
 
+    @cached_property
+    def contracts(self) -> ContractsResourceWithStreamingResponse:
+        return ContractsResourceWithStreamingResponse(self._v1.contracts)
+
 
 class AsyncV1ResourceWithStreamingResponse:
     def __init__(self, v1: AsyncV1Resource) -> None:
@@ -430,3 +458,7 @@ class AsyncV1ResourceWithStreamingResponse:
     def products(self) -> AsyncProductsResourceWithStreamingResponse:
         """Operations related to products"""
         return AsyncProductsResourceWithStreamingResponse(self._v1.products)
+
+    @cached_property
+    def contracts(self) -> AsyncContractsResourceWithStreamingResponse:
+        return AsyncContractsResourceWithStreamingResponse(self._v1.contracts)
