@@ -56,6 +56,9 @@ class DataPagination(BaseModel):
 class DataSeriesPoint(BaseModel):
     """A single data point in the credit usage time series"""
 
+    event_count: float = FieldInfo(alias="eventCount")
+    """Number of distinct usage events that consumed credits in this time bucket"""
+
     timestamp: datetime
     """The timestamp of the data point"""
 
@@ -75,6 +78,13 @@ class DataSeriesTag(BaseModel):
 
 class DataSeries(BaseModel):
     """Credit usage data for a single feature"""
+
+    event_count: float = FieldInfo(alias="eventCount")
+    """Number of distinct usage events that consumed credits in this series.
+
+    This count is not additive across series, because an event matched by several
+    meters appears in more than one series.
+    """
 
     feature_id: Optional[str] = FieldInfo(alias="featureId", default=None)
     """The feature ID; null when grouping by dimensions only"""
