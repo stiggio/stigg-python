@@ -230,6 +230,11 @@ class ContractListResponse(BaseModel):
     to the billing provider
     """
 
+    billing_state: Optional[Literal["DRAFT", "ACTIVE", "CANCELED", "END_BILLING"]] = FieldInfo(
+        alias="billingState", default=None
+    )
+    """The current state of the contract"""
+
     contract_id: str = FieldInfo(alias="contractId")
     """The Stigg contract ref ID (the key used to fetch/update/delete this contract)"""
 
