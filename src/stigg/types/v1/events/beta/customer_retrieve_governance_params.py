@@ -21,7 +21,10 @@ class CustomerRetrieveGovernanceParams(TypedDict, total=False):
     """
 
     entity_id_search: Annotated[str, PropertyInfo(alias="entityIdSearch")]
-    """Case-insensitive substring match on the entity id (`%`/`_` matched literally)."""
+    """
+    Case-insensitive substring match on the entity id or its display name (`%`/`_`
+    matched literally).
+    """
 
     entity_type_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="entityTypeIds")]
     """Filter to one or more entity types, repeated per value (e.g.

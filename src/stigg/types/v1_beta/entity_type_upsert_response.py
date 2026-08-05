@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 from datetime import datetime
 
 from pydantic import Field as FieldInfo
@@ -27,6 +27,12 @@ class Data(BaseModel):
 
     created_at: datetime = FieldInfo(alias="createdAt")
     """Timestamp of when the record was created"""
+
+    description: Optional[str] = None
+    """
+    What this entity type represents and what it is for governing, or null when none
+    is set
+    """
 
     display_name: str = FieldInfo(alias="displayName")
     """The display name for the entity type"""
