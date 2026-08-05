@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.45 (2026-08-05)
+
+Full Changelog: [v0.1.0-beta.44...v0.1.0-beta.45](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.44...v0.1.0-beta.45)
+
+### Features
+
+* **api:** add display_name to entities, description to entity_types ([6d7399b](https://github.com/stiggio/stigg-python/commit/6d7399b425f8c3f761917382145ed8e28299ef5e))
+
 ## 0.1.0-beta.44 (2026-08-05)
 
 Full Changelog: [v0.1.0-beta.43...v0.1.0-beta.44](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.43...v0.1.0-beta.44)
