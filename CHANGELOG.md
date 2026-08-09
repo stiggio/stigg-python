@@ -1,5 +1,42 @@
 # Changelog
 
+## 0.1.0-beta.45 (2026-08-05)
+
+Full Changelog: [v0.1.0-beta.44...v0.1.0-beta.45](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.44...v0.1.0-beta.45)
+
+### Features
+
+* **api:** add display_name to entities, description to entity_types ([6d7399b](https://github.com/stiggio/stigg-python/commit/6d7399b425f8c3f761917382145ed8e28299ef5e))
+
+## 0.1.0-beta.44 (2026-08-05)
+
+Full Changelog: [v0.1.0-beta.43...v0.1.0-beta.44](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.43...v0.1.0-beta.44)
+
+### Features
+
+* **api:** add event_count field to credit usage response types ([664c365](https://github.com/stiggio/stigg-python/commit/664c3653d38e053848bbc13ced31dcb83468fdc0))
+
+## 0.1.0-beta.43 (2026-07-28)
+
+Full Changelog: [v0.1.0-beta.42...v0.1.0-beta.43](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.42...v0.1.0-beta.43)
+
+### Features
+
+* **api:** add contracts resource, retrieve_contracts to customers, sync_states to credits ([d161be9](https://github.com/stiggio/stigg-python/commit/d161be9eb06ebbf568f0a5e56c936c6ad810cdb1))
+
+## 0.1.0-beta.42 (2026-07-26)
+
+Full Changelog: [v0.1.0-beta.41...v0.1.0-beta.42](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.41...v0.1.0-beta.42)
+
+### Features
+
+* **api:** add credit_entitlement field to addon/plan update params ([fc81e37](https://github.com/stiggio/stigg-python/commit/fc81e373663f561b357cd5d4976833c9a92f5963))
+
+
+### Chores
+
+* **internal:** regenerate SDK with no functional changes ([6403cd4](https://github.com/stiggio/stigg-python/commit/6403cd4783b0e58d9153293eb788a90e1ccc4543))
+
 ## 0.1.0-beta.41 (2026-07-21)
 
 Full Changelog: [v0.1.0-beta.40...v0.1.0-beta.41](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.40...v0.1.0-beta.41)
