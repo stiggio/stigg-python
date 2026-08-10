@@ -731,21 +731,10 @@ class ChargesOveragePricingModelEntitlement(TypedDict, total=False):
 class ChargesOveragePricingModel(TypedDict, total=False):
     """Overage pricing model configuration."""
 
-    billing_model: Required[
-        Annotated[
-            Literal["FLAT_FEE", "MINIMUM_SPEND", "PER_UNIT", "USAGE_BASED", "CREDIT_BASED"],
-            PropertyInfo(alias="billingModel"),
-        ]
-    ]
-    """The billing model for overages"""
-
     price_periods: Required[
         Annotated[Iterable[ChargesOveragePricingModelPricePeriod], PropertyInfo(alias="pricePeriods")]
     ]
     """Price periods for overage pricing"""
-
-    billing_cadence: Annotated[Literal["RECURRING", "ONE_OFF"], PropertyInfo(alias="billingCadence")]
-    """The billing cadence for overages"""
 
     credit_entitlement: Annotated[ChargesOveragePricingModelCreditEntitlement, PropertyInfo(alias="creditEntitlement")]
     """

@@ -164,7 +164,6 @@ class TestAddons:
                 "overage_billing_period": "ON_SUBSCRIPTION_RENEWAL",
                 "overage_pricing_models": [
                     {
-                        "billing_model": "FLAT_FEE",
                         "price_periods": [
                             {
                                 "billing_period": "MONTHLY",
@@ -195,7 +194,6 @@ class TestAddons:
                                 ],
                             }
                         ],
-                        "billing_cadence": "RECURRING",
                         "credit_entitlement": {
                             "amount": 1,
                             "cadence": "MONTH",
@@ -767,7 +765,6 @@ class TestAsyncAddons:
                 "overage_billing_period": "ON_SUBSCRIPTION_RENEWAL",
                 "overage_pricing_models": [
                     {
-                        "billing_model": "FLAT_FEE",
                         "price_periods": [
                             {
                                 "billing_period": "MONTHLY",
@@ -798,7 +795,6 @@ class TestAsyncAddons:
                                 ],
                             }
                         ],
-                        "billing_cadence": "RECURRING",
                         "credit_entitlement": {
                             "amount": 1,
                             "cadence": "MONTH",

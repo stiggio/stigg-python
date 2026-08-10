@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.46 (2026-08-10)
+
+Full Changelog: [v0.1.0-beta.45...v0.1.0-beta.46](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.45...v0.1.0-beta.46)
+
+### Bug Fixes
+
+* **types:** remove billing_model and billing_cadence from overage pricing model ([1dba797](https://github.com/stiggio/stigg-python/commit/1dba7971a48476286ecc3025d2a60e4ec91b3e88))
+
 ## 0.1.0-beta.45 (2026-08-05)
 
 Full Changelog: [v0.1.0-beta.44...v0.1.0-beta.45](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.44...v0.1.0-beta.45)
