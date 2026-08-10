@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.0-beta.47 (2026-08-10)
+
+Full Changelog: [v0.1.0-beta.46...v0.1.0-beta.47](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.46...v0.1.0-beta.47)
+
 ## 0.1.0-beta.46 (2026-08-10)
 
 Full Changelog: [v0.1.0-beta.45...v0.1.0-beta.46](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.45...v0.1.0-beta.46)
