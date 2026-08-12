@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.0-beta.48](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.47...v0.1.0-beta.48) (2026-08-12)
+
+
+### Styles
+
+* satisfy prettier in the trunk-sync lock ([683c58d](https://github.com/stiggio/stigg-python/commit/683c58dcd2870298ccb10db0263c4df994ae1a67))
+
 ## 0.1.0-beta.47 (2026-08-10)
 
 Full Changelog: [v0.1.0-beta.46...v0.1.0-beta.47](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.46...v0.1.0-beta.47)
