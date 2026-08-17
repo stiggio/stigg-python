@@ -196,6 +196,9 @@ class DataNextInvoice(BaseModel):
     due_date: Optional[datetime] = FieldInfo(alias="dueDate", default=None)
     """The date the upcoming invoice is due"""
 
+    invoice_id: Optional[str] = FieldInfo(alias="invoiceId", default=None)
+    """The billing provider ID of the draft invoice this preview describes"""
+
     period_end: Optional[datetime] = FieldInfo(alias="periodEnd", default=None)
     """The end of the billing period the upcoming invoice covers"""
 
