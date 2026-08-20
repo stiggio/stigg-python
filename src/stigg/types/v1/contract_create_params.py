@@ -464,6 +464,9 @@ class SubscriptionNewSubscriptionEntitlementCredit(TypedDict, total=False):
     type: Required[Literal["CREDIT"]]
     """SubscriptionCreditEntitlementRequest"""
 
+    has_soft_limit: Annotated[bool, PropertyInfo(alias="hasSoftLimit")]
+    """Whether the credit balance is a soft limit"""
+
 
 SubscriptionNewSubscriptionEntitlement: TypeAlias = Union[
     SubscriptionNewSubscriptionEntitlementFeature, SubscriptionNewSubscriptionEntitlementCredit
