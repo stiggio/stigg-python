@@ -195,7 +195,7 @@ class TestAddons:
                             }
                         ],
                         "credit_entitlement": {
-                            "amount": 1,
+                            "amount": 0,
                             "cadence": "MONTH",
                             "custom_currency_id": "customCurrencyId",
                         },
@@ -796,7 +796,7 @@ class TestAsyncAddons:
                             }
                         ],
                         "credit_entitlement": {
-                            "amount": 1,
+                            "amount": 0,
                             "cadence": "MONTH",
                             "custom_currency_id": "customCurrencyId",
                         },

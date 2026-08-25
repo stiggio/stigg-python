@@ -205,7 +205,7 @@ class TestPlans:
                             }
                         ],
                         "credit_entitlement": {
-                            "amount": 1,
+                            "amount": 0,
                             "cadence": "MONTH",
                             "custom_currency_id": "customCurrencyId",
                         },
@@ -878,7 +878,7 @@ class TestAsyncPlans:
                             }
                         ],
                         "credit_entitlement": {
-                            "amount": 1,
+                            "amount": 0,
                             "cadence": "MONTH",
                             "custom_currency_id": "customCurrencyId",
                         },
