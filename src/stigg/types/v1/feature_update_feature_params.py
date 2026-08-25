@@ -39,6 +39,7 @@ class FeatureUpdateFeatureParams(TypedDict, total=False):
     """The additional metadata for the feature"""
 
     meter: Meter
+    """Event meter that turns reported events into usage for a metered feature"""
 
     unit_transformation: Annotated[Optional[UnitTransformation], PropertyInfo(alias="unitTransformation")]
     """Unit transformation to be applied to the reported usage"""
@@ -57,7 +58,10 @@ class EnumConfiguration(TypedDict, total=False):
 
 
 class MeterAggregation(TypedDict, total=False):
+    """How the matching events are aggregated into a usage value"""
+
     function: Required[Literal["SUM", "MAX", "MIN", "AVG", "COUNT", "UNIQUE"]]
+    """Aggregation function applied to the matching events"""
 
     field: str
     """Aggregation field name"""
@@ -83,6 +87,7 @@ class MeterFilterCondition(TypedDict, total=False):
             "IN",
         ]
     ]
+    """Comparison applied to the condition field"""
 
     value: str
     """Condition value"""
@@ -92,12 +97,17 @@ class MeterFilterCondition(TypedDict, total=False):
 
 class MeterFilter(TypedDict, total=False):
     conditions: Required[Iterable[MeterFilterCondition]]
+    """Conditions the event must match"""
 
 
 class Meter(TypedDict, total=False):
+    """Event meter that turns reported events into usage for a metered feature"""
+
     aggregation: Required[MeterAggregation]
+    """How the matching events are aggregated into a usage value"""
 
     filters: Required[Iterable[MeterFilter]]
+    """Event filters. Conditions within a filter are ANDed, and filters are ORed"""
 
 
 class UnitTransformation(TypedDict, total=False):

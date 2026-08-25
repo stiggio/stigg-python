@@ -5,9 +5,18 @@ from __future__ import annotations
 from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
-__all__ = ["FeatureCreateFeatureParams", "EnumConfiguration", "UnitTransformation"]
+__all__ = [
+    "FeatureCreateFeatureParams",
+    "EnumConfiguration",
+    "Meter",
+    "MeterAggregation",
+    "MeterFilter",
+    "MeterFilterCondition",
+    "UnitTransformation",
+]
 
 
 class FeatureCreateFeatureParams(TypedDict, total=False):
@@ -38,6 +47,9 @@ class FeatureCreateFeatureParams(TypedDict, total=False):
     metadata: Dict[str, str]
     """The additional metadata for the feature"""
 
+    meter: Meter
+    """Event meter that turns reported events into usage for a metered feature"""
+
     meter_type: Annotated[Literal["None", "FLUCTUATING", "INCREMENTAL"], PropertyInfo(alias="meterType")]
     """The meter type for the feature"""
 
@@ -55,6 +67,59 @@ class EnumConfiguration(TypedDict, total=False):
 
     value: Required[str]
     """The unique value identifier for the enum configuration entity"""
+
+
+class MeterAggregation(TypedDict, total=False):
+    """How the matching events are aggregated into a usage value"""
+
+    function: Required[Literal["SUM", "MAX", "MIN", "AVG", "COUNT", "UNIQUE"]]
+    """Aggregation function applied to the matching events"""
+
+    field: str
+    """Aggregation field name"""
+
+
+class MeterFilterCondition(TypedDict, total=False):
+    field: Required[str]
+    """Condition field name"""
+
+    operation: Required[
+        Literal[
+            "EQUALS",
+            "NOT_EQUALS",
+            "GREATER_THAN",
+            "GREATER_THAN_OR_EQUAL",
+            "LESS_THAN",
+            "LESS_THAN_OR_EQUAL",
+            "IS_NULL",
+            "IS_NOT_NULL",
+            "CONTAINS",
+            "STARTS_WITH",
+            "ENDS_WITH",
+            "IN",
+        ]
+    ]
+    """Comparison applied to the condition field"""
+
+    value: str
+    """Condition value"""
+
+    values: SequenceNotStr[str]
+
+
+class MeterFilter(TypedDict, total=False):
+    conditions: Required[Iterable[MeterFilterCondition]]
+    """Conditions the event must match"""
+
+
+class Meter(TypedDict, total=False):
+    """Event meter that turns reported events into usage for a metered feature"""
+
+    aggregation: Required[MeterAggregation]
+    """How the matching events are aggregated into a usage value"""
+
+    filters: Required[Iterable[MeterFilter]]
+    """Event filters. Conditions within a filter are ANDed, and filters are ORed"""
 
 
 class UnitTransformation(TypedDict, total=False):

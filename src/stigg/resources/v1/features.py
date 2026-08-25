@@ -104,6 +104,7 @@ class FeaturesResource(SyncAPIResource):
         feature_units: str | Omit = omit,
         feature_units_plural: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
+        meter: feature_create_feature_params.Meter | Omit = omit,
         meter_type: Literal["None", "FLUCTUATING", "INCREMENTAL"] | Omit = omit,
         unit_transformation: Optional[feature_create_feature_params.UnitTransformation] | Omit = omit,
         x_account_id: str | Omit = omit,
@@ -136,6 +137,8 @@ class FeaturesResource(SyncAPIResource):
           feature_units_plural: The plural units for the feature
 
           metadata: The additional metadata for the feature
+
+          meter: Event meter that turns reported events into usage for a metered feature
 
           meter_type: The meter type for the feature
 
@@ -171,6 +174,7 @@ class FeaturesResource(SyncAPIResource):
                     "feature_units": feature_units,
                     "feature_units_plural": feature_units_plural,
                     "metadata": metadata,
+                    "meter": meter,
                     "meter_type": meter_type,
                     "unit_transformation": unit_transformation,
                 },
@@ -390,6 +394,8 @@ class FeaturesResource(SyncAPIResource):
 
           metadata: The additional metadata for the feature
 
+          meter: Event meter that turns reported events into usage for a metered feature
+
           unit_transformation: Unit transformation to be applied to the reported usage
 
           extra_headers: Send extra headers
@@ -511,6 +517,7 @@ class AsyncFeaturesResource(AsyncAPIResource):
         feature_units: str | Omit = omit,
         feature_units_plural: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
+        meter: feature_create_feature_params.Meter | Omit = omit,
         meter_type: Literal["None", "FLUCTUATING", "INCREMENTAL"] | Omit = omit,
         unit_transformation: Optional[feature_create_feature_params.UnitTransformation] | Omit = omit,
         x_account_id: str | Omit = omit,
@@ -543,6 +550,8 @@ class AsyncFeaturesResource(AsyncAPIResource):
           feature_units_plural: The plural units for the feature
 
           metadata: The additional metadata for the feature
+
+          meter: Event meter that turns reported events into usage for a metered feature
 
           meter_type: The meter type for the feature
 
@@ -578,6 +587,7 @@ class AsyncFeaturesResource(AsyncAPIResource):
                     "feature_units": feature_units,
                     "feature_units_plural": feature_units_plural,
                     "metadata": metadata,
+                    "meter": meter,
                     "meter_type": meter_type,
                     "unit_transformation": unit_transformation,
                 },
@@ -796,6 +806,8 @@ class AsyncFeaturesResource(AsyncAPIResource):
           feature_units_plural: The plural units for the feature
 
           metadata: The additional metadata for the feature
+
+          meter: Event meter that turns reported events into usage for a metered feature
 
           unit_transformation: Unit transformation to be applied to the reported usage
 

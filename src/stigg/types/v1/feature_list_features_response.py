@@ -8,7 +8,15 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["FeatureListFeaturesResponse", "EnumConfiguration", "UnitTransformation"]
+__all__ = [
+    "FeatureListFeaturesResponse",
+    "EnumConfiguration",
+    "Meter",
+    "MeterAggregation",
+    "MeterFilter",
+    "MeterFilterCondition",
+    "UnitTransformation",
+]
 
 
 class EnumConfiguration(BaseModel):
@@ -17,6 +25,61 @@ class EnumConfiguration(BaseModel):
 
     value: str
     """The unique value identifier for the enum configuration entity"""
+
+
+class MeterAggregation(BaseModel):
+    """How the matching events are aggregated into a usage value"""
+
+    function: Literal["SUM", "MAX", "MIN", "AVG", "COUNT", "UNIQUE"]
+    """Aggregation function applied to the matching events"""
+
+    field: Optional[str] = None
+    """Aggregation field name"""
+
+
+class MeterFilterCondition(BaseModel):
+    """Meter filter condition"""
+
+    field: str
+    """Condition field name"""
+
+    operation: Literal[
+        "EQUALS",
+        "NOT_EQUALS",
+        "GREATER_THAN",
+        "GREATER_THAN_OR_EQUAL",
+        "LESS_THAN",
+        "LESS_THAN_OR_EQUAL",
+        "IS_NULL",
+        "IS_NOT_NULL",
+        "CONTAINS",
+        "STARTS_WITH",
+        "ENDS_WITH",
+        "IN",
+    ]
+    """Comparison applied to the condition field"""
+
+    value: Optional[str] = None
+    """Condition value"""
+
+    values: Optional[List[str]] = None
+
+
+class MeterFilter(BaseModel):
+    """A set of conditions an event must all match"""
+
+    conditions: List[MeterFilterCondition]
+    """Conditions the event must match"""
+
+
+class Meter(BaseModel):
+    """Event meter that turns reported events into usage for a metered feature"""
+
+    aggregation: MeterAggregation
+    """How the matching events are aggregated into a usage value"""
+
+    filters: List[MeterFilter]
+    """Event filters. Conditions within a filter are ANDed, and filters are ORed"""
 
 
 class UnitTransformation(BaseModel):
@@ -67,6 +130,9 @@ class FeatureListFeaturesResponse(BaseModel):
 
     metadata: Dict[str, str]
     """The additional metadata for the feature"""
+
+    meter: Optional[Meter] = None
+    """Event meter that turns reported events into usage for a metered feature"""
 
     meter_type: Literal["None", "FLUCTUATING", "INCREMENTAL"] = FieldInfo(alias="meterType")
     """The meter type for the feature"""

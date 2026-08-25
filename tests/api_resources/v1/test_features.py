@@ -102,6 +102,24 @@ class TestFeatures:
             feature_units="featureUnits",
             feature_units_plural="featureUnitsPlural",
             metadata={"foo": "string"},
+            meter={
+                "aggregation": {
+                    "function": "SUM",
+                    "field": "x",
+                },
+                "filters": [
+                    {
+                        "conditions": [
+                            {
+                                "field": "x",
+                                "operation": "EQUALS",
+                                "value": "value",
+                                "values": ["string"],
+                            }
+                        ]
+                    }
+                ],
+            },
             meter_type="None",
             unit_transformation={
                 "divide": 0,
@@ -325,13 +343,13 @@ class TestFeatures:
             meter={
                 "aggregation": {
                     "function": "SUM",
-                    "field": "field",
+                    "field": "x",
                 },
                 "filters": [
                     {
                         "conditions": [
                             {
-                                "field": "field",
+                                "field": "x",
                                 "operation": "EQUALS",
                                 "value": "value",
                                 "values": ["string"],
@@ -471,6 +489,24 @@ class TestAsyncFeatures:
             feature_units="featureUnits",
             feature_units_plural="featureUnitsPlural",
             metadata={"foo": "string"},
+            meter={
+                "aggregation": {
+                    "function": "SUM",
+                    "field": "x",
+                },
+                "filters": [
+                    {
+                        "conditions": [
+                            {
+                                "field": "x",
+                                "operation": "EQUALS",
+                                "value": "value",
+                                "values": ["string"],
+                            }
+                        ]
+                    }
+                ],
+            },
             meter_type="None",
             unit_transformation={
                 "divide": 0,
@@ -694,13 +730,13 @@ class TestAsyncFeatures:
             meter={
                 "aggregation": {
                     "function": "SUM",
-                    "field": "field",
+                    "field": "x",
                 },
                 "filters": [
                     {
                         "conditions": [
                             {
-                                "field": "field",
+                                "field": "x",
                                 "operation": "EQUALS",
                                 "value": "value",
                                 "values": ["string"],

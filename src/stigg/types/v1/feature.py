@@ -8,7 +8,16 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["Feature", "Data", "DataEnumConfiguration", "DataUnitTransformation"]
+__all__ = [
+    "Feature",
+    "Data",
+    "DataEnumConfiguration",
+    "DataMeter",
+    "DataMeterAggregation",
+    "DataMeterFilter",
+    "DataMeterFilterCondition",
+    "DataUnitTransformation",
+]
 
 
 class DataEnumConfiguration(BaseModel):
@@ -17,6 +26,61 @@ class DataEnumConfiguration(BaseModel):
 
     value: str
     """The unique value identifier for the enum configuration entity"""
+
+
+class DataMeterAggregation(BaseModel):
+    """How the matching events are aggregated into a usage value"""
+
+    function: Literal["SUM", "MAX", "MIN", "AVG", "COUNT", "UNIQUE"]
+    """Aggregation function applied to the matching events"""
+
+    field: Optional[str] = None
+    """Aggregation field name"""
+
+
+class DataMeterFilterCondition(BaseModel):
+    """Meter filter condition"""
+
+    field: str
+    """Condition field name"""
+
+    operation: Literal[
+        "EQUALS",
+        "NOT_EQUALS",
+        "GREATER_THAN",
+        "GREATER_THAN_OR_EQUAL",
+        "LESS_THAN",
+        "LESS_THAN_OR_EQUAL",
+        "IS_NULL",
+        "IS_NOT_NULL",
+        "CONTAINS",
+        "STARTS_WITH",
+        "ENDS_WITH",
+        "IN",
+    ]
+    """Comparison applied to the condition field"""
+
+    value: Optional[str] = None
+    """Condition value"""
+
+    values: Optional[List[str]] = None
+
+
+class DataMeterFilter(BaseModel):
+    """A set of conditions an event must all match"""
+
+    conditions: List[DataMeterFilterCondition]
+    """Conditions the event must match"""
+
+
+class DataMeter(BaseModel):
+    """Event meter that turns reported events into usage for a metered feature"""
+
+    aggregation: DataMeterAggregation
+    """How the matching events are aggregated into a usage value"""
+
+    filters: List[DataMeterFilter]
+    """Event filters. Conditions within a filter are ANDed, and filters are ORed"""
 
 
 class DataUnitTransformation(BaseModel):
@@ -67,6 +131,9 @@ class Data(BaseModel):
 
     metadata: Dict[str, str]
     """The additional metadata for the feature"""
+
+    meter: Optional[DataMeter] = None
+    """Event meter that turns reported events into usage for a metered feature"""
 
     meter_type: Literal["None", "FLUCTUATING", "INCREMENTAL"] = FieldInfo(alias="meterType")
     """The meter type for the feature"""
