@@ -10,7 +10,9 @@ __all__ = ["CustomerListResourcesResponse"]
 
 
 class CustomerListResourcesResponse(BaseModel):
-    """Resource object that belongs to a customer"""
+    """
+    Resource object that belongs to a customer, used to scope subscriptions and entitlements to a specific instance within the customer's account (e.g. a website, project, or workspace) for multi-resource pricing. A resource is identified only by its resourceId — there's no separate display name or metadata field on the resource itself; if you need to attach descriptive data, keep it in your own system keyed by resourceId.
+    """
 
     id: str
     """Resource slug"""

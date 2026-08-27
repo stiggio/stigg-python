@@ -30,7 +30,11 @@ class DataProductSettings(BaseModel):
     """Setup for the start of the subscription"""
 
     downgrade_plan_id: Optional[str] = FieldInfo(alias="downgradePlanId", default=None)
-    """ID of the plan to downgrade to at the end of the billing period"""
+    """ID of the plan to downgrade to at the end of the billing period.
+
+    Only relevant when subscriptionEndSetup is DOWNGRADE_TO_FREE — ignored
+    otherwise.
+    """
 
     prorate_at_end_of_billing_period: Optional[bool] = FieldInfo(alias="prorateAtEndOfBillingPeriod", default=None)
     """
@@ -39,7 +43,10 @@ class DataProductSettings(BaseModel):
     """
 
     subscription_start_plan_id: Optional[str] = FieldInfo(alias="subscriptionStartPlanId", default=None)
-    """ID of the plan to start the subscription with"""
+    """ID of the plan to start the subscription with.
+
+    Only relevant when subscriptionStartSetup is PLAN_SELECTION — ignored otherwise.
+    """
 
 
 class Data(BaseModel):

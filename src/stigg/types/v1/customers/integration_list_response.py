@@ -54,13 +54,20 @@ SyncData: TypeAlias = Union[
 
 
 class IntegrationListResponse(BaseModel):
-    """External billing or CRM integration link"""
+    """Links this customer to their record in a specific configured integration (e.g.
+
+    their Stripe customer ID under your Stripe integration). A customer has at most one link per integration.
+    """
 
     id: str
-    """Integration details"""
+    """The internal ID of the integration this record is linked to"""
 
     synced_entity_id: Optional[str] = FieldInfo(alias="syncedEntityId", default=None)
-    """Synced entity id"""
+    """The external entity ID this record is linked to in the vendor system (e.g.
+
+    the Stripe customer ID). Null until the link has synced; required when creating
+    the link.
+    """
 
     vendor_identifier: Literal[
         "AUTH0",
@@ -78,7 +85,7 @@ class IntegrationListResponse(BaseModel):
         "AIRWALLEX",
         "STRIPE_INVOICING",
     ] = FieldInfo(alias="vendorIdentifier")
-    """The vendor identifier of integration"""
+    """The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)"""
 
     sync_data: Optional[SyncData] = FieldInfo(alias="syncData", default=None)
     """

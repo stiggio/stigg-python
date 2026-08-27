@@ -307,7 +307,10 @@ class SubscriptionNewSubscriptionBillingInformation(TypedDict, total=False):
     """Whether the invoice is marked as paid"""
 
     metadata: Dict[str, str]
-    """Additional metadata for the subscription"""
+    """
+    Additional metadata for the subscription, stored as an arbitrary flat key-value
+    object.
+    """
 
     proration_behavior: Annotated[
         Literal["INVOICE_IMMEDIATELY", "CREATE_PRORATIONS", "NONE"], PropertyInfo(alias="prorationBehavior")
@@ -891,7 +894,12 @@ class SubscriptionNewSubscriptionPriceOverride(TypedDict, total=False):
     """Whether this is a base charge override"""
 
     billing_country_code: Annotated[str, PropertyInfo(alias="billingCountryCode")]
-    """The billing country code of the price"""
+    """ISO 3166-1 alpha-2 country code this price applies to.
+
+    Omit for the default price shown to all countries; set one or more
+    country-specific price periods on the same currency to localize the amount by
+    billing country.
+    """
 
     block_size: Annotated[float, PropertyInfo(alias="blockSize")]
     """Block size for pricing"""
@@ -1095,7 +1103,10 @@ class SubscriptionNewSubscription(TypedDict, total=False):
     entitlements: Iterable[SubscriptionNewSubscriptionEntitlement]
 
     metadata: Dict[str, str]
-    """Additional metadata for the subscription"""
+    """
+    Additional metadata for the subscription, stored as an arbitrary flat key-value
+    object.
+    """
 
     minimum_spend: Annotated[Optional[SubscriptionNewSubscriptionMinimumSpend], PropertyInfo(alias="minimumSpend")]
     """Minimum spend amount"""

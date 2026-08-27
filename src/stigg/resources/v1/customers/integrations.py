@@ -113,7 +113,9 @@ class IntegrationsResource(SyncAPIResource):
         entity ID.
 
         Args:
-          synced_entity_id: Synced entity id
+          synced_entity_id: The external entity ID this record is linked to in the vendor system (e.g. the
+              Stripe customer ID). Null until the link has synced; required when creating the
+              link.
 
           extra_headers: Send extra headers
 
@@ -272,11 +274,13 @@ class IntegrationsResource(SyncAPIResource):
         external entity ID.
 
         Args:
-          body_id: Integration details
+          body_id: The internal ID of the integration this record is linked to
 
-          synced_entity_id: Synced entity id
+          synced_entity_id: The external entity ID this record is linked to in the vendor system (e.g. the
+              Stripe customer ID). Null until the link has synced; required when creating the
+              link.
 
-          vendor_identifier: The vendor identifier of integration
+          vendor_identifier: The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
 
           extra_headers: Send extra headers
 
@@ -448,7 +452,9 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         entity ID.
 
         Args:
-          synced_entity_id: Synced entity id
+          synced_entity_id: The external entity ID this record is linked to in the vendor system (e.g. the
+              Stripe customer ID). Null until the link has synced; required when creating the
+              link.
 
           extra_headers: Send extra headers
 
@@ -607,11 +613,13 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         external entity ID.
 
         Args:
-          body_id: Integration details
+          body_id: The internal ID of the integration this record is linked to
 
-          synced_entity_id: Synced entity id
+          synced_entity_id: The external entity ID this record is linked to in the vendor system (e.g. the
+              Stripe customer ID). Null until the link has synced; required when creating the
+              link.
 
-          vendor_identifier: The vendor identifier of integration
+          vendor_identifier: The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
 
           extra_headers: Send extra headers
 

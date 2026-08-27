@@ -79,7 +79,12 @@ class Data(BaseModel):
     """The date when the next usage reset will occur"""
 
     resource_id: Optional[str] = FieldInfo(alias="resourceId", default=None)
-    """Resource id"""
+    """The customer resource this usage applies to.
+
+    Optional — only required if the customer has multiple resources (for example,
+    one subscription per workspace or site) and usage needs to be tracked separately
+    per resource; omit it to report usage at the customer level.
+    """
 
     usage_period_end: Optional[datetime] = FieldInfo(alias="usagePeriodEnd", default=None)
     """

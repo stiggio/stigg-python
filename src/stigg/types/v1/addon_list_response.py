@@ -48,7 +48,10 @@ class AddonListResponse(BaseModel):
     """Indicates if the package is the latest version"""
 
     max_quantity: Optional[int] = FieldInfo(alias="maxQuantity", default=None)
-    """The maximum quantity of this addon that can be added to a subscription"""
+    """The maximum quantity of this addon that can be added to a subscription.
+
+    Leave unset for no upper bound.
+    """
 
     metadata: Dict[str, str]
     """Metadata associated with the entity"""

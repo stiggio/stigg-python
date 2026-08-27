@@ -237,7 +237,15 @@ class Data(BaseModel):
     """Whether updates are scheduled"""
 
     is_plan_downgrade: Optional[bool] = FieldInfo(alias="isPlanDowngrade", default=None)
-    """Whether this is a downgrade"""
+    """Whether this change is classified as a downgrade.
+
+    Stigg determines this by ranking the target plan against the customer's current
+    plan — primarily by calculated price (or by plan parent/child inheritance, when
+    your catalog uses it) — rather than by a manually assigned plan order.
+    Downgrades can be scheduled to take effect at the end of the current billing
+    period instead of immediately, depending on your update scheduling
+    configuration.
+    """
 
     recurring_invoice: Optional[DataRecurringInvoice] = FieldInfo(alias="recurringInvoice", default=None)
     """Recurring invoice preview"""

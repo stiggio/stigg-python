@@ -43,7 +43,11 @@ class AddonUpdateParams(TypedDict, total=False):
     """The unique identifier for the entity in the billing provider"""
 
     charges: Charges
-    """Pricing configuration to set on the addon draft"""
+    """Pricing configuration to set on the addon draft.
+
+    Unlike the rest of this request, this is a full replace of the pricing
+    configuration, not a merge — see SetPackagePricingRequest.
+    """
 
     dependencies: Optional[SequenceNotStr[str]]
     """List of addons the addon is dependant on"""
@@ -55,7 +59,10 @@ class AddonUpdateParams(TypedDict, total=False):
     """The display name of the package"""
 
     max_quantity: Annotated[Optional[int], PropertyInfo(alias="maxQuantity")]
-    """The maximum quantity of this addon that can be added to a subscription"""
+    """The maximum quantity of this addon that can be added to a subscription.
+
+    Leave unset for no upper bound.
+    """
 
     metadata: Dict[str, str]
     """Metadata associated with the entity"""
@@ -1275,7 +1282,10 @@ class ChargesPricingModel(TypedDict, total=False):
 
 
 class Charges(TypedDict, total=False):
-    """Pricing configuration to set on the addon draft"""
+    """Pricing configuration to set on the addon draft.
+
+    Unlike the rest of this request, this is a full replace of the pricing configuration, not a merge — see SetPackagePricingRequest.
+    """
 
     pricing_type: Required[Annotated[Literal["FREE", "PAID", "CUSTOM"], PropertyInfo(alias="pricingType")]]
     """The pricing type (FREE, PAID, or CUSTOM)"""
@@ -1292,7 +1302,15 @@ class Charges(TypedDict, total=False):
     """When overage charges are billed"""
 
     overage_pricing_models: Annotated[Iterable[ChargesOveragePricingModel], PropertyInfo(alias="overagePricingModels")]
-    """Array of overage pricing model configurations"""
+    """Array of overage pricing model configurations.
+
+    Replaces all existing overage pricing models on the draft — omit this to end up
+    with no overage pricing.
+    """
 
     pricing_models: Annotated[Iterable[ChargesPricingModel], PropertyInfo(alias="pricingModels")]
-    """Array of pricing model configurations"""
+    """Array of pricing model configurations.
+
+    Replaces all existing base pricing models on the draft — omit this to end up
+    with no base pricing.
+    """

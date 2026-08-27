@@ -675,7 +675,12 @@ class Price(BaseModel):
     """Whether this is a base charge override"""
 
     billing_country_code: Optional[str] = FieldInfo(alias="billingCountryCode", default=None)
-    """The billing country code of the price"""
+    """ISO 3166-1 alpha-2 country code this price applies to.
+
+    Omit for the default price shown to all countries; set one or more
+    country-specific price periods on the same currency to localize the amount by
+    billing country.
+    """
 
     block_size: Optional[float] = FieldInfo(alias="blockSize", default=None)
     """Block size for pricing"""
@@ -911,7 +916,10 @@ class SubscriptionListResponse(BaseModel):
     """Latest invoice for the subscription"""
 
     metadata: Optional[Dict[str, str]] = None
-    """Additional metadata for the subscription"""
+    """
+    Additional metadata for the subscription, stored as an arbitrary flat key-value
+    object.
+    """
 
     minimum_spend: Optional[MinimumSpend] = FieldInfo(alias="minimumSpend", default=None)
     """Minimum spend configuration"""

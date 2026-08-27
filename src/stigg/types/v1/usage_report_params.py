@@ -30,7 +30,12 @@ class Usage(TypedDict, total=False):
     """Feature id"""
 
     value: Required[int]
-    """The value to report for usage"""
+    """The value to report for usage.
+
+    Must be a whole number — the REST API does not accept fractional (float) usage
+    values; scale up (e.g. report cents instead of dollars, or milliseconds instead
+    of seconds) if you need sub-unit precision.
+    """
 
     created_at: Annotated[Union[str, datetime], PropertyInfo(alias="createdAt", format="iso8601")]
     """Timestamp of when the record was created"""
@@ -39,10 +44,23 @@ class Usage(TypedDict, total=False):
     """Additional dimensions for the usage report"""
 
     idempotency_key: Annotated[str, PropertyInfo(alias="idempotencyKey")]
-    """Idempotency key"""
+    """
+    A key you provide to safely retry the same usage report without double-counting
+    it. Reports with a previously-seen idempotency key are deduplicated for 7 days;
+    after that window a retry is treated as new usage.
+    """
 
     resource_id: Annotated[Optional[str], PropertyInfo(alias="resourceId")]
-    """Resource id"""
+    """The customer resource this usage applies to.
+
+    Optional — only required if the customer has multiple resources (for example,
+    one subscription per workspace or site) and usage needs to be tracked separately
+    per resource; omit it to report usage at the customer level.
+    """
 
     update_behavior: Annotated[Literal["DELTA", "SET"], PropertyInfo(alias="updateBehavior")]
-    """The method by which the usage value should be updated"""
+    """
+    How the reported value is applied: DELTA (default) adds it to the feature's
+    current usage; SET treats it as the new absolute usage total, and Stigg computes
+    the delta internally.
+    """

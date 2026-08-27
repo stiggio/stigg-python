@@ -11,10 +11,14 @@ __all__ = ["IntegrationLinkParams"]
 
 class IntegrationLinkParams(TypedDict, total=False):
     body_id: Required[Annotated[str, PropertyInfo(alias="id")]]
-    """Integration details"""
+    """The internal ID of the integration this record is linked to"""
 
     synced_entity_id: Required[Annotated[str, PropertyInfo(alias="syncedEntityId")]]
-    """Synced entity id"""
+    """The external entity ID this record is linked to in the vendor system (e.g.
+
+    the Stripe customer ID). Null until the link has synced; required when creating
+    the link.
+    """
 
     vendor_identifier: Required[
         Annotated[
@@ -37,7 +41,7 @@ class IntegrationLinkParams(TypedDict, total=False):
             PropertyInfo(alias="vendorIdentifier"),
         ]
     ]
-    """The vendor identifier of integration"""
+    """The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)"""
 
     x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
 

@@ -24,7 +24,12 @@ class PlanCreateParams(TypedDict, total=False):
     """The unique identifier for the entity in the billing provider"""
 
     default_trial_config: Annotated[Optional[DefaultTrialConfig], PropertyInfo(alias="defaultTrialConfig")]
-    """Default trial configuration for the plan"""
+    """Default trial configuration for the plan.
+
+    When set, subscriptions provisioned on this plan without explicit trial settings
+    automatically start in trial for the configured duration; leave unset for no
+    automatic trial.
+    """
 
     description: Optional[str]
     """The description of the package"""
@@ -33,7 +38,11 @@ class PlanCreateParams(TypedDict, total=False):
     """Metadata associated with the entity"""
 
     parent_plan_id: Annotated[Optional[str], PropertyInfo(alias="parentPlanId")]
-    """The ID of the parent plan, if applicable"""
+    """
+    The ID of the parent plan, if this plan should inherit entitlements from another
+    plan. Optional — omit to create a standalone plan with no inherited
+    entitlements.
+    """
 
     pricing_type: Annotated[Optional[Literal["FREE", "PAID", "CUSTOM"]], PropertyInfo(alias="pricingType")]
     """The pricing type of the package"""
@@ -57,7 +66,10 @@ class DefaultTrialConfigBudget(TypedDict, total=False):
 
 
 class DefaultTrialConfig(TypedDict, total=False):
-    """Default trial configuration for the plan"""
+    """Default trial configuration for the plan.
+
+    When set, subscriptions provisioned on this plan without explicit trial settings automatically start in trial for the configured duration; leave unset for no automatic trial.
+    """
 
     duration: Required[float]
     """The duration of the trial in the specified units"""

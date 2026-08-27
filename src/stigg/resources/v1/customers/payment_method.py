@@ -204,11 +204,14 @@ class PaymentMethodResource(SyncAPIResource):
         subscriptions when integrated with a billing provider.
 
         Args:
-          integration_id: Integration details
+          integration_id: The internal ID of the integration this record is linked to
 
-          payment_method_id: Billing provider payment method id
+          payment_method_id: Billing provider payment method id. Attaching it makes it the customer's new
+              default payment method for future charges; any previously attached payment
+              method is no longer used as the default, though it is not removed from the
+              billing provider.
 
-          vendor_identifier: The vendor identifier of integration
+          vendor_identifier: The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
 
           billing_currency: Customers selected currency
 
@@ -475,11 +478,14 @@ class AsyncPaymentMethodResource(AsyncAPIResource):
         subscriptions when integrated with a billing provider.
 
         Args:
-          integration_id: Integration details
+          integration_id: The internal ID of the integration this record is linked to
 
-          payment_method_id: Billing provider payment method id
+          payment_method_id: Billing provider payment method id. Attaching it makes it the customer's new
+              default payment method for future charges; any previously attached payment
+              method is no longer used as the default, though it is not removed from the
+              billing provider.
 
-          vendor_identifier: The vendor identifier of integration
+          vendor_identifier: The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
 
           billing_currency: Customers selected currency
 

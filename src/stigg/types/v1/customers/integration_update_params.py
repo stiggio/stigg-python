@@ -14,7 +14,11 @@ class IntegrationUpdateParams(TypedDict, total=False):
     id: Required[str]
 
     synced_entity_id: Required[Annotated[Optional[str], PropertyInfo(alias="syncedEntityId")]]
-    """Synced entity id"""
+    """The external entity ID this record is linked to in the vendor system (e.g.
+
+    the Stripe customer ID). Null until the link has synced; required when creating
+    the link.
+    """
 
     x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
 

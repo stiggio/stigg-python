@@ -372,7 +372,9 @@ class ProductsResource(SyncAPIResource):
 
           display_name: Display name of the product
 
-          metadata: Additional metadata for the product
+          metadata: Additional metadata for the product. When included, this replaces the product's
+              entire metadata object rather than merging with the existing keys — omit the
+              field to leave existing metadata untouched.
 
           multiple_subscriptions: Indicates if multiple subscriptions to this product are allowed
 
@@ -758,7 +760,9 @@ class AsyncProductsResource(AsyncAPIResource):
 
           display_name: Display name of the product
 
-          metadata: Additional metadata for the product
+          metadata: Additional metadata for the product. When included, this replaces the product's
+              entire metadata object rather than merging with the existing keys — omit the
+              field to leave existing metadata untouched.
 
           multiple_subscriptions: Indicates if multiple subscriptions to this product are allowed
 

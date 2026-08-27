@@ -176,14 +176,21 @@ class SubscriptionsResource(SyncAPIResource):
     ) -> Subscription:
         """
         Updates an active subscription's properties including billing period, add-ons,
-        unit quantities, and discounts.
+        unit quantities, and discounts. This is a partial update — only the fields
+        present in the request body change. Object fields such as `metadata` are
+        replaced wholesale rather than merged, and list fields such as `addons` and
+        `priceOverrides` must be sent in full: any existing item that isn't included in
+        the array is removed from the subscription. Changes classified as a downgrade
+        may be scheduled for the end of the current billing period instead of applying
+        immediately, depending on your update scheduling configuration.
 
         Args:
           await_payment_confirmation: Await payment confirmation
 
           cancellation_date: Subscription cancellation date
 
-          metadata: Additional metadata for the subscription
+          metadata: Additional metadata for the subscription, stored as an arbitrary flat key-value
+              object.
 
           minimum_spend: Minimum spend amount
 
@@ -412,13 +419,15 @@ class SubscriptionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
-        Delegates the payment responsibility of a subscription to a different customer.
-        The delegated customer will be billed for this subscription.
+        Delegates a subscription to a different customer, who becomes responsible for
+        managing it. The original customer remains the paying customer for this
+        subscription, unless payment was already delegated to the target customer, in
+        which case the target customer becomes the paying customer as well.
 
         Args:
-          target_customer_id: The unique identifier of the customer who will assume payment responsibility for
-              this subscription. This customer must already exist in your Stigg account and
-              have a valid payment method if the subscription requires payment.
+          target_customer_id: The unique identifier of the customer who will manage this subscription going
+              forward. This customer must already exist in your Stigg account. The paying
+              customer for the subscription does not change as a result of this request.
 
           extra_headers: Send extra headers
 
@@ -736,7 +745,8 @@ class SubscriptionsResource(SyncAPIResource):
 
           checkout_options: Checkout page configuration for payment collection
 
-          metadata: Additional metadata for the subscription
+          metadata: Additional metadata for the subscription, stored as an arbitrary flat key-value
+              object.
 
           minimum_spend: Minimum spend amount
 
@@ -979,14 +989,21 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     ) -> Subscription:
         """
         Updates an active subscription's properties including billing period, add-ons,
-        unit quantities, and discounts.
+        unit quantities, and discounts. This is a partial update — only the fields
+        present in the request body change. Object fields such as `metadata` are
+        replaced wholesale rather than merged, and list fields such as `addons` and
+        `priceOverrides` must be sent in full: any existing item that isn't included in
+        the array is removed from the subscription. Changes classified as a downgrade
+        may be scheduled for the end of the current billing period instead of applying
+        immediately, depending on your update scheduling configuration.
 
         Args:
           await_payment_confirmation: Await payment confirmation
 
           cancellation_date: Subscription cancellation date
 
-          metadata: Additional metadata for the subscription
+          metadata: Additional metadata for the subscription, stored as an arbitrary flat key-value
+              object.
 
           minimum_spend: Minimum spend amount
 
@@ -1215,13 +1232,15 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
-        Delegates the payment responsibility of a subscription to a different customer.
-        The delegated customer will be billed for this subscription.
+        Delegates a subscription to a different customer, who becomes responsible for
+        managing it. The original customer remains the paying customer for this
+        subscription, unless payment was already delegated to the target customer, in
+        which case the target customer becomes the paying customer as well.
 
         Args:
-          target_customer_id: The unique identifier of the customer who will assume payment responsibility for
-              this subscription. This customer must already exist in your Stigg account and
-              have a valid payment method if the subscription requires payment.
+          target_customer_id: The unique identifier of the customer who will manage this subscription going
+              forward. This customer must already exist in your Stigg account. The paying
+              customer for the subscription does not change as a result of this request.
 
           extra_headers: Send extra headers
 
@@ -1539,7 +1558,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           checkout_options: Checkout page configuration for payment collection
 
-          metadata: Additional metadata for the subscription
+          metadata: Additional metadata for the subscription, stored as an arbitrary flat key-value
+              object.
 
           minimum_spend: Minimum spend amount
 

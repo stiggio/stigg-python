@@ -45,12 +45,21 @@ class PlanUpdateParams(TypedDict, total=False):
     """The unique identifier for the entity in the billing provider"""
 
     charges: Charges
-    """Pricing configuration to set on the plan draft"""
+    """Pricing configuration to set on the plan draft.
+
+    Unlike the rest of this request, this is a full replace of the pricing
+    configuration, not a merge — see SetPackagePricingRequest.
+    """
 
     compatible_addon_ids: Annotated[Optional[SequenceNotStr[str]], PropertyInfo(alias="compatibleAddonIds")]
 
     default_trial_config: Annotated[Optional[DefaultTrialConfig], PropertyInfo(alias="defaultTrialConfig")]
-    """Default trial configuration for the plan"""
+    """Default trial configuration for the plan.
+
+    When set, subscriptions provisioned on this plan without explicit trial settings
+    automatically start in trial for the configured duration; leave unset for no
+    automatic trial.
+    """
 
     description: Optional[str]
     """The description of the package"""
@@ -62,7 +71,11 @@ class PlanUpdateParams(TypedDict, total=False):
     """Metadata associated with the entity"""
 
     parent_plan_id: Annotated[Optional[str], PropertyInfo(alias="parentPlanId")]
-    """The ID of the parent plan, if applicable"""
+    """
+    The ID of the parent plan, if this plan should inherit entitlements from another
+    plan. Optional — omit to create a standalone plan with no inherited
+    entitlements.
+    """
 
     x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
 
@@ -1276,7 +1289,10 @@ class ChargesPricingModel(TypedDict, total=False):
 
 
 class Charges(TypedDict, total=False):
-    """Pricing configuration to set on the plan draft"""
+    """Pricing configuration to set on the plan draft.
+
+    Unlike the rest of this request, this is a full replace of the pricing configuration, not a merge — see SetPackagePricingRequest.
+    """
 
     pricing_type: Required[Annotated[Literal["FREE", "PAID", "CUSTOM"], PropertyInfo(alias="pricingType")]]
     """The pricing type (FREE, PAID, or CUSTOM)"""
@@ -1293,10 +1309,18 @@ class Charges(TypedDict, total=False):
     """When overage charges are billed"""
 
     overage_pricing_models: Annotated[Iterable[ChargesOveragePricingModel], PropertyInfo(alias="overagePricingModels")]
-    """Array of overage pricing model configurations"""
+    """Array of overage pricing model configurations.
+
+    Replaces all existing overage pricing models on the draft — omit this to end up
+    with no overage pricing.
+    """
 
     pricing_models: Annotated[Iterable[ChargesPricingModel], PropertyInfo(alias="pricingModels")]
-    """Array of pricing model configurations"""
+    """Array of pricing model configurations.
+
+    Replaces all existing base pricing models on the draft — omit this to end up
+    with no base pricing.
+    """
 
 
 class DefaultTrialConfigBudget(TypedDict, total=False):
@@ -1310,7 +1334,10 @@ class DefaultTrialConfigBudget(TypedDict, total=False):
 
 
 class DefaultTrialConfig(TypedDict, total=False):
-    """Default trial configuration for the plan"""
+    """Default trial configuration for the plan.
+
+    When set, subscriptions provisioned on this plan without explicit trial settings automatically start in trial for the configured duration; leave unset for no automatic trial.
+    """
 
     duration: Required[float]
     """The duration of the trial in the specified units"""

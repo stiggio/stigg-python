@@ -72,7 +72,10 @@ class Subscription(TypedDict, total=False):
     """Subscription end date"""
 
     metadata: Dict[str, str]
-    """Additional metadata for the subscription"""
+    """
+    Additional metadata for the subscription, stored as an arbitrary flat key-value
+    object.
+    """
 
     resource_id: Annotated[Optional[str], PropertyInfo(alias="resourceId")]
     """Resource ID"""

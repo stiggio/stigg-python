@@ -99,7 +99,10 @@ class EventsResource(SyncAPIResource):
 
           dimensions: Dimensions associated with the usage event
 
-          resource_id: Resource id
+          resource_id: The customer resource this usage applies to. Optional — only required if the
+              customer has multiple resources (for example, one subscription per workspace or
+              site) and usage needs to be tracked separately per resource; omit it to report
+              usage at the customer level.
 
           extra_headers: Send extra headers
 
@@ -150,8 +153,8 @@ class EventsResource(SyncAPIResource):
     ) -> EventReportResponse:
         """Reports raw usage events for event-based metering.
 
-        Events are ingested
-        asynchronously and aggregated into usage totals.
+        Events are validated and
+        stored synchronously, then aggregated into usage totals asynchronously.
 
         Args:
           events: A list of usage events to report
@@ -242,7 +245,10 @@ class AsyncEventsResource(AsyncAPIResource):
 
           dimensions: Dimensions associated with the usage event
 
-          resource_id: Resource id
+          resource_id: The customer resource this usage applies to. Optional — only required if the
+              customer has multiple resources (for example, one subscription per workspace or
+              site) and usage needs to be tracked separately per resource; omit it to report
+              usage at the customer level.
 
           extra_headers: Send extra headers
 
@@ -293,8 +299,8 @@ class AsyncEventsResource(AsyncAPIResource):
     ) -> EventReportResponse:
         """Reports raw usage events for event-based metering.
 
-        Events are ingested
-        asynchronously and aggregated into usage totals.
+        Events are validated and
+        stored synchronously, then aggregated into usage totals asynchronously.
 
         Args:
           events: A list of usage events to report

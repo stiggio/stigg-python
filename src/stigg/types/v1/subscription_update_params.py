@@ -56,7 +56,10 @@ class SubscriptionUpdateParams(TypedDict, total=False):
     entitlements: Iterable[Entitlement]
 
     metadata: Dict[str, str]
-    """Additional metadata for the subscription"""
+    """
+    Additional metadata for the subscription, stored as an arbitrary flat key-value
+    object.
+    """
 
     minimum_spend: Annotated[Optional[MinimumSpend], PropertyInfo(alias="minimumSpend")]
     """Minimum spend amount"""
@@ -295,7 +298,10 @@ class BillingInformation(TypedDict, total=False):
     is_invoice_paid: Annotated[bool, PropertyInfo(alias="isInvoicePaid")]
 
     metadata: Dict[str, str]
-    """Additional metadata for the subscription"""
+    """
+    Additional metadata for the subscription, stored as an arbitrary flat key-value
+    object.
+    """
 
     proration_behavior: Annotated[
         Literal["INVOICE_IMMEDIATELY", "CREATE_PRORATIONS", "NONE"], PropertyInfo(alias="prorationBehavior")

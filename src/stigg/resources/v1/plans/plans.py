@@ -105,13 +105,17 @@ class PlansResource(SyncAPIResource):
 
           billing_id: The unique identifier for the entity in the billing provider
 
-          default_trial_config: Default trial configuration for the plan
+          default_trial_config: Default trial configuration for the plan. When set, subscriptions provisioned on
+              this plan without explicit trial settings automatically start in trial for the
+              configured duration; leave unset for no automatic trial.
 
           description: The description of the package
 
           metadata: Metadata associated with the entity
 
-          parent_plan_id: The ID of the parent plan, if applicable
+          parent_plan_id: The ID of the parent plan, if this plan should inherit entitlements from another
+              plan. Optional — omit to create a standalone plan with no inherited
+              entitlements.
 
           pricing_type: The pricing type of the package
 
@@ -230,9 +234,13 @@ class PlansResource(SyncAPIResource):
         Args:
           billing_id: The unique identifier for the entity in the billing provider
 
-          charges: Pricing configuration to set on the plan draft
+          charges: Pricing configuration to set on the plan draft. Unlike the rest of this request,
+              this is a full replace of the pricing configuration, not a merge — see
+              SetPackagePricingRequest.
 
-          default_trial_config: Default trial configuration for the plan
+          default_trial_config: Default trial configuration for the plan. When set, subscriptions provisioned on
+              this plan without explicit trial settings automatically start in trial for the
+              configured duration; leave unset for no automatic trial.
 
           description: The description of the package
 
@@ -240,7 +248,9 @@ class PlansResource(SyncAPIResource):
 
           metadata: Metadata associated with the entity
 
-          parent_plan_id: The ID of the parent plan, if applicable
+          parent_plan_id: The ID of the parent plan, if this plan should inherit entitlements from another
+              plan. Optional — omit to create a standalone plan with no inherited
+              entitlements.
 
           extra_headers: Send extra headers
 
@@ -588,11 +598,18 @@ class PlansResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlanPublishResponse:
-        """
-        Publishes a draft plan, making it available for use in subscriptions.
+        """Publishes a draft plan, making it available for use in subscriptions.
+
+        The
+        required `migrationType` field controls whether existing subscribers are moved
+        onto the new version immediately (`ALL_CUSTOMERS`) or stay on the version they
+        subscribed to — grandfathered — until you explicitly migrate them, e.g. via the
+        migrate subscription endpoint (`NEW_CUSTOMERS`).
 
         Args:
-          migration_type: The migration type of the package
+          migration_type: Who the published version applies to: NEW_CUSTOMERS (default) leaves existing
+              subscribers on their current version, ALL_CUSTOMERS moves them onto the new
+              version immediately.
 
           extra_headers: Send extra headers
 
@@ -727,13 +744,17 @@ class AsyncPlansResource(AsyncAPIResource):
 
           billing_id: The unique identifier for the entity in the billing provider
 
-          default_trial_config: Default trial configuration for the plan
+          default_trial_config: Default trial configuration for the plan. When set, subscriptions provisioned on
+              this plan without explicit trial settings automatically start in trial for the
+              configured duration; leave unset for no automatic trial.
 
           description: The description of the package
 
           metadata: Metadata associated with the entity
 
-          parent_plan_id: The ID of the parent plan, if applicable
+          parent_plan_id: The ID of the parent plan, if this plan should inherit entitlements from another
+              plan. Optional — omit to create a standalone plan with no inherited
+              entitlements.
 
           pricing_type: The pricing type of the package
 
@@ -852,9 +873,13 @@ class AsyncPlansResource(AsyncAPIResource):
         Args:
           billing_id: The unique identifier for the entity in the billing provider
 
-          charges: Pricing configuration to set on the plan draft
+          charges: Pricing configuration to set on the plan draft. Unlike the rest of this request,
+              this is a full replace of the pricing configuration, not a merge — see
+              SetPackagePricingRequest.
 
-          default_trial_config: Default trial configuration for the plan
+          default_trial_config: Default trial configuration for the plan. When set, subscriptions provisioned on
+              this plan without explicit trial settings automatically start in trial for the
+              configured duration; leave unset for no automatic trial.
 
           description: The description of the package
 
@@ -862,7 +887,9 @@ class AsyncPlansResource(AsyncAPIResource):
 
           metadata: Metadata associated with the entity
 
-          parent_plan_id: The ID of the parent plan, if applicable
+          parent_plan_id: The ID of the parent plan, if this plan should inherit entitlements from another
+              plan. Optional — omit to create a standalone plan with no inherited
+              entitlements.
 
           extra_headers: Send extra headers
 
@@ -1210,11 +1237,18 @@ class AsyncPlansResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlanPublishResponse:
-        """
-        Publishes a draft plan, making it available for use in subscriptions.
+        """Publishes a draft plan, making it available for use in subscriptions.
+
+        The
+        required `migrationType` field controls whether existing subscribers are moved
+        onto the new version immediately (`ALL_CUSTOMERS`) or stay on the version they
+        subscribed to — grandfathered — until you explicitly migrate them, e.g. via the
+        migrate subscription endpoint (`NEW_CUSTOMERS`).
 
         Args:
-          migration_type: The migration type of the package
+          migration_type: Who the published version applies to: NEW_CUSTOMERS (default) leaves existing
+              subscribers on their current version, ALL_CUSTOMERS moves them onto the new
+              version immediately.
 
           extra_headers: Send extra headers
 

@@ -21,7 +21,12 @@ class EventEstimateParams(TypedDict, total=False):
     """Dimensions associated with the usage event"""
 
     resource_id: Annotated[Optional[str], PropertyInfo(alias="resourceId")]
-    """Resource id"""
+    """The customer resource this usage applies to.
+
+    Optional — only required if the customer has multiple resources (for example,
+    one subscription per workspace or site) and usage needs to be tracked separately
+    per resource; omit it to report usage at the customer level.
+    """
 
     x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
 

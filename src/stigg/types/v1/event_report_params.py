@@ -30,13 +30,22 @@ class Event(TypedDict, total=False):
     """The name of the usage event"""
 
     idempotency_key: Required[Annotated[str, PropertyInfo(alias="idempotencyKey")]]
-    """Idempotency key"""
+    """
+    A key you provide to safely retry the same usage report without double-counting
+    it. Reports with a previously-seen idempotency key are deduplicated for 7 days;
+    after that window a retry is treated as new usage.
+    """
 
     dimensions: Dict[str, Union[str, float, bool]]
     """Dimensions associated with the usage event"""
 
     resource_id: Annotated[Optional[str], PropertyInfo(alias="resourceId")]
-    """Resource id"""
+    """The customer resource this usage applies to.
+
+    Optional — only required if the customer has multiple resources (for example,
+    one subscription per workspace or site) and usage needs to be tracked separately
+    per resource; omit it to report usage at the customer level.
+    """
 
     timestamp: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Timestamp"""

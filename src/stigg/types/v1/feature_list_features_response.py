@@ -120,7 +120,10 @@ class FeatureListFeaturesResponse(BaseModel):
     """The status of the feature"""
 
     feature_type: Literal["BOOLEAN", "NUMBER", "ENUM"] = FieldInfo(alias="featureType")
-    """The type of the feature"""
+    """
+    The type of the feature: BOOLEAN (on/off access), NUMBER (a numeric limit or
+    quantity), or ENUM (one of a fixed set of values).
+    """
 
     feature_units: Optional[str] = FieldInfo(alias="featureUnits", default=None)
     """The units for the feature"""
@@ -135,7 +138,13 @@ class FeatureListFeaturesResponse(BaseModel):
     """Event meter that turns reported events into usage for a metered feature"""
 
     meter_type: Literal["None", "FLUCTUATING", "INCREMENTAL"] = FieldInfo(alias="meterType")
-    """The meter type for the feature"""
+    """How usage accumulates for this feature.
+
+    `Incremental` and `Fluctuating` features track usage from reported events;
+    `None` means the feature's value isn't usage-tracked — it's just a numeric or
+    enum value carried by the plan (for example, a seat count or a tier setting)
+    rather than something customers consume.
+    """
 
     unit_transformation: Optional[UnitTransformation] = FieldInfo(alias="unitTransformation", default=None)
     """Unit transformation to be applied to the reported usage"""

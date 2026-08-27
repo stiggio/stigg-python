@@ -124,7 +124,8 @@ class FeaturesResource(SyncAPIResource):
 
           display_name: The display name for the feature
 
-          feature_type: The type of the feature
+          feature_type: The type of the feature: BOOLEAN (on/off access), NUMBER (a numeric limit or
+              quantity), or ENUM (one of a fixed set of values).
 
           description: The description for the feature
 
@@ -140,7 +141,11 @@ class FeaturesResource(SyncAPIResource):
 
           meter: Event meter that turns reported events into usage for a metered feature
 
-          meter_type: The meter type for the feature
+          meter_type: How usage accumulates for this feature. `Incremental` and `Fluctuating` features
+              track usage from reported events; `None` means the feature's value isn't
+              usage-tracked — it's just a numeric or enum value carried by the plan (for
+              example, a seat count or a tier setting) rather than something customers
+              consume.
 
           unit_transformation: Unit transformation to be applied to the reported usage
 
@@ -537,7 +542,8 @@ class AsyncFeaturesResource(AsyncAPIResource):
 
           display_name: The display name for the feature
 
-          feature_type: The type of the feature
+          feature_type: The type of the feature: BOOLEAN (on/off access), NUMBER (a numeric limit or
+              quantity), or ENUM (one of a fixed set of values).
 
           description: The description for the feature
 
@@ -553,7 +559,11 @@ class AsyncFeaturesResource(AsyncAPIResource):
 
           meter: Event meter that turns reported events into usage for a metered feature
 
-          meter_type: The meter type for the feature
+          meter_type: How usage accumulates for this feature. `Incremental` and `Fluctuating` features
+              track usage from reported events; `None` means the feature's value isn't
+              usage-tracked — it's just a numeric or enum value carried by the plan (for
+              example, a seat count or a tier setting) rather than something customers
+              consume.
 
           unit_transformation: Unit transformation to be applied to the reported usage
 

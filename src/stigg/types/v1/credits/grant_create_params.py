@@ -28,10 +28,19 @@ class GrantCreateParams(TypedDict, total=False):
     """The type of credit grant (PAID, PROMOTIONAL)"""
 
     await_payment_confirmation: Annotated[bool, PropertyInfo(alias="awaitPaymentConfirmation")]
-    """Whether to wait for payment confirmation before returning (default: true)"""
+    """Whether to wait for payment confirmation before returning (default: true).
+
+    When false, the request returns immediately while payment (if any) is collected
+    asynchronously; check the returned status to see whether the credits are already
+    usable.
+    """
 
     billing_information: Annotated[BillingInformation, PropertyInfo(alias="billingInformation")]
-    """Billing information for the credit grant"""
+    """
+    Billing information for the credit grant, used when the grant has a payment
+    collection method that requires collecting payment (e.g. invoice due date,
+    billing address).
+    """
 
     comment: str
     """An optional comment on the credit grant"""
@@ -51,10 +60,24 @@ class GrantCreateParams(TypedDict, total=False):
     payment_collection_method: Annotated[
         Literal["CHARGE", "INVOICE", "NONE"], PropertyInfo(alias="paymentCollectionMethod")
     ]
-    """The payment collection method (CHARGE, INVOICE, NONE)"""
+    """The payment collection method (CHARGE, INVOICE, NONE).
+
+    Optional if the grant has no `cost`, since there is nothing to collect payment
+    for. With NONE or CHARGE, the grant is active and its credits are usable right
+    away (or as soon as the charge succeeds). With INVOICE, the grant stays pending
+    — its credits are not usable — until the generated invoice is paid.
+    """
 
     priority: int
-    """The priority of the credit grant (lower number = higher priority)"""
+    """
+    Determines which grant is drawn down first when the customer has multiple active
+    grants in the same currency (0-100). Lower numbers are consumed first. Defaults
+    to 50 — the same default used for recurring credits granted by a plan or price —
+    so without setting this explicitly, draw order against plan-included credits
+    falls back to expiration date and grant type. To have this grant consumed before
+    or after plan-included credits, set a lower or higher priority than the
+    plan/price credit configuration.
+    """
 
     resource_id: Annotated[str, PropertyInfo(alias="resourceId")]
     """The resource ID to scope the grant to"""
@@ -87,7 +110,9 @@ class BillingInformationBillingAddress(TypedDict, total=False):
 
 
 class BillingInformation(TypedDict, total=False):
-    """Billing information for the credit grant"""
+    """
+    Billing information for the credit grant, used when the grant has a payment collection method that requires collecting payment (e.g. invoice due date, billing address).
+    """
 
     billing_address: Annotated[BillingInformationBillingAddress, PropertyInfo(alias="billingAddress")]
     """The billing address"""

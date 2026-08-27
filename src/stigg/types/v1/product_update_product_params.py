@@ -18,7 +18,12 @@ class ProductUpdateProductParams(TypedDict, total=False):
     """Display name of the product"""
 
     metadata: Optional[Dict[str, str]]
-    """Additional metadata for the product"""
+    """Additional metadata for the product.
+
+    When included, this replaces the product's entire metadata object rather than
+    merging with the existing keys — omit the field to leave existing metadata
+    untouched.
+    """
 
     multiple_subscriptions: Annotated[bool, PropertyInfo(alias="multipleSubscriptions")]
     """Indicates if multiple subscriptions to this product are allowed"""
@@ -53,7 +58,11 @@ class ProductSettings(TypedDict, total=False):
     """Setup for the start of the subscription"""
 
     downgrade_plan_id: Annotated[Optional[str], PropertyInfo(alias="downgradePlanId")]
-    """ID of the plan to downgrade to at the end of the billing period"""
+    """ID of the plan to downgrade to at the end of the billing period.
+
+    Only relevant when subscriptionEndSetup is DOWNGRADE_TO_FREE — ignored
+    otherwise.
+    """
 
     prorate_at_end_of_billing_period: Annotated[Optional[bool], PropertyInfo(alias="prorateAtEndOfBillingPeriod")]
     """
@@ -62,7 +71,10 @@ class ProductSettings(TypedDict, total=False):
     """
 
     subscription_start_plan_id: Annotated[Optional[str], PropertyInfo(alias="subscriptionStartPlanId")]
-    """ID of the plan to start the subscription with"""
+    """ID of the plan to start the subscription with.
+
+    Only relevant when subscriptionStartSetup is PLAN_SELECTION — ignored otherwise.
+    """
 
 
 class UsageResetCutoffRule(TypedDict, total=False):

@@ -27,7 +27,10 @@ class AddonCreateParams(TypedDict, total=False):
     """The description of the package"""
 
     max_quantity: Annotated[Optional[int], PropertyInfo(alias="maxQuantity")]
-    """The maximum quantity of this addon that can be added to a subscription"""
+    """The maximum quantity of this addon that can be added to a subscription.
+
+    Leave unset for no upper bound.
+    """
 
     metadata: Dict[str, str]
     """Metadata associated with the entity"""

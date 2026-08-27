@@ -12,10 +12,15 @@ __all__ = ["PaymentMethodAttachParams"]
 
 class PaymentMethodAttachParams(TypedDict, total=False):
     integration_id: Required[Annotated[str, PropertyInfo(alias="integrationId")]]
-    """Integration details"""
+    """The internal ID of the integration this record is linked to"""
 
     payment_method_id: Required[Annotated[str, PropertyInfo(alias="paymentMethodId")]]
-    """Billing provider payment method id"""
+    """Billing provider payment method id.
+
+    Attaching it makes it the customer's new default payment method for future
+    charges; any previously attached payment method is no longer used as the
+    default, though it is not removed from the billing provider.
+    """
 
     vendor_identifier: Required[
         Annotated[
@@ -38,7 +43,7 @@ class PaymentMethodAttachParams(TypedDict, total=False):
             PropertyInfo(alias="vendorIdentifier"),
         ]
     ]
-    """The vendor identifier of integration"""
+    """The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)"""
 
     billing_currency: Annotated[
         Optional[

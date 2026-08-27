@@ -22,7 +22,10 @@ class DataDefaultTrialConfigBudget(BaseModel):
 
 
 class DataDefaultTrialConfig(BaseModel):
-    """Default trial configuration for the plan"""
+    """Default trial configuration for the plan.
+
+    When set, subscriptions provisioned on this plan without explicit trial settings automatically start in trial for the configured duration; leave unset for no automatic trial.
+    """
 
     duration: float
     """The duration of the trial in the specified units"""
@@ -63,7 +66,12 @@ class Data(BaseModel):
     """Timestamp of when the record was created"""
 
     default_trial_config: Optional[DataDefaultTrialConfig] = FieldInfo(alias="defaultTrialConfig", default=None)
-    """Default trial configuration for the plan"""
+    """Default trial configuration for the plan.
+
+    When set, subscriptions provisioned on this plan without explicit trial settings
+    automatically start in trial for the configured duration; leave unset for no
+    automatic trial.
+    """
 
     description: Optional[str] = None
     """The description of the package"""
@@ -81,7 +89,11 @@ class Data(BaseModel):
     """Metadata associated with the entity"""
 
     parent_plan_id: Optional[str] = FieldInfo(alias="parentPlanId", default=None)
-    """The ID of the parent plan, if applicable"""
+    """
+    The ID of the parent plan, if this plan should inherit entitlements from another
+    plan. Optional — omit to create a standalone plan with no inherited
+    entitlements.
+    """
 
     pricing_type: Optional[Literal["FREE", "PAID", "CUSTOM"]] = FieldInfo(alias="pricingType", default=None)
     """The pricing type of the package"""

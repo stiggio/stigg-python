@@ -43,13 +43,20 @@ class DataDefaultPaymentMethod(BaseModel):
 
 
 class DataIntegration(BaseModel):
-    """External billing or CRM integration link"""
+    """Links this customer to their record in a specific configured integration (e.g.
+
+    their Stripe customer ID under your Stripe integration). A customer has at most one link per integration.
+    """
 
     id: str
-    """Integration details"""
+    """The internal ID of the integration this record is linked to"""
 
     synced_entity_id: Optional[str] = FieldInfo(alias="syncedEntityId", default=None)
-    """Synced entity id"""
+    """The external entity ID this record is linked to in the vendor system (e.g.
+
+    the Stripe customer ID). Null until the link has synced; required when creating
+    the link.
+    """
 
     vendor_identifier: Literal[
         "AUTH0",
@@ -67,7 +74,7 @@ class DataIntegration(BaseModel):
         "AIRWALLEX",
         "STRIPE_INVOICING",
     ] = FieldInfo(alias="vendorIdentifier")
-    """The vendor identifier of integration"""
+    """The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)"""
 
 
 class DataPassthroughStripeBillingAddress(BaseModel):
@@ -137,7 +144,11 @@ class DataPassthroughStripe(BaseModel):
     """Invoice custom fields"""
 
     metadata: Optional[Dict[str, str]] = None
-    """Additional metadata"""
+    """
+    Additional metadata to pass through to the billing provider on the customer's
+    record there. This is separate from the customer's own metadata field — it's
+    stored only on the billing-provider side, not on the Stigg customer object.
+    """
 
     payment_method_id: Optional[str] = FieldInfo(alias="paymentMethodId", default=None)
     """Billing provider payment method id, attached to this customer"""
@@ -300,7 +311,11 @@ class DataPassthroughZuora(BaseModel):
     """Customers selected currency"""
 
     metadata: Optional[Dict[str, str]] = None
-    """Additional metadata"""
+    """
+    Additional metadata to pass through to the billing provider on the customer's
+    record there. This is separate from the customer's own metadata field — it's
+    stored only on the billing-provider side, not on the Stigg customer object.
+    """
 
     payment_method_id: Optional[str] = FieldInfo(alias="paymentMethodId", default=None)
     """Billing provider payment method id, attached to this customer"""
@@ -472,7 +487,13 @@ class Data(BaseModel):
     """Language to use for this customer"""
 
     metadata: Optional[Dict[str, str]] = None
-    """Additional metadata"""
+    """Custom key-value metadata to attach to the customer.
+
+    When creating a customer, this sets the initial metadata. When updating a
+    customer, this replaces the customer's existing metadata object entirely — it is
+    not merged key by key. Omit this field on update to leave the customer's
+    existing metadata untouched; pass an empty object to clear it.
+    """
 
     name: Optional[str] = None
     """The name of the customer"""

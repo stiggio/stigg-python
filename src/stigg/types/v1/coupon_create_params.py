@@ -15,13 +15,19 @@ class CouponCreateParams(TypedDict, total=False):
     """The unique identifier for the entity"""
 
     amounts_off: Required[Annotated[Optional[Iterable[AmountsOff]], PropertyInfo(alias="amountsOff")]]
-    """Fixed amount discounts in different currencies"""
+    """Fixed amount discounts in different currencies.
+
+    Provide exactly one of percentOff or amountsOff — not both, not neither.
+    """
 
     description: Required[Optional[str]]
     """Description of the coupon"""
 
     duration_in_months: Required[Annotated[Optional[int], PropertyInfo(alias="durationInMonths")]]
-    """Duration of the coupon validity in months"""
+    """How many billing cycles the discount applies for once redeemed.
+
+    Leave unset for a discount that lasts for the lifetime of the subscription.
+    """
 
     metadata: Required[Optional[Dict[str, str]]]
     """Metadata associated with the entity"""
@@ -30,7 +36,10 @@ class CouponCreateParams(TypedDict, total=False):
     """Name of the coupon"""
 
     percent_off: Required[Annotated[Optional[float], PropertyInfo(alias="percentOff")]]
-    """Percentage discount off the original price"""
+    """Percentage discount off the original price.
+
+    Provide exactly one of percentOff or amountsOff — not both, not neither.
+    """
 
     x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
 

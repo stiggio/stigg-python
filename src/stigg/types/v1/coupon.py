@@ -145,7 +145,10 @@ class Data(BaseModel):
     """The unique identifier for the entity"""
 
     amounts_off: Optional[List[DataAmountsOff]] = FieldInfo(alias="amountsOff", default=None)
-    """Fixed amount discounts in different currencies"""
+    """Fixed amount discounts in different currencies.
+
+    Provide exactly one of percentOff or amountsOff — not both, not neither.
+    """
 
     billing_id: Optional[str] = FieldInfo(alias="billingId", default=None)
     """The unique identifier for the entity in the billing provider"""
@@ -160,7 +163,10 @@ class Data(BaseModel):
     """Description of the coupon"""
 
     duration_in_months: Optional[int] = FieldInfo(alias="durationInMonths", default=None)
-    """Duration of the coupon validity in months"""
+    """How many billing cycles the discount applies for once redeemed.
+
+    Leave unset for a discount that lasts for the lifetime of the subscription.
+    """
 
     metadata: Optional[Dict[str, str]] = None
     """Metadata associated with the entity"""
@@ -169,7 +175,10 @@ class Data(BaseModel):
     """Name of the coupon"""
 
     percent_off: Optional[int] = FieldInfo(alias="percentOff", default=None)
-    """Percentage discount off the original price"""
+    """Percentage discount off the original price.
+
+    Provide exactly one of percentOff or amountsOff — not both, not neither.
+    """
 
     source: Optional[Literal["STIGG", "STIGG_ADHOC", "STRIPE"]] = None
     """The source of the coupon"""

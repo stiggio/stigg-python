@@ -78,13 +78,20 @@ class UsageResource(SyncAPIResource):
 
           feature_id: Feature id
 
-          value: The value to report for usage
+          value: The value to report for usage. Must be a whole number — the REST API does not
+              accept fractional (float) usage values; scale up (e.g. report cents instead of
+              dollars, or milliseconds instead of seconds) if you need sub-unit precision.
 
           dimensions: Additional dimensions for the usage report
 
-          resource_id: Resource id
+          resource_id: The customer resource this usage applies to. Optional — only required if the
+              customer has multiple resources (for example, one subscription per workspace or
+              site) and usage needs to be tracked separately per resource; omit it to report
+              usage at the customer level.
 
-          update_behavior: The method by which the usage value should be updated
+          update_behavior: How the reported value is applied: DELTA (default) adds it to the feature's
+              current usage; SET treats it as the new absolute usage total, and Stigg computes
+              the delta internally.
 
           extra_headers: Send extra headers
 
@@ -150,7 +157,10 @@ class UsageResource(SyncAPIResource):
 
           group_by: Criteria by which to group the usage history
 
-          resource_id: Resource id
+          resource_id: The customer resource this usage applies to. Optional — only required if the
+              customer has multiple resources (for example, one subscription per workspace or
+              site) and usage needs to be tracked separately per resource; omit it to report
+              usage at the customer level.
 
           extra_headers: Send extra headers
 
@@ -294,13 +304,20 @@ class AsyncUsageResource(AsyncAPIResource):
 
           feature_id: Feature id
 
-          value: The value to report for usage
+          value: The value to report for usage. Must be a whole number — the REST API does not
+              accept fractional (float) usage values; scale up (e.g. report cents instead of
+              dollars, or milliseconds instead of seconds) if you need sub-unit precision.
 
           dimensions: Additional dimensions for the usage report
 
-          resource_id: Resource id
+          resource_id: The customer resource this usage applies to. Optional — only required if the
+              customer has multiple resources (for example, one subscription per workspace or
+              site) and usage needs to be tracked separately per resource; omit it to report
+              usage at the customer level.
 
-          update_behavior: The method by which the usage value should be updated
+          update_behavior: How the reported value is applied: DELTA (default) adds it to the feature's
+              current usage; SET treats it as the new absolute usage total, and Stigg computes
+              the delta internally.
 
           extra_headers: Send extra headers
 
@@ -366,7 +383,10 @@ class AsyncUsageResource(AsyncAPIResource):
 
           group_by: Criteria by which to group the usage history
 
-          resource_id: Resource id
+          resource_id: The customer resource this usage applies to. Optional — only required if the
+              customer has multiple resources (for example, one subscription per workspace or
+              site) and usage needs to be tracked separately per resource; omit it to report
+              usage at the customer level.
 
           extra_headers: Send extra headers
 

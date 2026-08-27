@@ -74,17 +74,20 @@ class CouponsResource(SyncAPIResource):
         Args:
           id: The unique identifier for the entity
 
-          amounts_off: Fixed amount discounts in different currencies
+          amounts_off: Fixed amount discounts in different currencies. Provide exactly one of
+              percentOff or amountsOff — not both, not neither.
 
           description: Description of the coupon
 
-          duration_in_months: Duration of the coupon validity in months
+          duration_in_months: How many billing cycles the discount applies for once redeemed. Leave unset for
+              a discount that lasts for the lifetime of the subscription.
 
           metadata: Metadata associated with the entity
 
           name: Name of the coupon
 
-          percent_off: Percentage discount off the original price
+          percent_off: Percentage discount off the original price. Provide exactly one of percentOff or
+              amountsOff — not both, not neither.
 
           extra_headers: Send extra headers
 
@@ -399,17 +402,20 @@ class AsyncCouponsResource(AsyncAPIResource):
         Args:
           id: The unique identifier for the entity
 
-          amounts_off: Fixed amount discounts in different currencies
+          amounts_off: Fixed amount discounts in different currencies. Provide exactly one of
+              percentOff or amountsOff — not both, not neither.
 
           description: Description of the coupon
 
-          duration_in_months: Duration of the coupon validity in months
+          duration_in_months: How many billing cycles the discount applies for once redeemed. Leave unset for
+              a discount that lasts for the lifetime of the subscription.
 
           metadata: Metadata associated with the entity
 
           name: Name of the coupon
 
-          percent_off: Percentage discount off the original price
+          percent_off: Percentage discount off the original price. Provide exactly one of percentOff or
+              amountsOff — not both, not neither.
 
           extra_headers: Send extra headers
 

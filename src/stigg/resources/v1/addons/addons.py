@@ -104,7 +104,8 @@ class AddonsResource(SyncAPIResource):
 
           description: The description of the package
 
-          max_quantity: The maximum quantity of this addon that can be added to a subscription
+          max_quantity: The maximum quantity of this addon that can be added to a subscription. Leave
+              unset for no upper bound.
 
           metadata: Metadata associated with the entity
 
@@ -224,7 +225,9 @@ class AddonsResource(SyncAPIResource):
         Args:
           billing_id: The unique identifier for the entity in the billing provider
 
-          charges: Pricing configuration to set on the addon draft
+          charges: Pricing configuration to set on the addon draft. Unlike the rest of this
+              request, this is a full replace of the pricing configuration, not a merge — see
+              SetPackagePricingRequest.
 
           dependencies: List of addons the addon is dependant on
 
@@ -232,7 +235,8 @@ class AddonsResource(SyncAPIResource):
 
           display_name: The display name of the package
 
-          max_quantity: The maximum quantity of this addon that can be added to a subscription
+          max_quantity: The maximum quantity of this addon that can be added to a subscription. Leave
+              unset for no upper bound.
 
           metadata: Metadata associated with the entity
 
@@ -519,11 +523,18 @@ class AddonsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AddonPublishResponse:
-        """
-        Publishes a draft addon, making it available for use in subscriptions.
+        """Publishes a draft addon, making it available for use in subscriptions.
+
+        The
+        required `migrationType` field controls whether subscriptions already using this
+        addon are moved onto the new version immediately (`ALL_CUSTOMERS`) or stay on
+        the version they were using — grandfathered — until you explicitly migrate them
+        (`NEW_CUSTOMERS`).
 
         Args:
-          migration_type: The migration type of the package
+          migration_type: Who the published version applies to: NEW_CUSTOMERS (default) leaves existing
+              subscribers on their current version, ALL_CUSTOMERS moves them onto the new
+              version immediately.
 
           extra_headers: Send extra headers
 
@@ -659,7 +670,8 @@ class AsyncAddonsResource(AsyncAPIResource):
 
           description: The description of the package
 
-          max_quantity: The maximum quantity of this addon that can be added to a subscription
+          max_quantity: The maximum quantity of this addon that can be added to a subscription. Leave
+              unset for no upper bound.
 
           metadata: Metadata associated with the entity
 
@@ -779,7 +791,9 @@ class AsyncAddonsResource(AsyncAPIResource):
         Args:
           billing_id: The unique identifier for the entity in the billing provider
 
-          charges: Pricing configuration to set on the addon draft
+          charges: Pricing configuration to set on the addon draft. Unlike the rest of this
+              request, this is a full replace of the pricing configuration, not a merge — see
+              SetPackagePricingRequest.
 
           dependencies: List of addons the addon is dependant on
 
@@ -787,7 +801,8 @@ class AsyncAddonsResource(AsyncAPIResource):
 
           display_name: The display name of the package
 
-          max_quantity: The maximum quantity of this addon that can be added to a subscription
+          max_quantity: The maximum quantity of this addon that can be added to a subscription. Leave
+              unset for no upper bound.
 
           metadata: Metadata associated with the entity
 
@@ -1074,11 +1089,18 @@ class AsyncAddonsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AddonPublishResponse:
-        """
-        Publishes a draft addon, making it available for use in subscriptions.
+        """Publishes a draft addon, making it available for use in subscriptions.
+
+        The
+        required `migrationType` field controls whether subscriptions already using this
+        addon are moved onto the new version immediately (`ALL_CUSTOMERS`) or stay on
+        the version they were using — grandfathered — until you explicitly migrate them
+        (`NEW_CUSTOMERS`).
 
         Args:
-          migration_type: The migration type of the package
+          migration_type: Who the published version applies to: NEW_CUSTOMERS (default) leaves existing
+              subscribers on their current version, ALL_CUSTOMERS moves them onto the new
+              version immediately.
 
           extra_headers: Send extra headers
 
