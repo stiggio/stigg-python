@@ -894,9 +894,9 @@ class SubscriptionNewSubscriptionPriceOverride(TypedDict, total=False):
     """Whether this is a base charge override"""
 
     billing_country_code: Annotated[str, PropertyInfo(alias="billingCountryCode")]
-    """ISO 3166-1 alpha-2 country code this price applies to.
-
-    Omit for the default price shown to all countries; set one or more
+    """
+    ISO 3166-1 alpha-2 country code this price applies to, or "eu" for the Eurozone
+    region. Omit for the default price shown to all countries; set one or more
     country-specific price periods on the same currency to localize the amount by
     billing country.
     """
@@ -1075,7 +1075,10 @@ class SubscriptionNewSubscription(TypedDict, total=False):
     """Whether to wait for payment confirmation before returning the subscription"""
 
     billing_country_code: Annotated[Optional[str], PropertyInfo(alias="billingCountryCode")]
-    """The ISO 3166-1 alpha-2 country code for billing"""
+    """
+    The country code used to select a localized price (or "eu" for Eurozone),
+    falling back to the default price when none matches
+    """
 
     billing_cycle_anchor: Annotated[Literal["UNCHANGED", "NOW"], PropertyInfo(alias="billingCycleAnchor")]
     """Billing cycle anchor behavior for the subscription"""

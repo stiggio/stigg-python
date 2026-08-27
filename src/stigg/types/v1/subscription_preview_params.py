@@ -42,7 +42,10 @@ class SubscriptionPreviewParams(TypedDict, total=False):
     """Billable features with quantities"""
 
     billing_country_code: Annotated[str, PropertyInfo(alias="billingCountryCode")]
-    """ISO 3166-1 country code for localization"""
+    """
+    Country code selecting a localized price ("eu" for Eurozone); the default price
+    applies when none matches
+    """
 
     billing_cycle_anchor: Annotated[Literal["UNCHANGED", "NOW"], PropertyInfo(alias="billingCycleAnchor")]
     """Billing cycle anchor behavior for the subscription"""

@@ -610,7 +610,8 @@ class SubscriptionsResource(SyncAPIResource):
 
           billable_features: Billable features with quantities
 
-          billing_country_code: ISO 3166-1 country code for localization
+          billing_country_code: Country code selecting a localized price ("eu" for Eurozone); the default price
+              applies when none matches
 
           billing_cycle_anchor: Billing cycle anchor behavior for the subscription
 
@@ -733,7 +734,8 @@ class SubscriptionsResource(SyncAPIResource):
 
           await_payment_confirmation: Whether to wait for payment confirmation before returning the subscription
 
-          billing_country_code: The ISO 3166-1 alpha-2 country code for billing
+          billing_country_code: The country code used to select a localized price (or "eu" for Eurozone),
+              falling back to the default price when none matches
 
           billing_cycle_anchor: Billing cycle anchor behavior for the subscription
 
@@ -1423,7 +1425,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           billable_features: Billable features with quantities
 
-          billing_country_code: ISO 3166-1 country code for localization
+          billing_country_code: Country code selecting a localized price ("eu" for Eurozone); the default price
+              applies when none matches
 
           billing_cycle_anchor: Billing cycle anchor behavior for the subscription
 
@@ -1546,7 +1549,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           await_payment_confirmation: Whether to wait for payment confirmation before returning the subscription
 
-          billing_country_code: The ISO 3166-1 alpha-2 country code for billing
+          billing_country_code: The country code used to select a localized price (or "eu" for Eurozone),
+              falling back to the default price when none matches
 
           billing_cycle_anchor: Billing cycle anchor behavior for the subscription
 
