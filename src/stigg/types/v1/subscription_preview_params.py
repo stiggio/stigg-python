@@ -43,8 +43,8 @@ class SubscriptionPreviewParams(TypedDict, total=False):
 
     billing_country_code: Annotated[str, PropertyInfo(alias="billingCountryCode")]
     """
-    Country code selecting a localized price ("eu" for Eurozone); the default price
-    applies when none matches
+    Country code selecting a localized price, or "eu" for the European Union group
+    you map countries into; the default price applies when none matches
     """
 
     billing_cycle_anchor: Annotated[Literal["UNCHANGED", "NOW"], PropertyInfo(alias="billingCycleAnchor")]

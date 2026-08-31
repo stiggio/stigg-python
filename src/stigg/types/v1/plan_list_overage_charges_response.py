@@ -444,7 +444,10 @@ class PlanListOverageChargesResponse(BaseModel):
     """Timestamp when the charge was created"""
 
     billing_country_code: Optional[str] = FieldInfo(alias="billingCountryCode", default=None)
-    """ISO country code (or "eu" for Eurozone) for localized pricing, if any"""
+    """
+    ISO country code for localized pricing, or "eu" for the European Union group you
+    map countries into, if any
+    """
 
     billing_id: Optional[str] = FieldInfo(alias="billingId", default=None)
     """Identifier in the external billing integration (e.g. Stripe price id), if any"""

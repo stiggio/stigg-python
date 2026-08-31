@@ -626,7 +626,10 @@ class ChargesOveragePricingModelPricePeriod(TypedDict, total=False):
     """The billing period (MONTHLY or ANNUALLY)"""
 
     billing_country_code: Annotated[str, PropertyInfo(alias="billingCountryCode")]
-    """ISO country code (or "eu" for Eurozone) for localized pricing"""
+    """
+    ISO country code for localized pricing, or "eu" for the European Union group you
+    map countries into
+    """
 
     block_size: Annotated[float, PropertyInfo(alias="blockSize")]
     """Block size for usage-based pricing"""
@@ -1173,7 +1176,10 @@ class ChargesPricingModelPricePeriod(TypedDict, total=False):
     """The billing period (MONTHLY or ANNUALLY)"""
 
     billing_country_code: Annotated[str, PropertyInfo(alias="billingCountryCode")]
-    """ISO country code (or "eu" for Eurozone) for localized pricing"""
+    """
+    ISO country code for localized pricing, or "eu" for the European Union group you
+    map countries into
+    """
 
     block_size: Annotated[float, PropertyInfo(alias="blockSize")]
     """Block size for usage-based pricing"""
