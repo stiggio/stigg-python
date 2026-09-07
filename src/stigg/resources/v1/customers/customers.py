@@ -629,11 +629,11 @@ class CustomersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerListContractsResponse:
-        """
-        Retrieves a customer's contracts, fetched live from the connected billing
-        provider, each enriched with a preview of its upcoming (next) invoice when
-        available. Returns an empty list when no billing provider is connected or the
-        customer is not synced.
+        """Retrieves a customer's contracts.
+
+        Each contract that has a billing contract is
+        enriched with a preview of its upcoming (next) invoice when available. Returns
+        an empty list when the customer has no contracts.
 
         Args:
           extra_headers: Send extra headers
@@ -1709,11 +1709,11 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerListContractsResponse:
-        """
-        Retrieves a customer's contracts, fetched live from the connected billing
-        provider, each enriched with a preview of its upcoming (next) invoice when
-        available. Returns an empty list when no billing provider is connected or the
-        customer is not synced.
+        """Retrieves a customer's contracts.
+
+        Each contract that has a billing contract is
+        enriched with a preview of its upcoming (next) invoice when available. Returns
+        an empty list when the customer has no contracts.
 
         Args:
           extra_headers: Send extra headers

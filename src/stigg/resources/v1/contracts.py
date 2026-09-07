@@ -53,12 +53,13 @@ class ContractsResource(SyncAPIResource):
         self,
         *,
         customer_id: str,
-        subscriptions: Iterable[contract_create_params.Subscription],
         activation_end_date: Union[str, datetime] | Omit = omit,
         activation_start_date: Union[str, datetime] | Omit = omit,
+        contract_id: str | Omit = omit,
         name: Optional[str] | Omit = omit,
         po_number: Optional[str] | Omit = omit,
         setup_billing: bool | Omit = omit,
+        subscriptions: Iterable[contract_create_params.Subscription] | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -78,13 +79,15 @@ class ContractsResource(SyncAPIResource):
         Args:
           customer_id: The customer ref ID the contract belongs to
 
-          subscriptions: The subscriptions to attach to the contract (must be non-empty). Each entry is
-              either a new subscription to create or a reference to an existing custom
-              subscription.
-
           activation_end_date: Optional contract activation end date
 
           activation_start_date: Optional contract activation start date
+
+          contract_id: Your own ID for the contract, which makes this call idempotent: sending the same
+              one again returns the existing contract instead of creating a second. Omit it
+              and one is generated for you, but then a retry cannot be told apart from a new
+              contract — and contracts cannot be deleted. Recommended whenever a retry is
+              possible, e.g. building a contract from an order form.
 
           name: Optional contract name
 
@@ -93,6 +96,11 @@ class ContractsResource(SyncAPIResource):
           setup_billing: Whether to set up billing for the contract by creating a billing contract in the
               connected billing provider. When false, the contract only provisions access
               (grants entitlements) and no billing contract is created. Defaults to true.
+
+          subscriptions: The subscriptions to attach to the contract. Each entry is either a new
+              subscription to create or a reference to an existing custom subscription.
+              Optional — omit it (or pass an empty list) to create a contract with no
+              subscriptions and attach them later.
 
           extra_headers: Send extra headers
 
@@ -116,12 +124,13 @@ class ContractsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "customer_id": customer_id,
-                    "subscriptions": subscriptions,
                     "activation_end_date": activation_end_date,
                     "activation_start_date": activation_start_date,
+                    "contract_id": contract_id,
                     "name": name,
                     "po_number": po_number,
                     "setup_billing": setup_billing,
+                    "subscriptions": subscriptions,
                 },
                 contract_create_params.ContractCreateParams,
             ),
@@ -274,11 +283,11 @@ class ContractsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncMyCursorIDPage[ContractListResponse]:
-        """
-        Retrieves a cursor-paginated list of contracts in the environment, fetched live
-        from the connected billing provider. Each contract is enriched with a preview of
-        its upcoming (next) invoice when one is available. Returns an empty list when no
-        billing provider is connected. Supports filtering by customer external ID,
+        """Retrieves a cursor-paginated list of contracts in the environment.
+
+        Each contract
+        that has a billing contract is enriched with a preview of its upcoming (next)
+        invoice when one is available. Supports filtering by customer external ID,
         state, and name.
 
         Args:
@@ -404,12 +413,13 @@ class AsyncContractsResource(AsyncAPIResource):
         self,
         *,
         customer_id: str,
-        subscriptions: Iterable[contract_create_params.Subscription],
         activation_end_date: Union[str, datetime] | Omit = omit,
         activation_start_date: Union[str, datetime] | Omit = omit,
+        contract_id: str | Omit = omit,
         name: Optional[str] | Omit = omit,
         po_number: Optional[str] | Omit = omit,
         setup_billing: bool | Omit = omit,
+        subscriptions: Iterable[contract_create_params.Subscription] | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -429,13 +439,15 @@ class AsyncContractsResource(AsyncAPIResource):
         Args:
           customer_id: The customer ref ID the contract belongs to
 
-          subscriptions: The subscriptions to attach to the contract (must be non-empty). Each entry is
-              either a new subscription to create or a reference to an existing custom
-              subscription.
-
           activation_end_date: Optional contract activation end date
 
           activation_start_date: Optional contract activation start date
+
+          contract_id: Your own ID for the contract, which makes this call idempotent: sending the same
+              one again returns the existing contract instead of creating a second. Omit it
+              and one is generated for you, but then a retry cannot be told apart from a new
+              contract — and contracts cannot be deleted. Recommended whenever a retry is
+              possible, e.g. building a contract from an order form.
 
           name: Optional contract name
 
@@ -444,6 +456,11 @@ class AsyncContractsResource(AsyncAPIResource):
           setup_billing: Whether to set up billing for the contract by creating a billing contract in the
               connected billing provider. When false, the contract only provisions access
               (grants entitlements) and no billing contract is created. Defaults to true.
+
+          subscriptions: The subscriptions to attach to the contract. Each entry is either a new
+              subscription to create or a reference to an existing custom subscription.
+              Optional — omit it (or pass an empty list) to create a contract with no
+              subscriptions and attach them later.
 
           extra_headers: Send extra headers
 
@@ -467,12 +484,13 @@ class AsyncContractsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "customer_id": customer_id,
-                    "subscriptions": subscriptions,
                     "activation_end_date": activation_end_date,
                     "activation_start_date": activation_start_date,
+                    "contract_id": contract_id,
                     "name": name,
                     "po_number": po_number,
                     "setup_billing": setup_billing,
+                    "subscriptions": subscriptions,
                 },
                 contract_create_params.ContractCreateParams,
             ),
@@ -625,11 +643,11 @@ class AsyncContractsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ContractListResponse, AsyncMyCursorIDPage[ContractListResponse]]:
-        """
-        Retrieves a cursor-paginated list of contracts in the environment, fetched live
-        from the connected billing provider. Each contract is enriched with a preview of
-        its upcoming (next) invoice when one is available. Returns an empty list when no
-        billing provider is connected. Supports filtering by customer external ID,
+        """Retrieves a cursor-paginated list of contracts in the environment.
+
+        Each contract
+        that has a billing contract is enriched with a preview of its upcoming (next)
+        invoice when one is available. Supports filtering by customer external ID,
         state, and name.
 
         Args:

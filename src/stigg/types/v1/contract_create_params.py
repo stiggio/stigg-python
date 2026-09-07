@@ -44,18 +44,20 @@ class ContractCreateParams(TypedDict, total=False):
     customer_id: Required[Annotated[str, PropertyInfo(alias="customerId")]]
     """The customer ref ID the contract belongs to"""
 
-    subscriptions: Required[Iterable[Subscription]]
-    """The subscriptions to attach to the contract (must be non-empty).
-
-    Each entry is either a new subscription to create or a reference to an existing
-    custom subscription.
-    """
-
     activation_end_date: Annotated[Union[str, datetime], PropertyInfo(alias="activationEndDate", format="iso8601")]
     """Optional contract activation end date"""
 
     activation_start_date: Annotated[Union[str, datetime], PropertyInfo(alias="activationStartDate", format="iso8601")]
     """Optional contract activation start date"""
+
+    contract_id: Annotated[str, PropertyInfo(alias="contractId")]
+    """
+    Your own ID for the contract, which makes this call idempotent: sending the same
+    one again returns the existing contract instead of creating a second. Omit it
+    and one is generated for you, but then a retry cannot be told apart from a new
+    contract — and contracts cannot be deleted. Recommended whenever a retry is
+    possible, e.g. building a contract from an order form.
+    """
 
     name: Optional[str]
     """Optional contract name"""
@@ -68,6 +70,14 @@ class ContractCreateParams(TypedDict, total=False):
     Whether to set up billing for the contract by creating a billing contract in the
     connected billing provider. When false, the contract only provisions access
     (grants entitlements) and no billing contract is created. Defaults to true.
+    """
+
+    subscriptions: Iterable[Subscription]
+    """The subscriptions to attach to the contract.
+
+    Each entry is either a new subscription to create or a reference to an existing
+    custom subscription. Optional — omit it (or pass an empty list) to create a
+    contract with no subscriptions and attach them later.
     """
 
     x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]

@@ -30,7 +30,6 @@ class TestContracts:
     def test_method_create(self, client: Stigg) -> None:
         contract = client.v1.contracts.create(
             customer_id="customerId",
-            subscriptions=[{}],
         )
         assert_matches_type(ContractCreateResponse, contract, path=["response"])
 
@@ -39,6 +38,12 @@ class TestContracts:
     def test_method_create_with_all_params(self, client: Stigg) -> None:
         contract = client.v1.contracts.create(
             customer_id="customerId",
+            activation_end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            activation_start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            contract_id="contractId",
+            name="name",
+            po_number="poNumber",
+            setup_billing=True,
             subscriptions=[
                 {
                     "existing_subscription_id": "existingSubscriptionId",
@@ -184,11 +189,6 @@ class TestContracts:
                     },
                 }
             ],
-            activation_end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
-            activation_start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
-            name="name",
-            po_number="poNumber",
-            setup_billing=True,
             x_account_id="X-ACCOUNT-ID",
             x_environment_id="X-ENVIRONMENT-ID",
         )
@@ -199,7 +199,6 @@ class TestContracts:
     def test_raw_response_create(self, client: Stigg) -> None:
         response = client.v1.contracts.with_raw_response.create(
             customer_id="customerId",
-            subscriptions=[{}],
         )
 
         assert response.is_closed is True
@@ -212,7 +211,6 @@ class TestContracts:
     def test_streaming_response_create(self, client: Stigg) -> None:
         with client.v1.contracts.with_streaming_response.create(
             customer_id="customerId",
-            subscriptions=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -438,7 +436,6 @@ class TestAsyncContracts:
     async def test_method_create(self, async_client: AsyncStigg) -> None:
         contract = await async_client.v1.contracts.create(
             customer_id="customerId",
-            subscriptions=[{}],
         )
         assert_matches_type(ContractCreateResponse, contract, path=["response"])
 
@@ -447,6 +444,12 @@ class TestAsyncContracts:
     async def test_method_create_with_all_params(self, async_client: AsyncStigg) -> None:
         contract = await async_client.v1.contracts.create(
             customer_id="customerId",
+            activation_end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            activation_start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            contract_id="contractId",
+            name="name",
+            po_number="poNumber",
+            setup_billing=True,
             subscriptions=[
                 {
                     "existing_subscription_id": "existingSubscriptionId",
@@ -592,11 +595,6 @@ class TestAsyncContracts:
                     },
                 }
             ],
-            activation_end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
-            activation_start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
-            name="name",
-            po_number="poNumber",
-            setup_billing=True,
             x_account_id="X-ACCOUNT-ID",
             x_environment_id="X-ENVIRONMENT-ID",
         )
@@ -607,7 +605,6 @@ class TestAsyncContracts:
     async def test_raw_response_create(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.contracts.with_raw_response.create(
             customer_id="customerId",
-            subscriptions=[{}],
         )
 
         assert response.is_closed is True
@@ -620,7 +617,6 @@ class TestAsyncContracts:
     async def test_streaming_response_create(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.contracts.with_streaming_response.create(
             customer_id="customerId",
-            subscriptions=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
