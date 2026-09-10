@@ -37,7 +37,7 @@ class DefaultPaymentMethod(BaseModel):
     card_last4_digits: Optional[str] = FieldInfo(alias="cardLast4Digits", default=None)
     """The last 4 digits of the default payment method"""
 
-    type: Literal["CARD", "BANK", "CASH_APP"]
+    type: Optional[Literal["CARD", "BANK", "CASH_APP", "PAYPAL"]] = None
     """The default payment method type"""
 
 

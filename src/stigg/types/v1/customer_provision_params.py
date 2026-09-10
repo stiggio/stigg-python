@@ -206,7 +206,7 @@ class DefaultPaymentMethod(TypedDict, total=False):
     card_last4_digits: Required[Annotated[Optional[str], PropertyInfo(alias="cardLast4Digits")]]
     """The last 4 digits of the default payment method"""
 
-    type: Required[Literal["CARD", "BANK", "CASH_APP"]]
+    type: Required[Optional[Literal["CARD", "BANK", "CASH_APP", "PAYPAL"]]]
     """The default payment method type"""
 
 
