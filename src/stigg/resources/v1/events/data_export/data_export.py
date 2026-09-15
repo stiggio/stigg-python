@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ....._compat import cached_property
 from .destinations import (
@@ -23,10 +23,9 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.v1.events import data_export_trigger_sync_params, data_export_mint_scoped_token_params
+from .....types.v1.events import data_export_trigger_sync_params
 from .....types.v1.events.data_export_list_models_response import DataExportListModelsResponse
 from .....types.v1.events.data_export_trigger_sync_response import DataExportTriggerSyncResponse
-from .....types.v1.events.data_export_mint_scoped_token_response import DataExportMintScopedTokenResponse
 
 __all__ = ["DataExportResource", "AsyncDataExportResource"]
 
@@ -95,64 +94,6 @@ class DataExportResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=DataExportListModelsResponse,
-        )
-
-    def mint_scoped_token(
-        self,
-        *,
-        application_origin: str,
-        destination_type: str | Omit = omit,
-        enabled_models: SequenceNotStr[str] | Omit = omit,
-        x_account_id: str | Omit = omit,
-        x_environment_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DataExportMintScopedTokenResponse:
-        """Mint a scoped JWT for the FE embedded SDK.
-
-        Lazy-creates the DATA_EXPORT
-        integration if needed.
-
-        Args:
-          application_origin: FE origin the resulting JWT is bound to (provider-side anti-fraud)
-
-          destination_type: Pin the token to a specific warehouse connect flow
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "X-ACCOUNT-ID": x_account_id,
-                    "X-ENVIRONMENT-ID": x_environment_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return self._post(
-            "/api/v1/data-export/scoped-token",
-            body=maybe_transform(
-                {
-                    "application_origin": application_origin,
-                    "destination_type": destination_type,
-                    "enabled_models": enabled_models,
-                },
-                data_export_mint_scoped_token_params.DataExportMintScopedTokenParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DataExportMintScopedTokenResponse,
         )
 
     def trigger_sync(
@@ -270,64 +211,6 @@ class AsyncDataExportResource(AsyncAPIResource):
             cast_to=DataExportListModelsResponse,
         )
 
-    async def mint_scoped_token(
-        self,
-        *,
-        application_origin: str,
-        destination_type: str | Omit = omit,
-        enabled_models: SequenceNotStr[str] | Omit = omit,
-        x_account_id: str | Omit = omit,
-        x_environment_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DataExportMintScopedTokenResponse:
-        """Mint a scoped JWT for the FE embedded SDK.
-
-        Lazy-creates the DATA_EXPORT
-        integration if needed.
-
-        Args:
-          application_origin: FE origin the resulting JWT is bound to (provider-side anti-fraud)
-
-          destination_type: Pin the token to a specific warehouse connect flow
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "X-ACCOUNT-ID": x_account_id,
-                    "X-ENVIRONMENT-ID": x_environment_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return await self._post(
-            "/api/v1/data-export/scoped-token",
-            body=await async_maybe_transform(
-                {
-                    "application_origin": application_origin,
-                    "destination_type": destination_type,
-                    "enabled_models": enabled_models,
-                },
-                data_export_mint_scoped_token_params.DataExportMintScopedTokenParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DataExportMintScopedTokenResponse,
-        )
-
     async def trigger_sync(
         self,
         *,
@@ -384,9 +267,6 @@ class DataExportResourceWithRawResponse:
         self.list_models = to_raw_response_wrapper(
             data_export.list_models,
         )
-        self.mint_scoped_token = to_raw_response_wrapper(
-            data_export.mint_scoped_token,
-        )
         self.trigger_sync = to_raw_response_wrapper(
             data_export.trigger_sync,
         )
@@ -402,9 +282,6 @@ class AsyncDataExportResourceWithRawResponse:
 
         self.list_models = async_to_raw_response_wrapper(
             data_export.list_models,
-        )
-        self.mint_scoped_token = async_to_raw_response_wrapper(
-            data_export.mint_scoped_token,
         )
         self.trigger_sync = async_to_raw_response_wrapper(
             data_export.trigger_sync,
@@ -422,9 +299,6 @@ class DataExportResourceWithStreamingResponse:
         self.list_models = to_streamed_response_wrapper(
             data_export.list_models,
         )
-        self.mint_scoped_token = to_streamed_response_wrapper(
-            data_export.mint_scoped_token,
-        )
         self.trigger_sync = to_streamed_response_wrapper(
             data_export.trigger_sync,
         )
@@ -440,9 +314,6 @@ class AsyncDataExportResourceWithStreamingResponse:
 
         self.list_models = async_to_streamed_response_wrapper(
             data_export.list_models,
-        )
-        self.mint_scoped_token = async_to_streamed_response_wrapper(
-            data_export.mint_scoped_token,
         )
         self.trigger_sync = async_to_streamed_response_wrapper(
             data_export.trigger_sync,
