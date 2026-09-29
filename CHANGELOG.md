@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.0-beta.49](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.48...v0.1.0-beta.49) (2026-09-29)
+
+
+### Bug Fixes
+
+* **STIGG-9768:** stop exporting skipped workflow runs as failures ([70d9787](https://github.com/stiggio/stigg-python/commit/70d9787fcef60747d8328b1837e3d2aa28cb0d59))
+* **STIGG-9768:** stop exporting skipped workflow runs as failures ([90f1e8b](https://github.com/stiggio/stigg-python/commit/90f1e8bf3c68bfde3ebe83e21f8a13e27835b2f3))
+* sync OpenAPI spec from stigg-api ([65761ae](https://github.com/stiggio/stigg-python/commit/65761ae70f19bd89a9c9eedf6e469e5326a3d464))
+
 ## [0.1.0-beta.48](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.47...v0.1.0-beta.48) (2026-08-12)
 
 
