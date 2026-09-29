@@ -79,8 +79,9 @@ class CouponsResource(SyncAPIResource):
 
           description: Description of the coupon
 
-          duration_in_months: How many billing cycles the discount applies for once redeemed. Leave unset for
-              a discount that lasts for the lifetime of the subscription.
+          duration_in_months: How many calendar months the discount applies for once redeemed, counted from
+              when the coupon is applied (not tied to the subscription's billing period).
+              Leave unset for a discount that lasts for the lifetime of the subscription.
 
           metadata: Metadata associated with the entity
 
@@ -407,8 +408,9 @@ class AsyncCouponsResource(AsyncAPIResource):
 
           description: Description of the coupon
 
-          duration_in_months: How many billing cycles the discount applies for once redeemed. Leave unset for
-              a discount that lasts for the lifetime of the subscription.
+          duration_in_months: How many calendar months the discount applies for once redeemed, counted from
+              when the coupon is applied (not tied to the subscription's billing period).
+              Leave unset for a discount that lasts for the lifetime of the subscription.
 
           metadata: Metadata associated with the entity
 

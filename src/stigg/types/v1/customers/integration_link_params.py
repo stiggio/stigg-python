@@ -21,27 +21,9 @@ class IntegrationLinkParams(TypedDict, total=False):
     """
 
     vendor_identifier: Required[
-        Annotated[
-            Literal[
-                "AUTH0",
-                "ZUORA",
-                "STRIPE",
-                "HUBSPOT",
-                "AWS_MARKETPLACE",
-                "SNOWFLAKE",
-                "SALESFORCE",
-                "BIG_QUERY",
-                "OPEN_FGA",
-                "APP_STORE",
-                "RECEIVED",
-                "PREQUEL",
-                "AIRWALLEX",
-                "STRIPE_INVOICING",
-            ],
-            PropertyInfo(alias="vendorIdentifier"),
-        ]
+        Annotated[Literal["STRIPE", "ZUORA", "HUBSPOT", "AWS_MARKETPLACE"], PropertyInfo(alias="vendorIdentifier")]
     ]
-    """The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)"""
+    """The vendor whose system holds the customer record"""
 
     x_account_id: Annotated[str, PropertyInfo(alias="X-ACCOUNT-ID")]
 

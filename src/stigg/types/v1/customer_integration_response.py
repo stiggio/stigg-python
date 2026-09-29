@@ -73,23 +73,8 @@ class Data(BaseModel):
     the link.
     """
 
-    vendor_identifier: Literal[
-        "AUTH0",
-        "ZUORA",
-        "STRIPE",
-        "HUBSPOT",
-        "AWS_MARKETPLACE",
-        "SNOWFLAKE",
-        "SALESFORCE",
-        "BIG_QUERY",
-        "OPEN_FGA",
-        "APP_STORE",
-        "RECEIVED",
-        "PREQUEL",
-        "AIRWALLEX",
-        "STRIPE_INVOICING",
-    ] = FieldInfo(alias="vendorIdentifier")
-    """The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)"""
+    vendor_identifier: Literal["STRIPE", "ZUORA", "HUBSPOT", "AWS_MARKETPLACE"] = FieldInfo(alias="vendorIdentifier")
+    """The vendor whose system holds the customer record"""
 
     sync_data: Optional[DataSyncData] = FieldInfo(alias="syncData", default=None)
     """

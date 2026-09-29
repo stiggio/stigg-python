@@ -156,25 +156,7 @@ class IntegrationsResource(SyncAPIResource):
         after: str | Omit = omit,
         before: str | Omit = omit,
         limit: int | Omit = omit,
-        vendor_identifier: List[
-            Literal[
-                "AUTH0",
-                "ZUORA",
-                "STRIPE",
-                "HUBSPOT",
-                "AWS_MARKETPLACE",
-                "SNOWFLAKE",
-                "SALESFORCE",
-                "BIG_QUERY",
-                "OPEN_FGA",
-                "APP_STORE",
-                "RECEIVED",
-                "PREQUEL",
-                "AIRWALLEX",
-                "STRIPE_INVOICING",
-            ]
-        ]
-        | Omit = omit,
+        vendor_identifier: List[Literal["STRIPE", "ZUORA", "HUBSPOT", "AWS_MARKETPLACE"]] | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -244,22 +226,7 @@ class IntegrationsResource(SyncAPIResource):
         *,
         body_id: str,
         synced_entity_id: str,
-        vendor_identifier: Literal[
-            "AUTH0",
-            "ZUORA",
-            "STRIPE",
-            "HUBSPOT",
-            "AWS_MARKETPLACE",
-            "SNOWFLAKE",
-            "SALESFORCE",
-            "BIG_QUERY",
-            "OPEN_FGA",
-            "APP_STORE",
-            "RECEIVED",
-            "PREQUEL",
-            "AIRWALLEX",
-            "STRIPE_INVOICING",
-        ],
+        vendor_identifier: Literal["STRIPE", "ZUORA", "HUBSPOT", "AWS_MARKETPLACE"],
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -280,7 +247,7 @@ class IntegrationsResource(SyncAPIResource):
               Stripe customer ID). Null until the link has synced; required when creating the
               link.
 
-          vendor_identifier: The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
+          vendor_identifier: The vendor whose system holds the customer record
 
           extra_headers: Send extra headers
 
@@ -495,25 +462,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         after: str | Omit = omit,
         before: str | Omit = omit,
         limit: int | Omit = omit,
-        vendor_identifier: List[
-            Literal[
-                "AUTH0",
-                "ZUORA",
-                "STRIPE",
-                "HUBSPOT",
-                "AWS_MARKETPLACE",
-                "SNOWFLAKE",
-                "SALESFORCE",
-                "BIG_QUERY",
-                "OPEN_FGA",
-                "APP_STORE",
-                "RECEIVED",
-                "PREQUEL",
-                "AIRWALLEX",
-                "STRIPE_INVOICING",
-            ]
-        ]
-        | Omit = omit,
+        vendor_identifier: List[Literal["STRIPE", "ZUORA", "HUBSPOT", "AWS_MARKETPLACE"]] | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -583,22 +532,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         *,
         body_id: str,
         synced_entity_id: str,
-        vendor_identifier: Literal[
-            "AUTH0",
-            "ZUORA",
-            "STRIPE",
-            "HUBSPOT",
-            "AWS_MARKETPLACE",
-            "SNOWFLAKE",
-            "SALESFORCE",
-            "BIG_QUERY",
-            "OPEN_FGA",
-            "APP_STORE",
-            "RECEIVED",
-            "PREQUEL",
-            "AIRWALLEX",
-            "STRIPE_INVOICING",
-        ],
+        vendor_identifier: Literal["STRIPE", "ZUORA", "HUBSPOT", "AWS_MARKETPLACE"],
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -619,7 +553,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
               Stripe customer ID). Null until the link has synced; required when creating the
               link.
 
-          vendor_identifier: The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
+          vendor_identifier: The vendor whose system holds the customer record
 
           extra_headers: Send extra headers
 

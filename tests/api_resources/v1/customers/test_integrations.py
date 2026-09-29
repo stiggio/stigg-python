@@ -169,7 +169,7 @@ class TestIntegrations:
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
-            vendor_identifier=["AUTH0"],
+            vendor_identifier=["STRIPE"],
             x_account_id="X-ACCOUNT-ID",
             x_environment_id="X-ENVIRONMENT-ID",
         )
@@ -216,7 +216,7 @@ class TestIntegrations:
             path_id="x",
             body_id="id",
             synced_entity_id="syncedEntityId",
-            vendor_identifier="AUTH0",
+            vendor_identifier="STRIPE",
         )
         assert_matches_type(CustomerIntegrationResponse, integration, path=["response"])
 
@@ -227,7 +227,7 @@ class TestIntegrations:
             path_id="x",
             body_id="id",
             synced_entity_id="syncedEntityId",
-            vendor_identifier="AUTH0",
+            vendor_identifier="STRIPE",
             x_account_id="X-ACCOUNT-ID",
             x_environment_id="X-ENVIRONMENT-ID",
         )
@@ -240,7 +240,7 @@ class TestIntegrations:
             path_id="x",
             body_id="id",
             synced_entity_id="syncedEntityId",
-            vendor_identifier="AUTH0",
+            vendor_identifier="STRIPE",
         )
 
         assert response.is_closed is True
@@ -255,7 +255,7 @@ class TestIntegrations:
             path_id="x",
             body_id="id",
             synced_entity_id="syncedEntityId",
-            vendor_identifier="AUTH0",
+            vendor_identifier="STRIPE",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -273,7 +273,7 @@ class TestIntegrations:
                 path_id="",
                 body_id="id",
                 synced_entity_id="syncedEntityId",
-                vendor_identifier="AUTH0",
+                vendor_identifier="STRIPE",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -493,7 +493,7 @@ class TestAsyncIntegrations:
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=1,
-            vendor_identifier=["AUTH0"],
+            vendor_identifier=["STRIPE"],
             x_account_id="X-ACCOUNT-ID",
             x_environment_id="X-ENVIRONMENT-ID",
         )
@@ -540,7 +540,7 @@ class TestAsyncIntegrations:
             path_id="x",
             body_id="id",
             synced_entity_id="syncedEntityId",
-            vendor_identifier="AUTH0",
+            vendor_identifier="STRIPE",
         )
         assert_matches_type(CustomerIntegrationResponse, integration, path=["response"])
 
@@ -551,7 +551,7 @@ class TestAsyncIntegrations:
             path_id="x",
             body_id="id",
             synced_entity_id="syncedEntityId",
-            vendor_identifier="AUTH0",
+            vendor_identifier="STRIPE",
             x_account_id="X-ACCOUNT-ID",
             x_environment_id="X-ENVIRONMENT-ID",
         )
@@ -564,7 +564,7 @@ class TestAsyncIntegrations:
             path_id="x",
             body_id="id",
             synced_entity_id="syncedEntityId",
-            vendor_identifier="AUTH0",
+            vendor_identifier="STRIPE",
         )
 
         assert response.is_closed is True
@@ -579,7 +579,7 @@ class TestAsyncIntegrations:
             path_id="x",
             body_id="id",
             synced_entity_id="syncedEntityId",
-            vendor_identifier="AUTH0",
+            vendor_identifier="STRIPE",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -597,7 +597,7 @@ class TestAsyncIntegrations:
                 path_id="",
                 body_id="id",
                 synced_entity_id="syncedEntityId",
-                vendor_identifier="AUTH0",
+                vendor_identifier="STRIPE",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")

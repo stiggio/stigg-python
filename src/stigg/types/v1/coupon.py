@@ -163,8 +163,9 @@ class Data(BaseModel):
     """Description of the coupon"""
 
     duration_in_months: Optional[int] = FieldInfo(alias="durationInMonths", default=None)
-    """How many billing cycles the discount applies for once redeemed.
-
+    """
+    How many calendar months the discount applies for once redeemed, counted from
+    when the coupon is applied (not tied to the subscription's billing period).
     Leave unset for a discount that lasts for the lifetime of the subscription.
     """
 

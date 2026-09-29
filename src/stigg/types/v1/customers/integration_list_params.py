@@ -21,25 +21,7 @@ class IntegrationListParams(TypedDict, total=False):
     """Maximum number of items to return"""
 
     vendor_identifier: Annotated[
-        List[
-            Literal[
-                "AUTH0",
-                "ZUORA",
-                "STRIPE",
-                "HUBSPOT",
-                "AWS_MARKETPLACE",
-                "SNOWFLAKE",
-                "SALESFORCE",
-                "BIG_QUERY",
-                "OPEN_FGA",
-                "APP_STORE",
-                "RECEIVED",
-                "PREQUEL",
-                "AIRWALLEX",
-                "STRIPE_INVOICING",
-            ]
-        ],
-        PropertyInfo(alias="vendorIdentifier"),
+        List[Literal["STRIPE", "ZUORA", "HUBSPOT", "AWS_MARKETPLACE"]], PropertyInfo(alias="vendorIdentifier")
     ]
     """Filter by vendor identifier.
 
