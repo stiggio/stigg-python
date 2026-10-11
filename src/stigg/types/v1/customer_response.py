@@ -29,6 +29,12 @@ class DataDefaultPaymentMethod(BaseModel):
     billing_id: Optional[str] = FieldInfo(alias="billingId", default=None)
     """The default payment method id"""
 
+    card_brand: Optional[str] = FieldInfo(alias="cardBrand", default=None)
+    """
+    The card brand of the default payment method, as reported by the billing
+    provider (e.g. visa, mastercard, amex)
+    """
+
     card_expiry_month: Optional[float] = FieldInfo(alias="cardExpiryMonth", default=None)
     """The expiration month of the default payment method"""
 
@@ -40,6 +46,12 @@ class DataDefaultPaymentMethod(BaseModel):
 
     type: Optional[Literal["CARD", "BANK", "CASH_APP", "PAYPAL"]] = None
     """The default payment method type"""
+
+    wallet_type: Optional[str] = FieldInfo(alias="walletType", default=None)
+    """
+    The digital wallet used to add the default card payment method, as reported by
+    the billing provider (e.g. apple_pay, google_pay)
+    """
 
 
 class DataIntegration(BaseModel):
