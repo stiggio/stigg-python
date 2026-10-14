@@ -1,13 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["ConsumptionConsumeResponse", "Data", "DataCredit"]
+__all__ = ["ConsumptionConsumeResponse", "Data", "DataCredit", "DataEntity"]
 
 
 class DataCredit(BaseModel):
@@ -42,6 +42,43 @@ class DataCredit(BaseModel):
     """
 
 
+class DataEntity(BaseModel):
+    """The usage counted against one governance entitlement"""
+
+    current_usage: float = FieldInfo(alias="currentUsage")
+    """The absolute usage counted against the entitlement"""
+
+    customer_id: str = FieldInfo(alias="customerId")
+    """The customer whose usage counted towards the entitlement"""
+
+    entitlement_id: str = FieldInfo(alias="entitlementId")
+    """The governance entitlement the usage counts towards"""
+
+    entity_id: str = FieldInfo(alias="entityId")
+    """The governance entity the entitlement belongs to"""
+
+    resource_id: Optional[str] = FieldInfo(alias="resourceId", default=None)
+    """The customer resource the usage counted from; `null` for customer-level usage"""
+
+    scope_entity_ids: List[str] = FieldInfo(alias="scopeEntityIds")
+    """The entities the entitlement is scoped to (empty when it is not scoped)"""
+
+    usage_updated_at: datetime = FieldInfo(alias="usageUpdatedAt")
+    """When the entitlement usage was last updated"""
+
+    currency_id: Optional[str] = FieldInfo(alias="currencyId", default=None)
+    """
+    The credit currency the entitlement governs (exactly one of featureId and
+    currencyId is set)
+    """
+
+    feature_id: Optional[str] = FieldInfo(alias="featureId", default=None)
+    """
+    The feature the entitlement governs (exactly one of featureId and currencyId is
+    set)
+    """
+
+
 class Data(BaseModel):
     """Result of a synchronous direct credit consumption"""
 
@@ -61,6 +98,14 @@ class Data(BaseModel):
     """
     The optimistic credit balance after consumption (when sync credit consumption is
     enabled)
+    """
+
+    entities: Optional[List[DataEntity]] = None
+    """The current usage of each governance entitlement this request counted towards.
+
+    Absent when governance is not enabled or the usage is unknown. Entitlements
+    whose usage could not be read, and those of repeated idempotent requests, are
+    left out
     """
 
     resource_id: Optional[str] = FieldInfo(alias="resourceId", default=None)

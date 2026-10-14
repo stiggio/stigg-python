@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
@@ -205,6 +206,7 @@ class UsageResource(SyncAPIResource):
             cast_to=UsageHistoryResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def report(
         self,
         *,
@@ -221,7 +223,8 @@ class UsageResource(SyncAPIResource):
         """Reports usage measurements for metered features.
 
         The reported usage is used to
-        track, limit, and bill customer consumption.
+        track, limit, and bill customer consumption. Deprecated: use
+        `POST /api/v2/usage`.
 
         Args:
           usages: A list of usage reports to be submitted in bulk
@@ -431,6 +434,7 @@ class AsyncUsageResource(AsyncAPIResource):
             cast_to=UsageHistoryResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def report(
         self,
         *,
@@ -447,7 +451,8 @@ class AsyncUsageResource(AsyncAPIResource):
         """Reports usage measurements for metered features.
 
         The reported usage is used to
-        track, limit, and bill customer consumption.
+        track, limit, and bill customer consumption. Deprecated: use
+        `POST /api/v2/usage`.
 
         Args:
           usages: A list of usage reports to be submitted in bulk
@@ -489,8 +494,10 @@ class UsageResourceWithRawResponse:
         self.history = to_raw_response_wrapper(
             usage.history,
         )
-        self.report = to_raw_response_wrapper(
-            usage.report,
+        self.report = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                usage.report,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -504,8 +511,10 @@ class AsyncUsageResourceWithRawResponse:
         self.history = async_to_raw_response_wrapper(
             usage.history,
         )
-        self.report = async_to_raw_response_wrapper(
-            usage.report,
+        self.report = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                usage.report,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -519,8 +528,10 @@ class UsageResourceWithStreamingResponse:
         self.history = to_streamed_response_wrapper(
             usage.history,
         )
-        self.report = to_streamed_response_wrapper(
-            usage.report,
+        self.report = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                usage.report,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -534,6 +545,8 @@ class AsyncUsageResourceWithStreamingResponse:
         self.history = async_to_streamed_response_wrapper(
             usage.history,
         )
-        self.report = async_to_streamed_response_wrapper(
-            usage.report,
+        self.report = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                usage.report,  # pyright: ignore[reportDeprecated],
+            )
         )
