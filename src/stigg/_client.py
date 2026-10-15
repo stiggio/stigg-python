@@ -35,8 +35,9 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import v1, v1_beta
+    from .resources import v1, v2, v1_beta
     from .resources.v1.v1 import V1Resource, AsyncV1Resource
+    from .resources.v2.v2 import V2Resource, AsyncV2Resource
     from .resources.v1_beta.v1_beta import V1BetaResource, AsyncV1BetaResource
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Stigg", "AsyncStigg", "Client", "AsyncClient"]
@@ -117,6 +118,12 @@ class Stigg(SyncAPIClient):
         from .resources.v1_beta import V1BetaResource
 
         return V1BetaResource(self)
+
+    @cached_property
+    def v2(self) -> V2Resource:
+        from .resources.v2 import V2Resource
+
+        return V2Resource(self)
 
     @cached_property
     def with_raw_response(self) -> StiggWithRawResponse:
@@ -308,6 +315,12 @@ class AsyncStigg(AsyncAPIClient):
         return AsyncV1BetaResource(self)
 
     @cached_property
+    def v2(self) -> AsyncV2Resource:
+        from .resources.v2 import AsyncV2Resource
+
+        return AsyncV2Resource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncStiggWithRawResponse:
         return AsyncStiggWithRawResponse(self)
 
@@ -438,6 +451,12 @@ class StiggWithRawResponse:
 
         return V1BetaResourceWithRawResponse(self._client.v1_beta)
 
+    @cached_property
+    def v2(self) -> v2.V2ResourceWithRawResponse:
+        from .resources.v2 import V2ResourceWithRawResponse
+
+        return V2ResourceWithRawResponse(self._client.v2)
+
 
 class AsyncStiggWithRawResponse:
     _client: AsyncStigg
@@ -456,6 +475,12 @@ class AsyncStiggWithRawResponse:
         from .resources.v1_beta import AsyncV1BetaResourceWithRawResponse
 
         return AsyncV1BetaResourceWithRawResponse(self._client.v1_beta)
+
+    @cached_property
+    def v2(self) -> v2.AsyncV2ResourceWithRawResponse:
+        from .resources.v2 import AsyncV2ResourceWithRawResponse
+
+        return AsyncV2ResourceWithRawResponse(self._client.v2)
 
 
 class StiggWithStreamedResponse:
@@ -476,6 +501,12 @@ class StiggWithStreamedResponse:
 
         return V1BetaResourceWithStreamingResponse(self._client.v1_beta)
 
+    @cached_property
+    def v2(self) -> v2.V2ResourceWithStreamingResponse:
+        from .resources.v2 import V2ResourceWithStreamingResponse
+
+        return V2ResourceWithStreamingResponse(self._client.v2)
+
 
 class AsyncStiggWithStreamedResponse:
     _client: AsyncStigg
@@ -494,6 +525,12 @@ class AsyncStiggWithStreamedResponse:
         from .resources.v1_beta import AsyncV1BetaResourceWithStreamingResponse
 
         return AsyncV1BetaResourceWithStreamingResponse(self._client.v1_beta)
+
+    @cached_property
+    def v2(self) -> v2.AsyncV2ResourceWithStreamingResponse:
+        from .resources.v2 import AsyncV2ResourceWithStreamingResponse
+
+        return AsyncV2ResourceWithStreamingResponse(self._client.v2)
 
 
 Client = Stigg

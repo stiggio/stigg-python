@@ -500,3 +500,17 @@ Methods:
 
 - <code title="get /api/v1-beta/entity-types">client.v1_beta.entity_types.<a href="./src/stigg/resources/v1_beta/entity_types.py">list</a>(\*\*<a href="src/stigg/types/v1_beta/entity_type_list_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/entity_type_list_response.py">SyncMyCursorIDPage[EntityTypeListResponse]</a></code>
 - <code title="put /api/v1-beta/entity-types">client.v1_beta.entity_types.<a href="./src/stigg/resources/v1_beta/entity_types.py">upsert</a>(\*\*<a href="src/stigg/types/v1_beta/entity_type_upsert_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/entity_type_upsert_response.py">EntityTypeUpsertResponse</a></code>
+
+# V2
+
+## Usage
+
+Types:
+
+```python
+from stigg.types.v2 import UsageReportResponse
+```
+
+Methods:
+
+- <code title="post /api/v2/usage">client.v2.usage.<a href="./src/stigg/resources/v2/usage.py">report</a>(\*\*<a href="src/stigg/types/v2/usage_report_params.py">params</a>) -> <a href="./src/stigg/types/v2/usage_report_response.py">UsageReportResponse</a></code>
