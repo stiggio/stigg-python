@@ -182,8 +182,10 @@ class CreditsResource(SyncAPIResource):
           end_date: End date for the credit usage time range (ISO 8601). Defaults to now when
               startDate is provided
 
-          group_by: Comma-separated list of feature dimension keys to group usage series by (up to
-              3). Each key matches /^[a-zA-Z0-9_$-]+$/
+          group_by: Comma-separated list of keys to group usage series by: up to 3 custom dimension
+              keys, optionally combined with the reserved key `featureId` to also split each
+              series by feature (e.g. `featureId,userId`). Each key matches
+              /^[a-zA-Z0-9_$-]+$/
 
           limit: Maximum number of items to return
 
@@ -447,8 +449,10 @@ class AsyncCreditsResource(AsyncAPIResource):
           end_date: End date for the credit usage time range (ISO 8601). Defaults to now when
               startDate is provided
 
-          group_by: Comma-separated list of feature dimension keys to group usage series by (up to
-              3). Each key matches /^[a-zA-Z0-9_$-]+$/
+          group_by: Comma-separated list of keys to group usage series by: up to 3 custom dimension
+              keys, optionally combined with the reserved key `featureId` to also split each
+              series by feature (e.g. `featureId,userId`). Each key matches
+              /^[a-zA-Z0-9_$-]+$/
 
           limit: Maximum number of items to return
 

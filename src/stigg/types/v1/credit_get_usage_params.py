@@ -32,8 +32,10 @@ class CreditGetUsageParams(TypedDict, total=False):
 
     group_by: Annotated[str, PropertyInfo(alias="groupBy")]
     """
-    Comma-separated list of feature dimension keys to group usage series by (up to
-    3). Each key matches /^[a-zA-Z0-9_$-]+$/
+    Comma-separated list of keys to group usage series by: up to 3 custom dimension
+    keys, optionally combined with the reserved key `featureId` to also split each
+    series by feature (e.g. `featureId,userId`). Each key matches
+    /^[a-zA-Z0-9_$-]+$/
     """
 
     limit: int

@@ -87,10 +87,13 @@ class DataSeries(BaseModel):
     """
 
     feature_id: Optional[str] = FieldInfo(alias="featureId", default=None)
-    """The feature ID; null when grouping by dimensions only"""
+    """The feature ID; null when grouping by dimensions without `featureId`"""
 
     feature_name: Optional[str] = FieldInfo(alias="featureName", default=None)
-    """The display name of the feature; null when grouping by dimensions only"""
+    """
+    The display name of the feature; null when grouping by dimensions without
+    `featureId`
+    """
 
     points: List[DataSeriesPoint]
     """Time-series data points for this feature"""
@@ -99,7 +102,10 @@ class DataSeries(BaseModel):
     """Total credits consumed by this feature in the time range"""
 
     tags: Optional[List[DataSeriesTag]] = None
-    """Dimension key/value pairs identifying this series when groupBy is applied"""
+    """
+    Dimension key/value pairs identifying this series when groupBy includes
+    dimension keys (`featureId` is returned in its own field, not as a tag)
+    """
 
 
 class Data(BaseModel):
