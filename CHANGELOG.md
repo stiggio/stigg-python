@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.0-beta.51](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.50...v0.1.0-beta.51) (2026-10-15)
+
+
+### Bug Fixes
+
+* sync OpenAPI spec from stigg-api ([3917c22](https://github.com/stiggio/stigg-python/commit/3917c223db4213ae608381068601e707ff642a8d))
+
 ## [0.1.0-beta.50](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.49...v0.1.0-beta.50) (2026-10-15)
 
 
