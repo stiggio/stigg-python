@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.0-beta.50](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.49...v0.1.0-beta.50) (2026-10-15)
+
+
+### Features
+
+* **STIGG-10154:** generate the v2 usage report ([107a3c1](https://github.com/stiggio/stigg-python/commit/107a3c1c383bff4500e3e5c177cb6c22d551dcaf))
+
+
+### Bug Fixes
+
+* sync OpenAPI spec from stigg-api ([75a999e](https://github.com/stiggio/stigg-python/commit/75a999e26cc99a6d3f02d290fafb0eea9731a4e9))
+* sync OpenAPI spec from stigg-api ([3f7d599](https://github.com/stiggio/stigg-python/commit/3f7d599b59224f1168b93fb90615672769e53aca))
+
 ## [0.1.0-beta.49](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.48...v0.1.0-beta.49) (2026-09-29)
 
 
