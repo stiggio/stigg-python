@@ -17,6 +17,7 @@ __all__ = [
     "DataEntitlementFeatureFeature",
     "DataEntitlementCredit",
     "DataEntitlementCreditCurrency",
+    "DataEntitlementCreditReservation",
 ]
 
 
@@ -117,6 +118,27 @@ class DataEntitlementCreditCurrency(BaseModel):
     """The singular form of the currency unit."""
 
 
+class DataEntitlementCreditReservation(BaseModel):
+    """
+    The reservation created by this request, when it asked to reserve credits and was granted.
+    """
+
+    id: str
+    """The client-provided reservation ID."""
+
+    amount: float
+    """The amount of credits held."""
+
+    expires_at: datetime = FieldInfo(alias="expiresAt")
+    """When the reservation expires.
+
+    Unreleased credits return to the balance at this time.
+    """
+
+    status: Literal["ACTIVE", "RELEASED"]
+    """The status of the reservation."""
+
+
 class DataEntitlementCredit(BaseModel):
     access_denied_reason: Optional[
         Literal[
@@ -153,6 +175,26 @@ class DataEntitlementCredit(BaseModel):
 
     entitlement_updated_at: Optional[datetime] = FieldInfo(alias="entitlementUpdatedAt", default=None)
     """Timestamp of the last update to the entitlement grant or configuration."""
+
+    reservation: Optional[DataEntitlementCreditReservation] = None
+    """
+    The reservation created by this request, when it asked to reserve credits and
+    was granted.
+    """
+
+    reserved: Optional[float] = None
+    """Credits held by open reservations on active grants.
+
+    Already included in currentUsage, so usageLimit - currentUsage is the available
+    balance.
+    """
+
+    reserved_on_expired_grants: Optional[float] = FieldInfo(alias="reservedOnExpiredGrants", default=None)
+    """Credits still held by open reservations on grants that expired during the hold.
+
+    They can still be released, but are not part of currentUsage or the balance and
+    must not be subtracted from it.
+    """
 
     usage_period_end: Optional[datetime] = FieldInfo(alias="usagePeriodEnd", default=None)
     """The end date of the current billing period for recurring credit grants."""

@@ -16,6 +16,7 @@ __all__ = [
     "DataEntitlementUnionObjectVariant0Feature",
     "DataEntitlementUnionObjectVariant1",
     "DataEntitlementUnionObjectVariant1Currency",
+    "DataEntitlementUnionObjectVariant1Reservation",
     "DataSubscription",
     "DataSubscriptionAddon",
     "DataSubscriptionBudget",
@@ -131,6 +132,27 @@ class DataEntitlementUnionObjectVariant1Currency(BaseModel):
     """The singular form of the currency unit."""
 
 
+class DataEntitlementUnionObjectVariant1Reservation(BaseModel):
+    """
+    The reservation created by this request, when it asked to reserve credits and was granted.
+    """
+
+    id: str
+    """The client-provided reservation ID."""
+
+    amount: float
+    """The amount of credits held."""
+
+    expires_at: datetime = FieldInfo(alias="expiresAt")
+    """When the reservation expires.
+
+    Unreleased credits return to the balance at this time.
+    """
+
+    status: Literal["ACTIVE", "RELEASED"]
+    """The status of the reservation."""
+
+
 class DataEntitlementUnionObjectVariant1(BaseModel):
     access_denied_reason: Optional[
         Literal[
@@ -167,6 +189,26 @@ class DataEntitlementUnionObjectVariant1(BaseModel):
 
     entitlement_updated_at: Optional[datetime] = FieldInfo(alias="entitlementUpdatedAt", default=None)
     """Timestamp of the last update to the entitlement grant or configuration."""
+
+    reservation: Optional[DataEntitlementUnionObjectVariant1Reservation] = None
+    """
+    The reservation created by this request, when it asked to reserve credits and
+    was granted.
+    """
+
+    reserved: Optional[float] = None
+    """Credits held by open reservations on active grants.
+
+    Already included in currentUsage, so usageLimit - currentUsage is the available
+    balance.
+    """
+
+    reserved_on_expired_grants: Optional[float] = FieldInfo(alias="reservedOnExpiredGrants", default=None)
+    """Credits still held by open reservations on grants that expired during the hold.
+
+    They can still be released, but are not part of currentUsage or the balance and
+    must not be subtracted from it.
+    """
 
     usage_period_end: Optional[datetime] = FieldInfo(alias="usagePeriodEnd", default=None)
     """The end date of the current billing period for recurring credit grants."""
