@@ -487,6 +487,11 @@ class CustomersResource(SyncAPIResource):
         feature_id: str | Omit = omit,
         requested_usage: int | Omit = omit,
         requested_values: SequenceNotStr[str] | Omit = omit,
+        reservation_expires_at: Union[str, datetime] | Omit = omit,
+        reservation_id: str | Omit = omit,
+        reservation_metadata: str | Omit = omit,
+        reservation_ttl_seconds: int | Omit = omit,
+        reserve_amount: float | Omit = omit,
         resource_id: str | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
@@ -517,6 +522,20 @@ class CustomersResource(SyncAPIResource):
               features only)
 
           requested_values: Requested values to evaluate against allowed values (enum features only)
+
+          reservation_expires_at: When the reservation expires (ISO 8601, at most 24 hours ahead). Mutually
+              exclusive with `reservationTtlSeconds`.
+
+          reservation_id: Client-provided reservation ID, required with `reserveAmount`. Retry with the
+              same ID to get the same result; reuse with different parameters is a conflict.
+
+          reservation_metadata: JSON-encoded object of string values to attach to the reservation.
+
+          reservation_ttl_seconds: How long the reservation holds the credits, in seconds (1–86400, default 3600).
+              Mutually exclusive with `reservationExpiresAt`.
+
+          reserve_amount: Credits to reserve (credit entitlements only). The check is decided and the
+              credits held atomically; `requestedUsage` is ignored.
 
           resource_id: Resource ID to scope the entitlement check to a specific resource
 
@@ -552,6 +571,11 @@ class CustomersResource(SyncAPIResource):
                         "feature_id": feature_id,
                         "requested_usage": requested_usage,
                         "requested_values": requested_values,
+                        "reservation_expires_at": reservation_expires_at,
+                        "reservation_id": reservation_id,
+                        "reservation_metadata": reservation_metadata,
+                        "reservation_ttl_seconds": reservation_ttl_seconds,
+                        "reserve_amount": reserve_amount,
                         "resource_id": resource_id,
                     },
                     customer_check_entitlement_params.CustomerCheckEntitlementParams,
@@ -1567,6 +1591,11 @@ class AsyncCustomersResource(AsyncAPIResource):
         feature_id: str | Omit = omit,
         requested_usage: int | Omit = omit,
         requested_values: SequenceNotStr[str] | Omit = omit,
+        reservation_expires_at: Union[str, datetime] | Omit = omit,
+        reservation_id: str | Omit = omit,
+        reservation_metadata: str | Omit = omit,
+        reservation_ttl_seconds: int | Omit = omit,
+        reserve_amount: float | Omit = omit,
         resource_id: str | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
@@ -1597,6 +1626,20 @@ class AsyncCustomersResource(AsyncAPIResource):
               features only)
 
           requested_values: Requested values to evaluate against allowed values (enum features only)
+
+          reservation_expires_at: When the reservation expires (ISO 8601, at most 24 hours ahead). Mutually
+              exclusive with `reservationTtlSeconds`.
+
+          reservation_id: Client-provided reservation ID, required with `reserveAmount`. Retry with the
+              same ID to get the same result; reuse with different parameters is a conflict.
+
+          reservation_metadata: JSON-encoded object of string values to attach to the reservation.
+
+          reservation_ttl_seconds: How long the reservation holds the credits, in seconds (1–86400, default 3600).
+              Mutually exclusive with `reservationExpiresAt`.
+
+          reserve_amount: Credits to reserve (credit entitlements only). The check is decided and the
+              credits held atomically; `requestedUsage` is ignored.
 
           resource_id: Resource ID to scope the entitlement check to a specific resource
 
@@ -1632,6 +1675,11 @@ class AsyncCustomersResource(AsyncAPIResource):
                         "feature_id": feature_id,
                         "requested_usage": requested_usage,
                         "requested_values": requested_values,
+                        "reservation_expires_at": reservation_expires_at,
+                        "reservation_id": reservation_id,
+                        "reservation_metadata": reservation_metadata,
+                        "reservation_ttl_seconds": reservation_ttl_seconds,
+                        "reserve_amount": reserve_amount,
                         "resource_id": resource_id,
                     },
                     customer_check_entitlement_params.CustomerCheckEntitlementParams,
