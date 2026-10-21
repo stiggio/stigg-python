@@ -28,6 +28,9 @@ class CreditListLedgerParams(TypedDict, total=False):
     limit: int
     """Maximum number of items to return"""
 
+    reservation_id: Annotated[str, PropertyInfo(alias="reservationId")]
+    """Filter by credit reservation ID"""
+
     resource_id: Annotated[str, PropertyInfo(alias="resourceId")]
     """Filter by resource ID"""
 

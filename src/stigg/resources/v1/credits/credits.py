@@ -249,6 +249,7 @@ class CreditsResource(SyncAPIResource):
         currency_id: str | Omit = omit,
         event_type: str | Omit = omit,
         limit: int | Omit = omit,
+        reservation_id: str | Omit = omit,
         resource_id: str | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
@@ -274,6 +275,8 @@ class CreditsResource(SyncAPIResource):
           event_type: Filter by event type(s), comma-separated
 
           limit: Maximum number of items to return
+
+          reservation_id: Filter by credit reservation ID
 
           resource_id: Filter by resource ID
 
@@ -310,6 +313,7 @@ class CreditsResource(SyncAPIResource):
                         "currency_id": currency_id,
                         "event_type": event_type,
                         "limit": limit,
+                        "reservation_id": reservation_id,
                         "resource_id": resource_id,
                     },
                     credit_list_ledger_params.CreditListLedgerParams,
@@ -516,6 +520,7 @@ class AsyncCreditsResource(AsyncAPIResource):
         currency_id: str | Omit = omit,
         event_type: str | Omit = omit,
         limit: int | Omit = omit,
+        reservation_id: str | Omit = omit,
         resource_id: str | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
@@ -541,6 +546,8 @@ class AsyncCreditsResource(AsyncAPIResource):
           event_type: Filter by event type(s), comma-separated
 
           limit: Maximum number of items to return
+
+          reservation_id: Filter by credit reservation ID
 
           resource_id: Filter by resource ID
 
@@ -577,6 +584,7 @@ class AsyncCreditsResource(AsyncAPIResource):
                         "currency_id": currency_id,
                         "event_type": event_type,
                         "limit": limit,
+                        "reservation_id": reservation_id,
                         "resource_id": resource_id,
                     },
                     credit_list_ledger_params.CreditListLedgerParams,
