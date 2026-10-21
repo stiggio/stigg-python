@@ -46,7 +46,7 @@ class DataUsage(BaseModel):
     timestamp: datetime
     """Timestamp"""
 
-    value: int
+    value: float
     """The usage measurement record"""
 
     credit: Optional[DataUsageCredit] = None

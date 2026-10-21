@@ -55,7 +55,7 @@ class UsageResource(SyncAPIResource):
         *,
         customer_id: str,
         feature_id: str,
-        value: int,
+        value: float,
         dimensions: Dict[str, Union[str, float, bool]] | Omit = omit,
         resource_id: Optional[str] | Omit = omit,
         update_behavior: Literal["DELTA", "SET"] | Omit = omit,
@@ -79,9 +79,10 @@ class UsageResource(SyncAPIResource):
 
           feature_id: Feature id
 
-          value: The value to report for usage. Must be a whole number — the REST API does not
-              accept fractional (float) usage values; scale up (e.g. report cents instead of
-              dollars, or milliseconds instead of seconds) if you need sub-unit precision.
+          value: The value to report for usage. Fractional values are accepted and rounded half
+              away from zero to 5 decimal places. A value with a fractional part must have an
+              absolute value below 34,359,738,368 (2^35); whole numbers are accepted up to
+              ±9,007,199,254,740,991.
 
           dimensions: Additional dimensions for the usage report
 
@@ -283,7 +284,7 @@ class AsyncUsageResource(AsyncAPIResource):
         *,
         customer_id: str,
         feature_id: str,
-        value: int,
+        value: float,
         dimensions: Dict[str, Union[str, float, bool]] | Omit = omit,
         resource_id: Optional[str] | Omit = omit,
         update_behavior: Literal["DELTA", "SET"] | Omit = omit,
@@ -307,9 +308,10 @@ class AsyncUsageResource(AsyncAPIResource):
 
           feature_id: Feature id
 
-          value: The value to report for usage. Must be a whole number — the REST API does not
-              accept fractional (float) usage values; scale up (e.g. report cents instead of
-              dollars, or milliseconds instead of seconds) if you need sub-unit precision.
+          value: The value to report for usage. Fractional values are accepted and rounded half
+              away from zero to 5 decimal places. A value with a fractional part must have an
+              absolute value below 34,359,738,368 (2^35); whole numbers are accepted up to
+              ±9,007,199,254,740,991.
 
           dimensions: Additional dimensions for the usage report
 
