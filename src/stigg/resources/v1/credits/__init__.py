@@ -24,6 +24,14 @@ from .consumption import (
     ConsumptionResourceWithStreamingResponse,
     AsyncConsumptionResourceWithStreamingResponse,
 )
+from .reservations import (
+    ReservationsResource,
+    AsyncReservationsResource,
+    ReservationsResourceWithRawResponse,
+    AsyncReservationsResourceWithRawResponse,
+    ReservationsResourceWithStreamingResponse,
+    AsyncReservationsResourceWithStreamingResponse,
+)
 from .custom_currencies import (
     CustomCurrenciesResource,
     AsyncCustomCurrenciesResource,
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncConsumptionResourceWithRawResponse",
     "ConsumptionResourceWithStreamingResponse",
     "AsyncConsumptionResourceWithStreamingResponse",
+    "ReservationsResource",
+    "AsyncReservationsResource",
+    "ReservationsResourceWithRawResponse",
+    "AsyncReservationsResourceWithRawResponse",
+    "ReservationsResourceWithStreamingResponse",
+    "AsyncReservationsResourceWithStreamingResponse",
     "CreditsResource",
     "AsyncCreditsResource",
     "CreditsResourceWithRawResponse",

@@ -35,6 +35,14 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from .reservations import (
+    ReservationsResource,
+    AsyncReservationsResource,
+    ReservationsResourceWithRawResponse,
+    AsyncReservationsResourceWithRawResponse,
+    ReservationsResourceWithStreamingResponse,
+    AsyncReservationsResourceWithStreamingResponse,
+)
 from ....pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 from ...._base_client import AsyncPaginator, make_request_options
 from .custom_currencies import (
@@ -66,6 +74,10 @@ class CreditsResource(SyncAPIResource):
     @cached_property
     def consumption(self) -> ConsumptionResource:
         return ConsumptionResource(self._client)
+
+    @cached_property
+    def reservations(self) -> ReservationsResource:
+        return ReservationsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CreditsResourceWithRawResponse:
@@ -337,6 +349,10 @@ class AsyncCreditsResource(AsyncAPIResource):
     @cached_property
     def consumption(self) -> AsyncConsumptionResource:
         return AsyncConsumptionResource(self._client)
+
+    @cached_property
+    def reservations(self) -> AsyncReservationsResource:
+        return AsyncReservationsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCreditsResourceWithRawResponse:
@@ -622,6 +638,10 @@ class CreditsResourceWithRawResponse:
     def consumption(self) -> ConsumptionResourceWithRawResponse:
         return ConsumptionResourceWithRawResponse(self._credits.consumption)
 
+    @cached_property
+    def reservations(self) -> ReservationsResourceWithRawResponse:
+        return ReservationsResourceWithRawResponse(self._credits.reservations)
+
 
 class AsyncCreditsResourceWithRawResponse:
     def __init__(self, credits: AsyncCreditsResource) -> None:
@@ -650,6 +670,10 @@ class AsyncCreditsResourceWithRawResponse:
     @cached_property
     def consumption(self) -> AsyncConsumptionResourceWithRawResponse:
         return AsyncConsumptionResourceWithRawResponse(self._credits.consumption)
+
+    @cached_property
+    def reservations(self) -> AsyncReservationsResourceWithRawResponse:
+        return AsyncReservationsResourceWithRawResponse(self._credits.reservations)
 
 
 class CreditsResourceWithStreamingResponse:
@@ -680,6 +704,10 @@ class CreditsResourceWithStreamingResponse:
     def consumption(self) -> ConsumptionResourceWithStreamingResponse:
         return ConsumptionResourceWithStreamingResponse(self._credits.consumption)
 
+    @cached_property
+    def reservations(self) -> ReservationsResourceWithStreamingResponse:
+        return ReservationsResourceWithStreamingResponse(self._credits.reservations)
+
 
 class AsyncCreditsResourceWithStreamingResponse:
     def __init__(self, credits: AsyncCreditsResource) -> None:
@@ -708,3 +736,7 @@ class AsyncCreditsResourceWithStreamingResponse:
     @cached_property
     def consumption(self) -> AsyncConsumptionResourceWithStreamingResponse:
         return AsyncConsumptionResourceWithStreamingResponse(self._credits.consumption)
+
+    @cached_property
+    def reservations(self) -> AsyncReservationsResourceWithStreamingResponse:
+        return AsyncReservationsResourceWithStreamingResponse(self._credits.reservations)

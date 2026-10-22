@@ -279,6 +279,18 @@ Methods:
 - <code title="post /api/v1/credits/consumption">client.v1.credits.consumption.<a href="./src/stigg/resources/v1/credits/consumption.py">consume</a>(\*\*<a href="src/stigg/types/v1/credits/consumption_consume_params.py">params</a>) -> <a href="./src/stigg/types/v1/credits/consumption_consume_response.py">ConsumptionConsumeResponse</a></code>
 - <code title="post /api/v1/credits/consumption/async">client.v1.credits.consumption.<a href="./src/stigg/resources/v1/credits/consumption.py">consume_async</a>(\*\*<a href="src/stigg/types/v1/credits/consumption_consume_async_params.py">params</a>) -> <a href="./src/stigg/types/v1/credits/consumption_consume_async_response.py">ConsumptionConsumeAsyncResponse</a></code>
 
+### Reservations
+
+Types:
+
+```python
+from stigg.types.v1.credits import ReservationReleaseResponse
+```
+
+Methods:
+
+- <code title="post /api/v1/credits/reservations/{reservationId}/release">client.v1.credits.reservations.<a href="./src/stigg/resources/v1/credits/reservations.py">release</a>(reservation_id, \*\*<a href="src/stigg/types/v1/credits/reservation_release_params.py">params</a>) -> <a href="./src/stigg/types/v1/credits/reservation_release_response.py">ReservationReleaseResponse</a></code>
+
 ## Features
 
 Types:
