@@ -1264,7 +1264,7 @@ class ChargesPricingModel(TypedDict, total=False):
     """The feature ID this pricing model is associated with"""
 
     max_unit_quantity: Annotated[int, PropertyInfo(alias="maxUnitQuantity")]
-    """Maximum number of units (max 999999)"""
+    """Maximum number of units"""
 
     min_unit_quantity: Annotated[int, PropertyInfo(alias="minUnitQuantity")]
     """Minimum number of units"""
