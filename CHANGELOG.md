@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.1.0-beta.53](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.52...v0.1.0-beta.53) (2026-10-22)
+
+
+### Features
+
+* **STIGG-10078:** credit reservation release in the sdks ([63be2fd](https://github.com/stiggio/stigg-python/commit/63be2fd7eca26ed03083fc260dbb95904fd16acf))
+
+
+### Bug Fixes
+
+* sync OpenAPI spec from stigg-api ([8f40c8e](https://github.com/stiggio/stigg-python/commit/8f40c8ec87fcb6718833a2f911abcc59f13aff2c))
+* sync OpenAPI spec from stigg-api ([e37fa7b](https://github.com/stiggio/stigg-python/commit/e37fa7b7f8d85dc9d47db437a901affede23c9f9))
+* sync OpenAPI spec from stigg-api ([b9023ce](https://github.com/stiggio/stigg-python/commit/b9023ce77ba87f660d7efa62f78210eb51dc94b1))
+* sync OpenAPI spec from stigg-api ([7ec0ba6](https://github.com/stiggio/stigg-python/commit/7ec0ba6044491c7db25b9c57f792d4308cb0ee22))
+
 ## [0.1.0-beta.52](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.51...v0.1.0-beta.52) (2026-10-20)
 
 
