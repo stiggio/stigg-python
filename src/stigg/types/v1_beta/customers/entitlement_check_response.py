@@ -196,7 +196,7 @@ class DataCreditReservation(BaseModel):
     Unreleased credits return to the balance at this time.
     """
 
-    status: Literal["ACTIVE", "RELEASED"]
+    status: Literal["ACTIVE", "RELEASED", "EXPIRED"]
     """The status of the reservation."""
 
 
