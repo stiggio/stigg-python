@@ -48,8 +48,9 @@ class Assignment(TypedDict, total=False):
     """Parent entity ID in the hierarchy.
 
     Omit to leave the current parent untouched (a new node defaults to a root);
-    `null` detaches to a root; an ID sets or changes the parent. Reparenting an
-    existing node is leaf-only.
+    `null` detaches to a root; an ID sets or changes the parent. Reparenting or
+    detaching an existing node is leaf-only; place a parent before its children, or
+    in the same batch.
     """
 
     scope_entity_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="scopeEntityIds")]
