@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.0-beta.55](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.54...v0.1.0-beta.55) (2026-10-28)
+
+
+### Bug Fixes
+
+* **stainless:** restore edge.api.stigg.io as the production server ([3b75677](https://github.com/stiggio/stigg-python/commit/3b756775fe0082a17872d19b2e7611a146c0eb9e))
+
 ## [0.1.0-beta.54](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.53...v0.1.0-beta.54) (2026-10-28)
 
 
