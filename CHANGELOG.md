@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.0-beta.54](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.53...v0.1.0-beta.54) (2026-10-28)
+
+
+### Features
+
+* **STIGG-10529:** governance query as paginated v1Beta.customers.governance.list ([864f837](https://github.com/stiggio/stigg-python/commit/864f83717021ce7a9d55033ede9eb1c0805f0b73))
+
+
+### Bug Fixes
+
+* sync OpenAPI spec from stigg-api ([20f41b5](https://github.com/stiggio/stigg-python/commit/20f41b564a2c5d3712b1823ce163adaff3811697))
+* sync OpenAPI spec from stigg-api ([97a9ba1](https://github.com/stiggio/stigg-python/commit/97a9ba19433847acfb8b2d7811366502948e90ac))
+* sync OpenAPI spec from stigg-api ([71ed12c](https://github.com/stiggio/stigg-python/commit/71ed12cff78cc86d6450179da0f5979ffaf78784))
+
 ## [0.1.0-beta.53](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.52...v0.1.0-beta.53) (2026-10-22)
 
 
