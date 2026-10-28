@@ -31,6 +31,7 @@ class TestCustomers:
         customer = client.v1.events.beta.customers.retrieve_governance(
             id="id",
             after="after",
+            before="before",
             currency_ids=["string"],
             entity_id_search="x",
             entity_type_ids=["string"],
@@ -99,6 +100,7 @@ class TestAsyncCustomers:
         customer = await async_client.v1.events.beta.customers.retrieve_governance(
             id="id",
             after="after",
+            before="before",
             currency_ids=["string"],
             entity_id_search="x",
             entity_type_ids=["string"],

@@ -12,12 +12,22 @@ __all__ = ["CustomerRetrieveGovernanceParams"]
 
 class CustomerRetrieveGovernanceParams(TypedDict, total=False):
     after: str
-    """Return items that come after this cursor"""
+    """Opaque cursor from a page’s `next`; returns the page after it.
+
+    Mutually exclusive with `before`.
+    """
+
+    before: str
+    """Opaque cursor from a page’s `prev`; returns the page before it.
+
+    Mutually exclusive with `after`.
+    """
 
     currency_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="currencyIds")]
-    """Currency ids to include, repeated per value (e.g.
+    """Currency ids to include, comma-separated (e.g.
 
-    `?currencyIds=credits`). Omit both featureIds and currencyIds for tree mode.
+    `?currencyIds=credits`), up to 100. Omit both featureIds and currencyIds for
+    tree mode.
     """
 
     entity_id_search: Annotated[str, PropertyInfo(alias="entityIdSearch")]
@@ -27,15 +37,15 @@ class CustomerRetrieveGovernanceParams(TypedDict, total=False):
     """
 
     entity_type_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="entityTypeIds")]
-    """Filter to one or more entity types, repeated per value (e.g.
+    """Filter to one or more entity types, comma-separated (e.g.
 
-    `?entityTypeIds=team&entityTypeIds=user`).
+    `?entityTypeIds=team,user`), up to 100.
     """
 
     feature_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="featureIds")]
-    """Feature ids to include, repeated per value (e.g.
+    """Feature ids to include, comma-separated (e.g.
 
-    `?featureIds=ai-tokens&featureIds=seats`). Omit both featureIds and currencyIds
+    `?featureIds=ai-tokens,seats`), up to 100. Omit both featureIds and currencyIds
     for tree mode — every node in the hierarchy with no usage configuration
     attached.
     """

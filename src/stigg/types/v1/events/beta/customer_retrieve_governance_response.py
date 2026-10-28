@@ -94,6 +94,9 @@ class Pagination(BaseModel):
     exist
     """
 
+    prev: Optional[str] = None
+    """Cursor for fetching the previous page of results, or null if at the beginning"""
+
 
 class CustomerRetrieveGovernanceResponse(BaseModel):
     """

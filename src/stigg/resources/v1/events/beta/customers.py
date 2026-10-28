@@ -48,6 +48,7 @@ class CustomersResource(SyncAPIResource):
         id: str,
         *,
         after: str | Omit = omit,
+        before: str | Omit = omit,
         currency_ids: SequenceNotStr[str] | Omit = omit,
         entity_id_search: str | Omit = omit,
         entity_type_ids: SequenceNotStr[str] | Omit = omit,
@@ -74,21 +75,24 @@ class CustomersResource(SyncAPIResource):
         read model and never gates access.
 
         Args:
-          after: Return items that come after this cursor
+          after: Opaque cursor from a page’s `next`; returns the page after it. Mutually
+              exclusive with `before`.
 
-          currency_ids: Currency ids to include, repeated per value (e.g. `?currencyIds=credits`). Omit
-              both featureIds and currencyIds for tree mode.
+          before: Opaque cursor from a page’s `prev`; returns the page before it. Mutually
+              exclusive with `after`.
+
+          currency_ids: Currency ids to include, comma-separated (e.g. `?currencyIds=credits`), up
+              to 100. Omit both featureIds and currencyIds for tree mode.
 
           entity_id_search: Case-insensitive substring match on the entity id or its display name (`%`/`_`
               matched literally).
 
-          entity_type_ids: Filter to one or more entity types, repeated per value (e.g.
-              `?entityTypeIds=team&entityTypeIds=user`).
+          entity_type_ids: Filter to one or more entity types, comma-separated (e.g.
+              `?entityTypeIds=team,user`), up to 100.
 
-          feature_ids: Feature ids to include, repeated per value (e.g.
-              `?featureIds=ai-tokens&featureIds=seats`). Omit both featureIds and currencyIds
-              for tree mode — every node in the hierarchy with no usage configuration
-              attached.
+          feature_ids: Feature ids to include, comma-separated (e.g. `?featureIds=ai-tokens,seats`), up
+              to 100. Omit both featureIds and currencyIds for tree mode — every node in the
+              hierarchy with no usage configuration attached.
 
           limit: Maximum number of items to return
 
@@ -132,6 +136,7 @@ class CustomersResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after": after,
+                        "before": before,
                         "currency_ids": currency_ids,
                         "entity_id_search": entity_id_search,
                         "entity_type_ids": entity_type_ids,
@@ -174,6 +179,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         id: str,
         *,
         after: str | Omit = omit,
+        before: str | Omit = omit,
         currency_ids: SequenceNotStr[str] | Omit = omit,
         entity_id_search: str | Omit = omit,
         entity_type_ids: SequenceNotStr[str] | Omit = omit,
@@ -200,21 +206,24 @@ class AsyncCustomersResource(AsyncAPIResource):
         read model and never gates access.
 
         Args:
-          after: Return items that come after this cursor
+          after: Opaque cursor from a page’s `next`; returns the page after it. Mutually
+              exclusive with `before`.
 
-          currency_ids: Currency ids to include, repeated per value (e.g. `?currencyIds=credits`). Omit
-              both featureIds and currencyIds for tree mode.
+          before: Opaque cursor from a page’s `prev`; returns the page before it. Mutually
+              exclusive with `after`.
+
+          currency_ids: Currency ids to include, comma-separated (e.g. `?currencyIds=credits`), up
+              to 100. Omit both featureIds and currencyIds for tree mode.
 
           entity_id_search: Case-insensitive substring match on the entity id or its display name (`%`/`_`
               matched literally).
 
-          entity_type_ids: Filter to one or more entity types, repeated per value (e.g.
-              `?entityTypeIds=team&entityTypeIds=user`).
+          entity_type_ids: Filter to one or more entity types, comma-separated (e.g.
+              `?entityTypeIds=team,user`), up to 100.
 
-          feature_ids: Feature ids to include, repeated per value (e.g.
-              `?featureIds=ai-tokens&featureIds=seats`). Omit both featureIds and currencyIds
-              for tree mode — every node in the hierarchy with no usage configuration
-              attached.
+          feature_ids: Feature ids to include, comma-separated (e.g. `?featureIds=ai-tokens,seats`), up
+              to 100. Omit both featureIds and currencyIds for tree mode — every node in the
+              hierarchy with no usage configuration attached.
 
           limit: Maximum number of items to return
 
@@ -258,6 +267,7 @@ class AsyncCustomersResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "after": after,
+                        "before": before,
                         "currency_ids": currency_ids,
                         "entity_id_search": entity_id_search,
                         "entity_type_ids": entity_type_ids,
