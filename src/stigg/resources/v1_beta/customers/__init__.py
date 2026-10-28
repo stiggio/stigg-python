@@ -16,6 +16,14 @@ from .customers import (
     CustomersResourceWithStreamingResponse,
     AsyncCustomersResourceWithStreamingResponse,
 )
+from .governance import (
+    GovernanceResource,
+    AsyncGovernanceResource,
+    GovernanceResourceWithRawResponse,
+    AsyncGovernanceResourceWithRawResponse,
+    GovernanceResourceWithStreamingResponse,
+    AsyncGovernanceResourceWithStreamingResponse,
+)
 from .assignments import (
     AssignmentsResource,
     AsyncAssignmentsResource,
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncAssignmentsResourceWithRawResponse",
     "AssignmentsResourceWithStreamingResponse",
     "AsyncAssignmentsResourceWithStreamingResponse",
+    "GovernanceResource",
+    "AsyncGovernanceResource",
+    "GovernanceResourceWithRawResponse",
+    "AsyncGovernanceResourceWithRawResponse",
+    "GovernanceResourceWithStreamingResponse",
+    "AsyncGovernanceResourceWithStreamingResponse",
     "CustomersResource",
     "AsyncCustomersResource",
     "CustomersResourceWithRawResponse",

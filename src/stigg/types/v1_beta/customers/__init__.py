@@ -8,12 +8,14 @@ from .entity_upsert_params import EntityUpsertParams as EntityUpsertParams
 from .entity_archive_params import EntityArchiveParams as EntityArchiveParams
 from .assignment_list_params import AssignmentListParams as AssignmentListParams
 from .entity_upsert_response import EntityUpsertResponse as EntityUpsertResponse
+from .governance_list_params import GovernanceListParams as GovernanceListParams
 from .entity_archive_response import EntityArchiveResponse as EntityArchiveResponse
 from .entity_unarchive_params import EntityUnarchiveParams as EntityUnarchiveParams
 from .assignment_list_response import AssignmentListResponse as AssignmentListResponse
 from .assignment_upsert_params import AssignmentUpsertParams as AssignmentUpsertParams
 from .entitlement_check_params import EntitlementCheckParams as EntitlementCheckParams
 from .entity_retrieve_response import EntityRetrieveResponse as EntityRetrieveResponse
+from .governance_list_response import GovernanceListResponse as GovernanceListResponse
 from .entity_unarchive_response import EntityUnarchiveResponse as EntityUnarchiveResponse
 from .assignment_upsert_response import AssignmentUpsertResponse as AssignmentUpsertResponse
 from .entitlement_check_response import EntitlementCheckResponse as EntitlementCheckResponse

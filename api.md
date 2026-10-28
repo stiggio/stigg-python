@@ -500,6 +500,18 @@ Methods:
 - <code title="get /api/v1-beta/customers/{id}/assignments">client.v1_beta.customers.assignments.<a href="./src/stigg/resources/v1_beta/customers/assignments.py">list</a>(id, \*\*<a href="src/stigg/types/v1_beta/customers/assignment_list_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/customers/assignment_list_response.py">SyncMyCursorIDPage[AssignmentListResponse]</a></code>
 - <code title="put /api/v1-beta/customers/{id}/assignments">client.v1_beta.customers.assignments.<a href="./src/stigg/resources/v1_beta/customers/assignments.py">upsert</a>(id, \*\*<a href="src/stigg/types/v1_beta/customers/assignment_upsert_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/customers/assignment_upsert_response.py">AssignmentUpsertResponse</a></code>
 
+### Governance
+
+Types:
+
+```python
+from stigg.types.v1_beta.customers import GovernanceListResponse
+```
+
+Methods:
+
+- <code title="get /api/v1-beta/customers/{id}/governance">client.v1_beta.customers.governance.<a href="./src/stigg/resources/v1_beta/customers/governance.py">list</a>(id, \*\*<a href="src/stigg/types/v1_beta/customers/governance_list_params.py">params</a>) -> <a href="./src/stigg/types/v1_beta/customers/governance_list_response.py">SyncMyCursorIDPage[GovernanceListResponse]</a></code>
+
 ## EntityTypes
 
 Types:

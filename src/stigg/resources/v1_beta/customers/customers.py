@@ -11,6 +11,14 @@ from .entities import (
     AsyncEntitiesResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
+from .governance import (
+    GovernanceResource,
+    AsyncGovernanceResource,
+    GovernanceResourceWithRawResponse,
+    AsyncGovernanceResourceWithRawResponse,
+    GovernanceResourceWithStreamingResponse,
+    AsyncGovernanceResourceWithStreamingResponse,
+)
 from .assignments import (
     AssignmentsResource,
     AsyncAssignmentsResource,
@@ -46,6 +54,10 @@ class CustomersResource(SyncAPIResource):
         return AssignmentsResource(self._client)
 
     @cached_property
+    def governance(self) -> GovernanceResource:
+        return GovernanceResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> CustomersResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -77,6 +89,10 @@ class AsyncCustomersResource(AsyncAPIResource):
     @cached_property
     def assignments(self) -> AsyncAssignmentsResource:
         return AsyncAssignmentsResource(self._client)
+
+    @cached_property
+    def governance(self) -> AsyncGovernanceResource:
+        return AsyncGovernanceResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCustomersResourceWithRawResponse:
@@ -114,6 +130,10 @@ class CustomersResourceWithRawResponse:
     def assignments(self) -> AssignmentsResourceWithRawResponse:
         return AssignmentsResourceWithRawResponse(self._customers.assignments)
 
+    @cached_property
+    def governance(self) -> GovernanceResourceWithRawResponse:
+        return GovernanceResourceWithRawResponse(self._customers.governance)
+
 
 class AsyncCustomersResourceWithRawResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -130,6 +150,10 @@ class AsyncCustomersResourceWithRawResponse:
     @cached_property
     def assignments(self) -> AsyncAssignmentsResourceWithRawResponse:
         return AsyncAssignmentsResourceWithRawResponse(self._customers.assignments)
+
+    @cached_property
+    def governance(self) -> AsyncGovernanceResourceWithRawResponse:
+        return AsyncGovernanceResourceWithRawResponse(self._customers.governance)
 
 
 class CustomersResourceWithStreamingResponse:
@@ -148,6 +172,10 @@ class CustomersResourceWithStreamingResponse:
     def assignments(self) -> AssignmentsResourceWithStreamingResponse:
         return AssignmentsResourceWithStreamingResponse(self._customers.assignments)
 
+    @cached_property
+    def governance(self) -> GovernanceResourceWithStreamingResponse:
+        return GovernanceResourceWithStreamingResponse(self._customers.governance)
+
 
 class AsyncCustomersResourceWithStreamingResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -164,3 +192,7 @@ class AsyncCustomersResourceWithStreamingResponse:
     @cached_property
     def assignments(self) -> AsyncAssignmentsResourceWithStreamingResponse:
         return AsyncAssignmentsResourceWithStreamingResponse(self._customers.assignments)
+
+    @cached_property
+    def governance(self) -> AsyncGovernanceResourceWithStreamingResponse:
+        return AsyncGovernanceResourceWithStreamingResponse(self._customers.governance)
