@@ -54,6 +54,11 @@ class Assignment(TypedDict, total=False):
     """
 
     scope_entity_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="scopeEntityIds")]
+    """
+    Dimension-scoped sub-budget: the set of entity IDs this budget applies to
+    (order-insensitive, unique, at most 5). Omit or leave empty for the node-wide
+    budget.
+    """
 
     usage_limit: Annotated[Optional[float], PropertyInfo(alias="usageLimit")]
     """Maximum usage allowed within one cadence window (required on create)"""
