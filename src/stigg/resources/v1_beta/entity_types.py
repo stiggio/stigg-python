@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Iterable
 from typing_extensions import Literal
 
@@ -46,6 +47,7 @@ class EntityTypesResource(SyncAPIResource):
         """
         return EntityTypesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -66,7 +68,7 @@ class EntityTypesResource(SyncAPIResource):
         Returns a cursor-paginated list of entity types defined in the environment.
         Entity types are vendor-defined categories of resource that can be governed
         (e.g. Org, Team, User). Archived entity types are excluded unless
-        includeArchived=true.
+        includeArchived=true. Deprecated: use `GET /api/v1/entity-types`.
 
         Args:
           after: Return items that come after this cursor
@@ -115,6 +117,7 @@ class EntityTypesResource(SyncAPIResource):
             model=EntityTypeListResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def upsert(
         self,
         *,
@@ -133,6 +136,7 @@ class EntityTypesResource(SyncAPIResource):
         Existing types matched by id are
         updated; new ids are created. Idempotent — re-submitting the same payload
         converges to the same state. An upsert of an archived entity type restores it.
+        Deprecated: use `PUT /api/v1/entity-types`.
 
         Args:
           types: Entity types to upsert (1–100 per request)
@@ -184,6 +188,7 @@ class AsyncEntityTypesResource(AsyncAPIResource):
         """
         return AsyncEntityTypesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -204,7 +209,7 @@ class AsyncEntityTypesResource(AsyncAPIResource):
         Returns a cursor-paginated list of entity types defined in the environment.
         Entity types are vendor-defined categories of resource that can be governed
         (e.g. Org, Team, User). Archived entity types are excluded unless
-        includeArchived=true.
+        includeArchived=true. Deprecated: use `GET /api/v1/entity-types`.
 
         Args:
           after: Return items that come after this cursor
@@ -253,6 +258,7 @@ class AsyncEntityTypesResource(AsyncAPIResource):
             model=EntityTypeListResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def upsert(
         self,
         *,
@@ -271,6 +277,7 @@ class AsyncEntityTypesResource(AsyncAPIResource):
         Existing types matched by id are
         updated; new ids are created. Idempotent — re-submitting the same payload
         converges to the same state. An upsert of an archived entity type restores it.
+        Deprecated: use `PUT /api/v1/entity-types`.
 
         Args:
           types: Entity types to upsert (1–100 per request)
@@ -306,11 +313,15 @@ class EntityTypesResourceWithRawResponse:
     def __init__(self, entity_types: EntityTypesResource) -> None:
         self._entity_types = entity_types
 
-        self.list = to_raw_response_wrapper(
-            entity_types.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                entity_types.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.upsert = to_raw_response_wrapper(
-            entity_types.upsert,
+        self.upsert = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                entity_types.upsert,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -318,11 +329,15 @@ class AsyncEntityTypesResourceWithRawResponse:
     def __init__(self, entity_types: AsyncEntityTypesResource) -> None:
         self._entity_types = entity_types
 
-        self.list = async_to_raw_response_wrapper(
-            entity_types.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                entity_types.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.upsert = async_to_raw_response_wrapper(
-            entity_types.upsert,
+        self.upsert = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                entity_types.upsert,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -330,11 +345,15 @@ class EntityTypesResourceWithStreamingResponse:
     def __init__(self, entity_types: EntityTypesResource) -> None:
         self._entity_types = entity_types
 
-        self.list = to_streamed_response_wrapper(
-            entity_types.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                entity_types.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.upsert = to_streamed_response_wrapper(
-            entity_types.upsert,
+        self.upsert = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                entity_types.upsert,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -342,9 +361,13 @@ class AsyncEntityTypesResourceWithStreamingResponse:
     def __init__(self, entity_types: AsyncEntityTypesResource) -> None:
         self._entity_types = entity_types
 
-        self.list = async_to_streamed_response_wrapper(
-            entity_types.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                entity_types.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.upsert = async_to_streamed_response_wrapper(
-            entity_types.upsert,
+        self.upsert = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                entity_types.upsert,  # pyright: ignore[reportDeprecated],
+            )
         )

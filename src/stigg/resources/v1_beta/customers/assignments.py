@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Iterable
 
 import httpx
@@ -45,6 +46,7 @@ class AssignmentsResource(SyncAPIResource):
         """
         return AssignmentsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         id: str,
@@ -68,7 +70,8 @@ class AssignmentsResource(SyncAPIResource):
         customer.
 
         An assignment ties an entity to a capability with a usage limit and
-        reset cadence.
+        reset cadence. Deprecated: use
+        `GET /api/v1/customers/{id}/entities/entitlements`.
 
         Args:
           after: Return items that come after this cursor
@@ -127,6 +130,7 @@ class AssignmentsResource(SyncAPIResource):
             model=AssignmentListResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def upsert(
         self,
         id: str,
@@ -146,7 +150,9 @@ class AssignmentsResource(SyncAPIResource):
         Existing assignments matched
         by (entityId, capabilityId) are updated; new pairs are created. On update,
         omitted fields (usageLimit, cadence) are preserved; on create both are required
-        by the governance service.
+        by the governance service. Deprecated: use
+        `PUT /api/v1/customers/{id}/entities/entitlements` with the body key
+        `entityEntitlements`.
 
         Args:
           assignments: Assignments to upsert (1–100 per request)
@@ -200,6 +206,7 @@ class AsyncAssignmentsResource(AsyncAPIResource):
         """
         return AsyncAssignmentsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         id: str,
@@ -223,7 +230,8 @@ class AsyncAssignmentsResource(AsyncAPIResource):
         customer.
 
         An assignment ties an entity to a capability with a usage limit and
-        reset cadence.
+        reset cadence. Deprecated: use
+        `GET /api/v1/customers/{id}/entities/entitlements`.
 
         Args:
           after: Return items that come after this cursor
@@ -282,6 +290,7 @@ class AsyncAssignmentsResource(AsyncAPIResource):
             model=AssignmentListResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def upsert(
         self,
         id: str,
@@ -301,7 +310,9 @@ class AsyncAssignmentsResource(AsyncAPIResource):
         Existing assignments matched
         by (entityId, capabilityId) are updated; new pairs are created. On update,
         omitted fields (usageLimit, cadence) are preserved; on create both are required
-        by the governance service.
+        by the governance service. Deprecated: use
+        `PUT /api/v1/customers/{id}/entities/entitlements` with the body key
+        `entityEntitlements`.
 
         Args:
           assignments: Assignments to upsert (1–100 per request)
@@ -341,11 +352,15 @@ class AssignmentsResourceWithRawResponse:
     def __init__(self, assignments: AssignmentsResource) -> None:
         self._assignments = assignments
 
-        self.list = to_raw_response_wrapper(
-            assignments.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                assignments.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.upsert = to_raw_response_wrapper(
-            assignments.upsert,
+        self.upsert = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                assignments.upsert,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -353,11 +368,15 @@ class AsyncAssignmentsResourceWithRawResponse:
     def __init__(self, assignments: AsyncAssignmentsResource) -> None:
         self._assignments = assignments
 
-        self.list = async_to_raw_response_wrapper(
-            assignments.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                assignments.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.upsert = async_to_raw_response_wrapper(
-            assignments.upsert,
+        self.upsert = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                assignments.upsert,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -365,11 +384,15 @@ class AssignmentsResourceWithStreamingResponse:
     def __init__(self, assignments: AssignmentsResource) -> None:
         self._assignments = assignments
 
-        self.list = to_streamed_response_wrapper(
-            assignments.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                assignments.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.upsert = to_streamed_response_wrapper(
-            assignments.upsert,
+        self.upsert = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                assignments.upsert,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -377,9 +400,13 @@ class AsyncAssignmentsResourceWithStreamingResponse:
     def __init__(self, assignments: AsyncAssignmentsResource) -> None:
         self._assignments = assignments
 
-        self.list = async_to_streamed_response_wrapper(
-            assignments.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                assignments.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.upsert = async_to_streamed_response_wrapper(
-            assignments.upsert,
+        self.upsert = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                assignments.upsert,  # pyright: ignore[reportDeprecated],
+            )
         )
