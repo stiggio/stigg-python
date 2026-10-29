@@ -33,6 +33,7 @@ class TestEntityTypes:
         entity_type = client.v1_beta.entity_types.list(
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            include_archived="true",
             limit=1,
             x_account_id="X-ACCOUNT-ID",
             x_environment_id="X-ENVIRONMENT-ID",
@@ -169,6 +170,7 @@ class TestAsyncEntityTypes:
         entity_type = await async_client.v1_beta.entity_types.list(
             after="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             before="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            include_archived="true",
             limit=1,
             x_account_id="X-ACCOUNT-ID",
             x_environment_id="X-ENVIRONMENT-ID",

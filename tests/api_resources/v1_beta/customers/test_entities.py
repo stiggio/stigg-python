@@ -18,6 +18,8 @@ from stigg.types.v1_beta.customers import (
     EntityUnarchiveResponse,
 )
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -204,30 +206,35 @@ class TestEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_unarchive(self, client: Stigg) -> None:
-        entity = client.v1_beta.customers.entities.unarchive(
-            id="id",
-            ids=["user-7f3a0c1d", "user-c4d1b2e9"],
-        )
+        with pytest.warns(DeprecationWarning):
+            entity = client.v1_beta.customers.entities.unarchive(
+                id="id",
+                ids=["user-7f3a0c1d", "user-c4d1b2e9"],
+            )
+
         assert_matches_type(EntityUnarchiveResponse, entity, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_unarchive_with_all_params(self, client: Stigg) -> None:
-        entity = client.v1_beta.customers.entities.unarchive(
-            id="id",
-            ids=["user-7f3a0c1d", "user-c4d1b2e9"],
-            x_account_id="X-ACCOUNT-ID",
-            x_environment_id="X-ENVIRONMENT-ID",
-        )
+        with pytest.warns(DeprecationWarning):
+            entity = client.v1_beta.customers.entities.unarchive(
+                id="id",
+                ids=["user-7f3a0c1d", "user-c4d1b2e9"],
+                x_account_id="X-ACCOUNT-ID",
+                x_environment_id="X-ENVIRONMENT-ID",
+            )
+
         assert_matches_type(EntityUnarchiveResponse, entity, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_unarchive(self, client: Stigg) -> None:
-        response = client.v1_beta.customers.entities.with_raw_response.unarchive(
-            id="id",
-            ids=["user-7f3a0c1d", "user-c4d1b2e9"],
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.v1_beta.customers.entities.with_raw_response.unarchive(
+                id="id",
+                ids=["user-7f3a0c1d", "user-c4d1b2e9"],
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -237,26 +244,28 @@ class TestEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_unarchive(self, client: Stigg) -> None:
-        with client.v1_beta.customers.entities.with_streaming_response.unarchive(
-            id="id",
-            ids=["user-7f3a0c1d", "user-c4d1b2e9"],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.v1_beta.customers.entities.with_streaming_response.unarchive(
+                id="id",
+                ids=["user-7f3a0c1d", "user-c4d1b2e9"],
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            entity = response.parse()
-            assert_matches_type(EntityUnarchiveResponse, entity, path=["response"])
+                entity = response.parse()
+                assert_matches_type(EntityUnarchiveResponse, entity, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_unarchive(self, client: Stigg) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.v1_beta.customers.entities.with_raw_response.unarchive(
-                id="",
-                ids=["user-7f3a0c1d", "user-c4d1b2e9"],
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+                client.v1_beta.customers.entities.with_raw_response.unarchive(
+                    id="",
+                    ids=["user-7f3a0c1d", "user-c4d1b2e9"],
+                )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -517,30 +526,35 @@ class TestAsyncEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_unarchive(self, async_client: AsyncStigg) -> None:
-        entity = await async_client.v1_beta.customers.entities.unarchive(
-            id="id",
-            ids=["user-7f3a0c1d", "user-c4d1b2e9"],
-        )
+        with pytest.warns(DeprecationWarning):
+            entity = await async_client.v1_beta.customers.entities.unarchive(
+                id="id",
+                ids=["user-7f3a0c1d", "user-c4d1b2e9"],
+            )
+
         assert_matches_type(EntityUnarchiveResponse, entity, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_unarchive_with_all_params(self, async_client: AsyncStigg) -> None:
-        entity = await async_client.v1_beta.customers.entities.unarchive(
-            id="id",
-            ids=["user-7f3a0c1d", "user-c4d1b2e9"],
-            x_account_id="X-ACCOUNT-ID",
-            x_environment_id="X-ENVIRONMENT-ID",
-        )
+        with pytest.warns(DeprecationWarning):
+            entity = await async_client.v1_beta.customers.entities.unarchive(
+                id="id",
+                ids=["user-7f3a0c1d", "user-c4d1b2e9"],
+                x_account_id="X-ACCOUNT-ID",
+                x_environment_id="X-ENVIRONMENT-ID",
+            )
+
         assert_matches_type(EntityUnarchiveResponse, entity, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_unarchive(self, async_client: AsyncStigg) -> None:
-        response = await async_client.v1_beta.customers.entities.with_raw_response.unarchive(
-            id="id",
-            ids=["user-7f3a0c1d", "user-c4d1b2e9"],
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.v1_beta.customers.entities.with_raw_response.unarchive(
+                id="id",
+                ids=["user-7f3a0c1d", "user-c4d1b2e9"],
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -550,26 +564,28 @@ class TestAsyncEntities:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_unarchive(self, async_client: AsyncStigg) -> None:
-        async with async_client.v1_beta.customers.entities.with_streaming_response.unarchive(
-            id="id",
-            ids=["user-7f3a0c1d", "user-c4d1b2e9"],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.v1_beta.customers.entities.with_streaming_response.unarchive(
+                id="id",
+                ids=["user-7f3a0c1d", "user-c4d1b2e9"],
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            entity = await response.parse()
-            assert_matches_type(EntityUnarchiveResponse, entity, path=["response"])
+                entity = await response.parse()
+                assert_matches_type(EntityUnarchiveResponse, entity, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_unarchive(self, async_client: AsyncStigg) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.v1_beta.customers.entities.with_raw_response.unarchive(
-                id="",
-                ids=["user-7f3a0c1d", "user-c4d1b2e9"],
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+                await async_client.v1_beta.customers.entities.with_raw_response.unarchive(
+                    id="",
+                    ids=["user-7f3a0c1d", "user-c4d1b2e9"],
+                )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize

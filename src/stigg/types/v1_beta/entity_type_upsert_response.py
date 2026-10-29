@@ -19,6 +19,9 @@ class Data(BaseModel):
     id: str
     """The unique identifier for the entity"""
 
+    archived_at: Optional[datetime] = FieldInfo(alias="archivedAt", default=None)
+    """Timestamp of when the record was deleted"""
+
     attribution_keys: List[str] = FieldInfo(alias="attributionKeys")
     """Dimension keys used to attribute usage events to instances of this type (e.g.
 

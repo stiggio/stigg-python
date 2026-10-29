@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -15,6 +15,9 @@ class EntityTypeListParams(TypedDict, total=False):
 
     before: str
     """Return items that come before this cursor"""
+
+    include_archived: Annotated[Literal["true", "false"], PropertyInfo(alias="includeArchived")]
+    """Whether to include archived entity types. One of: true, false"""
 
     limit: int
     """Maximum number of items to return"""

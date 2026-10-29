@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable
+from typing_extensions import Literal
 
 import httpx
 
@@ -50,6 +51,7 @@ class EntityTypesResource(SyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        include_archived: Literal["true", "false"] | Omit = omit,
         limit: int | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
@@ -63,12 +65,15 @@ class EntityTypesResource(SyncAPIResource):
         """
         Returns a cursor-paginated list of entity types defined in the environment.
         Entity types are vendor-defined categories of resource that can be governed
-        (e.g. Org, Team, User).
+        (e.g. Org, Team, User). Archived entity types are excluded unless
+        includeArchived=true.
 
         Args:
           after: Return items that come after this cursor
 
           before: Return items that come before this cursor
+
+          include_archived: Whether to include archived entity types. One of: true, false
 
           limit: Maximum number of items to return
 
@@ -101,6 +106,7 @@ class EntityTypesResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "include_archived": include_archived,
                         "limit": limit,
                     },
                     entity_type_list_params.EntityTypeListParams,
@@ -126,7 +132,7 @@ class EntityTypesResource(SyncAPIResource):
 
         Existing types matched by id are
         updated; new ids are created. Idempotent — re-submitting the same payload
-        converges to the same state.
+        converges to the same state. An upsert of an archived entity type restores it.
 
         Args:
           types: Entity types to upsert (1–100 per request)
@@ -183,6 +189,7 @@ class AsyncEntityTypesResource(AsyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        include_archived: Literal["true", "false"] | Omit = omit,
         limit: int | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
@@ -196,12 +203,15 @@ class AsyncEntityTypesResource(AsyncAPIResource):
         """
         Returns a cursor-paginated list of entity types defined in the environment.
         Entity types are vendor-defined categories of resource that can be governed
-        (e.g. Org, Team, User).
+        (e.g. Org, Team, User). Archived entity types are excluded unless
+        includeArchived=true.
 
         Args:
           after: Return items that come after this cursor
 
           before: Return items that come before this cursor
+
+          include_archived: Whether to include archived entity types. One of: true, false
 
           limit: Maximum number of items to return
 
@@ -234,6 +244,7 @@ class AsyncEntityTypesResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "include_archived": include_archived,
                         "limit": limit,
                     },
                     entity_type_list_params.EntityTypeListParams,
@@ -259,7 +270,7 @@ class AsyncEntityTypesResource(AsyncAPIResource):
 
         Existing types matched by id are
         updated; new ids are created. Idempotent — re-submitting the same payload
-        converges to the same state.
+        converges to the same state. An upsert of an archived entity type restores it.
 
         Args:
           types: Entity types to upsert (1–100 per request)

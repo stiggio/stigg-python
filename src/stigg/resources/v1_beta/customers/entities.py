@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Iterable
 from typing_extensions import Literal
 
@@ -222,6 +223,7 @@ class EntitiesResource(SyncAPIResource):
             cast_to=EntityArchiveResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def unarchive(
         self,
         id: str,
@@ -236,8 +238,10 @@ class EntitiesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EntityUnarchiveResponse:
-        """
-        Restores previously archived entities in bulk for the given customer by id.
+        """Deprecated: upsert an entity to restore it.
+
+        Restores previously archived
+        entities in bulk for the given customer by id.
 
         Args:
           ids: Entity identifiers to act on
@@ -287,7 +291,8 @@ class EntitiesResource(SyncAPIResource):
         """Creates or updates entities in bulk for the given customer.
 
         Existing entities
-        matched by id are updated; new ids are created.
+        matched by id are updated; new ids are created. An upsert of an archived entity
+        restores it. An entity on an archived entity type fails with 400.
 
         Args:
           entities: List of entities to create or update (1-100 entries)
@@ -509,6 +514,7 @@ class AsyncEntitiesResource(AsyncAPIResource):
             cast_to=EntityArchiveResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def unarchive(
         self,
         id: str,
@@ -523,8 +529,10 @@ class AsyncEntitiesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EntityUnarchiveResponse:
-        """
-        Restores previously archived entities in bulk for the given customer by id.
+        """Deprecated: upsert an entity to restore it.
+
+        Restores previously archived
+        entities in bulk for the given customer by id.
 
         Args:
           ids: Entity identifiers to act on
@@ -574,7 +582,8 @@ class AsyncEntitiesResource(AsyncAPIResource):
         """Creates or updates entities in bulk for the given customer.
 
         Existing entities
-        matched by id are updated; new ids are created.
+        matched by id are updated; new ids are created. An upsert of an archived entity
+        restores it. An entity on an archived entity type fails with 400.
 
         Args:
           entities: List of entities to create or update (1-100 entries)
@@ -621,8 +630,10 @@ class EntitiesResourceWithRawResponse:
         self.archive = to_raw_response_wrapper(
             entities.archive,
         )
-        self.unarchive = to_raw_response_wrapper(
-            entities.unarchive,
+        self.unarchive = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                entities.unarchive,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.upsert = to_raw_response_wrapper(
             entities.upsert,
@@ -642,8 +653,10 @@ class AsyncEntitiesResourceWithRawResponse:
         self.archive = async_to_raw_response_wrapper(
             entities.archive,
         )
-        self.unarchive = async_to_raw_response_wrapper(
-            entities.unarchive,
+        self.unarchive = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                entities.unarchive,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.upsert = async_to_raw_response_wrapper(
             entities.upsert,
@@ -663,8 +676,10 @@ class EntitiesResourceWithStreamingResponse:
         self.archive = to_streamed_response_wrapper(
             entities.archive,
         )
-        self.unarchive = to_streamed_response_wrapper(
-            entities.unarchive,
+        self.unarchive = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                entities.unarchive,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.upsert = to_streamed_response_wrapper(
             entities.upsert,
@@ -684,8 +699,10 @@ class AsyncEntitiesResourceWithStreamingResponse:
         self.archive = async_to_streamed_response_wrapper(
             entities.archive,
         )
-        self.unarchive = async_to_streamed_response_wrapper(
-            entities.unarchive,
+        self.unarchive = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                entities.unarchive,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.upsert = async_to_streamed_response_wrapper(
             entities.upsert,
