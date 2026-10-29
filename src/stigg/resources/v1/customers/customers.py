@@ -278,6 +278,7 @@ class CustomersResource(SyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         name: Optional[str] | Omit = omit,
         passthrough: customer_update_params.Passthrough | Omit = omit,
+        salesforce_id: Optional[str] | Omit = omit,
         timezone: Optional[str] | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
@@ -315,6 +316,8 @@ class CustomersResource(SyncAPIResource):
 
           passthrough: Vendor-specific billing passthrough fields.
 
+          salesforce_id: The unique identifier for the customer in Salesforce integration
+
           timezone: Timezone to use for this customer
 
           extra_headers: Send extra headers
@@ -349,6 +352,7 @@ class CustomersResource(SyncAPIResource):
                     "metadata": metadata,
                     "name": name,
                     "passthrough": passthrough,
+                    "salesforce_id": salesforce_id,
                     "timezone": timezone,
                 },
                 customer_update_params.CustomerUpdateParams,
@@ -981,6 +985,7 @@ class CustomersResource(SyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         name: Optional[str] | Omit = omit,
         passthrough: customer_provision_params.Passthrough | Omit = omit,
+        salesforce_id: Optional[str] | Omit = omit,
         timezone: Optional[str] | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
@@ -1021,6 +1026,8 @@ class CustomersResource(SyncAPIResource):
 
           passthrough: Vendor-specific billing passthrough fields.
 
+          salesforce_id: The unique identifier for the customer in Salesforce integration
+
           timezone: Timezone to use for this customer
 
           extra_headers: Send extra headers
@@ -1055,6 +1062,7 @@ class CustomersResource(SyncAPIResource):
                     "metadata": metadata,
                     "name": name,
                     "passthrough": passthrough,
+                    "salesforce_id": salesforce_id,
                     "timezone": timezone,
                 },
                 customer_provision_params.CustomerProvisionParams,
@@ -1382,6 +1390,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         name: Optional[str] | Omit = omit,
         passthrough: customer_update_params.Passthrough | Omit = omit,
+        salesforce_id: Optional[str] | Omit = omit,
         timezone: Optional[str] | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
@@ -1419,6 +1428,8 @@ class AsyncCustomersResource(AsyncAPIResource):
 
           passthrough: Vendor-specific billing passthrough fields.
 
+          salesforce_id: The unique identifier for the customer in Salesforce integration
+
           timezone: Timezone to use for this customer
 
           extra_headers: Send extra headers
@@ -1453,6 +1464,7 @@ class AsyncCustomersResource(AsyncAPIResource):
                     "metadata": metadata,
                     "name": name,
                     "passthrough": passthrough,
+                    "salesforce_id": salesforce_id,
                     "timezone": timezone,
                 },
                 customer_update_params.CustomerUpdateParams,
@@ -2085,6 +2097,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         name: Optional[str] | Omit = omit,
         passthrough: customer_provision_params.Passthrough | Omit = omit,
+        salesforce_id: Optional[str] | Omit = omit,
         timezone: Optional[str] | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
@@ -2125,6 +2138,8 @@ class AsyncCustomersResource(AsyncAPIResource):
 
           passthrough: Vendor-specific billing passthrough fields.
 
+          salesforce_id: The unique identifier for the customer in Salesforce integration
+
           timezone: Timezone to use for this customer
 
           extra_headers: Send extra headers
@@ -2159,6 +2174,7 @@ class AsyncCustomersResource(AsyncAPIResource):
                     "metadata": metadata,
                     "name": name,
                     "passthrough": passthrough,
+                    "salesforce_id": salesforce_id,
                     "timezone": timezone,
                 },
                 customer_provision_params.CustomerProvisionParams,

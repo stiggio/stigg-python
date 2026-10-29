@@ -176,6 +176,9 @@ class CustomerUpdateParams(TypedDict, total=False):
     passthrough: Passthrough
     """Vendor-specific billing passthrough fields."""
 
+    salesforce_id: Annotated[Optional[str], PropertyInfo(alias="salesforceId")]
+    """The unique identifier for the customer in Salesforce integration"""
+
     timezone: Optional[str]
     """Timezone to use for this customer"""
 

@@ -513,6 +513,9 @@ class Data(BaseModel):
     passthrough: Optional[DataPassthrough] = None
     """Vendor-specific billing passthrough fields."""
 
+    salesforce_id: Optional[str] = FieldInfo(alias="salesforceId", default=None)
+    """The unique identifier for the customer in Salesforce integration"""
+
     timezone: Optional[str] = None
     """Timezone to use for this customer"""
 
