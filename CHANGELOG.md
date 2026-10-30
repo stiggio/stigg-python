@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.0-beta.57](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.56...v0.1.0-beta.57) (2026-10-30)
+
+
+### Features
+
+* **STIGG-9594:** add the v1 governance resources and v1-beta deprecation messages ([fee934c](https://github.com/stiggio/stigg-python/commit/fee934c1f664ad4ceb870df8990fc1bfac3196fa))
+
+
+### Bug Fixes
+
+* sync OpenAPI spec from stigg-api ([afcd8b2](https://github.com/stiggio/stigg-python/commit/afcd8b22d37de76280bd83464910c8ae65360ec3))
+* sync OpenAPI spec from stigg-api ([7f7a567](https://github.com/stiggio/stigg-python/commit/7f7a5676e03382198611c8b15d0345ea2faf2b07))
+* sync OpenAPI spec from stigg-api ([63ddd5c](https://github.com/stiggio/stigg-python/commit/63ddd5cefa1970463b141d4b9e096e4aa2f7fc68))
+
 ## [0.1.0-beta.56](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.55...v0.1.0-beta.56) (2026-10-29)
 
 
