@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Dict, Union
 from datetime import datetime
 from typing_extensions import Annotated, TypedDict
 
@@ -17,6 +17,13 @@ class CustomerCheckEntitlementParams(TypedDict, total=False):
     """Currency ID (refId) to check for credit entitlements.
 
     Mutually exclusive with `featureId`.
+    """
+
+    dimensions: Dict[str, str]
+    """Attribution map of the entities the usage is attributed to (e.g.
+
+    `dimensions[userId]=u1`). When provided, their governance budgets are checked
+    too and the response includes `chains`.
     """
 
     feature_id: Annotated[str, PropertyInfo(alias="featureId")]
@@ -59,7 +66,7 @@ class CustomerCheckEntitlementParams(TypedDict, total=False):
     """Credits to reserve (credit entitlements only).
 
     The check is decided and the credits held atomically; `requestedUsage` is
-    ignored.
+    ignored. Not supported with `dimensions`.
     """
 
     resource_id: Annotated[str, PropertyInfo(alias="resourceId")]

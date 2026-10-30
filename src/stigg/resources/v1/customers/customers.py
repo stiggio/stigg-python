@@ -488,6 +488,7 @@ class CustomersResource(SyncAPIResource):
         id: str,
         *,
         currency_id: str | Omit = omit,
+        dimensions: Dict[str, str] | Omit = omit,
         feature_id: str | Omit = omit,
         requested_usage: int | Omit = omit,
         requested_values: SequenceNotStr[str] | Omit = omit,
@@ -509,16 +510,22 @@ class CustomersResource(SyncAPIResource):
         """
         Checks a single entitlement (feature or credit) for a customer or resource.
         Supports `requestedUsage` and `requestedValues` to evaluate against limits or
-        enum values. Each call reaches the Stigg API directly, so latency reflects a
-        network round trip. For entitlement checks on a hot path (e.g. gating a request
-        in real time), the Stigg Node Server SDK (with its built-in cache) or the
-        Sidecar will typically respond faster and keep working through brief Stigg
-        outages; reach for this endpoint when a live HTTP call is the natural fit, such
-        as from a non-Node backend or a server-side job.
+        enum values. Pass `dimensions` to also check the governance budgets of the
+        entities the usage is attributed to; the response then includes `chains`. Each
+        call reaches the Stigg API directly, so latency reflects a network round trip.
+        For entitlement checks on a hot path (e.g. gating a request in real time), the
+        Stigg Node Server SDK (with its built-in cache) or the Sidecar will typically
+        respond faster and keep working through brief Stigg outages; reach for this
+        endpoint when a live HTTP call is the natural fit, such as from a non-Node
+        backend or a server-side job.
 
         Args:
           currency_id: Currency ID (refId) to check for credit entitlements. Mutually exclusive with
               `featureId`.
+
+          dimensions: Attribution map of the entities the usage is attributed to (e.g.
+              `dimensions[userId]=u1`). When provided, their governance budgets are checked
+              too and the response includes `chains`.
 
           feature_id: Feature ID (refId) to check. Mutually exclusive with `currencyId`.
 
@@ -539,7 +546,8 @@ class CustomersResource(SyncAPIResource):
               Mutually exclusive with `reservationExpiresAt`.
 
           reserve_amount: Credits to reserve (credit entitlements only). The check is decided and the
-              credits held atomically; `requestedUsage` is ignored.
+              credits held atomically; `requestedUsage` is ignored. Not supported with
+              `dimensions`.
 
           resource_id: Resource ID to scope the entitlement check to a specific resource
 
@@ -572,6 +580,7 @@ class CustomersResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "currency_id": currency_id,
+                        "dimensions": dimensions,
                         "feature_id": feature_id,
                         "requested_usage": requested_usage,
                         "requested_values": requested_values,
@@ -1600,6 +1609,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         id: str,
         *,
         currency_id: str | Omit = omit,
+        dimensions: Dict[str, str] | Omit = omit,
         feature_id: str | Omit = omit,
         requested_usage: int | Omit = omit,
         requested_values: SequenceNotStr[str] | Omit = omit,
@@ -1621,16 +1631,22 @@ class AsyncCustomersResource(AsyncAPIResource):
         """
         Checks a single entitlement (feature or credit) for a customer or resource.
         Supports `requestedUsage` and `requestedValues` to evaluate against limits or
-        enum values. Each call reaches the Stigg API directly, so latency reflects a
-        network round trip. For entitlement checks on a hot path (e.g. gating a request
-        in real time), the Stigg Node Server SDK (with its built-in cache) or the
-        Sidecar will typically respond faster and keep working through brief Stigg
-        outages; reach for this endpoint when a live HTTP call is the natural fit, such
-        as from a non-Node backend or a server-side job.
+        enum values. Pass `dimensions` to also check the governance budgets of the
+        entities the usage is attributed to; the response then includes `chains`. Each
+        call reaches the Stigg API directly, so latency reflects a network round trip.
+        For entitlement checks on a hot path (e.g. gating a request in real time), the
+        Stigg Node Server SDK (with its built-in cache) or the Sidecar will typically
+        respond faster and keep working through brief Stigg outages; reach for this
+        endpoint when a live HTTP call is the natural fit, such as from a non-Node
+        backend or a server-side job.
 
         Args:
           currency_id: Currency ID (refId) to check for credit entitlements. Mutually exclusive with
               `featureId`.
+
+          dimensions: Attribution map of the entities the usage is attributed to (e.g.
+              `dimensions[userId]=u1`). When provided, their governance budgets are checked
+              too and the response includes `chains`.
 
           feature_id: Feature ID (refId) to check. Mutually exclusive with `currencyId`.
 
@@ -1651,7 +1667,8 @@ class AsyncCustomersResource(AsyncAPIResource):
               Mutually exclusive with `reservationExpiresAt`.
 
           reserve_amount: Credits to reserve (credit entitlements only). The check is decided and the
-              credits held atomically; `requestedUsage` is ignored.
+              credits held atomically; `requestedUsage` is ignored. Not supported with
+              `dimensions`.
 
           resource_id: Resource ID to scope the entitlement check to a specific resource
 
@@ -1684,6 +1701,7 @@ class AsyncCustomersResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "currency_id": currency_id,
+                        "dimensions": dimensions,
                         "feature_id": feature_id,
                         "requested_usage": requested_usage,
                         "requested_values": requested_values,

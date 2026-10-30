@@ -45,7 +45,7 @@ class DataFeatureChain(BaseModel):
     """
 
     usage_limit: Optional[float] = FieldInfo(alias="usageLimit", default=None)
-    """Hard usage limit for this node; null when no assignment is configured."""
+    """Hard usage limit for this node; null when the entity has no entity entitlement."""
 
 
 class DataFeatureFeature(BaseModel):
@@ -176,7 +176,7 @@ class DataCreditChain(BaseModel):
     """
 
     usage_limit: Optional[float] = FieldInfo(alias="usageLimit", default=None)
-    """Hard usage limit for this node; null when no assignment is configured."""
+    """Hard usage limit for this node; null when the entity has no entity entitlement."""
 
 
 class DataCreditReservation(BaseModel):

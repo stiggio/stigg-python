@@ -19,10 +19,10 @@ class EntitlementCheckParams(TypedDict, total=False):
     """
 
     dimensions: Dict[str, str]
-    """Optional attribution map (e.g.
+    """Attribution map of the entities the usage is attributed to (e.g.
 
-    `dimensions[userId]=u1`). When provided, the response includes a `chains` array
-    with per-entity governance limits.
+    `dimensions[userId]=u1`). When provided, their governance budgets are checked
+    too and the response includes `chains`.
     """
 
     feature_id: Annotated[str, PropertyInfo(alias="featureId")]

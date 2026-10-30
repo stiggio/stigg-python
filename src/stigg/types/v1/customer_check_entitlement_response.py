@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypeAlias
 
@@ -13,11 +13,39 @@ __all__ = [
     "CustomerCheckEntitlementResponse",
     "Data",
     "DataFeature",
+    "DataFeatureChain",
     "DataFeatureFeature",
     "DataCredit",
     "DataCreditCurrency",
+    "DataCreditChain",
     "DataCreditReservation",
 ]
+
+
+class DataFeatureChain(BaseModel):
+    """
+    Per-entity governance node — limit and current usage for a single resolved entity.
+    """
+
+    current_usage: float = FieldInfo(alias="currentUsage")
+    """Amount consumed by this entity in the current cadence period."""
+
+    entity_id: str = FieldInfo(alias="entityId")
+    """External id of the entity within the customer."""
+
+    is_granted: bool = FieldInfo(alias="isGranted")
+    """Whether this node alone permits the requested usage."""
+
+    scope_entity_ids: List[str] = FieldInfo(alias="scopeEntityIds")
+    """External ids of the entities this budget is scoped to.
+
+    Empty (`[]`) is the node-wide budget; a non-empty set is the dimension-scoped
+    budget that matched this request — use it to tell apart multiple budgets on the
+    same entity.
+    """
+
+    usage_limit: Optional[float] = FieldInfo(alias="usageLimit", default=None)
+    """Hard usage limit for this node; null when the entity has no entity entitlement."""
 
 
 class DataFeatureFeature(BaseModel):
@@ -57,6 +85,12 @@ class DataFeature(BaseModel):
     is_granted: bool = FieldInfo(alias="isGranted")
 
     type: Literal["FEATURE"]
+
+    chains: Optional[List[List[DataFeatureChain]]] = None
+    """Per-entity rollups, one chain per resolved dimension.
+
+    Omitted when dimensions was not provided.
+    """
 
     current_usage: Optional[float] = FieldInfo(alias="currentUsage", default=None)
 
@@ -117,6 +151,32 @@ class DataCreditCurrency(BaseModel):
     """The singular form of the currency unit."""
 
 
+class DataCreditChain(BaseModel):
+    """
+    Per-entity governance node — limit and current usage for a single resolved entity.
+    """
+
+    current_usage: float = FieldInfo(alias="currentUsage")
+    """Amount consumed by this entity in the current cadence period."""
+
+    entity_id: str = FieldInfo(alias="entityId")
+    """External id of the entity within the customer."""
+
+    is_granted: bool = FieldInfo(alias="isGranted")
+    """Whether this node alone permits the requested usage."""
+
+    scope_entity_ids: List[str] = FieldInfo(alias="scopeEntityIds")
+    """External ids of the entities this budget is scoped to.
+
+    Empty (`[]`) is the node-wide budget; a non-empty set is the dimension-scoped
+    budget that matched this request — use it to tell apart multiple budgets on the
+    same entity.
+    """
+
+    usage_limit: Optional[float] = FieldInfo(alias="usageLimit", default=None)
+    """Hard usage limit for this node; null when the entity has no entity entitlement."""
+
+
 class DataCreditReservation(BaseModel):
     """
     The reservation created by this request, when it asked to reserve credits and was granted.
@@ -171,6 +231,12 @@ class DataCredit(BaseModel):
 
     usage_updated_at: datetime = FieldInfo(alias="usageUpdatedAt")
     """Timestamp of the last update to the credit usage."""
+
+    chains: Optional[List[List[DataCreditChain]]] = None
+    """Per-entity rollups, one chain per resolved dimension.
+
+    Omitted when dimensions was not provided.
+    """
 
     entitlement_updated_at: Optional[datetime] = FieldInfo(alias="entitlementUpdatedAt", default=None)
     """Timestamp of the last update to the entitlement grant or configuration."""

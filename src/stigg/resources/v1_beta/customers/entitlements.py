@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Dict
 
 import httpx
@@ -43,6 +44,7 @@ class EntitlementsResource(SyncAPIResource):
         """
         return EntitlementsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def check(
         self,
         id: str,
@@ -67,13 +69,15 @@ class EntitlementsResource(SyncAPIResource):
         Same
         semantics as `Check entitlement`, plus an optional `dimensions` query param that
         resolves to per-entity governance limits surfaced as `chains` on the response.
+        Deprecated: use `GET /api/v1/customers/{id}/entitlements/check`.
 
         Args:
           currency_id: Currency ID (refId) to check for credit entitlements. Mutually exclusive with
               `featureId`.
 
-          dimensions: Optional attribution map (e.g. `dimensions[userId]=u1`). When provided, the
-              response includes a `chains` array with per-entity governance limits.
+          dimensions: Attribution map of the entities the usage is attributed to (e.g.
+              `dimensions[userId]=u1`). When provided, their governance budgets are checked
+              too and the response includes `chains`.
 
           feature_id: Feature ID (refId) to check. Mutually exclusive with `currencyId`.
 
@@ -146,6 +150,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         """
         return AsyncEntitlementsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def check(
         self,
         id: str,
@@ -170,13 +175,15 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         Same
         semantics as `Check entitlement`, plus an optional `dimensions` query param that
         resolves to per-entity governance limits surfaced as `chains` on the response.
+        Deprecated: use `GET /api/v1/customers/{id}/entitlements/check`.
 
         Args:
           currency_id: Currency ID (refId) to check for credit entitlements. Mutually exclusive with
               `featureId`.
 
-          dimensions: Optional attribution map (e.g. `dimensions[userId]=u1`). When provided, the
-              response includes a `chains` array with per-entity governance limits.
+          dimensions: Attribution map of the entities the usage is attributed to (e.g.
+              `dimensions[userId]=u1`). When provided, their governance budgets are checked
+              too and the response includes `chains`.
 
           feature_id: Feature ID (refId) to check. Mutually exclusive with `currencyId`.
 
@@ -233,8 +240,10 @@ class EntitlementsResourceWithRawResponse:
     def __init__(self, entitlements: EntitlementsResource) -> None:
         self._entitlements = entitlements
 
-        self.check = to_raw_response_wrapper(
-            entitlements.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                entitlements.check,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -242,8 +251,10 @@ class AsyncEntitlementsResourceWithRawResponse:
     def __init__(self, entitlements: AsyncEntitlementsResource) -> None:
         self._entitlements = entitlements
 
-        self.check = async_to_raw_response_wrapper(
-            entitlements.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                entitlements.check,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -251,8 +262,10 @@ class EntitlementsResourceWithStreamingResponse:
     def __init__(self, entitlements: EntitlementsResource) -> None:
         self._entitlements = entitlements
 
-        self.check = to_streamed_response_wrapper(
-            entitlements.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                entitlements.check,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -260,6 +273,8 @@ class AsyncEntitlementsResourceWithStreamingResponse:
     def __init__(self, entitlements: AsyncEntitlementsResource) -> None:
         self._entitlements = entitlements
 
-        self.check = async_to_streamed_response_wrapper(
-            entitlements.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                entitlements.check,  # pyright: ignore[reportDeprecated],
+            )
         )

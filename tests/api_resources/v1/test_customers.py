@@ -305,6 +305,7 @@ class TestCustomers:
         customer = client.v1.customers.check_entitlement(
             id="x",
             currency_id="x",
+            dimensions={"foo": "string"},
             feature_id="x",
             requested_usage=0,
             requested_values=["string"],
@@ -1093,6 +1094,7 @@ class TestAsyncCustomers:
         customer = await async_client.v1.customers.check_entitlement(
             id="x",
             currency_id="x",
+            dimensions={"foo": "string"},
             feature_id="x",
             requested_usage=0,
             requested_values=["string"],
