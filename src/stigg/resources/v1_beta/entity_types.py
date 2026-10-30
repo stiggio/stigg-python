@@ -47,7 +47,7 @@ class EntityTypesResource(SyncAPIResource):
         """
         return EntityTypesResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated("Use `v1.entity_types.list` instead.")
     def list(
         self,
         *,
@@ -117,7 +117,7 @@ class EntityTypesResource(SyncAPIResource):
             model=EntityTypeListResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated("Use `v1.entity_types.upsert` instead.")
     def upsert(
         self,
         *,
@@ -188,7 +188,7 @@ class AsyncEntityTypesResource(AsyncAPIResource):
         """
         return AsyncEntityTypesResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated("Use `v1.entity_types.list` instead.")
     def list(
         self,
         *,
@@ -258,7 +258,7 @@ class AsyncEntityTypesResource(AsyncAPIResource):
             model=EntityTypeListResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated("Use `v1.entity_types.upsert` instead.")
     async def upsert(
         self,
         *,

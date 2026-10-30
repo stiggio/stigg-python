@@ -41,6 +41,7 @@ from .customer_list_response import CustomerListResponse as CustomerListResponse
 from .customer_update_params import CustomerUpdateParams as CustomerUpdateParams
 from .usage_history_response import UsageHistoryResponse as UsageHistoryResponse
 from .credit_get_usage_params import CreditGetUsageParams as CreditGetUsageParams
+from .entity_type_list_params import EntityTypeListParams as EntityTypeListParams
 from .event_estimate_response import EventEstimateResponse as EventEstimateResponse
 from .usage_estimate_response import UsageEstimateResponse as UsageEstimateResponse
 from .contract_create_response import ContractCreateResponse as ContractCreateResponse
@@ -53,7 +54,10 @@ from .addon_list_charges_params import AddonListChargesParams as AddonListCharge
 from .credit_get_usage_response import CreditGetUsageResponse as CreditGetUsageResponse
 from .credit_list_ledger_params import CreditListLedgerParams as CreditListLedgerParams
 from .customer_provision_params import CustomerProvisionParams as CustomerProvisionParams
+from .entity_type_list_response import EntityTypeListResponse as EntityTypeListResponse
+from .entity_type_upsert_params import EntityTypeUpsertParams as EntityTypeUpsertParams
 from .contract_retrieve_response import ContractRetrieveResponse as ContractRetrieveResponse
+from .entity_type_archive_params import EntityTypeArchiveParams as EntityTypeArchiveParams
 from .plan_list_charges_response import PlanListChargesResponse as PlanListChargesResponse
 from .plan_remove_draft_response import PlanRemoveDraftResponse as PlanRemoveDraftResponse
 from .subscription_cancel_params import SubscriptionCancelParams as SubscriptionCancelParams
@@ -64,8 +68,10 @@ from .addon_list_charges_response import AddonListChargesResponse as AddonListCh
 from .addon_remove_draft_response import AddonRemoveDraftResponse as AddonRemoveDraftResponse
 from .coupon_update_coupon_params import CouponUpdateCouponParams as CouponUpdateCouponParams
 from .credit_list_ledger_response import CreditListLedgerResponse as CreditListLedgerResponse
+from .entity_type_upsert_response import EntityTypeUpsertResponse as EntityTypeUpsertResponse
 from .subscription_migrate_params import SubscriptionMigrateParams as SubscriptionMigrateParams
 from .subscription_preview_params import SubscriptionPreviewParams as SubscriptionPreviewParams
+from .entity_type_archive_response import EntityTypeArchiveResponse as EntityTypeArchiveResponse
 from .feature_list_features_params import FeatureListFeaturesParams as FeatureListFeaturesParams
 from .product_list_products_params import ProductListProductsParams as ProductListProductsParams
 from .subscription_delegate_params import SubscriptionDelegateParams as SubscriptionDelegateParams
@@ -98,4 +104,7 @@ from .customer_retrieve_entitlements_params import (
 )
 from .customer_retrieve_entitlements_response import (
     CustomerRetrieveEntitlementsResponse as CustomerRetrieveEntitlementsResponse,
+)
+from .entity_type_check_active_entities_response import (
+    EntityTypeCheckActiveEntitiesResponse as EntityTypeCheckActiveEntitiesResponse,
 )

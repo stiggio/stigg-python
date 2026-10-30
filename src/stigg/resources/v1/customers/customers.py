@@ -46,6 +46,14 @@ from .payment_method import (
     AsyncPaymentMethodResourceWithStreamingResponse,
 )
 from ...._base_client import AsyncPaginator, make_request_options
+from .entities.entities import (
+    EntitiesResource,
+    AsyncEntitiesResource,
+    EntitiesResourceWithRawResponse,
+    AsyncEntitiesResourceWithRawResponse,
+    EntitiesResourceWithStreamingResponse,
+    AsyncEntitiesResourceWithStreamingResponse,
+)
 from .promotional_entitlements import (
     PromotionalEntitlementsResource,
     AsyncPromotionalEntitlementsResource,
@@ -80,6 +88,10 @@ class CustomersResource(SyncAPIResource):
     @cached_property
     def integrations(self) -> IntegrationsResource:
         return IntegrationsResource(self._client)
+
+    @cached_property
+    def entities(self) -> EntitiesResource:
+        return EntitiesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CustomersResourceWithRawResponse:
@@ -1201,6 +1213,10 @@ class AsyncCustomersResource(AsyncAPIResource):
     @cached_property
     def integrations(self) -> AsyncIntegrationsResource:
         return AsyncIntegrationsResource(self._client)
+
+    @cached_property
+    def entities(self) -> AsyncEntitiesResource:
+        return AsyncEntitiesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCustomersResourceWithRawResponse:
@@ -2363,6 +2379,10 @@ class CustomersResourceWithRawResponse:
     def integrations(self) -> IntegrationsResourceWithRawResponse:
         return IntegrationsResourceWithRawResponse(self._customers.integrations)
 
+    @cached_property
+    def entities(self) -> EntitiesResourceWithRawResponse:
+        return EntitiesResourceWithRawResponse(self._customers.entities)
+
 
 class AsyncCustomersResourceWithRawResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -2418,6 +2438,10 @@ class AsyncCustomersResourceWithRawResponse:
     @cached_property
     def integrations(self) -> AsyncIntegrationsResourceWithRawResponse:
         return AsyncIntegrationsResourceWithRawResponse(self._customers.integrations)
+
+    @cached_property
+    def entities(self) -> AsyncEntitiesResourceWithRawResponse:
+        return AsyncEntitiesResourceWithRawResponse(self._customers.entities)
 
 
 class CustomersResourceWithStreamingResponse:
@@ -2475,6 +2499,10 @@ class CustomersResourceWithStreamingResponse:
     def integrations(self) -> IntegrationsResourceWithStreamingResponse:
         return IntegrationsResourceWithStreamingResponse(self._customers.integrations)
 
+    @cached_property
+    def entities(self) -> EntitiesResourceWithStreamingResponse:
+        return EntitiesResourceWithStreamingResponse(self._customers.entities)
+
 
 class AsyncCustomersResourceWithStreamingResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -2530,3 +2558,7 @@ class AsyncCustomersResourceWithStreamingResponse:
     @cached_property
     def integrations(self) -> AsyncIntegrationsResourceWithStreamingResponse:
         return AsyncIntegrationsResourceWithStreamingResponse(self._customers.integrations)
+
+    @cached_property
+    def entities(self) -> AsyncEntitiesResourceWithStreamingResponse:
+        return AsyncEntitiesResourceWithStreamingResponse(self._customers.entities)

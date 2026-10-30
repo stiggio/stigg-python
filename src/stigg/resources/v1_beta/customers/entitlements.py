@@ -44,7 +44,7 @@ class EntitlementsResource(SyncAPIResource):
         """
         return EntitlementsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated("Use `v1.customers.check_entitlement` instead.")
     def check(
         self,
         id: str,
@@ -150,7 +150,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         """
         return AsyncEntitlementsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated("Use `v1.customers.check_entitlement` instead.")
     async def check(
         self,
         id: str,

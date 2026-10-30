@@ -74,6 +74,39 @@ Methods:
 - <code title="post /api/v1/customers/{id}/integrations">client.v1.customers.integrations.<a href="./src/stigg/resources/v1/customers/integrations.py">link</a>(path_id, \*\*<a href="src/stigg/types/v1/customers/integration_link_params.py">params</a>) -> <a href="./src/stigg/types/v1/customer_integration_response.py">CustomerIntegrationResponse</a></code>
 - <code title="delete /api/v1/customers/{id}/integrations/{integrationId}">client.v1.customers.integrations.<a href="./src/stigg/resources/v1/customers/integrations.py">unlink</a>(integration_id, \*, id) -> <a href="./src/stigg/types/v1/customer_integration_response.py">CustomerIntegrationResponse</a></code>
 
+### Entities
+
+Types:
+
+```python
+from stigg.types.v1.customers import (
+    EntityRetrieveResponse,
+    EntityListResponse,
+    EntityArchiveResponse,
+    EntityUpsertResponse,
+)
+```
+
+Methods:
+
+- <code title="get /api/v1/customers/{id}/entities/{entityId}">client.v1.customers.entities.<a href="./src/stigg/resources/v1/customers/entities/entities.py">retrieve</a>(entity_id, \*, id) -> <a href="./src/stigg/types/v1/customers/entity_retrieve_response.py">EntityRetrieveResponse</a></code>
+- <code title="get /api/v1/customers/{id}/entities">client.v1.customers.entities.<a href="./src/stigg/resources/v1/customers/entities/entities.py">list</a>(id, \*\*<a href="src/stigg/types/v1/customers/entity_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/customers/entity_list_response.py">SyncMyCursorIDPage[EntityListResponse]</a></code>
+- <code title="post /api/v1/customers/{id}/entities/archive">client.v1.customers.entities.<a href="./src/stigg/resources/v1/customers/entities/entities.py">archive</a>(id, \*\*<a href="src/stigg/types/v1/customers/entity_archive_params.py">params</a>) -> <a href="./src/stigg/types/v1/customers/entity_archive_response.py">EntityArchiveResponse</a></code>
+- <code title="put /api/v1/customers/{id}/entities">client.v1.customers.entities.<a href="./src/stigg/resources/v1/customers/entities/entities.py">upsert</a>(id, \*\*<a href="src/stigg/types/v1/customers/entity_upsert_params.py">params</a>) -> <a href="./src/stigg/types/v1/customers/entity_upsert_response.py">EntityUpsertResponse</a></code>
+
+#### Entitlements
+
+Types:
+
+```python
+from stigg.types.v1.customers.entities import EntitlementListResponse, EntitlementUpsertResponse
+```
+
+Methods:
+
+- <code title="get /api/v1/customers/{id}/entities/entitlements">client.v1.customers.entities.entitlements.<a href="./src/stigg/resources/v1/customers/entities/entitlements.py">list</a>(id, \*\*<a href="src/stigg/types/v1/customers/entities/entitlement_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/customers/entities/entitlement_list_response.py">SyncMyCursorIDPage[EntitlementListResponse]</a></code>
+- <code title="put /api/v1/customers/{id}/entities/entitlements">client.v1.customers.entities.entitlements.<a href="./src/stigg/resources/v1/customers/entities/entitlements.py">upsert</a>(id, \*\*<a href="src/stigg/types/v1/customers/entities/entitlement_upsert_params.py">params</a>) -> <a href="./src/stigg/types/v1/customers/entities/entitlement_upsert_response.py">EntitlementUpsertResponse</a></code>
+
 ## Subscriptions
 
 Types:
@@ -448,6 +481,26 @@ Methods:
 - <code title="patch /api/v1/contracts/{id}">client.v1.contracts.<a href="./src/stigg/resources/v1/contracts.py">update</a>(id, \*\*<a href="src/stigg/types/v1/contract_update_params.py">params</a>) -> <a href="./src/stigg/types/v1/contract_update_response.py">ContractUpdateResponse</a></code>
 - <code title="get /api/v1/contracts">client.v1.contracts.<a href="./src/stigg/resources/v1/contracts.py">list</a>(\*\*<a href="src/stigg/types/v1/contract_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/contract_list_response.py">SyncMyCursorIDPage[ContractListResponse]</a></code>
 - <code title="post /api/v1/contracts/{id}/archive">client.v1.contracts.<a href="./src/stigg/resources/v1/contracts.py">delete</a>(id) -> <a href="./src/stigg/types/v1/contract_delete_response.py">ContractDeleteResponse</a></code>
+
+## EntityTypes
+
+Types:
+
+```python
+from stigg.types.v1 import (
+    EntityTypeListResponse,
+    EntityTypeArchiveResponse,
+    EntityTypeCheckActiveEntitiesResponse,
+    EntityTypeUpsertResponse,
+)
+```
+
+Methods:
+
+- <code title="get /api/v1/entity-types">client.v1.entity_types.<a href="./src/stigg/resources/v1/entity_types.py">list</a>(\*\*<a href="src/stigg/types/v1/entity_type_list_params.py">params</a>) -> <a href="./src/stigg/types/v1/entity_type_list_response.py">SyncMyCursorIDPage[EntityTypeListResponse]</a></code>
+- <code title="post /api/v1/entity-types/archive">client.v1.entity_types.<a href="./src/stigg/resources/v1/entity_types.py">archive</a>(\*\*<a href="src/stigg/types/v1/entity_type_archive_params.py">params</a>) -> <a href="./src/stigg/types/v1/entity_type_archive_response.py">EntityTypeArchiveResponse</a></code>
+- <code title="get /api/v1/entity-types/{id}/has-active-entities">client.v1.entity_types.<a href="./src/stigg/resources/v1/entity_types.py">check_active_entities</a>(id) -> <a href="./src/stigg/types/v1/entity_type_check_active_entities_response.py">EntityTypeCheckActiveEntitiesResponse</a></code>
+- <code title="put /api/v1/entity-types">client.v1.entity_types.<a href="./src/stigg/resources/v1/entity_types.py">upsert</a>(\*\*<a href="src/stigg/types/v1/entity_type_upsert_params.py">params</a>) -> <a href="./src/stigg/types/v1/entity_type_upsert_response.py">EntityTypeUpsertResponse</a></code>
 
 # V1Beta
 

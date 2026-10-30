@@ -55,7 +55,7 @@ class EntitiesResource(SyncAPIResource):
         """
         return EntitiesResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated("Use `v1.customers.entities.retrieve` instead.")
     def retrieve(
         self,
         entity_id: str,
@@ -105,7 +105,7 @@ class EntitiesResource(SyncAPIResource):
             cast_to=EntityRetrieveResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated("Use `v1.customers.entities.list` instead.")
     def list(
         self,
         id: str,
@@ -181,7 +181,7 @@ class EntitiesResource(SyncAPIResource):
             model=EntityListResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated("Use `v1.customers.entities.archive` instead.")
     def archive(
         self,
         id: str,
@@ -233,7 +233,9 @@ class EntitiesResource(SyncAPIResource):
             cast_to=EntityArchiveResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use `v1.customers.entities.upsert` with the entity id to restore an archived entity."
+    )
     def unarchive(
         self,
         id: str,
@@ -284,7 +286,7 @@ class EntitiesResource(SyncAPIResource):
             cast_to=EntityUnarchiveResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated("Use `v1.customers.entities.upsert` instead.")
     def upsert(
         self,
         id: str,
@@ -358,7 +360,7 @@ class AsyncEntitiesResource(AsyncAPIResource):
         """
         return AsyncEntitiesResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated("Use `v1.customers.entities.retrieve` instead.")
     async def retrieve(
         self,
         entity_id: str,
@@ -408,7 +410,7 @@ class AsyncEntitiesResource(AsyncAPIResource):
             cast_to=EntityRetrieveResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated("Use `v1.customers.entities.list` instead.")
     def list(
         self,
         id: str,
@@ -484,7 +486,7 @@ class AsyncEntitiesResource(AsyncAPIResource):
             model=EntityListResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated("Use `v1.customers.entities.archive` instead.")
     async def archive(
         self,
         id: str,
@@ -536,7 +538,9 @@ class AsyncEntitiesResource(AsyncAPIResource):
             cast_to=EntityArchiveResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use `v1.customers.entities.upsert` with the entity id to restore an archived entity."
+    )
     async def unarchive(
         self,
         id: str,
@@ -587,7 +591,7 @@ class AsyncEntitiesResource(AsyncAPIResource):
             cast_to=EntityUnarchiveResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated("Use `v1.customers.entities.upsert` instead.")
     async def upsert(
         self,
         id: str,

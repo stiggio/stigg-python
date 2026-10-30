@@ -46,7 +46,7 @@ class AssignmentsResource(SyncAPIResource):
         """
         return AssignmentsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated("Use `v1.customers.entities.entitlements.list` instead.")
     def list(
         self,
         id: str,
@@ -130,7 +130,9 @@ class AssignmentsResource(SyncAPIResource):
             model=AssignmentListResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use `v1.customers.entities.entitlements.upsert` instead. Its body key is `entityEntitlements`."
+    )
     def upsert(
         self,
         id: str,
@@ -206,7 +208,7 @@ class AsyncAssignmentsResource(AsyncAPIResource):
         """
         return AsyncAssignmentsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated("Use `v1.customers.entities.entitlements.list` instead.")
     def list(
         self,
         id: str,
@@ -290,7 +292,9 @@ class AsyncAssignmentsResource(AsyncAPIResource):
             model=AssignmentListResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use `v1.customers.entities.entitlements.upsert` instead. Its body key is `entityEntitlements`."
+    )
     async def upsert(
         self,
         id: str,

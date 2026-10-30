@@ -88,6 +88,14 @@ from .customers import (
     CustomersResourceWithStreamingResponse,
     AsyncCustomersResourceWithStreamingResponse,
 )
+from .entity_types import (
+    EntityTypesResource,
+    AsyncEntityTypesResource,
+    EntityTypesResourceWithRawResponse,
+    AsyncEntityTypesResourceWithRawResponse,
+    EntityTypesResourceWithStreamingResponse,
+    AsyncEntityTypesResourceWithStreamingResponse,
+)
 from .subscriptions import (
     SubscriptionsResource,
     AsyncSubscriptionsResource,
@@ -164,6 +172,12 @@ __all__ = [
     "AsyncContractsResourceWithRawResponse",
     "ContractsResourceWithStreamingResponse",
     "AsyncContractsResourceWithStreamingResponse",
+    "EntityTypesResource",
+    "AsyncEntityTypesResource",
+    "EntityTypesResourceWithRawResponse",
+    "AsyncEntityTypesResourceWithRawResponse",
+    "EntityTypesResourceWithStreamingResponse",
+    "AsyncEntityTypesResourceWithStreamingResponse",
     "V1Resource",
     "AsyncV1Resource",
     "V1ResourceWithRawResponse",

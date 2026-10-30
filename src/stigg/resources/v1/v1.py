@@ -52,6 +52,14 @@ from .plans.plans import (
     PlansResourceWithStreamingResponse,
     AsyncPlansResourceWithStreamingResponse,
 )
+from .entity_types import (
+    EntityTypesResource,
+    AsyncEntityTypesResource,
+    EntityTypesResourceWithRawResponse,
+    AsyncEntityTypesResourceWithRawResponse,
+    EntityTypesResourceWithStreamingResponse,
+    AsyncEntityTypesResourceWithStreamingResponse,
+)
 from .addons.addons import (
     AddonsResource,
     AsyncAddonsResource,
@@ -149,6 +157,10 @@ class V1Resource(SyncAPIResource):
         return ContractsResource(self._client)
 
     @cached_property
+    def entity_types(self) -> EntityTypesResource:
+        return EntityTypesResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> V1ResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -219,6 +231,10 @@ class AsyncV1Resource(AsyncAPIResource):
     @cached_property
     def contracts(self) -> AsyncContractsResource:
         return AsyncContractsResource(self._client)
+
+    @cached_property
+    def entity_types(self) -> AsyncEntityTypesResource:
+        return AsyncEntityTypesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncV1ResourceWithRawResponse:
@@ -295,6 +311,10 @@ class V1ResourceWithRawResponse:
     def contracts(self) -> ContractsResourceWithRawResponse:
         return ContractsResourceWithRawResponse(self._v1.contracts)
 
+    @cached_property
+    def entity_types(self) -> EntityTypesResourceWithRawResponse:
+        return EntityTypesResourceWithRawResponse(self._v1.entity_types)
+
 
 class AsyncV1ResourceWithRawResponse:
     def __init__(self, v1: AsyncV1Resource) -> None:
@@ -350,6 +370,10 @@ class AsyncV1ResourceWithRawResponse:
     @cached_property
     def contracts(self) -> AsyncContractsResourceWithRawResponse:
         return AsyncContractsResourceWithRawResponse(self._v1.contracts)
+
+    @cached_property
+    def entity_types(self) -> AsyncEntityTypesResourceWithRawResponse:
+        return AsyncEntityTypesResourceWithRawResponse(self._v1.entity_types)
 
 
 class V1ResourceWithStreamingResponse:
@@ -407,6 +431,10 @@ class V1ResourceWithStreamingResponse:
     def contracts(self) -> ContractsResourceWithStreamingResponse:
         return ContractsResourceWithStreamingResponse(self._v1.contracts)
 
+    @cached_property
+    def entity_types(self) -> EntityTypesResourceWithStreamingResponse:
+        return EntityTypesResourceWithStreamingResponse(self._v1.entity_types)
+
 
 class AsyncV1ResourceWithStreamingResponse:
     def __init__(self, v1: AsyncV1Resource) -> None:
@@ -462,3 +490,7 @@ class AsyncV1ResourceWithStreamingResponse:
     @cached_property
     def contracts(self) -> AsyncContractsResourceWithStreamingResponse:
         return AsyncContractsResourceWithStreamingResponse(self._v1.contracts)
+
+    @cached_property
+    def entity_types(self) -> AsyncEntityTypesResourceWithStreamingResponse:
+        return AsyncEntityTypesResourceWithStreamingResponse(self._v1.entity_types)
