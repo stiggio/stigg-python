@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.0-beta.58](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.57...v0.1.0-beta.58) (2026-11-04)
+
+
+### Bug Fixes
+
+* sync OpenAPI spec from stigg-api ([18e5df2](https://github.com/stiggio/stigg-python/commit/18e5df23e3beb77b6afc7a040afb9e01cd26d32a))
+
 ## [0.1.0-beta.57](https://github.com/stiggio/stigg-python/compare/v0.1.0-beta.56...v0.1.0-beta.57) (2026-10-30)
 
 
