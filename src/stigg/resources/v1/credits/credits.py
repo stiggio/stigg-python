@@ -259,10 +259,12 @@ class CreditsResource(SyncAPIResource):
         after: str | Omit = omit,
         before: str | Omit = omit,
         currency_id: str | Omit = omit,
+        end_date: Union[str, datetime] | Omit = omit,
         event_type: str | Omit = omit,
         limit: int | Omit = omit,
         reservation_id: str | Omit = omit,
         resource_id: str | Omit = omit,
+        start_date: Union[str, datetime] | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -284,6 +286,8 @@ class CreditsResource(SyncAPIResource):
 
           currency_id: Filter by currency ID
 
+          end_date: Filter to events with a timestamp on or before this date, inclusive (ISO 8601)
+
           event_type: Filter by event type(s), comma-separated
 
           limit: Maximum number of items to return
@@ -291,6 +295,8 @@ class CreditsResource(SyncAPIResource):
           reservation_id: Filter by credit reservation ID
 
           resource_id: Filter by resource ID
+
+          start_date: Filter to events with a timestamp on or after this date, inclusive (ISO 8601)
 
           extra_headers: Send extra headers
 
@@ -323,10 +329,12 @@ class CreditsResource(SyncAPIResource):
                         "after": after,
                         "before": before,
                         "currency_id": currency_id,
+                        "end_date": end_date,
                         "event_type": event_type,
                         "limit": limit,
                         "reservation_id": reservation_id,
                         "resource_id": resource_id,
+                        "start_date": start_date,
                     },
                     credit_list_ledger_params.CreditListLedgerParams,
                 ),
@@ -534,10 +542,12 @@ class AsyncCreditsResource(AsyncAPIResource):
         after: str | Omit = omit,
         before: str | Omit = omit,
         currency_id: str | Omit = omit,
+        end_date: Union[str, datetime] | Omit = omit,
         event_type: str | Omit = omit,
         limit: int | Omit = omit,
         reservation_id: str | Omit = omit,
         resource_id: str | Omit = omit,
+        start_date: Union[str, datetime] | Omit = omit,
         x_account_id: str | Omit = omit,
         x_environment_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -559,6 +569,8 @@ class AsyncCreditsResource(AsyncAPIResource):
 
           currency_id: Filter by currency ID
 
+          end_date: Filter to events with a timestamp on or before this date, inclusive (ISO 8601)
+
           event_type: Filter by event type(s), comma-separated
 
           limit: Maximum number of items to return
@@ -566,6 +578,8 @@ class AsyncCreditsResource(AsyncAPIResource):
           reservation_id: Filter by credit reservation ID
 
           resource_id: Filter by resource ID
+
+          start_date: Filter to events with a timestamp on or after this date, inclusive (ISO 8601)
 
           extra_headers: Send extra headers
 
@@ -598,10 +612,12 @@ class AsyncCreditsResource(AsyncAPIResource):
                         "after": after,
                         "before": before,
                         "currency_id": currency_id,
+                        "end_date": end_date,
                         "event_type": event_type,
                         "limit": limit,
                         "reservation_id": reservation_id,
                         "resource_id": resource_id,
+                        "start_date": start_date,
                     },
                     credit_list_ledger_params.CreditListLedgerParams,
                 ),
