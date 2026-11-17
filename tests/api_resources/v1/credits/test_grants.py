@@ -23,7 +23,7 @@ class TestGrants:
     @parametrize
     def test_method_create(self, client: Stigg) -> None:
         grant = client.v1.credits.grants.create(
-            amount=0,
+            amount=9007199254,
             currency_id="currencyId",
             customer_id="customerId",
             display_name="displayName",
@@ -35,7 +35,7 @@ class TestGrants:
     @parametrize
     def test_method_create_with_all_params(self, client: Stigg) -> None:
         grant = client.v1.credits.grants.create(
-            amount=0,
+            amount=9007199254,
             currency_id="currencyId",
             customer_id="customerId",
             display_name="displayName",
@@ -73,7 +73,7 @@ class TestGrants:
     @parametrize
     def test_raw_response_create(self, client: Stigg) -> None:
         response = client.v1.credits.grants.with_raw_response.create(
-            amount=0,
+            amount=9007199254,
             currency_id="currencyId",
             customer_id="customerId",
             display_name="displayName",
@@ -89,7 +89,7 @@ class TestGrants:
     @parametrize
     def test_streaming_response_create(self, client: Stigg) -> None:
         with client.v1.credits.grants.with_streaming_response.create(
-            amount=0,
+            amount=9007199254,
             currency_id="currencyId",
             customer_id="customerId",
             display_name="displayName",
@@ -220,7 +220,7 @@ class TestAsyncGrants:
     @parametrize
     async def test_method_create(self, async_client: AsyncStigg) -> None:
         grant = await async_client.v1.credits.grants.create(
-            amount=0,
+            amount=9007199254,
             currency_id="currencyId",
             customer_id="customerId",
             display_name="displayName",
@@ -232,7 +232,7 @@ class TestAsyncGrants:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncStigg) -> None:
         grant = await async_client.v1.credits.grants.create(
-            amount=0,
+            amount=9007199254,
             currency_id="currencyId",
             customer_id="customerId",
             display_name="displayName",
@@ -270,7 +270,7 @@ class TestAsyncGrants:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncStigg) -> None:
         response = await async_client.v1.credits.grants.with_raw_response.create(
-            amount=0,
+            amount=9007199254,
             currency_id="currencyId",
             customer_id="customerId",
             display_name="displayName",
@@ -286,7 +286,7 @@ class TestAsyncGrants:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncStigg) -> None:
         async with async_client.v1.credits.grants.with_streaming_response.create(
-            amount=0,
+            amount=9007199254,
             currency_id="currencyId",
             customer_id="customerId",
             display_name="displayName",
