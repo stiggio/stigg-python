@@ -219,6 +219,12 @@ class Data(BaseModel):
     entitlements: List[DataEntitlement]
     """List of effective feature and credit entitlements"""
 
+    entitlements_updated_at: datetime = FieldInfo(alias="entitlementsUpdatedAt")
+    """
+    When these entitlements last changed, on the same clock as the
+    entitlementsUpdated event; always set, also when the list is empty.
+    """
+
 
 class CustomerRetrieveEntitlementsResponse(BaseModel):
     """Response object"""
