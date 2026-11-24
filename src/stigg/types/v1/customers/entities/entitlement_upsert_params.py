@@ -47,6 +47,12 @@ class EntityEntitlement(TypedDict, total=False):
     Mutually exclusive with `currencyId`.
     """
 
+    has_soft_limit: Annotated[bool, PropertyInfo(alias="hasSoftLimit")]
+    """Allow usage past `usageLimit` and keep counting it, instead of blocking.
+
+    Defaults to `false` on create; omit on update to keep the current value.
+    """
+
     parent_id: Annotated[Optional[str], PropertyInfo(alias="parentId")]
     """Parent entity ID in the hierarchy.
 

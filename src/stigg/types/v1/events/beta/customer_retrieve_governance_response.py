@@ -39,6 +39,12 @@ class Data(BaseModel):
     entity_type_id: str = FieldInfo(alias="entityTypeId")
     """External id of the entity type (e.g. `team`, `user`)."""
 
+    has_soft_limit: Optional[bool] = FieldInfo(alias="hasSoftLimit", default=None)
+    """Whether usage past `usageLimit` is allowed and still counted.
+
+    `null` when the node has no usage configuration.
+    """
+
     parent_id: Optional[str] = FieldInfo(alias="parentId", default=None)
     """External id of the parent entity in the tree.
 
@@ -55,7 +61,7 @@ class Data(BaseModel):
     """
 
     usage_limit: Optional[float] = FieldInfo(alias="usageLimit", default=None)
-    """Hard usage limit for this node per cadence period."""
+    """Usage limit for this node per cadence period."""
 
     usage_period_end: Optional[datetime] = FieldInfo(alias="usagePeriodEnd", default=None)
     """Exclusive end of the cadence period in progress now — when usage resets.

@@ -31,6 +31,12 @@ class Data(BaseModel):
     entity_id: str = FieldInfo(alias="entityId")
     """The entity ID this entity entitlement is attached to"""
 
+    has_soft_limit: bool = FieldInfo(alias="hasSoftLimit")
+    """
+    Whether usage past `usageLimit` is allowed and still counted, instead of
+    blocked.
+    """
+
     parent_id: Optional[str] = FieldInfo(alias="parentId", default=None)
     """Parent entity ID in the hierarchy, or `null` for a root."""
 

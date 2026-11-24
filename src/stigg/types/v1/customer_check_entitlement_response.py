@@ -33,6 +33,12 @@ class DataFeatureChain(BaseModel):
     entity_id: str = FieldInfo(alias="entityId")
     """External id of the entity within the customer."""
 
+    has_soft_limit: bool = FieldInfo(alias="hasSoftLimit")
+    """Whether this node allows usage past `usageLimit` and keeps counting it.
+
+    When `true`, the node does not deny on its own limit.
+    """
+
     is_granted: bool = FieldInfo(alias="isGranted")
     """Whether this node alone permits the requested usage."""
 
@@ -45,7 +51,7 @@ class DataFeatureChain(BaseModel):
     """
 
     usage_limit: Optional[float] = FieldInfo(alias="usageLimit", default=None)
-    """Hard usage limit for this node; null when the entity has no entity entitlement."""
+    """Usage limit for this node; null when the entity has no entity entitlement."""
 
 
 class DataFeatureFeature(BaseModel):
@@ -162,6 +168,12 @@ class DataCreditChain(BaseModel):
     entity_id: str = FieldInfo(alias="entityId")
     """External id of the entity within the customer."""
 
+    has_soft_limit: bool = FieldInfo(alias="hasSoftLimit")
+    """Whether this node allows usage past `usageLimit` and keeps counting it.
+
+    When `true`, the node does not deny on its own limit.
+    """
+
     is_granted: bool = FieldInfo(alias="isGranted")
     """Whether this node alone permits the requested usage."""
 
@@ -174,7 +186,7 @@ class DataCreditChain(BaseModel):
     """
 
     usage_limit: Optional[float] = FieldInfo(alias="usageLimit", default=None)
-    """Hard usage limit for this node; null when the entity has no entity entitlement."""
+    """Usage limit for this node; null when the entity has no entity entitlement."""
 
 
 class DataCreditReservation(BaseModel):
