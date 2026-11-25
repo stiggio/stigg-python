@@ -502,7 +502,7 @@ class CustomersResource(SyncAPIResource):
         currency_id: str | Omit = omit,
         dimensions: Dict[str, str] | Omit = omit,
         feature_id: str | Omit = omit,
-        requested_usage: int | Omit = omit,
+        requested_usage: float | Omit = omit,
         requested_values: SequenceNotStr[str] | Omit = omit,
         reservation_expires_at: Union[str, datetime] | Omit = omit,
         reservation_id: str | Omit = omit,
@@ -542,7 +542,7 @@ class CustomersResource(SyncAPIResource):
           feature_id: Feature ID (refId) to check. Mutually exclusive with `currencyId`.
 
           requested_usage: Requested usage amount to evaluate against the entitlement limit (numeric
-              features only)
+              features only); negative for usage given back
 
           requested_values: Requested values to evaluate against allowed values (enum features only)
 
@@ -1627,7 +1627,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         currency_id: str | Omit = omit,
         dimensions: Dict[str, str] | Omit = omit,
         feature_id: str | Omit = omit,
-        requested_usage: int | Omit = omit,
+        requested_usage: float | Omit = omit,
         requested_values: SequenceNotStr[str] | Omit = omit,
         reservation_expires_at: Union[str, datetime] | Omit = omit,
         reservation_id: str | Omit = omit,
@@ -1667,7 +1667,7 @@ class AsyncCustomersResource(AsyncAPIResource):
           feature_id: Feature ID (refId) to check. Mutually exclusive with `currencyId`.
 
           requested_usage: Requested usage amount to evaluate against the entitlement limit (numeric
-              features only)
+              features only); negative for usage given back
 
           requested_values: Requested values to evaluate against allowed values (enum features only)
 

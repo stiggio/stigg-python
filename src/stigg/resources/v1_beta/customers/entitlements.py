@@ -52,7 +52,7 @@ class EntitlementsResource(SyncAPIResource):
         currency_id: str | Omit = omit,
         dimensions: Dict[str, str] | Omit = omit,
         feature_id: str | Omit = omit,
-        requested_usage: int | Omit = omit,
+        requested_usage: float | Omit = omit,
         requested_values: SequenceNotStr[str] | Omit = omit,
         resource_id: str | Omit = omit,
         x_account_id: str | Omit = omit,
@@ -82,7 +82,7 @@ class EntitlementsResource(SyncAPIResource):
           feature_id: Feature ID (refId) to check. Mutually exclusive with `currencyId`.
 
           requested_usage: Requested usage amount to evaluate against the entitlement limit (numeric
-              features only)
+              features only); negative for usage given back
 
           requested_values: Requested values to evaluate against allowed values (enum features only)
 
@@ -158,7 +158,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         currency_id: str | Omit = omit,
         dimensions: Dict[str, str] | Omit = omit,
         feature_id: str | Omit = omit,
-        requested_usage: int | Omit = omit,
+        requested_usage: float | Omit = omit,
         requested_values: SequenceNotStr[str] | Omit = omit,
         resource_id: str | Omit = omit,
         x_account_id: str | Omit = omit,
@@ -188,7 +188,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
           feature_id: Feature ID (refId) to check. Mutually exclusive with `currencyId`.
 
           requested_usage: Requested usage amount to evaluate against the entitlement limit (numeric
-              features only)
+              features only); negative for usage given back
 
           requested_values: Requested values to evaluate against allowed values (enum features only)
 

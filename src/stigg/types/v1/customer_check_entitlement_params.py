@@ -29,10 +29,10 @@ class CustomerCheckEntitlementParams(TypedDict, total=False):
     feature_id: Annotated[str, PropertyInfo(alias="featureId")]
     """Feature ID (refId) to check. Mutually exclusive with `currencyId`."""
 
-    requested_usage: Annotated[int, PropertyInfo(alias="requestedUsage")]
+    requested_usage: Annotated[float, PropertyInfo(alias="requestedUsage")]
     """
     Requested usage amount to evaluate against the entitlement limit (numeric
-    features only)
+    features only); negative for usage given back
     """
 
     requested_values: Annotated[SequenceNotStr[str], PropertyInfo(alias="requestedValues")]

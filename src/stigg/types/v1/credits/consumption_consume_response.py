@@ -46,7 +46,17 @@ class DataEntity(BaseModel):
     """The usage counted against one governance entitlement"""
 
     current_usage: float = FieldInfo(alias="currentUsage")
-    """The absolute usage counted against the entitlement"""
+    """
+    The usage counted against the entitlement, rounded up to a whole number and
+    never below zero (readable by older SDKs). See currentUsageExact for the exact
+    value
+    """
+
+    current_usage_exact: float = FieldInfo(alias="currentUsageExact")
+    """
+    The exact usage counted against the entitlement, to the millionth; negative
+    after a negative usage report takes it below zero
+    """
 
     customer_id: str = FieldInfo(alias="customerId")
     """The customer whose usage counted towards the entitlement"""
